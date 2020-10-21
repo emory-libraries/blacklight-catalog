@@ -10,7 +10,7 @@
 
 ## Running locally
 
-1. Clone the git repo: `git@github.com:emory-libraries/blacklight-catalog.git`
+1. Clone the git repo: `git clone git@github.com:emory-libraries/blacklight-catalog.git`
 1. `cd ./blacklight-catalog`
 1. Install the required gems: `bundle install`
 1. Migrate the database: `rails db:migrate`
