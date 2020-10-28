@@ -18,6 +18,7 @@ gem 'devise-guests', '~> 0.6'
 gem 'dotenv-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
+gem 'mysql2', '~> 0.5'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.7'
 gem 'rsolr', '>= 1.0'
@@ -55,4 +56,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
   gem 'xray-rails'
+end
+
+group :test do
+  gem 'rspec_junit_formatter'
 end

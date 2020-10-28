@@ -1,3 +1,6 @@
+[![CircleCI](https://circleci.com/gh/emory-libraries/blacklight-catalog.svg?style=svg)](https://circleci.com/gh/emory-libraries/blacklight-catalog)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a0d9d34d60d7f3ffe2c2/test_coverage)](https://codeclimate.com/github/emory-libraries/blacklight-catalog/test_coverage)
+
 # README
 
 ## Blacklight Discovery
