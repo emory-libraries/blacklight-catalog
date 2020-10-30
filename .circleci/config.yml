@@ -64,7 +64,7 @@ jobs:
 
     coverage:
         docker:
-            - image: circleci/ruby:2.5.7p206
+            - image: circleci/ruby:2.5.7
         working_directory: ~/project
         parallelism: 1
         steps:
@@ -88,8 +88,8 @@ workflows:
     ci:
         jobs:
             - build:
-                name: ruby2.5.7p206
+                name: ruby2.5.7
             - coverage:
                 name: codeclimate
                 requires:
-                    - ruby2.5.7p206
+                    - ruby2.5.7
