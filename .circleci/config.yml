@@ -6,7 +6,7 @@ jobs:
         parameters:
             ruby_version:
                 type: string
-                default: '2.5.7p206'
+                default: '2.5.7'
             bundler_version:
                 type: string
                 default: '2.1.4'
