@@ -1,3 +1,6 @@
+[![CircleCI](https://circleci.com/gh/emory-libraries/blacklight-catalog.svg?style=svg)](https://circleci.com/gh/emory-libraries/blacklight-catalog)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a0d9d34d60d7f3ffe2c2/test_coverage)](https://codeclimate.com/github/emory-libraries/blacklight-catalog/test_coverage)
+
 # README
 
 ## Blacklight Discovery
@@ -15,6 +18,15 @@
 1. Install the required gems: `bundle install`
 1. Migrate the database: `rails db:migrate`
 1. Launch development instance of solr in the same folder but a separate terminal window/tab: `bundle exec solr_wrapper`
-1. First time running this application locally? Give yourself some text objects: `rake solr:marc:index_test_data`
+1. First time running this application locally? Give yourself some test objects: `rake solr:marc:index_test_data`
 1. Start the application: `rails server`
 1. You should now be able to go to `http://localhost:3000/catalog` and see the application
+
+## Running Rspec tests locally
+
+1. A separate instance of Solr must be up and running before tests can be run. To do so, run the following command inside your cloned folder: `solr_wrapper --config config/solr_wrapper_test.yml`
+1. In a new tab/window within the same folder, run `bundle exec rspec`. All tests should be passing
+
+## Troubleshooting
+- Error `RSolr::Error::Http - 404 Not Found` occurs while running tests.
+    - Solution: The test Solr instance isn't running. You'll know that that Solr is up once you see this complete line: `Starting Solr 7.7.1 on port 8985 ... http://127.0.0.1:8985/solr/`
