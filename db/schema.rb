@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201021165448) do
+ActiveRecord::Schema.define(version: 20201028210217) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -22,6 +22,12 @@ ActiveRecord::Schema.define(version: 20201021165448) do
     t.datetime "updated_at", null: false
     t.index ["document_id"], name: "index_bookmarks_on_document_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "property_bag", force: :cascade do |t|
+    t.string "name"
+    t.string "value"
+    t.index ["name"], name: "index_property_bag_on_name", unique: true
   end
 
   create_table "searches", force: :cascade do |t|

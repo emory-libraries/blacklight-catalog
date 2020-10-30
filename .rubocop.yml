@@ -17,6 +17,7 @@ Metrics/ClassLength:
 Metrics/AbcSize:
     Exclude:
         - 'app/models/marc_indexer.rb'
+        - 'lib/tasks/sample_scheduler.rake'
 
 Metrics/CyclomaticComplexity:
     Exclude:
@@ -25,6 +26,7 @@ Metrics/CyclomaticComplexity:
 Metrics/MethodLength:
     Exclude:
         - 'app/models/marc_indexer.rb'
+        - 'lib/tasks/sample_scheduler.rake'
 
 Metrics/PerceivedComplexity:
     Exclude:

@@ -1,0 +1,9 @@
+# rename to either .env.development or .env.production
+
+# provide alma domain for oai base url fetch
+alma=
+# provide institution for oai base url fetch
+institution=
+
+# provide SOLR_URL for solr connections
+SOLR_URL=
