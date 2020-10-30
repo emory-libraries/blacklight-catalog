@@ -1,0 +1,36 @@
+## Fields included in solr schema: string
+
+1. `marc_display`: text
+1. `subtitle_t`: string
+1. `author_sort`: string
+1. `lc_callnum_display`: string
+1. `subject_era_facet`: string
+1. `title_addl_t`: string
+1. `subject_addl_t`: string
+1. `isbn_t`: string
+1. `title_series_t`: string
+1. `language_facet`: string
+1. `lc_1letter_facet`: string
+1. `subject_t`: string
+1. `title_sort`: string
+1. `title_display`: string
+1. `author_t`: string
+1. `url_fulltext_display`: string
+1. `subject_topic_facet`: string
+1. `pub_date`: string
+1. `title_t`: string
+1. `lc_alpha_facet`: string
+1. `material_type_display`: string
+1. `subtitle_display`: string
+1. `author_display`: string
+1. `author_addl_t`: string
+1. `text`: text
+1. `subject_geo_facet`: string
+1. `dewey_facet`: string
+1. `dewey_t`: string
+1. `published_display`: string
+1. `lc_b4cutter_facet`: string
+1. `title_added_entry_t`: string
+1. `title_vern_display`: string
+1. `url_suppl_display`: string
+1. `subtitle_vern_display`: string
