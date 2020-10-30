@@ -4,6 +4,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
+
 ruby '>=2.5.0'
 
 gem 'blacklight', '7.4.1'
@@ -40,10 +41,14 @@ group :development, :test do
 end
 
 group :development do
+  gem 'cap-ec2-emory', github: 'emory-libraries/cap-ec2'
+  gem 'capistrano', '~> 3.14', require: false
+  gem 'capistrano-passenger', require: false
+  gem 'capistrano-rails', '~> 1.6', require: false
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'web-console', '>= 3.3.0'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console', '>= 3.3.0'
   gem 'xray-rails'
 end
 
