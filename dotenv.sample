@@ -1,4 +1,13 @@
 # rename to either .env.development or .env.production
+SECRET_KEY_BASE=
+
+# Database keys
+DATABASE_NAME=blackcat_production
+DATABASE_USERNAME=blackcat
+DATABASE_PASSWORD=blackcat
+DATABASE_POOL=25
+RAILS_MAX_THREADS=5
+DATABASE_AUTH=true
 
 # provide alma domain for oai base url fetch
 alma=
