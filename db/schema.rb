@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20201109164154) do
 
-  create_table "bookmarks", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
+  create_table "bookmarks", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci" do |t|
     t.integer "user_id", null: false
     t.string "user_type"
     t.string "document_id"
@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(version: 20201109164154) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
-  create_table "property_bag", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
+  create_table "property_bag", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci" do |t|
     t.string "name"
     t.string "value"
     t.index ["name"], name: "index_property_bag_on_name", unique: true
   end
 
-  create_table "searches", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
+  create_table "searches", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci" do |t|
     t.binary "query_params"
     t.integer "user_id"
     t.string "user_type"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20201109164154) do
     t.index ["user_id"], name: "index_searches_on_user_id"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
