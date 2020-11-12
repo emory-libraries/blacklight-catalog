@@ -19,6 +19,11 @@ Metrics/AbcSize:
         - 'app/models/marc_indexer.rb'
         - 'lib/tasks/sample_scheduler.rake'
 
+Metrics/BlockLength:
+    Exclude:
+        - app/controllers/catalog_controller.rb
+        - spec/models/user_spec.rb
+
 Metrics/CyclomaticComplexity:
     Exclude:
         - 'app/models/marc_indexer.rb'
