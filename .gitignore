@@ -25,4 +25,4 @@
 /coverage/
 *solrmarc.log*
 *.DS_Store*
-.env.development
+.env*
