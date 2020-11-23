@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20201123172331) do
     t.index ["name"], name: "index_property_bag_on_name", unique: true
   end
 
-  create_table "searches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci" do |t|
+  create_table "searches", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci" do |t|
     t.binary "query_params"
     t.integer "user_id"
     t.string "user_type"
