@@ -273,8 +273,8 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :shibboleth,
-                  uid_field: 'uid',
-                  info_fields: { display_name: 'displayName', uid: 'uid', mail: 'mail' },
+                  uid_field: 'serialNumber',
+                  info_fields: { display_name: 'displayName', netid: 'uid' },
                   callback_url: '/users/auth/shibboleth/callback',
                   strategy_class: OmniAuth::Strategies::Shibboleth
 
