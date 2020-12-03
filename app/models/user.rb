@@ -3,6 +3,15 @@ class User < ApplicationRecord
   # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
 
+  class NilShibbolethUserError < RuntimeError
+    attr_accessor :auth
+
+    def initialize(message = nil, auth = nil)
+      super(message)
+      self.auth = auth
+    end
+  end
+
   # Include devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # remove :database_authenticatable in production, remove :validatable to integrate with Shibboleth
@@ -22,12 +31,23 @@ class User < ApplicationRecord
   # @param [OmniAuth::AuthHash] auth
   def self.from_omniauth(auth)
     Rails.logger.debug "auth = #{auth.inspect}"
-    # Uncomment the debugger above to capture what a shib auth object looks like for testing
-    user = where(provider: auth.provider, uid: auth.info.uid).first_or_create
-    user.display_name = auth.info.display_name
-    user.uid = auth.info.uid
-    user.email = auth.info.mail
+    raise User::NilShibbolethUserError.new("No uid", auth) if auth.uid.empty? || auth.info.uid.empty?
+    user = User.find_or_initialize_by(provider: auth.provider, uid: auth.info.uid)
+    user.assign_attributes(display_name: auth.info.display_name)
+    # tezprox@emory.edu isn't a real email address
+    user.email = auth.info.uid + '@emory.edu' unless auth.info.uid == 'tezprox'
     user.save
     user
+  rescue User::NilShibbolethUserError => e
+    Rails.logger.error "Nil user detected: Shibboleth didn't pass a uid for #{e.auth.inspect}"
+  end
+
+  def self.log_omniauth_error(auth)
+    if auth.info.uid.empty?
+      Rails.logger.error "Nil user detected: Shibboleth didn't pass a uid for #{auth.inspect}"
+    else
+      # Log unauthorized logins to error.
+      Rails.logger.error "Unauthorized user attemped login: #{auth.inspect}"
+    end
   end
 end
