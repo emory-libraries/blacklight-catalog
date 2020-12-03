@@ -41,13 +41,4 @@ class User < ApplicationRecord
   rescue User::NilShibbolethUserError => e
     Rails.logger.error "Nil user detected: Shibboleth didn't pass a uid for #{e.auth.inspect}"
   end
-
-  def self.log_omniauth_error(auth)
-    if auth.info.uid.empty?
-      Rails.logger.error "Nil user detected: Shibboleth didn't pass a uid for #{auth.inspect}"
-    else
-      # Log unauthorized logins to error.
-      Rails.logger.error "Unauthorized user attemped login: #{auth.inspect}"
-    end
-  end
 end
