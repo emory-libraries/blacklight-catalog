@@ -2,9 +2,10 @@
 require 'rest-client'
 require 'nokogiri'
 
-desc "Harvest OAI set 'blacklighttest' and index in Solr"
+desc "Harvest OAI set denoted in ENV oai_set_name and index in Solr"
 task oai_harvest: [:environment] do
-  oai_set = 'blacklighttest'
+  oai_set = ENV['oai_set_name']
+  abort 'The ENV variable oai_set_name has not been set.' unless oai_set.present?
 
   log "Starting..."
 

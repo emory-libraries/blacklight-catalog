@@ -13,6 +13,8 @@ DATABASE_AUTH=true
 alma=
 # provide institution for oai base url fetch
 institution=
+# provides name for oai set being fetched
+oai_set_name=blacklighttest
 
 # provide SOLR_URL for solr connections
 SOLR_URL=
