@@ -79,7 +79,8 @@ def process_oai(institution, qs, alma)
 
     log "File written to tmp. Now indexing #{filename}"
     begin
-      sh "java -Dsolr.hosturl=#{ENV['SOLR_URL']} -jar #{File.dirname(__FILE__)}/solrmarc/SolrMarc.jar #{File.dirname(__FILE__)}/solrmarc/config.properties #{filename}"
+      sh "java -Dsolr.hosturl=#{ENV['SOLR_URL']} -jar #{File.dirname(__FILE__)}/solrmarc/solrmarc_core.jar #{File.dirname(__FILE__)}/solrmarc/config.properties \
+      -solrj #{File.dirname(__FILE__)}/solrmarc/lib-solrj #{filename}"
     rescue => e
       log e
     end
