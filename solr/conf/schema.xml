@@ -45,6 +45,7 @@
     <field name="title_vern_display" type="string" indexed="true" stored="true" multiValued="false"/>
     <field name="url_suppl_display" type="string" indexed="true" stored="true" multiValued="true"/> 
     <field name="subtitle_vern_display" type="string" indexed="true" stored="true" multiValued="false"/>
+    <field name="marc_resource" type="string" stored="true" indexed="true" multiValued="true" />
 
     <field name="lat" type="tdouble" stored="true" indexed="true" multiValued="false"/>
     <field name="lng" type="tdouble" stored="true" indexed="true" multiValued="false"/>
