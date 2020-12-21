@@ -21,7 +21,7 @@ RSpec.feature "View Search Results", type: :system, js: false do
     end
 
     it 'has the right values' do
-      ['George Jenkins', 'Book', 'Electronic Resource'].each { |label| expect(page).to have_content(label) }
+      ['George Jenkins', 'Book', 'Electronic Resource'].each { |value| expect(page).to have_content(value) }
     end
   end
 end
