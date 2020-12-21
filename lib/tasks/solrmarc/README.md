@@ -8,7 +8,8 @@
 | tag=n/a, code=n/a | Inserts full marc record as XML in SOLR. Currently saved as a single valued text in SOLR. | marc_display |
 | tag=100-900, code= any | Any tag from 100 to 900 with any code in the marc record is saved in the text field SOLR (these fields are meant to be searhable and are insert into the text field). Currently saved as a single valued text in SOLR. | text |
 | <ul><li>tag=008[35-37]</li><li>tag=041, code=a</li><li>tag=041, code=d</li></ul> | <ul><li>Characters at positions from 35 to 37 for tag 008</li><li>tag 041 with code `a`</li><li>tag 041 with code `d`</li></ul>Above fields from a marc record are used to map languauge facet for the record in SOLR. Currently saved as multi-valued strings in SOLR. | language_facet |
-| <ul><li>tag=007[0]</li><li>tag=000[6-7]</li><li>000[6]</li></ul> | <ul><li>Character at 0th position for tag 007</li><li>Characters at position 6 and 7 for tag 000 (this could be leader in marc record)</li><li>Character at 6th position for tag 000 (this could be leader in marc record)</li></ul>Above fields from a marc record are used to map format for the record in SOLR. Currently saved as multi-valued strings in SOLR. | format |
+| <ul><li>tag=000[6-7]</li><li>tag=000[6]</li></ul> | <ul><li>Characters at position 6 and 7 for tag 000 (this could be leader in marc record)</li><li>Character at 6th position for tag 000 (this could be leader in marc record)</li></ul>Above fields from a marc record are used to map format for the record in SOLR. Currently saved as multi-valued strings in SOLR. | format |
+| <ul><li>tag=007[0-1]</li><li>tag=007[0]</li></ul> | <ul><li>Characters at position 0 and 1 for tag 007</li><li>Characters at position 0 for tag 007</li></ul> Above fields from a marc record are used to map format for the record in SOLR. Currently saved as multi-valued strings in SOLR. | marc_resource
 | tag=020, code=a | Code `a` for tag 020 is used to represent ISBNs for the marc record | isbn_t |
 | tag=300, code=aa/a(?) | Code `aa` or `a` (not sure yet) for tag 300 is used to represent material type for march record. Currently saved as multi-valued strings in SOLR. | material_type_display |
 | tag=245, code=a | Code `a` for tag 245 is used to represent title for marc record. Currently saved as multi-valued strings in SOLR. | <ul><li>title_t (gets linked fields along with title, combined?)</li><li>title_display (without trailing punctuations)</li><li>title_vern_display (gets linked fields along with title?)</li></ul> |
@@ -41,22 +42,32 @@ Additional mappings for format (need to confirm these):
 <ul>
 	<li>map.format.aa = Book</li>
 	<li>map.format.ab = Serial</li>
+	<li>map.format.ac = Book</li>
+	<li>map.format.ad = Book</li>
+	<li>map.format.ai = Serial</li>
 	<li>map.format.am = Book</li>
+	<li>map.format.an = Book</li>
 	<li>map.format.as = Serial</li>
 	<li>map.format.ta = Book</li>
+	<li>map.format.tc = Book</li>
 	<li>map.format.tm = Book</li>
+	<li>map.format.ts = Book</li>
+	<li>map.format.rm = Mixed Materials</li>
 </ul>
 
 ####    leader 06
 <ul>
+	<li>map.format.a = Book</li>
 	<li>map.format.c = Musical Score</li>
 	<li>map.format.d = Musical Score</li>
-	<li>map.format.e = Map or Globe</li>
-	<li>map.format.f = Map or Globe</li>
+	<li>map.format.e = Map</li>
+	<li>map.format.f = Map</li>
+	<li>map.format.g = Visual Material</li>
 	<li>map.format.i = Non-musical Recording</li>
 	<li>map.format.j = Musical Recording</li>
-	<li>map.format.k = Image</li>
+	<li>map.format.k = Visual Material</li>
 	<li>map.format.m = Computer File</li>
+	<li>map.format.o = Other</li>
 </ul>
 
 
@@ -69,6 +80,18 @@ Additional mappings for format (need to confirm these):
 
 ####    none of the above
 <ul><li>map.format = Unknown</li></ul>
+
+#### identifying electronic resources
+<ul>
+	<li>map.format_type.c = Electronic Resource</li>
+	<li>map.format_type.sr = Electronic Resource</li>
+	<li>map.format_type.sz = Electronic Resource</li>
+	<li>map.format_type.vr = Electronic Resource</li>
+	<li>map.format_type.vz = Electronic Resource</li>
+</ul>
+
+#### none of the above
+<ul><li>map.format_type = Physical Resource</li></ul>
 
 `pattern_map.lc_alpha.pattern_0 = ^([A-Z]{1,3})\\d+.*=>$1`
 `pattern_map.isbn_clean.pattern_0 = ([- 0-9]*[0-9]).*=>$1`
