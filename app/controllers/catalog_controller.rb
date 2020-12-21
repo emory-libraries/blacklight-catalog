@@ -109,20 +109,14 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field 'title_tsim', label: 'Title'
-    config.add_show_field 'title_vern_ssim', label: 'Title'
-    config.add_show_field 'subtitle_tsim', label: 'Subtitle'
-    config.add_show_field 'subtitle_vern_ssim', label: 'Subtitle'
-    config.add_show_field 'author_tsim', label: 'Author'
-    config.add_show_field 'author_vern_ssim', label: 'Author'
-    config.add_show_field 'format', label: 'Format'
-    config.add_show_field 'url_fulltext_ssim', label: 'URL'
-    config.add_show_field 'url_suppl_ssim', label: 'More Information'
-    config.add_show_field 'language_ssim', label: 'Language'
-    config.add_show_field 'published_ssim', label: 'Published'
-    config.add_show_field 'published_vern_ssim', label: 'Published'
-    config.add_show_field 'lc_callnum_ssim', label: 'Call number'
-    config.add_show_field 'isbn_ssim', label: 'ISBN'
+    config.add_show_field 'title_display', label: 'Title'
+    config.add_show_field 'author_display', label: 'Author/Creator'
+    config.add_show_field 'pub_date', label: 'Creation Date'
+    config.add_show_field 'language_facet', label: 'Language'
+    config.add_show_field 'isbn_t', label: 'ISBN'
+    config.add_show_field 'lc_callnum_display', label: 'Call Number'
+    config.add_show_field 'id', label: 'MMS ID'
+    config.add_show_field 'marc_resource', label: 'Access'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
