@@ -56,6 +56,11 @@ class CatalogController < ApplicationController
     # config.show.display_type_field = 'format'
     # config.show.thumbnail_field = 'thumbnail_path_ss'
 
+    # solr fields that will be used for homepage facets
+    # When users venture away from the homepage, the full list of facets will
+    # be available to them. Any field listed below will appear on the homepage facets.
+    config.homepage_facet_fields = ['format', 'language_facet']
+
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
     #
@@ -80,21 +85,16 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'format', label: 'Format'
-    config.add_facet_field 'pub_date_ssim', label: 'Publication Year', single: true
-    config.add_facet_field 'subject_ssim', label: 'Topic', limit: 20, index_range: 'A'..'Z'
-    config.add_facet_field 'language_ssim', label: 'Language', limit: true
-    config.add_facet_field 'lc_1letter_ssim', label: 'Call Number'
-    config.add_facet_field 'subject_geo_ssim', label: 'Region'
-    config.add_facet_field 'subject_era_ssim', label: 'Era'
+    config.add_facet_field 'format', label: 'Resource Type', limit: 5
+    config.add_facet_field 'language_facet', label: 'Language', limit: 5
 
-    config.add_facet_field 'example_pivot_field', label: 'Pivot Field', pivot: ['format', 'language_ssim']
+    # config.add_facet_field 'example_pivot_field', label: 'Pivot Field', pivot: ['format', 'language_ssim']
 
-    config.add_facet_field 'example_query_facet_field', label: 'Publish Date', query: {
-      years_5: { label: 'within 5 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 5} TO *]" },
-      years_10: { label: 'within 10 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 10} TO *]" },
-      years_25: { label: 'within 25 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 25} TO *]" }
-    }
+    # config.add_facet_field 'example_query_facet_field', label: 'Publish Date', query: {
+    #   years_5: { label: 'within 5 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 5} TO *]" },
+    #   years_10: { label: 'within 10 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 10} TO *]" },
+    #   years_25: { label: 'within 25 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 25} TO *]" }
+    # }
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
