@@ -41,7 +41,11 @@ RSpec.describe CatalogController, type: :controller do
         .facet_fields.keys
         .map { |field| field.gsub(/\_s+im$/, '') }
     end
-    let(:expected_facet_fields) { ['format', 'language_facet'] }
+    let(:expected_facet_fields) do
+      ["author_display", "format", "language_facet", "marc_resource",
+       "subject_era_facet", "subject_geo_facet", "subject_topic_facet",
+       "title_series_t"]
+    end
     let(:homepage_facet_fields) { controller.blacklight_config.homepage_facet_fields }
 
     context 'homepage facet fields' do

@@ -8,5 +8,9 @@ TEST_ITEM = {
   lc_callnum_display: 'ANOTHER MAGICAL NUM .78F',
   marc_resource: ['Electronic Resource'],
   pub_date: '2015',
-  title_display: ['The Title of my Work']
+  subject_era_facet: ['1990-'],
+  subject_geo_facet: ['Texas'],
+  subject_topic_facet: ['Frontier and pioneer life', 'Electronic books'],
+  title_display: ['The Title of my Work'],
+  title_series_t: ['American county histories']
 }.freeze
