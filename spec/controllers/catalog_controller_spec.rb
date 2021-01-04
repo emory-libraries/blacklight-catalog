@@ -33,4 +33,25 @@ RSpec.describe CatalogController, type: :controller do
 
     it { expect(show_fields).to contain_exactly(*expected_show_fields) }
   end
+
+  describe 'facet fields' do
+    let(:facet_fields) do
+      controller
+        .blacklight_config
+        .facet_fields.keys
+        .map { |field| field.gsub(/\_s+im$/, '') }
+    end
+    let(:expected_facet_fields) do
+      ["author_display", "format", "language_facet", "marc_resource",
+       "subject_era_facet", "subject_geo_facet", "subject_topic_facet",
+       "title_series_t"]
+    end
+    let(:homepage_facet_fields) { controller.blacklight_config.homepage_facet_fields }
+
+    context 'homepage facet fields' do
+      it { expect(homepage_facet_fields).to eq(['format', 'language_facet']) }
+    end
+
+    it { expect(facet_fields).to contain_exactly(*expected_facet_fields) }
+  end
 end
