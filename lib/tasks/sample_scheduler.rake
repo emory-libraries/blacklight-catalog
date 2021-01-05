@@ -56,7 +56,7 @@ def process_oai(institution, qs, alma)
   log "Found #{deleted_records.count} delete records."
 
   if deleted_records.count.positive?
-    deleted_ids = deletedRecords.map { |n| n.at('header/identifier').text.split(':').last }
+    deleted_ids = deleted_records.map { |n| n.at('header/identifier').text.split(':').last }
     deleted_records.remove
     puts RestClient.post "#{ENV['SOLR_URL']}/update?commit=true",
                          "<delete><id>#{deleted_ids.join('</id><id>')}</id></delete>",
