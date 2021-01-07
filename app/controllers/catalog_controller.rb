@@ -135,6 +135,7 @@ class CatalogController < ApplicationController
       'publisher_number_sim', 'nonformat_table_contents_tsim', 'summary_tsim',
       'participant_performer_note_tsim', 'creation_production_credits_tsim', 'local_note_tsim'
     ]
+    author_fields = ['author_t', 'author_display', 'author_vern_display', 'author_sort', 'author_addl_t']
 
     # This one uses all the defaults set by the solr request handler. Which
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
@@ -163,8 +164,8 @@ class CatalogController < ApplicationController
     config.add_search_field('author') do |field|
       field.solr_parameters = {
         'spellcheck.dictionary': 'author',
-        qf: '${author_qf}',
-        pf: '${author_pf}'
+        qf: author_fields.join(' '),
+        pf: ''
       }
     end
 
