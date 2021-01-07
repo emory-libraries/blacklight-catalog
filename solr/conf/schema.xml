@@ -46,6 +46,16 @@
     <field name="url_suppl_display" type="string" indexed="true" stored="true" multiValued="true"/> 
     <field name="subtitle_vern_display" type="string" indexed="true" stored="true" multiValued="false"/>
     <field name="marc_resource" type="string" stored="true" indexed="true" multiValued="true" />
+    <field name="issn_sim" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="lccn_sim" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="oclc_sim" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="other_standard_ids_sim" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="publisher_number_sim" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="nonformat_table_contents_tsim" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="summary_tsim" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="participant_performer_note_tsim" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="creation_production_credits_tsim" type="text" indexed="true" stored="true" multiValued="true"/>
+    <field name="local_note_tsim" type="text" indexed="true" stored="true" multiValued="true"/>
 
     <field name="lat" type="tdouble" stored="true" indexed="true" multiValued="false"/>
     <field name="lng" type="tdouble" stored="true" indexed="true" multiValued="false"/>
