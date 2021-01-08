@@ -130,11 +130,22 @@ class CatalogController < ApplicationController
     # urls.  A display label will be automatically calculated from the :key,
     # or can be specified manually to be different.
 
+    keyword_fields = [
+      'isbn_t', 'issn_sim', 'lccn_sim', 'id', 'oclc_sim', 'other_standard_ids_sim',
+      'publisher_number_sim', 'nonformat_table_contents_tsim', 'summary_tsim',
+      'participant_performer_note_tsim', 'creation_production_credits_tsim', 'local_note_tsim'
+    ]
+
     # This one uses all the defaults set by the solr request handler. Which
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
 
-    config.add_search_field 'all_fields', label: 'All Fields'
+    config.add_search_field('keyword') do |field|
+      field.solr_parameters = {
+        qf: keyword_fields.join(' '),
+        pf: ''
+      }
+    end
 
     # Now we see how to over-ride Solr request handler defaults, in this
     # case for a BL "search field", which is really a dismax aggregate

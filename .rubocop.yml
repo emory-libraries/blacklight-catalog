@@ -24,6 +24,7 @@ Metrics/BlockLength:
         - app/controllers/catalog_controller.rb
         - spec/controllers/catalog_controller_spec.rb
         - spec/models/user_spec.rb
+        - spec/system/targeted_field_search_spec.rb
         - spec/system/view_search_results_spec.rb
 
 Metrics/CyclomaticComplexity:
@@ -42,3 +43,7 @@ Metrics/PerceivedComplexity:
 Lint/EmptyWhen:
     Exclude:
         - app/models/marc_indexer.rb
+
+RSpec/ExampleLength:
+    Exclude:
+        - spec/system/targeted_field_search_spec.rb
