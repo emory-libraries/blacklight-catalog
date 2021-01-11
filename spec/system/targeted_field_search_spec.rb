@@ -34,7 +34,7 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
   it 'has the right options' do
     options = find_all('select.custom-select.search-field > option').map(&:text)
 
-    expect(options).to contain_exactly('Keyword', 'Title', 'Author', 'Subjects')
+    expect(options).to contain_exactly('Keyword', 'Title', 'Author/Creator', 'Subjects')
   end
 
   it 'searches the right fields for Keyword target' do
@@ -65,6 +65,24 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       'Target in local_note_tsim',
       'Target in id'
     )
+  end
+
+  it 'searches the right fields for Author target' do
+    page.select('Author/Creator', from: 'search_field')
+    fill_in 'q', with: 'iMCnR6E8'
+    click_on 'search'
+    result_titles = []
+
+    within '#documents' do
+      result_titles += page.all(:css, 'h3.document-title-heading/a').to_a.map(&:text)
+      expect(result_titles).to contain_exactly(
+        'Target in author_t',
+        'Target in author_display',
+        'Target in author_vern_display',
+        'Target in author_sort',
+        'Target in author_addl_t'
+      )
+    end
   end
 
   it 'searches the right field for Subject target' do
