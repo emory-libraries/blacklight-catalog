@@ -7,7 +7,7 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       'isbn_t', 'issn_sim', 'lccn_sim', 'oclc_sim', 'other_standard_ids_sim',
       'publisher_number_sim', 'nonformat_table_contents_tsim', 'summary_tsim',
       'participant_performer_note_tsim', 'creation_production_credits_tsim', 'local_note_tsim',
-      'author_t', 'author_display', 'author_vern_display', 'author_sort', 'author_addl_t'
+      'author_t', 'author_display', 'author_vern_display', 'author_sort', 'author_addl_t', 'subject_t'
     ]
   end
 
@@ -27,10 +27,16 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       title_display: ['Target in id']
     )
     solr.commit
+    visit root_path
+  end
+
+  it 'has the right options' do
+    options = find_all('select.custom-select.search-field > option').map(&:text)
+
+    expect(options).to contain_exactly('Keyword', 'Title', 'Author/Creator', 'Subjects')
   end
 
   it 'searches the right fields for Keyword target' do
-    visit root_path
     page.select('Keyword', from: 'search_field')
     fill_in 'q', with: 'iMCnR6E8'
     click_on 'search'
@@ -61,7 +67,6 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
   end
 
   it 'searches the right fields for Author target' do
-    visit root_path
     page.select('Author', from: 'search_field')
     fill_in 'q', with: 'iMCnR6E8'
     click_on 'search'
@@ -77,5 +82,18 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
         'Target in author_addl_t'
       )
     end
+  end
+
+  it 'searches the right field for Subject target' do
+    page.select('Subject', from: 'search_field')
+    fill_in 'q', with: 'iMCnR6E8'
+    click_on 'search'
+    result_titles = []
+
+    within '#documents' do
+      result_titles += page.all(:css, 'h3.document-title-heading/a').to_a.map(&:text)
+    end
+
+    expect(result_titles).to contain_exactly('Target in subject_t')
   end
 end
