@@ -161,7 +161,7 @@ class CatalogController < ApplicationController
       }
     end
 
-    config.add_search_field('author') do |field|
+    config.add_search_field('author', label: 'Author/Creator') do |field|
       field.solr_parameters = {
         'spellcheck.dictionary': 'author',
         qf: author_fields.join(' '),
