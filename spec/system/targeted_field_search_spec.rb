@@ -85,7 +85,7 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
   end
 
   it 'searches the right field for Subject target' do
-    page.select('Subject', from: 'search_field')
+    page.select('Subjects', from: 'search_field')
     fill_in 'q', with: 'iMCnR6E8'
     click_on 'search'
     result_titles = []

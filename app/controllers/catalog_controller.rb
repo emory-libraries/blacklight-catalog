@@ -172,7 +172,7 @@ class CatalogController < ApplicationController
     # Field subject_t combines MARC tags for Personal Name, Corporate Name, Meeting Name,
     # Uniform Title, Named Event, Chronological Term, Topical Term, Geographic Name,
     # Uncontrolled, Faceted Topical Terms, and Genre/Form into an array.
-    config.add_search_field('subject') do |field|
+    config.add_search_field('subject', label: 'Subjects') do |field|
       field.solr_parameters = {
         qf: 'subject_t',
         pf: ''
