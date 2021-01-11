@@ -28,10 +28,16 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       title_display: ['Target in id']
     )
     solr.commit
+    visit root_path
+  end
+
+  it 'has the right options' do
+    options = find_all('select.custom-select.search-field > option').map(&:text)
+
+    expect(options).to contain_exactly('Keyword', 'Title', 'Author', 'Subjects')
   end
 
   it 'searches the right fields for Keyword target' do
-    visit root_path
     page.select('Keyword', from: 'search_field')
     fill_in 'q', with: 'iMCnR6E8'
     click_on 'search'
@@ -62,8 +68,7 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
   end
 
   it 'searches the right field for Subject target' do
-    visit root_path
-    page.select('Subject', from: 'search_field')
+    page.select('Subjects', from: 'search_field')
     fill_in 'q', with: 'iMCnR6E8'
     click_on 'search'
     result_titles = []
