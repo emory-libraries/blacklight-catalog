@@ -43,6 +43,15 @@
     <field name="lc_b4cutter_facet" type="string" indexed="true" stored="true" multiValued="false"/>
     <field name="title_added_entry_t" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="title_vern_display" type="string" indexed="true" stored="true" multiValued="false"/>
+    <field name="title_abbr_t" type="string" indexed="true" stored="true" multiValued="false"/>
+    <field name="title_former_t" type="string" indexed="true" stored="true" multiValued="false"/>
+    <field name="title_enhanced_t" type="string" indexed="true" stored="true" multiValued="false"/>
+    <field name="title_graphic_t" type="string" indexed="true" stored="true" multiValued="false"/>
+    <field name="title_host_item_t" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="title_key_t" type="string" indexed="true" stored="true" multiValued="false"/>
+    <field name="title_preceding_entry_t" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="title_translation_t" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="title_varying_t" type="string" indexed="true" stored="true" multiValued="false"/>
     <field name="url_suppl_display" type="string" indexed="true" stored="true" multiValued="true"/> 
     <field name="subtitle_vern_display" type="string" indexed="true" stored="true" multiValued="false"/>
     <field name="marc_resource" type="string" stored="true" indexed="true" multiValued="true" />

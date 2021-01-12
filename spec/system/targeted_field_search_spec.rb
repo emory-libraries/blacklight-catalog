@@ -7,7 +7,11 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       'isbn_t', 'issn_sim', 'lccn_sim', 'oclc_sim', 'other_standard_ids_sim',
       'publisher_number_sim', 'nonformat_table_contents_tsim', 'summary_tsim',
       'participant_performer_note_tsim', 'creation_production_credits_tsim', 'local_note_tsim',
-      'author_t', 'author_display', 'author_vern_display', 'author_sort', 'author_addl_t', 'subject_t'
+      'author_t', 'author_display', 'author_vern_display', 'author_sort', 'author_addl_t', 'subject_t',
+      'title_t', 'title_vern_display', 'title_sort',
+      'title_addl_t', 'title_abbr_t', 'title_added_entry_t', 'title_enhanced_t',
+      'title_former_t', 'title_graphic_t', 'title_host_item_t', 'title_key_t',
+      'title_preceding_entry_t', 'title_series_t', 'title_translation_t', 'title_varying_t'
     ]
   end
 
@@ -82,6 +86,39 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
         'Target in author_addl_t'
       )
     end
+  end
+
+  it 'searches the right fields for Title target' do
+    page.select('Title', from: 'search_field')
+    fill_in 'q', with: 'iMCnR6E8'
+    click_on 'search'
+    result_titles = []
+
+    loop do
+      within '#documents' do
+        result_titles += page.all(:css, 'h3.document-title-heading/a').to_a.map(&:text)
+      end
+      break if page.has_link?('Next', href: '#')
+      click_link('Next', match: :first)
+    end
+
+    expect(result_titles).to contain_exactly(
+      'Target in title_t',
+      'Target in title_vern_display',
+      'Target in title_sort',
+      'Target in title_addl_t',
+      'Target in title_abbr_t',
+      'Target in title_added_entry_t',
+      'Target in title_enhanced_t',
+      'Target in title_former_t',
+      'Target in title_graphic_t',
+      'Target in title_host_item_t',
+      'Target in title_key_t',
+      'Target in title_preceding_entry_t',
+      'Target in title_series_t',
+      'Target in title_translation_t',
+      'Target in title_varying_t'
+    )
   end
 
   it 'searches the right field for Subject target' do

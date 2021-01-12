@@ -136,6 +136,10 @@ class CatalogController < ApplicationController
       'participant_performer_note_tsim', 'creation_production_credits_tsim', 'local_note_tsim'
     ]
     author_fields = ['author_t', 'author_display', 'author_vern_display', 'author_sort', 'author_addl_t']
+    title_fields = ['title_t', 'title_display', 'title_vern_display', 'title_sort',
+                    'title_addl_t', 'title_abbr_t', 'title_added_entry_t', 'title_enhanced_t',
+                    'title_former_t', 'title_graphic_t', 'title_host_item_t', 'title_key_t',
+                    'title_preceding_entry_t', 'title_series_t', 'title_translation_t', 'title_varying_t']
 
     # This one uses all the defaults set by the solr request handler. Which
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
@@ -152,12 +156,12 @@ class CatalogController < ApplicationController
     # case for a BL "search field", which is really a dismax aggregate
     # of Solr search fields.
 
-    config.add_search_field('title') do |field|
+    config.add_search_field('title', label: 'Title') do |field|
       # solr_parameters hash are sent to Solr as ordinary url query params.
       field.solr_parameters = {
         'spellcheck.dictionary': 'title',
-        qf: '${title_qf}',
-        pf: '${title_pf}'
+        qf: title_fields.join(' '),
+        pf: ''
       }
     end
 
