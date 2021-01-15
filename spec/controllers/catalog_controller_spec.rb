@@ -13,7 +13,7 @@ RSpec.describe CatalogController, type: :controller do
     let(:field_title) { controller.blacklight_config.index.title_field }
 
     context 'field titles' do
-      it { expect(field_title).to eq('title_display') }
+      it { expect(field_title).to eq('title_display_tesim') }
     end
 
     it { expect(index_fields).to contain_exactly(*expected_index_fields) }
@@ -27,7 +27,7 @@ RSpec.describe CatalogController, type: :controller do
         .map { |field| field.gsub(/\_s+im$/, '') }
     end
     let(:expected_show_fields) do
-      ['title_display', 'author_display_tesim', 'pub_date_tesi', 'language_facet_tesim',
+      ['title_display_tesim', 'author_display_tesim', 'pub_date_tesi', 'language_facet_tesim',
        'isbn', 'lc_callnum_display_ssi', 'id', 'marc_resource_tesim']
     end
 
@@ -44,7 +44,7 @@ RSpec.describe CatalogController, type: :controller do
     let(:expected_facet_fields) do
       ["author_display_tesim", "format_tesi", "language_facet_tesim", "marc_resource_tesim",
        "subject_era_facet_tesim", "subject_geo_facet_tesim", "subject_topic_facet_tesim",
-       "title_series_t"]
+       "title_series_tesim"]
     end
     let(:homepage_facet_fields) { controller.blacklight_config.homepage_facet_fields }
 

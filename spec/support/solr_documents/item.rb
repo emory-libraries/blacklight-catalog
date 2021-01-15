@@ -11,6 +11,6 @@ TEST_ITEM = {
   subject_era_facet_tesim: ['1990-'],
   subject_geo_facet_tesim: ['Texas'],
   subject_topic_facet_tesim: ['Frontier and pioneer life', 'Electronic books'],
-  title_display: ['The Title of my Work'],
-  title_series_t: ['American county histories']
+  title_display_tesim: ['The Title of my Work'],
+  title_series_tesim: ['American county histories']
 }.freeze

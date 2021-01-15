@@ -7,11 +7,11 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       'isbn_ssim', 'issn_ssim', 'lccn_ssim', 'oclc_ssim', 'other_standard_ids_ssim',
       'publisher_number_ssim', 'nonformat_table_contents_tesim', 'summary_tesim',
       'participant_performer_note_tesim', 'creation_production_credits_tesim', 'local_note_tesim',
-      'author_tesim', 'author_display_tesim', 'author_vern_display_tesim', 'author_ssort', 'author_addl_tesim', 'subject_tesim',
-      'title_t', 'title_vern_display', 'title_sort',
-      'title_addl_t', 'title_abbr_t', 'title_added_entry_t', 'title_enhanced_t',
-      'title_former_t', 'title_graphic_t', 'title_host_item_t', 'title_key_t',
-      'title_preceding_entry_t', 'title_series_t', 'title_translation_t', 'title_varying_t'
+      'author_tesim', 'author_display_tesim', 'author_vern_display_tesim', 'author_ssort', 'author_addl_tesim',
+      'subject_tesim', 'title_tesim', 'title_vern_display_tesim', 'title_ssort',
+      'title_addl_tesim', 'title_abbr_tesi', 'title_added_entry_tesim', 'title_enhanced_tesi',
+      'title_former_tesi', 'title_graphic_tesi', 'title_host_item_tesim', 'title_key_tesi',
+      'title_series_tesim', 'title_translation_tesim', 'title_varying_tesi'
     ]
   end
 
@@ -21,14 +21,14 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
     fields.each_with_index do |f, i|
       solr.add(
         id: "Junk#{i}",
-        title_display: "Target in #{f}",
+        title_display_tesim: "Target in #{f}",
         f.to_sym => ['iMCnR6E8']
       )
     end
 
     solr.add(
       id: 'iMCnR6E8',
-      title_display: ['Target in id']
+      title_display_tesim: ['Target in id']
     )
     solr.commit
     visit root_path
@@ -103,21 +103,20 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
     end
 
     expect(result_titles).to contain_exactly(
-      'Target in title_t',
-      'Target in title_vern_display',
-      'Target in title_sort',
-      'Target in title_addl_t',
-      'Target in title_abbr_t',
-      'Target in title_added_entry_t',
-      'Target in title_enhanced_t',
-      'Target in title_former_t',
-      'Target in title_graphic_t',
-      'Target in title_host_item_t',
-      'Target in title_key_t',
-      'Target in title_preceding_entry_t',
-      'Target in title_series_t',
-      'Target in title_translation_t',
-      'Target in title_varying_t'
+      'Target in title_tesim',
+      'Target in title_vern_display_tesim',
+      'Target in title_ssort',
+      'Target in title_addl_tesim',
+      'Target in title_abbr_tesi',
+      'Target in title_added_entry_tesim',
+      'Target in title_enhanced_tesi',
+      'Target in title_former_tesi',
+      'Target in title_graphic_tesi',
+      'Target in title_host_item_tesim',
+      'Target in title_key_tesi',
+      'Target in title_series_tesim',
+      'Target in title_translation_tesim',
+      'Target in title_varying_tesi'
     )
   end
 

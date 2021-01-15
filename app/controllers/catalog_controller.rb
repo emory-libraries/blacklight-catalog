@@ -33,7 +33,7 @@ class CatalogController < ApplicationController
     # config.per_page = [10,20,50,100]
 
     # solr field configuration for search results/index views
-    config.index.title_field = 'title_display'
+    config.index.title_field = 'title_display_tesim'
     # config.index.display_type_field = 'format'
     # config.index.thumbnail_field = 'thumbnail_path_ss'
 
@@ -90,7 +90,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'language_facet_tesim', label: 'Language', limit: 5
     config.add_facet_field 'author_display_tesim', label: 'Author/Creator', limit: 5
     config.add_facet_field 'subject_topic_facet_tesim', label: 'Subject', limit: 5
-    config.add_facet_field 'title_series_t', label: 'Collection', limit: 5
+    config.add_facet_field 'title_series_tesim', label: 'Collection', limit: 5
     config.add_facet_field 'subject_geo_facet_tesim', label: 'Region', limit: 5
     config.add_facet_field 'subject_era_facet_tesim', label: 'Era', limit: 5
 
@@ -107,7 +107,7 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field 'title_display', label: 'Title'
+    config.add_show_field 'title_display_tesim', label: 'Title'
     config.add_show_field 'author_display_tesim', label: 'Author/Creator'
     config.add_show_field 'pub_date_tesi', label: 'Creation Date'
     config.add_show_field 'language_facet_tesim', label: 'Language'
@@ -136,10 +136,10 @@ class CatalogController < ApplicationController
       'participant_performer_note_tesim', 'creation_production_credits_tesim', 'local_note_tesim'
     ]
     author_fields = ['author_tesim', 'author_display_tesim', 'author_vern_display_tesim', 'author_ssort', 'author_addl_tesim']
-    title_fields = ['title_t', 'title_display', 'title_vern_display', 'title_sort',
-                    'title_addl_t', 'title_abbr_t', 'title_added_entry_t', 'title_enhanced_t',
-                    'title_former_t', 'title_graphic_t', 'title_host_item_t', 'title_key_t',
-                    'title_preceding_entry_t', 'title_series_t', 'title_translation_t', 'title_varying_t']
+    title_fields = ['title_tesim', 'title_display_tesim', 'title_vern_display_tesim', 'title_ssort',
+                    'title_addl_tesim', 'title_abbr_tesi', 'title_added_entry_tesim', 'title_enhanced_tesi',
+                    'title_former_tesi', 'title_graphic_tesi', 'title_host_item_tesim', 'title_key_tesi',
+                    'title_series_tesim', 'title_translation_tesim', 'title_varying_tesi']
 
     # This one uses all the defaults set by the solr request handler. Which
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
