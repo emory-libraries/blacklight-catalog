@@ -4,10 +4,10 @@ require 'rails_helper'
 RSpec.describe 'Search the catalog', type: :system, js: false do
   let(:fields) do
     [
-      'isbn_t', 'issn_sim', 'lccn_sim', 'oclc_sim', 'other_standard_ids_sim',
-      'publisher_number_sim', 'nonformat_table_contents_tsim', 'summary_tsim',
-      'participant_performer_note_tsim', 'creation_production_credits_tsim', 'local_note_tsim',
-      'author_t', 'author_display', 'author_vern_display', 'author_sort', 'author_addl_t', 'subject_t',
+      'isbn_ssim', 'issn_ssim', 'lccn_ssim', 'oclc_ssim', 'other_standard_ids_ssim',
+      'publisher_number_ssim', 'nonformat_table_contents_tesim', 'summary_tesim',
+      'participant_performer_note_tesim', 'creation_production_credits_tesim', 'local_note_tesim',
+      'author_tesim', 'author_display_tesim', 'author_vern_display_tesim', 'author_ssort', 'author_addl_tesim', 'subject_tesim',
       'title_t', 'title_vern_display', 'title_sort',
       'title_addl_t', 'title_abbr_t', 'title_added_entry_t', 'title_enhanced_t',
       'title_former_t', 'title_graphic_t', 'title_host_item_t', 'title_key_t',
@@ -55,17 +55,17 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
     end
 
     expect(result_titles).to contain_exactly(
-      'Target in isbn_t',
-      'Target in issn_sim',
-      'Target in lccn_sim',
-      'Target in oclc_sim',
-      'Target in other_standard_ids_sim',
-      'Target in publisher_number_sim',
-      'Target in nonformat_table_contents_tsim',
-      'Target in summary_tsim',
-      'Target in participant_performer_note_tsim',
-      'Target in creation_production_credits_tsim',
-      'Target in local_note_tsim',
+      'Target in isbn_ssim',
+      'Target in issn_ssim',
+      'Target in lccn_ssim',
+      'Target in oclc_ssim',
+      'Target in other_standard_ids_ssim',
+      'Target in publisher_number_ssim',
+      'Target in nonformat_table_contents_tesim',
+      'Target in summary_tesim',
+      'Target in participant_performer_note_tesim',
+      'Target in creation_production_credits_tesim',
+      'Target in local_note_tesim',
       'Target in id'
     )
   end
@@ -79,11 +79,11 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
     within '#documents' do
       result_titles += page.all(:css, 'h3.document-title-heading/a').to_a.map(&:text)
       expect(result_titles).to contain_exactly(
-        'Target in author_t',
-        'Target in author_display',
-        'Target in author_vern_display',
-        'Target in author_sort',
-        'Target in author_addl_t'
+        'Target in author_tesim',
+        'Target in author_display_tesim',
+        'Target in author_vern_display_tesim',
+        'Target in author_ssort',
+        'Target in author_addl_tesim'
       )
     end
   end
@@ -131,6 +131,6 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       result_titles += page.all(:css, 'h3.document-title-heading/a').to_a.map(&:text)
     end
 
-    expect(result_titles).to contain_exactly('Target in subject_t')
+    expect(result_titles).to contain_exactly('Target in subject_tesim')
   end
 end

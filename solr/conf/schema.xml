@@ -8,39 +8,17 @@
 
   <fields>
     <field name="id" type="string" stored="true" indexed="true" multiValued="false" required="true"/>
-    <field name="format" type="string" stored="true" indexed="true" multiValued="true" />
     <field name="_version_" type="long"     indexed="true"  stored="true"/>
     <field name="timestamp" type="date" indexed="true" stored="true" default="NOW" multiValued="false"/>
-    <field name="marc_display" type="text" indexed="true" stored="true" multiValued="false"/>
     <field name="subtitle_t" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="author_sort" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="lc_callnum_display" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="subject_era_facet" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="title_addl_t" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="subject_addl_t" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="isbn_t" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="title_series_t" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="language_facet" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="lc_1letter_facet" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="subject_t" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="title_sort" type="string" indexed="true" stored="true" multiValued="false"/>
     <field name="title_display" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="author_t" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="url_fulltext_display" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="subject_topic_facet" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="pub_date" type="string" indexed="true" stored="true" multiValued="false"/>
     <field name="title_t" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="lc_alpha_facet" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="material_type_display" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="subtitle_display" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="author_display" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="author_addl_t" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="text" type="text" indexed="true" stored="true" multiValued="false"/>
-    <field name="subject_geo_facet" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="dewey_facet" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="dewey_t" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="published_display" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="lc_b4cutter_facet" type="string" indexed="true" stored="true" multiValued="false"/>
     <field name="title_added_entry_t" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="title_vern_display" type="string" indexed="true" stored="true" multiValued="false"/>
     <field name="title_abbr_t" type="string" indexed="true" stored="true" multiValued="false"/>
@@ -52,20 +30,7 @@
     <field name="title_preceding_entry_t" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="title_translation_t" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="title_varying_t" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="url_suppl_display" type="string" indexed="true" stored="true" multiValued="true"/> 
     <field name="subtitle_vern_display" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="marc_resource" type="string" stored="true" indexed="true" multiValued="true" />
-    <field name="issn_sim" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="lccn_sim" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="oclc_sim" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="other_standard_ids_sim" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="publisher_number_sim" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="nonformat_table_contents_tsim" type="text" indexed="true" stored="true" multiValued="true"/>
-    <field name="summary_tsim" type="text" indexed="true" stored="true" multiValued="true"/>
-    <field name="participant_performer_note_tsim" type="text" indexed="true" stored="true" multiValued="true"/>
-    <field name="creation_production_credits_tsim" type="text" indexed="true" stored="true" multiValued="true"/>
-    <field name="local_note_tsim" type="text" indexed="true" stored="true" multiValued="true"/>
-    <field name="author_vern_display" type="text" indexed="true" stored="true" multiValued="true"/>
 
     <field name="lat" type="tdouble" stored="true" indexed="true" multiValued="false"/>
     <field name="lng" type="tdouble" stored="true" indexed="true" multiValued="false"/>

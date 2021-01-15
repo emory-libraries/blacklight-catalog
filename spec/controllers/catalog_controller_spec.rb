@@ -9,7 +9,7 @@ RSpec.describe CatalogController, type: :controller do
         .index_fields.keys
         .map { |field| field.gsub(/\_s+im$/, '') }
     end
-    let(:expected_index_fields) { ['author_display', 'format', 'marc_resource'] }
+    let(:expected_index_fields) { ['author_display_tesim', 'format_tesi', 'marc_resource_tesim'] }
     let(:field_title) { controller.blacklight_config.index.title_field }
 
     context 'field titles' do
@@ -27,8 +27,8 @@ RSpec.describe CatalogController, type: :controller do
         .map { |field| field.gsub(/\_s+im$/, '') }
     end
     let(:expected_show_fields) do
-      ['title_display', 'author_display', 'pub_date', 'language_facet',
-       'isbn_t', 'lc_callnum_display', 'id', 'marc_resource']
+      ['title_display', 'author_display_tesim', 'pub_date_tesi', 'language_facet_tesim',
+       'isbn', 'lc_callnum_display_ssi', 'id', 'marc_resource_tesim']
     end
 
     it { expect(show_fields).to contain_exactly(*expected_show_fields) }
@@ -42,14 +42,14 @@ RSpec.describe CatalogController, type: :controller do
         .map { |field| field.gsub(/\_s+im$/, '') }
     end
     let(:expected_facet_fields) do
-      ["author_display", "format", "language_facet", "marc_resource",
-       "subject_era_facet", "subject_geo_facet", "subject_topic_facet",
+      ["author_display_tesim", "format_tesi", "language_facet_tesim", "marc_resource_tesim",
+       "subject_era_facet_tesim", "subject_geo_facet_tesim", "subject_topic_facet_tesim",
        "title_series_t"]
     end
     let(:homepage_facet_fields) { controller.blacklight_config.homepage_facet_fields }
 
     context 'homepage facet fields' do
-      it { expect(homepage_facet_fields).to eq(['format', 'language_facet']) }
+      it { expect(homepage_facet_fields).to eq(['format_tesi', 'language_facet_tesim']) }
     end
 
     it { expect(facet_fields).to contain_exactly(*expected_facet_fields) }
