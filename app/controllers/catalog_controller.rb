@@ -33,7 +33,7 @@ class CatalogController < ApplicationController
     # config.per_page = [10,20,50,100]
 
     # solr field configuration for search results/index views
-    config.index.title_field = 'title_display'
+    config.index.title_field = 'title_display_tesim'
     # config.index.display_type_field = 'format'
     # config.index.thumbnail_field = 'thumbnail_path_ss'
 
@@ -59,7 +59,7 @@ class CatalogController < ApplicationController
     # solr fields that will be used for homepage facets
     # When users venture away from the homepage, the full list of facets will
     # be available to them. Any field listed below will appear on the homepage facets.
-    config.homepage_facet_fields = ['format', 'language_facet']
+    config.homepage_facet_fields = ['format_tesi', 'language_facet_tesim']
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
@@ -85,14 +85,14 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'marc_resource', label: 'Access', limit: 5
-    config.add_facet_field 'format', label: 'Resource Type', limit: 5
-    config.add_facet_field 'language_facet', label: 'Language', limit: 5
-    config.add_facet_field 'author_display', label: 'Author/Creator', limit: 5
-    config.add_facet_field 'subject_topic_facet', label: 'Subject', limit: 5
-    config.add_facet_field 'title_series_t', label: 'Collection', limit: 5
-    config.add_facet_field 'subject_geo_facet', label: 'Region', limit: 5
-    config.add_facet_field 'subject_era_facet', label: 'Era', limit: 5
+    config.add_facet_field 'marc_resource_tesim', label: 'Access', limit: 5
+    config.add_facet_field 'format_tesi', label: 'Resource Type', limit: 5
+    config.add_facet_field 'language_facet_tesim', label: 'Language', limit: 5
+    config.add_facet_field 'author_display_tesim', label: 'Author/Creator', limit: 5
+    config.add_facet_field 'subject_topic_facet_tesim', label: 'Subject', limit: 5
+    config.add_facet_field 'title_series_tesim', label: 'Collection', limit: 5
+    config.add_facet_field 'subject_geo_facet_tesim', label: 'Region', limit: 5
+    config.add_facet_field 'subject_era_facet_tesim', label: 'Era', limit: 5
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
@@ -101,20 +101,20 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field 'author_display', label: 'Author/Creator'
-    config.add_index_field 'format', label: 'Resource Type'
-    config.add_index_field 'marc_resource', label: 'Access'
+    config.add_index_field 'author_display_tesim', label: 'Author/Creator'
+    config.add_index_field 'format_tesi', label: 'Resource Type'
+    config.add_index_field 'marc_resource_tesim', label: 'Access'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field 'title_display', label: 'Title'
-    config.add_show_field 'author_display', label: 'Author/Creator'
-    config.add_show_field 'pub_date', label: 'Creation Date'
-    config.add_show_field 'language_facet', label: 'Language'
-    config.add_show_field 'isbn_t', label: 'ISBN'
-    config.add_show_field 'lc_callnum_display', label: 'Call Number'
+    config.add_show_field 'title_display_tesim', label: 'Title'
+    config.add_show_field 'author_display_tesim', label: 'Author/Creator'
+    config.add_show_field 'pub_date_tesi', label: 'Creation Date'
+    config.add_show_field 'language_facet_tesim', label: 'Language'
+    config.add_show_field 'isbn_ssim', label: 'ISBN'
+    config.add_show_field 'lc_callnum_display_ssi', label: 'Call Number'
     config.add_show_field 'id', label: 'MMS ID'
-    config.add_show_field 'marc_resource', label: 'Access'
+    config.add_show_field 'marc_resource_tesim', label: 'Access'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -131,15 +131,15 @@ class CatalogController < ApplicationController
     # or can be specified manually to be different.
 
     keyword_fields = [
-      'isbn_t', 'issn_sim', 'lccn_sim', 'id', 'oclc_sim', 'other_standard_ids_sim',
-      'publisher_number_sim', 'nonformat_table_contents_tsim', 'summary_tsim',
-      'participant_performer_note_tsim', 'creation_production_credits_tsim', 'local_note_tsim'
+      'isbn_ssim', 'issn_ssim', 'lccn_ssim', 'id', 'oclc_ssim', 'other_standard_ids_ssim',
+      'publisher_number_ssim', 'nonformat_table_contents_tesim', 'summary_tesim',
+      'participant_performer_note_tesim', 'creation_production_credits_tesim', 'local_note_tesim'
     ]
-    author_fields = ['author_t', 'author_display', 'author_vern_display', 'author_sort', 'author_addl_t']
-    title_fields = ['title_t', 'title_display', 'title_vern_display', 'title_sort',
-                    'title_addl_t', 'title_abbr_t', 'title_added_entry_t', 'title_enhanced_t',
-                    'title_former_t', 'title_graphic_t', 'title_host_item_t', 'title_key_t',
-                    'title_preceding_entry_t', 'title_series_t', 'title_translation_t', 'title_varying_t']
+    author_fields = ['author_tesim', 'author_display_tesim', 'author_vern_display_tesim', 'author_ssort', 'author_addl_tesim']
+    title_fields = ['title_tesim', 'title_display_tesim', 'title_vern_display_tesim', 'title_ssort',
+                    'title_addl_tesim', 'title_abbr_tesi', 'title_added_entry_tesim', 'title_enhanced_tesi',
+                    'title_former_tesi', 'title_graphic_tesi', 'title_host_item_tesim', 'title_key_tesi',
+                    'title_series_tesim', 'title_translation_tesim', 'title_varying_tesi']
 
     # This one uses all the defaults set by the solr request handler. Which
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
@@ -173,12 +173,12 @@ class CatalogController < ApplicationController
       }
     end
 
-    # Field subject_t combines MARC tags for Personal Name, Corporate Name, Meeting Name,
+    # Field subject_tesim combines MARC tags for Personal Name, Corporate Name, Meeting Name,
     # Uniform Title, Named Event, Chronological Term, Topical Term, Geographic Name,
     # Uncontrolled, Faceted Topical Terms, and Genre/Form into an array.
     config.add_search_field('subject', label: 'Subjects') do |field|
       field.solr_parameters = {
-        qf: 'subject_t',
+        qf: 'subject_tesim',
         pf: ''
       }
     end

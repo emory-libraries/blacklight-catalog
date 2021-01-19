@@ -9,10 +9,10 @@ class SolrDocument
   end
 
   field_semantics.merge!(
-    title: "title_ssm",
+    title: "title_tesim",
     author: "author_ssm",
     language: "language_ssim",
-    format: "format"
+    format: "format_tesi"
   )
 
   # self.unique_key = 'id'
