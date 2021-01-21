@@ -16,7 +16,6 @@
     <field name="title_sort" type="string" indexed="true" stored="true" multiValued="false"/>
     <field name="title_display" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="title_t" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="subtitle_display" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="dewey_facet" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="dewey_t" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="title_added_entry_t" type="string" indexed="true" stored="true" multiValued="true"/>
@@ -30,7 +29,6 @@
     <field name="title_preceding_entry_t" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="title_translation_t" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="title_varying_t" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="subtitle_vern_display" type="string" indexed="true" stored="true" multiValued="false"/>
 
     <field name="lat" type="tdouble" stored="true" indexed="true" multiValued="false"/>
     <field name="lng" type="tdouble" stored="true" indexed="true" multiValued="false"/>

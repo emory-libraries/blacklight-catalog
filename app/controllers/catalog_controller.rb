@@ -131,9 +131,10 @@ class CatalogController < ApplicationController
     # or can be specified manually to be different.
 
     keyword_fields = [
-      'isbn_ssim', 'issn_ssim', 'lccn_ssim', 'id', 'oclc_ssim', 'other_standard_ids_ssim',
-      'publisher_number_ssim', 'nonformat_table_contents_tesim', 'summary_tesim',
-      'participant_performer_note_tesim', 'creation_production_credits_tesim', 'local_note_tesim'
+      'isbn_ssim', 'id', 'title_display_tesim', 'title_vern_display_tesim', 'title_addl_tesim', 'title_added_entry_tesim',
+      'title_series_tesim', 'subtitle_display_tesim', 'subtitle_vern_display_tesi', 'author_display_tesim', 'author_vern_display_tesim',
+      'author_addl_tesim', 'subject_tesim', 'subject_addl_tesim', 'subject_topic_facet_tesim', 'subject_era_facet_tesim',
+      'subject_geo_facet_tesim', 'lc_callnum_display_ssi'
     ]
     author_fields = ['author_tesim', 'author_display_tesim', 'author_vern_display_tesim', 'author_ssort', 'author_addl_tesim']
     title_fields = ['title_tesim', 'title_display_tesim', 'title_vern_display_tesim', 'title_ssort',
@@ -145,7 +146,7 @@ class CatalogController < ApplicationController
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
 
-    config.add_search_field('keyword') do |field|
+    config.add_search_field('keyword', label: 'Keyword') do |field|
       field.solr_parameters = {
         qf: keyword_fields.join(' '),
         pf: ''
