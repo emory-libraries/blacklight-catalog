@@ -4,9 +4,8 @@ require 'rails_helper'
 RSpec.describe 'Search the catalog', type: :system, js: false do
   let(:fields) do
     [
-      'isbn_ssim', 'issn_ssim', 'lccn_ssim', 'oclc_ssim', 'other_standard_ids_ssim',
-      'publisher_number_ssim', 'nonformat_table_contents_tesim', 'summary_tesim',
-      'participant_performer_note_tesim', 'creation_production_credits_tesim', 'local_note_tesim',
+      'isbn_ssim', 'subtitle_display_tesim', 'subtitle_vern_display_tesi', 'subject_addl_tesim',
+      'subject_topic_facet_tesim', 'subject_era_facet_tesim', 'subject_geo_facet_tesim', 'lc_callnum_display_ssi',
       'author_tesim', 'author_display_tesim', 'author_vern_display_tesim', 'author_ssort', 'author_addl_tesim',
       'subject_tesim', 'title_tesim', 'title_vern_display_tesim', 'title_ssort',
       'title_addl_tesim', 'title_abbr_tesi', 'title_added_entry_tesim', 'title_enhanced_tesi',
@@ -56,16 +55,21 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
 
     expect(result_titles).to contain_exactly(
       'Target in isbn_ssim',
-      'Target in issn_ssim',
-      'Target in lccn_ssim',
-      'Target in oclc_ssim',
-      'Target in other_standard_ids_ssim',
-      'Target in publisher_number_ssim',
-      'Target in nonformat_table_contents_tesim',
-      'Target in summary_tesim',
-      'Target in participant_performer_note_tesim',
-      'Target in creation_production_credits_tesim',
-      'Target in local_note_tesim',
+      'Target in subtitle_display_tesim',
+      'Target in subtitle_vern_display_tesi',
+      'Target in subject_tesim',
+      'Target in subject_addl_tesim',
+      'Target in subject_topic_facet_tesim',
+      'Target in subject_era_facet_tesim',
+      'Target in subject_geo_facet_tesim',
+      'Target in lc_callnum_display_ssi',
+      'Target in author_display_tesim',
+      'Target in author_vern_display_tesim',
+      'Target in author_addl_tesim',
+      'Target in title_added_entry_tesim',
+      'Target in title_addl_tesim',
+      'Target in title_series_tesim',
+      'Target in title_vern_display_tesim',
       'Target in id'
     )
   end
