@@ -46,4 +46,5 @@ Lint/EmptyWhen:
 
 RSpec/ExampleLength:
     Exclude:
+        - spec/routing/alma_availability_routes_spec.rb
         - spec/system/targeted_field_search_spec.rb
