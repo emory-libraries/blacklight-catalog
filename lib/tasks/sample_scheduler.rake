@@ -30,7 +30,7 @@ task oai_harvest: [:environment] do
   loop do
     # expect resumption token to be returned from process_oai method, else
     # it will be set to blank
-    resumption_token = process_oai(ENV["institution"], qs, ENV["alma"])
+    resumption_token = process_oai(ENV['INSTITUTION'], qs, ENV['ALMA'])
     qs = "?verb=ListRecords&resumptionToken=#{resumption_token}"
     PropertyBag.set('oai_resumption_token', resumption_token)
     break if resumption_token == ''
