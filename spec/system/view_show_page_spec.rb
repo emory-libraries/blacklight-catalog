@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe "View a item's show page", type: :system, js: false do
+RSpec.describe "View a item's show page", type: :system, js: true do
   before do
     delete_all_documents_from_solr
     solr = Blacklight.default_index.connection
@@ -26,6 +26,33 @@ RSpec.describe "View a item's show page", type: :system, js: false do
        'Electronic Resource'].each do |value|
         expect(page).to have_content(value)
       end
+    end
+  end
+
+  context 'displaying availability badge' do
+    it 'shows the Available badge' do
+      expect(page).to have_css('span.badge.badge-success', text: 'Available')
+    end
+
+    it 'shows the UnAvailable badge' do
+      delete_all_documents_from_solr
+      solr = Blacklight.default_index.connection
+      solr.add(TEST_ITEM.merge(id: '456'))
+      solr.commit
+      visit solr_document_path('456')
+
+      expect(page).to have_css('span.badge.badge-danger', text: 'UnAvailable')
+    end
+
+    it 'shows no badge' do
+      delete_all_documents_from_solr
+      solr = Blacklight.default_index.connection
+      solr.add(TEST_ITEM.merge(id: '789'))
+      solr.commit
+      visit solr_document_path('789')
+
+      expect(page).not_to have_css('span.badge.badge-danger', text: 'UnAvailable')
+      expect(page).not_to have_css('span.badge.badge-success', text: 'Available')
     end
   end
 end

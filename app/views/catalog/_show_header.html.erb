@@ -1,0 +1,24 @@
+<% # Override of BlacklLight 7.4.1 -%>
+<% # bookmark/folder functions -%>
+<%= render_document_heading(document, :tag => :h1) %>
+<span class="availability-badge"></span>
+
+<script type="text/javascript">
+  $.ajax({
+    url: "/alma_availability/<%= document.id %>.json",
+    type: "get",
+    dataType: 'json',
+    success: function(data) { 
+      var availabilityHtml = '';
+      var physicalExists = data['<%= document.id %>']['physical']['exists'];
+      var physicalAvailable = data['<%= document.id %>']['physical']['available'];  
+
+      if (physicalExists == true && physicalAvailable == true) {
+        availabilityHtml = '<span class="badge badge-success">Available</span>';
+      } else if (physicalExists == true && physicalAvailable == false) {
+        availabilityHtml = '<span class="badge badge-danger">UnAvailable</span>';
+      }
+      Rails.$(".availability-badge")[0].innerHTML = availabilityHtml; 
+    }
+  })
+</script>
