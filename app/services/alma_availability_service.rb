@@ -24,7 +24,7 @@ class AlmaAvailabilityService
   end
 
   def query_availability
-    RestClient.get api_url + "/almaws/v1/bibs/" + @mms_id + query_inst + api_key
+    RestClient.get "#{api_url}/almaws/v1/bibs/#{@mms_id}#{query_inst}#{api_key}"
   end
 
   def query_inst
