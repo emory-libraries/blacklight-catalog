@@ -32,10 +32,10 @@ class AlmaAvailabilityService
   end
 
   def api_url
-    ENV['alma_api_url'] || 'www.example.com'
+    ENV['ALMA_API_URL'] || 'www.example.com'
   end
 
   def api_key
-    ENV['alma_api_key'] || ""
+    ENV['ALMA_API_KEY'] || ""
   end
 end
