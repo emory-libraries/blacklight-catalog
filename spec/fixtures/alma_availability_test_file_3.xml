@@ -1,0 +1,33 @@
+<bib>
+  <mms_id>990005988630302486</mms_id>
+  <record_format>marc21</record_format>
+  <linked_record_id/>
+  <title>Illusionslos--hoffnungsvoll : die Zeitstücke und Exilromane Anna Gmeyners /</title>
+  <author>Werner, Birte.</author>
+  <isbn>9783835300194 (pbk.)</isbn>
+  <record>
+    <leader>01139dam a2200349 a 4500</leader>
+    <datafield ind1=" " ind2=" " tag="AVA">
+      <subfield code="0">990005988630302486</subfield>
+      <subfield code="8">22171079010002486</subfield>
+      <subfield code="a">01GALI_EMORY</subfield>
+      <subfield code="b">UNIV</subfield>
+      <subfield code="c">Book Stacks</subfield>
+      <subfield code="d">PT2613 .M45 Z92 2006</subfield>
+      <subfield code="e">Not Available</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="g">0</subfield>
+      <subfield code="j">STACK</subfield>
+      <subfield code="k">0</subfield>
+      <subfield code="p">1</subfield>
+      <subfield code="q">Robert W. Woodruff Library</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="AVE">
+      <subfield code="8">53420344220002486</subfield>
+      <subfield code="c">61400066930002486</subfield>
+      <subfield code="e">Not Available</subfield>
+      <subfield code="m">HathiTrust Temporary Emergency Access</subfield>
+      <subfield code="u">publishing_base_url undefined?u.ignore_date_coverage=true&    rft.mms_id=990005988630302486</subfield>
+    </datafield>
+  </record>
+</bib>
