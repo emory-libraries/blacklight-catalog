@@ -39,4 +39,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get '/alma_availability/:id', to: 'application#alma_availability'
+
+  match '/404', to: 'static#not_found', via: :all
 end
