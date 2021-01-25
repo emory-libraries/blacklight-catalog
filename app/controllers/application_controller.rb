@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  def guest_uid_authentication_key(key)
+    guest_email_authentication_key(key)
+  end
+
   def alma_availability
     availability = AlmaAvailabilityService.new(params[:id])&.current_availability
 

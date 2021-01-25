@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  static:
+    not_found:
+      header: "404 Error - Page Not Found"
