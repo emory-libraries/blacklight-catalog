@@ -41,7 +41,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
       solr.commit
       visit solr_document_path('456')
 
-      expect(page).to have_css('span.badge.badge-danger', text: 'UnAvailable')
+      expect(page).to have_css('span.badge.badge-danger', text: 'Unavailable')
     end
 
     it 'shows no badge' do
@@ -51,7 +51,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
       solr.commit
       visit solr_document_path('789')
 
-      expect(page).not_to have_css('span.badge.badge-danger', text: 'UnAvailable')
+      expect(page).not_to have_css('span.badge.badge-danger', text: 'Unavailable')
       expect(page).not_to have_css('span.badge.badge-success', text: 'Available')
     end
   end

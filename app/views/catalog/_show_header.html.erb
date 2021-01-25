@@ -16,7 +16,7 @@
       if (physicalExists == true && physicalAvailable == true) {
         availabilityHtml = '<span class="badge badge-success">Available</span>';
       } else if (physicalExists == true && physicalAvailable == false) {
-        availabilityHtml = '<span class="badge badge-danger">UnAvailable</span>';
+        availabilityHtml = '<span class="badge badge-danger">Unavailable</span>';
       }
       Rails.$(".availability-badge")[0].innerHTML = availabilityHtml; 
     }
