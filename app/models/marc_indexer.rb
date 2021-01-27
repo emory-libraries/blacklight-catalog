@@ -20,8 +20,8 @@ class MarcIndexer < Blacklight::Marc::Indexer
       acc.replace [acc.join(' ')] # turn it into a single string
     end
 
-    to_field "language_ssim", marc_languages("008[35-37]:041a:041d:")
-    to_field "format", get_format
+    to_field "language_facet_ssim", marc_languages("008[35-37]:041a:041d:")
+    to_field "format_tesim", get_format
     to_field "isbn_tsim", extract_marc('020a', separator: nil) do |_rec, acc|
       orig = acc.dup
       acc.map! { |x| StdNum::ISBN.allNormalizedValues(x) }
@@ -31,6 +31,10 @@ class MarcIndexer < Blacklight::Marc::Indexer
     end
 
     to_field 'material_type_ssm', extract_marc('300a'), trim_punctuation
+    to_field 'marc_resource_tesim' do |rec, acc|
+      acc << "Physical" if rec.fields('997').present?
+      acc << "Electronic" if rec.fields('998').present?
+    end
 
     # Title fields
     #    primary title
