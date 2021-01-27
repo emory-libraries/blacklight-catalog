@@ -55,7 +55,7 @@ class CatalogController < ApplicationController
     # solr fields that will be used for homepage facets
     # When users venture away from the homepage, the full list of facets will
     # be available to them. Any field listed below will appear on the homepage facets.
-    config.homepage_facet_fields = ['format_tesi', 'language_facet_tesim']
+    config.homepage_facet_fields = ['format_tesim', 'language_facet_tesim']
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
@@ -82,7 +82,7 @@ class CatalogController < ApplicationController
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
     config.add_facet_field 'marc_resource_tesim', label: 'Access', limit: 5
-    config.add_facet_field 'format_tesi', label: 'Resource Type', limit: 5
+    config.add_facet_field 'format_tesim', label: 'Resource Type', limit: 5
     config.add_facet_field 'language_facet_tesim', label: 'Language', limit: 5
     config.add_facet_field 'author_display_tesim', label: 'Author/Creator', limit: 5
     config.add_facet_field 'subject_topic_facet_tesim', label: 'Subject', limit: 5
@@ -98,7 +98,7 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
     config.add_index_field 'author_display_tesim', label: 'Author/Creator'
-    config.add_index_field 'format_tesi', label: 'Resource Type'
+    config.add_index_field 'format_tesim', label: 'Resource Type'
     config.add_index_field 'marc_resource_tesim', label: 'Access'
 
     # solr fields to be displayed in the show (single result) view

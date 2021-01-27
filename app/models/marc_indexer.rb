@@ -15,62 +15,58 @@ class MarcIndexer < Blacklight::Marc::Indexer
     end
 
     to_field "id", extract_marc("001"), trim, first_only
-    to_field 'marc_ss', get_xml
-    to_field "all_text_timv", extract_all_marc_values do |_r, acc|
+    to_field 'marc_display_tesi', get_xml
+    to_field "text_tesi", extract_all_marc_values do |_r, acc|
       acc.replace [acc.join(' ')] # turn it into a single string
     end
-
-    to_field "language_facet_ssim", marc_languages("008[35-37]:041a:041d:")
+    to_field "language_facet_tesim", marc_languages('008[35-37]:041a:041d')
     to_field "format_tesim", get_format
-    to_field "isbn_tsim", extract_marc('020a', separator: nil) do |_rec, acc|
+    to_field 'marc_resource_tesim' do |rec, acc|
+      acc << "Physical Resource" if rec.fields('997').present?
+      acc << "Electronic Resource" if rec.fields('998').present?
+    end
+    to_field "isbn_ssim", extract_marc('020a', separator: nil) do |_rec, acc|
       orig = acc.dup
       acc.map! { |x| StdNum::ISBN.allNormalizedValues(x) }
       acc << orig
       acc.flatten!
       acc.uniq!
     end
-
-    to_field 'material_type_ssm', extract_marc('300a'), trim_punctuation
-    to_field 'marc_resource_tesim' do |rec, acc|
-      acc << "Physical" if rec.fields('997').present?
-      acc << "Electronic" if rec.fields('998').present?
-    end
+    to_field 'issn_ssim', extract_marc('022a')
+    to_field 'lccn_ssim', extract_marc('010a')
+    to_field 'oclc_ssim', oclcnum('019a:035a')
+    to_field 'other_standard_ids_ssim', extract_marc('024a')
+    to_field 'publisher_number_ssim', extract_marc('028a')
+    to_field 'material_type_display_tesim', extract_marc('300a'), trim_punctuation
 
     # Title fields
     #    primary title
-    to_field 'title_tsim', extract_marc('245a')
-    to_field 'title_ssm', extract_marc('245a', alternate_script: false), trim_punctuation
-    to_field 'title_vern_ssm', extract_marc('245a', alternate_script: :only), trim_punctuation
+    to_field 'title_tesim', extract_marc('245a')
+    to_field 'title_display_tesim', extract_marc('245a', alternate_script: false), trim_punctuation
+    to_field 'title_vern_display_tesi', extract_marc('245a', alternate_script: :only), trim_punctuation
 
     #    subtitle
-
-    to_field 'subtitle_tsim', extract_marc('245b')
-    to_field 'subtitle_ssm', extract_marc('245b', alternate_script: false), trim_punctuation
-    to_field 'subtitle_vern_ssm', extract_marc('245b', alternate_script: :only), trim_punctuation
+    to_field 'subtitle_t', extract_marc('245b')
+    to_field 'subtitle_display_tesim', extract_marc('245b', alternate_script: false), trim_punctuation
+    to_field 'subtitle_vern_display_tesi', extract_marc('245b', alternate_script: :only), trim_punctuation
 
     #    additional title fields
-    to_field 'title_addl_tsim',
-             extract_marc(%W[
-               245abnps
-               130#{ATOZ}
-               240abcdefgklmnopqrs
-               210ab
-               222ab
-               242abnp
-               243abcdefgklmnopqrs
-               246abcdefgnp
-               247abcdefgnp
-             ].join(':'))
-
-    to_field 'title_added_entry_tsim', extract_marc(%w[
+    to_field 'title_abbr_tesi', extract_marc('210ab')
+    to_field 'title_addl_tesim', extract_marc(%w[
+      130abcdefghijklmnopqrstuvwxyz
+      240abcdefgklmnopqrs
+      243abcdefgklmnopqrs
+    ].join(':'))
+    to_field 'title_added_entry_tesim', extract_marc(%w[
       700gklmnoprst
       710fgklmnopqrst
       711fgklnpst
       730abcdefgklmnopqrst
       740anp
     ].join(':'))
-
-    to_field 'title_series_tsim', extract_marc("440anpv:490av")
+    to_field 'title_enhanced_tesim', extract_marc(
+      "505abcdefghijklmnopqrsuvwxyz"
+    )
 
     to_field 'title_si', marc_sortable_title
 

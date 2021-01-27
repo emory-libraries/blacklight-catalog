@@ -12,7 +12,7 @@ class SolrDocument
     title: "title_tesim",
     author: "author_ssm",
     language: "language_ssim",
-    format: "format_tesi"
+    format: "format_tesim"
   )
 
   # self.unique_key = 'id'
