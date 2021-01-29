@@ -17,6 +17,7 @@ Metrics/ClassLength:
 Metrics/AbcSize:
     Exclude:
         - 'app/models/marc_indexer.rb'
+        - 'app/services/oai_processing_service.rb'
         - 'lib/tasks/sample_scheduler.rake'
 
 Metrics/BlockLength:
@@ -36,6 +37,7 @@ Metrics/CyclomaticComplexity:
 Metrics/MethodLength:
     Exclude:
         - 'app/models/marc_indexer.rb'
+        - 'app/services/oai_processing_service.rb'
         - 'lib/tasks/sample_scheduler.rake'
 
 Metrics/PerceivedComplexity:
@@ -45,6 +47,10 @@ Metrics/PerceivedComplexity:
 Lint/EmptyWhen:
     Exclude:
         - app/models/marc_indexer.rb
+
+Rails/Output:
+    Exclude:
+        - 'app/services/oai_processing_service.rb'
 
 RSpec/ExampleLength:
     Exclude:
