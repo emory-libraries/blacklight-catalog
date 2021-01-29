@@ -2,7 +2,7 @@
 TEST_ITEM = {
   id: '123',
   author_display_tesim: ['George Jenkins'],
-  format_tesi: ['Book'],
+  format_tesim: ['Book'],
   isbn_ssim: ['SOME MAGICAL NUM .66G'],
   language_facet_tesim: ['English'],
   lc_callnum_display_ssi: 'ANOTHER MAGICAL NUM .78F',
