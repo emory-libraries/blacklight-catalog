@@ -25,7 +25,9 @@ Metrics/BlockLength:
         - app/controllers/catalog_controller.rb
         - config/routes.rb
         - spec/controllers/catalog_controller_spec.rb
+        - spec/models/marc_indexing_spec.rb
         - spec/models/user_spec.rb
+        - spec/spec_helper.rb
         - spec/system/targeted_field_search_spec.rb
         - spec/system/view_search_results_spec.rb
         - spec/system/view_show_page_spec.rb
@@ -51,6 +53,10 @@ Lint/EmptyWhen:
 Rails/Output:
     Exclude:
         - 'app/services/oai_processing_service.rb'
+
+RSpec/DescribeClass:
+    Exclude:
+        - 'spec/models/marc_indexing_spec.rb'
 
 RSpec/ExampleLength:
     Exclude:
