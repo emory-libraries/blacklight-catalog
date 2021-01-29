@@ -56,6 +56,7 @@
 #     # password: "please use keys"
 #   }
 
+set :ec2_region, %w[us-east-1]
 set :stage, :TEST
 ec2_role %i[web app db],
   user: 'deploy',
