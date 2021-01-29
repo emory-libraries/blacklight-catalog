@@ -81,7 +81,7 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'marc_resource_tesim', label: 'Access', limit: 5
+    config.add_facet_field 'marc_resource_ssim', label: 'Access', limit: 5
     config.add_facet_field 'format_tesim', label: 'Resource Type', limit: 5
     config.add_facet_field 'language_facet_tesim', label: 'Language', limit: 5
     config.add_facet_field 'author_display_tesim', label: 'Author/Creator', limit: 5
@@ -99,7 +99,7 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_index_field 'author_display_tesim', label: 'Author/Creator'
     config.add_index_field 'format_tesim', label: 'Resource Type'
-    config.add_index_field 'marc_resource_tesim', label: 'Access'
+    config.add_index_field 'marc_resource_ssim', label: 'Access'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -110,7 +110,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'isbn_ssim', label: 'ISBN'
     config.add_show_field 'lc_callnum_display_ssi', label: 'Call Number'
     config.add_show_field 'id', label: 'MMS ID'
-    config.add_show_field 'marc_resource_tesim', label: 'Access'
+    config.add_show_field 'marc_resource_ssim', label: 'Access'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields

@@ -62,9 +62,24 @@ to_field "text_tesi", extract_all_marc_values do |_r, acc|
 end
 to_field "language_facet_tesim", marc_languages('008[35-37]:041a:041d')
 to_field "format_tesim", get_format
-to_field 'marc_resource_tesim' do |rec, acc|
-  acc << "Physical Resource" if rec.fields('997').present?
-  acc << "Electronic Resource" if rec.fields('998').present?
+to_field 'marc_resource_ssim' do |rec, acc|
+  physical_present = rec.fields('997').present?
+  electronic_present = rec.fields('998').present?
+  form_item_data = rec.fields('008').present? ? rec.fields('008')[0].value[29] : ""
+  accomp_data = rec.fields('008').present? ? rec.fields('008')[0].value[23] : ""
+  leader_formats = ['e', 'f', 'g', 'k', 'o', 'r'].any? { |l| rec.leader[6] == l }
+  form_of_item = ['o', 's'].any? { |l| form_item_data == l }
+  accomp_matter = ['o', 's'].any? { |l| accomp_data == l }
+
+  acc << "Physical Resource" if physical_present
+  acc << "Electronic Resource" if electronic_present
+
+  if !physical_present && !electronic_present
+    acc << "Electronic Resource" if leader_formats && form_of_item
+    acc << "Physical Resource" if leader_formats && !form_of_item
+    acc << "Electronic Resource" if !leader_formats && accomp_matter
+    acc << "Physical Resource" if !leader_formats && !accomp_matter
+  end
 end
 to_field "isbn_ssim", extract_marc('020a', separator: nil) do |_rec, acc|
   orig = acc.dup
