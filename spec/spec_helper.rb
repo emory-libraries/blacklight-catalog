@@ -114,7 +114,7 @@ RSpec.configure do |config|
       .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_4.xml'), headers: {})
     stub_request(
       :get,
-      "https://na03.alma.exlibrisgroup.com/view/oai/01GALI_EMORY/request?metadataPrefix=marc21&set=blacklight4&until=2021-01-28T19:16:10Z&verb=ListRecords"
+      "https://smackety.alma.exlibrisgroup.com/view/oai/blah/request?metadataPrefix=marc21&set=blacklight4&until=2021-01-28T19:16:10Z&verb=ListRecords"
     ).to_return(status: 200, body: File.read(fixture_path + '/alma_small_set.xml'), headers: {})
   end
 end

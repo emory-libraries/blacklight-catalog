@@ -8,9 +8,9 @@ RSpec.describe OaiProcessingService do
     before do
       delete_all_documents_from_solr
       described_class.process_oai_with_marc_indexer(
-        ENV['INSTITUTION'],
+        'blah',
         "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-01-28T19:16:10Z",
-        ENV['ALMA']
+        'smackety'
       )
     end
 
