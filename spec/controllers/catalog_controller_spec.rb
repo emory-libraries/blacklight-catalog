@@ -8,7 +8,7 @@ RSpec.describe CatalogController, type: :controller do
         .blacklight_config
         .index_fields.keys
     end
-    let(:expected_index_fields) { ['author_display_tesim', 'format_tesim', 'marc_resource_ssim'] }
+    let(:expected_index_fields) { ['author_display_ssim', 'format_ssim', 'marc_resource_ssim'] }
     let(:field_title) { controller.blacklight_config.index.title_field }
 
     context 'field titles' do
@@ -25,7 +25,7 @@ RSpec.describe CatalogController, type: :controller do
         .show_fields.keys
     end
     let(:expected_show_fields) do
-      ['title_display_tesim', 'author_display_tesim', 'pub_date_tesi', 'language_facet_tesim',
+      ['title_display_tesim', 'author_display_ssim', 'pub_date_tesi', 'language_facet_tesim',
        'isbn_ssim', 'lc_callnum_display_ssi', 'id', 'marc_resource_ssim']
     end
 
@@ -39,14 +39,14 @@ RSpec.describe CatalogController, type: :controller do
         .facet_fields.keys
     end
     let(:expected_facet_fields) do
-      ["author_display_tesim", "format_tesim", "language_facet_tesim", "marc_resource_ssim",
-       "subject_era_facet_tesim", "subject_geo_facet_tesim", "subject_topic_facet_tesim",
-       "title_series_tesim"]
+      ["author_display_ssim", "format_ssim", "language_facet_tesim", "marc_resource_ssim",
+       "subject_era_ssim", "subject_geo_ssim", "subject_topic_facet_ssim",
+       "title_series_ssim"]
     end
     let(:homepage_facet_fields) { controller.blacklight_config.homepage_facet_fields }
 
     context 'homepage facet fields' do
-      it { expect(homepage_facet_fields).to eq(['format_tesim', 'language_facet_tesim']) }
+      it { expect(homepage_facet_fields).to eq(['format_ssim', 'language_facet_tesim']) }
     end
 
     it { expect(facet_fields).to contain_exactly(*expected_facet_fields) }

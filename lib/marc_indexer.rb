@@ -26,6 +26,7 @@ extend Traject::Macros::MarcFormats
 ATOZ = ('a'..'z').to_a.join('')
 ATOU = ('a'..'u').to_a.join('')
 ATOG = ('a'..'g').to_a.join('')
+KTOS = ('k'..'s').to_a.join('')
 
 settings do
   # type may be 'binary', 'xml', or 'json'
@@ -57,11 +58,10 @@ end
 
 to_field "id", extract_marc("001"), trim, first_only
 to_field 'marc_display_tesi', get_xml
-to_field "text_tesi", extract_all_marc_values do |_r, acc|
+to_field "text_tesi", extract_all_marc_values(from: '010', to: '899') do |_r, acc|
   acc.replace [acc.join(' ')] # turn it into a single string
 end
 to_field "language_facet_tesim", marc_languages('008[35-37]:041a:041d')
-to_field "format_tesim", get_format
 to_field 'marc_resource_ssim' do |rec, acc|
   physical_present = rec.fields('997').present?
   electronic_present = rec.fields('998').present?
@@ -81,6 +81,24 @@ to_field 'marc_resource_ssim' do |rec, acc|
     acc << "Physical Resource" if !leader_formats && !accomp_matter
   end
 end
+
+to_field "format_ssim" do |rec, acc|
+  format_map_ldr_six = {
+    'c' => "Musical Score", 'd' => "Musical Score", 'e' => "Map", 'f' => "Map", 'g' => "Visual Material",
+    'i' => "Sound Recording", 'j' => "Sound Recording", 'k' => "Visual Material", 'm' => "Computer File",
+    'o' => "Visual Material", 'p' => "Mixed Materials", 'r' => "Visual Material"
+  }
+  format_map_ldr_six_seven = {
+    'aa' => "Book", 'ab' => "Serial", 'ac' => "Book", 'ad' => "Book", 'ai' => "Serial", 'am' => "Book",
+    'as' => "Serial", 'ta' => "Book", 'tb' => "Serial", 'tc' => "Book", 'td' => "Book", 'ti' => "Serial",
+    'tm' => "Book", 'ts' => "Serial"
+  }
+
+  acc << format_map_ldr_six[rec.leader[6].to_s] if format_map_ldr_six.keys.any?(rec.leader[6])
+
+  acc << format_map_ldr_six_seven[rec.leader[6, 2].to_s] if format_map_ldr_six_seven.keys.any?(rec.leader[6, 2])
+end
+
 to_field "isbn_ssim", extract_marc('020a', separator: nil) do |_rec, acc|
   orig = acc.dup
   acc.map! { |x| StdNum::ISBN.allNormalizedValues(x) }
@@ -88,7 +106,7 @@ to_field "isbn_ssim", extract_marc('020a', separator: nil) do |_rec, acc|
   acc.flatten!
   acc.uniq!
 end
-to_field 'issn_ssim', extract_marc('022a')
+to_field 'issn_ssim', extract_marc('022ay')
 to_field 'lccn_ssim', extract_marc('010a')
 to_field 'oclc_ssim', oclcnum('019a:035a')
 to_field 'other_standard_ids_ssim', extract_marc('024a')
@@ -99,6 +117,8 @@ to_field 'material_type_display_tesim', extract_marc('300a'), trim_punctuation
 #    primary title
 to_field 'title_tesim', extract_marc('245a')
 to_field 'title_display_tesim', extract_marc('245a', alternate_script: false), trim_punctuation
+to_field 'title_display_partnumber_tesim', extract_marc('245n'), trim_punctuation
+to_field 'title_display_partname_tesim', extract_marc('245p'), trim_punctuation
 to_field 'title_vern_display_tesi', extract_marc('245a', alternate_script: :only), trim_punctuation
 
 #    subtitle
@@ -108,10 +128,16 @@ to_field 'subtitle_vern_display_tesi', extract_marc('245b', alternate_script: :o
 
 #    additional title fields
 to_field 'title_abbr_tesi', extract_marc('210ab')
-to_field 'title_addl_tesim', extract_marc(%w[
-  130abcdefghijklmnopqrstuvwxyz
-  240abcdefgklmnopqrs
-  243abcdefgklmnopqrs
+to_field 'title_addl_tesim', extract_marc(%W[
+  130#{ATOZ}
+  210ab
+  222ab
+  240#{ATOG}#{KTOS}
+  242abnp
+  243#{ATOG}#{KTOS}
+  245abnps
+  246#{ATOG}np
+  247#{ATOG}np
 ].join(':'))
 to_field 'title_added_entry_tesim', extract_marc(%w[
   700gklmnoprst
@@ -121,7 +147,7 @@ to_field 'title_added_entry_tesim', extract_marc(%w[
   740anp
 ].join(':'))
 to_field 'title_enhanced_tesim', extract_marc(
-  "505abcdefghijklmnopqrsuvwxyz"
+  "505#{ATOZ}"
 )
 to_field 'title_former_tesi', extract_marc(
   '247abcdefgnp'
@@ -129,7 +155,7 @@ to_field 'title_former_tesi', extract_marc(
 to_field 'title_graphic_tesim', extract_marc("880#{ATOZ}")
 to_field 'title_host_item_tesim', extract_marc("773#{ATOZ}:774#{ATOZ}")
 to_field 'title_key_tesi', extract_marc('222ab')
-to_field 'title_series_tesim', extract_marc(%W[
+to_field 'title_series_ssim', extract_marc(%W[
   440anpv
   490av
   800#{ATOZ}
@@ -144,9 +170,10 @@ to_field 'title_varying_tesim', extract_marc("246#{ATOG}np")
 
 # Author fields
 to_field 'author_tesim', extract_marc("100abcegqu:110abcdegnu:111acdegjnqu")
+to_field 'author_display_ssim', extract_marc("100abcdq:110#{ATOZ}:111#{ATOZ}")
 to_field 'author_addl_tesim', extract_marc("700abcegqu:710abcdegnu:711acdegjnqu")
 to_field 'author_ssm', extract_marc("100abcdq:110#{ATOZ}:111#{ATOZ}", alternate_script: false)
-to_field 'author_vern_ssm', extract_marc("100abcdq:110#{ATOZ}:111#{ATOZ}", alternate_script: :only)
+to_field 'author_vern_ssim', extract_marc("100abcdq:110#{ATOZ}:111#{ATOZ}", alternate_script: :only)
 
 # JSTOR isn't an author. Try to not use it as one
 to_field 'author_si', marc_sortable_author
@@ -169,6 +196,7 @@ to_field 'subject_geo_ssim',  extract_marc("651a:650z"), trim_punctuation
 # Publication fields
 to_field 'published_ssm', extract_marc('260a', alternate_script: false), trim_punctuation
 to_field 'published_vern_ssm', extract_marc('260a', alternate_script: :only), trim_punctuation
+to_field 'publisher_location_ssm', extract_marc("260a:264a:008[15-17]"), trim_punctuation
 to_field 'pub_date_si', marc_publication_date
 to_field 'pub_date_ssim', marc_publication_date
 
@@ -188,6 +216,10 @@ end
 to_field 'lc_alpha_ssim', extract_marc('050a'), alpha_only, first_only
 
 to_field 'lc_b4cutter_ssim', extract_marc('050a'), first_only
+
+to_field 'edition_tsim', extract_marc('250a')
+
+to_field 'note_general_tsim', extract_marc('500a')
 
 # URL Fields
 
