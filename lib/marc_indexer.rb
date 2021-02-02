@@ -127,7 +127,7 @@ to_field 'subtitle_display_tesim', extract_marc('245b', alternate_script: false)
 to_field 'subtitle_vern_display_tesi', extract_marc('245b', alternate_script: :only), trim_punctuation
 
 #    additional title fields
-to_field 'title_abbr_tesi', extract_marc('210ab')
+to_field 'title_abbr_tesim', extract_marc('210ab')
 to_field 'title_addl_tesim', extract_marc(%W[
   130#{ATOZ}
   210ab

@@ -134,7 +134,7 @@ class CatalogController < ApplicationController
     ]
     author_fields = ['author_tesim', 'author_display_ssim', 'author_vern_ssim', 'author_si', 'author_addl_tesim']
     title_fields = ['title_tesim', 'title_display_tesim', 'title_vern_display_tesi', 'title_ssort',
-                    'title_addl_tesim', 'title_abbr_tesi', 'title_added_entry_tesim', 'title_enhanced_tesim',
+                    'title_addl_tesim', 'title_abbr_tesim', 'title_added_entry_tesim', 'title_enhanced_tesim',
                     'title_former_tesi', 'title_graphic_tesim', 'title_host_item_tesim', 'title_key_tesi',
                     'title_series_ssim', 'title_translation_tesim', 'title_varying_tesim']
 

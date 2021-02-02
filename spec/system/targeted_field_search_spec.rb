@@ -8,7 +8,7 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       'subject_topic_facet_ssim', 'subject_era_ssim', 'subject_geo_ssim', 'lc_callnum_display_ssi',
       'author_tesim', 'author_display_ssim', 'author_vern_ssim', 'author_si', 'author_addl_tesim',
       'subject_tsim', 'title_tesim', 'title_vern_display_tesi', 'title_ssort',
-      'title_addl_tesim', 'title_abbr_tesi', 'title_added_entry_tesim', 'title_enhanced_tesim',
+      'title_addl_tesim', 'title_abbr_tesim', 'title_added_entry_tesim', 'title_enhanced_tesim',
       'title_former_tesi', 'title_graphic_tesim', 'title_host_item_tesim', 'title_key_tesi',
       'title_series_ssim', 'title_translation_tesim', 'title_varying_tesim'
     ]
@@ -111,7 +111,7 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       'Target in title_vern_display_tesi',
       'Target in title_ssort',
       'Target in title_addl_tesim',
-      'Target in title_abbr_tesi',
+      'Target in title_abbr_tesim',
       'Target in title_added_entry_tesim',
       'Target in title_enhanced_tesim',
       'Target in title_former_tesi',
