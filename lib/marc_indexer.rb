@@ -119,12 +119,12 @@ to_field 'title_tesim', extract_marc('245a')
 to_field 'title_display_tesim', extract_marc('245a', alternate_script: false), trim_punctuation
 to_field 'title_display_partnumber_tesim', extract_marc('245n'), trim_punctuation
 to_field 'title_display_partname_tesim', extract_marc('245p'), trim_punctuation
-to_field 'title_vern_display_tesi', extract_marc('245a', alternate_script: :only), trim_punctuation
+to_field 'title_vern_display_tesim', extract_marc('245a', alternate_script: :only), trim_punctuation
 
 #    subtitle
 to_field 'subtitle_t', extract_marc('245b')
 to_field 'subtitle_display_tesim', extract_marc('245b', alternate_script: false), trim_punctuation
-to_field 'subtitle_vern_display_tesi', extract_marc('245b', alternate_script: :only), trim_punctuation
+to_field 'subtitle_vern_display_tesim', extract_marc('245b', alternate_script: :only), trim_punctuation
 
 #    additional title fields
 to_field 'title_abbr_tesim', extract_marc('210ab')
@@ -149,12 +149,10 @@ to_field 'title_added_entry_tesim', extract_marc(%w[
 to_field 'title_enhanced_tesim', extract_marc(
   "505#{ATOZ}"
 )
-to_field 'title_former_tesi', extract_marc(
-  '247abcdefgnp'
-)
+to_field 'title_former_tesim', extract_marc('247abcdefgnp')
 to_field 'title_graphic_tesim', extract_marc("880#{ATOZ}")
 to_field 'title_host_item_tesim', extract_marc("773#{ATOZ}:774#{ATOZ}")
-to_field 'title_key_tesi', extract_marc('222ab')
+to_field 'title_key_tesi', extract_marc('222ab'), first_only
 to_field 'title_series_ssim', extract_marc(%W[
   440anpv
   490av

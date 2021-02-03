@@ -127,15 +127,15 @@ class CatalogController < ApplicationController
     # or can be specified manually to be different.
 
     keyword_fields = [
-      'isbn_ssim', 'id', 'title_display_tesim', 'title_vern_display_tesi', 'title_addl_tesim', 'title_added_entry_tesim',
-      'title_series_ssim', 'subtitle_display_tesim', 'subtitle_vern_display_tesi', 'author_display_ssim', 'author_vern_ssim',
+      'isbn_ssim', 'id', 'title_display_tesim', 'title_vern_display_tesim', 'title_addl_tesim', 'title_added_entry_tesim',
+      'title_series_ssim', 'subtitle_display_tesim', 'subtitle_vern_display_tesim', 'author_display_ssim', 'author_vern_ssim',
       'author_addl_tesim', 'subject_tsim', 'subject_addl_tsim', 'subject_topic_facet_ssim', 'subject_era_ssim',
       'subject_geo_ssim', 'lc_callnum_display_ssi'
     ]
     author_fields = ['author_tesim', 'author_display_ssim', 'author_vern_ssim', 'author_si', 'author_addl_tesim']
-    title_fields = ['title_tesim', 'title_display_tesim', 'title_vern_display_tesi', 'title_ssort',
+    title_fields = ['title_tesim', 'title_display_tesim', 'title_vern_display_tesim', 'title_ssort',
                     'title_addl_tesim', 'title_abbr_tesim', 'title_added_entry_tesim', 'title_enhanced_tesim',
-                    'title_former_tesi', 'title_graphic_tesim', 'title_host_item_tesim', 'title_key_tesi',
+                    'title_former_tesim', 'title_graphic_tesim', 'title_host_item_tesim', 'title_key_tesi',
                     'title_series_ssim', 'title_translation_tesim', 'title_varying_tesim']
 
     # This one uses all the defaults set by the solr request handler. Which

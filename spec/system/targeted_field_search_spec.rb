@@ -4,12 +4,12 @@ require 'rails_helper'
 RSpec.describe 'Search the catalog', type: :system, js: false do
   let(:fields) do
     [
-      'isbn_ssim', 'subtitle_display_tesim', 'subtitle_vern_display_tesi', 'subject_addl_tsim',
+      'isbn_ssim', 'subtitle_display_tesim', 'subtitle_vern_display_tesim', 'subject_addl_tsim',
       'subject_topic_facet_ssim', 'subject_era_ssim', 'subject_geo_ssim', 'lc_callnum_display_ssi',
       'author_tesim', 'author_display_ssim', 'author_vern_ssim', 'author_si', 'author_addl_tesim',
-      'subject_tsim', 'title_tesim', 'title_vern_display_tesi', 'title_ssort',
+      'subject_tsim', 'title_tesim', 'title_vern_display_tesim', 'title_ssort',
       'title_addl_tesim', 'title_abbr_tesim', 'title_added_entry_tesim', 'title_enhanced_tesim',
-      'title_former_tesi', 'title_graphic_tesim', 'title_host_item_tesim', 'title_key_tesi',
+      'title_former_tesim', 'title_graphic_tesim', 'title_host_item_tesim', 'title_key_tesi',
       'title_series_ssim', 'title_translation_tesim', 'title_varying_tesim'
     ]
   end
@@ -56,7 +56,7 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
     expect(result_titles).to contain_exactly(
       'Target in isbn_ssim',
       'Target in subtitle_display_tesim',
-      'Target in subtitle_vern_display_tesi',
+      'Target in subtitle_vern_display_tesim',
       'Target in subject_tsim',
       'Target in subject_addl_tsim',
       'Target in subject_topic_facet_ssim',
@@ -69,7 +69,7 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       'Target in title_added_entry_tesim',
       'Target in title_addl_tesim',
       'Target in title_series_ssim',
-      'Target in title_vern_display_tesi',
+      'Target in title_vern_display_tesim',
       'Target in id'
     )
   end
@@ -108,13 +108,13 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
 
     expect(result_titles).to contain_exactly(
       'Target in title_tesim',
-      'Target in title_vern_display_tesi',
+      'Target in title_vern_display_tesim',
       'Target in title_ssort',
       'Target in title_addl_tesim',
       'Target in title_abbr_tesim',
       'Target in title_added_entry_tesim',
       'Target in title_enhanced_tesim',
-      'Target in title_former_tesi',
+      'Target in title_former_tesim',
       'Target in title_graphic_tesim',
       'Target in title_host_item_tesim',
       'Target in title_key_tesi',
