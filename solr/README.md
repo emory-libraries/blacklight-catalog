@@ -30,7 +30,7 @@
 1. `dewey_t`: string
 1. `published_display_tesim`: text
 1. `lc_b4cutter_facet_tesi`: text
-1. `title_added_entry_tesim`: string
-1. `title_vern_display_tesi`: string
+1. `title_added_entry_tesim`: text
+1. `title_vern_display_tesim`: text
 1. `url_suppl_display_tesim`: text
 1. `subtitle_vern_display`: string
