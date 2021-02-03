@@ -1,4 +1,6 @@
 <% # [Blacklight-overwrite v7.4.1] Overwrites the way fields get displayed on item show page %>
 <%= render 'metadata_block', document: document, presenter: MainMetadataPresenter, title: '' %>
-<% # Request options will come here %>
+<% # New partial for request options %>
+<%= render :partial => 'show_request_options', :locals => {:document => document} %>
 <%= render 'metadata_block', document: document, presenter: DetailsPresenter, title: 'Details' %>
+<script>checkRequestOptions();</script>
