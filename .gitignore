@@ -26,3 +26,5 @@
 *solrmarc.log*
 *.DS_Store*
 .env*
+public/
+yarn.lock
