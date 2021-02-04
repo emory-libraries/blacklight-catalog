@@ -56,6 +56,7 @@
 #   }
 
 set :stage, :ARCH
+set :ec2_region, %w[us-east-2]
 ec2_role %i[web app db],
   user: 'deploy',
   ssh_options: {
