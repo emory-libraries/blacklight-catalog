@@ -12,5 +12,14 @@ TEST_ITEM = {
   subject_geo_ssim: ['Texas'],
   subject_topic_facet_ssim: ['Frontier and pioneer life', 'Electronic books'],
   title_display_tesim: ['The Title of my Work'],
-  title_series_ssim: ['American county histories']
+  title_addl_tesim: ['More title info'],
+  title_varying_tesim: ['Variant title'],
+  subject_tsim: ['A sample subject'],
+  edition_tsim: ['A sample edition'],
+  title_series_ssim: ['American county histories'],
+  published_ssm: ['A dummy publication'],
+  material_type_display_tesim: ['1 online resource (111 pages)'],
+  note_general_tsim: ['General note'],
+  publisher_location_ssm: ['Atlanta'],
+  summary_tesi: 'Short summary'
 }.freeze

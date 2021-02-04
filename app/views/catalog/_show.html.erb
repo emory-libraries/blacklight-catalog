@@ -1,0 +1,4 @@
+<% # [Blacklight-overwrite v7.4.1] Overwrites the way fields get displayed on item show page %>
+<%= render 'metadata_block', document: document, presenter: MainMetadataPresenter, title: '' %>
+<% # Request options will come here %>
+<%= render 'metadata_block', document: document, presenter: DetailsPresenter, title: 'Details' %>

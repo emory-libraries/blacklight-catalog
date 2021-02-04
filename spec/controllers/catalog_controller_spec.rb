@@ -26,7 +26,10 @@ RSpec.describe CatalogController, type: :controller do
     end
     let(:expected_show_fields) do
       ['title_display_tesim', 'author_display_ssim', 'pub_date_tesi', 'language_facet_tesim',
-       'isbn_ssim', 'lc_callnum_display_ssi', 'id', 'marc_resource_ssim']
+       'isbn_ssim', 'lc_callnum_display_ssi', 'id', 'marc_resource_ssim', 'title_addl_tesim',
+       'title_varying_tesim', 'subject_tsim', 'edition_tsim', 'published_ssm',
+       'material_type_display_tesim', 'note_general_tsim', 'publisher_location_ssm',
+       'format_ssim', 'author', 'publisher', 'summary_tesi']
     end
 
     it { expect(show_fields).to contain_exactly(*expected_show_fields) }

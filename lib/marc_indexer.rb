@@ -219,6 +219,8 @@ to_field 'edition_tsim', extract_marc('250a')
 
 to_field 'note_general_tsim', extract_marc('500a')
 
+to_field 'summary_tesi', extract_marc('520a')
+
 # URL Fields
 
 notfulltext = /abstract|description|sample text|table of contents|/i

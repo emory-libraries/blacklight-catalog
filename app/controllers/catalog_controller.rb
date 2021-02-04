@@ -103,14 +103,26 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field 'title_display_tesim', label: 'Title'
     config.add_show_field 'author_display_ssim', label: 'Author/Creator'
+    config.add_show_field 'published_ssm', label: 'Publication'
+    config.add_show_field 'marc_resource_ssim', label: 'Resource Type'
+    config.add_show_field 'title_display_tesim', label: 'Title'
+    config.add_show_field 'title_addl_tesim', label: 'More Title Info'
+    config.add_show_field 'title_varying_tesim', label: 'Variant Titles'
+    config.add_show_field 'author', field: 'author_display_ssim', label: 'Author/Creator'
+    config.add_show_field 'subject_tsim', label: 'Subjects'
+    config.add_show_field 'edition_tsim', label: 'Edition'
+    config.add_show_field 'publisher', field: 'published_ssm', label: 'Publisher'
     config.add_show_field 'pub_date_tesi', label: 'Creation Date'
+    config.add_show_field 'material_type_display_tesim', label: 'Format'
+    config.add_show_field 'note_general_tsim', label: 'General Note'
     config.add_show_field 'language_facet_tesim', label: 'Language'
-    config.add_show_field 'isbn_ssim', label: 'ISBN'
+    config.add_show_field 'summary_tesi', labale: 'Summary'
+    config.add_show_field 'isbn_ssim', label: 'Identifier'
+    config.add_show_field 'publisher_location_ssm', label: 'Publication Info'
+    config.add_show_field 'format_ssim', label: 'Type'
     config.add_show_field 'lc_callnum_display_ssi', label: 'Call Number'
     config.add_show_field 'id', label: 'MMS ID'
-    config.add_show_field 'marc_resource_ssim', label: 'Access'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
