@@ -6,9 +6,9 @@
 2. At the root level of the project directory, create a `.env.development` file with the following environment variables:
 ```
 # provide alma domain for oai base url fetch
-alma="na03"
+ALMA="na03"
 # provide institution for oai base url fetch
-institution="01GALI_EMORY"
+ALMA_INSTITUTION_CODE="01GALI_EMORY"
 # provide SOLR_URL for solr connections
 SOLR_URL="http://localhost:8983/solr/blacklight-core"
 # provides name for oai set being fetched

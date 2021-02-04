@@ -28,7 +28,7 @@ task marc_index_ingest: [:environment] do
   loop do
     # expect resumption token to be returned from process_oai method, else
     # it will be set to blank
-    resumption_token = OaiProcessingService.process_oai_with_marc_indexer(ENV['INSTITUTION'], qs, ENV['ALMA'])
+    resumption_token = OaiProcessingService.process_oai_with_marc_indexer(ENV['ALMA_INSTITUTION_CODE'], qs, ENV['ALMA'])
     qs = "?verb=ListRecords&resumptionToken=#{resumption_token}"
     PropertyBag.set('marc_ingest_resumption_token', resumption_token)
     break if resumption_token == ''

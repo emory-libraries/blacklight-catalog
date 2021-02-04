@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     concerns :searchable
   end
 
-  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks", sessions: 'sessions' }
 
   # Disable these routes if you are using Devise's
   # database_authenticatable in your development environment.
@@ -19,6 +19,9 @@ Rails.application.routes.draw do
       get 'sign_in', to: 'omniauth#new', as: :new_user_session
       post 'sign_in', to: 'omniauth_callbacks#shibboleth', as: :new_session
       get 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
+      # set up routes for the callbacks, which are needed for the
+      # alma_social_login_url helper to work
+      get 'alma/sso_login_callback' => 'sessions#sso_login_callback'
     end
   end
 

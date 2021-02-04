@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 class SolrDocument
   include Blacklight::Solr::Document
+  # include Blacklight::Solr::Document::Marc
   # The following shows how to setup this blacklight document to display marc documents
-  extension_parameters[:marc_source_field] = :marc_ss
+  extension_parameters[:marc_source_field] = :marc_display_tesi
   extension_parameters[:marc_format_type] = :marcxml
   use_extension(Blacklight::Solr::Document::Marc) do |document|
     document.key?(SolrDocument.extension_parameters[:marc_source_field])
@@ -29,4 +30,17 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+  # used by blacklight_alma
+  def alma_mms_id
+    fetch('id', nil)
+  end
+
+  # returns an array of IDs to query through API to get holdings
+  # for this document. This is usually just the alma MMS ID for
+  # this bib record, but in the case of boundwith records, we return
+  # the boundwith IDs, because that's where Alma stores the holdings.
+  def alma_availability_mms_ids
+    fetch('bound_with_ids', [alma_mms_id])
+  end
 end

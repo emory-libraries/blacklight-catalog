@@ -22,3 +22,4 @@
 //= require blacklight/blacklight
 
 //= require_tree .
+//= require blacklight_alma/blacklight_alma
