@@ -34,7 +34,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
       expect(page).to have_css('span.badge.badge-success', text: 'Available')
     end
 
-    it 'shows the UnAvailable badge' do
+    it 'shows the Unavailable badge' do
       delete_all_documents_from_solr
       solr = Blacklight.default_index.connection
       solr.add(TEST_ITEM.merge(id: '456'))
@@ -53,6 +53,24 @@ RSpec.describe "View a item's show page", type: :system, js: true do
 
       expect(page).not_to have_css('span.badge.badge-danger', text: 'Unavailable')
       expect(page).not_to have_css('span.badge.badge-success', text: 'Available')
+    end
+  end
+
+  context 'displaying Librarian View' do
+    it 'shows the link' do
+      delete_all_documents_from_solr
+      solr = Blacklight.default_index.connection
+      solr.add(
+        TEST_ITEM.merge(
+          marc_display_tesi: File.read(
+            fixture_path + '/alma_single_marc_display_tesi.xml'
+          )
+        )
+      )
+      solr.commit
+      visit solr_document_path('123')
+
+      expect(page).to have_link('Librarian View')
     end
   end
 end
