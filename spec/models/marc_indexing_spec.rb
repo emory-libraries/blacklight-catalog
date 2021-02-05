@@ -62,4 +62,36 @@ RSpec.describe 'Indexing fields with custom logic' do
       end
     end
   end
+
+  describe 'publication_main_dispaly_ssm field' do
+    let(:solr_doc) { SolrDocument.find('9937264718202486') }
+
+    it 'maps 260, 264, and 008 fields' do
+      expect(solr_doc['publication_main_display_ssm']).to eq([" Washington, D.C. xx#:  Central Intelligence Agency,  2002 2013"])
+    end
+  end
+
+  describe 'title_details_display_tesim field' do
+    let(:solr_doc) { SolrDocument.find('9937264718202486') }
+
+    it 'maps 245abp' do
+      expect(solr_doc['title_details_display_tesim']).to eq(["Physical Map Test"])
+    end
+  end
+
+  describe 'publisher_details_dispaly_ssm field' do
+    let(:solr_doc) { SolrDocument.find('9937264718202486') }
+
+    it 'maps 260, 264, and 008 fields' do
+      expect(solr_doc['publisher_details_display_ssm']).to eq([" Central Intelligence Agency,  Washington, D.C. xx#"])
+    end
+  end
+
+  describe 'title_main_display_tesim field' do
+    let(:solr_doc) { SolrDocument.find('9937264718202486') }
+
+    it 'maps 245abnp' do
+      expect(solr_doc['title_main_display_tesim']).to eq(["Physical Map Test"])
+    end
+  end
 end

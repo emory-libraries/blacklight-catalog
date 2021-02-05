@@ -15,8 +15,8 @@ RSpec.describe "View a item's show page", type: :system, js: true do
   context 'displaying metadata' do
     it 'has the right metadata labels' do
       ['Author/Creator:', 'Publication:', 'Resource Type:', 'Title:', 'More Title Info:',
-       'Author/Creator:', 'Subjects:', 'Format:', 'General Note:', 'Creation Date:', 'Language:',
-       'Summary', 'Identifier:', 'Publication Info:', 'Type:', 'MMS ID:'].each do |label|
+       'Author/Creator:', 'Subjects:', 'Format:', 'Local Note:', 'Creation Date:', 'Language:',
+       'Summary', 'Identifier:', 'Publication:', 'Type:', 'MMS ID:'].each do |label|
         expect(page).to have_content(label)
       end
     end

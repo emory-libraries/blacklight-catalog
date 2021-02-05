@@ -219,7 +219,7 @@ to_field 'edition_tsim', extract_marc('250a')
 
 to_field 'note_general_tsim', extract_marc('500a')
 
-to_field 'summary_tesi', extract_marc('520a')
+to_field 'summary_tesim', extract_marc('520a')
 
 # URL Fields
 
@@ -260,4 +260,52 @@ to_field 'url_suppl_ssm' do |rec, acc|
       end
     end
   end
+end
+
+marc21 = Traject::Macros::Marc21
+
+to_field 'publication_main_display_ssm' do |rec, acc|
+  prefix, suffix, string_array = Array.new(3) { [] }
+  ['260a', '264a'].each do |f|
+    prefix << marc21.extract_marc_from(rec, f).join(' ').remove(" :", "[", "]")
+  end
+  ['260b', '264b', '260c', '264c'].each do |f|
+    suffix << marc21.extract_marc_from(rec, f).join(' ').remove(" :", "[", "]")
+  end
+  prefix << marc21.extract_marc_from(rec, '008[15-17]')
+  suffix << marc21.extract_marc_from(rec, '008[7-10]')
+  string_array << prefix.flatten.join(' ') unless prefix.all?("")
+  string_array << ": " + suffix.flatten.join(' ') unless suffix.all?("")
+  acc << string_array.flatten.join('')
+end
+
+to_field 'title_details_display_tesim' do |rec, acc|
+  prefix, suffix, string_array = Array.new(3) { [] }
+  prefix << marc21.extract_marc_from(rec, '245a').join(' ').remove(" :", "[", "]")
+  suffix << marc21.extract_marc_from(rec, '245b').join(' ').remove(" :", "[", "]")
+  suffix << marc21.extract_marc_from(rec, '245p').join(' ').remove(" :", "[", "]")
+  string_array << prefix.flatten.join(' ') unless prefix.all?("")
+  string_array << ": " + suffix.flatten.join('. ') unless suffix.all?("")
+  acc << string_array.flatten.join('')
+end
+
+to_field 'publisher_details_display_ssm' do |rec, acc|
+  extra_fields = []
+  ['260b', '264b', '260a', '264a'].each do |f|
+    extra_fields << marc21.extract_marc_from(rec, f).join(' ').remove(" :", "[", "]")
+  end
+  extra_fields << marc21.extract_marc_from(rec, '008[15-17]')
+  acc << extra_fields.flatten.join(' ')
+end
+
+to_field 'title_main_display_tesim' do |rec, acc|
+  prefix, middle, suffix, string_array = Array.new(4) { [] }
+  prefix << marc21.extract_marc_from(rec, '245a').join(' ').remove(" :", "[", "]")
+  middle << marc21.extract_marc_from(rec, '245b').join(' ').remove(" :", "[", "]")
+  middle << marc21.extract_marc_from(rec, '245n').join(' ').remove(" :", "[", "]")
+  suffix << marc21.extract_marc_from(rec, '245p').join(' ').remove(" :", "[", "]")
+  string_array << prefix.flatten.join(' ') unless prefix.all?("")
+  string_array << ": " + middle.flatten.join('. ') unless middle.all?("")
+  string_array << ": " + suffix.flatten.join(' ') unless suffix.all?("")
+  acc << string_array.flatten.join('')
 end

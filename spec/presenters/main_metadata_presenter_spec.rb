@@ -5,7 +5,7 @@ RSpec.describe MainMetadataPresenter do
   let(:pres) { described_class.new(document: TEST_ITEM) }
   let(:main_terms) do
     { author_display_ssim: ['George Jenkins'],
-      published_ssm: ['A dummy publication'],
+      publication_main_display_ssm: ['A dummy publication'],
       marc_resource_ssim: ['Electronic Resource'] }
   end
   context 'with a solr document' do
