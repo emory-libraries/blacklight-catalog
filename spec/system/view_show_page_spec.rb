@@ -14,16 +14,18 @@ RSpec.describe "View a item's show page", type: :system, js: true do
 
   context 'displaying metadata' do
     it 'has the right metadata labels' do
-      ['Title:', 'Author/Creator:', 'Creation Date:', 'Language:', 'ISBN:',
-       'Call Number:', 'MMS ID:', 'Access:'].each do |label|
+      ['Author/Creator:', 'Publication:', 'Resource Type:', 'Title:', 'More Title Info:',
+       'Author/Creator:', 'Subjects:', 'Format:', 'Local Note:', 'Creation Date:', 'Language:',
+       'Summary', 'Identifier:', 'Publication:', 'Type:', 'MMS ID:'].each do |label|
         expect(page).to have_content(label)
       end
     end
 
     it 'has the right values' do
-      ['The Title of my Work', 'George Jenkins', '2015', 'English',
-       'SOME MAGICAL NUM .66G', 'ANOTHER MAGICAL NUM .78F', '123',
-       'Electronic Resource'].each do |value|
+      ['George Jenkins', 'A dummy publication', 'Electronic Resource', 'The Title of my Work',
+       'More title info', 'George Jenkins', 'A sample subject', '1 online resource (111 pages)',
+       'General note', '2015', 'English', 'Short summary', 'SOME MAGICAL NUM .66G', 'Atlanta',
+       'Book', '123'].each do |value|
         expect(page).to have_content(value)
       end
     end
