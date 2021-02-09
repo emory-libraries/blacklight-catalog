@@ -53,6 +53,10 @@ Lint/EmptyWhen:
     Exclude:
         - app/models/marc_indexer.rb
 
+Lint/PercentStringArray:
+    Exclude:
+        - 'config/initializers/secure_headers.rb'
+
 Rails/Output:
     Exclude:
         - 'app/services/oai_processing_service.rb'
