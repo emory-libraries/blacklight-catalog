@@ -1311,6 +1311,7 @@ GEM
       sprockets-rails
       tilt
     scrub_rb (1.0.1)
+    secure_headers (6.3.2)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -1438,6 +1439,7 @@ DEPENDENCIES
   rspec-rails (~> 3.5)
   rspec_junit_formatter
   sass-rails (~> 5.0)
+  secure_headers
   selenium-webdriver
   solr_wrapper (>= 0.3)
   spring
