@@ -89,7 +89,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'title_series_ssim', label: 'Collection', limit: 5
     config.add_facet_field 'subject_geo_ssim', label: 'Region', limit: 5
     config.add_facet_field 'subject_era_ssim', label: 'Era', limit: 5
-    config.add_facet_field 'genre_facet_ssim', label: 'Genre', limit: 5
+    config.add_facet_field 'genre_ssim', label: 'Genre', limit: 5
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
