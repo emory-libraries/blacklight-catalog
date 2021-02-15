@@ -10,7 +10,7 @@ TEST_ITEM = {
   pub_date_tesi: '2015',
   subject_era_ssim: ['1990-'],
   subject_geo_ssim: ['Texas'],
-  subject_topic_facet_ssim: ['Frontier and pioneer life', 'Electronic books'],
+  subject_ssim: ['Frontier and pioneer life', 'Electronic books'],
   title_main_display_tesim: ['The Title of my Work'],
   title_details_display_tesim: ['The Title of my Work'],
   title_addl_tesim: ['More title info'],

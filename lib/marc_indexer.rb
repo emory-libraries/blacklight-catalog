@@ -187,7 +187,7 @@ to_field 'subject_tsim', extract_marc(%W[
   653a:654abcde:655abc
 ].join(':'))
 to_field 'subject_addl_tsim', extract_marc("600vwxyz:610vwxyz:611vwxyz:630vwxyz:650vwxyz:651vwxyz:654vwxyz:655vwxyz")
-to_field 'subject_ssim', extract_marc("600abcdq:610ab:611ab:630aa:650aa:653aa:654ab:655ab"), trim_punctuation
+to_field 'subject_ssim', extract_marc("600abcdq:610ab:611adc:630aa:650aa:653aa:654a"), trim_punctuation
 to_field 'subject_era_ssim',  extract_marc("650y:651y:654y:655y"), trim_punctuation
 to_field 'subject_geo_ssim',  extract_marc("651a:650z"), trim_punctuation
 
