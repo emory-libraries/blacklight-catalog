@@ -179,7 +179,7 @@ to_field 'subject_era_ssim',  extract_marc("650y:651y:654y:655y"), trim_punctuat
 to_field 'subject_geo_ssim',  extract_marc("651a:650z"), trim_punctuation
 
 # Genre field
-to_field 'genre_facet_ssim', extract_marc("655a")
+to_field 'genre_ssim', extract_marc("655a")
 
 # Publication fields
 to_field 'published_ssm', extract_marc('260a', alternate_script: false), trim_punctuation
