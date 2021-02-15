@@ -22,5 +22,6 @@ TEST_ITEM = {
   material_type_display_tesim: ['1 online resource (111 pages)'],
   note_general_tsim: ['General note'],
   publisher_details_display_ssm: ['Atlanta'],
-  summary_tesim: ['Short summary']
+  summary_tesim: ['Short summary'],
+  genre_facet_ssim: ['Genre example']
 }.freeze
