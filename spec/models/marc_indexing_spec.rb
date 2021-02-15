@@ -11,36 +11,56 @@ RSpec.describe 'Indexing fields with custom logic' do
     )
   end
 
+  describe 'marc_resource_ssim field, when 598a equals "NEW"' do
+    let(:solr_doc) { SolrDocument.find('9937264718402486') }
+
+    it 'is mapped with Recently Acquired' do
+      expect(solr_doc['marc_resource_ssim']).to include('Recently Acquired')
+    end
+  end
+
+  describe 'marc_resource_ssim field, when 598a does not exist' do
+    let(:solr_doc) { SolrDocument.find('9937264718202486') }
+    let(:solr_doc_2) { SolrDocument.find('9937264717902486') }
+    let(:solr_doc_3) { SolrDocument.find('9937264718102486') }
+
+    it 'is not mapped with Recently Acquired' do
+      [solr_doc, solr_doc_2, solr_doc_3].each do |d|
+        expect(d['marc_resource_ssim']).not_to include('Recently Acquired')
+      end
+    end
+  end
+
   describe 'marc_resource_ssim field, when no 997 or 998 fields' do
     context 'and 000/6 == e, f, g, k, o, or r and 008/29 == o or s' do
       let(:solr_doc) { SolrDocument.find('9937264718402486') }
 
-      it 'is mapped with Electronic Resource' do
-        expect(solr_doc['marc_resource_ssim']).to eq(['Electronic Resource'])
+      it 'is mapped with Online' do
+        expect(solr_doc['marc_resource_ssim']).to include('Online')
       end
     end
 
     context 'and 000/6 == e, f, g, k, o, or r and 008/29 != o or s' do
       let(:solr_doc) { SolrDocument.find('9937264718202486') }
 
-      it 'is mapped with Physical Resource' do
-        expect(solr_doc['marc_resource_ssim']).to eq(['Physical Resource'])
+      it 'is mapped with At the Library' do
+        expect(solr_doc['marc_resource_ssim']).to eq(['At the Library'])
       end
     end
 
     context 'and 000/6 != e, f, g, k, o, or r and 008/29 == o or s' do
       let(:solr_doc) { SolrDocument.find('9937264717902486') }
 
-      it 'is mapped with Electronic Resource' do
-        expect(solr_doc['marc_resource_ssim']).to eq(['Electronic Resource'])
+      it 'is mapped with Online' do
+        expect(solr_doc['marc_resource_ssim']).to eq(['Online'])
       end
     end
 
     context 'and 000/6 != e, f, g, k, o, or r and 008/29 != o or s' do
       let(:solr_doc) { SolrDocument.find('9937264718102486') }
 
-      it 'is mapped with Physical Resource' do
-        expect(solr_doc['marc_resource_ssim']).to eq(['Physical Resource'])
+      it 'is mapped with At the Library' do
+        expect(solr_doc['marc_resource_ssim']).to eq(['At the Library'])
       end
     end
   end

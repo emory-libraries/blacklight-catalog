@@ -23,6 +23,9 @@ extend Traject::Macros::Marc21Semantics
 require 'traject/macros/marc_format_classifier'
 extend Traject::Macros::MarcFormats
 
+require 'traject/extract_marc_resource'
+extend ExtractMarcResource
+
 ATOZ = ('a'..'z').to_a.join('')
 ATOU = ('a'..'u').to_a.join('')
 ATOG = ('a'..'g').to_a.join('')
@@ -56,31 +59,15 @@ def get_xml(_options = {})
   end
 end
 
+marc21 = Traject::Macros::Marc21
+
 to_field "id", extract_marc("001"), trim, first_only
 to_field 'marc_display_tesi', get_xml
 to_field "text_tesi", extract_all_marc_values(from: '010', to: '899') do |_r, acc|
   acc.replace [acc.join(' ')] # turn it into a single string
 end
 to_field "language_facet_tesim", marc_languages('008[35-37]:041a:041d')
-to_field 'marc_resource_ssim' do |rec, acc|
-  physical_present = rec.fields('997').present?
-  electronic_present = rec.fields('998').present?
-  form_item_data = rec.fields('008').present? ? rec.fields('008')[0].value[29] : ""
-  accomp_data = rec.fields('008').present? ? rec.fields('008')[0].value[23] : ""
-  leader_formats = ['e', 'f', 'g', 'k', 'o', 'r'].any? { |l| rec.leader[6] == l }
-  form_of_item = ['o', 's'].any? { |l| form_item_data == l }
-  accomp_matter = ['o', 's'].any? { |l| accomp_data == l }
-
-  acc << "Physical Resource" if physical_present
-  acc << "Electronic Resource" if electronic_present
-
-  if !physical_present && !electronic_present
-    acc << "Electronic Resource" if leader_formats && form_of_item
-    acc << "Physical Resource" if leader_formats && !form_of_item
-    acc << "Electronic Resource" if !leader_formats && accomp_matter
-    acc << "Physical Resource" if !leader_formats && !accomp_matter
-  end
-end
+to_field 'marc_resource_ssim', extract_marc_resource
 
 to_field "format_ssim" do |rec, acc|
   format_map_ldr_six = {
@@ -261,8 +248,6 @@ to_field 'url_suppl_ssm' do |rec, acc|
     end
   end
 end
-
-marc21 = Traject::Macros::Marc21
 
 to_field 'publication_main_display_ssm' do |rec, acc|
   prefix, suffix, string_array = Array.new(3) { [] }
