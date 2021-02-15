@@ -56,7 +56,7 @@ class CatalogController < ApplicationController
     # solr fields that will be used for homepage facets
     # When users venture away from the homepage, the full list of facets will
     # be available to them. Any field listed below will appear on the homepage facets.
-    config.homepage_facet_fields = ['format_ssim', 'language_facet_tesim']
+    config.homepage_facet_fields = ['format_ssim', 'language_ssim']
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
@@ -84,7 +84,7 @@ class CatalogController < ApplicationController
 
     config.add_facet_field 'marc_resource_ssim', label: 'Access', limit: 5
     config.add_facet_field 'format_ssim', label: 'Resource Type', limit: 5
-    config.add_facet_field 'language_facet_tesim', label: 'Language', limit: 5
+    config.add_facet_field 'language_ssim', label: 'Language', limit: 5
     config.add_facet_field 'pub_date_isi', label: 'Publication/Creation Date', range: true
     config.add_facet_field 'author_ssim', label: 'Author/Creator', limit: 5
     config.add_facet_field 'subject_ssim', label: 'Subject', limit: 5
@@ -119,7 +119,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'pub_date_tesi', label: 'Creation Date'
     config.add_show_field 'material_type_display_tesim', label: 'Format'
     config.add_show_field 'note_general_tsim', label: 'Local Note'
-    config.add_show_field 'language_facet_tesim', label: 'Language'
+    config.add_show_field 'language_tesim', label: 'Language'
     config.add_show_field 'summary_tesim', labale: 'Summary'
     config.add_show_field 'isbn_ssim', label: 'Identifier'
     config.add_show_field 'publication_details', field: 'publication_main_display_ssm', label: 'Publication Info'
@@ -145,7 +145,7 @@ class CatalogController < ApplicationController
       'isbn_ssim', 'id', 'title_display_tesim', 'title_vern_display_tesim', 'title_addl_tesim', 'title_added_entry_tesim',
       'title_series_ssim', 'subtitle_display_tesim', 'subtitle_vern_display_tesim', 'author_display_ssim', 'author_vern_ssim',
       'author_addl_tesim', 'subject_tsim', 'subject_addl_tsim', 'subject_topic_facet_ssim', 'subject_era_ssim',
-      'subject_geo_ssim', 'lc_callnum_display_ssi'
+      'subject_geo_ssim', 'lc_callnum_display_ssi', 'language_tesim'
     ]
     author_fields = ['author_tesim', 'author_display_ssim', 'author_vern_ssim', 'author_si', 'author_addl_tesim']
     title_fields = ['title_tesim', 'title_display_tesim', 'title_vern_display_tesim', 'title_ssort',

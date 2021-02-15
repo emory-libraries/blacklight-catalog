@@ -66,7 +66,10 @@ to_field 'marc_display_tesi', get_xml
 to_field "text_tesi", extract_all_marc_values(from: '010', to: '899') do |_r, acc|
   acc.replace [acc.join(' ')] # turn it into a single string
 end
-to_field "language_facet_tesim", marc_languages('008[35-37]:041a:041d')
+
+# we need language field tokenized for search but also not tokenized which will be used as a facet
+to_field "language_tesim", marc_languages('008[35-37]:041a:041d')
+to_field "language_ssim", marc_languages('008[35-37]:041a:041d')
 to_field 'marc_resource_ssim', extract_marc_resource
 
 to_field "format_ssim" do |rec, acc|
