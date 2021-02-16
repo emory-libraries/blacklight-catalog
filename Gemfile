@@ -11,6 +11,7 @@ ruby '>=2.5.0'
 
 gem 'blacklight', '7.4.1'
 gem 'blacklight-marc', '>= 7.0.0.rc1'
+gem 'blacklight_range_limit'
 gem 'bootstrap', '~> 4.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'

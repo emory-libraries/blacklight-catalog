@@ -186,8 +186,7 @@ to_field 'genre_ssim', extract_marc("655a")
 to_field 'published_ssm', extract_marc('260a', alternate_script: false), trim_punctuation
 to_field 'published_vern_ssm', extract_marc('260a', alternate_script: :only), trim_punctuation
 to_field 'publisher_location_ssm', extract_marc("260a:264a:008[15-17]"), trim_punctuation
-to_field 'pub_date_si', marc_publication_date
-to_field 'pub_date_ssim', marc_publication_date
+to_field 'pub_date_isi', marc_publication_date
 
 # Call Number fields
 to_field 'lc_callnum_ssm', extract_marc('050ab'), first_only

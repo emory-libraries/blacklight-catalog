@@ -1023,6 +1023,8 @@ GEM
       marc-fastxmlwriter
       rails
       traject (~> 3.0)
+    blacklight_range_limit (7.4.0)
+      blacklight (>= 7.0)
     bootstrap (4.5.2)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
@@ -1407,6 +1409,7 @@ DEPENDENCIES
   bixby
   blacklight (= 7.4.1)
   blacklight-marc (>= 7.0.0.rc1)
+  blacklight_range_limit
   bootstrap (~> 4.0)
   byebug
   cap-ec2-emory!
