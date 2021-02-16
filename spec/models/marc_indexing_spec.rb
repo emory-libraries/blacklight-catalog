@@ -114,4 +114,23 @@ RSpec.describe 'Indexing fields with custom logic' do
       expect(solr_doc['title_main_display_tesim']).to eq(["Physical Map Test"])
     end
   end
+
+  describe 'lc_1letter_ssim field' do
+    let(:solr_doc) { SolrDocument.find('9937264718102486') }
+    let(:solr_doc_2) { SolrDocument.find('9937264717902486') }
+    let(:solr_doc_3) { SolrDocument.find('9937264718202486') }
+    let(:solr_doc_4) { SolrDocument.find('9937264718402486') }
+
+    it 'maps P - Language & Literature' do
+      [solr_doc, solr_doc_2].each do |s|
+        expect(s['lc_1letter_ssim']).to eq(['P - Language & Literature'])
+      end
+    end
+
+    it 'does not map values when 050a and 090a are empty' do
+      [solr_doc_3, solr_doc_4].each do |s|
+        expect(s['lc_1letter_ssim']).to be_nil
+      end
+    end
+  end
 end

@@ -45,7 +45,7 @@ RSpec.describe CatalogController, type: :controller do
     let(:expected_facet_fields) do
       ["author_ssim", "format_ssim", "language_ssim", "marc_resource_ssim",
        "subject_era_ssim", "subject_geo_ssim", "subject_ssim",
-       "title_series_ssim", "genre_ssim", "pub_date_isi"]
+       "title_series_ssim", "genre_ssim", "pub_date_isi", "lc_1letter_ssim"]
     end
     let(:homepage_facet_fields) { controller.blacklight_config.homepage_facet_fields }
 
