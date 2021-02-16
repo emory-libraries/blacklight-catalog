@@ -195,7 +195,7 @@ to_field 'pub_date_isi', marc_publication_date
 to_field 'lc_callnum_ssm', extract_marc('050ab'), first_only
 
 first_letter = ->(_rec, acc) { acc.map! { |x| x[0] } }
-to_field 'lc_1letter_ssim', extract_marc('050ab'), first_only, first_letter, translation_map('callnumber_map')
+to_field 'lc_1letter_ssim', extract_marc('050a:090a'), first_letter, translation_map('callnumber_map')
 
 alpha_pat = /\A([A-Z]{1,3})\d.*\Z/
 alpha_only = lambda do |_rec, acc|

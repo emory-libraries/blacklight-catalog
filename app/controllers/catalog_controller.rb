@@ -89,6 +89,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'author_ssim', label: 'Author/Creator', limit: 5
     config.add_facet_field 'subject_ssim', label: 'Subject', limit: 5
     config.add_facet_field 'title_series_ssim', label: 'Collection', limit: 5
+    config.add_facet_field 'lc_1letter_ssim', label: 'LC Classification', limit: 5
     config.add_facet_field 'subject_geo_ssim', label: 'Region', limit: 5
     config.add_facet_field 'subject_era_ssim', label: 'Era', limit: 5
     config.add_facet_field 'genre_ssim', label: 'Genre', limit: 5

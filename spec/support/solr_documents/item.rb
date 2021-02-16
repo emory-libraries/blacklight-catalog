@@ -25,5 +25,6 @@ TEST_ITEM = {
   note_general_tsim: ['General note'],
   publisher_details_display_ssm: ['Atlanta'],
   summary_tesim: ['Short summary'],
-  genre_ssim: ['Genre example']
+  genre_ssim: ['Genre example'],
+  lc_1letter_ssim: ['T - Technology']
 }.freeze
