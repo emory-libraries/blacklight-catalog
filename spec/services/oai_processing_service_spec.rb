@@ -4,23 +4,17 @@ require 'nokogiri'
 require 'traject'
 
 RSpec.describe OaiProcessingService do
-  let(:process_indexer) do
-    described_class.process_oai_with_marc_indexer(
-      'blah',
-      "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-01-28T19:16:10Z",
-      'smackety'
-    )
-  end
-
   context '#process_oai_with_marc_indexer' do
     before do
       delete_all_documents_from_solr
-      process_indexer
+      described_class.process_oai_with_marc_indexer(
+        'blah',
+        "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-01-28T19:16:10Z",
+        'smackety'
+      )
     end
 
     let(:solr) { Blacklight.default_index.connection }
-    let(:response) { solr.get('select') }
-    let(:number_of_docs) { response['response']['numFound'] }
 
     it 'calls the process_oai method' do
       expect(described_class).to respond_to(:process_oai)
@@ -31,25 +25,21 @@ RSpec.describe OaiProcessingService do
     end
 
     it 'calls the Traject command to process the xml' do
+      response = solr.get('select')
+
       expect(Traject::Indexer::MarcIndexer).to respond_to(:new)
-      expect(number_of_docs).to eq 4
+      expect(response['response']['numFound']).to eq 4
     end
 
     context 'reindexing' do
       context 'ensuring non-duplication' do
-        let(:response_ids) { response['response']['docs'].map { |d| d['id'] } }
-        let(:ids_array) do
-          ["990005651670302486", "990000954720302486", "990028391040302486", "990002589250302486"]
-        end
-
         it 'produces the same unique records when running the indexer on the same material' do
-          expect(number_of_docs).to eq 4
-          expect(response_ids).to match_array(ids_array)
-
-          process_indexer
-
-          expect(number_of_docs).to eq 4
-          expect(response_ids).to match_array(ids_array)
+          expect do
+            described_class.process_oai_with_marc_indexer('blah',
+              "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-01-28T19:16:10Z",
+              'smackety')
+          end.to change { solr.get('select')['response']['docs'].map { |d| d['_version_'] } }
+            .and not_change { solr.get('select')['response']['docs'].map { |d| d['id'] } }
         end
       end
     end
