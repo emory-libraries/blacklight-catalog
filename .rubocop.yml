@@ -28,6 +28,7 @@ Metrics/BlockLength:
         - spec/models/marc_indexing_spec.rb
         - spec/models/user_spec.rb
         - spec/spec_helper.rb
+        - spec/system/facet_by_year_spec.rb
         - spec/system/targeted_field_search_spec.rb
         - spec/system/view_search_results_spec.rb
         - spec/system/view_show_page_spec.rb
@@ -62,5 +63,6 @@ RSpec/ExampleLength:
     Exclude:
         - spec/requests/not_found_requests_spec.rb
         - spec/routing/alma_availability_routes_spec.rb
+        - spec/system/facet_by_year_spec.rb
         - spec/system/targeted_field_search_spec.rb
         - spec/system/view_show_page_spec.rb

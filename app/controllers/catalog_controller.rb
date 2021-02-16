@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 class CatalogController < ApplicationController
+  include BlacklightRangeLimit::ControllerOverride
   include Blacklight::Catalog
   include Blacklight::Marc::Catalog
 
@@ -84,6 +85,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'marc_resource_ssim', label: 'Access', limit: 5
     config.add_facet_field 'format_ssim', label: 'Resource Type', limit: 5
     config.add_facet_field 'language_facet_tesim', label: 'Language', limit: 5
+    config.add_facet_field 'pub_date_isi', label: 'Publication/Creation Date', range: true
     config.add_facet_field 'author_display_ssim', label: 'Author/Creator', limit: 5
     config.add_facet_field 'subject_ssim', label: 'Subject', limit: 5
     config.add_facet_field 'title_series_ssim', label: 'Collection', limit: 5
@@ -197,10 +199,10 @@ class CatalogController < ApplicationController
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
-    config.add_sort_field 'score desc, pub_date_si desc, title_si asc', label: 'relevance'
-    config.add_sort_field 'pub_date_si desc, title_si asc', label: 'year'
+    config.add_sort_field 'score desc, pub_date_isi desc, title_si asc', label: 'relevance'
+    config.add_sort_field 'pub_date_isi desc, title_si asc', label: 'year'
     config.add_sort_field 'author_si asc, title_si asc', label: 'author'
-    config.add_sort_field 'title_si asc, pub_date_si desc', label: 'title'
+    config.add_sort_field 'title_si asc, pub_date_isi desc', label: 'title'
 
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
