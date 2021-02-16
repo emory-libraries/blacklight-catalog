@@ -10,7 +10,7 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       'subject_tsim', 'title_tesim', 'title_vern_display_tesim', 'title_ssort',
       'title_addl_tesim', 'title_abbr_tesim', 'title_added_entry_tesim', 'title_enhanced_tesim',
       'title_former_tesim', 'title_graphic_tesim', 'title_host_item_tesim', 'title_key_tesi',
-      'title_series_ssim', 'title_translation_tesim', 'title_varying_tesim'
+      'title_series_ssim', 'title_translation_tesim', 'title_varying_tesim', 'language_tesim'
     ]
   end
 
@@ -70,6 +70,7 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       'Target in title_addl_tesim',
       'Target in title_series_ssim',
       'Target in title_vern_display_tesim',
+      'Target in language_tesim',
       'Target in id'
     )
   end

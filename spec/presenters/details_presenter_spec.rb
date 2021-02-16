@@ -8,7 +8,7 @@ RSpec.describe DetailsPresenter do
       title_varying_tesim: ['Variant title'], subject_tsim: ['A sample subject'],
       edition_tsim: ['A sample edition'], pub_date_tesi: '2015',
       material_type_display_tesim: ['1 online resource (111 pages)'], note_general_tsim: ['General note'],
-      language_facet_tesim: ['English'], summary_tesim: ['Short summary'],
+      language_tesim: ['English'], summary_tesim: ['Short summary'],
       isbn_ssim: ['SOME MAGICAL NUM .66G'], publisher_details_display_ssm: ['Atlanta'],
       format_ssim: ['Book'], lc_callnum_display_ssi: 'ANOTHER MAGICAL NUM .78F',
       author_display_ssim: ['George Jenkins'], id: '123' }
