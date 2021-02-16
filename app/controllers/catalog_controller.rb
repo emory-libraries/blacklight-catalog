@@ -86,7 +86,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'format_ssim', label: 'Resource Type', limit: 5
     config.add_facet_field 'language_facet_tesim', label: 'Language', limit: 5
     config.add_facet_field 'pub_date_isi', label: 'Publication/Creation Date', range: true
-    config.add_facet_field 'author_display_ssim', label: 'Author/Creator', limit: 5
+    config.add_facet_field 'author_ssim', label: 'Author/Creator', limit: 5
     config.add_facet_field 'subject_ssim', label: 'Subject', limit: 5
     config.add_facet_field 'title_series_ssim', label: 'Collection', limit: 5
     config.add_facet_field 'subject_geo_ssim', label: 'Region', limit: 5

@@ -43,7 +43,7 @@ RSpec.describe CatalogController, type: :controller do
         .facet_fields.keys
     end
     let(:expected_facet_fields) do
-      ["author_display_ssim", "format_ssim", "language_facet_tesim", "marc_resource_ssim",
+      ["author_ssim", "format_ssim", "language_facet_tesim", "marc_resource_ssim",
        "subject_era_ssim", "subject_geo_ssim", "subject_ssim",
        "title_series_ssim", "genre_ssim", "pub_date_isi"]
     end
