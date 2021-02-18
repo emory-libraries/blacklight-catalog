@@ -30,5 +30,18 @@ RSpec.describe OaiProcessingService do
       expect(Traject::Indexer::MarcIndexer).to respond_to(:new)
       expect(response['response']['numFound']).to eq 4
     end
+
+    context 'reindexing' do
+      context 'ensuring non-duplication' do
+        it 'produces the same unique records when running the indexer on the same material' do
+          expect do
+            described_class.process_oai_with_marc_indexer('blah',
+              "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-01-28T19:16:10Z",
+              'smackety')
+          end.to change { solr.get('select')['response']['docs'].map { |d| d['_version_'] } }
+            .and not_change { solr.get('select')['response']['docs'].map { |d| d['id'] } }
+        end
+      end
+    end
   end
 end
