@@ -19,21 +19,25 @@ class OaiProcessingService
     oai = RestClient.get oai_base + qs
 
     document = Nokogiri::XML(oai)
+    marc_url = { 'marc' => "http://www.loc.gov/MARC21/slim" }
 
     # handling of delete records
     deleted_records = document.xpath('/oai:OAI-PMH/oai:ListRecords/oai:record[oai:header/@status="deleted"]', { 'oai' => 'http://www.openarchives.org/OAI/2.0/' })
-    log "Found #{deleted_records.count} delete records."
+    suppressed_records = document.xpath("//marc:record[substring(marc:leader, 6, 1)='d']", marc_url) # gets all records with `d` in the 6th (actual) position of leader string
+    log "Found #{deleted_records.count + suppressed_records.count} delete records."
 
-    if deleted_records.count.positive?
+    if (deleted_records.count + suppressed_records.count).positive?
       deleted_ids = deleted_records.map { |n| n.at('header/identifier').text.split(':').last }
+      deleted_ids << suppressed_records.map { |s| s.at_xpath("//marc:controlfield[@tag='001']", marc_url).text.to_i } # collects ID from controlfield 001
       deleted_records.remove
+      suppressed_records.remove
       puts RestClient.post "#{ENV['SOLR_URL']}/update?commit=true",
                            "<delete><id>#{deleted_ids.join('</id><id>')}</id></delete>",
                            content_type: :xml
     end
 
     # Index remaining necessary records
-    record_count = document.xpath('/oai:OAI-PMH/oai:ListRecords/oai:record', { 'oai' => 'http://www.openarchives.org/OAI/2.0/' }).count
+    record_count = document.xpath('/oai:OAI-PMH/oai:ListRecords/oai:record', { 'oai' => 'http://www.openarchives.org/OAI/2.0/' }).count - suppressed_records.count
     log "#{record_count} records retrieved"
 
     resumption_token = document.xpath('/oai:OAI-PMH/oai:ListRecords/oai:resumptionToken', { 'oai' => 'http://www.openarchives.org/OAI/2.0/' }).text

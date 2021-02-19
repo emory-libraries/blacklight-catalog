@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'rails_helper'
 require 'rest-client'
 require 'nokogiri'
 require 'traject'
@@ -13,6 +14,12 @@ RSpec.describe OaiProcessingService do
         "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-01-28T19:16:10Z",
         'smackety'
       )
+    end
+
+    around do |example|
+      ENV['SOLR_URL'] = "http://127.0.0.1:8985/solr/blacklight-test"
+      example.run
+      ENV['SOLR_URL'] = ""
     end
 
     let(:solr) { Blacklight.default_index.connection }
@@ -53,6 +60,24 @@ RSpec.describe OaiProcessingService do
             .from(3).to(2)
             .and change { solr_docs_count_of('lccn_ssim') }.from(2).to(1)
         end
+      end
+    end
+
+    context 'deleted and suppressed records', :clean do
+      it 'checks for presence of a record before running the deleted records OAI and then checks for absence' do
+        # first we make sure record with this ID exists after first run. This record will later be suppressed.
+        expect(solr_docs_map_of('id')).to include("990005651670302486")
+        # first we make sure record with this ID exists after first run. This record will later be deleted.
+        expect(solr_docs_map_of('id')).to include("990000954720302486")
+        # we then run indexer with the oai that has deleted and suppressed records info (alma_deleted_and_suppressed_records.xml)
+        described_class.process_oai_with_marc_indexer(
+          'blah',
+          "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-01-29T19:16:10Z",
+          'smackety'
+        )
+        expect(solr_docs_map_of('id')).not_to include("990005651670302486") # making sure suppressed record ID is not present in SOLR
+        expect(solr_docs_map_of('id')).not_to include("990000954720302486") # making sure ID under deleted status header is not present in SOLR
+        expect(solr.get('select')['response']['numFound']).to eq 2
       end
     end
 
