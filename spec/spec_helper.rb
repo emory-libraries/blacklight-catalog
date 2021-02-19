@@ -71,5 +71,9 @@ RSpec.configure do |config|
       :get,
       "https://smackety.alma.exlibrisgroup.com/view/oai/blah/request?metadataPrefix=marc21&set=blacklight_marc_resource&until=2021-01-28T19:16:10Z&verb=ListRecords"
     ).to_return(status: 200, body: File.read(fixture_path + '/alma_marc_resource.xml'), headers: {})
+    stub_request(
+      :get,
+      "https://smackety.alma.exlibrisgroup.com/view/oai/blah/request?metadataPrefix=marc21&set=blacklight4&until=2021-02-15T19:16:10Z&verb=ListRecords"
+    ).to_return(status: 200, body: File.read(fixture_path + '/alma_small_set_with_2_fields_missing.xml'), headers: {})
   end
 end
