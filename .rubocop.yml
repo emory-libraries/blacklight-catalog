@@ -26,6 +26,7 @@ Metrics/BlockLength:
         - config/routes.rb
         - spec/controllers/catalog_controller_spec.rb
         - spec/models/marc_indexing_spec.rb
+        - spec/models/property_bag_spec.rb
         - spec/models/user_spec.rb
         - spec/services/oai_processing_service_spec.rb
         - spec/spec_helper.rb
