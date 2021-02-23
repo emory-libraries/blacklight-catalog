@@ -34,6 +34,7 @@ Metrics/BlockLength:
         - spec/system/targeted_field_search_spec.rb
         - spec/system/view_search_results_spec.rb
         - spec/system/view_show_page_spec.rb
+        - spec/system/alma_request_options_spec.rb
 
 Metrics/CyclomaticComplexity:
     Exclude:
