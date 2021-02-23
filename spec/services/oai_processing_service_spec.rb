@@ -34,7 +34,7 @@ RSpec.describe OaiProcessingService do
 
     it 'calls the Traject command to process the xml' do
       expect(Traject::Indexer::MarcIndexer).to respond_to(:new)
-      expect(solr.get('select')['response']['numFound']).to eq 4
+      expect(solr_num_of_docs).to eq 4
     end
 
     context 'reindexing' do
@@ -61,6 +61,20 @@ RSpec.describe OaiProcessingService do
             .and change { solr_docs_count_of('lccn_ssim') }.from(2).to(1)
         end
       end
+
+      context 'updating fields with different data' do
+        it 'updates 1 field when data changed and adds 1 to index when new data introduced' do
+          expect do
+            # The command below is processing fixures/alma_small_set_with_1_new_1_updated_fields.xml
+            described_class.process_oai_with_marc_indexer('blah',
+              "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-02-23T19:16:10Z",
+              'smackety')
+          end.to change { solr_field_value_for('990000954720302486', 'lccn_ssim') }
+            .from(nil).to(['sn 8675309'])
+            .and change { solr_field_value_for('990028391040302486', 'material_type_display_tesim') }
+            .from(['34 pages']).to(['44 pages'])
+        end
+      end
     end
 
     context 'deleted and suppressed records', :clean do
@@ -77,16 +91,28 @@ RSpec.describe OaiProcessingService do
         )
         expect(solr_docs_map_of('id')).not_to include("990005651670302486") # making sure suppressed record ID is not present in SOLR
         expect(solr_docs_map_of('id')).not_to include("990000954720302486") # making sure ID under deleted status header is not present in SOLR
-        expect(solr.get('select')['response']['numFound']).to eq 2
+        expect(solr_num_of_docs).to eq 2
       end
     end
 
     def solr_docs_map_of(field_name)
-      solr.get('select')['response']['docs'].map { |d| d[field_name] }
+      solr_response['docs'].map { |d| d[field_name] }
     end
 
     def solr_docs_count_of(field_name)
       solr_docs_map_of(field_name).compact.size
+    end
+
+    def solr_num_of_docs
+      solr_response['numFound']
+    end
+
+    def solr_response
+      solr.get('select')['response']
+    end
+
+    def solr_field_value_for(id, field_name)
+      SolrDocument.find(id)[field_name]
     end
   end
 end

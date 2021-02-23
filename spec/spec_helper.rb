@@ -79,5 +79,9 @@ RSpec.configure do |config|
       :get,
       "https://smackety.alma.exlibrisgroup.com/view/oai/blah/request?metadataPrefix=marc21&set=blacklight4&until=2021-01-29T19:16:10Z&verb=ListRecords"
     ).to_return(status: 200, body: File.read(fixture_path + '/alma_deleted_and_suppressed_records.xml'), headers: {})
+    stub_request(
+      :get,
+      "https://smackety.alma.exlibrisgroup.com/view/oai/blah/request?metadataPrefix=marc21&set=blacklight4&until=2021-02-23T19:16:10Z&verb=ListRecords"
+    ).to_return(status: 200, body: File.read(fixture_path + '/alma_small_set_with_1_new_1_updated_fields.xml'), headers: {})
   end
 end
