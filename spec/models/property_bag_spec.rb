@@ -5,7 +5,10 @@ RSpec.describe PropertyBag, :clean do
   let(:time_ingester_format) { Time.new.utc.strftime("%Y-%m-%dT%H:%M:%SZ") }
   let(:item_name) { 'test_marc_ingest_time' }
 
-  before { described_class.set(item_name, time_ingester_format) }
+  before do
+    described_class.delete_all
+    described_class.set(item_name, time_ingester_format)
+  end
 
   context '#set' do
     it 'calls the set method' do
