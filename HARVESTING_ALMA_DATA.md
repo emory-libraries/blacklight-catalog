@@ -11,15 +11,16 @@ alma="na03"
 institution="01GALI_EMORY"
 # provide SOLR_URL for solr connections
 SOLR_URL="http://localhost:8983/solr/blacklight-core"
-# provides name for oai set being fetched
-oai_set_name="blacklighttest"
 ```
 3. Connect to `vpnproxy.emory.edu` using Big-IP Edge Client.
 4. Run the rake task:
-  - If the default set is desired, run `RAILS_ENV=development bundle exec rails oai_harvest` in your terminal.
-  - If there is a specific OAI set that is preferred over `blacklighttest`, add the `oai_set_name` variable assignment to the command:
-    `RAILS_ENV=development bundle exec rails oai_harvest oai_set_name=<name of preferred set>`
-  - Either command may take several minutes to process.
-5. In your local [Solr instance](http://localhost:8983/solr/#/blacklight-core/query), perform a global search query. The default subset collection contains roughly 4500 items.
+  - If the production set (4.9~ million) is desired, run 
+    `RAILS_ENV=development bundle exec rails marc_index_ingest oai_set_name=blacklight full_index=true` 
+    in your terminal. This will take over twelve hours to process, so be cautious using this set locally.
+  - If you'd like a more manageable set (4.6~ thousand) for testing purposes, run the command below:
+    `RAILS_ENV=development bundle exec rails marc_index_ingest oai_set_name=blacklighttest full_index=true`
+  - Note: The commands above can be used to re-index (update) your local Solr instance. To re-index only the 
+    items that have changed since the last harvest, remove the argument `full_index=true` completely.
+5. In your local [Solr instance](http://localhost:8983/solr/#/blacklight-core/query), perform a global search query. You will start to see records accumulate when refreshing the page multiple times.
 
 This tutorial can also be found at this [link](https://wiki.emory.edu/display/BDL/Using+SolrMarc+to+harvest+data+from+Alma+into+Solr+Index) (Emory login required).

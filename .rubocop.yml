@@ -29,6 +29,7 @@ Metrics/BlockLength:
         - spec/models/property_bag_spec.rb
         - spec/models/user_spec.rb
         - spec/services/oai_processing_service_spec.rb
+        - spec/services/oai_query_string_service_spec.rb
         - spec/spec_helper.rb
         - spec/system/facet_by_year_spec.rb
         - spec/system/targeted_field_search_spec.rb
@@ -56,6 +57,7 @@ Lint/EmptyWhen:
 Rails/Output:
     Exclude:
         - 'app/services/oai_processing_service.rb'
+        - 'app/services/oai_query_string_service.rb'
 
 RSpec/DescribeClass:
     Exclude:
