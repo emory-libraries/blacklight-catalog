@@ -1,0 +1,7 @@
+<div>
+  <p>
+    <button id="physical-<%= document.id %>" class="availability" data-url="<%= "#{openurl(document.id,'getit')}" %>" value="Physical copy">Physical copy</button>
+    <button id="online-<%= document.id %>" class="availability" data-url="<%= "#{openurl(document.id,'viewit')}" %>" value="On-line version">On-line version</button>
+  </p>  
+  <iframe id="request-options" style="display: none" width=100% height=200 seamless="seamless" frameBorder=0></iframe> 
+</div>
