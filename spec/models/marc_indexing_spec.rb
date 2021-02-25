@@ -4,9 +4,10 @@ require 'rails_helper'
 RSpec.describe 'Indexing fields with custom logic' do
   before do
     delete_all_documents_from_solr
+    # The command below is processing fixures/alma_marc_resource.xml
     OaiProcessingService.process_oai_with_marc_indexer(
       'blah',
-      "?verb=ListRecords&set=blacklight_marc_resource&metadataPrefix=marc21&until=2021-01-28T19:16:10Z",
+      '?verb=ListRecords&set=blacklight_marc_resource&metadataPrefix=marc21&until=2021-01-28T19:16:10Z',
       'smackety'
     )
   end
@@ -131,6 +132,14 @@ RSpec.describe 'Indexing fields with custom logic' do
       [solr_doc_3, solr_doc_4].each do |s|
         expect(s['lc_1letter_ssim']).to be_nil
       end
+    end
+  end
+
+  describe 'library_ssim field' do
+    let(:solr_doc) { SolrDocument.find('9937264718402486') }
+
+    it 'maps HOL852b' do
+      expect(solr_doc['library_ssim']).to eq(['UNIV'])
     end
   end
 end

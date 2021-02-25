@@ -56,7 +56,7 @@ class CatalogController < ApplicationController
     # solr fields that will be used for homepage facets
     # When users venture away from the homepage, the full list of facets will
     # be available to them. Any field listed below will appear on the homepage facets.
-    config.homepage_facet_fields = ['format_ssim', 'language_ssim']
+    config.homepage_facet_fields = ['library_ssim', 'format_ssim', 'language_ssim']
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
@@ -83,6 +83,7 @@ class CatalogController < ApplicationController
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
     config.add_facet_field 'marc_resource_ssim', label: 'Access', limit: 5
+    config.add_facet_field 'library_ssim', label: 'Library', limit: 5
     config.add_facet_field 'format_ssim', label: 'Resource Type', limit: 5
     config.add_facet_field 'language_ssim', label: 'Language', limit: 5
     config.add_facet_field 'pub_date_isi', label: 'Publication/Creation Date', range: true

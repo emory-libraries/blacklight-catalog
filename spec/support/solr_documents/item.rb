@@ -26,5 +26,6 @@ TEST_ITEM = {
   publisher_details_display_ssm: ['Atlanta'],
   summary_tesim: ['Short summary'],
   genre_ssim: ['Genre example'],
-  lc_1letter_ssim: ['T - Technology']
+  lc_1letter_ssim: ['T - Technology'],
+  library_ssim: ['UNIV']
 }.freeze
