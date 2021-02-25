@@ -56,7 +56,7 @@ class CatalogController < ApplicationController
     # solr fields that will be used for homepage facets
     # When users venture away from the homepage, the full list of facets will
     # be available to them. Any field listed below will appear on the homepage facets.
-    config.homepage_facet_fields = ['library_ssim', 'format_ssim', 'language_ssim']
+    config.homepage_facet_fields = ['marc_resource_ssim', 'library_ssim', 'format_ssim', 'language_ssim', 'pub_date_isi']
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
@@ -118,7 +118,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'subject_tsim', label: 'Subjects'
     config.add_show_field 'edition_tsim', label: 'Edition'
     config.add_show_field 'publisher_details_display_ssm', label: 'Publisher'
-    config.add_show_field 'pub_date_tesi', label: 'Creation Date'
+    config.add_show_field 'pub_date_isi', label: 'Creation Date'
     config.add_show_field 'material_type_display_tesim', label: 'Format'
     config.add_show_field 'note_general_tsim', label: 'Local Note'
     config.add_show_field 'language_tesim', label: 'Language'

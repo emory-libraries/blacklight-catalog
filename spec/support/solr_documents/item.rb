@@ -9,7 +9,7 @@ TEST_ITEM = {
   language_ssim: ['English'],
   lc_callnum_display_ssi: 'ANOTHER MAGICAL NUM .78F',
   marc_resource_ssim: ['Electronic Resource'],
-  pub_date_tesi: '2015',
+  pub_date_isi: '2015',
   subject_era_ssim: ['1990-'],
   subject_geo_ssim: ['Texas'],
   subject_ssim: ['Frontier and pioneer life', 'Electronic books'],
