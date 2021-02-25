@@ -18,7 +18,7 @@ class OaiQueryStringService
 
   def self.process_string(saved_resumption_token, oai_set, from_time, to_time)
     # resume from last harvested
-    return "?verb=ListRecords&resumptionToken=#{saved_resumption_token}" unless saved_resumption_token.empty?
+    return "?verb=ListRecords&resumptionToken=#{saved_resumption_token}" unless saved_resumption_token.blank?
     # start fresh harvest
     "?verb=ListRecords&set=#{oai_set}&metadataPrefix=marc21&until=#{to_time}#{from_time}"
   end
