@@ -89,7 +89,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'pub_date_isi', label: 'Publication/Creation Date', range: true
     config.add_facet_field 'author_ssim', label: 'Author/Creator', limit: 5
     config.add_facet_field 'subject_ssim', label: 'Subject', limit: 5
-    config.add_facet_field 'title_series_ssim', label: 'Collection', limit: 5
+    config.add_facet_field 'collection_ssim', label: 'Collection', limit: 5
     config.add_facet_field 'lc_1letter_ssim', label: 'LC Classification', limit: 5
     config.add_facet_field 'subject_geo_ssim', label: 'Region', limit: 5
     config.add_facet_field 'subject_era_ssim', label: 'Era', limit: 5
@@ -122,7 +122,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'material_type_display_tesim', label: 'Format'
     config.add_show_field 'note_general_tsim', label: 'Local Note'
     config.add_show_field 'language_tesim', label: 'Language'
-    config.add_show_field 'summary_tesim', labale: 'Summary'
+    config.add_show_field 'summary_tesim', label: 'Summary'
     config.add_show_field 'isbn_ssim', label: 'Identifier'
     config.add_show_field 'publication_details', field: 'publication_main_display_ssm', label: 'Publication Info'
     config.add_show_field 'format_ssim', label: 'Type'

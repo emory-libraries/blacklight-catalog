@@ -29,6 +29,9 @@ extend ExtractMarcResource
 require 'traject/extract_library'
 extend ExtractLibrary
 
+require 'traject/extract_collection'
+extend ExtractCollection
+
 ATOZ = ('a'..'z').to_a.join('')
 ATOU = ('a'..'u').to_a.join('')
 ATOG = ('a'..'g').to_a.join('')
@@ -306,3 +309,6 @@ end
 
 # Library fields
 to_field 'library_ssim', extract_library
+
+# Collection fields
+to_field 'collection_ssim', extract_collection

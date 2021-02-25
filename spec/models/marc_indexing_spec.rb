@@ -142,4 +142,29 @@ RSpec.describe 'Indexing fields with custom logic' do
       expect(solr_doc['library_ssim']).to eq(['UNIV'])
     end
   end
+
+  describe 'collection_ssim field' do
+    let(:solr_doc) { SolrDocument.find('9937264718402486') }
+    let(:solr_doc_2) { SolrDocument.find('9937264718202486') }
+    let(:solr_doc_3) { SolrDocument.find('9937264718102486') }
+    let(:solr_doc_4) { SolrDocument.find('9937264717902486') }
+
+    it 'maps 710 indicator1 == 2, subfield == GEU first' do
+      expect(solr_doc['collection_ssim']).to eq(
+        ['Raymond Danowski Poetry Library (Emory University. General Libraries)']
+      )
+    end
+
+    it 'maps 490a when exact 710(s) are not found' do
+      expect(solr_doc_2['collection_ssim']).to eq(['Open-file report ;'])
+    end
+
+    it 'maps 490a when it is the only field available' do
+      expect(solr_doc_3['collection_ssim']).to eq(['Bonibooks'])
+    end
+
+    it 'maps nothing when neither field available' do
+      expect(solr_doc_4['collection_ssim']).to be_nil
+    end
+  end
 end

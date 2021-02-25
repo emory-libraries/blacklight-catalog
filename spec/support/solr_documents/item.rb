@@ -19,7 +19,7 @@ TEST_ITEM = {
   title_varying_tesim: ['Variant title'],
   subject_tsim: ['A sample subject'],
   edition_tsim: ['A sample edition'],
-  title_series_ssim: ['American county histories'],
+  collection_ssim: ['American county histories'],
   publication_main_display_ssm: ['A dummy publication'],
   material_type_display_tesim: ['1 online resource (111 pages)'],
   note_general_tsim: ['General note'],
