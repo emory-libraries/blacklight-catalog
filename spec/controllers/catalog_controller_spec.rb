@@ -44,13 +44,13 @@ RSpec.describe CatalogController, type: :controller do
     end
     let(:expected_facet_fields) do
       ["author_ssim", "format_ssim", "language_ssim", "marc_resource_ssim",
-       "subject_era_ssim", "subject_geo_ssim", "subject_ssim",
+       "subject_era_ssim", "subject_geo_ssim", "subject_ssim", "library_ssim",
        "title_series_ssim", "genre_ssim", "pub_date_isi", "lc_1letter_ssim"]
     end
     let(:homepage_facet_fields) { controller.blacklight_config.homepage_facet_fields }
 
     context 'homepage facet fields' do
-      it { expect(homepage_facet_fields).to eq(['format_ssim', 'language_ssim']) }
+      it { expect(homepage_facet_fields).to eq(['library_ssim', 'format_ssim', 'language_ssim']) }
     end
 
     it { expect(facet_fields).to contain_exactly(*expected_facet_fields) }
