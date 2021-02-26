@@ -17,9 +17,9 @@
 1. `cd ./blacklight-catalog`
 1. Install the required gems: `bundle install`
 1. Since we're now using MySQL for the database, run `rails db:create`. If you run into errors here, it may be one of two things:
-  1. Your local `ENV` variables may not be set correctly. If so, reach out to an already up and running developer for help.
-  2. You may have MySQL already configured on your system and set to your own username and passwords. In this case, assign that information into the necessary `ENV` variables and try the create command above once more.
-  If you are still experiencing problems, reach out to a software engineer for a screenshare meeting.
+    1. Your local `ENV` variables may not be set correctly. If so, reach out to an already up and running developer for help.
+    2. You may have MySQL already configured on your system and set to your own username and passwords. In this case, assign that information into the necessary `ENV` variables and try the create command above once more.
+    If you are still experiencing problems, reach out to a software engineer for a screenshare meeting.
 1. Migrate the database: `rails db:migrate`
 1. Launch development instance of solr in the same folder but a separate terminal window/tab: `bundle exec solr_wrapper`
 1. First time running this application locally? Give yourself some test objects by following the directions [here](https://github.com/emory-libraries/blacklight-catalog/blob/main/HARVESTING_ALMA_DATA.md)
