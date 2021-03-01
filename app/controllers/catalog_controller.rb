@@ -83,8 +83,8 @@ class CatalogController < ApplicationController
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
     config.add_facet_field 'marc_resource_ssim', label: 'Access', limit: 5
-    config.add_facet_field 'library_ssim', label: 'Library', limit: 5
-    config.add_facet_field 'format_ssim', label: 'Resource Type', limit: 5
+    config.add_facet_field 'library_ssim', label: 'Library', limit: 25
+    config.add_facet_field 'format_ssim', label: 'Resource Type', limit: 25
     config.add_facet_field 'language_ssim', label: 'Language', limit: 5
     config.add_facet_field 'pub_date_isi', label: 'Publication/Creation Date', range: true
     config.add_facet_field 'author_ssim', label: 'Author/Creator', limit: 5
