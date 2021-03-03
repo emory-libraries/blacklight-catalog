@@ -26,6 +26,12 @@ extend Traject::Macros::MarcFormats
 require 'traject/extract_marc_resource'
 extend ExtractMarcResource
 
+require 'traject/extract_library'
+extend ExtractLibrary
+
+require 'traject/extract_collection'
+extend ExtractCollection
+
 ATOZ = ('a'..'z').to_a.join('')
 ATOU = ('a'..'u').to_a.join('')
 ATOG = ('a'..'g').to_a.join('')
@@ -300,3 +306,9 @@ to_field 'title_main_display_tesim' do |rec, acc|
   string_array << ": " + suffix.flatten.join(' ') unless suffix.all?("")
   acc << string_array.flatten.join('')
 end
+
+# Library fields
+to_field 'library_ssim', extract_library
+
+# Collection fields
+to_field 'collection_ssim', extract_collection

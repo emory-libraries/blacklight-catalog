@@ -4,9 +4,10 @@ require 'rails_helper'
 RSpec.describe 'Indexing fields with custom logic' do
   before do
     delete_all_documents_from_solr
+    # The command below is processing fixures/alma_marc_resource.xml
     OaiProcessingService.process_oai_with_marc_indexer(
       'blah',
-      "?verb=ListRecords&set=blacklight_marc_resource&metadataPrefix=marc21&until=2021-01-28T19:16:10Z",
+      '?verb=ListRecords&set=blacklight_marc_resource&metadataPrefix=marc21&until=2021-01-28T19:16:10Z',
       'smackety'
     )
   end
@@ -131,6 +132,39 @@ RSpec.describe 'Indexing fields with custom logic' do
       [solr_doc_3, solr_doc_4].each do |s|
         expect(s['lc_1letter_ssim']).to be_nil
       end
+    end
+  end
+
+  describe 'library_ssim field' do
+    let(:solr_doc) { SolrDocument.find('9937264718402486') }
+
+    it 'maps HOL852b' do
+      expect(solr_doc['library_ssim']).to eq(['UNIV'])
+    end
+  end
+
+  describe 'collection_ssim field' do
+    let(:solr_doc) { SolrDocument.find('9937264718402486') }
+    let(:solr_doc_2) { SolrDocument.find('9937264718202486') }
+    let(:solr_doc_3) { SolrDocument.find('9937264718102486') }
+    let(:solr_doc_4) { SolrDocument.find('9937264717902486') }
+
+    it 'maps 710 indicator1 == 2, subfield == GEU first' do
+      expect(solr_doc['collection_ssim']).to eq(
+        ['Raymond Danowski Poetry Library (Emory University. General Libraries)']
+      )
+    end
+
+    it 'maps 490a when exact 710(s) are not found' do
+      expect(solr_doc_2['collection_ssim']).to eq(['Open-file report ;'])
+    end
+
+    it 'maps 490a when it is the only field available' do
+      expect(solr_doc_3['collection_ssim']).to eq(['Bonibooks'])
+    end
+
+    it 'maps nothing when neither field available' do
+      expect(solr_doc_4['collection_ssim']).to be_nil
     end
   end
 end

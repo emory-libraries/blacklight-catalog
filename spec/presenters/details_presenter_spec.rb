@@ -6,7 +6,7 @@ RSpec.describe DetailsPresenter do
   let(:details_terms) do
     { title_details_display_tesim: ['The Title of my Work'], title_addl_tesim: ['More title info'],
       title_varying_tesim: ['Variant title'], subject_tsim: ['A sample subject'],
-      edition_tsim: ['A sample edition'], pub_date_tesi: '2015',
+      edition_tsim: ['A sample edition'], pub_date_isi: '2015',
       material_type_display_tesim: ['1 online resource (111 pages)'], note_general_tsim: ['General note'],
       language_tesim: ['English'], summary_tesim: ['Short summary'],
       isbn_ssim: ['SOME MAGICAL NUM .66G'], publisher_details_display_ssm: ['Atlanta'],

@@ -9,7 +9,7 @@ TEST_ITEM = {
   language_ssim: ['English'],
   lc_callnum_display_ssi: 'ANOTHER MAGICAL NUM .78F',
   marc_resource_ssim: ['Electronic Resource'],
-  pub_date_tesi: '2015',
+  pub_date_isi: '2015',
   subject_era_ssim: ['1990-'],
   subject_geo_ssim: ['Texas'],
   subject_ssim: ['Frontier and pioneer life', 'Electronic books'],
@@ -19,12 +19,13 @@ TEST_ITEM = {
   title_varying_tesim: ['Variant title'],
   subject_tsim: ['A sample subject'],
   edition_tsim: ['A sample edition'],
-  title_series_ssim: ['American county histories'],
+  collection_ssim: ['American county histories'],
   publication_main_display_ssm: ['A dummy publication'],
   material_type_display_tesim: ['1 online resource (111 pages)'],
   note_general_tsim: ['General note'],
   publisher_details_display_ssm: ['Atlanta'],
   summary_tesim: ['Short summary'],
   genre_ssim: ['Genre example'],
-  lc_1letter_ssim: ['T - Technology']
+  lc_1letter_ssim: ['T - Technology'],
+  library_ssim: ['UNIV']
 }.freeze

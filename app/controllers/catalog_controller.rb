@@ -56,7 +56,7 @@ class CatalogController < ApplicationController
     # solr fields that will be used for homepage facets
     # When users venture away from the homepage, the full list of facets will
     # be available to them. Any field listed below will appear on the homepage facets.
-    config.homepage_facet_fields = ['format_ssim', 'language_ssim']
+    config.homepage_facet_fields = ['marc_resource_ssim', 'library_ssim', 'format_ssim', 'language_ssim', 'pub_date_isi']
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
@@ -83,12 +83,13 @@ class CatalogController < ApplicationController
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
     config.add_facet_field 'marc_resource_ssim', label: 'Access', limit: 5
-    config.add_facet_field 'format_ssim', label: 'Resource Type', limit: 5
+    config.add_facet_field 'library_ssim', label: 'Library', limit: 25
+    config.add_facet_field 'format_ssim', label: 'Resource Type', limit: 25
     config.add_facet_field 'language_ssim', label: 'Language', limit: 5
     config.add_facet_field 'pub_date_isi', label: 'Publication/Creation Date', range: true
     config.add_facet_field 'author_ssim', label: 'Author/Creator', limit: 5
     config.add_facet_field 'subject_ssim', label: 'Subject', limit: 5
-    config.add_facet_field 'title_series_ssim', label: 'Collection', limit: 5
+    config.add_facet_field 'collection_ssim', label: 'Collection', limit: 5
     config.add_facet_field 'lc_1letter_ssim', label: 'LC Classification', limit: 5
     config.add_facet_field 'subject_geo_ssim', label: 'Region', limit: 5
     config.add_facet_field 'subject_era_ssim', label: 'Era', limit: 5
@@ -117,11 +118,11 @@ class CatalogController < ApplicationController
     config.add_show_field 'subject_tsim', label: 'Subjects'
     config.add_show_field 'edition_tsim', label: 'Edition'
     config.add_show_field 'publisher_details_display_ssm', label: 'Publisher'
-    config.add_show_field 'pub_date_tesi', label: 'Creation Date'
+    config.add_show_field 'pub_date_isi', label: 'Creation Date'
     config.add_show_field 'material_type_display_tesim', label: 'Format'
     config.add_show_field 'note_general_tsim', label: 'Local Note'
     config.add_show_field 'language_tesim', label: 'Language'
-    config.add_show_field 'summary_tesim', labale: 'Summary'
+    config.add_show_field 'summary_tesim', label: 'Summary'
     config.add_show_field 'isbn_ssim', label: 'Identifier'
     config.add_show_field 'publication_details', field: 'publication_main_display_ssm', label: 'Publication Info'
     config.add_show_field 'format_ssim', label: 'Type'
