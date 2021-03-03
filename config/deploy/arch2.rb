@@ -55,7 +55,6 @@
 #     # password: "please use keys"
 #   }
 
-
 before 'deploy:check:linked_files', "deploy:copy_env"
 before 'deploy:symlink:linked_files', "deploy:copy_env"
 namespace :deploy do
@@ -67,7 +66,6 @@ namespace :deploy do
   end
 end
 
-
 set :stage, :ARCH2
 set :ec2_region, %w[us-east-1]
 ec2_role %i[web app db],
@@ -77,4 +75,3 @@ ec2_role %i[web app db],
     forward_agent: true,
     verify_host_key: :never
   }
-
