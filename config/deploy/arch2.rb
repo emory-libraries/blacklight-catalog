@@ -56,7 +56,8 @@
 #   }
 
 
-before :deploy, "deploy:copy_env"
+before 'deploy:check:linked_files', "deploy:copy_env"
+before 'deploy:symlink:linked_files', "deploy:copy_env"
 namespace :deploy do
   task :copy_env do
     on roles("web") do
