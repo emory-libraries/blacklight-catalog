@@ -28,3 +28,6 @@
 .env*
 public/
 yarn.lock
+
+# Ignore JMeter logs.
+*jmeter.log
