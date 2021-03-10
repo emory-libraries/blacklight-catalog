@@ -28,8 +28,8 @@ RSpec.describe CatalogController, type: :controller do
       ['author_display_ssim', 'pub_date_isi', 'language_tesim',
        'isbn_ssim', 'lc_callnum_display_ssi', 'id', 'marc_resource_ssim', 'title_addl_tesim',
        'title_varying_tesim', 'subject_tsim', 'edition_tsim', 'publication_details',
-       'material_type_display_tesim', 'note_general_tsim', 'publication_main_display_ssm',
-       'format_ssim', 'author', 'publisher_details_display_ssm', 'summary_tesim',
+       'material_type_display_tesim', 'note_general_tsim', 'publication_main_display_ssim',
+       'format_ssim', 'author', 'publisher_details_display_ssim', 'summary_tesim',
        'title_details_display_tesim']
     end
 

@@ -10,15 +10,9 @@ AllCops:
         - 'vendor/**/*'
         - 'node_modules/**/*'
 
-Metrics/ClassLength:
-    Exclude:
-        - 'app/models/marc_indexer.rb'
-
 Metrics/AbcSize:
     Exclude:
-        - 'app/models/marc_indexer.rb'
         - 'app/services/oai_processing_service.rb'
-        - 'lib/tasks/sample_scheduler.rake'
 
 Metrics/BlockLength:
     Exclude:
@@ -37,23 +31,9 @@ Metrics/BlockLength:
         - spec/system/view_show_page_spec.rb
         - spec/system/alma_request_options_spec.rb
 
-Metrics/CyclomaticComplexity:
-    Exclude:
-        - 'app/models/marc_indexer.rb'
-
 Metrics/MethodLength:
     Exclude:
-        - 'app/models/marc_indexer.rb'
         - 'app/services/oai_processing_service.rb'
-        - 'lib/tasks/sample_scheduler.rake'
-
-Metrics/PerceivedComplexity:
-    Exclude:
-        - 'app/models/marc_indexer.rb'
-
-Lint/EmptyWhen:
-    Exclude:
-        - app/models/marc_indexer.rb
 
 Lint/PercentStringArray:
     Exclude:

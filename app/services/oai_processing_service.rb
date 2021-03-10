@@ -8,10 +8,6 @@ class OaiProcessingService
     process_oai(institution, qs, alma, 'marc_indexer')
   end
 
-  def self.process_oai_with_solr_marc(institution, qs, alma)
-    process_oai(institution, qs, alma, 'solr_marc')
-  end
-
   def self.process_oai(institution, qs, alma, ingest_tool)
     oai_base = "https://#{alma}.alma.exlibrisgroup.com/view/oai/#{institution}/request"
 
@@ -54,21 +50,12 @@ class OaiProcessingService
       case ingest_tool
       when 'marc_indexer'
         ingest_with_traject(filename)
-      when 'solr_marc'
-        ingest_with_solr_marc(filename)
       end
       File.delete(filename)
     end
 
     # return resumption token at the end by default
     resumption_token
-  end
-
-  def self.ingest_with_solr_marc(filename)
-    sh "java -Dsolr.hosturl=#{ENV['SOLR_URL']} -jar #{File.dirname(__FILE__)}/solrmarc/solrmarc_core.jar #{File.dirname(__FILE__)}/solrmarc/config.properties \
-      -solrj #{File.dirname(__FILE__)}/solrmarc/lib-solrj #{filename}"
-  rescue => e
-    log e
   end
 
   def self.ingest_with_traject(filename)
