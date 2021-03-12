@@ -3,12 +3,13 @@ namespace :blacklight do
   task reindex: :environment do
     if Rails.env.downcase == 'production'
       oai_set="blacklight"
-      puts "oai set is #{oai_set} -- production!"
+      puts "oai set is #{oai_set} for production."
     else
       oai_set="blacklighttest"
       puts "oai set is #{oai_set} -- dev test qa or stg"
     end
-    exec("nohup bundle exec rails marc_index_ingest oai_set_name=#{oai_set} full_index=true | /usr/bin/logger -t blacklight_solr_reindex")
+    #exec("nohup bundle exec rails marc_index_ingest oai_set_name=#{oai_set} full_index=true | /usr/bin/logger -t blacklight_solr_reindex")
+    exec("nohup bundle exec rails marc_index_ingest oai_set_name=#{oai_set} full_index=true") 
   end
 
   desc "switch logger to stdout"
