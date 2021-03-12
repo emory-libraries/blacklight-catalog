@@ -28,7 +28,7 @@ class OaiProcessingService
 
     if (deleted_records.count + suppressed_records.count).positive?
       deleted_ids = deleted_records.map { |n| n.at('header/identifier').text.split(':').last }
-      deleted_ids << suppressed_records.map { |s| s.at_xpath("//marc:controlfield[@tag='001']", marc_url).text.to_i } # collects ID from controlfield 001
+      deleted_ids << suppressed_records.map { |s| s.at_xpath("marc:controlfield[@tag='001']", marc_url).text.to_i } # collects ID from controlfield 001
       deleted_records.remove
       suppressed_records.remove
       puts RestClient.post "#{ENV['SOLR_URL']}/update?commit=true",
