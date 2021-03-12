@@ -7,7 +7,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.persisted?
       set_flash_message :notice, :success, kind: "Shibboleth"
       sign_in @user
-      redirect_to session[:requested_page] || request.env["omniauth.origin"] || root_path
+      redirect_to request.env["omniauth.origin"] || root_path
     else
       redirect_to root_path
       set_flash_message(:notice, :failure, kind: "Shibboleth", reason: "you aren't authorized to use this application.")
