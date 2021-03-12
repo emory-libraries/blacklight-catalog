@@ -8,7 +8,6 @@ namespace :blacklight do
       oai_set="blacklighttest"
       puts "oai set is #{oai_set} -- dev test qa or stg"
     end
-    #exec("nohup bundle exec rails marc_index_ingest oai_set_name=#{oai_set} full_index=true | /usr/bin/logger -t blacklight_solr_reindex")
     exec("nohup bundle exec rails marc_index_ingest oai_set_name=#{oai_set} full_index=true") 
   end
 
@@ -19,7 +18,3 @@ namespace :blacklight do
     puts "done."
   end
 end
-
-# RAILS_ENV=development nohup bundle exec rails marc_index_ingest oai_set_name=blacklighttest full_index=true > import.log
-# RAILS_ENV=production nohup bundle exec rails marc_index_ingest oai_set_name=blacklight > import.log
-
