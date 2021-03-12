@@ -5,7 +5,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_omniauth(request.env["omniauth.auth"])
 
     if @user.persisted?
-      sign_in_and_redirect @user
+      sign_in @user
+      redirect_to session[:requested_page] || request.env["omniauth.origin"] || root_path
       set_flash_message :notice, :success, kind: "Shibboleth"
     else
       redirect_to root_path
