@@ -4,13 +4,11 @@ require 'rails_helper'
 RSpec.describe 'Search the catalog', type: :system, js: false do
   let(:fields) do
     [
-      'isbn_ssim', 'subtitle_display_tesim', 'subtitle_vern_display_tesim', 'subject_addl_tsim',
-      'subject_topic_facet_ssim', 'subject_era_ssim', 'subject_geo_ssim', 'lc_callnum_display_ssi',
       'author_tesim', 'author_display_ssim', 'author_vern_ssim', 'author_si', 'author_addl_tesim',
-      'subject_tsim', 'title_tesim', 'title_vern_display_tesim', 'title_ssort',
-      'title_addl_tesim', 'title_abbr_tesim', 'title_added_entry_tesim', 'title_enhanced_tesim',
+      'title_tesim', 'title_vern_display_tesim', 'title_ssort', 'title_addl_tesim',
+      'title_abbr_tesim', 'title_added_entry_tesim', 'title_enhanced_tesim', 'subject_tsim',
       'title_former_tesim', 'title_graphic_tesim', 'title_host_item_tesim', 'title_key_tesi',
-      'title_series_ssim', 'title_translation_tesim', 'title_varying_tesim', 'language_tesim'
+      'title_series_ssim', 'title_translation_tesim', 'title_varying_tesim', 'text_tesi'
     ]
   end
 
@@ -45,32 +43,12 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
     click_on 'search'
     result_titles = []
 
-    loop do
-      within '#documents' do
-        result_titles += page.all(:css, 'h3.document-title-heading/a').to_a.map(&:text)
-      end
-      break if page.has_link?('Next', href: '#')
-      click_link('Next', match: :first)
+    within '#documents' do
+      result_titles += page.all(:css, 'h3.document-title-heading/a').to_a.map(&:text)
     end
 
     expect(result_titles).to contain_exactly(
-      'Target in isbn_ssim',
-      'Target in subtitle_display_tesim',
-      'Target in subtitle_vern_display_tesim',
-      'Target in subject_tsim',
-      'Target in subject_addl_tsim',
-      'Target in subject_topic_facet_ssim',
-      'Target in subject_era_ssim',
-      'Target in subject_geo_ssim',
-      'Target in lc_callnum_display_ssi',
-      'Target in author_display_ssim',
-      'Target in author_vern_ssim',
-      'Target in author_addl_tesim',
-      'Target in title_added_entry_tesim',
-      'Target in title_addl_tesim',
-      'Target in title_series_ssim',
-      'Target in title_vern_display_tesim',
-      'Target in language_tesim',
+      'Target in text_tesi',
       'Target in id'
     )
   end
