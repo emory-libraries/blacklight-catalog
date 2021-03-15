@@ -109,7 +109,7 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
     config.add_show_field 'author_display_ssim', label: 'Author/Creator'
-    config.add_show_field 'publication_main_display_ssm', label: 'Publication'
+    config.add_show_field 'publication_main_display_ssim', label: 'Publication'
     config.add_show_field 'marc_resource_ssim', label: 'Resource Type'
     config.add_show_field 'title_details_display_tesim', label: 'Title'
     config.add_show_field 'title_addl_tesim', label: 'More Title Info'
@@ -117,14 +117,14 @@ class CatalogController < ApplicationController
     config.add_show_field 'author', field: 'author_display_ssim', label: 'Author/Creator'
     config.add_show_field 'subject_tsim', label: 'Subjects'
     config.add_show_field 'edition_tsim', label: 'Edition'
-    config.add_show_field 'publisher_details_display_ssm', label: 'Publisher'
+    config.add_show_field 'publisher_details_display_ssim', label: 'Publisher'
     config.add_show_field 'pub_date_isi', label: 'Creation Date'
     config.add_show_field 'material_type_display_tesim', label: 'Format'
     config.add_show_field 'note_general_tsim', label: 'Local Note'
     config.add_show_field 'language_tesim', label: 'Language'
     config.add_show_field 'summary_tesim', label: 'Summary'
     config.add_show_field 'isbn_ssim', label: 'Identifier'
-    config.add_show_field 'publication_details', field: 'publication_main_display_ssm', label: 'Publication Info'
+    config.add_show_field 'publication_details', field: 'publication_main_display_ssim', label: 'Publication Info'
     config.add_show_field 'format_ssim', label: 'Type'
     config.add_show_field 'lc_callnum_display_ssi', label: 'Call Number'
     config.add_show_field 'id', label: 'MMS ID'
@@ -143,12 +143,6 @@ class CatalogController < ApplicationController
     # urls.  A display label will be automatically calculated from the :key,
     # or can be specified manually to be different.
 
-    keyword_fields = [
-      'isbn_ssim', 'id', 'title_display_tesim', 'title_vern_display_tesim', 'title_addl_tesim', 'title_added_entry_tesim',
-      'title_series_ssim', 'subtitle_display_tesim', 'subtitle_vern_display_tesim', 'author_display_ssim', 'author_vern_ssim',
-      'author_addl_tesim', 'subject_tsim', 'subject_addl_tsim', 'subject_topic_facet_ssim', 'subject_era_ssim',
-      'subject_geo_ssim', 'lc_callnum_display_ssi', 'language_tesim'
-    ]
     author_fields = ['author_tesim', 'author_display_ssim', 'author_vern_ssim', 'author_si', 'author_addl_tesim']
     title_fields = ['title_tesim', 'title_display_tesim', 'title_vern_display_tesim', 'title_ssort',
                     'title_addl_tesim', 'title_abbr_tesim', 'title_added_entry_tesim', 'title_enhanced_tesim',
@@ -161,7 +155,7 @@ class CatalogController < ApplicationController
 
     config.add_search_field('keyword', label: 'Keyword') do |field|
       field.solr_parameters = {
-        qf: keyword_fields.join(' '),
+        qf: 'text_tesi id',
         pf: ''
       }
     end

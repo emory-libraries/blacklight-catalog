@@ -88,7 +88,7 @@ RSpec.describe 'Indexing fields with custom logic' do
     let(:solr_doc) { SolrDocument.find('9937264718202486') }
 
     it 'maps 260, 264, and 008 fields' do
-      expect(solr_doc['publication_main_display_ssm']).to eq([" Washington, D.C. xx#:  Central Intelligence Agency,  2002 2013"])
+      expect(solr_doc['publication_main_display_ssim']).to eq([" Washington, D.C. xx#:  Central Intelligence Agency,  2002 2013"])
     end
   end
 
@@ -104,7 +104,7 @@ RSpec.describe 'Indexing fields with custom logic' do
     let(:solr_doc) { SolrDocument.find('9937264718202486') }
 
     it 'maps 260, 264, and 008 fields' do
-      expect(solr_doc['publisher_details_display_ssm']).to eq([" Central Intelligence Agency,  Washington, D.C. xx#"])
+      expect(solr_doc['publisher_details_display_ssim']).to eq([" Central Intelligence Agency,  Washington, D.C. xx#"])
     end
   end
 
