@@ -2,7 +2,7 @@
 class OmniauthController < Devise::SessionsController
   def new
     if Rails.env.production?
-      session[:requested_page] = request.referer
+      session[:requested_page] = request.referer unless current_user.present?
       redirect_to user_shibboleth_omniauth_authorize_path
     else
       super
