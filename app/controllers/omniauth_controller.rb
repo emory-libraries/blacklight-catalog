@@ -2,6 +2,7 @@
 class OmniauthController < Devise::SessionsController
   def new
     Rails.logger.debug "SessionsController#new: request.referer = #{request.referer}"
+    Rails.logger.debug "current_user here? #{current_user.present?}"
     if Rails.env.production?
       session[:requested_page] = request.referer if current_user.blank?
       if current_user.present?
