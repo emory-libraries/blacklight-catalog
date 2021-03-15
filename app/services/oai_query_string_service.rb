@@ -20,7 +20,7 @@ class OaiQueryStringService
     # resume from last harvested
     return "?verb=ListRecords&resumptionToken=#{saved_resumption_token}" if saved_resumption_token.present?
     # start a single record harvest
-    return "?verb=GetRecord&identifier=oai:alma.#{ENV['INSTITUTION']}:#{oai_set}&metadataPrefix=marc21&until=#{to_time}#{from_time}" if single_record
+    return "?verb=GetRecord&identifier=oai:alma.#{ENV['INSTITUTION']}:#{oai_set}&metadataPrefix=marc21" if single_record
     # start a fresh set harvest
     "?verb=ListRecords&set=#{oai_set}&metadataPrefix=marc21&until=#{to_time}#{from_time}"
   end
