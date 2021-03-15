@@ -13,6 +13,8 @@ AllCops:
 Metrics/AbcSize:
     Exclude:
         - 'app/services/oai_processing_service.rb'
+        - 'app/services/oai_processing_single_service.rb'
+        - 'lib/tasks/sample_scheduler.rake'
 
 Metrics/BlockLength:
     Exclude:
@@ -24,6 +26,7 @@ Metrics/BlockLength:
         - spec/models/property_bag_spec.rb
         - spec/models/user_spec.rb
         - spec/services/oai_processing_service_spec.rb
+        - spec/services/oai_processing_single_service_spec.rb
         - spec/services/oai_query_string_service_spec.rb
         - spec/spec_helper.rb
         - spec/system/facet_by_year_spec.rb
@@ -32,9 +35,24 @@ Metrics/BlockLength:
         - spec/system/view_show_page_spec.rb
         - spec/system/alma_request_options_spec.rb
 
+Metrics/CyclomaticComplexity:
+    Exclude:
+        - 'app/models/marc_indexer.rb'
+        - 'app/services/oai_processing_single_service.rb'
+
 Metrics/MethodLength:
     Exclude:
         - 'app/services/oai_processing_service.rb'
+        - 'app/services/oai_processing_single_service.rb'
+        - 'lib/tasks/sample_scheduler.rake'
+
+Metrics/PerceivedComplexity:
+    Exclude:
+        - 'app/models/marc_indexer.rb'
+
+Lint/EmptyWhen:
+    Exclude:
+        - app/models/marc_indexer.rb
 
 Lint/PercentStringArray:
     Exclude:
@@ -43,6 +61,7 @@ Lint/PercentStringArray:
 Rails/Output:
     Exclude:
         - 'app/services/oai_processing_service.rb'
+        - 'app/services/oai_processing_single_service.rb'
         - 'app/services/oai_query_string_service.rb'
 
 RSpec/DescribeClass:
@@ -54,6 +73,7 @@ RSpec/ExampleLength:
         - spec/requests/not_found_requests_spec.rb
         - spec/routing/alma_availability_routes_spec.rb
         - spec/services/oai_processing_service_spec.rb
+        - spec/services/oai_processing_single_service_spec.rb
         - spec/system/facet_by_year_spec.rb
         - spec/system/targeted_field_search_spec.rb
         - spec/system/view_show_page_spec.rb

@@ -65,6 +65,22 @@ RSpec.configure do |config|
       .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_4.xml'), headers: {})
     stub_request(
       :get,
+      "https://smackety.alma.exlibrisgroup.com/view/oai/blah/request?verb=GetRecord&identifier=oai:alma.blah:single_record&metadataPrefix=marc21"
+    ).to_return(status: 200, body: File.read(fixture_path + '/single_record.xml'), headers: {})
+    stub_request(
+      :get,
+      "https://smackety.alma.exlibrisgroup.com/view/oai/blah/request?verb=GetRecord&identifier=oai:alma.blah:single_record_missing&metadataPrefix=marc21"
+    ).to_return(status: 200, body: File.read(fixture_path + '/single_record_missing.xml'), headers: {})
+    stub_request(
+      :get,
+      "https://smackety.alma.exlibrisgroup.com/view/oai/blah/request?verb=GetRecord&identifier=oai:alma.blah:single_record_updated&metadataPrefix=marc21"
+    ).to_return(status: 200, body: File.read(fixture_path + '/single_record_updated.xml'), headers: {})
+    stub_request(
+      :get,
+      "https://smackety.alma.exlibrisgroup.com/view/oai/blah/request?verb=GetRecord&identifier=oai:alma.blah:single_record_deleted&metadataPrefix=marc21"
+    ).to_return(status: 200, body: File.read(fixture_path + '/single_record_deleted.xml'), headers: {})
+    stub_request(
+      :get,
       "https://smackety.alma.exlibrisgroup.com/view/oai/blah/request?metadataPrefix=marc21&set=blacklight4&until=2021-01-28T19:16:10Z&verb=ListRecords"
     ).to_return(status: 200, body: File.read(fixture_path + '/alma_small_set.xml'), headers: {})
     stub_request(

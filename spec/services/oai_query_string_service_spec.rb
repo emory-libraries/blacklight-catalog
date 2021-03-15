@@ -19,7 +19,7 @@ RSpec.describe OaiQueryStringService, :clean do
 
       check_other_methods_called
       expect(qs).to eq(
-        "?verb=GetRecord&identifier=oai:alma.#{institution}:#{oai_set}&metadataPrefix=marc21&until=#{to_time}&from=#{ingest_time}"
+        "?verb=GetRecord&identifier=oai:alma.#{institution}:#{oai_set}&metadataPrefix=marc21"
       )
     end
 
