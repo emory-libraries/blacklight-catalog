@@ -42,6 +42,7 @@ Metrics/BlockLength:
 Metrics/CyclomaticComplexity:
     Exclude:
         - 'app/models/marc_indexer.rb'
+        - 'app/services/oai_processing_single_service.rb'
 
 Metrics/MethodLength:
     Exclude:
