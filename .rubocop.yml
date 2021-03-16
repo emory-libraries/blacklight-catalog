@@ -14,7 +14,6 @@ Metrics/AbcSize:
     Exclude:
         - 'app/services/oai_processing_service.rb'
         - 'app/services/oai_processing_single_service.rb'
-        - 'lib/tasks/sample_scheduler.rake'
 
 Metrics/BlockLength:
     Exclude:
@@ -44,7 +43,6 @@ Metrics/MethodLength:
     Exclude:
         - 'app/services/oai_processing_service.rb'
         - 'app/services/oai_processing_single_service.rb'
-        - 'lib/tasks/sample_scheduler.rake'
 
 Metrics/PerceivedComplexity:
     Exclude:

@@ -34,6 +34,7 @@ require 'traject/extract_library'
 require 'traject/extract_marc_resource'
 require 'traject/extract_publication_main_display'
 require 'traject/extract_publisher_details_display'
+require 'traject/extract_subject_display'
 require 'traject/extract_title_details_display'
 require 'traject/extract_title_main_display'
 require 'traject/extract_url_fulltext'
@@ -50,16 +51,18 @@ extend ExtractLibrary
 extend ExtractMarcResource
 extend ExtractPublicationMainDisplay
 extend ExtractPublisherDetailsDisplay
+extend ExtractSubjectDisplay
 extend ExtractTitleDetailsDisplay
 extend ExtractTitleMainDisplay
 extend ExtractUrlFulltext
 extend ExtractUrlSuppl
 
 # Variables used throughout indexing
-ATOZ = ('a'..'z').to_a.join('')
-ATOU = ('a'..'u').to_a.join('')
-ATOG = ('a'..'g').to_a.join('')
-KTOS = ('k'..'s').to_a.join('')
+ATOZ = ('a'..'z').to_a.join('').freeze
+ATOU = ('a'..'u').to_a.join('').freeze
+ATOG = ('a'..'g').to_a.join('').freeze
+KTOS = ('k'..'s').to_a.join('').freeze
+VTOZ = ('v'..'z').to_a.join('').freeze
 
 settings do
   # type may be 'binary', 'xml', or 'json'
@@ -146,6 +149,7 @@ to_field 'author_vern_ssim', extract_marc("100abcdq:110#{ATOZ}:111#{ATOZ}", alte
 
 # Subject Fields
 to_field 'subject_addl_tsim', extract_marc("600vwxyz:610vwxyz:611vwxyz:630vwxyz:650vwxyz:651vwxyz:654vwxyz:655vwxyz")
+to_field 'subject_display_ssim', extract_subject_display(ATOZ, ATOG, VTOZ)
 to_field 'subject_era_ssim',  extract_marc("650y:651y:654y:655y"), trim_punctuation
 to_field 'subject_geo_ssim',  extract_marc("651a:650z"), trim_punctuation
 to_field 'subject_ssim', extract_marc("600abcdq:610ab:611adc:630aa:650aa:653aa:654a"), trim_punctuation

@@ -167,4 +167,31 @@ RSpec.describe 'Indexing fields with custom logic' do
       expect(solr_doc_4['collection_ssim']).to be_nil
     end
   end
+
+  describe 'subject_display_ssim field' do
+    let(:solr_doc) { SolrDocument.find('9937264718202486') }
+    let(:excluded_elements) do
+      [
+        "Population density Yemen (Republic) Maps", "Ethnic groups Yemen (Republic) Maps",
+        "Tribes Yemen (Republic) Maps", "Ethnology Yemen (Republic) Maps", "Rain and rainfall Yemen (Republic) Maps",
+        "Land use Yemen (Republic) Maps", "Economic history", "Ethnic groups", "Ethnology",
+        "Population", "Population density", "Rain and rainfall", "Religion", "Tribes"
+      ]
+    end
+    let(:included_elements) do
+      [
+        "Yemen (Republic) Maps.", "Yemen (Republic) Population Maps.",
+        "Yemen (Republic) Economic conditions Maps.", "Yemen (Republic) Religion Maps.",
+        "Yemen (Republic)"
+      ]
+    end
+
+    it 'removes datafields with indicator_2 = 4 or subfields with code = 2 and value - fast' do
+      expect(solr_doc['subject_display_ssim']).not_to include(excluded_elements)
+    end
+
+    it 'keeps the rest' do
+      expect(solr_doc['subject_display_ssim']).to match_array(included_elements)
+    end
+  end
 end
