@@ -1,3 +1,4 @@
 author_display_ssim: 'Author'
-publication_main_display_ssim: 'Publication'
-marc_resource_ssim: 'Resource Type'
+publication_main_display_ssim: 'Publication/Creation Information'
+format_ssim: 'Type'
+edition_tsim: 'Edition'

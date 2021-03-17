@@ -1,0 +1,6 @@
+id: 'Catalog ID (MMSID)'
+isbn_ssim: 'ISBN'
+issn_ssim: 'ISSN'
+oclc_ssim: 'OCLC Number'
+other_standard_ids_ssim: 'Other Identifiers'
+publisher_number_ssim: 'Publisher Number'

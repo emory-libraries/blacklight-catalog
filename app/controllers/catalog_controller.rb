@@ -108,26 +108,47 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field 'author_display_ssim', label: 'Author/Creator'
-    config.add_show_field 'publication_main_display_ssim', label: 'Publication'
-    config.add_show_field 'marc_resource_ssim', label: 'Resource Type'
-    config.add_show_field 'title_details_display_tesim', label: 'Title'
-    config.add_show_field 'title_addl_tesim', label: 'More Title Info'
-    config.add_show_field 'title_varying_tesim', label: 'Variant Titles'
-    config.add_show_field 'author', field: 'author_display_ssim', label: 'Author/Creator'
-    config.add_show_field 'subject_tsim', label: 'Subjects'
-    config.add_show_field 'edition_tsim', label: 'Edition'
-    config.add_show_field 'publisher_details_display_ssim', label: 'Publisher'
-    config.add_show_field 'pub_date_isi', label: 'Creation Date'
-    config.add_show_field 'material_type_display_tesim', label: 'Format'
-    config.add_show_field 'note_general_tsim', label: 'Local Note'
-    config.add_show_field 'language_tesim', label: 'Language'
-    config.add_show_field 'summary_tesim', label: 'Summary'
-    config.add_show_field 'isbn_ssim', label: 'Identifier'
-    config.add_show_field 'publication_details', field: 'publication_main_display_ssim', label: 'Publication Info'
-    config.add_show_field 'format_ssim', label: 'Type'
-    config.add_show_field 'lc_callnum_display_ssi', label: 'Call Number'
-    config.add_show_field 'id', label: 'MMS ID'
+    #   Section below title
+    config.add_show_field 'author_display_ssim', label: 'Author/Creator', helper_method: :multiple_values_new_line
+    config.add_show_field('publication_main_display_ssim',
+      label: 'Publication/Creation Information',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field 'format_ssim', label: 'Type', helper_method: :multiple_values_new_line
+    config.add_show_field 'edition_tsim', label: 'Edition', helper_method: :multiple_values_new_line
+    #   Additional/Related Title Information Section
+    config.add_show_field 'title_addl_tesim', label: 'Full Title', helper_method: :multiple_values_new_line
+    config.add_show_field 'title_series_ssim', label: 'Series Titles', helper_method: :multiple_values_new_line
+    config.add_show_field('title_added_entry_tesim',
+      label: 'Related/Included Titles',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field 'title_varying_tesim', label: 'Variant Titles', helper_method: :multiple_values_new_line
+    config.add_show_field 'title_abbr_tesim', label: 'Abbreviated Titles', helper_method: :multiple_values_new_line
+    config.add_show_field('title_translation_tesim',
+      label: 'Translated Titles',
+      helper_method: :multiple_values_new_line)
+    #   Related Names Section
+    config.add_show_field('author_addl_tesim',
+      label: 'Additional Author/Creators',
+      helper_method: :multiple_values_new_line)
+    #   Subjects/Genre Section
+    config.add_show_field 'genre_ssim', label: 'Genre', helper_method: :multiple_values_new_line
+    config.add_show_field 'subject_display_ssim', label: 'Subjects', helper_method: :multiple_values_new_line
+    #   Description/Summary Section
+    config.add_show_field 'language_tesim', label: 'Language', helper_method: :multiple_values_new_line
+    config.add_show_field('material_type_display_tesim',
+      label: 'Physical Type/Desription',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field 'note_general_tsim', label: 'General Note', helper_method: :multiple_values_new_line
+    config.add_show_field 'url_suppl_ssim', label: 'Related Resources Link', helper_method: :convert_solr_value_to_url
+    #   Additional Identifiers Section
+    config.add_show_field 'id', label: 'Catalog ID (MMSID)'
+    config.add_show_field 'isbn_ssim', label: 'ISBN', helper_method: :multiple_values_new_line
+    config.add_show_field 'issn_ssim', label: 'ISSN', helper_method: :multiple_values_new_line
+    config.add_show_field 'oclc_ssim', label: 'OCLC Number', helper_method: :multiple_values_new_line
+    config.add_show_field('other_standard_ids_ssim',
+      label: 'Other Identifiers',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field 'publisher_number_ssim', label: 'Publisher Number', helper_method: :multiple_values_new_line
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -143,11 +164,15 @@ class CatalogController < ApplicationController
     # urls.  A display label will be automatically calculated from the :key,
     # or can be specified manually to be different.
 
-    author_fields = ['author_tesim', 'author_display_ssim', 'author_vern_ssim', 'author_si', 'author_addl_tesim']
-    title_fields = ['title_tesim', 'title_display_tesim', 'title_vern_display_tesim', 'title_ssort',
-                    'title_addl_tesim', 'title_abbr_tesim', 'title_added_entry_tesim', 'title_enhanced_tesim',
-                    'title_former_tesim', 'title_graphic_tesim', 'title_host_item_tesim', 'title_key_tesi',
-                    'title_series_ssim', 'title_translation_tesim', 'title_varying_tesim']
+    author_fields = [
+      'author_tesim', 'author_display_ssim', 'author_vern_ssim', 'author_si', 'author_addl_tesim'
+    ]
+    title_fields = [
+      'title_tesim', 'title_display_tesim', 'title_vern_display_tesim', 'title_ssort',
+      'title_addl_tesim', 'title_abbr_tesim', 'title_added_entry_tesim', 'title_enhanced_tesim',
+      'title_former_tesim', 'title_graphic_tesim', 'title_host_item_tesim', 'title_key_tesi',
+      'title_series_ssim', 'title_translation_tesim', 'title_varying_tesim'
+    ]
 
     # This one uses all the defaults set by the solr request handler. Which
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
