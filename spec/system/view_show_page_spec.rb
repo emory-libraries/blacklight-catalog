@@ -4,30 +4,40 @@ require 'rails_helper'
 RSpec.describe "View a item's show page", type: :system, js: true do
   before do
     delete_all_documents_from_solr
-    solr = Blacklight.default_index.connection
-    solr.add(TEST_ITEM)
-    solr.commit
+    build_solr_docs(TEST_ITEM)
     visit solr_document_path(id)
   end
 
   let(:id) { '123' }
 
   context 'displaying metadata' do
+    let(:expected_labels) do
+      [
+        'Author/Creator:', 'Publication/Creation Information:', 'Type:', 'Edition:',
+        'Full Title:', 'Series Titles:', 'Related/Included Titles:', 'Variant Titles:',
+        'Abbreviated Titles:', 'Translated Titles:', 'Additional Author/Creators:',
+        'Genre:', 'Subjects:', 'Language:', 'Physical Type/Desription:', 'General Note:',
+        'Related Resources Link:', 'Catalog ID (MMSID):', 'ISBN:', 'ISSN:', 'OCLC Number:',
+        'Other Identifiers:', 'Publisher Number:'
+      ]
+    end
+    let(:expected_values) do
+      [
+        'George Jenkins', 'A dummy publication', 'A sample edition', 'Book', 'More title info',
+        'The Jenkins Series', 'The Jenkins Story', 'Variant title', 'Jenk. Story',
+        'Le Stori de Jenkins', 'Tim Jenkins', 'Genre example', 'Adventure', 'English',
+        '1 online resource (111 pages)', 'General note', 'http://www.example.com',
+        '123', '8675309', 'H. 4260 H.', 'M080142677', 'SOME MAGICAL NUM .66G',
+        'SOME OTHER MAGICAL NUMBER .12Q'
+      ]
+    end
+
     it 'has the right metadata labels' do
-      ['Author/Creator:', 'Publication:', 'Resource Type:', 'Title:', 'More Title Info:',
-       'Author/Creator:', 'Subjects:', 'Format:', 'Local Note:', 'Creation Date:', 'Language:',
-       'Summary', 'Identifier:', 'Publication:', 'Type:', 'MMS ID:'].each do |label|
-        expect(page).to have_content(label)
-      end
+      expect(find_all('dl.row.dl-invert.document-metadata dt').map(&:text)).to match_array(expected_labels)
     end
 
     it 'has the right values' do
-      ['George Jenkins', 'A dummy publication', 'Electronic Resource', 'The Title of my Work',
-       'More title info', 'George Jenkins', 'A sample subject', '1 online resource (111 pages)',
-       'General note', '2015', 'English', 'Short summary', 'SOME MAGICAL NUM .66G', 'Atlanta',
-       'Book', '123'].each do |value|
-        expect(page).to have_content(value)
-      end
+      expect(find_all('dl.row.dl-invert.document-metadata dd').map(&:text)).to match_array(expected_values)
     end
   end
 
@@ -38,9 +48,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
 
     it 'shows the Unavailable badge' do
       delete_all_documents_from_solr
-      solr = Blacklight.default_index.connection
-      solr.add(TEST_ITEM.merge(id: '456'))
-      solr.commit
+      build_solr_docs(TEST_ITEM.merge(id: '456'))
       visit solr_document_path('456')
 
       expect(page).to have_css('span.badge.badge-danger', text: 'Unavailable')
@@ -48,9 +56,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
 
     it 'shows no badge' do
       delete_all_documents_from_solr
-      solr = Blacklight.default_index.connection
-      solr.add(TEST_ITEM.merge(id: '789'))
-      solr.commit
+      build_solr_docs(TEST_ITEM.merge(id: '789'))
       visit solr_document_path('789')
 
       expect(page).not_to have_css('span.badge.badge-danger', text: 'Unavailable')
@@ -61,15 +67,13 @@ RSpec.describe "View a item's show page", type: :system, js: true do
   context 'displaying Librarian View' do
     it 'shows the link' do
       delete_all_documents_from_solr
-      solr = Blacklight.default_index.connection
-      solr.add(
+      build_solr_docs(
         TEST_ITEM.merge(
           marc_display_tesi: File.read(
             fixture_path + '/alma_single_marc_display_tesi.xml'
           )
         )
       )
-      solr.commit
       visit solr_document_path('123')
 
       expect(page).to have_link('Librarian View')

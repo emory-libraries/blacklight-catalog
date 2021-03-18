@@ -7,9 +7,7 @@ RSpec.describe 'get it and view it tabs', type: :system, js: true do
   let(:user) { User.create(uid: 123, provider: 'shibboleth') }
   before do
     delete_all_documents_from_solr
-    solr = Blacklight.default_index.connection
-    solr.add(TEST_ITEM)
-    solr.commit
+    build_solr_docs(TEST_ITEM)
   end
 
   around do |example|

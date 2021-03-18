@@ -34,3 +34,11 @@ en:
   static:
     not_found:
       header: "404 Error - Page Not Found"
+  catalog:
+    show:
+      more_details_header: "More Details"
+      additional_title: "Additional/Related Title Information"
+      related_names: "Related Names"
+      subjects_genre: "Subjects/Genre"
+      description_summary: "Description/Summary"
+      addl_ids: "Additional Identifiers"

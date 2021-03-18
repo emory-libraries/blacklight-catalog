@@ -2,9 +2,17 @@
 
 module SolrHelpers
   def delete_all_documents_from_solr
-    solr = Blacklight.default_index.connection
-    solr.delete_by_query('*:*')
-    solr.commit
+    solr_spec_connection.delete_by_query('*:*')
+    solr_spec_connection.commit
+  end
+
+  def build_solr_docs(docs)
+    solr_spec_connection.add(docs)
+    solr_spec_connection.commit
+  end
+
+  def solr_spec_connection
+    Blacklight.default_index.connection
   end
 
   RSpec.configure do |config|
