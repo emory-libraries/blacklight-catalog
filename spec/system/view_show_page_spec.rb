@@ -4,9 +4,7 @@ require 'rails_helper'
 RSpec.describe "View a item's show page", type: :system, js: true do
   before do
     delete_all_documents_from_solr
-    solr = Blacklight.default_index.connection
-    solr.add(TEST_ITEM)
-    solr.commit
+    build_solr_docs(TEST_ITEM)
     visit solr_document_path(id)
   end
 
@@ -50,9 +48,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
 
     it 'shows the Unavailable badge' do
       delete_all_documents_from_solr
-      solr = Blacklight.default_index.connection
-      solr.add(TEST_ITEM.merge(id: '456'))
-      solr.commit
+      build_solr_docs(TEST_ITEM.merge(id: '456'))
       visit solr_document_path('456')
 
       expect(page).to have_css('span.badge.badge-danger', text: 'Unavailable')
@@ -60,9 +56,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
 
     it 'shows no badge' do
       delete_all_documents_from_solr
-      solr = Blacklight.default_index.connection
-      solr.add(TEST_ITEM.merge(id: '789'))
-      solr.commit
+      build_solr_docs(TEST_ITEM.merge(id: '789'))
       visit solr_document_path('789')
 
       expect(page).not_to have_css('span.badge.badge-danger', text: 'Unavailable')
@@ -73,15 +67,13 @@ RSpec.describe "View a item's show page", type: :system, js: true do
   context 'displaying Librarian View' do
     it 'shows the link' do
       delete_all_documents_from_solr
-      solr = Blacklight.default_index.connection
-      solr.add(
+      build_solr_docs(
         TEST_ITEM.merge(
           marc_display_tesi: File.read(
             fixture_path + '/alma_single_marc_display_tesi.xml'
           )
         )
       )
-      solr.commit
       visit solr_document_path('123')
 
       expect(page).to have_link('Librarian View')

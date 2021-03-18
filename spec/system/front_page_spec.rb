@@ -5,9 +5,7 @@ include Warden::Test::Helpers
 RSpec.describe 'front page', type: :system do
   before do
     delete_all_documents_from_solr
-    solr = Blacklight.default_index.connection
-    solr.add(TEST_ITEM)
-    solr.commit
+    build_solr_docs(TEST_ITEM)
     visit root_path
   end
 

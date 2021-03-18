@@ -4,9 +4,7 @@ require 'rails_helper'
 RSpec.describe 'Facet the catalog by year', type: :system, js: false do
   before do
     delete_all_documents_from_solr
-    solr = Blacklight.default_index.connection
-    solr.add([llama, newt, eagle])
-    solr.commit
+    build_solr_docs([llama, newt, eagle])
   end
 
   let(:llama) do
