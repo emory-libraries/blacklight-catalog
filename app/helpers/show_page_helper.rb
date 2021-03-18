@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 module ShowPageHelper
   def convert_solr_value_to_url(value)
-    links = value[:document][value[:field]].map { |link| tag.a link, { href: link, target: '_blank', rel: 'noopener' } }
+    links = value[:document][value[:field]].map do |link|
+      tag.a link, { href: link, target: '_blank', rel: 'noopener noreferrer' }
+    end
     safe_join(links, tag('br'))
   end
 
