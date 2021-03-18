@@ -23,7 +23,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
     end
     let(:expected_values) do
       [
-        'George Jenkins', 'A dummy publication', 'A sample edition', 'Book', 'More title info',
+        "George Jenkins\nG. Jenkins", 'A dummy publication', 'A sample edition', 'Book', 'More title info',
         'The Jenkins Series', 'The Jenkins Story', 'Variant title', 'Jenk. Story',
         'Le Stori de Jenkins', 'Tim Jenkins', 'Genre example', 'Adventure', 'English',
         '1 online resource (111 pages)', 'General note', 'http://www.example.com',
@@ -38,6 +38,12 @@ RSpec.describe "View a item's show page", type: :system, js: true do
 
     it 'has the right values' do
       expect(find_all('dl.row.dl-invert.document-metadata dd').map(&:text)).to match_array(expected_values)
+    end
+  end
+
+  context 'displaying vernacular title' do
+    it 'has the vernacular title below the main title' do
+      expect(find('h1[itemprop="name"]+h2.vernacular_title_1').text).to eq('Title of my Work')
     end
   end
 

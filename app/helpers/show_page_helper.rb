@@ -11,4 +11,19 @@ module ShowPageHelper
     items = value[:document][value[:field]]
     safe_join(items, tag('br'))
   end
+
+  def vernacular_title_populator(document)
+    vern_titles = document['title_vern_display_tesim']&.map&.with_index(1) do |t, i|
+      tag.h2(t, class: "vernacular_title_#{i}")
+    end
+
+    return safe_join(vern_titles, tag('br')) if vern_titles.present?
+    ''
+  end
+
+  def combine_author_vern(value)
+    combined_values = value[:document].combined_author_display_vern
+    return safe_join(combined_values, tag('br')) if combined_values.present?
+    ''
+  end
 end

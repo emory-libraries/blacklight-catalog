@@ -82,8 +82,7 @@ module ExtractionTools
 
   def title_added_entry_tesim_str
     %w[
-      700gklmnoprst
-      710fgklmnopqrst
+      700gklmnoprst:710fgklmnopqrst
       711fgklnpst
       730abcdefgklmnopqrst
       740anp
@@ -106,17 +105,18 @@ module ExtractionTools
   def format_map_ldr_six
     {
       'c' => "Musical Score", 'd' => "Musical Score", 'e' => "Map", 'f' => "Map",
-      'g' => "Visual Material", 'i' => "Sound Recording", 'j' => "Sound Recording",
-      'k' => "Visual Material", 'm' => "Computer File", 'o' => "Visual Material",
-      'p' => "Mixed Materials", 'r' => "Visual Material"
+      'g' => "Video/Visual Material", 'i' => "Sound Recording", 'j' => "Sound Recording",
+      'k' => "Video/Visual Material", 'm' => "Computer File", 'o' => "Video/Visual Material",
+      'p' => "Archival Material/Manuscripts", 'r' => "Video/Visual Material"
     }.freeze
   end
 
   def format_map_ldr_six_seven
     {
-      'aa' => "Book", 'ab' => "Serial", 'ac' => "Book", 'ad' => "Book", 'ai' => "Serial",
-      'am' => "Book", 'as' => "Serial", 'ta' => "Book", 'tb' => "Serial", 'tc' => "Book",
-      'td' => "Book", 'ti' => "Serial", 'tm' => "Book", 'ts' => "Serial"
+      'aa' => "Book", 'ab' => "Journal, Newspaper or Serial", 'ac' => "Book", 'ad' => "Book",
+      'ai' => "Journal, Newspaper or Serial", 'am' => "Book", 'as' => "Journal, Newspaper or Serial",
+      'ta' => "Book", 'tb' => "Journal, Newspaper or Serial", 'tc' => "Book", 'td' => "Book",
+      'ti' => "Journal, Newspaper or Serial", 'tm' => "Book", 'ts' => "Journal, Newspaper or Serial"
     }.freeze
   end
 end
