@@ -1,0 +1,6 @@
+<% doc_presenter = show_presenter(document) %>
+<% fields = presenter.new(document: doc_presenter.fields_to_render).terms %>
+<dl class="row dl-invert document-metadata">
+  <dt class='blacklight-<%= "#{url_field}".parameterize %> col-md-3'><%= render_document_show_field_label document, field: url_field %></dt>
+  <dd class='blacklight-<%= "#{url_field}".parameterize %> col-md-9'><%= link_to "#{doc_presenter.field_value fields[text_field]}", "#{doc_presenter.field_value fields[url_field]}" %></dd>
+</dl>

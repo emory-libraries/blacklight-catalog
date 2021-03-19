@@ -115,6 +115,9 @@ class CatalogController < ApplicationController
       helper_method: :multiple_values_new_line)
     config.add_show_field 'format_ssim', label: 'Type', helper_method: :multiple_values_new_line
     config.add_show_field 'edition_tsim', label: 'Edition', helper_method: :multiple_values_new_line
+    #   Where to find it section
+    config.add_show_field 'url_fulltext_ssm', label: 'Full Text Access', helper_method: :multiple_values_new_line
+    config.add_show_field 'url_fulltext_linktext_ssm'
     #   Additional/Related Title Information Section
     config.add_show_field 'title_addl_tesim', label: 'Full Title', helper_method: :multiple_values_new_line
     config.add_show_field 'title_series_ssim', label: 'Series Titles', helper_method: :multiple_values_new_line
@@ -139,7 +142,7 @@ class CatalogController < ApplicationController
       label: 'Physical Type/Desription',
       helper_method: :multiple_values_new_line)
     config.add_show_field 'note_general_tsim', label: 'General Note', helper_method: :multiple_values_new_line
-    config.add_show_field 'url_suppl_ssim', label: 'Related Resources Link', helper_method: :convert_solr_value_to_url
+    config.add_show_field 'url_suppl_ssm', label: 'Related Resources Link', helper_method: :convert_solr_value_to_url
     #   Additional Identifiers Section
     config.add_show_field 'id', label: 'Catalog ID (MMSID)'
     config.add_show_field 'isbn_ssim', label: 'ISBN', helper_method: :multiple_values_new_line

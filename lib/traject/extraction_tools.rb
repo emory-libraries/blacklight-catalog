@@ -29,6 +29,16 @@ module ExtractionTools
     accumulator << field['u'] unless field['u'].nil?
   end
 
+  def accumulate_linktext(field, accumulator)
+    if field['y'].present?
+      accumulator << field['y']
+    elsif field['3'].present?
+      accumulator << field['3']
+    elsif field['z'].present?
+      accumulator << field['z']
+    end
+  end
+
   def notfulltext
     /abstract|description|sample text|table of contents|/i
   end

@@ -1,7 +1,9 @@
 <div>
+  <%= tag.h2 t('catalog.show.find_it_header'), class: "find-it-header" %><br/>
   <p>
     <button id="physical-<%= document.id %>" class="availability" data-url="<%= "#{openurl(document.id,'getit')}" %>" value="Physical copy">Physical copy</button>
     <button id="online-<%= document.id %>" class="availability" data-url="<%= "#{openurl(document.id,'viewit')}" %>" value="On-line version">On-line version</button>
   </p>  
-  <iframe id="request-options" style="display: none" width=100% height=200 seamless="seamless" frameBorder=0></iframe> 
+  <iframe id="request-options" style="border: 3px solid black;" width="90%" height=200 seamless="seamless" frameBorder=0 src="<%= "#{openurl(document.id,'getit')}" %>"></iframe> 
+  <%= render 'url_display', document: document, presenter: UrlFulltextPresenter, title: t('catalog.show.url_fulltext'), text_field: 'url_fulltext_linktext_ssm', url_field: 'url_fulltext_ssm' %>
 </div>
