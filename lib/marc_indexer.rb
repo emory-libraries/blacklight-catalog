@@ -37,6 +37,7 @@ require 'traject/extract_subject_display'
 require 'traject/extract_title_details_display'
 require 'traject/extract_title_main_display'
 require 'traject/extract_url_fulltext'
+require 'traject/extract_url_fulltext_linktext'
 require 'traject/extract_url_suppl'
 
 # Custom Method Toolbox Extension
@@ -53,6 +54,7 @@ extend ExtractSubjectDisplay
 extend ExtractTitleDetailsDisplay
 extend ExtractTitleMainDisplay
 extend ExtractUrlFulltext
+extend ExtractUrlFulltextLinktext
 extend ExtractUrlSuppl
 
 # Variables used throughout indexing
@@ -172,8 +174,9 @@ to_field 'lc_b4cutter_ssim', extract_marc('050a'), first_only
 to_field 'lc_callnum_ssim', extract_marc('050ab'), first_only
 
 # URL Fields
-to_field 'url_fulltext_ssim', extract_url_fulltext
-to_field 'url_suppl_ssim', extract_url_suppl
+to_field 'url_fulltext_ssm', extract_url_fulltext
+to_field 'url_fulltext_linktext_ssm', extract_url_fulltext_linktext
+to_field 'url_suppl_ssm', extract_url_suppl
 
 # Library Fields
 to_field 'library_ssim', extract_library
