@@ -194,4 +194,38 @@ RSpec.describe 'Indexing fields with custom logic' do
       expect(solr_doc['subject_display_ssim']).to match_array(included_elements)
     end
   end
+
+  describe 'url_fulltext_linktext_ssm field' do
+    context "when 856 3 and z are present" do
+      let(:solr_doc) { SolrDocument.find('9937264718402486') }
+
+      it 'has value of 856 3 since it has higher precedence than z' do
+        expect(solr_doc['url_fulltext_linktext_ssm']).to eq(['Subfield code 3'])
+      end
+    end
+
+    context "when 856 y, 3, and z are present" do
+      let(:solr_doc) { SolrDocument.find('9937264718202486') }
+
+      it 'has value of 856 y since it has higher precedence than 3 and z' do
+        expect(solr_doc['url_fulltext_linktext_ssm']).to eq(['Subfield code y'])
+      end
+    end
+
+    context "when only 856 z is present" do
+      let(:solr_doc) { SolrDocument.find('9937264718102486') }
+
+      it 'has value of 856 z' do
+        expect(solr_doc['url_fulltext_linktext_ssm']).to eq(['Subfield code z'])
+      end
+    end
+
+    context "when 856 y and z are present" do
+      let(:solr_doc) { SolrDocument.find('9937264717902486') }
+
+      it 'has value of 856 y since it has higher precedence than z' do
+        expect(solr_doc['url_fulltext_linktext_ssm']).to eq(['Subfield code y'])
+      end
+    end
+  end
 end
