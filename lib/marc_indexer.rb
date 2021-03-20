@@ -32,7 +32,6 @@ require 'traject/extract_format_string'
 require 'traject/extract_isbn'
 require 'traject/extract_library'
 require 'traject/extract_marc_resource'
-require 'traject/extract_publication_main_display'
 require 'traject/extract_publisher_details_display'
 require 'traject/extract_subject_display'
 require 'traject/extract_title_details_display'
@@ -50,7 +49,6 @@ extend ExtractFormatString
 extend ExtractIsbn
 extend ExtractLibrary
 extend ExtractMarcResource
-extend ExtractPublicationMainDisplay
 extend ExtractPublisherDetailsDisplay
 extend ExtractSubjectDisplay
 extend ExtractTitleDetailsDisplay
@@ -116,7 +114,7 @@ to_field 'title_display_partname_tesim', extract_marc('245p'), trim_punctuation
 to_field 'title_display_partnumber_tesim', extract_marc('245n'), trim_punctuation
 to_field 'title_display_tesim', extract_marc('245a', alternate_script: false), trim_punctuation
 to_field 'title_tesim', extract_marc('245a')
-to_field 'title_vern_display_tesim', extract_marc('245a', alternate_script: :only), trim_punctuation
+to_field 'title_vern_display_tesim', extract_marc('245abfgknps', alternate_script: :only), trim_punctuation
 
 #    Subtitle
 to_field 'subtitle_display_tesim', extract_marc('245b', alternate_script: false), trim_punctuation
@@ -133,7 +131,7 @@ to_field 'title_former_tesim', extract_marc('247abcdefgnp')
 to_field 'title_graphic_tesim', extract_marc("880#{ATOZ}")
 to_field 'title_host_item_tesim', extract_marc("773#{ATOZ}:774#{ATOZ}")
 to_field 'title_key_tesi', extract_marc('222ab'), first_only
-to_field 'title_main_display_tesim', extract_title_main_display
+to_field 'title_main_display_tesim', extract_marc('245abfgknps', alternate_script: false), trim_punctuation
 to_field 'title_series_ssim', extract_marc(title_series_ssim_str(ATOZ))
 to_field 'title_ssort', marc_sortable_title
 to_field 'title_translation_tesim', extract_marc("242#{ATOZ}:505t:740#{ATOZ}")
@@ -141,13 +139,13 @@ to_field 'title_varying_tesim', extract_marc("246#{ATOG}np")
 
 # Author Fields
 to_field 'author_addl_tesim', extract_marc("700abcegqu:710abcdegnu:711acdegjnqu")
-to_field 'author_display_ssim', extract_marc("100abcdq:110#{ATOZ}:111#{ATOZ}")
+to_field 'author_display_ssim', extract_marc("100abcdgqe:110abcdgne:111acdegjnqj"), trim_punctuation
 # JSTOR isn't an author. Try to not use it as one
 to_field 'author_si', marc_sortable_author
 to_field 'author_ssim', extract_marc("100abcdq:110abd:111acd:700abcdq:710abd:711acd")
 to_field 'author_ssm', extract_marc("100abcdq:110#{ATOZ}:111#{ATOZ}", alternate_script: false)
 to_field 'author_tesim', extract_marc("100abcegqu:110abcdegnu:111acdegjnqu")
-to_field 'author_vern_ssim', extract_marc("100abcdq:110#{ATOZ}:111#{ATOZ}", alternate_script: :only)
+to_field 'author_vern_ssim', extract_marc("100abcdgqe:110abcdgne:111acdegjnqj", alternate_script: :only), trim_punctuation
 
 # Subject Fields
 to_field 'subject_addl_tsim', extract_marc("600vwxyz:610vwxyz:611vwxyz:630vwxyz:650vwxyz:651vwxyz:654vwxyz:655vwxyz")
@@ -162,7 +160,7 @@ to_field 'genre_ssim', extract_marc("655a")
 
 # Publication Fields
 to_field 'pub_date_isi', marc_publication_date
-to_field 'publication_main_display_ssim', extract_publication_main_display
+to_field 'publication_main_display_ssim', extract_marc('264abc:260abc:245fg:502abcdg'), first_only
 to_field 'published_ssim', extract_marc('260a', alternate_script: false), trim_punctuation
 to_field 'published_vern_ssim', extract_marc('260a', alternate_script: :only), trim_punctuation
 to_field 'publisher_details_display_ssim', extract_publisher_details_display
@@ -185,4 +183,4 @@ to_field 'library_ssim', extract_library
 
 # Collection Fields
 to_field 'collection_ssim', extract_collection
-to_field 'edition_tsim', extract_marc('250a')
+to_field 'edition_tsim', extract_marc('250a:254a')

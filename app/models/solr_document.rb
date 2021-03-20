@@ -29,4 +29,11 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+  def combined_author_display_vern
+    ret_array = []
+    self['author_display_ssim'].each { |v| ret_array << v } if self['author_display_ssim'].present?
+    self['author_vern_ssim'].each { |v| ret_array << v } if self['author_vern_ssim'].present?
+    ret_array
+  end
 end

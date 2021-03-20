@@ -40,5 +40,7 @@ TEST_ITEM = {
   issn_ssim: ['SOME OTHER MAGICAL NUMBER .12Q'],
   oclc_ssim: ['8675309'],
   other_standard_ids_ssim: ['M080142677'],
-  publisher_number_ssim: ['H. 4260 H.']
+  publisher_number_ssim: ['H. 4260 H.'],
+  author_vern_ssim: ['G. Jenkins'],
+  title_vern_display_tesim: ['Title of my Work']
 }.freeze
