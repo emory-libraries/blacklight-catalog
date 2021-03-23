@@ -200,7 +200,7 @@ RSpec.describe 'Indexing fields with custom logic' do
       let(:solr_doc) { SolrDocument.find('9937264718402486') }
 
       it 'has value of 856 3 since it has higher precedence than z' do
-        expect(solr_doc['url_fulltext_linktext_ssm']).to eq(['Subfield code 3'])
+        expect(solr_doc['url_fulltext_ssm']).to eq(["{\"http://purl.access.gpo.gov/GPO/LPS54510\":\"Subfield code 3\"}"])
       end
     end
 
@@ -208,7 +208,7 @@ RSpec.describe 'Indexing fields with custom logic' do
       let(:solr_doc) { SolrDocument.find('9937264718202486') }
 
       it 'has value of 856 y since it has higher precedence than 3 and z' do
-        expect(solr_doc['url_fulltext_linktext_ssm']).to eq(['Subfield code y'])
+        expect(solr_doc['url_fulltext_ssm']).to eq(["{\"http://purl.access.gpo.gov/GPO/LPS54510\":\"Subfield code y\"}"])
       end
     end
 
@@ -216,7 +216,7 @@ RSpec.describe 'Indexing fields with custom logic' do
       let(:solr_doc) { SolrDocument.find('9937264718102486') }
 
       it 'has value of 856 z' do
-        expect(solr_doc['url_fulltext_linktext_ssm']).to eq(['Subfield code z'])
+        expect(solr_doc['url_fulltext_ssm']).to eq(["{\"http://purl.access.gpo.gov/GPO/LPS54510\":\"Subfield code z\"}"])
       end
     end
 
@@ -224,7 +224,7 @@ RSpec.describe 'Indexing fields with custom logic' do
       let(:solr_doc) { SolrDocument.find('9937264717902486') }
 
       it 'has value of 856 y since it has higher precedence than z' do
-        expect(solr_doc['url_fulltext_linktext_ssm']).to eq(['Subfield code y'])
+        expect(solr_doc['url_fulltext_ssm'].first).to include('Subfield code y')
       end
     end
   end

@@ -1,15 +1,11 @@
 # frozen_string_literal: true
 
 class UrlFulltextPresenter
-  attr_reader :document, :config
+  attr_reader :solr_document
 
   def initialize(document:)
-    @document = document
-    @config = YAML.safe_load(File.open(Rails.root.join('config', 'metadata', 'url_fulltext.yml')))
+    @solr_document = document
   end
 
-  def terms
-    @config = @config.symbolize_keys
-    @document.slice(*@config.keys)
-  end
+  delegate :url_fulltext, to: :solr_document
 end

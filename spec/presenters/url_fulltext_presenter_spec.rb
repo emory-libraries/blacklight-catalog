@@ -2,15 +2,12 @@
 require 'rails_helper'
 
 RSpec.describe UrlFulltextPresenter do
-  let(:pres) { described_class.new(document: TEST_ITEM) }
-  let(:main_terms) do
-    { url_fulltext_ssm: ['http://www.example2.com'],
-      url_fulltext_linktext_ssm: ['Link Text for Book'] }
-  end
+  let(:pres) { described_class.new(document: SolrDocument.new(TEST_ITEM)) }
+
   context 'with a solr document' do
-    describe '#terms' do
-      it 'has the correct terms' do
-        expect(pres.terms).to eq(main_terms)
+    describe '#url_fulltext' do
+      it 'has correct return value' do
+        expect(pres.url_fulltext).to eq(["{\"http://www.example2.com\":\"Link Text for Book\"}"])
       end
     end
   end

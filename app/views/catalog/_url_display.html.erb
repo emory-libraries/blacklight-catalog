@@ -1,6 +1,10 @@
-<% doc_presenter = show_presenter(document) %>
-<% fields = presenter.new(document: doc_presenter.fields_to_render).terms %>
-<dl class="row dl-invert document-metadata">
-  <dt class='blacklight-<%= "#{url_field}".parameterize %> col-md-3'><%= render_document_show_field_label document, field: url_field %></dt>
-  <dd class='blacklight-<%= "#{url_field}".parameterize %> col-md-9'><%= link_to "#{doc_presenter.field_value fields[text_field]}", "#{doc_presenter.field_value fields[url_field]}" %></dd>
-</dl>
+<% fields = presenter.new(document: document).send("#{url_field}") || [] %>
+<% if fields.count > 0 %>
+  <dl class="row dl-invert document-metadata">
+    <% fields.each do |field| %>
+      <% parsed_field = JSON.parse(field) %>
+      <dt class='blacklight-<%= "#{t('catalog.show.url_fulltext_field')}".parameterize %> col-md-3'><%= render_document_show_field_label document, field: t('catalog.show.url_fulltext_field') %></dt>
+      <dd class='blacklight-<%= "#{t('catalog.show.url_fulltext_field')}".parameterize %> col-md-9'><%= link_to "#{parsed_field.values.first}", "#{parsed_field.keys.first}" %></dd>
+    <% end %>
+  </dl>
+<% end %>
