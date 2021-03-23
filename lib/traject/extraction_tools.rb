@@ -18,7 +18,15 @@ module ExtractionTools
   end
 
   def accumulate_urls(field, accumulator)
-    field.find_all { |sf| sf.code == 'u' }.each { |url| accumulator << url.value }
+    url = field.find { |f| f.code == 'u' }.value
+    link_text = if field['y'].present?
+                  field['y']
+                elsif field['3'].present?
+                  field['3']
+                elsif field['z'].present?
+                  field['z']
+                end
+    accumulator << { url.to_s => link_text }.to_json
   end
 
   def fields_z3(field)
@@ -27,16 +35,6 @@ module ExtractionTools
 
   def accumulate_field_u(field, accumulator)
     accumulator << field['u'] unless field['u'].nil?
-  end
-
-  def accumulate_linktext(field, accumulator)
-    if field['y'].present?
-      accumulator << field['y']
-    elsif field['3'].present?
-      accumulator << field['3']
-    elsif field['z'].present?
-      accumulator << field['z']
-    end
   end
 
   def notfulltext

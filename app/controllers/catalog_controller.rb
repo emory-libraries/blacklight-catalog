@@ -117,7 +117,6 @@ class CatalogController < ApplicationController
     config.add_show_field 'edition_tsim', label: 'Edition', helper_method: :multiple_values_new_line
     #   Where to find it section
     config.add_show_field 'url_fulltext_ssm', label: 'Full Text Access', helper_method: :multiple_values_new_line
-    config.add_show_field 'url_fulltext_linktext_ssm'
     #   Additional/Related Title Information Section
     config.add_show_field 'title_addl_tesim', label: 'Full Title', helper_method: :multiple_values_new_line
     config.add_show_field 'title_series_ssim', label: 'Series Titles', helper_method: :multiple_values_new_line

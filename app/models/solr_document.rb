@@ -36,4 +36,8 @@ class SolrDocument
     self['author_vern_ssim'].each { |v| ret_array << v } if self['author_vern_ssim'].present?
     ret_array
   end
+
+  def url_fulltext
+    self['url_fulltext_ssm']
+  end
 end
