@@ -1,0 +1,10 @@
+@import "blacklight_catalog/variables";
+
+h1.show-header {
+  font: normal bold $h1-show-font-size/normal $font-family-serif;
+  text-transform: none;
+  letter-spacing: normal;
+  color: $dark-blue;
+  text-align: left;
+  line-height: $h1-line-height;
+}

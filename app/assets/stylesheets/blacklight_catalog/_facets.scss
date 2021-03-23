@@ -1,0 +1,147 @@
+// The following rules are selectively brought in
+// and adapted from Blacklight's _facets.scss
+
+@media (min-width: 992px) {
+  .facets-toggleable-md .facets-collapse {
+    display: block !important;
+    width: 100%;
+  }
+}
+
+.homepage-content-heading {
+  font-size: $homepage-content-heading-font-size;
+  color: $base-blue;
+}
+
+.facets > .navbar {
+  padding: $navbar-padding-y;
+  margin-bottom: $facets-heading-margin-y;
+}
+
+.facet-limit {
+  margin-bottom: $spacer;
+}
+
+.facet-limit-active {
+  background-color: $base-blue;
+
+  .card-header {
+    background-color: $base-blue;
+
+    > button { color: $white; }
+  }
+}
+
+.facet-field-heading > .btn {
+  line-height: $facet-line-height;
+  color: $alt-dark-blue;
+}
+
+.facet-values {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  margin-bottom: $navbar-padding-y;
+
+  li {
+
+    display: table-row;
+    font-size: $facet-label-font-size;
+    line-height: $facet-label-line-height;
+    .selected {
+      color: $base-blue;
+      font-weight: $font-weight-bold;
+
+      &.facet-count {
+        font-weight: $font-weight-normal;
+      }
+    }
+
+  }
+
+  @mixin hyphens-auto {
+    overflow-wrap: break-word;
+    -webkit-hyphens: auto;
+    -o-hyphens: auto;
+    hyphens: auto;
+  }
+
+  .facet-label {
+    display: table-cell;
+    text-indent: -$spacer;
+    padding-left: $spacer;
+    padding-bottom: $spacer / 2;
+    @include hyphens-auto;
+
+    a {
+      font-weight: $font-weight-bold;
+      color: $alt-bright-blue;
+
+      &.remove {
+        color: $charcoal;
+        font-weight: $font-weight-bold;
+        padding-left: $spacer / 2;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .facet-count {
+    display: table-cell;
+    vertical-align: top;
+    text-align: right;
+    width: 5em;
+  }
+}
+
+.facet-extended-list {
+  .sort-options {
+    text-align:right;
+  }
+
+  .prev-next-links {
+    float:left;
+  }
+}
+
+#facets-toggler {
+  position: absolute;
+  left: $facet-toggler-position;
+}
+
+// The following rules are selectively brought in
+// and adapted from Blacklight's _bootstrap_overrides.scss
+
+.facet-field-heading {
+  border-bottom: $results-border-radius;
+  
+  button {
+    &::after {
+      content: "❯";
+      float: right;
+      transform: rotate(90deg);
+    }
+
+    &.collapsed {
+      border-bottom: 0;
+
+      &::after {
+        transform: rotate(0deg);
+        transition: transform 0.1s ease;
+      }
+    }
+  }
+}
+
+section#sidebar.search {
+  margin-top: $facet-top-margin;
+}
+
+.browse-link {
+  color: $base-blue;
+  
+  &:hover {
+    color: $bright-blue;
+    text-decoration: none;
+  }
+}
