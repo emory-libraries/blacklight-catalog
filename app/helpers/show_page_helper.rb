@@ -26,4 +26,11 @@ module ShowPageHelper
     return safe_join(combined_values, tag('br')) if combined_values.present?
     ''
   end
+
+  def multilined_links_to_facet(value)
+    field = value[:field]
+    ret_vals = value[:values].map { |v| link_to v, "/?f%5B#{field}%5D%5B%5D=" + CGI.escape(v) } if value[:values].present?
+    return safe_join(ret_vals, tag('br')) if ret_vals.present?
+    ''
+  end
 end

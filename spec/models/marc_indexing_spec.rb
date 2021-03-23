@@ -228,4 +228,19 @@ RSpec.describe 'Indexing fields with custom logic' do
       end
     end
   end
+
+  describe 'emory_collection_tesim field' do
+    let(:solr_doc) { SolrDocument.find('9937264718402486') }
+    let(:solr_doc_2) { SolrDocument.find('9937264718202486') }
+
+    it 'maps 710 indicator1 == 2, subfield code == 5 with value == GEU, pulls value from tag == a' do
+      expect(solr_doc['emory_collection_tesim']).to eq(
+        ['Raymond Danowski Poetry Library (Emory University. General Libraries)']
+      )
+    end
+
+    it 'maps nil when any of those rules do not apply' do
+      expect(solr_doc_2['emory_collection_tesim']).to be_nil
+    end
+  end
 end

@@ -64,27 +64,33 @@ module ExtractionTools
     ->(record, accumulator) { accumulator << MARC::FastXMLWriter.encode(record) }
   end
 
+  def corp_name_datafields(record)
+    record.fields('710').select do |f|
+      f.indicator1 == '2' && f.subfields.any? { |s| s.value == 'GEU' && s.code == '5' }
+    end
+  end
+
+  def c_n_subfield_values(datafields)
+    datafields&.map { |df| df.subfields.map { |sf| sf.value if sf.code == 'a' } }&.compact&.flatten
+  end
+
   def subject_tsim_str(atou)
     %W[
       600#{atou}
       610#{atou}
       611#{atou}
       630#{atou}
-      650abcde
-      651ae:653a
-      654abcde
-      655abc
+      650abcde:651ae:653a:654abcde:655abc
     ].join(':').freeze
   end
 
-  def title_series_ssim_str(atoz)
+  def title_series_ssim_str(atog)
     %W[
       440anpv:490av
-      800#{atoz}
-      810#{atoz}
-      811#{atoz}
-      830#{atoz}
-      840#{atoz}
+      830#{atog}kv
+      800#{atog}jklmnopqrstv
+      810#{atog}klmnoprstv
+      811acdefgjklnopqstv
     ].join(':').freeze
   end
 
@@ -92,21 +98,7 @@ module ExtractionTools
     %w[
       700gklmnoprst:710fgklmnopqrst
       711fgklnpst
-      730abcdefgklmnopqrst
-      740anp
-    ].join(':').freeze
-  end
-
-  def title_addl_tesim_str(atoz, atog, ktos)
-    %W[
-      130#{atoz}
-      210ab:222ab
-      240#{atog}#{ktos}
-      242abnp
-      243#{atog}#{ktos}
-      245abnps
-      246#{atog}np
-      247#{atog}np
+      730abcdefgklmnopqrst:740az:700f:505t
     ].join(':').freeze
   end
 
