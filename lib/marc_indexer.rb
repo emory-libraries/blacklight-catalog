@@ -28,6 +28,7 @@ require 'traject/extraction_tools'
 
 # Custom Method Requires
 require 'traject/extract_collection'
+require 'traject/extract_emory_collection'
 require 'traject/extract_format_string'
 require 'traject/extract_isbn'
 require 'traject/extract_library'
@@ -44,6 +45,7 @@ extend ExtractionTools
 
 # Custom Method Extensions
 extend ExtractCollection
+extend ExtractEmoryCollection
 extend ExtractFormatString
 extend ExtractIsbn
 extend ExtractLibrary
@@ -122,18 +124,21 @@ to_field 'subtitle_vern_display_tesim', extract_marc('245b', alternate_script: :
 #    Additional Title Fields
 to_field 'title_abbr_tesim', extract_marc('210ab')
 to_field 'title_added_entry_tesim', extract_marc(title_added_entry_tesim_str)
-to_field 'title_addl_tesim', extract_marc(title_addl_tesim_str(ATOZ, ATOG, KTOS))
+to_field 'title_addl_tesim', extract_marc("245#{ATOG}knps"), trim_punctuation
 to_field 'title_details_display_tesim', extract_title_details_display
 to_field 'title_enhanced_tesim', extract_marc("505#{ATOZ}")
+to_field 'title_former_ssim', extract_marc('247abcdefgnp:780abcdgikmnorstuwxyz')
 to_field 'title_former_tesim', extract_marc('247abcdefgnp')
 to_field 'title_graphic_tesim', extract_marc("880#{ATOZ}")
 to_field 'title_host_item_tesim', extract_marc("773#{ATOZ}:774#{ATOZ}")
 to_field 'title_key_tesi', extract_marc('222ab'), first_only
+to_field 'title_later_ssim', extract_marc('785abcdgikmnorstuxyz')
 to_field 'title_main_display_tesim', extract_marc('245abfgknps', alternate_script: false), trim_punctuation
-to_field 'title_series_ssim', extract_marc(title_series_ssim_str(ATOZ))
+to_field 'title_series_ssim', extract_marc(title_series_ssim_str(ATOG))
 to_field 'title_ssort', marc_sortable_title
-to_field 'title_translation_tesim', extract_marc("242#{ATOZ}:505t:740#{ATOZ}")
-to_field 'title_varying_tesim', extract_marc("246#{ATOG}np")
+to_field 'title_translation_tesim', extract_marc("242#{ATOZ}")
+to_field 'title_uniform_ssim', extract_marc("130adfklmnoprs:240#{ATOG}knps")
+to_field 'title_varying_tesim', extract_marc("246#{ATOG}inp")
 
 # Author Fields
 to_field 'author_addl_tesim', extract_marc("700abcegqu:710abcdegnu:711acdegjnqu")
@@ -181,3 +186,4 @@ to_field 'library_ssim', extract_library
 # Collection Fields
 to_field 'collection_ssim', extract_collection
 to_field 'edition_tsim', extract_marc('250a:254a')
+to_field 'emory_collection_tesim', extract_emory_collection

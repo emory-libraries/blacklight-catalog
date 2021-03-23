@@ -10,6 +10,15 @@ class AddlTitlesPresenter
 
   def terms
     @config = @config.symbolize_keys
-    @document.slice(*@config.keys)
+    keys_to_slice = @config.keys - collapsible_fields
+    @document.slice(*keys_to_slice)
+  end
+
+  def terms_in_collapsible
+    @document.slice(*collapsible_fields)
+  end
+
+  def collapsible_fields
+    [:title_added_entry_tesim, :title_varying_tesim, :title_abbr_tesim, :title_translation_tesim]
   end
 end

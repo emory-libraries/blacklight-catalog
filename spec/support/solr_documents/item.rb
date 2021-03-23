@@ -41,5 +41,9 @@ TEST_ITEM = {
   other_standard_ids_ssim: ['M080142677'],
   publisher_number_ssim: ['H. 4260 H.'],
   author_vern_ssim: ['G. Jenkins'],
-  title_vern_display_tesim: ['Title of my Work']
+  title_vern_display_tesim: ['Title of my Work'],
+  title_uniform_ssim: ['Uniform Title'],
+  title_former_ssim: ['Former Titles'],
+  title_later_ssim: ['Later Titles'],
+  emory_collection_tesim: ["Emory's Collection"]
 }.freeze

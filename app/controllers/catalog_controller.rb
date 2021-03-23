@@ -119,7 +119,11 @@ class CatalogController < ApplicationController
     config.add_show_field 'url_fulltext_ssm', label: 'Full Text Access', helper_method: :multiple_values_new_line
     #   Additional/Related Title Information Section
     config.add_show_field 'title_addl_tesim', label: 'Full Title', helper_method: :multiple_values_new_line
+    config.add_show_field 'title_uniform_ssim', label: 'Uniform Title', link_to_facet: true
+    config.add_show_field 'title_former_ssim', label: 'Former Titles', link_to_facet: true
+    config.add_show_field 'title_later_ssim', label: 'Later Titles', link_to_facet: true
     config.add_show_field 'title_series_ssim', label: 'Series Titles', helper_method: :multiple_values_new_line
+    config.add_show_field 'emory_collection_tesim', label: 'Collection', helper_method: :multiple_values_new_line
     config.add_show_field('title_added_entry_tesim',
       label: 'Related/Included Titles',
       helper_method: :multiple_values_new_line)
