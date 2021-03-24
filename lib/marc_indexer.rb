@@ -181,7 +181,7 @@ to_field 'url_fulltext_linktext_ssm', extract_url_fulltext_linktext
 to_field 'url_suppl_ssm', extract_url_suppl
 
 # Library Fields
-to_field 'library_ssim', extract_library
+to_field 'library_ssim', extract_library, translation_map('libraryname_map')
 
 # Collection Fields
 to_field 'collection_ssim', extract_collection
