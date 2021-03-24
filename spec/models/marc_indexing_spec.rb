@@ -137,9 +137,13 @@ RSpec.describe 'Indexing fields with custom logic' do
 
   describe 'library_ssim field' do
     let(:solr_doc) { SolrDocument.find('9937264718402486') }
+    let(:solr_doc_2) { SolrDocument.find('9937264718202486') }
 
-    it 'maps HOL852b' do
-      expect(solr_doc['library_ssim']).to eq(['UNIV'])
+    it 'maps HOL852 without LSC' do
+      expect(solr_doc['library_ssim']).to eq(['Robert W. Woodruff Library'])
+    end
+    it 'maps HOL852 with LSC' do
+      expect(solr_doc_2['library_ssim']).to eq(['Library Service Center', 'Robert W. Woodruff Library'])
     end
   end
 
