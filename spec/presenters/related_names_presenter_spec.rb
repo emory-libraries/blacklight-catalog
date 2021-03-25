@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.describe RelatedNamesPresenter do
   let(:pres) { described_class.new(document: TEST_ITEM) }
-  let(:details_terms) { { author_addl_tesim: ['Tim Jenkins'] } }
+  let(:details_terms) { { author_addl_display_tesim: ['Tim Jenkins'] } }
 
   context 'with a solr document' do
     describe '#terms' do

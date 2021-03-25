@@ -27,6 +27,7 @@ extend Blacklight::Marc::Indexer::Formats
 require 'traject/extraction_tools'
 
 # Custom Method Requires
+require 'traject/extract_author_addl_display'
 require 'traject/extract_collection'
 require 'traject/extract_emory_collection'
 require 'traject/extract_format_string'
@@ -44,6 +45,7 @@ require 'traject/extract_url_suppl'
 extend ExtractionTools
 
 # Custom Method Extensions
+extend ExtractAuthorAddlDisplay
 extend ExtractCollection
 extend ExtractEmoryCollection
 extend ExtractFormatString
@@ -141,7 +143,8 @@ to_field 'title_uniform_ssim', extract_marc("130adfklmnoprs:240#{ATOG}knps")
 to_field 'title_varying_tesim', extract_marc("246#{ATOG}inp")
 
 # Author Fields
-to_field 'author_addl_tesim', extract_marc("700abcegqu:710abcdegnu:711acdegjnqu")
+to_field 'author_addl_display_tesim', extract_author_addl_display
+to_field 'author_addl_ssim', extract_marc("700abcdgqt:710abcdgn:711acdegnqe", alternate_script: false), trim_punctuation
 to_field 'author_display_ssim', extract_marc("100abcdgqe:110abcdgne:111acdegjnqj"), trim_punctuation
 # JSTOR isn't an author. Try to not use it as one
 to_field 'author_si', marc_sortable_author

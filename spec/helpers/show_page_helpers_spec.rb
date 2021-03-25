@@ -60,4 +60,56 @@ RSpec.describe ShowPageHelper, type: :helper do
       )
     end
   end
+
+  context '#author_additional_format' do
+    let(:value) do
+      dupe = SHOW_PAGE_VALUE.dup
+      dupe[:values] = ["Tim Jenkins"]
+      dupe
+    end
+    let(:value_with_relator) do
+      dupe = SHOW_PAGE_VALUE.dup
+      dupe[:values] = ["Tim Jenkins relator: editor."]
+      dupe
+    end
+    let(:value_with_6_auth_addl) do
+      dupe = SHOW_PAGE_VALUE.dup
+      dupe[:values] = [
+        "Tim Jenkins relator: editor.",
+        "Sally Jenkins",
+        "Betsy Jenkins",
+        "Sal Weitzman relator: ghost writer.",
+        "Mike Birbiglia",
+        "Tim Conway relator: moral support."
+      ]
+      dupe
+    end
+
+    it 'converts a single valued additional author into a facet search hyperlink' do
+      expect(helper.author_additional_format(value)).to eq(
+        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Jenkins\">Tim Jenkins</a>"
+      )
+    end
+
+    it 'converts a single valued additional author with relator into a facet search hyperlink, leaving relator out of the link' do
+      expect(helper.author_additional_format(value_with_relator)).to eq(
+        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Jenkins\">Tim Jenkins</a>, editor."
+      )
+    end
+
+    it 'converts a values array with more than 5 items into a new-lined list with a collapsible after 5' do # rubocop:disable RSpec/ExampleLength
+      expect(helper.author_additional_format(value_with_6_auth_addl)).to eq(
+        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Jenkins\">Tim Jenkins</a>, editor." \
+        "<br /><a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Sally+Jenkins\">Sally Jenkins</a><br />" \
+        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Betsy+Jenkins\">Betsy Jenkins</a><br />" \
+        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Sal+Weitzman\">Sal Weitzman</a>, ghost writer.<br />" \
+        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Mike+Birbiglia\">Mike Birbiglia</a><br />" \
+        "<a class=\"btn btn-default additional-authors-collapse\" data-toggle=\"collapse\" role=\"button\" " \
+        "aria-expanded=\"false\" aria-controls=\"extended-author-addl\" href=\"#extended-author-addl\">" \
+        "Show more Authors/Creators</a><br /><span id=\"extended-author-addl\"" \
+        " class=\"collapse collapsible-addl-authors\"><a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Conway\">" \
+        "Tim Conway</a>, moral support.</span>"
+      )
+    end # rubocop:enable RSpec/ExampleLength
+  end
 end

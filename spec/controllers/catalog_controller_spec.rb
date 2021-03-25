@@ -28,10 +28,10 @@ RSpec.describe CatalogController, type: :controller do
       ['author_display_ssim', 'language_tesim', 'isbn_ssim', 'id', 'title_addl_tesim',
        'title_varying_tesim', 'edition_tsim', 'material_type_display_tesim', 'note_general_tsim',
        'publication_main_display_ssim', 'format_ssim', 'title_abbr_tesim', 'title_added_entry_tesim',
-       'title_series_ssim', 'title_translation_tesim', 'author_addl_tesim', 'genre_ssim',
-       'subject_display_ssim', 'url_suppl_ssm', 'issn_ssim', 'oclc_ssim', 'other_standard_ids_ssim',
-       'publisher_number_ssim', 'url_fulltext_ssm', 'title_uniform_ssim', 'title_former_ssim',
-       'title_later_ssim', 'emory_collection_tesim']
+       'title_series_ssim', 'title_translation_tesim', 'author_addl_display_tesim',
+       'genre_ssim', 'subject_display_ssim', 'url_suppl_ssm', 'issn_ssim', 'oclc_ssim',
+       'other_standard_ids_ssim', 'publisher_number_ssim', 'url_fulltext_ssm', 'title_uniform_ssim',
+       'title_former_ssim', 'title_later_ssim', 'emory_collection_tesim']
     end
 
     it { expect(show_fields).to contain_exactly(*expected_show_fields) }
