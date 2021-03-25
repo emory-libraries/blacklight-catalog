@@ -133,9 +133,9 @@ class CatalogController < ApplicationController
       label: 'Translated Titles',
       helper_method: :multiple_values_new_line)
     #   Related Names Section
-    config.add_show_field('author_addl_tesim',
+    config.add_show_field('author_addl_display_tesim',
       label: 'Additional Author/Creators',
-      helper_method: :multiple_values_new_line)
+      helper_method: :author_additional_format)
     #   Subjects/Genre Section
     config.add_show_field 'genre_ssim', label: 'Genre', helper_method: :multiple_values_new_line
     config.add_show_field 'subject_display_ssim', label: 'Subjects', helper_method: :multiple_values_new_line

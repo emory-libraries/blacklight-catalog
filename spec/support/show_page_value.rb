@@ -15,7 +15,7 @@ SHOW_PAGE_VALUE = {
     "genre_ssim": ["Genre example"], "lc_1letter_ssim": ["T - Technology"], "library_ssim": ["UNIV"],
     "title_series_ssim": ["The Jenkins Series"], "title_added_entry_tesim": ["The Jenkins Story"],
     "title_abbr_tesim": ["Jenk. Story"], "title_translation_tesim": ["Le Stori de Jenkins"],
-    "author_addl_tesim": ["Tim Jenkins"], "subject_display_ssim": ["Adventure"],
+    "author_addl_display_tesim": ["Tim Jenkins"], "subject_display_ssim": ["Adventure"],
     "url_suppl_ssim": ["http://www.example.com"], "issn_ssim": ["SOME OTHER MAGICAL NUMBER .12Q"],
     "oclc_ssim": ["8675309"], "other_standard_ids_ssim": ["M080142677"], "publisher_number_ssim": ["H. 4260 H."],
     "timestamp": "2021-03-18T14:43:52.592Z", "title_vern_display_tesim": ['Title of my Work']
