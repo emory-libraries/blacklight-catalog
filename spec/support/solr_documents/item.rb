@@ -32,7 +32,7 @@ TEST_ITEM = {
   title_added_entry_tesim: ['The Jenkins Story'],
   title_abbr_tesim: ['Jenk. Story'],
   title_translation_tesim: ['Le Stori de Jenkins'],
-  author_addl_tesim: ['Tim Jenkins'],
+  author_addl_display_tesim: ['Tim Jenkins'],
   subject_display_ssim: ['Adventure'],
   url_fulltext_ssm: ["{\"http://www.example2.com\":\"Link Text for Book\"}"],
   url_suppl_ssm: ['http://www.example.com'],

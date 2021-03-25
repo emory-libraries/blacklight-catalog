@@ -12,7 +12,7 @@
     <% end %>
   </dl>
     <% if collapsible_fields.length > 0 %>
-      <%= link_to t('catalog.show.collapsible.additional_title'),
+      <%= link_to collapse_message,
                       '#extended-terms',
                       class: 'btn btn-default additional-fields',
                       data: { toggle: 'collapse' },

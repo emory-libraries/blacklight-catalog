@@ -247,4 +247,29 @@ RSpec.describe 'Indexing fields with custom logic' do
       expect(solr_doc_2['emory_collection_tesim']).to be_nil
     end
   end
+
+  describe 'author_addl_display_tesim field' do
+    let(:solr_doc) { SolrDocument.find('9937264718402486') }
+    let(:solr_doc_2) { SolrDocument.find('9937264718202486') }
+    let(:expected_values) do
+      [
+        "Bonilla, Manuel G., 1920-", "Diocesan College (Rondebosch, South Africa)",
+        "Raymond Danowski Poetry Library (Emory University. General Libraries)"
+      ]
+    end
+    let(:expected_values_2) do
+      [
+        "United States. Central Intelligence Agency. Design Center",
+        "United States. Central Intelligence Agency relator: spycraft."
+      ]
+    end
+
+    it 'maps normally whenever 700e, 710e, or 711j do not exist' do
+      expect(solr_doc['author_addl_display_tesim']).to eq(expected_values)
+    end
+
+    it 'adds a "relator:" with the relator value whenever 700e, 710e, or 711j exist' do
+      expect(solr_doc_2['author_addl_display_tesim']).to eq(expected_values_2)
+    end
+  end
 end

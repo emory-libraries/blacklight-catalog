@@ -104,4 +104,47 @@ RSpec.describe "View a item's show page", type: :system, js: true do
       expect(page).to have_link('Librarian View')
     end
   end
+
+  context 'displaying Additional Authors/Creators' do
+    it 'shows a facet search hyperlink for the exact author string' do
+      expect(page).to have_link("Tim Jenkins", href: "/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Jenkins")
+    end
+
+    describe 'with a relator substring' do
+      it 'shows a link followed by the relator as plain text' do
+        delete_all_documents_from_solr
+        build_solr_docs(
+          TEST_ITEM.merge(
+            author_addl_display_tesim: ["Tim Jenkins relator: editor."]
+          )
+        )
+        visit solr_document_path('123')
+
+        expect(find('dd.blacklight-author_addl_display_tesim').text).to eq("Tim Jenkins, editor.")
+        expect(find('dd.blacklight-author_addl_display_tesim a').text).to eq("Tim Jenkins")
+      end
+    end
+
+    describe 'with more than 5 items' do
+      around do |example|
+        Capybara.ignore_hidden_elements = false
+        example.run
+        Capybara.ignore_hidden_elements = true
+      end
+
+      it 'provides a collapse and div for the hidden items' do
+        delete_all_documents_from_solr
+        build_solr_docs(
+          TEST_ITEM.merge(
+            author_addl_display_tesim: ["Tina", "Lisa", "Courtney", "Tim", "Bob", "Jeff"]
+          )
+        )
+        visit solr_document_path('123')
+
+        expect(page).to have_link 'Show more Authors/Creators'
+        expect(page).to have_css('span', id: 'extended-author-addl')
+        expect(find_all('span#extended-author-addl a').size).to eq(1)
+      end
+    end
+  end
 end
