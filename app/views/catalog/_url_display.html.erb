@@ -4,7 +4,7 @@
     <% fields.each do |field| %>
       <% parsed_field = JSON.parse(field) %>
       <dt class='blacklight-<%= "#{t('catalog.show.url_fulltext_field')}".parameterize %> col-md-3'><%= render_document_show_field_label document, field: t('catalog.show.url_fulltext_field') %></dt>
-      <dd class='blacklight-<%= "#{t('catalog.show.url_fulltext_field')}".parameterize %> col-md-9'><%= link_to "#{parsed_field.values.first}", "#{parsed_field.keys.first}" %></dd>
+      <dd class='blacklight-<%= "#{t('catalog.show.url_fulltext_field')}".parameterize %> col-md-9'><%= link_to "#{parsed_field.values.first || parsed_field.keys.first}", "#{parsed_field.keys.first}" %></dd>
     <% end %>
   </dl>
 <% end %>

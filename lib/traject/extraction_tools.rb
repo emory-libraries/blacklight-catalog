@@ -18,7 +18,7 @@ module ExtractionTools
   end
 
   def accumulate_urls(field, accumulator)
-    url = field.find { |f| f.code == 'u' }.value
+    url = field.find { |f| f.code == 'u' }&.value
     link_text = if field['y'].present?
                   field['y']
                 elsif field['3'].present?
