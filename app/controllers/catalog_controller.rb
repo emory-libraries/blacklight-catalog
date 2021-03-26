@@ -138,7 +138,7 @@ class CatalogController < ApplicationController
       helper_method: :author_additional_format)
     #   Subjects/Genre Section
     config.add_show_field 'genre_ssim', label: 'Genre', helper_method: :multiple_values_new_line
-    config.add_show_field 'subject_display_ssim', label: 'Subjects', helper_method: :multiple_values_new_line
+    config.add_show_field 'subject_display_ssim', label: 'Subjects', helper_method: :multilined_links_to_facet
     #   Description/Summary Section
     config.add_show_field 'language_tesim', label: 'Language', helper_method: :multiple_values_new_line
     config.add_show_field('material_type_display_tesim',

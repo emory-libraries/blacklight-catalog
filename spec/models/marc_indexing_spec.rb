@@ -176,17 +176,16 @@ RSpec.describe 'Indexing fields with custom logic' do
     let(:solr_doc) { SolrDocument.find('9937264718202486') }
     let(:excluded_elements) do
       [
-        "Population density Yemen (Republic) Maps", "Ethnic groups Yemen (Republic) Maps",
-        "Tribes Yemen (Republic) Maps", "Ethnology Yemen (Republic) Maps", "Rain and rainfall Yemen (Republic) Maps",
-        "Land use Yemen (Republic) Maps", "Economic history", "Ethnic groups", "Ethnology",
-        "Population", "Population density", "Rain and rainfall", "Religion", "Tribes"
+        "Economic history.", "Ethnic groups.", "Ethnology.", "Population.", "Population density.",
+        "Rain and rainfall.", "Religion.", "Tribes.", "Yemen (Republic)"
       ]
     end
     let(:included_elements) do
       [
-        "Yemen (Republic) Maps.", "Yemen (Republic) Population Maps.",
-        "Yemen (Republic) Economic conditions Maps.", "Yemen (Republic) Religion Maps.",
-        "Yemen (Republic)"
+        "Population density--Yemen (Republic)--Maps.", "Ethnic groups--Yemen (Republic)--Maps.",
+        "Tribes--Yemen (Republic)--Maps.", "Ethnology--Yemen (Republic)--Maps.", "Rain and rainfall--Yemen (Republic)--Maps.",
+        "Land use--Yemen (Republic)--Maps.", "Yemen (Republic)--Maps.", "Yemen (Republic)--Population--Maps.",
+        "Yemen (Republic)--Economic conditions--Maps.", "Yemen (Republic)--Religion--Maps."
       ]
     end
 
