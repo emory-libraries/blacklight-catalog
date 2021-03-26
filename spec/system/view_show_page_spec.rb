@@ -26,7 +26,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
       [
         "George JenkinsG. Jenkins", 'A dummy publication', 'A sample edition', 'Book', 'More title info',
         'Link Text for Book', 'The Jenkins Series', 'The Jenkins Story', 'Variant title',
-        'Jenk. Story', 'Le Stori de Jenkins', 'Tim Jenkins', 'Genre example', 'Adventure', 'English',
+        'Jenk. Story', 'Le Stori de Jenkins', 'Tim Jenkins', 'Genre example', 'Adventure--More Adventures.', 'English',
         '1 online resource (111 pages)', 'General note', 'http://www.example.com',
         '123', '8675309', 'H. 4260 H.', 'M080142677', 'SOME MAGICAL NUM .66G',
         'SOME OTHER MAGICAL NUMBER .12Q', 'Uniform Title', 'Former Titles', 'Later Titles',
@@ -144,6 +144,62 @@ RSpec.describe "View a item's show page", type: :system, js: true do
         expect(page).to have_link 'Show more Authors/Creators'
         expect(page).to have_css('span', id: 'extended-author-addl')
         expect(find_all('span#extended-author-addl a').size).to eq(1)
+      end
+    end
+  end
+
+  context 'Subjects/Genre section' do
+    describe 'check for presence of subject links' do
+      it 'has hyperlinked subjects' do
+        expect(page).to have_link('Adventure--More Adventures.',
+          href: '/?f%5Bsubject_display_ssim%5D%5B%5D=Adventure--More+Adventures.')
+      end
+    end
+
+    describe 'with fields missing' do
+      before do
+        delete_all_documents_from_solr
+      end
+
+      context 'subject is missing' do
+        before do
+          build_solr_docs(
+            TEST_ITEM.except(:subject_display_ssim)
+          )
+          visit solr_document_path('123')
+        end
+
+        it 'does not show subject label when subject display is missing' do
+          expect(page).not_to have_content('Subjects:')
+          expect(page).not_to have_css('dt', class: 'blacklight-subject_display_ssim')
+        end
+      end
+
+      context 'genre is missing' do
+        before do
+          build_solr_docs(
+            TEST_ITEM.except(:genre_ssim)
+          )
+          visit solr_document_path('123')
+        end
+
+        it 'does not show genre label when genre display is missing' do
+          expect(page).not_to have_content('Genre:')
+          expect(page).not_to have_css('dt', class: 'blacklight-genre_ssim')
+        end
+      end
+
+      context 'subjects and genre both missing' do
+        before do
+          build_solr_docs(
+            TEST_ITEM.except(:genre_ssim, :subject_display_ssim)
+          )
+          visit solr_document_path('123')
+        end
+
+        it 'does not show genre/subject or main heading label when genre and subject display are missing' do
+          expect(page).not_to have_css('h4', class: 'blacklight-Subjects/Genre')
+        end
       end
     end
   end
