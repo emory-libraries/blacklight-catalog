@@ -20,11 +20,9 @@ module ExtractAuthorAddlDisplay
 
   def build_ret_strings(record, field_num, text_fields, relator_field, ret_values)
     record.fields(field_num).each do |f|
-      build_str = marc21.trim_punctuation(
-        text_fields.map do |t|
-          f.subfields.map { |sf| sf.value if sf.code == t }.compact.flatten
-        end.compact.flatten.join(' ')
-      )
+      build_arr = []
+      f.subfields.each { |sf| build_arr << sf.value if text_fields.any? { |tf| tf == sf.code } }.join(' ')
+      build_str = marc21.trim_punctuation(build_arr.join(' '))
       build_str += " relator: #{f[relator_field]}" if f[relator_field].present?
       ret_values << build_str
     end
