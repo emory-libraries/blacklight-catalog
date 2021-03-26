@@ -104,7 +104,7 @@ RSpec.describe 'Indexing fields with custom logic' do
     let(:solr_doc) { SolrDocument.find('9937264718202486') }
 
     it 'maps 260, 264, and 008 fields' do
-      expect(solr_doc['publisher_details_display_ssim']).to eq([" Central Intelligence Agency,  Washington, D.C. xx#"])
+      expect(solr_doc['publisher_details_display_ssim']).to eq(["[Central Intelligence Agency], [Washington, D.C.] : xx#"])
     end
   end
 
