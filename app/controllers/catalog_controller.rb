@@ -57,6 +57,7 @@ class CatalogController < ApplicationController
     # When users venture away from the homepage, the full list of facets will
     # be available to them. Any field listed below will appear on the homepage facets.
     config.homepage_facet_fields = ['marc_resource_ssim', 'library_ssim', 'format_ssim', 'language_ssim', 'pub_date_isi']
+    config.truncate_field_values = ['table_of_contents_tesim', 'summary_tesim', 'note_publication_tesim', 'note_publication_dates_tesim', 'note_language_tesim', 'note_accessibility_tesim', 'material_type_display_tesim', 'note_technical_tesim', 'note_access_restriction_tesim', 'note_use_tesim', 'note_general_tsim', 'note_local_tesim', 'note_participant_tesim', 'url_suppl_ssm' ]
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
