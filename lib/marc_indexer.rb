@@ -88,8 +88,16 @@ to_field "id", extract_marc("001"), trim, first_only
 
 # Mass of Data Fields
 to_field 'marc_display_tesi', get_xml
+to_field 'note_access_restriction_tesim', extract_marc('506a3')
+to_field 'note_accessibility_tesim', extract_marc('532a:341abcde3')
 to_field 'note_general_tsim', extract_marc('500a')
+to_field 'note_local_tesim', extract_marc('590a')
+to_field 'note_participant_tesim', extract_marc('511a')
+to_field 'note_publication_tesim', extract_marc('581a3')
+to_field 'note_use_tesim', extract_marc('540a3')
 to_field 'summary_tesim', extract_marc('520a')
+to_field 'table_of_contents_tesim', extract_marc('505agrt')
+to_field 'note_technical_tesim', extract_marc('538a')
 to_field "text_tesi", extract_all_marc_values(from: '010', to: '899') do |_r, acc|
   acc.replace [acc.join(' ')] # turn it into a single string
 end
@@ -97,11 +105,12 @@ end
 # Language Fields
 to_field "language_ssim", marc_languages('008[35-37]:041a:041d')
 to_field "language_tesim", marc_languages('008[35-37]:041a:041d')
+to_field "note_language_tesim", extract_marc('546ab3')
 
 # Type Fields
 to_field "format_ssim", extract_format_string
 to_field 'marc_resource_ssim', extract_marc_resource
-to_field 'material_type_display_tesim', extract_marc('300a'), trim_punctuation
+to_field 'material_type_display_tesim', extract_marc('300abcef'), trim_punctuation
 
 # Various Identification Fields
 to_field "isbn_ssim", extract_isbn
@@ -165,6 +174,7 @@ to_field 'subject_tsim', extract_marc(subject_tsim_str(ATOU))
 to_field 'genre_ssim', extract_marc("655a")
 
 # Publication Fields
+to_field 'note_publication_dates_tesim', extract_marc('362a')
 to_field 'pub_date_isi', marc_publication_date
 to_field 'publication_main_display_ssim', extract_marc('264abc:260abc:245fg:502abcdg'), first_only
 to_field 'published_ssim', extract_marc('260a', alternate_script: false), trim_punctuation
@@ -180,6 +190,8 @@ to_field 'lc_b4cutter_ssim', extract_marc('050a'), first_only
 to_field 'lc_callnum_ssim', extract_marc('050ab'), first_only
 
 # URL Fields
+to_field 'finding_aid_text_ssim', extract_marc('555|0*|a'), trim_punctuation
+to_field 'finding_aid_url_ssim', extract_marc('555|0*|u')
 to_field 'url_fulltext_ssm', extract_url_fulltext
 to_field 'url_suppl_ssm', extract_url_suppl
 

@@ -68,7 +68,7 @@ RSpec.describe OaiProcessingSingleService do
               "?verb=GetRecord&identifier=oai:alma.blah:single_record_updated&metadataPrefix=marc21",
               'smackety')
           end.to change { solr_field_value_for('990000954720302486', 'material_type_display_tesim') }
-            .from(['34 pages']).to(['44 pages'])
+            .from(['34 pages ; 26 cm.']).to(['44 pages ; 26 cm.'])
         end
       end
     end
