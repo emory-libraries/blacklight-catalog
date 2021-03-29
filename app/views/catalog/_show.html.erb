@@ -1,11 +1,11 @@
 <% # [Blacklight-overwrite v7.4.1] Overwrites the way fields get displayed on item show page %>
-<%= render 'metadata_block', document: document, presenter: MainMetadataPresenter, title: '' %>
+<%= render 'metadata_block', document: document, presenter: MainMetadataPresenter, title: '', myclass: "" %>
 <% # New partial for request options %>
 <%= render :partial => 'show_request_options', :locals => {:document => document} %>
 <%= tag.h2 t('catalog.show.more_details_header'), class: "more-details-header" %><br/>
 <%= render 'metadata_block_collapsible', document: document, presenter: AddlTitlesPresenter, title: t('catalog.show.additional_title'), collapse_message: t('catalog.show.collapsible.additional_title') %>
-<%= render 'metadata_block', document: document, presenter: RelatedNamesPresenter, title: t('catalog.show.related_names') %>
-<%= render 'metadata_block', document: document, presenter: SubjectsGenrePresenter, title: t('catalog.show.subjects_genre') %>
-<%= render 'metadata_block', document: document, presenter: DescriptionSummaryPresenter, title: t('catalog.show.description_summary') %>
-<%= render 'metadata_block', document: document, presenter: AddlIdsPresenter, title: t('catalog.show.addl_ids') %>
+<%= render 'metadata_block', document: document, presenter: RelatedNamesPresenter, title: t('catalog.show.related_names'),  myclass: "" %>
+<%= render 'metadata_block', document: document, presenter: SubjectsGenrePresenter, title: t('catalog.show.subjects_genre'),  myclass: "" %>
+<%= render 'metadata_block', document: document, presenter: DescriptionSummaryPresenter, title: t('catalog.show.description_summary'), myclass: 'truncate' %>
+<%= render 'metadata_block', document: document, presenter: AddlIdsPresenter, title: t('catalog.show.addl_ids'),  myclass: "" %>
 <script>checkRequestOptions();</script>
