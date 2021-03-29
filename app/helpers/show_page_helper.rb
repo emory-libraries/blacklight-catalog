@@ -1,15 +1,24 @@
 # frozen_string_literal: true
 module ShowPageHelper
-  def convert_solr_value_to_url(value)
-    links = value[:document][value[:field]].map do |link|
-      tag.a link, { href: link, target: '_blank', rel: 'noopener noreferrer' }
+  def generic_solr_value_to_url(value)
+    convert_solr_values_to_url(values_of_field(value), values_of_field(value))
+  end
+
+  def finding_aid_links(value)
+    convert_solr_values_to_url(value[:document]['finding_aid_text_ssim'], values_of_field(value))
+  end
+
+  def convert_solr_values_to_url(text, links)
+    text_links_equal = text.size == links.size
+    mapped_links = links.map.with_index(0) do |link, index|
+      url_text = text_links_equal ? text[index] : text&.first || link
+      tag.a url_text, { href: link, target: '_blank', rel: 'noopener noreferrer' }
     end
-    safe_join(links, tag('br'))
+    safe_join(mapped_links, tag('br'))
   end
 
   def multiple_values_new_line(value)
-    items = value[:document][value[:field]]
-    safe_join(items, tag('br'))
+    safe_join(values_of_field(value), tag('br'))
   end
 
   def vernacular_title_populator(document)
@@ -29,7 +38,7 @@ module ShowPageHelper
 
   def multilined_links_to_facet(value)
     field = value[:field]
-    ret_vals = value[:values].map { |v| link_to v, "/?f%5B#{field}%5D%5B%5D=" + CGI.escape(v) } if value[:values].present?
+    ret_vals = value[:values].uniq.map { |v| link_to v, "/?f%5B#{field}%5D%5B%5D=" + CGI.escape(v) } if value[:values].present?
     return safe_join(ret_vals, tag('br')) if ret_vals.present?
     ''
   end
@@ -77,5 +86,9 @@ module ShowPageHelper
     end
     return safe_join(ret_vals, tag('br')) if ret_vals.present?
     ''
+  end
+
+  def values_of_field(value)
+    value[:document][value[:field]]
   end
 end

@@ -72,7 +72,7 @@ RSpec.describe OaiProcessingService do
           end.to change { solr_field_value_for('990000954720302486', 'lccn_ssim') }
             .from(nil).to(['sn 8675309'])
             .and change { solr_field_value_for('990028391040302486', 'material_type_display_tesim') }
-            .from(['34 pages']).to(['44 pages'])
+            .from(['34 pages ; 26 cm.']).to(['44 pages ; 26 cm.'])
         end
       end
     end
