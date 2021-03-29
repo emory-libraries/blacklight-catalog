@@ -9,7 +9,7 @@ function checkRequestOptions(){
 $(document).ready(function() {
   (function() {
     var showChar = 160;
-    var ellipsestext = "...";
+    var ellipsestext = "…";
 
     $(".truncate").each(function() {
       var content = $(this).html();
@@ -36,10 +36,10 @@ $(document).ready(function() {
 
       if (thisEl.hasClass("less")) {
         cT.prev(tX).toggle();
-        cT.slideToggle();
+        cT.toggle();
       } else {
         cT.toggle();
-        cT.next(tX).fadeToggle();
+        cT.next(tX).toggle();
       }
       return false;
     });
@@ -48,4 +48,3 @@ $(document).ready(function() {
 
   /* end ready */
 });
-
