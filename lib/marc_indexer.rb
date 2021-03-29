@@ -32,6 +32,7 @@ require 'traject/extract_collection'
 require 'traject/extract_emory_collection'
 require 'traject/extract_format_string'
 require 'traject/extract_isbn'
+require 'traject/extract_other_standard_ids'
 require 'traject/extract_library'
 require 'traject/extract_marc_resource'
 require 'traject/extract_publisher_details_display'
@@ -50,6 +51,7 @@ extend ExtractCollection
 extend ExtractEmoryCollection
 extend ExtractFormatString
 extend ExtractIsbn
+extend ExtractOtherStandardIds
 extend ExtractLibrary
 extend ExtractMarcResource
 extend ExtractPublisherDetailsDisplay
@@ -65,6 +67,14 @@ ATOU = ('a'..'u').to_a.join('').freeze
 ATOG = ('a'..'g').to_a.join('').freeze
 KTOS = ('k'..'s').to_a.join('').freeze
 VTOZ = ('v'..'z').to_a.join('').freeze
+
+# Override constant to include OCLC prefix
+Traject::Macros::Marc21Semantics::OCLCPAT = /
+  \A\s*
+  (?:(?:\(OCoLC\)) |
+     (?:\(OCoLC\))?(?:(?:ocm)|(?:ocn)|(?:on)|(?:OCLC))
+     )(\d+)
+     /x.freeze
 
 settings do
   # type may be 'binary', 'xml', or 'json'
@@ -105,10 +115,10 @@ to_field 'material_type_display_tesim', extract_marc('300a'), trim_punctuation
 
 # Various Identification Fields
 to_field "isbn_ssim", extract_isbn
-to_field 'issn_ssim', extract_marc('022ay')
+to_field 'issn_ssim', extract_marc('022ay:800x:810x:811x:830x')
 to_field 'lccn_ssim', extract_marc('010a')
 to_field 'oclc_ssim', oclcnum('019a:035a')
-to_field 'other_standard_ids_ssim', extract_marc('024a')
+to_field 'other_standard_ids_ssim', extract_other_standard_ids
 
 # Title Fields
 #    Primary Title
@@ -171,7 +181,7 @@ to_field 'published_ssim', extract_marc('260a', alternate_script: false), trim_p
 to_field 'published_vern_ssim', extract_marc('260a', alternate_script: :only), trim_punctuation
 to_field 'publisher_details_display_ssim', extract_publisher_details_display
 to_field 'publisher_location_ssim', extract_marc("260a:264a:008[15-17]"), trim_punctuation
-to_field 'publisher_number_ssim', extract_marc('028a')
+to_field 'publisher_number_ssim', extract_marc('028ab')
 
 # Library of Congress Fields
 to_field 'lc_1letter_ssim', extract_marc('050a:090a'), first_letter, translation_map('callnumber_map')
