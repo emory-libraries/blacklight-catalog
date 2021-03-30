@@ -24,15 +24,15 @@ RSpec.describe ShowPageHelper, type: :helper do
   let(:solr_doc) { SolrDocument.find(TEST_ITEM[:id]) }
   let(:solr_doc2) { SolrDocument.find('456') }
 
-  context '#convert_solr_value_to_url' do
+  context '#generic_solr_value_to_url' do
     it 'converts a single value to an anchor tag' do
-      expect(helper.convert_solr_value_to_url(value)).to eq(
+      expect(helper.generic_solr_value_to_url(value)).to eq(
         "<a href=\"http://www.example.com\" target=\"_blank\" rel=\"noopener noreferrer\">http://www.example.com</a>"
       )
     end
 
     it 'converts a multiple values into two anchor tags separated by a breakline' do
-      expect(helper.convert_solr_value_to_url(multivalue)).to eq(
+      expect(helper.generic_solr_value_to_url(multivalue)).to eq(
         "<a href=\"http://www.example.com\" target=\"_blank\" rel=\"noopener noreferrer\">http://www.example.com</a>" \
           "<br /><a href=\"http://www.example.com/2\" target=\"_blank\" rel=\"noopener noreferrer\">http://www.example.com/2</a>"
       )

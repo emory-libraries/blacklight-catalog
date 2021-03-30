@@ -140,12 +140,34 @@ class CatalogController < ApplicationController
     config.add_show_field 'genre_ssim', label: 'Genre', helper_method: :multiple_values_new_line
     config.add_show_field 'subject_display_ssim', label: 'Subjects', helper_method: :multilined_links_to_facet
     #   Description/Summary Section
-    config.add_show_field 'language_tesim', label: 'Language', helper_method: :multiple_values_new_line
+    config.add_show_field 'finding_aid_url_ssim', label: 'Finding Aid', helper_method: :finding_aid_links
+    config.add_show_field('table_of_contents_tesim',
+      label: 'Table of Contents',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field 'summary_tesim', label: 'Summary', helper_method: :multiple_values_new_line
+    config.add_show_field 'note_publication_tesim', label: 'Publication Note', helper_method: :multiple_values_new_line
+    config.add_show_field('note_publication_dates_tesim',
+      label: 'Publication Dates',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field 'language_ssim', label: 'Language', helper_method: :multilined_links_to_facet
+    config.add_show_field 'note_language_tesim', label: 'Language Note', helper_method: :multiple_values_new_line
+    config.add_show_field('note_accessibility_tesim',
+      label: 'Accessibility Note',
+      helper_method: :multiple_values_new_line)
     config.add_show_field('material_type_display_tesim',
       label: 'Physical Type/Desription',
       helper_method: :multiple_values_new_line)
+    config.add_show_field 'note_technical_tesim', label: 'Technical Note', helper_method: :multiple_values_new_line
+    config.add_show_field('note_access_restriction_tesim',
+      label: 'Restrictions on Access',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field 'note_use_tesim', label: 'Use and Reproduction'
     config.add_show_field 'note_general_tsim', label: 'General Note', helper_method: :multiple_values_new_line
-    config.add_show_field 'url_suppl_ssm', label: 'Related Resources Link', helper_method: :convert_solr_value_to_url
+    config.add_show_field 'note_local_tesim', label: 'Local Note', helper_method: :multiple_values_new_line
+    config.add_show_field('note_participant_tesim',
+      label: 'Participant/Performer Note',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field 'url_suppl_ssm', label: 'Related Resources Link', helper_method: :generic_solr_value_to_url
     #   Additional Identifiers Section
     config.add_show_field 'id', label: 'Catalog ID (MMSID)'
     config.add_show_field 'isbn_ssim', label: 'ISBN', helper_method: :multiple_values_new_line

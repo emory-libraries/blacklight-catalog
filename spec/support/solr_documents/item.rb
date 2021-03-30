@@ -45,5 +45,17 @@ TEST_ITEM = {
   title_uniform_ssim: ['Uniform Title'],
   title_former_ssim: ['Former Titles'],
   title_later_ssim: ['Later Titles'],
-  emory_collection_tesim: ["Emory's Collection"]
+  emory_collection_tesim: ["Emory's Collection"],
+  finding_aid_url_ssim: ['http://www.example.com'],
+  finding_aid_text_ssim: ['Finding Aid Text'],
+  table_of_contents_tesim: ["1,2: Freddy's Coming For You"],
+  note_publication_tesim: ['This is a Publication Note.'],
+  note_publication_dates_tesim: ['Began with: Vol. 1, no. 1 (Jan./Feb. 2009)'],
+  note_language_tesim: ['Language notes.'],
+  note_accessibility_tesim: ['A note on accessibility'],
+  note_technical_tesim: ['CDROM included.'],
+  note_use_tesim: ['This eBook is made available Open Access under a CC BY-NC-ND 4.0 license:'],
+  note_access_restriction_tesim: ['Open Access'],
+  note_local_tesim: ['A local note.'],
+  note_participant_tesim: ['A note about a performer.']
 }.freeze
