@@ -160,7 +160,7 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
 
     it 'maps 490a when exact 710(s) are not found' do
-      expect(solr_doc_2['collection_ssim']).to eq(['Open-file report ;'])
+      expect(solr_doc_2['collection_ssim']).to eq(['Open-file report'])
     end
 
     it 'maps 490a when it is the only field available' do
