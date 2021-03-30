@@ -6,6 +6,6 @@
 <%= render 'metadata_block_collapsible', document: document, presenter: AddlTitlesPresenter, title: t('catalog.show.additional_title'), collapse_message: t('catalog.show.collapsible.additional_title') %>
 <%= render 'metadata_block', document: document, presenter: RelatedNamesPresenter, title: t('catalog.show.related_names') %>
 <%= render 'metadata_block', document: document, presenter: SubjectsGenrePresenter, title: t('catalog.show.subjects_genre') %>
-<%= render 'metadata_block', document: document, presenter: DescriptionSummaryPresenter, title: t('catalog.show.description_summary'), myclass: 'truncate' %>
+<%= render 'metadata_block', document: document, presenter: DescriptionSummaryPresenter, title: t('catalog.show.description_summary') %>
 <%= render 'metadata_block', document: document, presenter: AddlIdsPresenter, title: t('catalog.show.addl_ids') %>
 <script>checkRequestOptions();</script>
