@@ -160,7 +160,7 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
 
     it 'maps 490a when exact 710(s) are not found' do
-      expect(solr_doc_2['collection_ssim']).to eq(['Open-file report ;'])
+      expect(solr_doc_2['collection_ssim']).to eq(['Open-file report'])
     end
 
     it 'maps 490a when it is the only field available' do
@@ -269,6 +269,24 @@ RSpec.describe 'Indexing fields with custom logic' do
 
     it 'adds a "relator:" with the relator value whenever 700e, 710e, or 711j exist' do
       expect(solr_doc_2['author_addl_display_tesim']).to eq(expected_values_2)
+    end
+  end
+
+  describe 'oclc_ssim field' do
+    let(:solr_doc) { SolrDocument.find('9937264717902486') }
+
+    it 'maps 035a field with OCLC prefix' do
+      expect(solr_doc['oclc_ssim']).to eq(['808373985'])
+    end
+  end
+
+  describe 'other_standard_ids_ssim field' do
+    let(:solr_doc) { SolrDocument.find('9937264717902486') }
+
+    it 'maps 024a with prefix from indicator1' do
+      # saves prefix from ind1 and value from subfield `a`, or only `a` value if ind1 is blank
+      expect(solr_doc['other_standard_ids_ssim']).to eq(["Universal Product Code: 085392844524", "DOI: 10.1163/9789401210720",
+                                                         "978940121072021"])
     end
   end
 end
