@@ -1,20 +1,22 @@
 # frozen_string_literal: true
 module ShowPageHelper
   def generic_solr_value_to_url(value)
-    convert_solr_values_to_url(values_of_field(value), values_of_field(value))
+    url_arr = build_arr_links_text_split(values_of_field(value))
+    return safe_join(url_arr, tag('br')) if url_arr.present?
+    ''
   end
 
-  def finding_aid_links(value)
-    convert_solr_values_to_url(value[:document]['finding_aid_text_ssim'], values_of_field(value))
-  end
-
-  def convert_solr_values_to_url(text, links)
-    text_links_equal = text.size == links.size
-    mapped_links = links.map.with_index(0) do |link, index|
-      url_text = text_links_equal ? text[index] : text&.first || link
-      tag.a url_text, { href: link, target: '_blank', rel: 'noopener noreferrer' }
+  def build_arr_links_text_split(values)
+    values.map do |v|
+      url, text = pull_url_text_from_str(v)
+      tag.a(text, href: url, target: '_blank', rel: 'noopener noreferrer')
     end
-    safe_join(mapped_links, tag('br'))
+  end
+
+  def pull_url_text_from_str(str)
+    link_pieces = str.split(' text: ')
+    # url first, text second
+    [link_pieces.first, (link_pieces.size > 1 ? link_pieces[1] : link_pieces.first)]
   end
 
   def multiple_values_new_line(value)

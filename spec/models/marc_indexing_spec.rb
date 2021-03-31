@@ -289,4 +289,72 @@ RSpec.describe 'Indexing fields with custom logic' do
                                                          "978940121072021"])
     end
   end
+
+  describe 'url_suppl_ssim field' do
+    context "when 856 indicator2 == 2 and either y, 3, or z are present" do
+      let(:solr_doc) { SolrDocument.find('9937264718402486') }
+
+      it 'has value of 856u and text = 3 since it has higher precedence than z' do
+        expect(solr_doc['url_suppl_ssim']).to eq(
+          ["http://excerpts.contentreserve.com/FormatType-425/3450-1/791128-HarryPotterAndTheSorcerersStone.mp3 text: This is the right code"]
+        )
+      end
+
+      it 'does not contain the z value since 3 is present and has priority' do
+        expect(solr_doc['url_suppl_ssim'].first).not_to include("This is not the right code.")
+      end
+    end
+
+    context "when 856 indicator2 == 2 is present, but y, 3, or z are not" do
+      let(:solr_doc) { SolrDocument.find('9937264718202486') }
+
+      it 'has value of 856u since none of the text fields are present' do
+        expect(solr_doc['url_suppl_ssim']).to eq(
+          ["http://images.contentreserve.com/ImageType-100/3450-1/{02FAA733-5F26-4039-96FA-7DE7EE74C43B}Img100.jpg"]
+        )
+        expect(solr_doc['url_suppl_ssim'].first).not_to include('text: ')
+      end
+    end
+
+    context "when no 856u indicator2 == 2 fields are present" do
+      let(:solr_doc) { SolrDocument.find('9937264718102486') }
+      let(:solr_doc2) { SolrDocument.find('9937264717902486') }
+
+      it 'those fields are empty' do
+        [solr_doc, solr_doc2].each { |sd| expect(sd['url_suppl_ssim']).to be_nil }
+      end
+    end
+  end
+
+  describe 'finding_aid_url_ssim field' do
+    context "when 555au indicator1 == 0 is present" do
+      let(:solr_doc) { SolrDocument.find('9937264718402486') }
+
+      it 'has value of 555u and text = a' do
+        expect(solr_doc['finding_aid_url_ssim']).to eq(
+          ["http://images.contentreserve.com/ImageType-100/3450-1/{02FAA733-5F26-4039-96FA-7DE7EE74C43B}Img100.jpg text: Some funky image"]
+        )
+      end
+    end
+
+    context "when 555u indicator1 == 0 is present, but a is not" do
+      let(:solr_doc) { SolrDocument.find('9937264718202486') }
+
+      it 'has value of 555u only since the text field is not present' do
+        expect(solr_doc['finding_aid_url_ssim']).to eq(
+          ["http://excerpts.contentreserve.com/FormatType-425/3450-1/791128-HarryPotterAndTheSorcerersStone.mp3"]
+        )
+        expect(solr_doc['finding_aid_url_ssim'].first).not_to include('text: ')
+      end
+    end
+
+    context "when no 555u indicator1 == 0 fields are present" do
+      let(:solr_doc) { SolrDocument.find('9937264718102486') }
+      let(:solr_doc2) { SolrDocument.find('9937264717902486') }
+
+      it 'those fields are empty' do
+        [solr_doc, solr_doc2].each { |sd| expect(sd['finding_aid_url_ssim']).to be_nil }
+      end
+    end
+  end
 end

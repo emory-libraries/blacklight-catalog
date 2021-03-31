@@ -30,6 +30,7 @@ require 'traject/extraction_tools'
 require 'traject/extract_author_addl_display'
 require 'traject/extract_collection'
 require 'traject/extract_emory_collection'
+require 'traject/extract_finding_aid_url'
 require 'traject/extract_format_string'
 require 'traject/extract_isbn'
 require 'traject/extract_other_standard_ids'
@@ -49,6 +50,7 @@ extend ExtractionTools
 extend ExtractAuthorAddlDisplay
 extend ExtractCollection
 extend ExtractEmoryCollection
+extend ExtractFindingAidUrl
 extend ExtractFormatString
 extend ExtractIsbn
 extend ExtractOtherStandardIds
@@ -100,10 +102,22 @@ to_field "id", extract_marc("001"), trim, first_only
 to_field 'marc_display_tesi', get_xml
 to_field 'note_access_restriction_tesim', extract_marc('506a3')
 to_field 'note_accessibility_tesim', extract_marc('532a:341abcde3')
+to_field 'note_addl_form_tesim', extract_marc('530a3')
+to_field 'note_arrangement_tesim', extract_marc('351ab')
+to_field 'note_binding_tesim', extract_marc('563abcde3')
+to_field 'note_citation_tesim', extract_marc('510abcx3')
+to_field 'note_copy_identification_tesim', extract_marc('562abc')
+to_field 'note_custodial_tesim', extract_marc('561a')
 to_field 'note_general_tsim', extract_marc('500a')
+to_field 'note_historical_tesim', extract_marc('545a')
 to_field 'note_local_tesim', extract_marc('590a')
+to_field 'note_location_originals_tesim', extract_marc('535a3')
 to_field 'note_participant_tesim', extract_marc('511a')
+to_field 'note_production_tesim', extract_marc('508a')
 to_field 'note_publication_tesim', extract_marc('581a3')
+to_field 'note_related_collections_tesim', extract_marc('544n')
+to_field 'note_reproduction_tesim', extract_marc('533a3')
+to_field 'note_time_place_event_tesim', extract_marc('518adop')
 to_field 'note_use_tesim', extract_marc('540a3')
 to_field 'summary_tesim', extract_marc('520a')
 to_field 'table_of_contents_tesim', extract_marc('505agrt')
@@ -200,10 +214,9 @@ to_field 'lc_b4cutter_ssim', extract_marc('050a'), first_only
 to_field 'lc_callnum_ssim', extract_marc('050ab'), first_only
 
 # URL Fields
-to_field 'finding_aid_text_ssim', extract_marc('555|0*|a'), trim_punctuation
-to_field 'finding_aid_url_ssim', extract_marc('555|0*|u')
+to_field 'finding_aid_url_ssim', extract_finding_aid_url
 to_field 'url_fulltext_ssm', extract_url_fulltext
-to_field 'url_suppl_ssm', extract_url_suppl
+to_field 'url_suppl_ssim', extract_url_suppl
 
 # Library Fields
 to_field 'library_ssim', extract_library, translation_map('libraryname_map')
