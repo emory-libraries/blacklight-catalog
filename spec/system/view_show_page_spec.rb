@@ -22,7 +22,11 @@ RSpec.describe "View a item's show page", type: :system, js: true do
         'Later Titles:', 'Collection:', 'Summary:', 'Finding Aid:', 'Table of Contents:',
         'Publication Note:', 'Publication Dates:', 'Language Note:', 'Accessibility Note:',
         'Technical Note:', 'Restrictions on Access:', 'Use and Reproduction:', 'Local Note:',
-        'Participant/Performer Note:'
+        'Participant/Performer Note:', 'Creation/Production Credits Note:', 'Date/Time and Place of an Event:',
+        'Additional Physical Form:', 'Organization and Arrangement:', 'Biographical/Historical Note:',
+        'Reproduction Note:', 'Location of Originals:', 'Ownership and Custodial History:',
+        'Binding Note:', 'Copy and Version Identification:', 'Citation/Reference Note:',
+        'Related Collections:'
       ]
     end
     let(:expected_values) do
@@ -37,7 +41,11 @@ RSpec.describe "View a item's show page", type: :system, js: true do
         'Finding Aid Text', 'This is a Publication Note.', 'Began with: Vol. 1, no. 1 (Jan./Feb. 2009)',
         'Language notes.', 'A note on accessibility', 'CDROM included.', 'Open Access',
         'This eBook is made available Open Access under a CC BY-NC-ND 4.0 license:',
-        'A local note.', 'A note about a performer.'
+        'A local note.', 'A note about a performer.', 'Directed by Tim Burton.',
+        'Filmed in Georgia, baby!', 'Also available in print.', 'Concerto in B minor.',
+        'A historical note.', 'A note about this reproduction.', 'A note left by the janitor.',
+        'University of Tuscaloosie', 'Notes on binding.', 'Notes on versions.', 'Notes on related collections.',
+        'Some notes on citations.'
       ]
     end
 

@@ -5,15 +5,13 @@ extend ExtractionTools
 module ExtractUrlSuppl
   def extract_url_suppl
     lambda do |rec, acc|
-      rec.fields('856').each do |f|
-        case f.indicator2
-        when '2'
-          accumulate_urls(f, acc)
-        when '0'
-          # do nothing
-        else
-          accumulate_field_u(f, acc) if notfulltext.match?(fields_z3(f))
-        end
+      url_fields = rec.fields('856').select { |f| f.indicator2 == '2' }
+      url_fields.each do |uf|
+        next if uf['u'].blank?
+        build_str = uf['u']
+        pulled_text = [uf['y'], uf['3'], uf['z']].compact
+        build_str += " text: #{marc21.trim_punctuation(pulled_text.first)}" if pulled_text.present?
+        acc << build_str
       end
     end
   end
