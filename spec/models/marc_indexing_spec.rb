@@ -182,10 +182,10 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
     let(:included_elements) do
       [
-        "Population density--Yemen (Republic)--Maps.", "Ethnic groups--Yemen (Republic)--Maps.",
-        "Tribes--Yemen (Republic)--Maps.", "Ethnology--Yemen (Republic)--Maps.", "Rain and rainfall--Yemen (Republic)--Maps.",
-        "Land use--Yemen (Republic)--Maps.", "Yemen (Republic)--Maps.", "Yemen (Republic)--Population--Maps.",
-        "Yemen (Republic)--Economic conditions--Maps.", "Yemen (Republic)--Religion--Maps."
+        "Population density--Yemen (Republic)--Maps", "Ethnic groups--Yemen (Republic)--Maps",
+        "Tribes--Yemen (Republic)--Maps", "Ethnology--Yemen (Republic)--Maps", "Rain and rainfall--Yemen (Republic)--Maps",
+        "Land use--Yemen (Republic)--Maps", "Yemen (Republic)--Maps", "Yemen (Republic)--Population--Maps",
+        "Yemen (Republic)--Economic conditions--Maps", "Yemen (Republic)--Religion--Maps"
       ]
     end
 
