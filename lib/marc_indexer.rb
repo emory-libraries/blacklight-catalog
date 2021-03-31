@@ -195,7 +195,7 @@ to_field 'subject_ssim', extract_marc("600abcdq:610ab:611adc:630aa:650aa:653aa:6
 to_field 'subject_tsim', extract_marc(subject_tsim_str(ATOU))
 
 # Genre Fields
-to_field 'genre_ssim', extract_marc("655a")
+to_field 'genre_ssim', extract_marc("655a"), trim_punctuation
 
 # Publication Fields
 to_field 'note_publication_dates_tesim', extract_marc('362a')

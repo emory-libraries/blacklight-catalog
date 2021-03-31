@@ -12,7 +12,7 @@ module ExtractSubjectDisplay
 
       dfs_to_process.each do |df|
         rec.fields(df.to_i.to_s).find_all do |f|
-          acc << accumulate_values(df, f) unless f.indicator2 == "4" || any_subfield_fast?(f)
+          acc << marc21.trim_punctuation(accumulate_values(df, f)) unless f.indicator2 == "4" || any_subfield_fast?(f)
         end
       end
       acc
