@@ -16,7 +16,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
         'Author/Creator:', 'Publication/Creation Information:', 'Type:', 'Edition:',
         'Full Text Access:', 'Full Title:', 'Series Titles:', 'Related/Included Titles:',
         'Variant Titles:', 'Abbreviated Titles:', 'Translated Titles:', 'Additional Author/Creators:',
-        'Genre:', 'Subjects:', 'Language:', 'Physical Type/Desription:', 'General Note:',
+        'Genre:', 'Subjects:', 'Language:', 'Physical Type/Description:', 'General Note:',
         'Related Resources Link:', 'Catalog ID (MMSID):', 'ISBN:', 'ISSN:', 'OCLC Number:',
         'Other Identifiers:', 'Publisher Number:', 'Uniform Title:', 'Former Titles:',
         'Later Titles:', 'Collection:', 'Summary:', 'Finding Aid:', 'Table of Contents:',

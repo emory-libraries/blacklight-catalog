@@ -161,7 +161,7 @@ class CatalogController < ApplicationController
       label: 'Accessibility Note',
       helper_method: :multiple_values_new_line)
     config.add_show_field('material_type_display_tesim',
-      label: 'Physical Type/Desription',
+      label: 'Physical Type/Description',
       helper_method: :multiple_values_new_line)
     config.add_show_field 'note_technical_tesim', label: 'Technical Note', helper_method: :multiple_values_new_line
     config.add_show_field('note_access_restriction_tesim',
