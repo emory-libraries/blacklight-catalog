@@ -21,20 +21,33 @@ RSpec.describe ShowPageHelper, type: :helper do
     dupe[:document][dupe[:field]] = 'http://www.example.com', 'http://www.example.com/2'
     dupe
   end
+  let(:multivalue_with_text) do
+    dupe = SHOW_PAGE_VALUE.dup
+    dupe[:document][dupe[:field]] = "http://www.example.com text: This is the link's text, bro", "http://www.example.com/2 text: Bro, this link's got text, too"
+    dupe
+  end
   let(:solr_doc) { SolrDocument.find(TEST_ITEM[:id]) }
   let(:solr_doc2) { SolrDocument.find('456') }
 
-  context '#convert_solr_value_to_url' do
+  context '#generic_solr_value_to_url' do
     it 'converts a single value to an anchor tag' do
-      expect(helper.convert_solr_value_to_url(value)).to eq(
+      expect(helper.generic_solr_value_to_url(value)).to eq(
         "<a href=\"http://www.example.com\" target=\"_blank\" rel=\"noopener noreferrer\">http://www.example.com</a>"
       )
     end
 
     it 'converts a multiple values into two anchor tags separated by a breakline' do
-      expect(helper.convert_solr_value_to_url(multivalue)).to eq(
+      expect(helper.generic_solr_value_to_url(multivalue)).to eq(
         "<a href=\"http://www.example.com\" target=\"_blank\" rel=\"noopener noreferrer\">http://www.example.com</a>" \
           "<br /><a href=\"http://www.example.com/2\" target=\"_blank\" rel=\"noopener noreferrer\">http://www.example.com/2</a>"
+      )
+    end
+
+    it 'converts a multiple values into two anchor tags separated by a breakline and plucks text' do
+      expect(helper.generic_solr_value_to_url(multivalue_with_text)).to eq(
+        "<a href=\"http://www.example.com\" target=\"_blank\" rel=\"noopener noreferrer\">" \
+          "This is the link&#39;s text, bro</a><br /><a href=\"http://www.example.com/2\" target=\"_blank\" " \
+          "rel=\"noopener noreferrer\">Bro, this link&#39;s got text, too</a>"
       )
     end
   end

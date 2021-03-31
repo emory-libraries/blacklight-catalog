@@ -9,7 +9,7 @@ module ExtractCollection
 
       needed_subf_values(rec).each { |v| ret_values << v } unless needed_subf_values(rec).empty?
       pulled_490a_values(rec).each { |v| ret_values << v } if ret_values.empty?
-      ret_values.each { |v| acc << v }
+      ret_values.each { |v| acc << marc21.trim_punctuation(v) }
     end
   end
 

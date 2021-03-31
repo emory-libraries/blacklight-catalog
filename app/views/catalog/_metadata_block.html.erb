@@ -6,7 +6,7 @@
   <dl class="row dl-invert document-metadata">
     <% fields.each do |field_name, field| %>
       <dt class="blacklight-<%= field_name.parameterize %> col-md-3"><%= render_document_show_field_label document, field: field_name %></dt>
-      <dd class="blacklight-<%= field_name.parameterize %> col-md-9"><%= doc_presenter.field_value field %></dd>
+      <dd class="blacklight-<%= field_name.parameterize %> col-md-9<%= " truncate" if blacklight_config.truncate_field_values.include? field_name %>"><%= doc_presenter.field_value field %></dd>
     <% end %>
   </dl>
 <% end %>

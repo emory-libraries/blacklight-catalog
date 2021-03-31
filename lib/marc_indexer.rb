@@ -30,8 +30,10 @@ require 'traject/extraction_tools'
 require 'traject/extract_author_addl_display'
 require 'traject/extract_collection'
 require 'traject/extract_emory_collection'
+require 'traject/extract_finding_aid_url'
 require 'traject/extract_format_string'
 require 'traject/extract_isbn'
+require 'traject/extract_other_standard_ids'
 require 'traject/extract_library'
 require 'traject/extract_marc_resource'
 require 'traject/extract_publisher_details_display'
@@ -48,8 +50,10 @@ extend ExtractionTools
 extend ExtractAuthorAddlDisplay
 extend ExtractCollection
 extend ExtractEmoryCollection
+extend ExtractFindingAidUrl
 extend ExtractFormatString
 extend ExtractIsbn
+extend ExtractOtherStandardIds
 extend ExtractLibrary
 extend ExtractMarcResource
 extend ExtractPublisherDetailsDisplay
@@ -65,6 +69,14 @@ ATOU = ('a'..'u').to_a.join('').freeze
 ATOG = ('a'..'g').to_a.join('').freeze
 KTOS = ('k'..'s').to_a.join('').freeze
 VTOZ = ('v'..'z').to_a.join('').freeze
+
+# Override constant to include OCLC prefix
+Traject::Macros::Marc21Semantics::OCLCPAT = /
+  \A\s*
+  (?:(?:\(OCoLC\)) |
+     (?:\(OCoLC\))?(?:(?:ocm)|(?:ocn)|(?:on)|(?:OCLC))
+     )(\d+)
+     /x.freeze
 
 settings do
   # type may be 'binary', 'xml', or 'json'
@@ -88,8 +100,28 @@ to_field "id", extract_marc("001"), trim, first_only
 
 # Mass of Data Fields
 to_field 'marc_display_tesi', get_xml
+to_field 'note_access_restriction_tesim', extract_marc('506a3')
+to_field 'note_accessibility_tesim', extract_marc('532a:341abcde3')
+to_field 'note_addl_form_tesim', extract_marc('530a3')
+to_field 'note_arrangement_tesim', extract_marc('351ab')
+to_field 'note_binding_tesim', extract_marc('563abcde3')
+to_field 'note_citation_tesim', extract_marc('510abcx3')
+to_field 'note_copy_identification_tesim', extract_marc('562abc')
+to_field 'note_custodial_tesim', extract_marc('561a')
 to_field 'note_general_tsim', extract_marc('500a')
+to_field 'note_historical_tesim', extract_marc('545a')
+to_field 'note_local_tesim', extract_marc('590a')
+to_field 'note_location_originals_tesim', extract_marc('535a3')
+to_field 'note_participant_tesim', extract_marc('511a')
+to_field 'note_production_tesim', extract_marc('508a')
+to_field 'note_publication_tesim', extract_marc('581a3')
+to_field 'note_related_collections_tesim', extract_marc('544n')
+to_field 'note_reproduction_tesim', extract_marc('533a3')
+to_field 'note_time_place_event_tesim', extract_marc('518adop')
+to_field 'note_use_tesim', extract_marc('540a3')
 to_field 'summary_tesim', extract_marc('520a')
+to_field 'table_of_contents_tesim', extract_marc('505agrt')
+to_field 'note_technical_tesim', extract_marc('538a')
 to_field "text_tesi", extract_all_marc_values(from: '010', to: '899') do |_r, acc|
   acc.replace [acc.join(' ')] # turn it into a single string
 end
@@ -97,18 +129,19 @@ end
 # Language Fields
 to_field "language_ssim", marc_languages('008[35-37]:041a:041d')
 to_field "language_tesim", marc_languages('008[35-37]:041a:041d')
+to_field "note_language_tesim", extract_marc('546ab3')
 
 # Type Fields
 to_field "format_ssim", extract_format_string
 to_field 'marc_resource_ssim', extract_marc_resource
-to_field 'material_type_display_tesim', extract_marc('300a'), trim_punctuation
+to_field 'material_type_display_tesim', extract_marc('300abcef'), trim_punctuation
 
 # Various Identification Fields
 to_field "isbn_ssim", extract_isbn
-to_field 'issn_ssim', extract_marc('022ay')
+to_field 'issn_ssim', extract_marc('022ay:800x:810x:811x:830x')
 to_field 'lccn_ssim', extract_marc('010a')
 to_field 'oclc_ssim', oclcnum('019a:035a')
-to_field 'other_standard_ids_ssim', extract_marc('024a')
+to_field 'other_standard_ids_ssim', extract_other_standard_ids
 
 # Title Fields
 #    Primary Title
@@ -148,7 +181,7 @@ to_field 'author_addl_ssim', extract_marc("700abcdgqt:710abcdgn:711acdegnqe", al
 to_field 'author_display_ssim', extract_marc("100abcdgqe:110abcdgne:111acdegjnqj", alternate_script: false), trim_punctuation
 # JSTOR isn't an author. Try to not use it as one
 to_field 'author_si', marc_sortable_author
-to_field 'author_ssim', extract_marc("100abcdq:110abd:111acd:700abcdq:710abd:711acd")
+to_field 'author_ssim', extract_marc("100abcdq:110abd:111acd:700abcdq:710abd:711acd"), trim_punctuation
 to_field 'author_ssm', extract_marc("100abcdq:110#{ATOZ}:111#{ATOZ}", alternate_script: false)
 to_field 'author_tesim', extract_marc("100abcegqu:110abcdegnu:111acdegjnqu")
 to_field 'author_vern_ssim', extract_marc("100abcdgqe:110abcdgne:111acdegjnqj", alternate_script: :only), trim_punctuation
@@ -162,16 +195,17 @@ to_field 'subject_ssim', extract_marc("600abcdq:610ab:611adc:630aa:650aa:653aa:6
 to_field 'subject_tsim', extract_marc(subject_tsim_str(ATOU))
 
 # Genre Fields
-to_field 'genre_ssim', extract_marc("655a")
+to_field 'genre_ssim', extract_marc("655a"), trim_punctuation
 
 # Publication Fields
+to_field 'note_publication_dates_tesim', extract_marc('362a')
 to_field 'pub_date_isi', marc_publication_date
 to_field 'publication_main_display_ssim', extract_marc('264abc:260abc:245fg:502abcdg'), first_only
 to_field 'published_ssim', extract_marc('260a', alternate_script: false), trim_punctuation
 to_field 'published_vern_ssim', extract_marc('260a', alternate_script: :only), trim_punctuation
 to_field 'publisher_details_display_ssim', extract_publisher_details_display
 to_field 'publisher_location_ssim', extract_marc("260a:264a:008[15-17]"), trim_punctuation
-to_field 'publisher_number_ssim', extract_marc('028a')
+to_field 'publisher_number_ssim', extract_marc('028ab')
 
 # Library of Congress Fields
 to_field 'lc_1letter_ssim', extract_marc('050a:090a'), first_letter, translation_map('callnumber_map')
@@ -180,8 +214,9 @@ to_field 'lc_b4cutter_ssim', extract_marc('050a'), first_only
 to_field 'lc_callnum_ssim', extract_marc('050ab'), first_only
 
 # URL Fields
+to_field 'finding_aid_url_ssim', extract_finding_aid_url
 to_field 'url_fulltext_ssm', extract_url_fulltext
-to_field 'url_suppl_ssm', extract_url_suppl
+to_field 'url_suppl_ssim', extract_url_suppl
 
 # Library Fields
 to_field 'library_ssim', extract_library, translation_map('libraryname_map')

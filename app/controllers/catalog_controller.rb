@@ -57,6 +57,12 @@ class CatalogController < ApplicationController
     # When users venture away from the homepage, the full list of facets will
     # be available to them. Any field listed below will appear on the homepage facets.
     config.homepage_facet_fields = ['marc_resource_ssim', 'library_ssim', 'format_ssim', 'language_ssim', 'pub_date_isi']
+    config.truncate_field_values = [
+      'table_of_contents_tesim', 'summary_tesim', 'note_publication_tesim', 'note_publication_dates_tesim',
+      'note_language_tesim', 'note_accessibility_tesim', 'material_type_display_tesim', 'note_technical_tesim',
+      'note_access_restriction_tesim', 'note_use_tesim', 'note_general_tsim',
+      'note_local_tesim', 'note_participant_tesim', 'url_suppl_ssm'
+    ]
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
@@ -137,15 +143,67 @@ class CatalogController < ApplicationController
       label: 'Additional Author/Creators',
       helper_method: :author_additional_format)
     #   Subjects/Genre Section
-    config.add_show_field 'genre_ssim', label: 'Genre', helper_method: :multiple_values_new_line
+    config.add_show_field 'genre_ssim', label: 'Genre', helper_method: :multilined_links_to_facet
     config.add_show_field 'subject_display_ssim', label: 'Subjects', helper_method: :multilined_links_to_facet
     #   Description/Summary Section
-    config.add_show_field 'language_tesim', label: 'Language', helper_method: :multiple_values_new_line
-    config.add_show_field('material_type_display_tesim',
-      label: 'Physical Type/Desription',
+    config.add_show_field 'finding_aid_url_ssim', label: 'Finding Aid', helper_method: :generic_solr_value_to_url
+    config.add_show_field('table_of_contents_tesim',
+      label: 'Table of Contents',
       helper_method: :multiple_values_new_line)
+    config.add_show_field 'summary_tesim', label: 'Summary', helper_method: :multiple_values_new_line
+    config.add_show_field 'note_publication_tesim', label: 'Publication Note', helper_method: :multiple_values_new_line
+    config.add_show_field('note_publication_dates_tesim',
+      label: 'Publication Dates',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field 'language_ssim', label: 'Language', helper_method: :multilined_links_to_facet
+    config.add_show_field 'note_language_tesim', label: 'Language Note', helper_method: :multiple_values_new_line
+    config.add_show_field('note_accessibility_tesim',
+      label: 'Accessibility Note',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field('material_type_display_tesim',
+      label: 'Physical Type/Description',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field 'note_technical_tesim', label: 'Technical Note', helper_method: :multiple_values_new_line
+    config.add_show_field('note_access_restriction_tesim',
+      label: 'Restrictions on Access',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field 'note_use_tesim', label: 'Use and Reproduction'
     config.add_show_field 'note_general_tsim', label: 'General Note', helper_method: :multiple_values_new_line
-    config.add_show_field 'url_suppl_ssm', label: 'Related Resources Link', helper_method: :convert_solr_value_to_url
+    config.add_show_field 'note_local_tesim', label: 'Local Note', helper_method: :multiple_values_new_line
+    config.add_show_field('note_participant_tesim',
+      label: 'Participant/Performer Note',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field('note_production_tesim',
+      label: 'Creation/Production Credits Note',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field('note_time_place_event_tesim',
+      label: 'Date/Time and Place of an Event',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field('note_arrangement_tesim',
+      label: 'Organization and Arrangement',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field('note_addl_form_tesim',
+      label: 'Additional Physical Form',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field('note_historical_tesim',
+      label: 'Biographical/Historical Note',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field 'note_reproduction_tesim', label: 'Reproduction Note', helper_method: :multiple_values_new_line
+    config.add_show_field('note_location_originals_tesim',
+      label: 'Location of Originals',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field('note_custodial_tesim',
+      label: 'Ownership and Custodial History',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field('note_copy_identification_tesim',
+      label: 'Copy and Version Identification',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field 'note_binding_tesim', label: 'Binding Note', helper_method: :multiple_values_new_line
+    config.add_show_field 'note_citation_tesim', label: 'Citation/Reference Note', helper_method: :multiple_values_new_line
+    config.add_show_field('note_related_collections_tesim',
+      label: 'Related Collections',
+      helper_method: :multiple_values_new_line)
+    config.add_show_field 'url_suppl_ssim', label: 'Related Resources Link', helper_method: :generic_solr_value_to_url
     #   Additional Identifiers Section
     config.add_show_field 'id', label: 'Catalog ID (MMSID)'
     config.add_show_field 'isbn_ssim', label: 'ISBN', helper_method: :multiple_values_new_line

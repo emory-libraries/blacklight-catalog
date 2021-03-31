@@ -104,7 +104,7 @@ RSpec.describe 'Indexing fields with custom logic' do
     let(:solr_doc) { SolrDocument.find('9937264718202486') }
 
     it 'maps 260, 264, and 008 fields' do
-      expect(solr_doc['publisher_details_display_ssim']).to eq([" Central Intelligence Agency,  Washington, D.C. xx#"])
+      expect(solr_doc['publisher_details_display_ssim']).to eq(["[Central Intelligence Agency], [Washington, D.C.] : xx#"])
     end
   end
 
@@ -160,7 +160,7 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
 
     it 'maps 490a when exact 710(s) are not found' do
-      expect(solr_doc_2['collection_ssim']).to eq(['Open-file report ;'])
+      expect(solr_doc_2['collection_ssim']).to eq(['Open-file report'])
     end
 
     it 'maps 490a when it is the only field available' do
@@ -182,10 +182,10 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
     let(:included_elements) do
       [
-        "Population density--Yemen (Republic)--Maps.", "Ethnic groups--Yemen (Republic)--Maps.",
-        "Tribes--Yemen (Republic)--Maps.", "Ethnology--Yemen (Republic)--Maps.", "Rain and rainfall--Yemen (Republic)--Maps.",
-        "Land use--Yemen (Republic)--Maps.", "Yemen (Republic)--Maps.", "Yemen (Republic)--Population--Maps.",
-        "Yemen (Republic)--Economic conditions--Maps.", "Yemen (Republic)--Religion--Maps."
+        "Population density--Yemen (Republic)--Maps", "Ethnic groups--Yemen (Republic)--Maps",
+        "Tribes--Yemen (Republic)--Maps", "Ethnology--Yemen (Republic)--Maps", "Rain and rainfall--Yemen (Republic)--Maps",
+        "Land use--Yemen (Republic)--Maps", "Yemen (Republic)--Maps", "Yemen (Republic)--Population--Maps",
+        "Yemen (Republic)--Economic conditions--Maps", "Yemen (Republic)--Religion--Maps"
       ]
     end
 
@@ -269,6 +269,92 @@ RSpec.describe 'Indexing fields with custom logic' do
 
     it 'adds a "relator:" with the relator value whenever 700e, 710e, or 711j exist' do
       expect(solr_doc_2['author_addl_display_tesim']).to eq(expected_values_2)
+    end
+  end
+
+  describe 'oclc_ssim field' do
+    let(:solr_doc) { SolrDocument.find('9937264717902486') }
+
+    it 'maps 035a field with OCLC prefix' do
+      expect(solr_doc['oclc_ssim']).to eq(['808373985'])
+    end
+  end
+
+  describe 'other_standard_ids_ssim field' do
+    let(:solr_doc) { SolrDocument.find('9937264717902486') }
+
+    it 'maps 024a with prefix from indicator1' do
+      # saves prefix from ind1 and value from subfield `a`, or only `a` value if ind1 is blank
+      expect(solr_doc['other_standard_ids_ssim']).to eq(["Universal Product Code: 085392844524", "DOI: 10.1163/9789401210720",
+                                                         "978940121072021"])
+    end
+  end
+
+  describe 'url_suppl_ssim field' do
+    context "when 856 indicator2 == 2 and either y, 3, or z are present" do
+      let(:solr_doc) { SolrDocument.find('9937264718402486') }
+
+      it 'has value of 856u and text = 3 since it has higher precedence than z' do
+        expect(solr_doc['url_suppl_ssim']).to eq(
+          ["http://excerpts.contentreserve.com/FormatType-425/3450-1/791128-HarryPotterAndTheSorcerersStone.mp3 text: This is the right code"]
+        )
+      end
+
+      it 'does not contain the z value since 3 is present and has priority' do
+        expect(solr_doc['url_suppl_ssim'].first).not_to include("This is not the right code.")
+      end
+    end
+
+    context "when 856 indicator2 == 2 is present, but y, 3, or z are not" do
+      let(:solr_doc) { SolrDocument.find('9937264718202486') }
+
+      it 'has value of 856u since none of the text fields are present' do
+        expect(solr_doc['url_suppl_ssim']).to eq(
+          ["http://images.contentreserve.com/ImageType-100/3450-1/{02FAA733-5F26-4039-96FA-7DE7EE74C43B}Img100.jpg"]
+        )
+        expect(solr_doc['url_suppl_ssim'].first).not_to include('text: ')
+      end
+    end
+
+    context "when no 856u indicator2 == 2 fields are present" do
+      let(:solr_doc) { SolrDocument.find('9937264718102486') }
+      let(:solr_doc2) { SolrDocument.find('9937264717902486') }
+
+      it 'those fields are empty' do
+        [solr_doc, solr_doc2].each { |sd| expect(sd['url_suppl_ssim']).to be_nil }
+      end
+    end
+  end
+
+  describe 'finding_aid_url_ssim field' do
+    context "when 555au indicator1 == 0 is present" do
+      let(:solr_doc) { SolrDocument.find('9937264718402486') }
+
+      it 'has value of 555u and text = a' do
+        expect(solr_doc['finding_aid_url_ssim']).to eq(
+          ["http://images.contentreserve.com/ImageType-100/3450-1/{02FAA733-5F26-4039-96FA-7DE7EE74C43B}Img100.jpg text: Some funky image"]
+        )
+      end
+    end
+
+    context "when 555u indicator1 == 0 is present, but a is not" do
+      let(:solr_doc) { SolrDocument.find('9937264718202486') }
+
+      it 'has value of 555u only since the text field is not present' do
+        expect(solr_doc['finding_aid_url_ssim']).to eq(
+          ["http://excerpts.contentreserve.com/FormatType-425/3450-1/791128-HarryPotterAndTheSorcerersStone.mp3"]
+        )
+        expect(solr_doc['finding_aid_url_ssim'].first).not_to include('text: ')
+      end
+    end
+
+    context "when no 555u indicator1 == 0 fields are present" do
+      let(:solr_doc) { SolrDocument.find('9937264718102486') }
+      let(:solr_doc2) { SolrDocument.find('9937264717902486') }
+
+      it 'those fields are empty' do
+        [solr_doc, solr_doc2].each { |sd| expect(sd['finding_aid_url_ssim']).to be_nil }
+      end
     end
   end
 end
