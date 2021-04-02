@@ -120,7 +120,7 @@ class CatalogController < ApplicationController
     #   Brief Summary Section
     config.add_show_field 'author_display_ssim', label: 'Author/Creator', helper_method: :combine_author_vern
     config.add_show_field('publication_main_display_ssim',
-      label: 'Publication/Creation Information',
+      label: 'Publication/Creation',
       helper_method: :multiple_values_new_line)
     config.add_show_field 'format_ssim', label: 'Type', helper_method: :multiple_values_new_line
     config.add_show_field 'edition_tsim', label: 'Edition', helper_method: :multiple_values_new_line
