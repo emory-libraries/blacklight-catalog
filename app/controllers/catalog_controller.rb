@@ -59,9 +59,12 @@ class CatalogController < ApplicationController
     config.homepage_facet_fields = ['marc_resource_ssim', 'library_ssim', 'format_ssim', 'language_ssim', 'pub_date_isi']
     config.truncate_field_values = [
       'table_of_contents_tesim', 'summary_tesim', 'note_publication_tesim', 'note_publication_dates_tesim',
-      'note_language_tesim', 'note_accessibility_tesim', 'material_type_display_tesim', 'note_technical_tesim',
-      'note_access_restriction_tesim', 'note_use_tesim', 'note_general_tsim',
-      'note_local_tesim', 'note_participant_tesim', 'url_suppl_ssm'
+      'note_language_tesim', 'note_accessibility_tesim', 'note_production_tesim', 'material_type_display_tesim',
+      'note_technical_tesim', 'note_access_restriction_tesim', 'note_use_tesim', 'note_general_tsim',
+      'note_local_tesim', 'note_participant_tesim', 'url_suppl_ssm', 'note_time_place_event_tesim',
+      'note_arrangement_tesim', 'note_addl_form_tesim', 'note_historical_tesim', 'note_reproduction_tesim',
+      'note_location_originals_tesim', 'note_custodial_tesim', 'note_copy_identification_tesim',
+      'note_binding_tesim', 'note_citation_tesim', 'note_related_collections_tesim'
     ]
 
     # solr fields that will be treated as facets by the blacklight application
