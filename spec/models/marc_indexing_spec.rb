@@ -250,6 +250,7 @@ RSpec.describe 'Indexing fields with custom logic' do
   describe 'author_addl_display_tesim field' do
     let(:solr_doc) { SolrDocument.find('9937264718402486') }
     let(:solr_doc_2) { SolrDocument.find('9937264718202486') }
+    let(:solr_doc_3) { SolrDocument.find('9937264717902486') }
     let(:expected_values) do
       [
         "Bonilla, Manuel G., 1920-", "Diocesan College (Rondebosch, South Africa)",
@@ -259,9 +260,10 @@ RSpec.describe 'Indexing fields with custom logic' do
     let(:expected_values_2) do
       [
         "United States. Central Intelligence Agency. Design Center",
-        "United States. Central Intelligence Agency relator: spycraft."
+        "United States. Central Intelligence Agency relator: spycraft"
       ]
     end
+    let(:expected_values_3) { ["Bierce, Ambrose, 1842-1914? Cynic's word book relator: beer holder, caterer, and sommelier"] }
 
     it 'maps normally whenever 700e, 710e, or 711j do not exist' do
       expect(solr_doc['author_addl_display_tesim']).to eq(expected_values)
@@ -269,6 +271,10 @@ RSpec.describe 'Indexing fields with custom logic' do
 
     it 'adds a "relator:" with the relator value whenever 700e, 710e, or 711j exist' do
       expect(solr_doc_2['author_addl_display_tesim']).to eq(expected_values_2)
+    end
+
+    it 'properly formats the relator substring when 3 0r more relators exist' do
+      expect(solr_doc_3['author_addl_display_tesim']).to eq(expected_values_3)
     end
   end
 
