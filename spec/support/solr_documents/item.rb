@@ -3,6 +3,7 @@ TEST_ITEM = {
   id: '123',
   author_display_ssim: ['George Jenkins'],
   author_ssim: ['George Jenkins', 'Someone Else'],
+  author_tesim: ['George Jenkins', 'Someone Else'],
   format_ssim: ['Book'],
   isbn_ssim: ['SOME MAGICAL NUM .66G'],
   language_tesim: ['English'],
