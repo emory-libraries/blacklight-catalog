@@ -1,5 +1,7 @@
 {
   "name": "blacklight-catalog",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap-select": "^1.13.18"
+  }
 }

@@ -6,7 +6,7 @@ RSpec.feature 'View Search Results', type: :system, js: false do
     delete_all_documents_from_solr
     build_solr_docs(TEST_ITEM)
     visit root_path
-    click_on 'Search'
+    click_on 'search'
   end
 
   context 'displaying metadata' do
