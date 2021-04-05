@@ -30,6 +30,7 @@ Metrics/MethodLength:
     Exclude:
         - 'app/services/oai_processing_service.rb'
         - 'app/services/oai_processing_single_service.rb'
+        - 'lib/traject/extract_publication_date.rb'
 
 Metrics/ModuleLength:
     Exclude:
