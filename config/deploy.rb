@@ -50,7 +50,7 @@ set :assets_prefix, "#{shared_path}/public/assets"
 SSHKit.config.command_map[:rake] = 'bundle exec rake'
 
 namespace :deploy do
-  before :migrate do
+  before :migrate, :create_db do
     run("cd /opt/blacklight-catalog/current && RAILS_ENV=production bundle exec rake db:create")
   end
 end
