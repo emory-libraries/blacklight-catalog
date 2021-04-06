@@ -11,7 +11,6 @@
 
 # role-based syntax
 # ==================
-
 # Defines a role with one or multiple servers. The primary server in each
 # group is considered to be the first unless any hosts have the primary
 # property set. Specify the username and a domain or IP for the server.
@@ -57,6 +56,19 @@
 #   }
 
 set :stage, :TEST
+
+before 'deploy:check:linked_files', "deploy:copy_env"
+before 'deploy:symlink:linked_files', "deploy:copy_env"
+namespace :deploy do
+  task :copy_env do
+    on roles("web") do
+      upload!(".env.#{fetch(:stage).downcase}", "#{shared_path}/.env.production")
+      upload!("./config/secrets.yml", "#{shared_path}/config/secrets.yml")
+    end
+  end
+end
+
+set :ec2_region, %w[us-east-1]
 ec2_role %i[web app db],
   user: 'deploy',
   ssh_options: {

@@ -49,6 +49,12 @@ set :assets_prefix, "#{shared_path}/public/assets"
 
 SSHKit.config.command_map[:rake] = 'bundle exec rake'
 
+namespace :deploy do
+  before :migrate do
+    run("cd /opt/blacklight-catalog/current && RAILS_ENV=production bundle exec rake db:create")
+  end
+end
+
 set :passenger_restart_with_touch, true
 set :ec2_profile, ENV['AWS_PROFILE'] || ENV['AWS_DEFAULT_PROFILE']
 set :ec2_region, %w[us-east-1]

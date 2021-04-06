@@ -19,7 +19,6 @@ test:
   <<: *default
   # If host is 'localhost', MySQL will attempt to use a socket to talk to the DB, but if it is '127.0.0.1',
   # it will use TCP. While a socket may be a preferable default, it will not work for CI.
-  host: <%= ENV.fetch('DATABASE_HOST', '127.0.0.1') %>
 
 production:
   <<: *default
