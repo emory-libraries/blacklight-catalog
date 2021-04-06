@@ -11,7 +11,7 @@ RSpec.describe 'Facet the catalog by year', type: :system, js: false do
     {
       id: '111',
       title_main_display_tesim: ['Llama Love'],
-      pub_date_isi: 1920
+      pub_date_isim: 1920
     }
   end
 
@@ -19,7 +19,7 @@ RSpec.describe 'Facet the catalog by year', type: :system, js: false do
     {
       id: '222',
       title_main_display_tesim: ['Newt Nutrition'],
-      pub_date_isi: 1940
+      pub_date_isim: 1940
     }
   end
 
@@ -39,8 +39,8 @@ RSpec.describe 'Facet the catalog by year', type: :system, js: false do
     include_examples "gets_all_possible_documents"
 
     it 'returns limited results when faceted' do
-      find('input#range_pub_date_isi_begin').set('1920')
-      find('input#range_pub_date_isi_end').set('1925')
+      find('input#range_pub_date_isim_begin').set('1920')
+      find('input#range_pub_date_isim_end').set('1925')
       find("input[value$='Apply']").click
 
       within '#documents' do

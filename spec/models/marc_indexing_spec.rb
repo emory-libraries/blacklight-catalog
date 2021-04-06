@@ -357,4 +357,31 @@ RSpec.describe 'Indexing fields with custom logic' do
       end
     end
   end
+
+  describe 'pub_date_isim field' do
+    context 'when it has a proper date range' do
+      let(:solr_doc) { SolrDocument.find('9937264717902486') }
+
+      it 'has a date range' do
+        # 080707i19302010gau eng d - 008 value with 1930 and 2010 as start and end years
+        expect(solr_doc['pub_date_isim']).to eq((1930..2010).to_a)
+      end
+    end
+    context 'when it is journal with end year 9999' do
+      let(:solr_doc) { SolrDocument.find('9937264718102486') }
+
+      it 'has end date as current year' do
+        # 750727c20109999nyuqr p 0 a0eng c - 008 value with start year 2010 and end year 9999
+        expect(solr_doc['pub_date_isim']).to eq([2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021])
+      end
+    end
+    context 'when record doesnt have 006[6] as per noted cases' do
+      let(:solr_doc) { SolrDocument.find('9937264718402486') }
+
+      it 'has only one date year' do
+        # 981211s1998    caubc  cc a  fs 0   eng d - 008 value with end year missing
+        expect(solr_doc['pub_date_isim']).to eq([1998])
+      end
+    end
+  end
 end
