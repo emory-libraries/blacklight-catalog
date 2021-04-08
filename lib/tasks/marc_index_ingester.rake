@@ -34,7 +34,7 @@ task marc_index_ingest: [:environment] do
   # save to date for next time
   log "Storing 'to' time"
   PropertyBag.set('marc_ingest_time', to_time)
-  mmsid_logger.process_file('ingest_mmsids')
+  mmsid_logger&.process_file('ingest_mmsids')
 
   log "Complete!"
 end
