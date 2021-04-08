@@ -2,13 +2,15 @@
 require 'rails_helper'
 
 RSpec.describe 'Indexing fields with custom logic' do
+  let(:logger) { OaiMmsidLogger.new }
   before do
     delete_all_documents_from_solr
     # The command below is processing fixures/alma_marc_resource.xml
     OaiProcessingService.process_oai_with_marc_indexer(
       'blah',
       '?verb=ListRecords&set=blacklight_marc_resource&metadataPrefix=marc21&until=2021-01-28T19:16:10Z',
-      'smackety'
+      'smackety',
+      logger
     )
   end
 
