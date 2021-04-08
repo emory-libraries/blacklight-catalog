@@ -12,6 +12,8 @@ task marc_index_ingest: [:environment] do
 
   qs = OaiQueryStringService.process_query_string(oai_set, full_index, to_time, single_record)
   log "Set 'to' time: #{to_time}"
+  mmsid_logger = OaiMmsidLogger.new unless single_record
+  counter = 1
 
   loop do
     # expect resumption token to be returned from process_oai method, else
@@ -20,8 +22,10 @@ task marc_index_ingest: [:environment] do
       resumption_token = OaiProcessingSingleService.process_oai_with_marc_indexer(ENV['INSTITUTION'], qs, ENV['ALMA'])
       qs = "?verb=GetRecord&resumptionToken=#{resumption_token}"
     else
-      resumption_token = OaiProcessingService.process_oai_with_marc_indexer(ENV['INSTITUTION'], qs, ENV['ALMA'])
+      mmsid_logger.announce_batch(counter, qs)
+      resumption_token = OaiProcessingService.process_oai_with_marc_indexer(ENV['INSTITUTION'], qs, ENV['ALMA'], mmsid_logger)
       qs = "?verb=ListRecords&resumptionToken=#{resumption_token}"
+      counter += 1
     end
     PropertyBag.set('marc_ingest_resumption_token', resumption_token)
     break if resumption_token == ''
@@ -30,6 +34,7 @@ task marc_index_ingest: [:environment] do
   # save to date for next time
   log "Storing 'to' time"
   PropertyBag.set('marc_ingest_time', to_time)
+  mmsid_logger.process_file('ingest_mmsids')
 
   log "Complete!"
 end
