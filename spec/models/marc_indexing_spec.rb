@@ -2,13 +2,15 @@
 require 'rails_helper'
 
 RSpec.describe 'Indexing fields with custom logic' do
+  let(:logger) { OaiMmsidLogger.new }
   before do
     delete_all_documents_from_solr
     # The command below is processing fixures/alma_marc_resource.xml
     OaiProcessingService.process_oai_with_marc_indexer(
       'blah',
       '?verb=ListRecords&set=blacklight_marc_resource&metadataPrefix=marc21&until=2021-01-28T19:16:10Z',
-      'smackety'
+      'smackety',
+      logger
     )
   end
 
@@ -250,6 +252,7 @@ RSpec.describe 'Indexing fields with custom logic' do
   describe 'author_addl_display_tesim field' do
     let(:solr_doc) { SolrDocument.find('9937264718402486') }
     let(:solr_doc_2) { SolrDocument.find('9937264718202486') }
+    let(:solr_doc_3) { SolrDocument.find('9937264717902486') }
     let(:expected_values) do
       [
         "Bonilla, Manuel G., 1920-", "Diocesan College (Rondebosch, South Africa)",
@@ -259,9 +262,10 @@ RSpec.describe 'Indexing fields with custom logic' do
     let(:expected_values_2) do
       [
         "United States. Central Intelligence Agency. Design Center",
-        "United States. Central Intelligence Agency relator: spycraft."
+        "United States. Central Intelligence Agency relator: spycraft"
       ]
     end
+    let(:expected_values_3) { ["Bierce, Ambrose, 1842-1914? Cynic's word book relator: beer holder, caterer, and sommelier"] }
 
     it 'maps normally whenever 700e, 710e, or 711j do not exist' do
       expect(solr_doc['author_addl_display_tesim']).to eq(expected_values)
@@ -269,6 +273,10 @@ RSpec.describe 'Indexing fields with custom logic' do
 
     it 'adds a "relator:" with the relator value whenever 700e, 710e, or 711j exist' do
       expect(solr_doc_2['author_addl_display_tesim']).to eq(expected_values_2)
+    end
+
+    it 'properly formats the relator substring when 3 0r more relators exist' do
+      expect(solr_doc_3['author_addl_display_tesim']).to eq(expected_values_3)
     end
   end
 
@@ -354,6 +362,33 @@ RSpec.describe 'Indexing fields with custom logic' do
 
       it 'those fields are empty' do
         [solr_doc, solr_doc2].each { |sd| expect(sd['finding_aid_url_ssim']).to be_nil }
+      end
+    end
+  end
+
+  describe 'pub_date_isim field' do
+    context 'when it has a proper date range' do
+      let(:solr_doc) { SolrDocument.find('9937264717902486') }
+
+      it 'has a date range' do
+        # 080707i19302010gau eng d - 008 value with 1930 and 2010 as start and end years
+        expect(solr_doc['pub_date_isim']).to eq((1930..2010).to_a)
+      end
+    end
+    context 'when it is journal with end year 9999' do
+      let(:solr_doc) { SolrDocument.find('9937264718102486') }
+
+      it 'has end date as current year' do
+        # 750727c20109999nyuqr p 0 a0eng c - 008 value with start year 2010 and end year 9999
+        expect(solr_doc['pub_date_isim']).to eq([2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021])
+      end
+    end
+    context 'when record doesnt have 006[6] as per noted cases' do
+      let(:solr_doc) { SolrDocument.find('9937264718402486') }
+
+      it 'has only one date year' do
+        # 981211s1998    caubc  cc a  fs 0   eng d - 008 value with end year missing
+        expect(solr_doc['pub_date_isim']).to eq([1998])
       end
     end
   end

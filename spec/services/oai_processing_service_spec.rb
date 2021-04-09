@@ -5,6 +5,7 @@ require 'nokogiri'
 require 'traject'
 
 RSpec.describe OaiProcessingService do
+  let(:logger) { OaiMmsidLogger.new }
   context '#process_oai_with_marc_indexer' do
     before do
       delete_all_documents_from_solr
@@ -12,7 +13,8 @@ RSpec.describe OaiProcessingService do
       described_class.process_oai_with_marc_indexer(
         'blah',
         "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-01-28T19:16:10Z",
-        'smackety'
+        'smackety',
+        logger
       )
     end
 
@@ -44,7 +46,8 @@ RSpec.describe OaiProcessingService do
             # The command below is processing fixures/alma_small_set.xml
             described_class.process_oai_with_marc_indexer('blah',
               "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-01-28T19:16:10Z",
-              'smackety')
+              'smackety',
+              logger)
           end.to change { solr_docs_map_of('_version_') }.and not_change { solr_docs_map_of('id') }
         end
       end
@@ -55,7 +58,8 @@ RSpec.describe OaiProcessingService do
             # The command below is processing fixures/alma_small_set_with_2_fields_missing.xml
             described_class.process_oai_with_marc_indexer('blah',
               "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-02-15T19:16:10Z",
-              'smackety')
+              'smackety',
+              logger)
           end.to change { solr_docs_count_of('material_type_display_tesim') }
             .from(3).to(2)
             .and change { solr_docs_count_of('lccn_ssim') }.from(2).to(1)
@@ -68,7 +72,8 @@ RSpec.describe OaiProcessingService do
             # The command below is processing fixures/alma_small_set_with_1_new_1_updated_fields.xml
             described_class.process_oai_with_marc_indexer('blah',
               "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-02-23T19:16:10Z",
-              'smackety')
+              'smackety',
+              logger)
           end.to change { solr_field_value_for('990000954720302486', 'lccn_ssim') }
             .from(nil).to(['sn 8675309'])
             .and change { solr_field_value_for('990028391040302486', 'material_type_display_tesim') }
@@ -89,7 +94,8 @@ RSpec.describe OaiProcessingService do
         described_class.process_oai_with_marc_indexer(
           'blah',
           "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-01-29T19:16:10Z",
-          'smackety'
+          'smackety',
+          logger
         )
         expect(solr_docs_map_of('id')).not_to include("990005651670302486") # making sure suppressed record ID is not present in SOLR
         expect(solr_docs_map_of('id')).not_to include("990000954720302486") # making sure ID under deleted status header is not present in SOLR

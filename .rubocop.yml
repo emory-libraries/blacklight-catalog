@@ -19,6 +19,7 @@ Metrics/BlockLength:
     Exclude:
         - app/controllers/catalog_controller.rb
         - config/routes.rb
+        - lib/tasks/marc_index_ingester.rake
         - 'spec/**/*'
 
 Metrics/CyclomaticComplexity:
@@ -30,6 +31,7 @@ Metrics/MethodLength:
     Exclude:
         - 'app/services/oai_processing_service.rb'
         - 'app/services/oai_processing_single_service.rb'
+        - 'lib/traject/extract_publication_date.rb'
 
 Metrics/ModuleLength:
     Exclude:
