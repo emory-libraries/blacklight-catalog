@@ -51,21 +51,21 @@ module ShowPageHelper
       ret_str = multilined_links_to_facet_author_addl(value[:values])
     else
       build_arr = [multilined_links_to_facet_author_addl(value[:values].first(5))]
-      build_arr.push(author_additional_collapse_link)
       build_arr.push(
         author_additional_collapse_span(
           multilined_links_to_facet_author_addl(value[:values][5..(value[:values].size - 1)])
         )
       )
+      build_arr.push(author_additional_collapse_link)
       ret_str = safe_join(build_arr, tag('br'))
     end
     ret_str
   end
 
   def author_additional_collapse_link
-    link_to(t('catalog.show.collapsible.additional_authors'),
+    link_to('',
           '#extended-author-addl',
-          class: 'btn btn-default additional-authors-collapse',
+          class: 'btn btn-link additional-authors-collapse collapsed',
           data: { toggle: 'collapse' },
           role: "button",
           'aria-expanded' => "false",
