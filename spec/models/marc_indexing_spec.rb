@@ -392,4 +392,30 @@ RSpec.describe 'Indexing fields with custom logic' do
       end
     end
   end
+
+  describe 'publication_main_display_ssim field' do
+    context 'when 264 and 245fg are present' do
+      let(:solr_doc) { SolrDocument.find('9937264717902486') }
+
+      it 'has correct value of 264 as it has higher precedence than 245fg' do
+        expect(solr_doc['publication_main_display_ssim']).to eq(["Marlborough, Wiltshire : Adam Matthew Digital, 2019"])
+      end
+    end
+
+    context 'when 264 is absent' do
+      let(:solr_doc) { SolrDocument.find('9937264718102486') }
+
+      it 'has value of 245 if 264 is absent, and 245 has duplicate values in f and g subfields' do
+        expect(solr_doc['publication_main_display_ssim']).to eq(["2017-2018"])
+      end
+    end
+
+    context 'when 245 field only one subfield' do
+      let(:solr_doc) { SolrDocument.find('9937264718402486') }
+
+      it 'has correct value' do
+        expect(solr_doc['publication_main_display_ssim']).to eq(["2017"])
+      end
+    end
+  end
 end
