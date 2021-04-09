@@ -74,6 +74,19 @@ module ExtractionTools
     datafields&.map { |df| df.subfields.map { |sf| sf.value if sf.code == 'a' } }&.compact&.flatten
   end
 
+  # method for when you have an order preference for extraction
+  def extract_ordered_fields(rec, fields)
+    fields = fields.split(':')
+    extra_fields = []
+    fields.each do |f|
+      value = marc21.extract_marc_from(rec, f, trim_punctuation: true)
+      extra_fields << [f => value.first] unless value.empty? # push [key => value] pairs
+    end
+    # This array contains [key-value] pairs, where the key is the field itself.
+    # When working with this returned array in the parent method, be sure to extract values.
+    extra_fields
+  end
+
   def subject_tsim_str(atou)
     %W[
       600#{atou}
