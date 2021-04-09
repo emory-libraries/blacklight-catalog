@@ -11,18 +11,21 @@
       <% end %>
     <% end %>
   </dl>
-    <% if collapsible_fields.length > 0 %>
-      <%= link_to collapse_message,
-                      '#extended-terms',
-                      class: 'btn btn-default additional-fields',
-                      data: { toggle: 'collapse' },
-                      role: "button",
-                      'aria-expanded'=> "false",
-                      'aria-controls'=> "extended-terms" %>
-      <dl id="extended-terms" class='collapse row dl-invert collapsible-document-metadata'>
-        <% collapsible_fields.each do |field_name, field| %>
-          <%= render 'metadata_line', field_name: field_name, document: document, doc_presenter: doc_presenter, field: field %>
-        <% end %>
-      </dl>
-    <% end %>
+  <% if collapsible_fields.length > 0 %>
+    <dl id="extended-terms" class='collapse row dl-invert collapsible-document-metadata'>
+      <% collapsible_fields.each do |field_name, field| %>
+        <%= render 'metadata_line', field_name: field_name, document: document, doc_presenter: doc_presenter, field: field %>
+      <% end %>
+    </dl>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <%= link_to '',
+            '#extended-terms',
+            class: "#{(collapse_link_class + " ") if collapse_link_class.present? }btn btn-link additional-fields collapsed",
+            data: { toggle: 'collapse' },
+            role: "button",
+            'aria-expanded'=> "false",
+            'aria-controls'=> "extended-terms" %>
+    </div>
+  <% end %>
 <% end %>

@@ -156,7 +156,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
         )
         visit solr_document_path('123')
 
-        expect(page).to have_link 'Show more Authors/Creators'
+        expect(page).to have_link('', href: '#extended-author-addl')
         expect(page).to have_css('span', id: 'extended-author-addl')
         expect(find_all('span#extended-author-addl a').size).to eq(1)
       end

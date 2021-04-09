@@ -112,16 +112,15 @@ RSpec.describe ShowPageHelper, type: :helper do
 
     it 'converts a values array with more than 5 items into a new-lined list with a collapsible after 5' do # rubocop:disable RSpec/ExampleLength
       expect(helper.author_additional_format(value_with_6_auth_addl)).to eq(
-        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Jenkins\">Tim Jenkins</a>, editor." \
-        "<br /><a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Sally+Jenkins\">Sally Jenkins</a><br />" \
+        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Jenkins\">Tim Jenkins</a>, editor.<br />" \
+        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Sally+Jenkins\">Sally Jenkins</a><br />" \
         "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Betsy+Jenkins\">Betsy Jenkins</a><br />" \
         "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Sal+Weitzman\">Sal Weitzman</a>, ghost writer.<br />" \
         "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Mike+Birbiglia\">Mike Birbiglia</a><br />" \
-        "<a class=\"btn btn-default additional-authors-collapse\" data-toggle=\"collapse\" role=\"button\" " \
-        "aria-expanded=\"false\" aria-controls=\"extended-author-addl\" href=\"#extended-author-addl\">" \
-        "Show more Authors/Creators</a><br /><span id=\"extended-author-addl\"" \
-        " class=\"collapse collapsible-addl-authors\"><a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Conway\">" \
-        "Tim Conway</a>, moral support.</span>"
+        "<span id=\"extended-author-addl\" class=\"collapse collapsible-addl-authors\">" \
+        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Conway\">Tim Conway</a>, moral support.</span><br />" \
+        "<a class=\"btn btn-link additional-authors-collapse collapsed\" data-toggle=\"collapse\"" \
+        " role=\"button\" aria-expanded=\"false\" aria-controls=\"extended-author-addl\" href=\"#extended-author-addl\"></a>"
       )
     end # rubocop:enable RSpec/ExampleLength
   end
