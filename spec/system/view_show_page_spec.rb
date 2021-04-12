@@ -114,7 +114,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
           )
         )
       )
-      visit solr_document_path('123')
+      visit solr_document_path(id)
 
       expect(page).to have_link('Librarian View')
     end
@@ -133,7 +133,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
             author_addl_display_tesim: ["Tim Jenkins relator: editor."]
           )
         )
-        visit solr_document_path('123')
+        visit solr_document_path(id)
 
         expect(find('dd.blacklight-author_addl_display_tesim').text).to eq("Tim Jenkins, editor.")
         expect(find('dd.blacklight-author_addl_display_tesim a').text).to eq("Tim Jenkins")
@@ -154,7 +154,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
             author_addl_display_tesim: ["Tina", "Lisa", "Courtney", "Tim", "Bob", "Jeff"]
           )
         )
-        visit solr_document_path('123')
+        visit solr_document_path(id)
 
         expect(page).to have_link('', href: '#extended-author-addl')
         expect(page).to have_css('span', id: 'extended-author-addl')
@@ -181,7 +181,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
           build_solr_docs(
             TEST_ITEM.except(:subject_display_ssim)
           )
-          visit solr_document_path('123')
+          visit solr_document_path(id)
         end
 
         it 'does not show subject label when subject display is missing' do
@@ -195,7 +195,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
           build_solr_docs(
             TEST_ITEM.except(:genre_ssim)
           )
-          visit solr_document_path('123')
+          visit solr_document_path(id)
         end
 
         it 'does not show genre label when genre display is missing' do
@@ -209,12 +209,35 @@ RSpec.describe "View a item's show page", type: :system, js: true do
           build_solr_docs(
             TEST_ITEM.except(:genre_ssim, :subject_display_ssim)
           )
-          visit solr_document_path('123')
+          visit solr_document_path(id)
         end
 
         it 'does not show genre/subject or main heading label when genre and subject display are missing' do
           expect(page).not_to have_css('h4', class: 'blacklight-Subjects/Genre')
         end
+      end
+    end
+  end
+
+  context 'More Options card' do
+    it 'shows the section when format_ssim populated' do
+      visit solr_document_path(id)
+
+      expect(page).to have_css('h2', text: 'More Options')
+      expect(page).to have_link('Find more information about Books')
+    end
+
+    context 'format_ssim is missing' do
+      before do
+        build_solr_docs(
+          TEST_ITEM.except(:format_ssim)
+        )
+        visit solr_document_path(id)
+      end
+
+      it 'does not show the section' do
+        expect(page).not_to have_css('h2', text: 'More Options')
+        expect(page).not_to have_link('Find more information about Books')
       end
     end
   end

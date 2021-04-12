@@ -40,4 +40,8 @@ class SolrDocument
   def url_fulltext
     self['url_fulltext_ssm']
   end
+
+  def more_options
+    self['format_ssim']
+  end
 end
