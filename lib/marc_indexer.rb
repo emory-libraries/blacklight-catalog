@@ -34,6 +34,7 @@ require 'traject/extract_finding_aid_url'
 require 'traject/extract_format_string'
 require 'traject/extract_isbn'
 require 'traject/extract_other_standard_ids'
+require 'traject/extract_call_number'
 require 'traject/extract_library'
 require 'traject/extract_marc_resource'
 require 'traject/extract_publication_main_display.rb'
@@ -56,6 +57,7 @@ extend ExtractFindingAidUrl
 extend ExtractFormatString
 extend ExtractIsbn
 extend ExtractOtherStandardIds
+extend ExtractCallNumber
 extend ExtractLibrary
 extend ExtractMarcResource
 extend ExtractPublicationMainDisplay
@@ -146,6 +148,7 @@ to_field 'issn_ssim', extract_marc('022ay:800x:810x:811x:830x')
 to_field 'lccn_ssim', extract_marc('010a')
 to_field 'oclc_ssim', oclcnum('019a:035a')
 to_field 'other_standard_ids_ssim', extract_other_standard_ids
+to_field 'local_call_number_tesim', extract_call_number
 
 # Title Fields
 #    Primary Title
@@ -173,7 +176,8 @@ to_field 'title_host_item_tesim', extract_marc("773#{ATOZ}:774#{ATOZ}")
 to_field 'title_key_tesi', extract_marc('222ab'), first_only
 to_field 'title_later_ssim', extract_marc('785abcdgikmnorstuxyz')
 to_field 'title_main_display_tesim', extract_marc('245abfgknps', alternate_script: false), trim_punctuation
-to_field 'title_series_ssim', extract_marc(title_series_ssim_str(ATOG))
+to_field 'title_series_ssim', extract_marc(title_series_str(ATOG))
+to_field 'title_series_tesim', extract_marc(title_series_str(ATOG))
 to_field 'title_ssort', marc_sortable_title
 to_field 'title_translation_tesim', extract_marc("242#{ATOZ}")
 to_field 'title_uniform_ssim', extract_marc("130adfklmnoprs:240#{ATOG}knps")
@@ -205,7 +209,7 @@ to_field 'genre_ssim', extract_marc("655a"), trim_punctuation
 to_field 'note_publication_dates_tesim', extract_marc('362a')
 to_field 'pub_date_isim', extract_publication_date
 to_field 'publication_main_display_ssim', extract_publication_main_display
-to_field 'published_ssim', extract_marc('260a', alternate_script: false), trim_punctuation
+to_field 'published_ssm', extract_marc('260a:264b', alternate_script: false), trim_punctuation
 to_field 'published_vern_ssim', extract_marc('260a', alternate_script: :only), trim_punctuation
 to_field 'publisher_details_display_ssim', extract_publisher_details_display
 to_field 'publisher_location_ssim', extract_marc("260a:264a:008[15-17]"), trim_punctuation

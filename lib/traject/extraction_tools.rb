@@ -97,7 +97,7 @@ module ExtractionTools
     ].join(':').freeze
   end
 
-  def title_series_ssim_str(atog)
+  def title_series_str(atog)
     %W[
       440anpv:490av
       830#{atog}kv

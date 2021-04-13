@@ -8,20 +8,20 @@ RSpec.feature 'Advanced Search Page', type: :system, js: false do
     visit '/advanced'
   end
 
-  let(:search_fields) { CatalogController.new.blacklight_config.search_fields.keys }
+  let(:search_fields) { CatalogController.new.blacklight_config.search_fields.reject { |_k, v| v.include_in_advanced_search == false }.keys }
   let(:pulled_search_fields) { find_all('div.form-group.advanced-search-field label').map { |e| e['for'] } }
-  let(:select_facet_fields) { CatalogController.new.blacklight_config.facet_fields.keys }
+  let(:select_facet_fields) { CatalogController.new.blacklight_config.advanced_search[:form_solr_parameters]["facet.field"] }
   let(:pulled_search_facets) { find_all('div.form-group.advanced-search-facet label').map { |e| e['for'] } }
-  let(:search_button) { find('input[type=submit][value=Search]') }
+  let(:search_button) { find("input[type=submit][value='Advanced Search']") }
   let(:document_title_heading) { 'h3.index_title.document-title-heading.col-sm-9.col-lg-10' }
 
   context 'expected elements' do
     it 'has the correct header' do
-      expect(page).to have_css('h1', text: 'More Search Options')
+      expect(page).to have_css('h1', text: 'Advanced Search')
     end
 
     it 'has the Start Over button' do
-      expect(page).to have_link('Start over', href: '/advanced')
+      expect(page).to have_link('Clear Form', href: '/advanced')
     end
 
     it 'has same options as the search bar' do
@@ -39,28 +39,28 @@ RSpec.feature 'Advanced Search Page', type: :system, js: false do
 
   context 'performing simple searches' do
     it 'finds the one object with a keyword search of item id' do
-      fill_in 'keyword', with: '123'
+      fill_in 'identifier_advanced', with: '123'
       search_button.click
 
       expect(page).to have_css(document_title_heading)
     end
 
     it 'finds the one object with a author search of additional first name' do
-      fill_in 'author', with: 'George'
+      fill_in 'author_advanced', with: 'George'
       search_button.click
 
       expect(page).to have_css(document_title_heading)
     end
 
     it 'finds the one object with a title search of variant title' do
-      fill_in 'title', with: 'Variant'
+      fill_in 'title_advanced', with: 'Variant'
       search_button.click
 
       expect(page).to have_css(document_title_heading)
     end
 
     it 'finds the one object with a subject search of the solr value' do
-      fill_in 'subject', with: 'sample'
+      fill_in 'subject_advanced', with: 'sample'
       search_button.click
 
       expect(page).to have_css(document_title_heading)

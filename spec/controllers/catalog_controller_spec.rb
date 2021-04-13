@@ -67,7 +67,11 @@ RSpec.describe CatalogController, type: :controller do
   describe 'search fields' do
     let(:search_fields) { controller.blacklight_config.search_fields.keys }
     let(:expected_search_fields) { ['keyword', 'title', 'author', 'subject'] }
+    let(:expected_advanced_search_fields) do
+      ['all_fields_advanced', 'title_advanced', 'author_advanced', 'subject_advanced',
+       'publisher_advanced', 'title_series_advanced', 'identifier_advanced', 'call_number_advanced']
+    end
 
-    it { expect(search_fields).to contain_exactly(*expected_search_fields) }
+    it { expect(search_fields).to contain_exactly(*expected_search_fields + expected_advanced_search_fields) }
   end
 end
