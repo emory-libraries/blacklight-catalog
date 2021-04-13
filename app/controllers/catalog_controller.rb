@@ -13,9 +13,7 @@ class CatalogController < ApplicationController
     config.advanced_search[:query_parser] ||= 'dismax'
     config.advanced_search[:form_solr_parameters] ||= {
       'facet.field' => [
-        "marc_resource_ssim", "library_ssim", "format_ssim", "language_ssim", "author_ssim",
-        "subject_ssim", "collection_ssim", "lc_1letter_ssim", "subject_geo_ssim",
-        "subject_era_ssim", "genre_ssim"
+        "marc_resource_ssim", "library_ssim", "format_ssim", "language_ssim", "collection_ssim"
       ]
     }
     config.advanced_search[:form_facet_partial] ||= 'advanced_search_facets_as_select'
@@ -255,12 +253,27 @@ class CatalogController < ApplicationController
       'title_former_tesim', 'title_graphic_tesim', 'title_host_item_tesim', 'title_key_tesi',
       'title_series_ssim', 'title_translation_tesim', 'title_varying_tesim'
     ]
+    title_advanced_fields = [
+      'title_addl_tesim', 'title_added_entry_tesim', 'title_abbr_tesim', 'title_former_tesim',
+      'title_later_ssim', 'title_host_item_tesim', 'title_translation_tesim', 'title_varying_tesim'
+    ]
+    author_advanced_fields = [
+      'author_addl_tesim', 'author_tesim'
+    ]
+    subject_advanced_fields = [
+      'subject_tsim', 'subject_display_ssim'
+    ]
+    identifier_advanced_fields = [
+      'isbn_ssim', 'issn_ssim', 'oclc_ssim', 'other_standard_ids_ssim', 'lccn_ssim', 'id',
+      'publisher_number_ssim'
+    ]
 
     # This one uses all the defaults set by the solr request handler. Which
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
 
     config.add_search_field('keyword', label: 'Keyword') do |field|
+      field.include_in_advanced_search = false
       field.solr_parameters = {
         qf: 'text_tesi id',
         pf: ''
@@ -272,6 +285,7 @@ class CatalogController < ApplicationController
     # of Solr search fields.
 
     config.add_search_field('title', label: 'Title') do |field|
+      field.include_in_advanced_search = false
       # solr_parameters hash are sent to Solr as ordinary url query params.
       field.solr_parameters = {
         'spellcheck.dictionary': 'title',
@@ -281,6 +295,7 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('author', label: 'Author/Creator') do |field|
+      field.include_in_advanced_search = false
       field.solr_parameters = {
         'spellcheck.dictionary': 'author',
         qf: author_fields.join(' '),
@@ -292,8 +307,73 @@ class CatalogController < ApplicationController
     # Uniform Title, Named Event, Chronological Term, Topical Term, Geographic Name,
     # Uncontrolled, Faceted Topical Terms, and Genre/Form into an array.
     config.add_search_field('subject', label: 'Subjects') do |field|
+      field.include_in_advanced_search = false
       field.solr_parameters = {
         qf: 'subject_tsim',
+        pf: ''
+      }
+    end
+
+    config.add_search_field('all_fields_advanced', label: 'All Fields') do |field|
+      field.include_in_simple_select = false
+      field.solr_parameters = {
+        qf: 'text_tesi',
+        pf: ''
+      }
+    end
+
+    config.add_search_field('title_advanced', label: 'Title') do |field|
+      field.include_in_simple_select = false
+      field.solr_parameters = {
+        qf: title_advanced_fields.join(' '),
+        pf: ''
+      }
+    end
+
+    config.add_search_field('author_advanced', label: 'Author/Creator') do |field|
+      field.include_in_simple_select = false
+      field.solr_parameters = {
+        qf: author_advanced_fields.join(' '),
+        pf: ''
+      }
+    end
+
+    config.add_search_field('subject_advanced', label: 'Subject') do |field|
+      field.include_in_simple_select = false
+      field.solr_parameters = {
+        qf: subject_advanced_fields.join(' '),
+        pf: ''
+      }
+    end
+
+    config.add_search_field('title_series_advanced', label: 'Series Title') do |field|
+      field.include_in_simple_select = false
+      field.solr_parameters = {
+        qf: 'title_series_tesim',
+        pf: ''
+      }
+    end
+
+    config.add_search_field('publisher_advanced', label: 'Publisher') do |field|
+      field.include_in_simple_select = false
+      field.solr_parameters = {
+        qf: 'published_ssm',
+        pf: ''
+      }
+    end
+
+    config.add_search_field('identifier_advanced', label: 'Identifiers (ISBN, ISSN, DOI, Other)') do |field|
+      field.include_in_simple_select = false
+      field.solr_parameters = {
+        qf: identifier_advanced_fields.join(' '),
+        pf: ''
+      }
+    end
+
+    config.add_search_field('call_number_advanced', label: 'Local Call Number') do |field|
+      field.include_in_simple_select = false
+      field.solr_parameters = {
+        qf: 'local_call_number_tesim',
         pf: ''
       }
     end

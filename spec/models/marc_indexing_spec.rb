@@ -418,4 +418,12 @@ RSpec.describe 'Indexing fields with custom logic' do
       end
     end
   end
+
+  describe 'local_call_number_tesim field' do
+    let(:solr_doc) { SolrDocument.find('9937264718402486') }
+
+    it 'has correct value for call number' do
+      expect(solr_doc['local_call_number_tesim']).to eq([" RC451.4.G39 ", " N53 2021 "])
+    end
+  end
 end

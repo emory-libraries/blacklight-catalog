@@ -1,0 +1,18 @@
+.advanced-search-field, .advanced-search-facet {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.control-label-date {
+  margin-left: -30px;
+}
+.range_limit {
+  margin-left: -5px;
+}
+.container-fluid {
+  float: right;
+}
+select#sort.form-control.sort-select {
+  width: 100%;
+}
