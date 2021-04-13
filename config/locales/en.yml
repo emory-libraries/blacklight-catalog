@@ -46,3 +46,9 @@ en:
       url_fulltext_field: "Full Text Access"
       find_more_info: "Find more information about "
       more_options: "More Options"
+  blacklight_advanced_search:
+    form:
+      title: 'Advanced Search'
+      sort_label: 'Sort by'
+      search_btn: 'Advanced Search'
+      start_over: 'Clear Form'
