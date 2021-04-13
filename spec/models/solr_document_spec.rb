@@ -16,4 +16,10 @@ RSpec.describe SolrDocument do
       expect(solr_doc.combined_author_display_vern).to eq ['George Jenkins', 'G. Jenkins']
     end
   end
+
+  context '#more_options' do
+    it 'pulls the format_ssim value' do
+      expect(solr_doc.more_options).to eq solr_doc['format_ssim']
+    end
+  end
 end

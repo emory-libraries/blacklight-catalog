@@ -1,0 +1,21 @@
+<%# Overrides partial of same name from blacklight (7.4.1) %>
+<%#
+  Inserts a render partial call on line #19 that populates the 
+  More Options sections.
+%>
+<%= render 'show_tools' %>
+
+<% unless document.more_like_this.empty? %>
+  <div class="card">
+    <div class="card-header">More Like This</div>
+    <div class="card-body">
+      <%= render collection: document.more_like_this,
+                 partial: 'show_more_like_this',
+                 as: :document %>
+    </div>
+  </div>
+<% end %>
+
+<% if document.more_options.present? %>
+    <%= render 'more_options' %>
+<% end %>
