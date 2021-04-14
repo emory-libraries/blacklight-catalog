@@ -142,7 +142,7 @@ RSpec.describe 'Indexing fields with custom logic' do
     let(:solr_doc_2) { SolrDocument.find('9937264718202486') }
 
     it 'maps HOL852 without LSC' do
-      expect(solr_doc['library_ssim']).to eq(['Robert W. Woodruff Library'])
+      expect(solr_doc['library_ssim']).to eq(['Robert W. Woodruff Library', 'Robert W. Woodruff Library'])
     end
     it 'maps HOL852 with LSC' do
       expect(solr_doc_2['library_ssim']).to eq(['Library Service Center', 'Robert W. Woodruff Library'])
@@ -201,19 +201,22 @@ RSpec.describe 'Indexing fields with custom logic' do
   end
 
   describe 'url_fulltext_linktext_ssm field' do
-    context "when 856 3 and z are present" do
+    context "when 856 3 and z are present and ind2 is equal to 1" do
       let(:solr_doc) { SolrDocument.find('9937264718402486') }
 
       it 'has value of 856 3 since it has higher precedence than z' do
-        expect(solr_doc['url_fulltext_ssm']).to eq(["{\"http://purl.access.gpo.gov/GPO/LPS54510\":\"Subfield code 3\"}"])
+        expect(solr_doc['url_fulltext_ssm']).to eq(["{\"http://purl.access.gpo.gov/GPO/LPS54510\":\"Subfield code 3\"}",
+                                                    "{\"http://catdir.loc.gov/catdir/toc/casalini15/3065159.pdf\":\"Table of contents only\"}"])
       end
     end
 
-    context "when 856 y, 3, and z are present" do
+    context "when 856 y, 3, and z are present and ind2 is equal to 1" do
       let(:solr_doc) { SolrDocument.find('9937264718202486') }
 
       it 'has value of 856 y since it has higher precedence than 3 and z' do
-        expect(solr_doc['url_fulltext_ssm']).to eq(["{\"http://purl.access.gpo.gov/GPO/LPS54510\":\"Subfield code y\"}"])
+        expect(solr_doc['url_fulltext_ssm']).to eq(["{\"http://purl.access.gpo.gov/GPO/LPS54510\":\"Subfield code y\"}",
+                                                    "{\"http://hdl.loc.gov/loc.gmd/g7540.ct000822\":null}",
+                                                    "{\"http://purl.access.gpo.gov/GPO/LPS42214\":null}"])
       end
     end
 
@@ -423,7 +426,7 @@ RSpec.describe 'Indexing fields with custom logic' do
     let(:solr_doc) { SolrDocument.find('9937264718402486') }
 
     it 'has correct value for call number' do
-      expect(solr_doc['local_call_number_tesim']).to eq([" RC451.4.G39 ", " N53 2021 "])
+      expect(solr_doc['local_call_number_tesim']).to eq([" RC451.4.G39 ", " N53 2021 ", "TL789.8.U5", "S434 2017"])
     end
   end
 end
