@@ -7,7 +7,7 @@ module ExtractUrlFulltext
     lambda do |rec, acc|
       rec.fields('856').each do |f|
         case f.indicator2
-        when '0'
+        when '0', '1'
           accumulate_urls(f, acc)
         when '2'
           # do nothing
