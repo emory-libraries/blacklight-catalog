@@ -78,7 +78,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
       it 'has the right title header' do
         # For some reason, the 3 styles load locally, but not here.
         # I looked in blacklight gem's spec for a way to work around this, but
-        # all they tested for was the Cite modal tatile as well.
+        # all they tested for was the Cite modal title as well.
         execute_script("document.querySelector('#citationLink').click()")
         within 'div.modal-body' do
           expect(page).to have_css('h1', class: 'modal-title', text: TEST_ITEM[:title_main_display_tesim].first)
