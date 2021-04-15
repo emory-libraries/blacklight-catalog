@@ -107,15 +107,15 @@ class CatalogController < ApplicationController
     config.add_facet_field 'marc_resource_ssim', label: 'Access', limit: 5
     config.add_facet_field 'library_ssim', label: 'Library', limit: 25
     config.add_facet_field 'format_ssim', label: 'Resource Type', limit: 25
-    config.add_facet_field 'language_ssim', label: 'Language', limit: 5
+    config.add_facet_field 'language_ssim', label: 'Language', limit: 5, index_range: true
     config.add_facet_field 'pub_date_isim', label: 'Publication/Creation Date', range: true
-    config.add_facet_field 'author_ssim', label: 'Author/Creator', limit: 5
-    config.add_facet_field 'subject_ssim', label: 'Subject', limit: 5
-    config.add_facet_field 'collection_ssim', label: 'Collection', limit: 5
+    config.add_facet_field 'author_ssim', label: 'Author/Creator', limit: 5, index_range: true
+    config.add_facet_field 'subject_ssim', label: 'Subject', limit: 5, index_range: true
+    config.add_facet_field 'collection_ssim', label: 'Collection', limit: 5, index_range: true
     config.add_facet_field 'lc_1letter_ssim', label: 'LC Classification', limit: 5
-    config.add_facet_field 'subject_geo_ssim', label: 'Region', limit: 5
-    config.add_facet_field 'subject_era_ssim', label: 'Era', limit: 5
-    config.add_facet_field 'genre_ssim', label: 'Genre', limit: 5
+    config.add_facet_field 'subject_geo_ssim', label: 'Region', limit: 5, index_range: true
+    config.add_facet_field 'subject_era_ssim', label: 'Era', limit: 5, index_range: [*(0..2), *('A'..'Z')]
+    config.add_facet_field 'genre_ssim', label: 'Genre', limit: 5, index_range: true
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
