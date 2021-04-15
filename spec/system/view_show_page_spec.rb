@@ -253,4 +253,12 @@ RSpec.describe "View a item's show page", type: :system, js: true do
       end
     end
   end
+
+  context 'Tools Menu card' do
+    it 'show direct link for an object' do
+      visit solr_document_path(id)
+
+      expect(page).to have_link("Direct Link")
+    end
+  end
 end
