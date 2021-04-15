@@ -3,8 +3,7 @@
 module ExtractCallNumber
   def extract_call_number
     lambda do |rec, acc|
-      if rec['HOL852']
-        field = rec['HOL852']
+      rec.fields('HOL852').each do |field|
         ret_array = collect_subfields(field)
         ret_array.each { |r| acc << field[r] }
       end
