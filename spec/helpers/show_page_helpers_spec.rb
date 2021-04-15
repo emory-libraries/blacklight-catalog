@@ -124,4 +124,10 @@ RSpec.describe ShowPageHelper, type: :helper do
       )
     end # rubocop:enable RSpec/ExampleLength
   end
+
+  context '#direct_link' do
+    it 'returns direct_link with correct link text' do
+      expect(helper.direct_link('123')).to eq("<a class=\"nav-link\" target=\"_blank\" rel=\"noopener noreferrer\" href=\"/catalog/123\">Direct Link</a>")
+    end
+  end
 end
