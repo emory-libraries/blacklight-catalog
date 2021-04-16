@@ -96,6 +96,6 @@ module ShowPageHelper
 
   def direct_link(document_id)
     link = solr_document_path(document_id)
-    link_to('Direct Link', link, class: 'nav-link', target: "_blank", rel: 'noopener noreferrer')
+    link_to(t('blacklight.tools.direct_link'), link, class: 'nav-link', target: "_blank", rel: 'noopener noreferrer')
   end
 end

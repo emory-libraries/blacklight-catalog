@@ -1,9 +1,11 @@
 # frozen_string_literal: true
+require Rails.root.join("lib", "blacklight", "marc", "custom_catalog.rb")
+
 class CatalogController < ApplicationController
   include BlacklightAdvancedSearch::Controller
   include BlacklightRangeLimit::ControllerOverride
   include Blacklight::Catalog
-  include Blacklight::Marc::Catalog
+  include Blacklight::Marc::CustomCatalog
 
   configure_blacklight do |config|
     # default advanced config values
@@ -54,9 +56,12 @@ class CatalogController < ApplicationController
     config.add_results_collection_tool(:view_type_group)
 
     config.add_show_tools_partial(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
-    config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params)
-    config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params)
     config.add_show_tools_partial(:citation)
+    config.add_show_tools_partial(:print, partial: 'print')
+    config.add_show_tools_partial(:direct_link, partial: 'direct_link')
+    config.add_show_tools_partial(:help, partial: 'help')
+    config.add_show_tools_partial(:feedback, partial: 'feedback')
+    config.add_show_tools_partial(:librarian_view, label: 'Staff View', if: :render_librarian_view_control?, define_method: false)
 
     config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
     config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
