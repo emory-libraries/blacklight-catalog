@@ -74,4 +74,11 @@ RSpec.describe CatalogController, type: :controller do
 
     it { expect(search_fields).to contain_exactly(*expected_search_fields + expected_advanced_search_fields) }
   end
+
+  describe 'tool menu items' do
+    let(:tool_menu_items) { controller.blacklight_config.view_config(:show).document_actions.keys }
+    let(:expected_tool_menu_items) { [:bookmark, :citation, :print, :direct_link, :help, :feedback, :librarian_view] }
+
+    it { expect(tool_menu_items).to contain_exactly(*expected_tool_menu_items) }
+  end
 end

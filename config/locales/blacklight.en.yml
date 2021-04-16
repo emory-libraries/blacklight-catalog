@@ -1,3 +1,15 @@
 en:
   blacklight:
     application_name: 'Blacklight'
+    bookmarks:
+      add:
+        button: 'Bookmark Item'
+    search:
+      bookmarks:
+        absent: 'Bookmark Item'
+    tools:
+      direct_link: 'Direct Link'
+      feedback: 'Feedback'
+      help: 'Help'
+      librarian_view: 'Staff View'
+      print: 'Print'
