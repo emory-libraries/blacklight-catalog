@@ -3,21 +3,23 @@
 module ExtractPublicationDate
   def extract_publication_date
     lambda do |rec, acc|
-      start_year = start_year(rec)
-      end_year = end_year(rec)
-      case rec['008'].value[0o6]
-      when 'i', 'k', 'c'
-        if start_year.present? && end_year.present?
-          ret_array = years_to_array(start_year, end_year)
-          ret_array.each { |r| acc << r }
+      if rec['008']
+        start_year = start_year(rec)
+        end_year = end_year(rec)
+        case rec['008'].value[0o6]
+        when 'i', 'k', 'c'
+          if start_year.present? && end_year.present?
+            ret_array = years_to_array(start_year, end_year)
+            ret_array.each { |r| acc << r }
+          else
+            # it could happen that sometimes the start or end year is missing then fallback on traject's pub date method
+            pub_date_from_traject(rec, acc)
+          end
         else
-          # it could happen that sometimes the start or end year is missing then fallback on traject's pub date method
+          # use traject's pub date method if 008[6] is not i, k, or c
+          # until we flesh this method out to include all possible date/year scenarios.
           pub_date_from_traject(rec, acc)
         end
-      else
-        # use traject's pub date method if 008[6] is not i, k, or c
-        # until we flesh this method out to include all possible date/year scenarios.
-        pub_date_from_traject(rec, acc)
       end
     end
   end
