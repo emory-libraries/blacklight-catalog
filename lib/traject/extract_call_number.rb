@@ -5,7 +5,7 @@ module ExtractCallNumber
     lambda do |rec, acc|
       rec.fields('HOL852').each do |field|
         ret_array = collect_subfields(field)
-        ret_array.each { |r| acc << field[r] }
+        ret_array&.each { |r| acc << field[r] }
       end
     end
   end

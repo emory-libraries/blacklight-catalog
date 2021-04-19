@@ -1,9 +1,11 @@
 # frozen_string_literal: true
+require Rails.root.join("lib", "blacklight", "marc", "custom_catalog.rb")
+
 class CatalogController < ApplicationController
   include BlacklightAdvancedSearch::Controller
   include BlacklightRangeLimit::ControllerOverride
   include Blacklight::Catalog
-  include Blacklight::Marc::Catalog
+  include Blacklight::Marc::CustomCatalog
 
   configure_blacklight do |config|
     # default advanced config values
@@ -54,9 +56,12 @@ class CatalogController < ApplicationController
     config.add_results_collection_tool(:view_type_group)
 
     config.add_show_tools_partial(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
-    config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params)
-    config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params)
     config.add_show_tools_partial(:citation)
+    config.add_show_tools_partial(:print, partial: 'print')
+    config.add_show_tools_partial(:direct_link, partial: 'direct_link')
+    config.add_show_tools_partial(:help, partial: 'help')
+    config.add_show_tools_partial(:feedback, partial: 'feedback')
+    config.add_show_tools_partial(:librarian_view, label: 'Staff View', if: :render_librarian_view_control?, define_method: false)
 
     config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
     config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
@@ -107,15 +112,15 @@ class CatalogController < ApplicationController
     config.add_facet_field 'marc_resource_ssim', label: 'Access', limit: 5
     config.add_facet_field 'library_ssim', label: 'Library', limit: 25
     config.add_facet_field 'format_ssim', label: 'Resource Type', limit: 25
-    config.add_facet_field 'language_ssim', label: 'Language', limit: 5
+    config.add_facet_field 'language_ssim', label: 'Language', limit: 5, index_range: true
     config.add_facet_field 'pub_date_isim', label: 'Publication/Creation Date', range: true
-    config.add_facet_field 'author_ssim', label: 'Author/Creator', limit: 5
-    config.add_facet_field 'subject_ssim', label: 'Subject', limit: 5
-    config.add_facet_field 'collection_ssim', label: 'Collection', limit: 5
+    config.add_facet_field 'author_ssim', label: 'Author/Creator', limit: 5, index_range: true
+    config.add_facet_field 'subject_ssim', label: 'Subject', limit: 5, index_range: true
+    config.add_facet_field 'collection_ssim', label: 'Collection', limit: 5, index_range: true
     config.add_facet_field 'lc_1letter_ssim', label: 'LC Classification', limit: 5
-    config.add_facet_field 'subject_geo_ssim', label: 'Region', limit: 5
-    config.add_facet_field 'subject_era_ssim', label: 'Era', limit: 5
-    config.add_facet_field 'genre_ssim', label: 'Genre', limit: 5
+    config.add_facet_field 'subject_geo_ssim', label: 'Region', limit: 5, index_range: true
+    config.add_facet_field 'subject_era_ssim', label: 'Era', limit: 5, index_range: [*(0..2), *('A'..'Z')]
+    config.add_facet_field 'genre_ssim', label: 'Genre', limit: 5, index_range: true
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request

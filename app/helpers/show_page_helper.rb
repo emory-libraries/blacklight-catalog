@@ -93,4 +93,9 @@ module ShowPageHelper
   def values_of_field(value)
     value[:document][value[:field]]
   end
+
+  def direct_link(document_id)
+    link = solr_document_path(document_id)
+    link_to(t('blacklight.tools.direct_link'), link, class: 'nav-link', target: "_blank", rel: 'noopener noreferrer')
+  end
 end

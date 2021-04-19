@@ -116,8 +116,12 @@ RSpec.describe "View a item's show page", type: :system, js: true do
     end
   end
 
-  context 'displaying Librarian View' do
-    it 'shows the link' do
+  context 'Tools Menu Sidebar' do
+    let(:expected_tools_links_text) do
+      ["Bookmark Item", "Cite", "Print", "Direct Link", "Help", "Feedback", "Staff View"]
+    end
+
+    it 'shows the correct links' do
       delete_all_documents_from_solr
       build_solr_docs(
         TEST_ITEM.merge(
@@ -128,7 +132,9 @@ RSpec.describe "View a item's show page", type: :system, js: true do
       )
       visit solr_document_path(id)
 
-      expect(page).to have_link('Librarian View')
+      expect(
+        find_all('.card.show-tools ul.list-group.list-group-flush li.list-group-item').map(&:text)
+      ).to include(*expected_tools_links_text)
     end
   end
 
