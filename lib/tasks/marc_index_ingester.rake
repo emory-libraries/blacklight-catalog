@@ -2,7 +2,7 @@
 
 desc "Harvest OAI XML denoted in ENV oai_set_name and index in Solr via Traject"
 task marc_index_ingest: [:environment] do
-  oai_set = ENV['oai_set_name'] || ENV['oai_single_id']
+  oai_set = ENV['oai_single_id'] || ENV['oai_set_name']
   full_index = ENV['full_index'].present?
   to_time = Time.new.utc.strftime("%Y-%m-%dT%H:%M:%SZ")
   single_record = ENV.key?('oai_single_id') ? true : false
@@ -33,7 +33,7 @@ task marc_index_ingest: [:environment] do
 
   # save to date for next time
   log "Storing 'to' time"
-  PropertyBag.set('marc_ingest_time', to_time)
+  PropertyBag.set('marc_ingest_time', to_time) unless single_record
   mmsid_logger&.process_file('ingest_mmsids')
 
   log "Complete!"
