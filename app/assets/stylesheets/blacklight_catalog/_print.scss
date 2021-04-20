@@ -1,0 +1,25 @@
+@media print {
+  #appliedParams, .pagination-search-widgets, #where-to-find-section, #trunc-short-text, .moreless.less, .page-sidebar.col-lg-3,
+    .additional-titles.btn.btn-link.additional-fields, .btn.btn-link.additional-authors-collapse, .footer-version { 
+      display: none !important; 
+  }
+  #trunc-full-text { display: block !important; }
+  #extended-terms { display: flex !important; }
+  #extended-author-addl { display: inline !important; }
+  dd { margin-bottom: 1rem; }
+  dt { font-weight: bold !important; }
+  a { 
+    text-decoration: none !important;
+    color: #212529;
+    background-color: none;
+  }
+  h4 { 
+    padding-left: 0px !important;
+    padding-right: 0px !important 
+  }
+  #main-container { max-width: 2500px !important; }
+  @page { 
+    size: auto; 
+    margin: 25mm 25mm 25mm 25mm;  
+  }
+}

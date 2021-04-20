@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module ToolsSidebarHelper
   def render_print_in_toolbar
-    link_to(t('blacklight.tools.print'), '/#', class: 'nav-link', target: "_blank", rel: 'noopener noreferrer')
+    link_to(t('blacklight.tools.print'), '#', onclick: 'javascript:print()', class: 'nav-link')
   end
 
   def render_help_in_toolbar
