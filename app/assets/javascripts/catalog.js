@@ -17,11 +17,11 @@ $(document).ready(function() {
         var c = content.substr(0, showChar);
         var h = content;
         var html =
-          '<div class="truncate-text" style="display:block">' +
+          '<div class="truncate-text" id="trunc-short-text" style="display:block">' +
           c +
           '<span class="moreellipses">' +
           ellipsestext +
-          '&nbsp;&nbsp;<a href="" class="moreless more">Read more</a></span></span></div><div class="truncate-text" style="display:none">' +
+          '&nbsp;&nbsp;<a href="" class="moreless more">Read more</a></span></span></div><div class="truncate-text" id="trunc-full-text" style="display:none">' +
           h +
           '&nbsp;&nbsp;<a href="" class="moreless less">Read Less</a></span></div>';
 
