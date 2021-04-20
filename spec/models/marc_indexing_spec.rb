@@ -296,8 +296,8 @@ RSpec.describe 'Indexing fields with custom logic' do
 
     it 'maps 024a with prefix from indicator1' do
       # saves prefix from ind1 and value from subfield `a`, or only `a` value if ind1 is blank
-      expect(solr_doc['other_standard_ids_ssim']).to eq(["Universal Product Code: 085392844524", "DOI: 10.1163/9789401210720",
-                                                         "978940121072021"])
+      expect(solr_doc['other_standard_ids_tesim']).to eq(["Universal Product Code: 085392844524", "DOI: 10.1163/9789401210720",
+                                                          "978940121072021"])
     end
   end
 
