@@ -119,7 +119,7 @@ module CustomCitationLogic
   def get_pub_date_from_solr_mla(solr_doc, build_arr)
     pub_date = solr_doc['pub_date_isim']&.last
 
-    build_arr << "#{spub_date}." if pub_date.present?
+    build_arr << "#{pub_date}." if pub_date.present?
   end
 
   def get_vol_ed_from_solr_mla(solr_doc)
