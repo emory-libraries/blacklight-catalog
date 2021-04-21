@@ -20,6 +20,24 @@ module CustomCitationLogic
     build_arr.compact.join(' ')
   end
 
+  def mla_citation(record)
+    solr_doc = SolrDocument.find(record.find { |f| f.tag == '001' }.value)
+    build_arr = []
+
+    # Get Author
+    get_author_from_solr_mla(solr_doc, build_arr)
+    # Get title/edition/volume info
+    build_title_vol_ed_sections_mla(solr_doc, build_arr)
+    # Get Publisher info
+    get_publisher_from_solr_apa(solr_doc, build_arr)
+    # Get Pub Date
+    get_pub_date_from_solr_mla(solr_doc, build_arr)
+    # Get Location info
+    get_location_from_solr_mla(solr_doc, build_arr)
+
+    build_arr.compact.join(' ')
+  end
+
   def get_author_from_solr_apa(solr_doc, build_arr)
     author = solr_doc['author_ssim']&.first&.strip
     auth_splits = clean_end_punctuation(author).split(', ').flatten if author.present?
@@ -84,6 +102,44 @@ module CustomCitationLogic
   def build_title_vol_ed_sections_apa(solr_doc, build_arr)
     title = get_title_from_solr_apa(solr_doc)
     vol_ed = get_vol_ed_from_solr_apa(solr_doc)
+    build_arr << if title.present? && vol_ed.present?
+                   "<i>" + title + "</i>" + " #{vol_ed}."
+                 elsif title.present? && vol_ed.blank?
+                   "<i>" + title + "</i>."
+                 end
+  end
+
+  def get_author_from_solr_mla(solr_doc, build_arr)
+    author = solr_doc['author_ssim']&.first&.strip
+    author_final = clean_end_punctuation(author)
+
+    build_arr << author_final if author_final.present?
+  end
+
+  def get_pub_date_from_solr_mla(solr_doc, build_arr)
+    pub_date = solr_doc['pub_date_isim']&.last
+
+    build_arr << "#{spub_date}." if pub_date.present?
+  end
+
+  def get_vol_ed_from_solr_mla(solr_doc)
+    vol1 = solr_doc['title_display_partnumber_tesim']&.first&.strip
+    vol2 = solr_doc['title_display_partname_tesim']&.first&.strip
+    edition = solr_doc['edition_tsim']&.first&.strip
+    joined_str = [vol1.present? ? "vol. " + vol1.to_s : vol1, vol2.present? ? "vol. " + vol2.to_s : vol2, vol1.present? ? "ed. " + edition : edition].compact.join(', ')
+    return joined_str.to_s if joined_str.present?
+    joined_str
+  end
+
+  def get_location_from_solr_mla(solr_doc, build_arr)
+    publisher_location = solr_doc['publisher_location_ssm']&.first&.strip
+
+    build_arr << "#{clean_end_punctuation(publisher_location)}." if publisher_location.present?
+  end
+
+  def build_title_vol_ed_sections_mla(solr_doc, build_arr)
+    title = get_title_from_solr_apa(solr_doc)
+    vol_ed = get_vol_ed_from_solr_mla(solr_doc)
     build_arr << if title.present? && vol_ed.present?
                    "<i>" + title + "</i>" + " #{vol_ed}."
                  elsif title.present? && vol_ed.blank?

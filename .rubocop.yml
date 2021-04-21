@@ -36,6 +36,7 @@ Metrics/MethodLength:
 Metrics/ModuleLength:
     Exclude:
         - 'lib/traject/extraction_tools.rb'
+        - 'config/prepends/custom_citation_logic.rb'
 
 Metrics/PerceivedComplexity:
     Exclude:
