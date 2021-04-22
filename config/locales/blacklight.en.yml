@@ -7,6 +7,8 @@ en:
     search:
       bookmarks:
         absent: 'Bookmark Item'
+      librarian_view: 
+        title: 'Staff View'
     tools:
       direct_link: 'Direct Link'
       feedback: 'Feedback'
