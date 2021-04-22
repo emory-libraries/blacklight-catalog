@@ -12,6 +12,7 @@ AllCops:
 
 Metrics/AbcSize:
     Exclude:
+        - 'app/models/concerns/blacklight/solr/document/marc_export.rb'
         - 'app/services/oai_processing_service.rb'
         - 'app/services/oai_processing_single_service.rb'
 
@@ -24,22 +25,26 @@ Metrics/BlockLength:
 
 Metrics/CyclomaticComplexity:
     Exclude:
+        - 'app/models/concerns/blacklight/solr/document/marc_export.rb'
         - 'app/models/marc_indexer.rb'
         - 'app/services/oai_processing_single_service.rb'
 
 Metrics/MethodLength:
     Exclude:
+        - 'app/models/concerns/blacklight/solr/document/marc_export.rb'
         - 'app/services/oai_processing_service.rb'
         - 'app/services/oai_processing_single_service.rb'
         - 'lib/traject/extract_publication_date.rb'
 
 Metrics/ModuleLength:
     Exclude:
+        - 'app/models/concerns/blacklight/solr/document/marc_export.rb'
         - 'lib/traject/extraction_tools.rb'
         - 'config/prepends/custom_citation_logic.rb'
 
 Metrics/PerceivedComplexity:
     Exclude:
+        - 'app/models/concerns/blacklight/solr/document/marc_export.rb'
         - 'app/models/marc_indexer.rb'
 
 Lint/EmptyWhen:
@@ -56,6 +61,10 @@ Rails/Output:
         - 'app/services/oai_processing_single_service.rb'
         - 'app/services/oai_query_string_service.rb'
 
+Rails/OutputSafety:
+    Exclude:
+        - 'app/models/concerns/blacklight/solr/document/marc_export.rb'
+
 RSpec/DescribeClass:
     Exclude:
         - 'spec/models/marc_indexing_spec.rb'
@@ -69,3 +78,7 @@ RSpec/ExampleLength:
         - spec/system/facet_by_year_spec.rb
         - spec/system/targeted_field_search_spec.rb
         - spec/system/view_show_page_spec.rb
+
+Style/Next:
+    Exclude:
+        - 'app/models/concerns/blacklight/solr/document/marc_export.rb'
