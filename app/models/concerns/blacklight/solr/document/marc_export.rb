@@ -416,7 +416,7 @@ module Blacklight::Solr::Document::MarcExport
 
   def get_author_from_solr_mla(solr_doc, build_arr)
     author = solr_doc['author_ssim']&.first&.strip
-    author_final = clean_end_punctuation(author)
+    author_final = author.present? ? clean_end_punctuation(author) : ''
 
     build_arr << author_final if author_final.present?
   end
