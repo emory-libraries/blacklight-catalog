@@ -39,6 +39,7 @@ require 'traject/extract_library'
 require 'traject/extract_marc_resource'
 require 'traject/extract_publication_main_display.rb'
 require 'traject/extract_publication_date'
+require 'traject/extract_published'
 require 'traject/extract_publisher_details_display'
 require 'traject/extract_subject_display'
 require 'traject/extract_title_details_display'
@@ -62,6 +63,7 @@ extend ExtractLibrary
 extend ExtractMarcResource
 extend ExtractPublicationMainDisplay
 extend ExtractPublicationDate
+extend ExtractPublished
 extend ExtractPublisherDetailsDisplay
 extend ExtractSubjectDisplay
 extend ExtractTitleDetailsDisplay
@@ -209,7 +211,7 @@ to_field 'genre_ssim', extract_marc("655a"), trim_punctuation
 to_field 'note_publication_dates_tesim', extract_marc('362a')
 to_field 'pub_date_isim', extract_publication_date
 to_field 'publication_main_display_ssim', extract_publication_main_display
-to_field 'published_ssm', extract_marc('260a:264b', alternate_script: false), trim_punctuation
+to_field 'published_tesim', extract_published
 to_field 'published_vern_ssim', extract_marc('260a', alternate_script: :only), trim_punctuation
 to_field 'publisher_details_display_ssim', extract_publisher_details_display
 to_field 'publisher_location_ssim', extract_marc("260a:264a:008[15-17]"), trim_punctuation

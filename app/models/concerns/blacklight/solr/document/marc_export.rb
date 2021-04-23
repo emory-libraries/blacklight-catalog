@@ -393,7 +393,7 @@ module Blacklight::Solr::Document::MarcExport
   end
 
   def get_publisher_from_solr_apa(solr_doc, build_arr)
-    publisher = solr_doc['published_ssm']&.first&.strip
+    publisher = solr_doc['published_tesim']&.first&.strip
 
     build_arr << "#{clean_end_punctuation(publisher)}." if publisher.present?
   end
@@ -431,7 +431,7 @@ module Blacklight::Solr::Document::MarcExport
     vol1 = solr_doc['title_display_partnumber_tesim']&.first&.strip
     vol2 = solr_doc['title_display_partname_tesim']&.first&.strip
     edition = solr_doc['edition_tsim']&.first&.strip
-    joined_str = [vol1.present? ? "vol. " + vol1.to_s : vol1, vol2.present? ? "vol. " + vol2.to_s : vol2, vol1.present? ? "ed. " + edition : edition].compact.join(', ')
+    joined_str = [vol1.present? ? "vol. " + vol1.to_s : vol1, vol2.present? ? "vol. " + vol2.to_s : vol2, edition.present? ? "ed. " + edition : edition].compact.join(', ')
     return joined_str.to_s if joined_str.present?
     joined_str
   end
