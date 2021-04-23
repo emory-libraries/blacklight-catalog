@@ -10,6 +10,7 @@ en:
       librarian_view: 
         title: 'Staff View'
     tools:
+      citation_warning: 'These citations are automatically generated and may not always be correct. Remember to check your citations for accuracy before including them in your work.'
       direct_link: 'Direct Link'
       feedback: 'Feedback'
       help: 'Help'
