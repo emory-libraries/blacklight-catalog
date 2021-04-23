@@ -85,12 +85,27 @@ RSpec.describe "View a item's show page", type: :system, js: true do
         # I looked in blacklight gem's spec for a way to work around this, but
         # all they tested for was the Cite modal title as well.
         execute_script("document.querySelector('#citationLink').click()")
-        within 'div.modal-header' do
+        within '#blacklight-modal' do
           expect(page).to have_css('h1', text: 'Cite')
         end
 
         within 'div.modal-body .citation-warning.row .col-11' do
           expect(page).to have_content(expected_warning_text)
+        end
+      end
+    end
+
+    context 'direct-link' do
+      around do |example|
+        ENV['BLACKLIGHT_BASE_URL'] = 'www.example.com'
+        example.run
+        ENV['BLACKLIGHT_BASE_URL'] = ''
+      end
+      it 'has the correct direct link' do
+        click_on 'Direct Link'
+        within '#modal-window' do
+          expect(page).to have_css('h1', text: 'Direct Link')
+          expect(page).to have_selector('input[value="www.example.com/catalog/123"]')
         end
       end
     end

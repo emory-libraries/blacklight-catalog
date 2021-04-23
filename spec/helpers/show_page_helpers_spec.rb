@@ -126,8 +126,13 @@ RSpec.describe ShowPageHelper, type: :helper do
   end
 
   context '#direct_link' do
+    around do |example|
+      ENV['BLACKLIGHT_BASE_URL'] = 'www.example.com'
+      example.run
+      ENV['BLACKLIGHT_BASE_URL'] = ''
+    end
     it 'returns direct_link with correct link text' do
-      expect(helper.direct_link('123')).to eq("<a class=\"nav-link\" target=\"_blank\" rel=\"noopener noreferrer\" href=\"/catalog/123\">Direct Link</a>")
+      expect(helper.direct_link('123')).to eq("www.example.com/catalog/123")
     end
   end
 end
