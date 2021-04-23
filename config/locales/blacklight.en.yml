@@ -4,6 +4,9 @@ en:
     bookmarks:
       add:
         button: 'Bookmark Item'
+    citation:
+      mla: 'MLA (8th Edition)'
+      apa: 'APA (7th Edition)'
     search:
       bookmarks:
         absent: 'Bookmark Item'
