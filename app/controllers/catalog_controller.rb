@@ -362,7 +362,7 @@ class CatalogController < ApplicationController
     config.add_search_field('publisher_advanced', label: 'Publisher') do |field|
       field.include_in_simple_select = false
       field.solr_parameters = {
-        qf: 'published_ssm',
+        qf: 'published_tesim',
         pf: ''
       }
     end
