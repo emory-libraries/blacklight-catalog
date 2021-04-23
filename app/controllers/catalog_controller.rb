@@ -269,8 +269,8 @@ class CatalogController < ApplicationController
       'subject_tsim', 'subject_display_ssim'
     ]
     identifier_advanced_fields = [
-      'isbn_ssim', 'issn_ssim', 'oclc_ssim', 'other_standard_ids_ssim', 'lccn_ssim', 'id',
-      'publisher_number_ssim'
+      'isbn_ssim', 'issn_ssim', 'oclc_ssim', 'other_standard_ids_tesim', 'lccn_ssim', 'id',
+      'publisher_number_tesim'
     ]
 
     # This one uses all the defaults set by the solr request handler. Which
@@ -362,7 +362,7 @@ class CatalogController < ApplicationController
     config.add_search_field('publisher_advanced', label: 'Publisher') do |field|
       field.include_in_simple_select = false
       field.solr_parameters = {
-        qf: 'published_ssm',
+        qf: 'published_tesim',
         pf: ''
       }
     end
