@@ -1,0 +1,11 @@
+<div id="direct-link" class="modal-header">
+	<h1><%= t('blacklight.tools.direct_link') %></h1>
+  <button type="button" class="blacklight-modal-close close" data-dismiss="modal" aria-label="<%= t('blacklight.modal.close') %>">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <%= t('blacklight.tools.direct_link_url_text') %>
+  <br>
+  <input type="text" id="direct-link-url" style="width: 100%" value="<%= direct_link(@document.id) if @document.present? %>" readonly>
+</div>

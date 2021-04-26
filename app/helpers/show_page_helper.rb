@@ -96,6 +96,7 @@ module ShowPageHelper
 
   def direct_link(document_id)
     link = solr_document_path(document_id)
-    link_to(t('blacklight.tools.direct_link'), link, class: 'nav-link', target: "_blank", rel: 'noopener noreferrer')
+    link_text = Rails.env.development? ? 'localhost:3000' : ENV['BLACKLIGHT_BASE_URL'] || ''
+    link_text + link
   end
 end
