@@ -30,7 +30,7 @@ RSpec.describe CatalogController, type: :controller do
        'publication_main_display_ssim', 'format_ssim', 'title_abbr_tesim', 'title_added_entry_tesim',
        'title_series_ssim', 'title_translation_tesim', 'author_addl_display_tesim',
        'genre_ssim', 'subject_display_ssim', 'url_suppl_ssim', 'issn_ssim', 'oclc_ssim',
-       'other_standard_ids_ssim', 'publisher_number_ssim', 'url_fulltext_ssm', 'title_uniform_ssim',
+       'other_standard_ids_tesim', 'publisher_number_tesim', 'url_fulltext_ssm', 'title_uniform_ssim',
        'title_former_ssim', 'title_later_ssim', 'emory_collection_tesim', 'finding_aid_url_ssim',
        'table_of_contents_tesim', 'summary_tesim', 'note_publication_tesim', 'note_publication_dates_tesim',
        'note_language_tesim', 'note_accessibility_tesim', 'note_technical_tesim',
