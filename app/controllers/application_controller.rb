@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
   end
 
   def alma_availability
-    availability = AlmaAvailabilityService.new(params[:id])&.current_availability
+    document = SolrDocument.find(params[:id])
+    availability = AlmaAvailabilityService.new(params[:id])&.current_avail_table_data(document)
 
     respond_to { |format| format.any { render json: availability } }
   end
