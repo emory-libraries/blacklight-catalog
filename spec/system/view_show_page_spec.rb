@@ -117,26 +117,33 @@ RSpec.describe "View a item's show page", type: :system, js: true do
     end
   end
 
-  context 'displaying availability badge' do
-    it 'shows the Available badge' do
-      expect(page).to have_css('span.badge.badge-success', text: 'Available')
+  context 'displaying availability table' do
+    it 'shows the Available table' do
+      expect(find_all('.where-to-find-table table.table')).not_to be_empty
+      [
+        'At the Library', 'Call Number', 'Status', 'UNIV (Library Service Center)',
+        'PT2613 .M45 Z92 2006', 'Available'
+      ].each { |t| expect(page).to have_content(t) }
     end
 
-    it 'shows the Unavailable badge' do
+    it 'shows as Unavailable in the table' do
       delete_all_documents_from_solr
       build_solr_docs(TEST_ITEM.merge(id: '456'))
       visit solr_document_path('456')
 
-      expect(page).to have_css('span.badge.badge-danger', text: 'Unavailable')
+      expect(find_all('.where-to-find-table table.table')).not_to be_empty
+      [
+        'At the Library', 'Call Number', 'Status', 'Robert W. Woodruff Library: Book Stacks',
+        'PT2613 .M45 Z92 2006', 'No copies available'
+      ].each { |t| expect(page).to have_content(t) }
     end
 
-    it 'shows no badge' do
+    it 'shows no table' do
       delete_all_documents_from_solr
       build_solr_docs(TEST_ITEM.merge(id: '789'))
       visit solr_document_path('789')
 
-      expect(page).not_to have_css('span.badge.badge-danger', text: 'Unavailable')
-      expect(page).not_to have_css('span.badge.badge-success', text: 'Available')
+      expect(find_all('.where-to-find-table table.table')).to be_empty
     end
   end
 

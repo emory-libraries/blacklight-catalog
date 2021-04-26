@@ -99,5 +99,9 @@ RSpec.configure do |config|
       :get,
       "https://smackety.alma.exlibrisgroup.com/view/oai/blah/request?metadataPrefix=marc21&set=blacklight4&until=2021-02-23T19:16:10Z&verb=ListRecords"
     ).to_return(status: 200, body: File.read(fixture_path + '/alma_small_set_with_1_new_1_updated_fields.xml'), headers: {})
+    stub_request(
+      :get,
+      "https://jalapeno.alma.exlibrisgroup.com/view/oai/tabasco/request?identifier=oai:alma.blah:single_record&metadataPrefix=marc21&verb=GetRecord"
+    ).to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file.xml'), headers: {})
   end
 end
