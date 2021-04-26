@@ -1,1 +1,7 @@
-<%= direct_link(@document.id) if @document.present? %>
+<%= link_to t('blacklight.tools.direct_link'), "", class: 'nav-link', data: {toggle: "modal", target: "#modal-window"} %>
+
+<div id="modal-window" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"><%= render 'direct_link_modal' %></div>
+  </div>
+</div>
