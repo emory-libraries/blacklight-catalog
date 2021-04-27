@@ -118,12 +118,14 @@ RSpec.describe "View a item's show page", type: :system, js: true do
   end
 
   context 'displaying availability table' do
-    it 'shows the Available table' do
-      expect(find_all('.where-to-find-table table.table')).not_to be_empty
-      [
-        'At the Library', 'Call Number', 'Status', 'UNIV (Library Service Center)',
-        'PT2613 .M45 Z92 2006', 'Available'
-      ].each { |t| expect(page).to have_content(t) }
+    it 'shows the Available and Online tables' do
+      expect(find_all('.where-to-find-table')).not_to be_empty
+      within '.where-to-find-table' do
+        [
+          'At the Library', 'Call Number', 'Status', 'UNIV (Library Service Center)',
+          'PT2613 .M45 Z92 2006', 'Available', 'Online', 'Access online:', 'Link Text for Book'
+        ].each { |t| expect(page).to have_content(t) }
+      end
     end
 
     it 'shows as Unavailable in the table' do
@@ -132,18 +134,24 @@ RSpec.describe "View a item's show page", type: :system, js: true do
       visit solr_document_path('456')
 
       expect(find_all('.where-to-find-table table.table')).not_to be_empty
-      [
-        'At the Library', 'Call Number', 'Status', 'Robert W. Woodruff Library: Book Stacks',
-        'PT2613 .M45 Z92 2006', 'No copies available'
-      ].each { |t| expect(page).to have_content(t) }
+      within '.where-to-find-table' do
+        [
+          'At the Library', 'Call Number', 'Status', 'Robert W. Woodruff Library: Book Stacks',
+          'PT2613 .M45 Z92 2006', 'No copies available', 'Online', 'Access online:',
+          'Link Text for Book'
+        ].each { |t| expect(page).to have_content(t) }
+      end
     end
 
-    it 'shows no table' do
+    it 'shows online table only' do
       delete_all_documents_from_solr
       build_solr_docs(TEST_ITEM.merge(id: '789'))
       visit solr_document_path('789')
 
-      expect(find_all('.where-to-find-table table.table')).to be_empty
+      expect(find_all('.where-to-find-table table.table')).not_to be_empty
+      within '.where-to-find-table table.table' do
+        ['Online', 'Access online:', 'Link Text for Book'].each { |t| expect(page).to have_content(t) }
+      end
     end
   end
 
