@@ -291,7 +291,7 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
   end
 
-  describe 'other_standard_ids_ssim field' do
+  describe 'other_standard_ids_tesim field' do
     let(:solr_doc) { SolrDocument.find('9937264717902486') }
 
     it 'maps 024a with prefix from indicator1' do

@@ -1,5 +1,6 @@
 <div id='where-to-find-section'>
   <%= tag.h2 t('catalog.show.find_it_header'), class: "find-it-header" %><br/>
+  <div class="where-to-find-table"></div>
   <p>
     <button class="btn btn-outline-primary" id="physical-<%= document.id %>" class="availability" data-url="<%= "#{openurl(document.id,'getit')}" %>" value="Physical copy">Physical copy</button>
     <button class="btn btn-outline-primary" id="online-<%= document.id %>" class="availability" data-url="<%= "#{openurl(document.id,'viewit')}" %>" value="On-line version">On-line version</button>
@@ -7,3 +8,25 @@
   <iframe id="request-options" style="border: 1px solid #dfdfdf;border-top-width:3px;" width="100%" height=200 seamless="seamless" frameBorder=0 src="<%= "#{openurl(document.id,'getit')}" %>"></iframe> 
   <%= render 'url_display', document: document, presenter: UrlFulltextPresenter, title: t('catalog.show.url_fulltext'), url_field: 'url_fulltext' %>
 </div>
+
+<script type="text/javascript">
+  $.ajax({
+    url: "/alma_availability/<%= document.id %>.json",
+    type: "get",
+    dataType: 'json',
+    success: function(data) { 
+      var physicalLibrary = data['<%= document.id %>']['physical']['library'];
+      var physicalCallNumber = data['<%= document.id %>']['physical']['call_number'];
+      var physicalAvailable = data['<%= document.id %>']['physical']['available'];
+      var availabilityHtml = 
+        '<table class="table"><thead><tr><th scope="col"><%= t('blacklight.availability.at_library') %></th><th scope="col"><%= t('blacklight.availability.call_number') %></th><th scope="col"><%= t('blacklight.availability.status') %></th></tr></thead><tbody><tr><td>' +
+        physicalLibrary + '</td><td>' + physicalCallNumber + '</td><td>' + physicalAvailable +
+        '</td></tr></tbody></table>';
+      if (physicalLibrary && physicalAvailable) {
+        Rails.$(".where-to-find-table")[0].innerHTML = availabilityHtml;
+      }
+    }
+  })
+</script>
+
+

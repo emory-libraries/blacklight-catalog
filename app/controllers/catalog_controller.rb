@@ -230,10 +230,10 @@ class CatalogController < ApplicationController
     config.add_show_field 'isbn_ssim', label: 'ISBN', helper_method: :multiple_values_new_line
     config.add_show_field 'issn_ssim', label: 'ISSN', helper_method: :multiple_values_new_line
     config.add_show_field 'oclc_ssim', label: 'OCLC Number', helper_method: :multiple_values_new_line
-    config.add_show_field('other_standard_ids_ssim',
+    config.add_show_field('other_standard_ids_tesim',
       label: 'Other Identifiers',
       helper_method: :multiple_values_new_line)
-    config.add_show_field 'publisher_number_ssim', label: 'Publisher Number', helper_method: :multiple_values_new_line
+    config.add_show_field 'publisher_number_tesim', label: 'Publisher Number', helper_method: :multiple_values_new_line
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields

@@ -399,7 +399,7 @@ module Blacklight::Solr::Document::MarcExport
   end
 
   def get_doi_from_solr_apa(solr_doc, build_arr)
-    doi = solr_doc['other_standard_ids_ssim']&.first&.strip
+    doi = solr_doc['other_standard_ids_tesim']&.first&.strip
 
     build_arr << "(#{clean_end_punctuation(doi)})" if doi.present?
   end

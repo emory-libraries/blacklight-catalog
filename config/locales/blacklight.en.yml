@@ -1,6 +1,10 @@
 en:
   blacklight:
     application_name: 'Blacklight'
+    availability:
+      at_library: 'At the Library'
+      call_number: 'Call Number'
+      status: 'Status'
     bookmarks:
       add:
         button: 'Bookmark Item'
