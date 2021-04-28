@@ -16,7 +16,12 @@ class CatalogController < ApplicationController
     config.advanced_search[:form_solr_parameters] ||= {
       'facet.field' => [
         "marc_resource_ssim", "library_ssim", "format_ssim", "language_ssim", "collection_ssim"
-      ]
+      ],
+      "f.marc_resource_ssim.facet.limit" => -1,
+      "f.library_ssim.facet.limit" => -1,
+      "f.format_ssim.facet.limit" => -1,
+      "f.language_ssim.facet.limit" => -1,
+      "f.collection_ssim.facet.limit" => -1
     }
     config.advanced_search[:form_facet_partial] ||= 'advanced_search_facets_as_select'
 
