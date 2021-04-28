@@ -26,12 +26,18 @@ class AlmaAvailabilityService
   def current_avail_table_data(document)
     bib = {}
     physical = @xml.xpath('bib/record/datafield[@tag="AVA"]')
+    online = @xml.xpath('bib/record/datafield[@tag="AVE"]/subfield[@code="e"]')
+
     bib[@mms_id] =
       { physical: {
         library: library_text(physical, document),
         call_number: call_number_text(physical),
         available: available_text(physical)
-      } }
+      },
+        online: {
+          links: build_online_items(document),
+          uresolver: deliver_uresolver?(online)
+        } }
     bib
   end
 
@@ -82,5 +88,15 @@ class AlmaAvailabilityService
     return '<span class="item-available">One or more copies available</span>' if available_elements.count > 1
     return '<span class="item-available">Available</span>' if available_elements.count == 1
     '<span class="item-not-available">No copies available</span>'
+  end
+
+  def build_online_items(document)
+    build_array = []
+    document.url_fulltext.each { |u| build_array << JSON.parse(u) } if document&.url_fulltext&.present?
+    build_array
+  end
+
+  def deliver_uresolver?(online_arr)
+    online_arr&.any? { |o| o.text.casecmp('available').zero? }
   end
 end
