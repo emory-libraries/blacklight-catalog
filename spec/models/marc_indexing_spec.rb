@@ -400,8 +400,8 @@ RSpec.describe 'Indexing fields with custom logic' do
     context 'when 264 and 245fg are present' do
       let(:solr_doc) { SolrDocument.find('9937264717902486') }
 
-      it 'has correct value of 264 as it has higher precedence than 245fg' do
-        expect(solr_doc['publication_main_display_ssim']).to eq(["Marlborough, Wiltshire : Adam Matthew Digital, 2019"])
+      it 'has correct value of 264 (with longer string) as it has higher precedence than 245fg' do
+        expect(solr_doc['publication_main_display_ssim']).to eq(["New York, New York : Viking, QuestEntourageExample [2016]"])
       end
     end
 
