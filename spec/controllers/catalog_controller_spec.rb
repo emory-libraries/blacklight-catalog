@@ -64,6 +64,37 @@ RSpec.describe CatalogController, type: :controller do
     it { expect(facet_fields).to contain_exactly(*expected_facet_fields) }
   end
 
+  describe 'advanced search facet fields' do
+    let(:adv_search_facets_config) { controller.blacklight_config.advanced_search.form_solr_parameters }
+    let(:expected_facet_fields) do
+      ["marc_resource_ssim", "library_ssim", "format_ssim", "language_ssim", "collection_ssim"]
+    end
+
+    context 'configuration settings' do
+      it 'is set with the expected field names' do
+        expect(adv_search_facets_config['facet.field']).to match_array(expected_facet_fields)
+      end
+
+      context 'facet limits' do
+        let(:limiters) do
+          adv_search_facets_config.select do |k, _v|
+            split_key = k.split('.')
+            expected_facet_fields.include?(split_key[1]) && split_key[0] == 'f'
+          end
+        end
+        let(:limiters_values) { limiters.values }
+
+        it 'matches the expected facet fields' do
+          expect(limiters.uniq.size).to eq(expected_facet_fields.uniq.size)
+        end
+
+        it 'all set to -1 (unlimited in size)' do
+          expect(limiters_values.uniq).to eq([-1])
+        end
+      end
+    end
+  end
+
   describe 'search fields' do
     let(:search_fields) { controller.blacklight_config.search_fields.keys }
     let(:expected_search_fields) { ['keyword', 'title', 'author', 'subject'] }
