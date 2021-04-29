@@ -24,7 +24,6 @@
     <span class="input-group-append">
       <button type="submit" class="btn btn-primary search-btn" id="search">
         <span class="submit-search-text"><%= t('blacklight.search.form.submit') %></span>
-        <%= blacklight_icon :search, aria_hidden: true %>
       </button>
     </span>
   </div>
@@ -33,5 +32,5 @@
 
 
 <div>
-  <%= link_to 'Advanced Search', blacklight_advanced_search_engine.advanced_search_path(search_state.to_h), class: 'advanced_search btn btn-secondary'%>
+  <%= link_to 'Advanced Search', blacklight_advanced_search_engine.advanced_search_path(search_state.to_h), class: 'advanced_search'%>
 </div>

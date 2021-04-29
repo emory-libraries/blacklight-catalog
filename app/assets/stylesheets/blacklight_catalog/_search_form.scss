@@ -107,8 +107,21 @@ button#search {
   font-size: $font-size-sm;
   font-weight: $font-weight-bold;
 
+  border-radius: $results-border-radius;
   &:hover {
     border-color: $mid-blue;
     background-color: $mid-blue;
   }
+}
+
+.navbar-search .search-query-form{
+  padding-left: 0;
+}
+
+select.search-field{
+  border-radius: $results-border-radius;
+}
+.twitter-typeahead{
+  flex-grow: 2;
+  z-index: 1000;
 }

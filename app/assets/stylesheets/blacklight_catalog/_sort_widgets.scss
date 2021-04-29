@@ -8,15 +8,14 @@
 div#sortAndPerPage {
   margin-bottom: $branding-padding-x;
   justify-content: space-between;
-  margin-left: 5px;
-  margin-right: 5px;
+  display: flex;
 
-  > .sort-tools {
+  > .search-widgets {
     margin-left: auto;
     right: 0;
   }
 
-  > div.sort-tools > div.per-page-dropdown, div#sort-dropdown {
+  > div.search-widgets > div.per-page-dropdown, div#sort-dropdown {
     > button.dropdown-toggle {
       border-radius: $results-border-radius;
     }
@@ -27,13 +26,15 @@ div#sortAndPerPage {
     }
   }
 
-  > div.sort-tools > div.per-page-dropdown {
+  > div.search-widgets > div.per-page-dropdown {
     > .dropdown-menu {
       min-width: $results-drop-menu-min-w;
     }
   }
 
-  > div > div.page-links {
+  > div.page-links {
     margin: $results-pagination-margin $navbar-padding-y;
+    padding: .0375rem 0.75rem;
+    padding-left: 0;
   }
 }

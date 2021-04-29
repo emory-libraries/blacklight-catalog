@@ -1,6 +1,6 @@
 en:
   blacklight:
-    application_name: 'Blacklight'
+    application_name: 'Emory Library Catalog'
     availability:
       at_library: 'At the Library'
       call_number: 'Call Number'

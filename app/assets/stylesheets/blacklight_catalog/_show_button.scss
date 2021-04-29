@@ -1,6 +1,8 @@
 @import "blacklight_catalog/variables";
 
-.button {
+.button,
+.catalog_startOverLink.btn,
+.btn-secondary {
   display: inline-block;
   font: normal bold $font-size-sm $font-family-sans-serif;
   letter-spacing: 0.05rem;
@@ -10,23 +12,13 @@
   padding: $branding-padding-y $search-form-button-padding-x;
   height: $navbar-toggler-height;
   line-height: $show-button-line-height;
-
+  border-radius: $results-border-radius;
+  
   &:hover {
     color: $white;
     text-decoration: none;
   }
 
-  &.link {
-    border: 1px solid $bright-blue;
-    background-color: $bright-blue;
-    color: $white;
-    transition: all 0.25s ease;
-
-    &:hover {
-      border-color: $mid-blue;
-      background-color: $mid-blue;
-    }
-  }
 
   &.back-to {
     border: 1px solid transparent;
@@ -48,4 +40,11 @@
 
 div.constraints-container {
   margin-bottom: $search-form-margin-x;
+  a.btn.btn-outline-secondary{
+    @extend .catalog_startOverLink.btn;
+  }
+}
+
+.advanced_search.btn{
+  border-radius: $results-border-radius;
 }

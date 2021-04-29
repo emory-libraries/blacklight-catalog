@@ -1,0 +1,9 @@
+@import "blacklight_catalog/variables";
+
+.show-document + .page-sidebar{
+  margin-top: 4.6875rem;
+}
+
+.show-document h1[itemprop="name"]{
+  @extend .show-header;
+}

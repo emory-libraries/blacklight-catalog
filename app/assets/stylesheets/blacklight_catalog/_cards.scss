@@ -1,11 +1,15 @@
 @import "blacklight_catalog/variables";
 
+div.card{
+  margin-bottom: $branding-padding-x;
+}
 div.card-header {
-  font-weight: $font-weight-bold;
+  h2{font-weight: $font-weight-bold !important;}
   text-transform: uppercase;
   font-size: .80rem;
   background-color: $dark-blue;
   color: $gold;
+  border-radius: 0 !important;
 }
 
 .resolution-download-restriction { font-weight: $font-weight-bold }

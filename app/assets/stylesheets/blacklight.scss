@@ -1,4 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Cardo:400,700|Open+Sans:400,700&display=swap);
+
+
+
 @import 'blacklight_catalog/advanced_search';
 @import 'blacklight_catalog/bookmark_clear_button';
 @import 'blacklight_catalog/bookmarks_header';
@@ -15,6 +18,7 @@
 @import 'blacklight_catalog/explore_collections';
 @import 'blacklight_catalog/facets';
 @import 'blacklight_catalog/fonts';
+@import 'blacklight_catalog/header';
 @import 'blacklight_catalog/footer';
 @import 'blacklight_catalog/footer_branding';
 @import 'blacklight_catalog/footer_branding_logo';
@@ -30,12 +34,15 @@
 @import 'blacklight_catalog/sort_widgets';
 @import 'blacklight_catalog/show_button';
 @import 'blacklight_catalog/show_heading';
+@import 'blacklight_catalog/show_body';
 @import 'blacklight_catalog/static_body';
 @import 'blacklight_catalog/static_headers';
 @import 'blacklight_catalog/hero_image';
-@import 'bootstrap';
 
-@import 'blacklight/blacklight';
+@import 'bootstrap';
+// @import 'blacklight/blacklight';
+
+
 @import 'blacklight_marc';
 @import 'blacklight_catalog/date_slider';
 @import 'blacklight_catalog/footer';
