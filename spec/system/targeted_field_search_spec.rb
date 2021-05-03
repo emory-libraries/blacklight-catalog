@@ -4,7 +4,7 @@ require 'rails_helper'
 RSpec.describe 'Search the catalog', type: :system, js: false do
   let(:fields) do
     [
-      'author_tesim', 'author_display_ssim', 'author_vern_ssim', 'author_si', 'author_addl_tesim',
+      'author_tesim', 'author_display_ssim', 'author_vern_ssim', 'author_si', 'author_addl_display_tesim',
       'title_tesim', 'title_vern_display_tesim', 'title_ssort', 'title_addl_tesim',
       'title_abbr_tesim', 'title_added_entry_tesim', 'title_enhanced_tesim', 'subject_tsim',
       'title_former_tesim', 'title_graphic_tesim', 'title_host_item_tesim', 'title_key_tesi',
@@ -68,7 +68,7 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
         'Target in author_display_ssim',
         'Target in author_vern_ssim',
         'Target in author_si',
-        'Target in author_addl_tesim'
+        'Target in author_addl_display_tesim'
       )
     end
   end
