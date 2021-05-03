@@ -80,7 +80,7 @@ module ExtractionTools
     extra_fields = []
     fields.each do |f|
       value = marc21.extract_marc_from(rec, f, trim_punctuation: true)
-      extra_fields << [f => value.first] unless value.empty? # push [key => value] pairs
+      extra_fields << [f => value] unless value.empty? # push [key => value] pairs
     end
     # This array contains [key-value] pairs, where the key is the field itself.
     # When working with this returned array in the parent method, be sure to extract values.

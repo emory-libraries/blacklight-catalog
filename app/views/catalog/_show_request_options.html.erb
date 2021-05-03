@@ -18,11 +18,37 @@
       var physicalLibrary = data['<%= document.id %>']['physical']['library'];
       var physicalCallNumber = data['<%= document.id %>']['physical']['call_number'];
       var physicalAvailable = data['<%= document.id %>']['physical']['available'];
-      var availabilityHtml = 
-        '<table class="table"><thead><tr><th scope="col"><%= t('blacklight.availability.at_library') %></th><th scope="col"><%= t('blacklight.availability.call_number') %></th><th scope="col"><%= t('blacklight.availability.status') %></th></tr></thead><tbody><tr><td>' +
-        physicalLibrary + '</td><td>' + physicalCallNumber + '</td><td>' + physicalAvailable +
-        '</td></tr></tbody></table>';
+      var onlineLinks = data['<%= document.id %>']['online']['links'];
+      var onlineUresolver = data['<%= document.id %>']['online']['uresolver'];
+      var onlineTds = '';
+      var availabilityHtml = '';
+      
       if (physicalLibrary && physicalAvailable) {
+        availabilityHtml +=
+          '<table class="table"><thead><tr><th scope="col"><%= t('blacklight.availability.at_library') %></th><th scope="col"><%= t('blacklight.availability.call_number') %></th><th scope="col"><%= t('blacklight.availability.status') %></th></tr></thead><tbody><tr><td>' +
+          physicalLibrary + '</td><td>' + physicalCallNumber + '</td><td>' + physicalAvailable +
+          '</td></tr></tbody></table>';
+      }
+
+      if (onlineLinks.length > 0) {
+        var linksArr = onlineLinks.map((link) => {
+          return '<tr><td><%= t('blacklight.availability.access_online') %></td><td><a target="_blank" href="' + Object.keys(link)[0] + '">' + (Object.values(link)[0] || Object.keys(link)[0]) +
+          '</a></td></tr>';
+        })
+        onlineTds += linksArr.join('');
+      }
+
+      if (onlineUresolver) {
+        onlineTds += '<tr><td><a target="_blank" href="<%= openurl(document.id,'viewit') %>">' + (onlineTds ? '<%= t('blacklight.availability.view_more_options') %>' : '<%= t('blacklight.availability.view_options') %>') +
+          '</a></td><td>&nbsp;</td></tr>';
+      }
+
+      if (onlineTds) {
+        availabilityHtml += '<table class="table"><thead><tr><th scope="col"><%= t('blacklight.availability.online') %></th><th scope="col">&nbsp;</th></tr></thead><tbody>' +
+          onlineTds + '</tbody></table>';
+      }
+
+      if ((physicalLibrary && physicalAvailable) || (onlineLinks || onlineUresolver)) {
         Rails.$(".where-to-find-table")[0].innerHTML = availabilityHtml;
       }
     }

@@ -55,4 +55,15 @@ RSpec.feature 'View Search Results', type: :system, js: false do
       expect(page).to have_link('C')
     end
   end
+
+  context 'spellcheck suggestions', js: true do
+    it 'shows suggestions only when no results are found' do
+      # blank search will return our test item in the search results, therefore, no suggestions will be displayed
+      expect(page).not_to have_content 'Did you mean'
+      fill_in 'q', with: '1234'
+      click_on 'search'
+      # above search will return no results, therefore, suggestions will be displayed
+      expect(page).to have_content 'Did you mean'
+    end
+  end
 end

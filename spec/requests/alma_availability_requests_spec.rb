@@ -11,6 +11,10 @@ RSpec.describe 'Alma Availability requests', type: :request do
           "library": "Rose Library (MARBL) (Library Service Center)",
           "call_number": "PT2613 .M45 Z92 2006",
           "available": '<span class="item-available">Available</span>'
+        },
+        "online": {
+          "links": [{ "http://www.example2.com": "Link Text for Book" }],
+          "uresolver": false
         }
       }
     }.to_json
@@ -22,6 +26,10 @@ RSpec.describe 'Alma Availability requests', type: :request do
           "library": "Multiple libraries/locations",
           "call_number": "-",
           "available": '<span class="item-available">One or more copies available</span>'
+        },
+        "online": {
+          "links": [{ "http://www.example2.com": "Link Text for Book" }],
+          "uresolver": false
         }
       }
     }.to_json

@@ -16,7 +16,12 @@ class CatalogController < ApplicationController
     config.advanced_search[:form_solr_parameters] ||= {
       'facet.field' => [
         "marc_resource_ssim", "library_ssim", "format_ssim", "language_ssim", "collection_ssim"
-      ]
+      ],
+      "f.marc_resource_ssim.facet.limit" => -1,
+      "f.library_ssim.facet.limit" => -1,
+      "f.format_ssim.facet.limit" => -1,
+      "f.language_ssim.facet.limit" => -1,
+      "f.collection_ssim.facet.limit" => -1
     }
     config.advanced_search[:form_facet_partial] ||= 'advanced_search_facets_as_select'
 
@@ -280,7 +285,7 @@ class CatalogController < ApplicationController
     config.add_search_field('keyword', label: 'Keyword') do |field|
       field.include_in_advanced_search = false
       field.solr_parameters = {
-        qf: 'text_tesi id',
+        qf: 'text_tesi id local_call_number_tesim',
         pf: ''
       }
     end
@@ -394,7 +399,7 @@ class CatalogController < ApplicationController
 
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
-    config.spell_max = 5
+    config.spell_max = 0
 
     # Configuration for autocomplete suggestor
     config.autocomplete_enabled = true

@@ -2,9 +2,13 @@ en:
   blacklight:
     application_name: 'Emory Library Catalog'
     availability:
+      access_online: 'Access online:'
       at_library: 'At the Library'
       call_number: 'Call Number'
+      online: 'Online'
       status: 'Status'
+      view_more_options: 'View more access options'
+      view_options: 'View access options'
     bookmarks:
       add:
         button: 'Bookmark Item'
