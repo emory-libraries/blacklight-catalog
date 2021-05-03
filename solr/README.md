@@ -23,7 +23,7 @@
 1. `material_type_display_tesim`: text
 1. `subtitle_display`: string
 1. `author_display_tesim`: text
-1. `author_addl_tesim`: text
+1. `author_addl_display_tesim`: text
 1. `text_tesi`: text
 1. `subject_geo_facet_tesim`: text
 1. `dewey_facet`: string
