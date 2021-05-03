@@ -34,11 +34,11 @@ module ExtractMarcResource
   end
 
   def physical_present(record)
-    record.fields('997').present?
+    record.fields('997').any? { |f| f.subfields.any? { |sf| sf.code == 'b' } }
   end
 
   def electronic_present(record)
-    record.fields('998').present?
+    proof_of_998(record) || proof_of_856(record)
   end
 
   def leader_formats(record)
@@ -73,5 +73,15 @@ module ExtractMarcResource
       leader_formats(record) && form_of_item(record) ||
         !leader_formats(record) && accomp_matter(record)
     )
+  end
+
+  def proof_of_998(record)
+    record.fields('998').any? { |f| f.subfields.any? { |sf| sf.code == 'c' && sf.value.casecmp("available").zero? } }
+  end
+
+  def proof_of_856(record)
+    record.fields('856').any? do |f|
+      f.indicator2 == '0' || f.indicator2 == '1' || f.indicator2 != '2' && !notfulltext.match?(fields_z3(f))
+    end
   end
 end

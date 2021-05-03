@@ -14,6 +14,19 @@ RSpec.describe 'Indexing fields with custom logic' do
     )
   end
 
+  describe 'marc_resource_ssim field, when url_fulltext_ssm is populated' do
+    let(:solr_doc) { SolrDocument.find('9937264718402486') }
+    let(:solr_doc2) { SolrDocument.find('9937264718202486') }
+    let(:solr_doc3) { SolrDocument.find('9937264717902486') }
+    let(:solr_doc4) { SolrDocument.find('9937264718102486') }
+
+    it 'is mapped with online' do
+      [solr_doc, solr_doc2, solr_doc3, solr_doc4].each do |sd|
+        expect(sd['marc_resource_ssim']).to include('Online')
+      end
+    end
+  end
+
   describe 'marc_resource_ssim field, when 598a equals "NEW"' do
     let(:solr_doc) { SolrDocument.find('9937264718402486') }
 
@@ -36,7 +49,7 @@ RSpec.describe 'Indexing fields with custom logic' do
 
   describe 'marc_resource_ssim field, when no 997 or 998 fields' do
     context 'and 000/6 == e, f, g, k, o, or r and 008/29 == o or s' do
-      let(:solr_doc) { SolrDocument.find('9937264718402486') }
+      let(:solr_doc) { SolrDocument.find('9937264718402485') }
 
       it 'is mapped with Online' do
         expect(solr_doc['marc_resource_ssim']).to include('Online')
@@ -44,7 +57,7 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
 
     context 'and 000/6 == e, f, g, k, o, or r and 008/29 != o or s' do
-      let(:solr_doc) { SolrDocument.find('9937264718202486') }
+      let(:solr_doc) { SolrDocument.find('9937264718202485') }
 
       it 'is mapped with At the Library' do
         expect(solr_doc['marc_resource_ssim']).to eq(['At the Library'])
@@ -52,7 +65,7 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
 
     context 'and 000/6 != e, f, g, k, o, or r and 008/29 == o or s' do
-      let(:solr_doc) { SolrDocument.find('9937264717902486') }
+      let(:solr_doc) { SolrDocument.find('9937264717902485') }
 
       it 'is mapped with Online' do
         expect(solr_doc['marc_resource_ssim']).to eq(['Online'])
@@ -60,7 +73,7 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
 
     context 'and 000/6 != e, f, g, k, o, or r and 008/29 != o or s' do
-      let(:solr_doc) { SolrDocument.find('9937264718102486') }
+      let(:solr_doc) { SolrDocument.find('9937264718102485') }
 
       it 'is mapped with At the Library' do
         expect(solr_doc['marc_resource_ssim']).to eq(['At the Library'])
