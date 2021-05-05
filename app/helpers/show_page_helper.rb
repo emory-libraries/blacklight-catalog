@@ -99,4 +99,15 @@ module ShowPageHelper
     link_text = Rails.env.development? ? 'localhost:3000' : ENV['BLACKLIGHT_BASE_URL'] || ''
     link_text + link
   end
+
+  def build_availability_iframes(document_id, physical)
+    tag.iframe('',
+              id: "request-options#{physical ? '-physical' : '-online'}",
+              style: 'border: 1px solid #6c757d;',
+              width: '90%',
+              height: 200,
+              seamless: "seamless",
+              frameBorder: 0,
+              src: openurl(document_id, physical ? 'getit' : 'viewit'))
+  end
 end
