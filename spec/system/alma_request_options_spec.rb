@@ -3,7 +3,7 @@ require 'rails_helper'
 require 'rest-client'
 include Warden::Test::Helpers
 
-RSpec.describe 'get it and view it tabs', type: :system, js: true do
+RSpec.describe 'get it and view it iframes', type: :system, js: true do
   let(:user) { User.create(uid: 123, provider: 'shibboleth') }
   before do
     delete_all_documents_from_solr
@@ -18,34 +18,28 @@ RSpec.describe 'get it and view it tabs', type: :system, js: true do
     ENV["INSTITUTION"] = ""
   end
 
-  context "getit tab" do
-    context 'not logged in' do
-      it 'does not show get it options' do
-        visit "/catalog/123"
-        click_on 'Physical copy'
-        expect(find("#request-options")["src"]).to eq(find("#physical-123")["data-url"])
-        expect(find("#request-options")["src"]).not_to include("sso=true") # when not logged in
-        expect(find("#request-options")["src"]).to include("getit")
-      end
-    end
+  context "getit iframe" do
+    it 'shows the right iframe' do
+      visit "/catalog/123"
+      iframe = find("#request-options-physical")["src"]
 
-    context 'logged in' do
-      it 'shows request options' do
-        login_as user
-        visit "/catalog/123"
-        click_on 'Physical copy'
-        expect(find("#request-options")["src"]).to include("sso=true")
-        expect(find("#request-options")["src"]).to include("getit")
-      end
+      expect(iframe).to include("getit")
+      ["sso=true", "viewit"].each { |s| expect(iframe).not_to include(s) }
     end
   end
 
-  context "viewit tab" do
-    it 'shows viewit options' do
-      visit "/catalog/123"
-      click_on 'On-line version'
-      expect(find("#request-options")["src"]).to eq(find("#online-123")["data-url"])
-      expect(find("#request-options")["src"]).to include("viewit")
+  context "viewit iframe" do
+    before do
+      delete_all_documents_from_solr
+      build_solr_docs(TEST_ITEM.dup.merge(id: '456'))
+    end
+
+    it 'shows the right iframe' do
+      visit "/catalog/456"
+      iframe = find("#request-options-online")["src"]
+
+      expect(iframe).to include("viewit")
+      ["sso=true", "getit"].each { |s| expect(iframe).not_to include(s) }
     end
   end
 end
