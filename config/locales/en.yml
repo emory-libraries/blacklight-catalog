@@ -34,6 +34,9 @@ en:
   static:
     not_found:
       header: "404 Error - Page Not Found"
+  about: 'About Emory Library Catalog'
+  contact: 'Emory Library Catalog Contacts'
+  help: 'Emory Library Catalog Help'
   catalog:
     show:
       more_details_header: "More Details"

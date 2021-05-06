@@ -1,9 +1,5 @@
 <%# Override of Blacklight 7.4.1 view partial %>
 <ul class="navbar-nav">
-  <%= render_nav_actions do |config, action|%>
-    <li class="nav-item"><%= action %></li>
-  <% end %>
-
   <% if has_user_authentication_provider? %>
     <% if current_user %>
       <li class="nav-item">
@@ -15,7 +11,7 @@
       </li>
     <% else %>
       <li class="nav-item">
-        <%= link_to t('blacklight.header_links.login'), new_user_session_path, class: 'nav-link last' %>
+        <%= link_to t('blacklight.header_links.login'), new_user_session_path, class: 'btn btn-md btn-primary rounded-0 ' %>
       </li>
     <% end %>
   <% end %>
