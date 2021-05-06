@@ -329,12 +329,19 @@ module Blacklight::Solr::Document::MarcExport
     solr_doc = SolrDocument.find(record.find { |f| f.tag == '001' }.value)
     build_arr = []
 
-    # Get Author
-    get_author_from_solr_apa(solr_doc, build_arr)
-    # Get Pub Date
-    get_pub_date_from_solr_apa(solr_doc, build_arr)
-    # Get title/edition/volume info
-    build_title_vol_ed_sections_apa(solr_doc, build_arr)
+    if record['100'].present?
+      # Get Author
+      get_author_from_solr_apa(solr_doc, build_arr)
+      # Get Pub Date
+      get_pub_date_from_solr_apa(solr_doc, build_arr)
+      # Get title/edition/volume info
+      build_title_vol_ed_sections_apa(solr_doc, build_arr)
+    else
+      # Get title/edition/volume info
+      build_title_vol_ed_sections_apa(solr_doc, build_arr)
+      # Get Pub Date
+      get_pub_date_from_solr_apa(solr_doc, build_arr)
+    end
     # Get Publisher info
     get_publisher_from_solr_apa(solr_doc, build_arr)
     # Get DOI info
@@ -345,7 +352,7 @@ module Blacklight::Solr::Document::MarcExport
 
   def get_author_from_solr_apa(solr_doc, build_arr)
     author = solr_doc['author_ssim']&.first&.strip
-    auth_splits = clean_end_punctuation(author).split(', ').flatten if author.present?
+    auth_splits = clean_end_punctuation(remove_parentheses(author)).split(', ').flatten if author.present?
     author = format_author_string(author, auth_splits)
 
     build_arr << author if author.present?
@@ -395,13 +402,13 @@ module Blacklight::Solr::Document::MarcExport
   def get_publisher_from_solr_apa(solr_doc, build_arr)
     publisher = solr_doc['published_tesim']&.first&.strip
 
-    build_arr << "#{clean_end_punctuation(publisher)}." if publisher.present?
+    build_arr << "#{clean_end_punctuation(remove_sq_brackets(publisher))}." if publisher.present?
   end
 
   def get_doi_from_solr_apa(solr_doc, build_arr)
     doi = solr_doc['other_standard_ids_tesim']&.first&.strip
 
-    build_arr << "(#{clean_end_punctuation(doi)})" if doi.present?
+    build_arr << clean_end_punctuation(doi) if doi.present?
   end
 
   def build_title_vol_ed_sections_apa(solr_doc, build_arr)
@@ -530,5 +537,13 @@ module Blacklight::Solr::Document::MarcExport
     return name unless name.match?(/,/)
     temp_name = name.split(", ")
     temp_name.last + " " + temp_name.first
+  end
+
+  def remove_parentheses(str)
+    str.gsub(/\(.*?\)/, '')
+  end
+
+  def remove_sq_brackets(str)
+    str.gsub(/\[|\]/, '')
   end
 end
