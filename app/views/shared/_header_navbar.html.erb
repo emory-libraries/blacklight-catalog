@@ -12,10 +12,10 @@
       <div class="row justify-content-between branding-row header-main">
         <div class="branding-header">
           <div class="branding-header logo">
-            <%= link_to root_path do %>
-              <%= image_tag("shield.svg", :alt => "Emory Library") %>
-            <% end %>
-          </div>
+            <%= link_to root_path, class: "branding-header-badge " do %>
+              <div class="logo"><%= inline_svg_tag("shield.svg", alt: "Emory Library") %></div> 
+          <% end %>
+        </div>
           <div class="branding-header">
             <div class="row ml-0">
               <div>
@@ -41,8 +41,8 @@
   </div>
 </nav>
 
-<% if !request.fullpath.include?('/help') %>
-  <div class="navbar-search navbar navbar-light bg-light" role="navigation">
+<% if !request.fullpath.include?('/advanced') %>
+  <div class="navbar-search navbar navbar-light bg-light mb-3" role="navigation">
     <div class="<%= container_classes %>">
       <%= render_search_bar  %>
     </div>
