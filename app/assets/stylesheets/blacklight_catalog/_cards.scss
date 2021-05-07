@@ -3,6 +3,9 @@
 div.card{
   margin-bottom: $branding-padding-x;
 }
+div.card-body{
+  padding: $branding-padding-y;
+}
 div.card-header {
   h2{font-weight: $font-weight-bold !important;}
   text-transform: uppercase;
