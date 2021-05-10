@@ -2,7 +2,6 @@
 <% fields = presenter.new(document: doc_presenter.fields_to_render).terms %>
 <% if fields.length > 0 %>
   <h4 class="blacklight-<%= title %>"><%= title %></h4>
-  <br>
   <dl class="row dl-invert document-metadata">
     <% fields.each do |field_name, field| %>
       <dt class="blacklight-<%= field_name.parameterize %> col-md-4"><%= render_document_show_field_label document, field: field_name %></dt>

@@ -2,7 +2,7 @@
 <%= render 'metadata_block', document: document, presenter: MainMetadataPresenter, title: '' %>
 <% # New partial for request options %>
 <%= render 'show_request_options', document: document %>
-<%= tag.h2 t('catalog.show.more_details_header'), class: "more-details-header" %><br/>
+<%= tag.h2 t('catalog.show.more_details_header'), class: "section-title more-details-header" %>
 <%= render 'metadata_block_collapsible', 
     document: document, 
     presenter: AddlTitlesPresenter, 
