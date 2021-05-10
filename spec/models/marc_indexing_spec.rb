@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Indexing fields with custom logic' do
-  let(:logger) { OaiMmsidLogger.new }
+  let(:logger) { Logger.new(STDOUT) }
   before do
     delete_all_documents_from_solr
     # The command below is processing fixures/alma_marc_resource.xml

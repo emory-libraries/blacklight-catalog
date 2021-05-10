@@ -6,13 +6,13 @@ task marc_index_ingest: [:environment] do
   full_index = ENV['full_index'].present?
   to_time = Time.new.utc.strftime("%Y-%m-%dT%H:%M:%SZ")
   single_record = ENV.key?('oai_single_id') ? true : false
+  ingest_logger = Logger.new("marc_ingest_#{Time.new.utc.strftime('%Y%m%dT%H%M')}.log") unless single_record
+
   abort 'The ENV variable oai_set_name or oai_single_id has not been set.' if oai_set.blank?
 
-  log "Starting..."
-
   qs = OaiQueryStringService.process_query_string(oai_set, full_index, to_time, single_record)
-  log "Set 'to' time: #{to_time}"
-  mmsid_logger = OaiMmsidLogger.new unless single_record
+  ingest_logger&.info("Set 'to' time: #{to_time}")
+
   counter = 1
 
   loop do
@@ -22,8 +22,8 @@ task marc_index_ingest: [:environment] do
       resumption_token = OaiProcessingSingleService.process_oai_with_marc_indexer(ENV['INSTITUTION'], qs, ENV['ALMA'])
       qs = "?verb=GetRecord&resumptionToken=#{resumption_token}"
     else
-      mmsid_logger.announce_batch(counter, qs)
-      resumption_token = OaiProcessingService.process_oai_with_marc_indexer(ENV['INSTITUTION'], qs, ENV['ALMA'], mmsid_logger)
+      ingest_logger.info "Batch ##{counter}, query string: #{qs}"
+      resumption_token = OaiProcessingService.process_oai_with_marc_indexer(ENV['INSTITUTION'], qs, ENV['ALMA'], ingest_logger)
       qs = "?verb=ListRecords&resumptionToken=#{resumption_token}"
       counter += 1
     end
@@ -32,15 +32,7 @@ task marc_index_ingest: [:environment] do
   end
 
   # save to date for next time
-  log "Storing 'to' time"
+  ingest_logger&.info("Storing 'to' time")
   PropertyBag.set('marc_ingest_time', to_time) unless single_record
-  mmsid_logger&.process_file('ingest_mmsids')
-
-  log "Complete!"
-end
-
-def log(msg)
-  time = Time.new.utc.strftime("%Y-%m-%d %H:%M:%S")
-  puts "#{time} - #{msg}"
-  true
+  ingest_logger&.info("Complete!")
 end
