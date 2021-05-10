@@ -89,7 +89,7 @@ Traject::Macros::Marc21Semantics::OCLCPAT = /
 settings do
   # type may be 'binary', 'xml', or 'json'
   provide "marc_source.type", "xml"
-  provide 'solr_writer.max_skipped', -1
+  provide 'solr_writer.max_skipped', 0
   provide "reader_class_name", "Traject::MarcReader"
   if (c = Blacklight.connection_config)
     provide "solr.url", c[:url]
@@ -97,6 +97,7 @@ settings do
   provide "solr_writer.commit_on_close", "true"
   provide "solr_writer.thread_pool", 1
   provide "solr_writer.batch_size", 100
+  provide "solr_writer.http_timeout", 240
   provide "writer_class_name", "Traject::SolrJsonWriter"
   provide 'processing_thread_pool', 1
   provide "log.batch_size", 10_000

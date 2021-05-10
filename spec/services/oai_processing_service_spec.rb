@@ -5,7 +5,7 @@ require 'nokogiri'
 require 'traject'
 
 RSpec.describe OaiProcessingService do
-  let(:logger) { OaiMmsidLogger.new }
+  let(:logger) { Logger.new(STDOUT) }
   context '#process_oai_with_marc_indexer' do
     before do
       delete_all_documents_from_solr
@@ -25,10 +25,6 @@ RSpec.describe OaiProcessingService do
     end
 
     let(:solr) { Blacklight.default_index.connection }
-
-    it 'calls the process_oai method' do
-      expect(described_class).to respond_to(:process_oai)
-    end
 
     it 'calls the alma api' do
       expect(RestClient).to respond_to(:get).with(1).argument
