@@ -312,15 +312,15 @@ module Blacklight::Solr::Document::MarcExport
     build_arr = []
 
     # Get Author
-    get_author_from_solr_mla(solr_doc, build_arr)
+    get_author_from_solr_mla(record, build_arr) if record['100'].present?
     # Get title/edition/volume info
     build_title_vol_ed_sections_mla(solr_doc, build_arr)
     # Get Publisher info
-    get_publisher_from_solr_apa(solr_doc, build_arr)
-    # Get Pub Date
-    get_pub_date_from_solr_mla(solr_doc, build_arr)
+    get_publisher_info_from_solr_mla(solr_doc, build_arr)
     # Get Location info
     get_location_from_solr_mla(solr_doc, build_arr)
+    # Get DOI info
+    get_doi_from_solr_apa(solr_doc, build_arr)
 
     build_arr.compact.join(' ')
   end
@@ -421,41 +421,42 @@ module Blacklight::Solr::Document::MarcExport
                  end
   end
 
-  def get_author_from_solr_mla(solr_doc, build_arr)
-    author = solr_doc['author_ssim']&.first&.strip
-    author_final = author.present? ? clean_end_punctuation(author) : ''
-
+  def get_author_from_solr_mla(record, build_arr)
+    author = record['100']['a']
+    author_final = author.present? ? "#{clean_end_punctuation(author)}." : ''
     build_arr << author_final if author_final.present?
   end
 
-  def get_pub_date_from_solr_mla(solr_doc, build_arr)
+  def get_publisher_info_from_solr_mla(solr_doc, build_arr)
+    pub_info = ""
+    publisher = solr_doc['published_tesim']&.first&.strip
     pub_date = solr_doc['pub_date_isim']&.last
-
-    build_arr << "#{pub_date}." if pub_date.present?
+    pub_info += clean_end_punctuation(remove_sq_brackets(publisher)) if publisher.present?
+    pub_info += ", #{pub_date}" if pub_date.present?
+    build_arr << pub_info
   end
 
   def get_vol_ed_from_solr_mla(solr_doc)
     vol1 = solr_doc['title_display_partnumber_tesim']&.first&.strip
     vol2 = solr_doc['title_display_partname_tesim']&.first&.strip
     edition = solr_doc['edition_tsim']&.first&.strip
-    joined_str = [vol1.present? ? "vol. " + vol1.to_s : vol1, vol2.present? ? "vol. " + vol2.to_s : vol2, edition.present? ? "ed. " + edition : edition].compact.join(', ')
+    joined_str = [vol1, vol2, edition].compact.join(', ')
     return joined_str.to_s if joined_str.present?
     joined_str
   end
 
   def get_location_from_solr_mla(solr_doc, build_arr)
     publisher_location = solr_doc['publisher_location_ssm']&.first&.strip
-
-    build_arr << "#{clean_end_punctuation(publisher_location)}." if publisher_location.present?
+    build_arr << clean_end_punctuation(publisher_location) if publisher_location.present?
   end
 
   def build_title_vol_ed_sections_mla(solr_doc, build_arr)
     title = get_title_from_solr_apa(solr_doc)
     vol_ed = get_vol_ed_from_solr_mla(solr_doc)
     build_arr << if title.present? && vol_ed.present?
-                   "<i>" + title + "</i>" + " #{vol_ed}."
+                   "<i>" + citation_title(title) + "</i>, " + "#{clean_end_punctuation(vol_ed)}."
                  elsif title.present? && vol_ed.blank?
-                   "<i>" + title + "</i>."
+                   "<i>" + citation_title(title) + "</i>."
                  end
   end
 
@@ -473,7 +474,7 @@ module Blacklight::Solr::Document::MarcExport
   # This will replace the mla_citation_title method with a better understanding of how MLA and Chicago citation titles are formatted.
   # This method will take in a string and capitalize all of the non-prepositions.
   def citation_title(title_text)
-    prepositions = ["a", "about", "across", "an", "and", "before", "but", "by", "for", "it", "of", "the", "to", "with", "without"]
+    prepositions = ["a", "about", "across", "an", "and", "before", "but", "by", "for", "it", "of", "the", "to", "with", "without", "through"]
     new_text = []
     title_text.split(" ").each_with_index do |word, index|
       new_text << if (index.zero? && word != word.upcase) || (word.length > 1 && word != word.upcase && !prepositions.include?(word))
