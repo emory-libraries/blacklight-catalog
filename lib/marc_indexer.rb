@@ -96,7 +96,7 @@ settings do
   end
   provide "solr_writer.commit_on_close", "true"
   provide "solr_writer.thread_pool", 1
-  provide "solr_writer.batch_size", 100
+  provide "solr_writer.batch_size", 900
   provide "solr_writer.http_timeout", 240
   provide "writer_class_name", "Traject::SolrJsonWriter"
   provide 'processing_thread_pool', 1
