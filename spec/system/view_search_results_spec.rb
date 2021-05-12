@@ -50,7 +50,9 @@ RSpec.feature 'View Search Results', type: :system, js: false do
     it 'has A-Z navigation for certain facets', js: true do
       click_on('Era')
       click_on('more')
-      click_on('A-Z Sort')
+      within ".modal-footer" do
+        click_on "A-Z Sort"
+      end
       expect(page).to have_link('1')
       expect(page).to have_link('C')
     end
