@@ -1,0 +1,45 @@
+@import "blacklight_catalog/variables";
+
+
+h1.show-header {
+  font: normal bold $h1-show-font-size/normal $font-family-serif;
+  text-transform: none;
+  letter-spacing: normal;
+  color: $dark-blue;
+  text-align: left;
+  line-height: $h1-line-height;
+}
+
+.blacklight-catalog-show {
+  h2.section-title {
+    font: normal 500 1.75rem/2 "Cardo", serif;
+    color: $base-blue;
+  }
+
+  h4 {
+    font: normal 600 .75rem/1 "Open Sans", sans-serif;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    color: $mid-blue;
+  }
+}
+
+.document-metadata {
+  dt {
+    font-family:  "Cardo", serif;
+    font-weight: 500;
+    color: $dark-blue;
+  }
+  
+}
+
+
+
+
+.show-document + .page-sidebar{
+  margin-top: 4.6875rem;
+}
+
+.show-document h1[itemprop="name"]{
+  @extend .show-header;
+}

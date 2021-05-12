@@ -1,0 +1,67 @@
+// Color system
+
+// Colors from Emory Libraries Pattern Library: https://github.com/emory-libraries/Pattern-Library/blob/master/src/scss/vends/emory-libraries/config/_colors.scss
+
+$dark-blue: #091C44;
+$alt-dark-blue: #212529;
+$base-blue: #082B73;
+$mid-blue: #004990;
+$bright-blue: #336BE6;
+$alt-bright-blue: #5387F7;
+$light-blue: #D0DEFD;
+
+$gold: #E9BF55;
+
+$charcoal: #605858;
+$base-slate: #B6BDCC;
+$light-slate: #E7EAF1;
+$super-light-slate: #E5E7EC;
+$black: #000000;
+$white: #FFFFFF;
+
+$red:     #B82216;
+$orange:  #AB750C;
+$yellow:  #F6E4C1;
+$green:   #28A745;
+
+$colors: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$colors: map-merge(
+  (
+    "dark-blue":  $dark-blue,
+    "mid-blue":   $mid-blue,
+    "blue":       $base-blue,
+    "gold":       $gold,
+    "red":        $red,
+    "orange":     $orange,
+    "yellow":     $yellow,
+    "green":      $green,
+    "white":      $white,
+    "black":      $black
+  ),
+  $colors
+);
+
+$primary:       $bright-blue;
+$secondary:     $charcoal;
+$success:       $green;
+$info:          $light-blue;
+$warning:       $yellow;
+$danger:        $red;
+
+$theme-colors: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-colors: map-merge(
+  (
+    "primary":    $primary,
+    "secondary":  $secondary,
+    "success":    $success,
+    "info":       $info,
+    "warning":    $warning,
+    "danger":     $danger
+  ),
+  $theme-colors
+);
+
+// static colors
+$explorer-box-shadow:       rgba(231, 234, 241, 0.3);

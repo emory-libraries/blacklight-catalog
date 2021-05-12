@@ -3,7 +3,7 @@
 <% fields = section_presenter.terms; collapsible_fields = section_presenter.terms_in_collapsible %>
 
 <% if fields.length > 0 || collapsible_fields.length > 0 %>
-  <h4 class="blacklight-title col-md-12"><%= title %></h4><br>
+  <h4 class="blacklight-title"><%= title %></h4>
   <dl class="row dl-invert document-metadata">
     <% if fields.length > 0 %>
       <% fields.each do |field_name, field| %>

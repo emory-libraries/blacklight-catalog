@@ -1,6 +1,6 @@
 en:
   blacklight:
-    application_name: 'Blacklight'
+    application_name: 'Library Catalog'
     availability:
       access_online: 'Access online:'
       at_library: 'At the Library'

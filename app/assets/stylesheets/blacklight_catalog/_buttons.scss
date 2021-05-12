@@ -1,0 +1,76 @@
+@import "blacklight_catalog/variables";
+
+.button,
+.catalog_startOverLink.btn,
+.btn-primary.advanced-search-submit,
+.btn.advanced-search-start-over,
+.btn-secondary,
+.btn-primary.btn-login,
+.btn.btn-danger {
+  display: inline-block;
+  font: normal bold $font-size-sm $font-family-sans-serif;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  text-align: left;
+  -webkit-transition: all 0.25s ease;
+  padding: $branding-padding-y $search-form-button-padding-x;
+  // height: $navbar-toggler-height;
+  line-height: $show-button-line-height;
+  border-radius: $results-border-radius;
+  
+  &:hover {
+    color: $white;
+    text-decoration: none;
+  }
+
+
+  &.back-to {
+    border: 1px solid transparent;
+    background-color: transparent;
+    border-color: $charcoal;
+    color: $charcoal;
+    transition: color 0.15s ease-in-out, 
+      background-color 0.15s ease-in-out, 
+      border-color 0.15s ease-in-out, 
+      box-shadow 0.15s ease-in-out;
+
+    &:hover {
+      color: $white;
+      border-color: $charcoal;
+      background-color: $charcoal;
+    }
+  }
+}
+
+
+.advanced_search.btn{
+  border-radius: $results-border-radius;
+}
+
+// Constraint Buttons
+span.applied-filter.constraint {
+  height: $navbar-toggler-height;
+  text-transform: uppercase;
+  vertical-align: top;
+  margin-bottom: map-get($spacers, 1);
+
+  > .constraint-value, .btn.remove {
+    border-radius: $results-border-radius;
+  }
+
+  > .constraint-value {
+    font: normal bold $font-size-sm $font-family-sans-serif;
+    padding: $branding-padding-y;
+    line-height: $show-button-line-height;
+
+    > span.filter-name::after {
+      content: " > ";
+      color: $base-slate;
+    }
+  }
+
+  > .btn.remove {
+    padding-right: $branding-padding-y;
+    padding-left: $branding-padding-y;
+  }
+}

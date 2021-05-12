@@ -44,5 +44,8 @@ Rails.application.routes.draw do
 
   get '/alma_availability/:id', to: 'application#alma_availability'
 
+  get "/contact", to: "static#contact"
+  get "/about", to: "static#about"
+  get "/help", to: "static#help"
   match '/404', to: 'static#not_found', via: :all
 end

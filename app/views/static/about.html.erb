@@ -1,0 +1,38 @@
+<% @page_title = "#{t('about')} - #{application_name}" %>
+<% title = I18n.t('about'); abbr = title.split(' ').first(3).join(' ') + '...' %>
+
+<%= render 'catalog/breadcrumbs', crumb_hashes: [{ curr_page: true, abbr: abbr, link: '/about', title: title }]
+%>
+<div class="row static-heading-row about">
+  <%= render 'static/static_heading', 
+              title: title, 
+              subheading: "The digital front door to unique cultural heritage and scholarship collections from Emory University." 
+%>
+</div>
+<div class="row static-body about">
+  <div class="col-lg-8 about-blurbs">
+    <%= render 'static/static_content_blurbs', 
+                    blurb_header_klass: " dlp-blurb-header",
+                    blurb_header: "About content goes here",
+                    blurb_body_klass: " dlp-blurb",
+                    blurb: "Do culpa consectetur magna est ea cillum anim anim labore irure voluptate eu irure nostrud. Nulla laboris Lorem mollit esse Lorem fugiat. Culpa adipisicing amet do non incididunt dolor adipisicing eu. Aliqua adipisicing ad voluptate consectetur ad. Ut quis eiusmod aute ipsum dolore ullamco incididunt commodo do irure.".html_safe
+    %>
+      <%= render 'static/static_content_blurbs', 
+                    blurb_header_klass: " coll-con-blurb-header",
+                    blurb_header: "More about content",
+                    blurb_body_klass: " coll-con-blurb",
+                    blurb: "Consequat velit qui velit veniam ullamco reprehenderit duis mollit elit occaecat duis do reprehenderit incididunt. Velit ullamco est nostrud excepteur in Lorem est ipsum. In laborum irure aliqua ut sunt minim ad enim reprehenderit non veniam aute dolore est. Officia qui esse non in ullamco eiusmod ipsum.".html_safe
+    %>
+
+      </div>
+      <div class=" col-lg-4">
+        <div class="explore-card about-explore">
+          <span class="explore-header">Explore</span>
+          <ul class="explore-links">
+            <li class="explore-link-item"><%= link_to "Contact Us", contact_path, class: "explore-link" %></li>
+            <li class="explore-link-item"><%= link_to "Emory Libraries Preservation Policy", "https://wiki.service.emory.edu/display/DLPP/Digital+Preservation+Policies", class: "explore-link" %></li>
+            <li class="explore-link-item"><%= link_to "Samvera Digital Repository Framework", "https://samvera.org", class: "explore-link" %></li>
+          </ul>
+        </div>
+      </div>
+    </div>

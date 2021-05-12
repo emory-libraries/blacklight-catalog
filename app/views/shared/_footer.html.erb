@@ -1,5 +1,7 @@
 <footer aria-label="Main footer" class="footer cover-page-footer">
-  <div class="footer-version">
-  <span class="version-label">Version <span class="version-info" title="<%= GIT_SHA %>"><%= BRANCH %> updated <%= LAST_DEPLOYED %></span>
-</div>
+  <%= render 'shared/footer_branding' %>
+  <%= render 'shared/footer_list' %>
+  <div class="footer-placeholder"></div>
+  <%= render 'shared/footer_version' %>
+  <%= render 'shared/footer_copyright' %>
 </footer>
