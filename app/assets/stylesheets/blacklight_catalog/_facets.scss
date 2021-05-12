@@ -145,3 +145,8 @@ section#sidebar.search {
     text-decoration: none;
   }
 }
+
+// top facet-pagination should be hidden
+.facet-pagination.top {
+    display: none;
+  }
