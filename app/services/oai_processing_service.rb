@@ -2,6 +2,8 @@
 require 'rest-client'
 require 'nokogiri'
 require 'traject'
+require 'faraday'
+require 'rsolr'
 
 class OaiProcessingService
   MARC_URL = { 'marc' => "http://www.loc.gov/MARC21/slim" }.freeze
