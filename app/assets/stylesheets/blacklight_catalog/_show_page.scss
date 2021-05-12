@@ -1,5 +1,6 @@
 @import "blacklight_catalog/variables";
 
+
 h1.show-header {
   font: normal bold $h1-show-font-size/normal $font-family-serif;
   text-transform: none;
@@ -30,4 +31,15 @@ h1.show-header {
     color: $dark-blue;
   }
   
+}
+
+
+
+
+.show-document + .page-sidebar{
+  margin-top: 4.6875rem;
+}
+
+.show-document h1[itemprop="name"]{
+  @extend .show-header;
 }

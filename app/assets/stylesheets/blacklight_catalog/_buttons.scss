@@ -42,12 +42,6 @@
   }
 }
 
-div.constraints-container {
-  margin-bottom: $search-form-margin-x;
-  a.btn.btn-outline-secondary{
-    @extend .catalog_startOverLink.btn;
-  }
-}
 
 .advanced_search.btn{
   border-radius: $results-border-radius;

@@ -8,3 +8,19 @@ div.modal-header.citations {
   border-bottom: 0;
   padding-bottom: 0;
 }
+
+// Citation Warning
+.citation-warning.row {
+  background-color: #E9BF55;
+  color: #091C44;
+  margin: inherit;
+  margin-bottom: 2rem;
+  .col-1 {
+      text-align: center;
+      margin: auto 0;
+      svg {
+          width: 24px;
+          height: 24px;
+      }
+  }
+}

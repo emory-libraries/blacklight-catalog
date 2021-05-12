@@ -1,0 +1,19 @@
+@import 'variables';
+
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+//  Body Errors
+div.not-found-container {
+  margin-top: map-get($spacers, 4);
+  margin-bottom: map-get($spacers, 4);
+}

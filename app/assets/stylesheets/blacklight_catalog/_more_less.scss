@@ -1,19 +1,23 @@
-a.btn.btn-link.additional-authors-collapse.collapsed:after {
-    content: 'Show more Author/Creators';
-}
-
-a.btn.btn-link.additional-authors-collapse:not(.collapsed):after {
-    content: 'Show less Author/Creators';
-}
-
-a.additional-titles.btn.btn-link.additional-fields.collapsed:after {
-    content: 'Show more Title Information';
-}
-
-a.additional-titles.btn.btn-link.additional-fields:not(.collapsed):after {
-    content: 'Show less Title Information';
-}
-
-a.additional-titles.btn.btn-link.additional-fields {
-    margin-left: 1rem;
-}
+a {
+    &.btn.btn-link.additional-authors-collapse {
+      &.collapsed:after {
+        content: "Show more Author/Creators";
+      }
+  
+      &:not(.collapsed):after {
+        content: "Show less Author/Creators";
+      }
+    }
+  
+    &.additional-titles.btn.btn-link.additional-fields {
+      &.collapsed:after {
+        content: "Show more Title Information";
+      }
+  
+      &:not(.collapsed):after {
+        content: "Show less Title Information";
+      }
+  
+      margin-left: 1rem;
+    }
+  }
