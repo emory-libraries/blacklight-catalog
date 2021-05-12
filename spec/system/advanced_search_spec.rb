@@ -12,12 +12,12 @@ RSpec.feature 'Advanced Search Page', type: :system, js: false do
   let(:pulled_search_fields) { find_all('div.form-group.advanced-search-field label').map { |e| e['for'] } }
   let(:select_facet_fields) { CatalogController.new.blacklight_config.advanced_search[:form_solr_parameters]["facet.field"] }
   let(:pulled_search_facets) { find_all('div.form-group.advanced-search-facet label').map { |e| e['for'] } }
-  let(:search_button) { find("input[type=submit][value='Advanced Search']") }
+  let(:search_button) { find("input[type=submit][value='Search']") }
   let(:document_title_heading) { 'h3.index_title.document-title-heading.col-sm-9.col-lg-10' }
 
   context 'expected elements' do
     it 'has the correct header' do
-      expect(page).to have_css('h1', text: 'Advanced Search')
+      expect(page).to have_css('h1', text: 'Search')
     end
 
     it 'has the Start Over button' do
