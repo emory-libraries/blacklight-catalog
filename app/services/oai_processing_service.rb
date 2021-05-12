@@ -98,6 +98,7 @@ class OaiProcessingService
     oai_connection = Faraday.new do |f|
       f.request :retry, { max: 10, interval: 30, interval_randomness: 0.75, backoff_factor: 2 }
     end
+    oai_connection.options.timeout = 240
 
     logger.info "Calling OAI with query string: #{qs}"
     oai_connection.get oai_base + qs
