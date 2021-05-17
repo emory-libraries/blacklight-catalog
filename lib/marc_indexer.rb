@@ -176,8 +176,9 @@ to_field 'title_former_ssim', extract_marc('247abcdefgnp:780abcdgikmnorstuwxyz')
 to_field 'title_former_tesim', extract_marc('247abcdefgnp')
 to_field 'title_graphic_tesim', extract_marc("880#{ATOZ}")
 to_field 'title_host_item_tesim', extract_marc("773#{ATOZ}:774#{ATOZ}")
-to_field 'title_key_tesi', extract_marc('222ab'), first_only
+to_field 'title_key_tesim', extract_marc('222ab')
 to_field 'title_later_ssim', extract_marc('785abcdgikmnorstuxyz')
+to_field 'title_later_tesim', extract_marc('785abcdgikmnorstuxyz')
 to_field 'title_main_display_tesim', extract_marc('245abfgknps', alternate_script: false), trim_punctuation
 to_field 'title_series_ssim', extract_marc(title_series_str(ATOG))
 to_field 'title_series_tesim', extract_marc(title_series_str(ATOG))

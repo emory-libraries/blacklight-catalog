@@ -5,11 +5,10 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
   let(:fields) do
     [
       'author_tesim', 'author_display_ssim', 'author_vern_ssim', 'author_si', 'author_addl_display_tesim',
-      'title_tesim', 'title_vern_display_tesim', 'title_ssort', 'title_addl_tesim',
-      'title_abbr_tesim', 'title_added_entry_tesim', 'title_enhanced_tesim', 'subject_tsim',
-      'title_former_tesim', 'title_graphic_tesim', 'title_host_item_tesim', 'title_key_tesi',
-      'title_series_ssim', 'title_translation_tesim', 'title_varying_tesim', 'text_tesi',
-      'local_call_number_tesim'
+      'title_tesim', 'title_vern_display_tesim', 'title_addl_tesim', 'title_abbr_tesim',
+      'title_added_entry_tesim', 'title_enhanced_tesim', 'subject_tsim', 'title_former_tesim',
+      'title_host_item_tesim', 'title_key_tesim', 'title_series_tesim', 'title_translation_tesim',
+      'title_varying_tesim', 'text_tesi', 'local_call_number_tesim', 'title_later_tesim'
     ]
   end
 
@@ -90,18 +89,17 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
     expect(result_titles).to contain_exactly(
       'Target in title_tesim',
       'Target in title_vern_display_tesim',
-      'Target in title_ssort',
       'Target in title_addl_tesim',
       'Target in title_abbr_tesim',
       'Target in title_added_entry_tesim',
       'Target in title_enhanced_tesim',
       'Target in title_former_tesim',
-      'Target in title_graphic_tesim',
       'Target in title_host_item_tesim',
-      'Target in title_key_tesi',
-      'Target in title_series_ssim',
+      'Target in title_key_tesim',
+      'Target in title_series_tesim',
       'Target in title_translation_tesim',
-      'Target in title_varying_tesim'
+      'Target in title_varying_tesim',
+      'Target in title_later_tesim'
     )
   end
 

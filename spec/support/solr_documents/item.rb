@@ -46,6 +46,7 @@ TEST_ITEM = {
   title_uniform_ssim: ['Uniform Title'],
   title_former_ssim: ['Former Titles'],
   title_later_ssim: ['Later Titles'],
+  title_later_tesim: ['Later Titles'],
   emory_collection_tesim: ["Emory's Collection"],
   finding_aid_url_ssim: ['http://www.example.com text: Finding Aid Text'],
   table_of_contents_tesim: ["1,2: Freddy's Coming For You"],
