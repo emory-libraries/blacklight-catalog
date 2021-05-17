@@ -258,14 +258,14 @@ class CatalogController < ApplicationController
       'author_tesim', 'author_display_ssim', 'author_vern_ssim', 'author_si', 'author_addl_display_tesim'
     ]
     title_fields = [
-      'title_tesim', 'title_display_tesim', 'title_vern_display_tesim', 'title_ssort',
-      'title_addl_tesim', 'title_abbr_tesim', 'title_added_entry_tesim', 'title_enhanced_tesim',
-      'title_former_tesim', 'title_graphic_tesim', 'title_host_item_tesim', 'title_key_tesi',
-      'title_series_ssim', 'title_translation_tesim', 'title_varying_tesim'
+      'title_tesim', 'title_vern_display_tesim', 'title_addl_tesim', 'title_abbr_tesim',
+      'title_added_entry_tesim', 'title_enhanced_tesim', 'title_former_tesim',
+      'title_host_item_tesim', 'title_key_tesim', 'title_translation_tesim', 'title_varying_tesim',
+      'title_later_tesim', 'title_series_tesim'
     ]
     title_advanced_fields = [
       'title_addl_tesim', 'title_added_entry_tesim', 'title_abbr_tesim', 'title_former_tesim',
-      'title_later_ssim', 'title_host_item_tesim', 'title_translation_tesim', 'title_varying_tesim'
+      'title_later_tesim', 'title_host_item_tesim', 'title_translation_tesim', 'title_varying_tesim'
     ]
     author_advanced_fields = [
       'author_addl_display_tesim', 'author_tesim'

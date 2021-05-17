@@ -280,7 +280,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
     it 'shows the section when format_ssim populated' do
       visit solr_document_path(id)
 
-      expect(page).to have_css('h2', text: 'MORE OPTIONS')
+      expect(page).to have_css('h2', text: 'More Options')
       expect(page).to have_link('Find more information about Books')
     end
 
@@ -293,7 +293,7 @@ RSpec.describe "View a item's show page", type: :system, js: true do
       end
 
       it 'does not show the section' do
-        expect(page).not_to have_css('h2', text: 'MORE OPTIONS')
+        expect(page).not_to have_css('h2', text: 'More Options')
         expect(page).not_to have_link('Find more information about Books')
       end
     end
