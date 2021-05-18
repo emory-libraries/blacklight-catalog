@@ -320,7 +320,7 @@ module Blacklight::Solr::Document::MarcExport
     # Get Location info
     get_location_from_solr_mla(solr_doc, build_arr)
     # Get DOI info
-    get_doi_from_solr_apa(solr_doc, build_arr)
+    get_doi_from_solr_mla(solr_doc, build_arr)
 
     build_arr.compact.join(' ')
   end
@@ -401,13 +401,16 @@ module Blacklight::Solr::Document::MarcExport
 
   def get_publisher_from_solr_apa(solr_doc, build_arr)
     publisher = solr_doc['published_tesim']&.first&.strip
-
     build_arr << "#{clean_end_punctuation(remove_sq_brackets(publisher))}." if publisher.present?
+  end
+
+  def get_doi_from_solr_mla(solr_doc, build_arr)
+    doi = solr_doc['other_standard_ids_tesim']&.first&.strip
+    build_arr << ", #{clean_end_punctuation(doi)}" if doi.present?
   end
 
   def get_doi_from_solr_apa(solr_doc, build_arr)
     doi = solr_doc['other_standard_ids_tesim']&.first&.strip
-
     build_arr << clean_end_punctuation(doi) if doi.present?
   end
 
