@@ -201,6 +201,7 @@ to_field 'author_ssim', extract_marc("100abcdq:110abd:111acd:700abcdq:710abd:711
 to_field 'author_ssm', extract_marc("100abcdq:110#{ATOZ}:111#{ATOZ}", alternate_script: false)
 to_field 'author_tesim', extract_marc("100abcegqu:110abcdegnu:111acdegjnqu")
 to_field 'author_vern_ssim', extract_author_vern
+to_field 'author_vern_tesim', extract_author_vern
 
 # Subject Fields
 to_field 'subject_addl_tsim', extract_marc("600vwxyz:610vwxyz:611vwxyz:630vwxyz:650vwxyz:651vwxyz:654vwxyz:655vwxyz")
