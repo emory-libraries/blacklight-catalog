@@ -255,7 +255,8 @@ class CatalogController < ApplicationController
     # or can be specified manually to be different.
 
     author_fields = [
-      'author_tesim', 'author_display_ssim', 'author_vern_ssim', 'author_si', 'author_addl_display_tesim'
+      'author_tesim', 'author_vern_tesim', 'author_si', 'author_addl_display_tesim',
+      'note_participant_tesim', 'note_production_tesim'
     ]
     title_fields = [
       'title_tesim', 'title_vern_display_tesim', 'title_addl_tesim', 'title_abbr_tesim',

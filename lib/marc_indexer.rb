@@ -28,6 +28,8 @@ require 'traject/extraction_tools'
 
 # Custom Method Requires
 require 'traject/extract_author_addl_display'
+require 'traject/extract_author_display'
+require 'traject/extract_author_vern'
 require 'traject/extract_collection'
 require 'traject/extract_emory_collection'
 require 'traject/extract_finding_aid_url'
@@ -52,6 +54,8 @@ extend ExtractionTools
 
 # Custom Method Extensions
 extend ExtractAuthorAddlDisplay
+extend ExtractAuthorDisplay
+extend ExtractAuthorVern
 extend ExtractCollection
 extend ExtractEmoryCollection
 extend ExtractFindingAidUrl
@@ -190,13 +194,14 @@ to_field 'title_varying_tesim', extract_marc("246#{ATOG}inp")
 # Author Fields
 to_field 'author_addl_display_tesim', extract_author_addl_display
 to_field 'author_addl_ssim', extract_marc("700abcdgqt:710abcdgn:711acdegnqe", alternate_script: false), trim_punctuation
-to_field 'author_display_ssim', extract_marc("100abcdgqe:110abcdgne:111acdegjnqj", alternate_script: false), trim_punctuation
+to_field 'author_display_ssim', extract_author_display
 # JSTOR isn't an author. Try to not use it as one
 to_field 'author_si', marc_sortable_author
 to_field 'author_ssim', extract_marc("100abcdq:110abd:111acd:700abcdq:710abd:711acd"), trim_punctuation
 to_field 'author_ssm', extract_marc("100abcdq:110#{ATOZ}:111#{ATOZ}", alternate_script: false)
 to_field 'author_tesim', extract_marc("100abcegqu:110abcdegnu:111acdegjnqu")
-to_field 'author_vern_ssim', extract_marc("100abcdgqe:110abcdgne:111acdegjnqj", alternate_script: :only), trim_punctuation
+to_field 'author_vern_ssim', extract_author_vern
+to_field 'author_vern_tesim', extract_author_vern
 
 # Subject Fields
 to_field 'subject_addl_tsim', extract_marc("600vwxyz:610vwxyz:611vwxyz:630vwxyz:650vwxyz:651vwxyz:654vwxyz:655vwxyz")

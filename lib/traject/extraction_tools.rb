@@ -87,6 +87,40 @@ module ExtractionTools
     extra_fields
   end
 
+  # method for when you have an subfield order preference for extraction
+  # fields must be separated with a space between datafield tag number and list of subfields
+  def extract_fields_strict_subfield_order(rec, fields)
+    fields = fields.split(':')
+    build_arr = []
+    fields.each do |f|
+      field_num, subfield_tags = f.split(' ')
+      rec.fields(field_num).each do |rf|
+        inner_build_arr = []
+        subfield_tags.split('').each do |t|
+          rf.subfields.each { |sf| inner_build_arr << sf.value if sf.code == t }
+        end
+        build_arr << inner_build_arr.join(' ') if inner_build_arr.present?
+      end
+    end
+    build_arr
+  end
+
+  def extract_vern_fields_strict_subfield_order(rec, fields)
+    fields = fields.split(':')
+    build_arr = []
+    fields.each do |f|
+      field_num, subfield_tags = f.split(' ')
+      rec.fields('880').each do |rf|
+        inner_build_arr = []
+        if rf.subfields.any? { |sf| sf.code == '6' && sf.value.include?(field_num) }
+          subfield_tags.split('').each { |t| rf.subfields.each { |sf| inner_build_arr << sf.value if sf.code == t } }
+        end
+        build_arr << inner_build_arr.join(' ') if inner_build_arr.present?
+      end
+    end
+    build_arr
+  end
+
   def subject_tsim_str(atou)
     %W[
       600#{atou}
