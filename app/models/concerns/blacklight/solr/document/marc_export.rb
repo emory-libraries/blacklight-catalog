@@ -315,12 +315,8 @@ module Blacklight::Solr::Document::MarcExport
     get_author_from_solr_mla(record, build_arr) if record['100'].present?
     # Get title/edition/volume info
     build_title_vol_ed_sections_mla(solr_doc, build_arr)
-    # Get Publisher info
-    get_publisher_info_from_solr_mla(solr_doc, build_arr)
-    # Get Location info
-    get_location_from_solr_mla(solr_doc, build_arr)
-    # Get DOI info
-    get_doi_from_solr_mla(solr_doc, build_arr)
+    # Get Publisher doi info
+    get_publisher_doi_from_solr_mla(solr_doc, build_arr)
 
     build_arr.compact.join(' ')
   end
@@ -404,11 +400,6 @@ module Blacklight::Solr::Document::MarcExport
     build_arr << "#{clean_end_punctuation(remove_sq_brackets(publisher))}." if publisher.present?
   end
 
-  def get_doi_from_solr_mla(solr_doc, build_arr)
-    doi = solr_doc['other_standard_ids_tesim']&.first&.strip
-    build_arr << ", #{clean_end_punctuation(doi)}" if doi.present?
-  end
-
   def get_doi_from_solr_apa(solr_doc, build_arr)
     doi = solr_doc['other_standard_ids_tesim']&.first&.strip
     build_arr << clean_end_punctuation(doi) if doi.present?
@@ -430,12 +421,16 @@ module Blacklight::Solr::Document::MarcExport
     build_arr << author_final if author_final.present?
   end
 
-  def get_publisher_info_from_solr_mla(solr_doc, build_arr)
+  def get_publisher_doi_from_solr_mla(solr_doc, build_arr)
     pub_info = ""
     publisher = solr_doc['published_tesim']&.first&.strip
     pub_date = solr_doc['pub_date_isim']&.last
+    publisher_location = solr_doc['publisher_location_ssm']&.first&.strip
+    doi = solr_doc['other_standard_ids_tesim']&.first&.strip
     pub_info += clean_end_punctuation(remove_sq_brackets(publisher)) if publisher.present?
     pub_info += ", #{pub_date}" if pub_date.present?
+    pub_info += ", #{clean_end_punctuation(publisher_location)}" if publisher_location.present?
+    pub_info += ", #{clean_end_punctuation(doi)}" if doi.present?
     build_arr << pub_info
   end
 
@@ -446,11 +441,6 @@ module Blacklight::Solr::Document::MarcExport
     joined_str = [vol1, vol2, edition].compact.join(', ')
     return joined_str.to_s if joined_str.present?
     joined_str
-  end
-
-  def get_location_from_solr_mla(solr_doc, build_arr)
-    publisher_location = solr_doc['publisher_location_ssm']&.first&.strip
-    build_arr << clean_end_punctuation(publisher_location) if publisher_location.present?
   end
 
   def build_title_vol_ed_sections_mla(solr_doc, build_arr)
