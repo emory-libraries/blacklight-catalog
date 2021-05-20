@@ -8,7 +8,9 @@ module ToolsSidebarHelper
     link_to(t('blacklight.tools.help'), '/#', class: 'nav-link', target: "_blank", rel: 'noopener noreferrer')
   end
 
-  def render_feedback_in_toolbar
-    link_to(t('blacklight.tools.feedback'), '/#', class: 'nav-link', target: "_blank", rel: 'noopener noreferrer')
+  def render_feedback_in_toolbar(url)
+    link_to(t('blacklight.tools.feedback'),
+              "https://emory.libwizard.com/f/blacklight?refer_url=#{url}",
+              class: 'nav-link', target: "_blank", rel: 'noopener noreferrer')
   end
 end
