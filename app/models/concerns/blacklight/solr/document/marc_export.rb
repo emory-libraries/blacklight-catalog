@@ -331,10 +331,10 @@ module Blacklight::Solr::Document::MarcExport
       # Get Pub Date
       get_pub_date_from_solr_apa(solr_doc, build_arr)
       # Get title/edition/volume info
-      build_title_vol_ed_sections_apa(solr_doc, build_arr)
+      build_title_apa(solr_doc, build_arr)
     else
       # Get title/edition/volume info
-      build_title_vol_ed_sections_apa(solr_doc, build_arr)
+      build_title_apa(solr_doc, build_arr)
       # Get Pub Date
       get_pub_date_from_solr_apa(solr_doc, build_arr)
     end
@@ -386,15 +386,6 @@ module Blacklight::Solr::Document::MarcExport
     build_str
   end
 
-  def get_vol_ed_from_solr_apa(solr_doc)
-    vol1 = solr_doc['title_display_partnumber_tesim']&.first&.strip
-    vol2 = solr_doc['title_display_partname_tesim']&.first&.strip
-    edition = solr_doc['edition_tsim']&.first&.strip
-    joined_str = [vol1, vol2, edition].compact.join(', ')
-    return "(#{joined_str})" if joined_str.present?
-    joined_str
-  end
-
   def get_publisher_from_solr_apa(solr_doc, build_arr)
     publisher = solr_doc['published_tesim']&.first&.strip
     build_arr << "#{clean_end_punctuation(remove_sq_brackets(publisher))}." if publisher.present?
@@ -405,14 +396,9 @@ module Blacklight::Solr::Document::MarcExport
     build_arr << clean_end_punctuation(doi) if doi.present?
   end
 
-  def build_title_vol_ed_sections_apa(solr_doc, build_arr)
-    title = get_title_from_solr_apa(solr_doc)
-    vol_ed = get_vol_ed_from_solr_apa(solr_doc)
-    build_arr << if title.present? && vol_ed.present?
-                   "<i>" + title + "</i>" + " #{vol_ed}."
-                 elsif title.present? && vol_ed.blank?
-                   "<i>" + title + "</i>."
-                 end
+  def build_title_apa(solr_doc, build_arr)
+    title = solr_doc['title_citation_ssi'].present? ? replace_whitespace_colon(solr_doc['title_citation_ssi']) : ''
+    build_arr << "<i>#{title}</i>." if title.present?
   end
 
   def get_author_from_solr_mla(record, build_arr)
@@ -539,5 +525,9 @@ module Blacklight::Solr::Document::MarcExport
 
   def remove_sq_brackets(str)
     str.gsub(/\[|\]/, '')
+  end
+
+  def replace_whitespace_colon(str)
+    str.gsub(/\s:/, ':')
   end
 end
