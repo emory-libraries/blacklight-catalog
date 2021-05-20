@@ -67,7 +67,7 @@ RSpec.describe CatalogController, type: :controller do
   describe 'advanced search facet fields' do
     let(:adv_search_facets_config) { controller.blacklight_config.advanced_search.form_solr_parameters }
     let(:expected_facet_fields) do
-      ["marc_resource_ssim", "library_ssim", "format_ssim", "language_ssim", "collection_ssim"]
+      ["marc_resource_ssim", "library_ssim", "format_ssim", "language_ssim"]
     end
 
     context 'configuration settings' do
