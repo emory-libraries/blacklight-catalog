@@ -121,13 +121,10 @@ module ExtractionTools
     build_arr
   end
 
-  def subject_tsim_str(atou)
+  def subject_tesim_str(atoz)
     %W[
-      600#{atou}
-      610#{atou}
-      611#{atou}
-      630#{atou}
-      650abcde:651ae:653a:654abcde:655abc
+      600#{atoz}:610#{atoz}:611#{atoz}:630#{atoz}:650#{atoz}
+      651#{atoz}:653#{atoz}:654#{atoz}:655#{atoz}
     ].join(':').freeze
   end
 

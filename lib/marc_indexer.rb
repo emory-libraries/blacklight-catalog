@@ -209,7 +209,7 @@ to_field 'subject_display_ssim', extract_subject_display(ATOZ, ATOG, VTOZ)
 to_field 'subject_era_ssim',  extract_marc("650y:651y:654y:655y"), trim_punctuation
 to_field 'subject_geo_ssim',  extract_marc("651a:650z"), trim_punctuation
 to_field 'subject_ssim', extract_marc("600abcdq:610ab:611adc:630aa:650aa:653aa:654a"), trim_punctuation
-to_field 'subject_tsim', extract_marc(subject_tsim_str(ATOU))
+to_field 'subject_tesim', extract_marc(subject_tesim_str(ATOZ))
 
 # Genre Fields
 to_field 'genre_ssim', extract_marc("655a"), trim_punctuation
