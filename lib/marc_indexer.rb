@@ -159,6 +159,7 @@ to_field 'local_call_number_tesim', extract_call_number
 
 # Title Fields
 #    Primary Title
+to_field 'title_citation_ssi', extract_marc('245abnp'), trim_punctuation, first_only
 to_field 'title_display_partname_tesim', extract_marc('245p'), trim_punctuation
 to_field 'title_display_partnumber_tesim', extract_marc('245n'), trim_punctuation
 to_field 'title_display_tesim', extract_marc('245a', alternate_script: false), trim_punctuation
