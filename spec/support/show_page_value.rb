@@ -8,7 +8,7 @@ SHOW_PAGE_VALUE = {
     "subject_geo_ssim": ["Texas"], "subject_ssim": ["Frontier and pioneer life", "Electronic books"],
     "title_main_display_tesim": ["The Title of my Work"], "title_details_display_tesim": ["The Title of my Work"],
     "title_addl_tesim": ["More title info"], "title_varying_tesim": ["Variant title"],
-    "subject_tsim": ["A sample subject"], "edition_tsim": ["A sample edition"],
+    "subject_tesim": ["A sample subject"], "edition_tsim": ["A sample edition"],
     "collection_ssim": ["American county histories"], "publication_main_display_ssim": ["A dummy publication"],
     "material_type_display_tesim": ["1 online resource (111 pages)"], "note_general_tsim": ["General note"],
     "publisher_details_display_ssim": ["Atlanta"], "summary_tesim": ["Short summary"],

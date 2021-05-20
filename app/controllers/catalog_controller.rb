@@ -272,7 +272,7 @@ class CatalogController < ApplicationController
       'author_addl_display_tesim', 'author_tesim'
     ]
     subject_advanced_fields = [
-      'subject_tsim', 'subject_display_ssim'
+      'subject_tesim', 'subject_display_ssim'
     ]
     identifier_advanced_fields = [
       'isbn_ssim', 'issn_ssim', 'oclc_ssim', 'other_standard_ids_tesim', 'lccn_ssim', 'id',
@@ -320,7 +320,7 @@ class CatalogController < ApplicationController
     config.add_search_field('subject', label: 'Subjects') do |field|
       field.include_in_advanced_search = false
       field.solr_parameters = {
-        qf: 'subject_tsim',
+        qf: 'subject_tesim',
         pf: ''
       }
     end

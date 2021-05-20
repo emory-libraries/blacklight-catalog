@@ -6,7 +6,7 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
     [
       'author_tesim', 'author_vern_tesim', 'author_si', 'author_addl_display_tesim',
       'title_tesim', 'title_vern_display_tesim', 'title_addl_tesim', 'title_abbr_tesim',
-      'title_added_entry_tesim', 'title_enhanced_tesim', 'subject_tsim', 'title_former_tesim',
+      'title_added_entry_tesim', 'title_enhanced_tesim', 'subject_tesim', 'title_former_tesim',
       'title_host_item_tesim', 'title_key_tesim', 'title_series_tesim', 'title_translation_tesim',
       'title_varying_tesim', 'text_tesi', 'local_call_number_tesim', 'title_later_tesim',
       'note_production_tesim', 'note_participant_tesim'
@@ -115,6 +115,6 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       result_titles += page.all(:css, 'h3.document-title-heading/a').to_a.map(&:text)
     end
 
-    expect(result_titles).to contain_exactly('Target in subject_tsim')
+    expect(result_titles).to contain_exactly('Target in subject_tesim')
   end
 end
