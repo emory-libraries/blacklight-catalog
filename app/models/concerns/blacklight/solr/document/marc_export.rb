@@ -434,8 +434,8 @@ module Blacklight::Solr::Document::MarcExport
     pub_info = ""
     publisher = solr_doc['published_tesim']&.first&.strip
     pub_date = solr_doc['pub_date_isim']&.last
-    pub_info += clean_end_punctuation(remove_sq_brackets(publisher.rstrip)) if publisher.present?
-    pub_info += ", #{pub_date.rstrip}" if pub_date.present?
+    pub_info += clean_end_punctuation(remove_sq_brackets(publisher)) if publisher.present?
+    pub_info += ", #{pub_date}" if pub_date.present?
     build_arr << pub_info
   end
 
