@@ -314,7 +314,7 @@ module Blacklight::Solr::Document::MarcExport
     # Get Author
     get_author_from_solr_mla(record, build_arr) if record['100'].present?
     # Get title/edition/volume info
-    build_title_vol_ed_sections_mla(solr_doc, build_arr)
+    build_title_apa(solr_doc, build_arr)
     # Get Publisher doi info
     get_publisher_doi_from_solr_mla(solr_doc, build_arr)
 
@@ -372,20 +372,6 @@ module Blacklight::Solr::Document::MarcExport
     build_arr << "(#{pub_date})." if pub_date.present?
   end
 
-  def get_title_from_solr_apa(solr_doc)
-    build_str = ''
-    primary_title = solr_doc['title_tesim']&.first&.strip
-    subtitle = solr_doc['subtitle_display_tesim']&.first&.strip
-
-    if primary_title.present? && subtitle.present?
-      build_str += "#{clean_end_punctuation(primary_title).strip}:"
-      build_str += " #{clean_end_punctuation(subtitle).capitalize}"
-    elsif primary_title.present? && subtitle.blank?
-      build_str += clean_end_punctuation(primary_title).strip
-    end
-    build_str
-  end
-
   def get_publisher_from_solr_apa(solr_doc, build_arr)
     publisher = solr_doc['published_tesim']&.first&.strip
     build_arr << "#{clean_end_punctuation(remove_sq_brackets(publisher))}." if publisher.present?
@@ -427,16 +413,6 @@ module Blacklight::Solr::Document::MarcExport
     joined_str = [vol1, vol2, edition].compact.join(', ')
     return joined_str.to_s if joined_str.present?
     joined_str
-  end
-
-  def build_title_vol_ed_sections_mla(solr_doc, build_arr)
-    title = get_title_from_solr_apa(solr_doc)
-    vol_ed = get_vol_ed_from_solr_mla(solr_doc)
-    build_arr << if title.present? && vol_ed.present?
-                   "<i>" + citation_title(title) + "</i>, " + "#{clean_end_punctuation(vol_ed)}."
-                 elsif title.present? && vol_ed.blank?
-                   "<i>" + citation_title(title) + "</i>."
-                 end
   end
 
   def setup_pub_date(record)
