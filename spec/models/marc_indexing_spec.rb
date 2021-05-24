@@ -294,6 +294,11 @@ RSpec.describe 'Indexing fields with custom logic' do
       # 981211s1998    caubc  cc a  fs 0   eng d - 008 value with end year missing
       it('has only one date year') { expect(solr_doc['pub_date_isim']).to eq([1998]) }
     end
+
+    context 'when the years have non-digit characters, it kicks the values to the marc21 method' do
+      # 2002 comes from the marc21 publication_date
+      it('is blank') { expect(solr_doc2['pub_date_isim']).to eq([2002]) }
+    end
   end
 
   describe 'publication_main_display_ssim field' do
