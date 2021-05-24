@@ -73,42 +73,6 @@ RSpec.describe "View a item's show page", type: :system, js: true do
       # test presence of fulltext hyperlink with link text
       expect(page).to have_link('Link Text for Book', href: 'http://www.example2.com')
     end
-
-    context 'citations' do
-      let(:expected_warning_text) do
-        'These citations are automatically generated and may not always be correct. ' \
-          'Remember to check your citations for accuracy before including them in your work.'
-      end
-
-      it 'has the right text' do
-        # For some reason, the 3 styles load locally, but not here.
-        # I looked in blacklight gem's spec for a way to work around this, but
-        # all they tested for was the Cite modal title as well.
-        execute_script("document.querySelector('#citationLink').click()")
-        within '#blacklight-modal' do
-          expect(page).to have_css('h1', text: 'Cite')
-        end
-
-        within 'div.modal-body .citation-warning.row .col-11' do
-          expect(page).to have_content(expected_warning_text)
-        end
-      end
-    end
-
-    context 'direct-link' do
-      around do |example|
-        ENV['BLACKLIGHT_BASE_URL'] = 'www.example.com'
-        example.run
-        ENV['BLACKLIGHT_BASE_URL'] = ''
-      end
-      it 'has the correct direct link' do
-        click_on 'Direct Link'
-        within '#modal-window' do
-          expect(page).to have_css('h1', text: 'Direct Link')
-          expect(page).to have_selector('input[value="www.example.com/catalog/123"]')
-        end
-      end
-    end
   end
 
   context 'displaying vernacular title' do
@@ -174,6 +138,52 @@ RSpec.describe "View a item's show page", type: :system, js: true do
       expect(
         find_all('.card.show-tools ul.list-group.list-group-flush li.list-group-item').map(&:text)
       ).to include(*expected_tools_links_text)
+    end
+
+    context 'citations' do
+      let(:expected_warning_text) do
+        'These citations are automatically generated and may not always be correct. ' \
+          'Remember to check your citations for accuracy before including them in your work.'
+      end
+
+      it 'has the right text' do
+        # For some reason, the 3 styles load locally, but not here.
+        # I looked in blacklight gem's spec for a way to work around this, but
+        # all they tested for was the Cite modal title as well.
+        execute_script("document.querySelector('#citationLink').click()")
+        within '#blacklight-modal' do
+          expect(page).to have_css('h1', text: 'Cite')
+        end
+
+        within 'div.modal-body .citation-warning.row .col-11' do
+          expect(page).to have_content(expected_warning_text)
+        end
+      end
+    end
+
+    context 'direct-link' do
+      around do |example|
+        ENV['BLACKLIGHT_BASE_URL'] = 'www.example.com'
+        example.run
+        ENV['BLACKLIGHT_BASE_URL'] = ''
+      end
+      it 'has the correct direct link' do
+        click_on 'Direct Link'
+        within '#modal-window' do
+          expect(page).to have_css('h1', text: 'Direct Link')
+          expect(page).to have_selector('input[value="www.example.com/catalog/123"]')
+        end
+      end
+    end
+
+    context 'Feedback' do
+      it 'links to the right LibWizard form' do
+        element = find('li.list-group-item.feedback a.nav-link')
+        expect(element.text).to eq('Feedback')
+        expect(element['href']).to include(
+          'https://emory.libwizard.com/f/blacklight?refer_url=http', '/catalog/123'
+        )
+      end
     end
   end
 
