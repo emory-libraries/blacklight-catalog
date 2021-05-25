@@ -5,6 +5,8 @@ RSpec.describe 'Facet the catalog by year', type: :system, js: false do
   before do
     delete_all_documents_from_solr
     build_solr_docs([llama, newt, eagle])
+    visit root_path
+    click_on 'search'
   end
 
   let(:llama) do
@@ -34,10 +36,6 @@ RSpec.describe 'Facet the catalog by year', type: :system, js: false do
   end
 
   context 'sort by Title' do
-    before do
-      visit root_path
-      click_on 'search'
-    end
     it 'has correct sorting behavior for Title (A-Z)' do
       click_on('relevance')
       click_on('Title (A-Z)')
@@ -52,6 +50,24 @@ RSpec.describe 'Facet the catalog by year', type: :system, js: false do
       expect(page).to have_content('3. Eagle Excellence')
       expect(page).to have_content('2. Llama Love')
       expect(page).to have_content('1. Newt Nutrition')
+    end
+  end
+
+  context 'sort by Year' do
+    it 'has correct sorting behavior for Year (oldest)' do
+      click_on('relevance')
+      click_on('Year (oldest)')
+      expect(page).to have_content('1. Eagle Excellence')
+      expect(page).to have_content('2. Llama Love')
+      expect(page).to have_content('3. Newt Nutrition')
+    end
+
+    it 'has correct sorting behavior for Year (newest)' do
+      click_on('relevance')
+      click_on('Year (newest)')
+      expect(page).to have_content('1. Newt Nutrition')
+      expect(page).to have_content('2. Llama Love')
+      expect(page).to have_content('3. Eagle Excellence')
     end
   end
 end
