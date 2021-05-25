@@ -2,11 +2,11 @@
 
 .pagination-search-widgets {
   margin-top: map-get($spacers, 4);
-  margin-bottom: map-get($spacers, 2);
+  margin-bottom: map-get($spacers, 3);
 }
 
 div#sortAndPerPage {
-  margin-bottom: $branding-padding-x;
+  margin-bottom: 1rem;
   justify-content: space-between;
   display: flex;
 
