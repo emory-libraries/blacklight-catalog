@@ -396,7 +396,8 @@ class CatalogController < ApplicationController
     config.add_sort_field 'score desc, pub_date_isi desc, title_si asc', label: 'relevance'
     config.add_sort_field 'pub_date_isi desc, title_si asc', label: 'year'
     config.add_sort_field 'author_si asc, title_si asc', label: 'author'
-    config.add_sort_field 'title_si asc, pub_date_isi desc', label: 'title'
+    config.add_sort_field 'title_ssort asc, pub_date_isi desc', label: 'Title (A-Z)'
+    config.add_sort_field 'title_ssort desc, pub_date_isi desc', label: 'Title (Z-A)'
 
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
