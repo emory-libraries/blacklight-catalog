@@ -255,7 +255,7 @@ class CatalogController < ApplicationController
     # or can be specified manually to be different.
 
     author_fields = [
-      'author_tesim', 'author_vern_tesim', 'author_si', 'author_addl_display_tesim',
+      'author_tesim', 'author_vern_tesim', 'author_ssort', 'author_addl_display_tesim',
       'note_participant_tesim', 'note_production_tesim'
     ]
     title_fields = [
@@ -396,7 +396,8 @@ class CatalogController < ApplicationController
     config.add_sort_field 'score desc, pub_date_isim desc, title_si asc', label: 'relevance'
     config.add_sort_field 'pub_date_isim asc, title_ssort asc', label: 'Year (oldest)'
     config.add_sort_field 'pub_date_isim desc, title_ssort asc', label: 'Year (newest)'
-    config.add_sort_field 'author_si asc, title_si asc', label: 'author'
+    config.add_sort_field 'author_ssort asc, title_ssort asc', label: 'Author (A-Z)'
+    config.add_sort_field 'author_ssort desc, title_ssort asc', label: 'Author (Z-A)'
     config.add_sort_field 'title_ssort asc, pub_date_isim desc', label: 'Title (A-Z)'
     config.add_sort_field 'title_ssort desc, pub_date_isim desc', label: 'Title (Z-A)'
 
