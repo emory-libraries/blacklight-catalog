@@ -197,7 +197,7 @@ to_field 'author_addl_display_tesim', extract_author_addl_display
 to_field 'author_addl_ssim', extract_marc("700abcdgqt:710abcdgn:711acdegnqe", alternate_script: false), trim_punctuation
 to_field 'author_display_ssim', extract_author_display
 # JSTOR isn't an author. Try to not use it as one
-to_field 'author_si', marc_sortable_author
+to_field 'author_ssort', marc_sortable_author
 to_field 'author_ssim', extract_marc("100abcdq:110abd:111acd:700abcdq:710abd:711acd"), trim_punctuation
 to_field 'author_ssm', extract_marc("100abcdq:110#{ATOZ}:111#{ATOZ}", alternate_script: false)
 to_field 'author_tesim', extract_marc("100abcegqu:110abcdegnu:111acdegjnqu")
