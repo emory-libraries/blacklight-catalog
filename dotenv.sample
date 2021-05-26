@@ -14,13 +14,10 @@ ALMA=
 
 # provide alma_api_url for querying/posting to Alma API
 ALMA_API_URL=
-ALMA_API_KEY=
-ALMA_DELIVERY_DOMAIN=
+ALMA_BIB_KEY=
 
 # provide institution for oai base url fetch
-ALMA_INSTITUTION_CODE=
 INSTITUTION=
-
 
 # provides name for oai set being fetched
 oai_set_name=blacklighttest
