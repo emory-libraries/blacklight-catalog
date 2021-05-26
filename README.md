@@ -27,6 +27,18 @@
 1. First time running this application locally? Give yourself some test objects by following the directions [here](https://github.com/emory-libraries/blacklight-catalog/blob/main/HARVESTING_ALMA_DATA.md)
 1. Start the application: `rails server`
 1. You should now be able to go to `http://localhost:3000/catalog` and see the application
+1. In order to be able to sign into the application locally, the environment variable DATABASE_AUTH=true must be set in your development environment.
+You must create a user via the rails console:
+```
+  bundle exec rails c
+  u = User.new
+  u.uid = "user"
+  u.display_name = "User Name"
+  u.email = "email@testdomain.com"
+  u.password = "password"
+  u.password_confirmation = "password"
+  u.save
+```
 
 ## Running Rspec tests locally
 
