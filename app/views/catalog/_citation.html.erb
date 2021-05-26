@@ -12,15 +12,5 @@
     </div>
     <div class='col-11'><%= t('blacklight.tools.citation_warning') %></div>
   </div>
-  <% @documents.each do |document| %>
-    <% if document.respond_to?(:export_as_mla_citation_txt) %>
-      <h2><%= t('blacklight.citation.mla') %></h2>
-      <%= document.send(:export_as_mla_citation_txt).html_safe %><br/><br/>
-    <% end %>
-
-    <% if document.respond_to?(:export_as_apa_citation_txt) %>
-      <h2><%= t('blacklight.citation.apa') %></h2>
-      <%= document.send(:export_as_apa_citation_txt).html_safe %><br/><br/>
-    <% end %>
-  <% end %>
+  <%= render_citations(@documents) %>
 </div>
