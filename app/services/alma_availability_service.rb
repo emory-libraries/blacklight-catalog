@@ -50,11 +50,11 @@ class AlmaAvailabilityService
   end
 
   def api_url
-    ENV['ALMA_API_URL'] || 'www.example.com'
+    ENV['ALMA_API_URL'] || "https://api-na.hosted.exlibrisgroup.com"
   end
 
   def api_key
-    ENV['ALMA_API_KEY'] || ""
+    ENV.fetch('ALMA_BIB_KEY')
   end
 
   def multiple_physical_items?(physical_arr)

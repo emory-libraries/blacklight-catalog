@@ -1,11 +1,21 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe "View a item's show page", type: :system, js: true do
+RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
   before do
     delete_all_documents_from_solr
     build_solr_docs(TEST_ITEM)
     visit solr_document_path(id)
+  end
+
+  around do |example|
+    orig_url = ENV['ALMA_API_URL']
+    orig_key = ENV['ALMA_BIB_KEY']
+    ENV['ALMA_API_URL'] = 'www.example.com'
+    ENV['ALMA_BIB_KEY'] = "fakebibkey123"
+    example.run
+    ENV['ALMA_API_URL'] = orig_url
+    ENV['ALMA_BIB_KEY'] = orig_key
   end
 
   let(:id) { '123' }
@@ -163,9 +173,10 @@ RSpec.describe "View a item's show page", type: :system, js: true do
 
     context 'direct-link' do
       around do |example|
+        bl_url = ENV['BLACKLIGHT_BASE_URL']
         ENV['BLACKLIGHT_BASE_URL'] = 'www.example.com'
         example.run
-        ENV['BLACKLIGHT_BASE_URL'] = ''
+        ENV['BLACKLIGHT_BASE_URL'] = bl_url
       end
       it 'has the correct direct link' do
         click_on 'Direct Link'

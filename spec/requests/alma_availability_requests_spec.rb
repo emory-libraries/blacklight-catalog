@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe 'Alma Availability requests', type: :request do
+RSpec.describe 'Alma Availability requests', type: :request, alma: true do
   let(:id) { '990005988630302486' }
   let(:id2) { '990005059530302486' }
   let(:expected_json) do
@@ -47,6 +47,16 @@ RSpec.describe 'Alma Availability requests', type: :request do
         )
       ]
     )
+  end
+
+  around do |example|
+    orig_url = ENV['ALMA_API_URL']
+    orig_key = ENV['ALMA_BIB_KEY']
+    ENV['ALMA_API_URL'] = 'www.example.com'
+    ENV['ALMA_BIB_KEY'] = "fakebibkey123"
+    example.run
+    ENV['ALMA_API_URL'] = orig_url
+    ENV['ALMA_BIB_KEY'] = orig_key
   end
 
   it 'returns the right json when subfield==q is Library Service Center' do
