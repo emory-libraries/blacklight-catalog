@@ -7,7 +7,7 @@ RSpec.describe 'Facet the catalog by year', type: :system, js: false do
     build_solr_docs([llama, newt, eagle])
     visit root_path
     click_on 'search'
-    click_on 'relevance'
+    click_on 'Relevance'
   end
 
   let(:llama) do
