@@ -15,7 +15,9 @@
 
 1. Clone the git repo: `git clone git@github.com:emory-libraries/blacklight-catalog.git`
 1. `cd ./blacklight-catalog`
-1. Install the required gems: `bundle install`
+1. Install the required gems:
+    1. `gem install bundler:2.1.4`
+    1. `bundle install`
 1. Since we're now using MySQL for the database, run `rails db:create`. If you run into errors here, it may be one of two things:
     1. Your local `ENV` variables may not be set correctly. If so, reach out to an already up and running developer for help.
     2. You may have MySQL already configured on your system and set to your own username and passwords. In this case, assign that information into the necessary `ENV` variables and try the create command above once more.
