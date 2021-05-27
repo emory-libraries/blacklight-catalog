@@ -64,6 +64,7 @@ Rails/Output:
 
 Rails/OutputSafety:
     Exclude:
+        - 'app/helpers/citation_modal_helper.rb'
         - 'app/models/concerns/blacklight/solr/document/marc_export.rb'
 
 RSpec/DescribeClass:
