@@ -7,6 +7,7 @@ class AlmaRequestService
     @mms_id = mms_id
     @response = query_holding
     @xml = Nokogiri::XML(@response)
+    @req_options = req_options
     @json_response = json_response(uid)
   end
 
@@ -23,6 +24,13 @@ class AlmaRequestService
     RestClient.get(holdings_url)
   end
 
+  def req_options
+    url = "#{api_url}/almaws/v1/bibs/#{@mms_id}/request-options?user_id=#{@uid}&consider_dlr=false&apikey=#{api_key}"
+    response = RestClient.get(url)
+    xml = Nokogiri::XML(response.body)
+    xml.xpath("//request_options/request_option/type[text()='HOLD']")
+  end
+
   def holding_id
     @xml.xpath("//holdings/holding/holding_id").text
   end
@@ -34,7 +42,6 @@ class AlmaRequestService
   def json_response(uid)
     { uid: uid,
       holding_id: holding_id,
-      holding_library: holding_library
-    }
+      holding_library: holding_library }
   end
 end

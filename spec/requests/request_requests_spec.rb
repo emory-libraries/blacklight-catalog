@@ -16,17 +16,11 @@ RSpec.describe 'Requests', type: :request, alma: true do
     login_as user
   end
 
-  it "can run a test" do
-    # test object: 9937241630902486 Unwitting street
-
-    get requests_path, :params => { :mms_id => "9937241630902486" }
-    expect(response).to be_successful
-    expect(response.body).to include(user.uid)
-    expect(response.body).to include("22445410470002486") # Include holding ID for our test object
-    expect(response.body).to include("UNIV") # Include holding Library for our test object
+  it "can get a json object with request information from alma" do
+    get requests_path, params: { mms_id: "9937241630902486" }
+    request_hash = JSON.parse(response.body)
+    expect(request_hash["uid"]).to eq(user.uid)
+    expect(request_hash["holding_id"]).to eq("22445410470002486") # Include holding ID for our test object
+    expect(request_hash["holding_library"]).to eq("UNIV") # Include holding Library for our test object
   end
 end
-
-@req_options = Nokogiri::XML(agent.get(
-  "https://#{host}/almaws/v1/bibs/#{mmsid}/request-options?user_id=#{@uid}&consider_dlr=false&apikey=#{apikey}"
-).body).xpath("//request_options/request_option/type[text()='HOLD']")
