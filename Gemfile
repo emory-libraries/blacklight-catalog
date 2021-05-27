@@ -31,6 +31,7 @@ gem 'rest-client'
 gem 'rsolr', '>= 1.0'
 gem 'sass-rails', '~> 5.0'
 gem 'secure_headers'
+gem 'simple_form' # For database authentication page from Devise
 gem 'sqlite3'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
