@@ -1,0 +1,10 @@
+<h2>Select your login mode:</h2>
+
+
+<h3> <%=link_to "Shibboleth login", shib_login_path %></h3>
+<h3> <%=link_to "Affiliate login", affiliate_login_path %></h3>
+
+<% if AuthConfig.use_database_auth? %>
+  <h3> <%=link_to "Developer login", db_login_path %></h3>
+<%end%>
+

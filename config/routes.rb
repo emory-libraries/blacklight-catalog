@@ -14,17 +14,17 @@ Rails.application.routes.draw do
     concerns :range_searchable
   end
 
-  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks", sessions: 'omniauth' }
 
   # Disable these routes if you are using Devise's
   # database_authenticatable in your development environment.
-  unless AuthConfig.use_database_auth?
     devise_scope :user do
-      get 'sign_in', to: 'omniauth#new', as: :new_user_session
-      post 'sign_in', to: 'omniauth_callbacks#shibboleth', as: :new_session
-      get 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
+       get 'affiliate_login', to: 'omniauth#affiliate_login', as: :affiliate_login
+       get 'db_login', to: 'omniauth#db_login'
+       get 'sign_in', to: 'omniauth#shib_login', as: :shib_login
+       post 'sign_in', to: 'omniauth_callbacks#shibboleth'
+       get 'sign_out', to: 'devise/sessions#destroy'
     end
-  end
 
   concern :exportable, Blacklight::Routes::Exportable.new
 
