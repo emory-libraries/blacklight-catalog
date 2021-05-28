@@ -5,7 +5,7 @@ RSpec.describe 'Requests', type: :request, alma: true do
   let(:user) do
     User.create(
       provider: 'shibboleth',
-      uid: 'mkadel',
+      uid: 'brianbboys1967',
       display_name: 'Brian Wilson'
     )
   end
