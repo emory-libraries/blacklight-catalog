@@ -6,6 +6,8 @@ class AlmaAvailabilityService
   def initialize(mms_id)
     @mms_id = mms_id
     @response = query_availability
+    # @json_response = query_json_availability
+    # @json = JSON.parse(@json_response)
     @xml = Nokogiri::XML(@response)
   end
 
@@ -45,6 +47,13 @@ class AlmaAvailabilityService
     RestClient.get "#{api_url}/almaws/v1/bibs/#{@mms_id}#{query_inst}#{api_key}"
   end
 
+  def query_json_availability
+    # https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9937004854502486/holdings?apikey=l7xxdc8b16a5d57d4a4d80729d4e891f5a27
+
+    url = "#{api_url}/almaws/v1/bibs/#{@mms_id}/request-options?apikey=#{api_key}"
+    RestClient.get url, { accept: :json }
+  end
+
   def query_inst
     "?view=full&expand=p_avail,e_avail,d_avail&apikey="
   end
@@ -62,7 +71,13 @@ class AlmaAvailabilityService
   end
 
   def library_text(physical_arr, document)
-    multiple_physical_items?(physical_arr) ? 'Multiple libraries/locations' : single_lib_text(physical_arr, document)
+    # multiple_physical_items?(physical_arr) ? library_locations(physical_arr) : single_lib_text(physical_arr, document)
+    multiple_physical_items?(physical_arr) ? "Multiple libraries/locations" : single_lib_text(physical_arr, document)
+  end
+
+  def library_locations(physical_arr)
+    physical_arr.each_with_index do |index, location|
+    end
   end
 
   def single_lib_text(physical_arr, document)

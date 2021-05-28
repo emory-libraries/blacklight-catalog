@@ -10,6 +10,10 @@ AllCops:
         - 'vendor/**/*'
         - 'node_modules/**/*'
 
+Layout/LineLength:
+    Exclude:
+        - 'spec/support/solr_documents/multiple_holdings_item.rb'
+
 Metrics/AbcSize:
     Exclude:
         - 'app/models/concerns/blacklight/solr/document/marc_export.rb'

@@ -1,56 +1,12 @@
-<div id='where-to-find-section'>
-  <%= tag.h2 t('catalog.show.find_it_header'), class: "section-title find-it-header" %><br/>
-  <div class="where-to-find-table"></div>
-  <div class="availability-iframes"></div>
-</div>
-
-<script type="text/javascript">
-  $.ajax({
-    url: "/alma_availability/<%= document.id %>.json",
-    type: "get",
-    dataType: 'json',
-    success: function(data) { 
-      var physicalLibrary = data['<%= document.id %>']['physical']['library'];
-      var physicalCallNumber = data['<%= document.id %>']['physical']['call_number'];
-      var physicalAvailable = data['<%= document.id %>']['physical']['available'];
-      var onlineLinks = data['<%= document.id %>']['online']['links'];
-      var onlineUresolver = data['<%= document.id %>']['online']['uresolver'];
-      var onlineTds = '';
-      var availabilityHtml = '';
-      var iframeHtml = '';
-      
-      if (physicalLibrary && physicalAvailable) {
-        availabilityHtml +=
-          '<table class="table"><thead><tr><th scope="col"><%= t('blacklight.availability.at_library') %></th><th scope="col"><%= t('blacklight.availability.call_number') %></th><th scope="col"><%= t('blacklight.availability.status') %></th></tr></thead><tbody><tr><td>' +
-          physicalLibrary + '</td><td>' + physicalCallNumber + '</td><td>' + physicalAvailable +
-          '</td></tr></tbody></table>';
-        iframeHtml += '<%= build_availability_iframes(document.id, true) %>';
-      }
-
-      if (onlineLinks.length > 0) {
-        var linksArr = onlineLinks.map((link) => {
-          return '<tr><td><%= t('blacklight.availability.access_online') %></td><td><a target="_blank" href="' + Object.keys(link)[0] + '">' + (Object.values(link)[0] || Object.keys(link)[0]) +
-          '</a></td></tr>';
-        })
-        onlineTds += linksArr.join('');
-      }
-
-      if (onlineUresolver) {
-        onlineTds += '<tr><td><a target="_blank" href="<%= openurl(document.id,'viewit') %>">' + (onlineTds ? '<%= t('blacklight.availability.view_more_options') %>' : '<%= t('blacklight.availability.view_options') %>') +
-          '</a></td><td>&nbsp;</td></tr>';
-        iframeHtml += '<%= build_availability_iframes(document.id, false) %>';
-      }
-
-      if (onlineTds) {
-        availabilityHtml += '<table class="table"><thead><tr><th scope="col"><%= t('blacklight.availability.online') %></th><th scope="col">&nbsp;</th></tr></thead><tbody>' +
-          onlineTds + '</tbody></table>';
-      }
-
-      if ((physicalLibrary && physicalAvailable) || (onlineLinks || onlineUresolver)) {
-        Rails.$(".where-to-find-table")[0].innerHTML = availabilityHtml;
-      }
-
-      Rails.$(".availability-iframes")[0].innerHTML = iframeHtml;
-    }
-  })
-</script>
+<h2 class="section-title">Where to find it</h2>
+<h4 class="blacklight-Request Options">Request Options</h4>
+<dl class="row dl-invert document-metadata">
+  <dt class="blacklight-request_options col-md-4">Location:</dt>
+  <% document["library_ssim"].each do |library| %>
+  <dd class="blacklight-request_options col-md-8">
+    <%= library %>
+    <%# "Marian K. Heilbrun Music Media" %>
+    <%# AlmaAvailabilityService.new(document.id)&.current_avail_table_data(document) %>
+  </dd>
+  <% end %>
+</dl>

@@ -2,6 +2,8 @@
 require 'rails_helper'
 require 'nokogiri'
 
+WebMock.allow_net_connect!
+
 RSpec.describe AlmaAvailabilityService, alma: true do
   let(:id) { '990005988630302486' }
   let(:id2) { '990005059530302486' }
@@ -28,6 +30,16 @@ RSpec.describe AlmaAvailabilityService, alma: true do
       expect(service2.current_availability).to eq(
         { "990005059530302486" => { online: { exists: false }, physical: { available: true, exists: true } } }
       )
+    end
+  end
+
+  describe "multiple holding availability" do
+    let(:id) { '9937004854502486' }
+    let(:service) { described_class.new(id) }
+
+    xit "returns all the libraries that hold the item" do
+      physical_arr = service.instance_variable_get("@xml").xpath('bib/record/datafield[@tag="AVA"]')
+      expect(service.library_text(physical_arr, MULTIPLE_HOLDINGS_TEST_ITEM)).to include("Marian K. Heilbrun Music Media")
     end
   end
 end
