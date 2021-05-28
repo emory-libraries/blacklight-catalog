@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<holdings total_record_count="1">
+  <holding link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9937241630902486/holdings/22445410470002486">
+    <holding_id>22445410470002486</holding_id>
+    <library desc="Robert W. Woodruff Library">UNIV</library>
+    <location desc="Woodruff Book Stacks">STACK</location>
+    <call_number>PG3476.K782 A2 2020</call_number>
+    <suppress_from_publishing>false</suppress_from_publishing>
+  </holding>
+  <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9937241630902486">
+    <mms_id>9937241630902486</mms_id>
+    <title>Unwitting street /</title>
+    <author>Krzhizhanovskiĭ, Sigizmund,</author>
+    <isbn>1681374889</isbn>
+    <network_numbers>
+      <network_number>(OCoLC)on1129020307</network_number>
+      <network_number>(OCoLC)1129020307</network_number>
+    </network_numbers>
+    <place_of_publication>New York :</place_of_publication>
+    <date_of_publication>[2020]</date_of_publication>
+    <publisher>New York Review Books,</publisher>
+  </bib_data>
+</holdings>

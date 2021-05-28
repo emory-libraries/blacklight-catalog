@@ -1,19 +1,27 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-WebMock.allow_net_connect!
-
 RSpec.describe 'Requests', type: :request, alma: true do
   let(:user) do
     User.create(
       provider: 'shibboleth',
-      uid: 'brianbboys1967',
+      uid: 'mkadel',
       display_name: 'Brian Wilson'
     )
   end
 
   before do
     login_as user
+  end
+
+  around do |example|
+    orig_url = ENV['ALMA_API_URL']
+    orig_key = ENV['ALMA_BIB_KEY']
+    ENV['ALMA_API_URL'] = 'www.example.com'
+    ENV['ALMA_BIB_KEY'] = "fakebibkey123"
+    example.run
+    ENV['ALMA_API_URL'] = orig_url
+    ENV['ALMA_BIB_KEY'] = orig_key
   end
 
   it "can get a json object with request information from alma" do

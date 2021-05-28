@@ -4,6 +4,7 @@ require 'nokogiri'
 
 class AlmaRequestService
   def initialize(mms_id, uid)
+    @uid = uid
     @mms_id = mms_id
     @response = query_holding
     @xml = Nokogiri::XML(@response)
