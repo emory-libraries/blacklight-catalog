@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-WebMock.allow_net_connect!
-
 RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
   around do |example|
     orig_url = ENV['ALMA_API_URL']

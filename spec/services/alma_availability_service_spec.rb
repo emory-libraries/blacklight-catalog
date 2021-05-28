@@ -2,8 +2,6 @@
 require 'rails_helper'
 require 'nokogiri'
 
-WebMock.allow_net_connect!
-
 RSpec.describe AlmaAvailabilityService, alma: true do
   let(:id) { '990005988630302486' }
   let(:id2) { '990005059530302486' }
