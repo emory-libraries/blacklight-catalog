@@ -44,4 +44,45 @@ class SolrDocument
   def more_options
     self['format_ssim']
   end
+
+  def api_url
+    ENV['ALMA_API_URL'] || "https://api-na.hosted.exlibrisgroup.com"
+  end
+
+  def api_key
+    ENV.fetch('ALMA_BIB_KEY')
+  end
+
+  # Documentation for availability field from Alma
+  # https://knowledge.exlibrisgroup.com/Primo/Knowledge_Articles/What_does_each_subfield_in_the_AVA_tag_hold_when_records_are_extracted_from_Voyager_for_Primo%3F
+  def raw_availability
+    # {
+    #   copies: "1",
+    #   availability: "1",
+    #   requests: "0"
+    # }
+    url = "#{api_url}/almaws/v1/bibs/#{id}#{query_inst}#{api_key}"
+    response = RestClient.get url, { accept: :xml }
+    body = Nokogiri::XML(response)
+    body.xpath('bib/record/datafield[@tag="AVA"]')
+  end
+
+  def query_inst
+    "?view=full&expand=p_avail,e_avail,d_avail&apikey="
+  end
+
+  def holdings
+    holdings_object = []
+    raw_availability.map do |availability|
+      copies = availability.at_xpath('subfield[@code="f"]').inner_text
+      item_hash = {
+        library: availability.at_xpath('subfield[@code="q"]').inner_text,
+        location: availability.at_xpath('subfield[@code="c"]').inner_text,
+        call_number: availability.at_xpath('subfield[@code="d"]').inner_text,
+        availability: "#{copies} copy, 1 available, 0 requests"
+      }
+      holdings_object << item_hash
+    end
+    holdings_object
+  end
 end

@@ -11,7 +11,6 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     ENV['ALMA_API_URL'] = orig_url
     ENV['ALMA_BIB_KEY'] = orig_key
   end
-
   let(:id) { '123' }
   context "with the standard test item" do
     before do
@@ -54,7 +53,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
           'Filmed in Georgia, baby!', 'Also available in print.', 'Concerto in B minor.',
           'A historical note.', 'A note about this reproduction.', 'A note left by the janitor.',
           'University of Tuscaloosie', 'Notes on binding.', 'Notes on versions.', 'Notes on related collections.',
-          'Some notes on citations.', 'Robert W. Woodruff Library'
+          'Some notes on citations.', 'Library Service Center PT2613 .M45 Z92 2006 1 copy, 1 available, 0 requests'
         ]
       end
 
@@ -332,6 +331,9 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(page).to have_content("REQUEST OPTIONS")
       expect(page).to have_content("Location")
       expect(page).to have_content("Marian K. Heilbrun Music Media")
+      expect(page).to have_content("Circulation Desk")
+      expect(page).to have_content("ML410 .M5 H87 2019 CD-SOUND")
+      expect(page).to have_content("1 copy, 1 available, 0 requests")
     end
   end
 end

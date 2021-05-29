@@ -2,11 +2,18 @@
 <h4 class="blacklight-Request Options">Request Options</h4>
 <dl class="row dl-invert document-metadata">
   <dt class="blacklight-request_options col-md-4">Location:</dt>
-  <% document["library_ssim"].each do |library| %>
   <dd class="blacklight-request_options col-md-8">
-    <%= library %>
-    <%# "Marian K. Heilbrun Music Media" %>
-    <%# AlmaAvailabilityService.new(document.id)&.current_avail_table_data(document) %>
-  </dd>
+  <% document.holdings.each do |holding| %>
+    <%= holding[:library] %>
+    <br>
+    <%= holding[:location] %>
+    <br>
+    <%= holding[:call_number]%>
+    <br>
+    <%= holding[:availability]%>
+    <br>
+    <br>
   <% end %>
+  </dd>
+
 </dl>
