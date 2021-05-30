@@ -8,9 +8,11 @@
     <br>
     <%= holding[:location] %>
     <br>
-    <%= holding[:call_number]%>
+    <%= holding[:call_number] %>
     <br>
-    <%= holding[:availability]%>
+    <%= pluralize(holding[:availability][:copies], 'copy') +
+      ", #{holding[:availability][:available]} available" +
+      ", " + pluralize(holding[:availability][:requests], 'request') %>
     <br>
     <br>
   <% end %>

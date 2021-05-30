@@ -55,31 +55,61 @@ class SolrDocument
 
   # Documentation for availability field from Alma
   # https://knowledge.exlibrisgroup.com/Primo/Knowledge_Articles/What_does_each_subfield_in_the_AVA_tag_hold_when_records_are_extracted_from_Voyager_for_Primo%3F
-  def raw_availability
-    # {
-    #   copies: "1",
-    #   availability: "1",
-    #   requests: "0"
-    # }
+  def body
     url = "#{api_url}/almaws/v1/bibs/#{id}#{query_inst}#{api_key}"
     response = RestClient.get url, { accept: :xml }
-    body = Nokogiri::XML(response)
+    Nokogiri::XML(response)
+  end
+
+  def raw_availability
     body.xpath('bib/record/datafield[@tag="AVA"]')
   end
 
   def query_inst
-    "?view=full&expand=p_avail,e_avail,d_avail&apikey="
+    "?view=full&expand=p_avail,e_avail,d_avail,requests&apikey="
+  end
+
+  def requests?
+    body.xpath("bib/requests").inner_text.to_i.positive?
+  end
+
+  def requests(holding_id)
+    if requests? == false
+      0
+    else
+      retrieve_requests(holding_id)
+    end
+  end
+
+  def retrieve_requests(holding_id)
+    base_requests_link = body.at_xpath('bib/requests').attributes["link"].value
+    url = base_requests_link + "?status=active&apikey=#{api_key}"
+    response = RestClient.get url, { accept: :xml }
+    body = Nokogiri::XML(response)
+    request_holding_id = body.at_xpath('user_requests/user_request/holding_id').inner_text
+    if holding_id == request_holding_id
+      1
+    else
+      0
+    end
   end
 
   def holdings
     holdings_object = []
     raw_availability.map do |availability|
-      copies = availability.at_xpath('subfield[@code="f"]').inner_text
+      copies = availability.at_xpath('subfield[@code="f"]').inner_text.to_i
+      unavailable = availability.at_xpath('subfield[@code="g"]').inner_text.to_i
+      available = copies - unavailable
+      holding_id = availability.at_xpath('subfield[@code="8"]').inner_text
       item_hash = {
         library: availability.at_xpath('subfield[@code="q"]').inner_text,
         location: availability.at_xpath('subfield[@code="c"]').inner_text,
         call_number: availability.at_xpath('subfield[@code="d"]').inner_text,
-        availability: "#{copies} copy, 1 available, 0 requests"
+        availability: {
+          copies: copies,
+          available: available,
+          requests: requests(holding_id)
+        }
       }
       holdings_object << item_hash
     end

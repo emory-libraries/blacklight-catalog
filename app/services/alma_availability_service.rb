@@ -6,8 +6,6 @@ class AlmaAvailabilityService
   def initialize(mms_id)
     @mms_id = mms_id
     @response = query_availability
-    # @json_response = query_json_availability
-    # @json = JSON.parse(@json_response)
     @xml = Nokogiri::XML(@response)
   end
 
