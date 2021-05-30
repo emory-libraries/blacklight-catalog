@@ -11,10 +11,16 @@ RSpec.describe SolrDocument do
     ENV['ALMA_API_URL'] = orig_url
     ENV['ALMA_BIB_KEY'] = orig_key
   end
-  
+
+  before do
+    delete_all_documents_from_solr
+    solr = Blacklight.default_index.connection
+    solr.add([TEST_ITEM, MULTIPLE_HOLDINGS_TEST_ITEM, MLA_HANDBOOK])
+    solr.commit
+  end
+
   context "with a regular test item" do
     let(:solr_doc) { described_class.find(TEST_ITEM[:id]) }
-
 
     context '#combined_author_display_vern' do
       it 'combines together author_display_ssim and author_vern_ssim' do
@@ -31,12 +37,6 @@ RSpec.describe SolrDocument do
   context 'holdings' do
     let(:solr_doc) { described_class.find(MULTIPLE_HOLDINGS_TEST_ITEM[:id]) }
 
-    before do
-      delete_all_documents_from_solr
-      solr = Blacklight.default_index.connection
-      solr.add(MULTIPLE_HOLDINGS_TEST_ITEM)
-      solr.commit
-    end
     it 'pulls holdings data from alma' do
       expect(solr_doc.holdings.last[:library]).to eq "Marian K. Heilbrun Music Media"
       expect(solr_doc.holdings.last[:location]).to eq "Circulation Desk"
@@ -47,13 +47,6 @@ RSpec.describe SolrDocument do
 
   context 'lots of holdings' do
     let(:solr_doc) { described_class.find(MLA_HANDBOOK[:id]) }
-
-    before do
-      delete_all_documents_from_solr
-      solr = Blacklight.default_index.connection
-      solr.add(MLA_HANDBOOK)
-      solr.commit
-    end
 
     it "can calculate complex availability information" do
       expect(solr_doc.holdings[0][:availability]).to eq({ copies: 3, available: 3, requests: 0 })
