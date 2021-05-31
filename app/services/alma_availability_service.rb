@@ -62,7 +62,7 @@ class AlmaAvailabilityService
   end
 
   def library_text(physical_arr, document)
-    multiple_physical_items?(physical_arr) ? "Multiple libraries/locations" : single_lib_text(physical_arr, document)
+    multiple_physical_items?(physical_arr) ? 'Multiple libraries/locations' : single_lib_text(physical_arr, document)
   end
 
   def single_lib_text(physical_arr, document)
