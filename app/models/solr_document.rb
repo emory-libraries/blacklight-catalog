@@ -94,24 +94,27 @@ class SolrDocument
     end
   end
 
+  def item_hash(availability)
+    copies = availability.at_xpath('subfield[@code="f"]').inner_text.to_i
+    unavailable = availability.at_xpath('subfield[@code="g"]').inner_text.to_i
+    available = copies - unavailable
+    holding_id = availability.at_xpath('subfield[@code="8"]').inner_text
+    {
+      library: availability.at_xpath('subfield[@code="q"]').inner_text,
+      location: availability.at_xpath('subfield[@code="c"]').inner_text,
+      call_number: availability.at_xpath('subfield[@code="d"]').inner_text,
+      availability: {
+        copies: copies,
+        available: available,
+        requests: requests(holding_id)
+      }
+    }
+  end
+
   def holdings
     holdings_object = []
     raw_availability.map do |availability|
-      copies = availability.at_xpath('subfield[@code="f"]').inner_text.to_i
-      unavailable = availability.at_xpath('subfield[@code="g"]').inner_text.to_i
-      available = copies - unavailable
-      holding_id = availability.at_xpath('subfield[@code="8"]').inner_text
-      item_hash = {
-        library: availability.at_xpath('subfield[@code="q"]').inner_text,
-        location: availability.at_xpath('subfield[@code="c"]').inner_text,
-        call_number: availability.at_xpath('subfield[@code="d"]').inner_text,
-        availability: {
-          copies: copies,
-          available: available,
-          requests: requests(holding_id)
-        }
-      }
-      holdings_object << item_hash
+      holdings_object << item_hash(availability)
     end
     holdings_object
   end
