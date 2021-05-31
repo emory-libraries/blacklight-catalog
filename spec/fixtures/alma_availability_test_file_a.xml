@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bib>
+  <mms_id>990005988630302486</mms_id>
+  <record_format>marc21</record_format>
+  <linked_record_id/>
+  <title>Illusionslos--hoffnungsvoll : die Zeitstücke und Exilromane Anna Gmeyners /</title>
+  <author>Werner, Birte.</author>
+  <isbn>9783835300194 (pbk.)</isbn>
+  <network_numbers>
+    <network_number>(OCoLC)68629249</network_number>
+    <network_number>(Sirsi) o68629249</network_number>
+    <network_number>u2726200</network_number>
+    <network_number>(Aleph)000598863EMU01</network_number>
+  </network_numbers>
+  <place_of_publication>Göttingen :</place_of_publication>
+  <date_of_publication>2006.</date_of_publication>
+  <publisher_const>Wallstein,</publisher_const>
+  <holdings link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990005988630302486/holdings"/>
+  <created_by>import</created_by>
+  <created_date>2015-12-03Z</created_date>
+  <last_modified_by>exl_api</last_modified_by>
+  <last_modified_date>2020-07-01Z</last_modified_date>
+  <suppress_from_publishing>false</suppress_from_publishing>
+  <suppress_from_external_search>false</suppress_from_external_search>
+  <sync_with_oclc>NONE</sync_with_oclc>
+  <sync_with_libraries_australia>NONE</sync_with_libraries_australia>
+  <originating_system>OTHER</originating_system>
+  <originating_system_id>000598863-EMU01</originating_system_id>
+  <cataloging_level desc="Default Level">00</cataloging_level>
+  <record>
+    <leader>01139dam a2200349 a 4500</leader>
+    <controlfield tag="001">990005988630302486</controlfield>
+    <controlfield tag="005">20200701163731.0</controlfield>
+    <controlfield tag="008">060526s2006    gw a     b    000 0 ger  </controlfield>
+    <datafield ind1=" " ind2=" " tag="010">
+      <subfield code="a">  2006421546</subfield>
+    </datafield>
+    <datafield ind1="7" ind2=" " tag="016">
+      <subfield code="a">977664635</subfield>
+      <subfield code="2">GyFmDB</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">3835300199 (pbk.)</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">9783835300194 (pbk.)</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(Aleph)000598863EMU01</subfield>
+    </datafield>
+    <datafield ind1="9" ind2=" " tag="035">
+      <subfield code="a">u2726200</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(OCoLC)68629249</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(Sirsi) o68629249</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(OCoLC)68629249</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="040">
+      <subfield code="a">DLC</subfield>
+      <subfield code="c">DLC</subfield>
+      <subfield code="d">OHX</subfield>
+      <subfield code="d">EMU</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="049">
+      <subfield code="a">EMUU</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="0" tag="050">
+      <subfield code="a">PT2613.M45</subfield>
+      <subfield code="b">Z92 2006</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="100">
+      <subfield code="a">Werner, Birte.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="0" tag="245">
+      <subfield code="a">Illusionslos--hoffnungsvoll :</subfield>
+      <subfield code="b">die Zeitstücke und Exilromane Anna Gmeyners /</subfield>
+      <subfield code="c">Birte Werner.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="260">
+      <subfield code="a">Göttingen :</subfield>
+      <subfield code="b">Wallstein,</subfield>
+      <subfield code="c">2006.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="300">
+      <subfield code="a">319 p. :</subfield>
+      <subfield code="b">ill. ;</subfield>
+      <subfield code="c">23 cm.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="440">
+      <subfield code="a">Ergebnisse der Frauen- und Geschlechterforschung ;</subfield>
+      <subfield code="v">n.F., Bd. 10</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="504">
+      <subfield code="a">Includes bibliographical references (p. 293-317).</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="0" tag="600">
+      <subfield code="a">Gmeyner, Anna,</subfield>
+      <subfield code="d">1902-</subfield>
+      <subfield code="x">Criticism and interpretation.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="940">
+      <subfield code="a">COVID19</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="945">
+      <subfield code="a">EMU st</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="949">
+      <subfield code="w">LC</subfield>
+      <subfield code="c">1</subfield>
+      <subfield code="i">010001233671</subfield>
+      <subfield code="m">GENERAL</subfield>
+      <subfield code="l">STACKS</subfield>
+      <subfield code="r">Y</subfield>
+      <subfield code="s">Y</subfield>
+      <subfield code="t">BOOK</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="994">
+      <subfield code="a">C0</subfield>
+      <subfield code="b">EMU</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="9DT">
+      <subfield code="a">20070420</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="INT">
+      <subfield code="a">P</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="INST">
+      <subfield code="a">01GALI_EMORY</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="AVA">
+      <subfield code="0">990005988630302486</subfield>
+      <subfield code="8">22171079010002486</subfield>
+      <subfield code="a">01GALI_EMORY</subfield>
+      <subfield code="b">UNIV</subfield>
+      <subfield code="c">Book Stacks</subfield>
+      <subfield code="d">PT2613 .M45 Z92 2006</subfield>
+      <subfield code="e">available</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="g">0</subfield>
+      <subfield code="j">STACK</subfield>
+      <subfield code="k">0</subfield>
+      <subfield code="p">1</subfield>
+      <subfield code="q">Robert W. Woodruff Library</subfield>
+    </datafield>
+  </record>
+  <requests>0</requests>
+</bib>

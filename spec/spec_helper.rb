@@ -65,6 +65,9 @@ RSpec.configure do |config|
       .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_2.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/123?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail&view=full")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file.xml'), headers: {})
+
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/123?&expand=p_avail,e_avail,d_avail,requests&view=full&apikey=fakebibkey123")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_a.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/456?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail&view=full")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_3.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/789?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail&view=full")

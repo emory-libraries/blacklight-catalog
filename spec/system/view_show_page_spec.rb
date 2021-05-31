@@ -53,7 +53,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
           'Filmed in Georgia, baby!', 'Also available in print.', 'Concerto in B minor.',
           'A historical note.', 'A note about this reproduction.', 'A note left by the janitor.',
           'University of Tuscaloosie', 'Notes on binding.', 'Notes on versions.', 'Notes on related collections.',
-          'Some notes on citations.', 'Library Service Center PT2613 .M45 Z92 2006 1 copy, 1 available, 0 requests'
+          'Some notes on citations.', 'Robert W. Woodruff Library Book Stacks PT2613 .M45 Z92 2006 1 copy, 1 available, 0 requests'
         ]
       end
 
