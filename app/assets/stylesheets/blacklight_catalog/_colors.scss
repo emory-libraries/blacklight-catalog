@@ -11,6 +11,7 @@ $alt-bright-blue: #5387F7;
 $light-blue: #D0DEFD;
 
 $gold: #E9BF55;
+$dark-gold: #D69A03;
 
 $charcoal: #605858;
 $base-slate: #B6BDCC;
@@ -18,6 +19,8 @@ $light-slate: #E7EAF1;
 $super-light-slate: #E5E7EC;
 $black: #000000;
 $white: #FFFFFF;
+
+$alt-green: #1DB003;
 
 $red:     #B82216;
 $orange:  #AB750C;
@@ -65,3 +68,32 @@ $theme-colors: map-merge(
 
 // static colors
 $explorer-box-shadow:       rgba(231, 234, 241, 0.3);
+
+// notification colors
+$notification-colors: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$notification-colors: map-merge(
+  (
+    "default-back":     $light-slate,
+    "default-text":     $charcoal,
+    "default-x":        $base-blue,
+    "default-x-hover":  $dark-blue,
+    "info-back":        $base-blue,
+    "info-text":        $white,
+    "info-x":           $gold,
+    "info-x-hover":     $dark-gold,
+    "success-back":     $alt-green,
+    "success-text":     $dark-blue,
+    "success-x":        $base-blue,
+    "success-x-hover":  $dark-blue,
+    "warning-back":     $gold,
+    "warning-text":     $dark-blue,
+    "warning-x":        $base-blue,
+    "warning-x-hover":  $dark-blue,
+    "danger-back":      $red,
+    "danger-text":      $white,
+    "danger-x":         $light-slate,
+    "danger-x-hover":   $base-slate
+  ),
+  $notification-colors
+);

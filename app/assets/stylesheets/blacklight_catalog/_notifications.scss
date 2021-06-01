@@ -1,0 +1,48 @@
+@import 'colors';
+
+.alert {
+  background-color: map-get($notification-colors, "default-back");
+  color: map-get($notification-colors, "default-text");
+  border-radius: unset !important;
+  border: unset !important;
+  .close { 
+    color: map-get($notification-colors, "default-x") !important; 
+    &:hover { color: map-get($notification-colors, "default-x-hover") !important; }
+  }
+}
+
+.alert.alert-info {
+  background-color: map-get($notification-colors, "info-back");
+  color: map-get($notification-colors, "info-text");
+  .close { 
+    color: map-get($notification-colors, "info-x") !important; 
+    &:hover { color: map-get($notification-colors, "info-x-hover") !important; }
+  }
+}
+
+.alert.alert-success {
+  background-color: map-get($notification-colors, "success-back");
+  color: map-get($notification-colors, "success-text");
+  .close { 
+    color: map-get($notification-colors, "success-x") !important; 
+    &:hover { color: map-get($notification-colors, "success-x-hover") !important; }
+  }
+}
+
+.alert.alert-warning {
+  background-color: map-get($notification-colors, "warning-back");
+  color: map-get($notification-colors, "warning-text");
+  .close { 
+    color: map-get($notification-colors, "warning-x") !important; 
+    &:hover { color: map-get($notification-colors, "warning-x-hover") !important; }
+  }
+}
+
+.alert.alert-danger {
+  background-color: map-get($notification-colors, "danger-back");
+  color: map-get($notification-colors, "danger-text");
+  .close { 
+    color: map-get($notification-colors, "danger-x") !important; 
+    &:hover { color: map-get($notification-colors, "danger-x-hover") !important; }
+  }
+}
