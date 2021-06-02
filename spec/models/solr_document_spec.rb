@@ -56,11 +56,11 @@ RSpec.describe SolrDocument do
   end
 
   context 'online holding' do
-    WebMock.allow_net_connect!
     let(:solr_doc) { described_class.find(ONLINE[:id]) }
 
     it "can display online availabiliity" do
       expect(solr_doc.physical_holdings).to be nil
+      expect(solr_doc.online_holdings).to be
     end
   end
 end

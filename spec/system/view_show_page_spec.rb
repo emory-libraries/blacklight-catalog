@@ -77,7 +77,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         expect(exposed_values + collapsed_values).to match_array(expected_values)
       end
 
-      xit 'has fulltext hyperlink with text' do
+      it 'has fulltext hyperlink with text' do
         # test presence of fulltext hyperlink with link text
         expect(page).to have_link('Link Text for Book', href: 'http://www.example2.com')
       end
@@ -90,32 +90,32 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     end
 
     context 'displaying availability table' do
-      xit 'shows the Available and Online tables' do
+      it 'shows the Available and Online tables' do
         expect(find_all('.where-to-find-table')).not_to be_empty
         within '.where-to-find-table' do
           [
-            'At the Library', 'Call Number', 'Status', 'UNIV (Library Service Center)',
-            'PT2613 .M45 Z92 2006', 'Available', 'Online', 'Access online:', 'Link Text for Book'
+            'At the Library', 'Call Number', 'Status', 'Robert W. Woodruff Library: Book Stacks',
+            'PT2613 .M45 Z92 2006', '1 copy, 1 available, 0 requests', 'Online', 'Access online:', 'Link Text for Book'
           ].each { |t| expect(page).to have_content(t) }
         end
       end
 
-      xit 'shows as Unavailable in the table' do
+      it 'shows as Unavailable in the table' do
         delete_all_documents_from_solr
         build_solr_docs(TEST_ITEM.merge(id: '456'))
         visit solr_document_path('456')
-
         expect(find_all('.where-to-find-table table.table')).not_to be_empty
+
         within '.where-to-find-table' do
           [
             'At the Library', 'Call Number', 'Status', 'Robert W. Woodruff Library: Book Stacks',
-            'PT2613 .M45 Z92 2006', 'No copies available', 'Online', 'Access online:',
+            'PT2613 .M45 Z92 2006', '1 copy, 0 available, 0 requests', 'Online', 'Access online:',
             'Link Text for Book'
           ].each { |t| expect(page).to have_content(t) }
         end
       end
 
-      xit 'shows online table only' do
+      it 'shows online table only' do
         delete_all_documents_from_solr
         build_solr_docs(TEST_ITEM.merge(id: '789'))
         visit solr_document_path('789')
@@ -364,9 +364,10 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       solr.commit
       visit solr_document_path(ONLINE[:id])
     end
-    xit "can find the online object" do
-      # WebMock.allow_net_connect!
+    it "can find the online object" do
       expect(page).to have_content('Canzoni villanesche and villanelle')
+      expect(page).to have_link("Online resource from A-R Editions")
+      expect(page).to have_link("Online resource from A-R Editions", href: "http://proxy.library.emory.edu/login?url=https://doi.org/10.31022/R082-83")
     end
   end
 end

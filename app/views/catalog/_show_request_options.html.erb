@@ -1,28 +1,47 @@
 <div class="where-to-find-table">
   <%= tag.h2 t('catalog.show.find_it_header'), class: "section-title find-it-header" %>
-  <h4 class="blacklight-Request Options">Request Options</h4>
-  <% if document.physical_holdings %>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col"><%= t('blacklight.availability.at_library') %></th>
-        <th scope="col"><%= t('blacklight.availability.call_number') %></th>
-        <th scope="col"><%= t('blacklight.availability.status') %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% document.physical_holdings.each do |holding| %>
+
+  <% if document.online_holdings %>
+    <table class="table">
+      <thead>
         <tr>
-          <td><%= "#{holding[:library]}: #{holding[:location]}" %></td>
-          <td><%=holding[:call_number] %></td>
-          <td><%= pluralize(holding[:availability][:copies], 'copy') +
-                  ", #{holding[:availability][:available]} available" +
-                  ", " + pluralize(holding[:availability][:requests], 'request')
-              %>
-          </td>
+          <th scope="col"><%= t('blacklight.availability.online') %></th>
+          <th scope="col">&nbsp;</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% document.online_holdings.each do |holding| %>
+          <tr>
+            <td><%= t('blacklight.availability.access_online') %></td>
+            <td><%= link_to(JSON.parse(holding).values.first, JSON.parse(holding).keys.first) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+  <% if document.physical_holdings %>
+    <h4 class="blacklight-Request Options">Request Options</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><%= t('blacklight.availability.at_library') %></th>
+          <th scope="col"><%= t('blacklight.availability.call_number') %></th>
+          <th scope="col"><%= t('blacklight.availability.status') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% document.physical_holdings.each do |holding| %>
+          <tr>
+            <td><%= "#{holding[:library]}: #{holding[:location]}" %></td>
+            <td><%=holding[:call_number] %></td>
+            <td><%= pluralize(holding[:availability][:copies], 'copy') +
+                    ", #{holding[:availability][:available]} available" +
+                    ", " + pluralize(holding[:availability][:requests], 'request')
+                %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   <% end %>
 </div>

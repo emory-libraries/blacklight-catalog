@@ -72,6 +72,10 @@ module Statusable
     }
   end
 
+  def online_holdings
+    url_fulltext
+  end
+
   def physical_holdings
     return nil unless raw_physical_availability
     raw_physical_availability.map { |availability| physical_item_hash(availability) }
