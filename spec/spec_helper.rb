@@ -53,6 +53,8 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   config.before do
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/9937275387802486?view=full&expand=p_avail,e_avail,d_avail,requests&apikey=fakebibkey123")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_7.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936550118202486/requests?status=active&apikey=fakebibkey123")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_request_test_file.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936550118202486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")

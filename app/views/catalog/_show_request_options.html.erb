@@ -1,6 +1,7 @@
 <div class="where-to-find-table">
   <%= tag.h2 t('catalog.show.find_it_header'), class: "section-title find-it-header" %>
   <h4 class="blacklight-Request Options">Request Options</h4>
+  <% if document.physical_holdings %>
   <table class="table">
     <thead>
       <tr>
@@ -10,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <% document.holdings.each do |holding| %>
+      <% document.physical_holdings.each do |holding| %>
         <tr>
           <td><%= "#{holding[:library]}: #{holding[:location]}" %></td>
           <td><%=holding[:call_number] %></td>
@@ -23,4 +24,5 @@
       <% end %>
     </tbody>
   </table>
+  <% end %>
 </div>

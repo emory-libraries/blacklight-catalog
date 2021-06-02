@@ -354,4 +354,19 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(page).not_to have_content('2 copies, 2 available, 1 requests')
     end
   end
+
+  context "online holdings" do
+    let(:solr_doc) { described_class.find(ONLINE[:id]) }
+    before do
+      delete_all_documents_from_solr
+      solr = Blacklight.default_index.connection
+      solr.add(ONLINE)
+      solr.commit
+      visit solr_document_path(ONLINE[:id])
+    end
+    xit "can find the online object" do
+      # WebMock.allow_net_connect!
+      expect(page).to have_content('Canzoni villanesche and villanelle')
+    end
+  end
 end

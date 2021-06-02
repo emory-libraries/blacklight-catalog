@@ -28,8 +28,10 @@ module Statusable
     "?view=full&expand=p_avail,e_avail,d_avail,requests&apikey="
   end
 
-  def raw_availability
-    full_record.xpath('bib/record/datafield[@tag="AVA"]')
+  def raw_physical_availability
+    raw_availability = full_record.xpath('bib/record/datafield[@tag="AVA"]')
+    return nil if raw_availability.empty?
+    raw_availability
   end
 
   def requests?
@@ -53,7 +55,7 @@ module Statusable
     end
   end
 
-  def item_hash(availability)
+  def physical_item_hash(availability)
     copies = availability.at_xpath('subfield[@code="f"]').inner_text.to_i
     unavailable = availability.at_xpath('subfield[@code="g"]').inner_text.to_i
     available = copies - unavailable
@@ -70,11 +72,8 @@ module Statusable
     }
   end
 
-  def holdings
-    holdings_object = []
-    raw_availability.map do |availability|
-      holdings_object << item_hash(availability)
-    end
-    holdings_object
+  def physical_holdings
+    return nil unless raw_physical_availability
+    raw_physical_availability.map { |availability| physical_item_hash(availability) }
   end
 end

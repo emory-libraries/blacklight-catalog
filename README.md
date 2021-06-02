@@ -45,6 +45,17 @@ You must create a user via the rails console:
 1. A separate instance of Solr must be up and running before tests can be run. To do so, run the following command inside your cloned folder: `solr_wrapper --config config/solr_wrapper_test.yml`
 1. In a new tab/window within the same folder, run `bundle exec rspec`. All tests should be passing
 
+### Creating Solr test objects
+1. Save the output of the following to a Ruby file in `spec/support/solr_documents`
+```
+solr = Blacklight.default_index.connection
+response = solr.get 'select', params: { q: 'id:YOUR_ID' }
+document = response["response"]["docs"].first
+document.deep_symbolize_keys!
+```
+1. Remove `:score` and `:_version_` lines (will not re-save to solr if these are included)
+1. Assign to a global variable and add `.freeze` to the end of the hash
+
 ## Troubleshooting
 - Error `RSolr::Error::Http - 404 Not Found` occurs while running tests.
     - Solution: The test Solr instance isn't running. You'll know that that Solr is up once you see this complete line: `Starting Solr 7.7.1 on port 8985 ... http://127.0.0.1:8985/solr/`

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bib>
+  <mms_id>9937275387802486</mms_id>
+  <record_format>marc21</record_format>
+  <linked_record_id/>
+  <title>Canzoni villanesche and villanelle /</title>
+  <author>Cardamone, Donna G.,</author>
+  <isbn>9780895792457</isbn>
+  <network_numbers>
+    <network_number>(OCoLC)1235346136</network_number>
+    <network_number>on1235346136</network_number>
+  </network_numbers>
+  <place_of_publication>Middleton, Wisconsin :</place_of_publication>
+  <date_of_publication>2021.</date_of_publication>
+  <publisher_const>A-R Editions, Inc.,</publisher_const>
+  <holdings link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9937275387802486/holdings"/>
+  <created_by>System</created_by>
+  <created_date>2021-03-02Z</created_date>
+  <last_modified_by>System</last_modified_by>
+  <last_modified_date>2021-05-08Z</last_modified_date>
+  <suppress_from_publishing>false</suppress_from_publishing>
+  <suppress_from_external_search>false</suppress_from_external_search>
+  <sync_with_oclc>NONE</sync_with_oclc>
+  <sync_with_libraries_australia>NONE</sync_with_libraries_australia>
+  <originating_system>BACKSTAGE</originating_system>
+  <originating_system_id>on1235346136</originating_system_id>
+  <cataloging_level desc="Default Level">00</cataloging_level>
+  <record>
+    <leader>05871ncm a2200673Mi 4500</leader>
+    <controlfield tag="001">9937275387802486</controlfield>
+    <controlfield tag="005">20210508033128.0</controlfield>
+    <controlfield tag="006">m     o  d</controlfield>
+    <controlfield tag="007">cr |n |||auau|</controlfield>
+    <controlfield tag="008">210116t20211991wiupta  obdehi n    ita d</controlfield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">9781987205374</subfield>
+      <subfield code="q">(online)</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">1987205375</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">9780895792457</subfield>
+      <subfield code="q">(print)</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">0895792451</subfield>
+    </datafield>
+    <datafield ind1="7" ind2=" " tag="024">
+      <subfield code="a">10.31022/R082-83</subfield>
+      <subfield code="2">doi</subfield>
+    </datafield>
+    <datafield ind1="3" ind2="2" tag="028">
+      <subfield code="a">R082-83</subfield>
+      <subfield code="b">A-R Editions, Inc.</subfield>
+      <subfield code="q">(score)</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">on1235346136</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(OCoLC)1235346136</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="040">
+      <subfield code="a">AREDI</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="e">rda</subfield>
+      <subfield code="e">pn</subfield>
+      <subfield code="c">AREDI</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">UtOrBLW</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="041">
+      <subfield code="e">ita</subfield>
+      <subfield code="e">eng</subfield>
+      <subfield code="g">eng</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="049">
+      <subfield code="a">EMUU</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="050">
+      <subfield code="a">M2</subfield>
+      <subfield code="b">.R2384 v.82-83</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="050">
+      <subfield code="a">M1529.4</subfield>
+      <subfield code="b">.C36 2021</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="4" tag="082">
+      <subfield code="a">782.542</subfield>
+      <subfield code="2">23</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="0" tag="245">
+      <subfield code="a">Canzoni villanesche and villanelle /</subfield>
+      <subfield code="c">Orlando di Lasso et al. ; edited by Donna G. Cardamone.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="1" tag="264">
+      <subfield code="a">Middleton, Wisconsin :</subfield>
+      <subfield code="b">A-R Editions, Inc.,</subfield>
+      <subfield code="c">2021.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="264">
+      <subfield code="c">©1991</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="300">
+      <subfield code="a">1 online resource (1 score (lviii, 149 pages, 3 unnumbered pages of plates) :</subfield>
+      <subfield code="b">facsimiles).</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="336">
+      <subfield code="a">notated music</subfield>
+      <subfield code="b">ntm</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="337">
+      <subfield code="a">computer</subfield>
+      <subfield code="b">c</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="338">
+      <subfield code="a">online resource</subfield>
+      <subfield code="b">cr</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="490">
+      <subfield code="a">Recent researches in the music of the Renaissance ;</subfield>
+      <subfield code="v">82-83</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="490">
+      <subfield code="a">Recent researches in Music Online,</subfield>
+      <subfield code="x">2577-4573</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="500">
+      <subfield code="a">Vocal works for 3-4 voices; intabulations for lute, cittern, and keyboard.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="500">
+      <subfield code="a">Lute and cittern versions in tablature and staff notation.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="546">
+      <subfield code="a">Italian words, also printed as texts with English translations, pages xxxviii-lvi.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="500">
+      <subfield code="a">Includes introduction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="520">
+      <subfield code="a">"Lasso's canzoni villanesche are offered for the first time with their Neapolitan models and instrumental intabulations for lute, cittern, and keyboard. Although printed at widely separated times during his life (1555 and 1581), the canzoni reflect Lasso's youthful enthusiasm for Neapolitan song traditions and comic arts of deception. An extensive preface to the edition concerns the inception, transmission, and reception of these engaging songs and discusses principles of their arrangement for a variety of mixed ensembles." --</subfield>
+      <subfield code="c">Provided by publisher.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="588">
+      <subfield code="a">Online resource (A-R Editions, viewed January 16, 2021).</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="504">
+      <subfield code="a">Includes bibliographical references (pages xxix-xxxiii).</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="505">
+      <subfield code="a">Villanesche from Lasso's "Opus I" (1555): La cortesia voi donne predicate ; Madonna mia, pietà chiam'et aita ; 'No giorno t'haggio havere intra 'ste mane ; 'Sto core mio se fosse di diamante ; Tu sai, madonna mia, ch'io t'amo et voglio ; Tu, traditora, m'hai puost'a 'sto core -- Neapolitan Models for Lasso's Villanesche: La cortesia voi donne predicate, Vicenzo Fontana ; Madonna mia, pietà chiam'et aita, Vicenzo Fontana ; 'No giorno t'hagio havere intra 'ste mane, Vicenzo Fontana ; 'Sto core mio se fusse de diamante, Anon. ; Tu sai, madonna mia, ch'io t'amo e voglio, Vicenzo Fontana -- Villanelle from Lasso's "Libro de villanelle" (1581): Ad altre le voi dare 'ste passate ; Ecco la nimph' Ebrayca chiamata ; Io ti voria contar la pena mia ; O belle, fusa! chi ne vo' accatare? ; O occhi manza mia, cigli dorati ; Ogni giorno m'han ditt'a chi favelli ; Par ch'hai lasciato de non t'affacciare ; Saccio 'na cosa ch'è di legn'e tonda ; S'io fusse ciaul'et tu lo campanile ; S'io ti vedess'una sol volt'il giorno ; S'io ve dico ca sete la chiù bella ; Tutto lo dì mi dici, "canta, canta" -- Neapolitan Models for Lasso's Villanelle: Ad altre lo voi dare 'ste passate / Don Ioan Domenico del Giovane de Nola ; Ecco la nimph'Ebraica chiamata / Don Ioan Domenico del Giovane de Nola ; O belle, fusa! chi ne vo' accatare? / Don Ioan Domenico del Giovane de Nola ; O occhi manza mia, cigli dorati, Anon. ; Sacio 'na cosa ch'è di legno e tonda / Vicenzo Fontana -- Intabulations for Lute: La cortesia / [Orlando di Lasso/Sixt Kargel] ; Madonna mia pietà / [Orlando di Lasso/Sixt Kargel] ; Madonna mia pietà / [Orlando di Lasso/Emanuel Adriansen] ; Madonna mia pietà / [Orlando di Lasso/Emanuel Adriansen] ; Sto core mio / [Orlando di Lasso/Sixt Kargel] ; Tu sai madona / [Orlando di Lasso/Sixt Kargel] ; Tu traditore / [Orlando di Lasso/Sixt Kargel] -- Intabulations for Four-Course Cittern: La cortesia / [Orlando di Lasso/Anon.] ; Madona mia pietà / [Orlando di Lasso/Anon.] ; Madonna mia pietà / [Orlando di Lasso/Sixt Kargel] ; Sto core mio / [Orlando di Lasso/Anon.] ; Tu traditora / [Orlando di Lasso/Anon.] -- Intabulations for Six-Course Cittern: La cortesia / [Orlando di Lasso/Sixt Kargel] ; Madonna mia pietà / [Orlando di Lasso/Sixt Kargel] ; Tu sai ma donna / [Orlando di Lasso/Sixt Kargel] -- Intabulations for Keyboard: La cortesia / Orlande [de Lassus/Anon.] ; No giorno / Orlande de Lassus/[Anon.].</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="590">
+      <subfield code="a">Available to current Emory faculty, students and staff.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Villanelle (Part songs)</subfield>
+      <subfield code="z">Italy</subfield>
+      <subfield code="y">16th century</subfield>
+      <subfield code="v">Scores.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Intabulations.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="655">
+      <subfield code="a">Electronic books.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Scores.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Villanelle (Songs)</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Intabulations.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="a">Cardamone, Donna G.,</subfield>
+      <subfield code="e">editor.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="2" tag="700">
+      <subfield code="i">Container of (work):</subfield>
+      <subfield code="a">Lasso, Orlando di,</subfield>
+      <subfield code="d">1532-1594.</subfield>
+      <subfield code="t">Libro de villanelle, moresche, et altre canzoni.</subfield>
+      <subfield code="k">Selections.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="2" tag="700">
+      <subfield code="i">Container of (work):</subfield>
+      <subfield code="a">Lasso, Orlando di,</subfield>
+      <subfield code="d">1532-1594.</subfield>
+      <subfield code="t">Madrigali, vilanesche, canzoni francesi, e motetti.</subfield>
+      <subfield code="k">Selections.</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="8" tag="776">
+      <subfield code="i">Print version:</subfield>
+      <subfield code="t">Canzoni villanesche and villanelle.</subfield>
+      <subfield code="d">Madison [Wis.] : A-R Editions, 1991.</subfield>
+      <subfield code="w">(OCoLC)26969508</subfield>
+      <subfield code="z">9780895792457</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="830">
+      <subfield code="a">Recent researches in the music of the Renaissance ;</subfield>
+      <subfield code="v">82-83.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="830">
+      <subfield code="a">Recent researches in music online.</subfield>
+      <subfield code="x">2577-4573</subfield>
+    </datafield>
+    <datafield ind1="4" ind2="0" tag="856">
+      <subfield code="z">Online resource from A-R Editions</subfield>
+      <subfield code="u">http://proxy.library.emory.edu/login?url=https://doi.org/10.31022/R082-83</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="910">
+      <subfield code="a">MARS</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="940">
+      <subfield code="a">RRIMO</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="945">
+      <subfield code="a">EMU</subfield>
+      <subfield code="b">mk</subfield>
+      <subfield code="2">20210302</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="994">
+      <subfield code="a">92</subfield>
+      <subfield code="b">EMU</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="AVE">
+      <subfield code="8">53450970510002486</subfield>
+      <subfield code="e">Available</subfield>
+      <subfield code="l">UNIV</subfield>
+      <subfield code="n">Online resource from A-R Editions</subfield>
+      <subfield code="t">A-R Editions</subfield>
+      <subfield code="u">publishing_base_url undefined?u.ignore_date_coverage=true&amp;rft.mms_id=9937275387802486</subfield>
+    </datafield>
+  </record>
+  <requests>0</requests>
+</bib>

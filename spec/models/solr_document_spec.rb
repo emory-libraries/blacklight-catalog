@@ -15,7 +15,7 @@ RSpec.describe SolrDocument do
   before do
     delete_all_documents_from_solr
     solr = Blacklight.default_index.connection
-    solr.add([TEST_ITEM, MULTIPLE_HOLDINGS_TEST_ITEM, MLA_HANDBOOK])
+    solr.add([TEST_ITEM, MULTIPLE_HOLDINGS_TEST_ITEM, MLA_HANDBOOK, ONLINE])
     solr.commit
   end
 
@@ -38,10 +38,10 @@ RSpec.describe SolrDocument do
     let(:solr_doc) { described_class.find(MULTIPLE_HOLDINGS_TEST_ITEM[:id]) }
 
     it 'pulls holdings data from alma' do
-      expect(solr_doc.holdings.last[:library]).to eq "Marian K. Heilbrun Music Media"
-      expect(solr_doc.holdings.last[:location]).to eq "Circulation Desk"
-      expect(solr_doc.holdings.last[:call_number]).to eq "ML410 .M5 H87 2019 CD-SOUND"
-      expect(solr_doc.holdings.last[:availability]).to eq({ copies: 1, available: 1, requests: 0 })
+      expect(solr_doc.physical_holdings.last[:library]).to eq "Marian K. Heilbrun Music Media"
+      expect(solr_doc.physical_holdings.last[:location]).to eq "Circulation Desk"
+      expect(solr_doc.physical_holdings.last[:call_number]).to eq "ML410 .M5 H87 2019 CD-SOUND"
+      expect(solr_doc.physical_holdings.last[:availability]).to eq({ copies: 1, available: 1, requests: 0 })
     end
   end
 
@@ -49,9 +49,18 @@ RSpec.describe SolrDocument do
     let(:solr_doc) { described_class.find(MLA_HANDBOOK[:id]) }
 
     it "can calculate complex availability information" do
-      expect(solr_doc.holdings[0][:availability]).to eq({ copies: 3, available: 3, requests: 0 })
-      expect(solr_doc.holdings[1][:availability]).to eq({ copies: 2, available: 2, requests: 1 })
-      expect(solr_doc.holdings[2][:availability]).to eq({ copies: 3, available: 1, requests: 0 })
+      expect(solr_doc.physical_holdings[0][:availability]).to eq({ copies: 3, available: 3, requests: 0 })
+      expect(solr_doc.physical_holdings[1][:availability]).to eq({ copies: 2, available: 2, requests: 1 })
+      expect(solr_doc.physical_holdings[2][:availability]).to eq({ copies: 3, available: 1, requests: 0 })
+    end
+  end
+
+  context 'online holding' do
+    WebMock.allow_net_connect!
+    let(:solr_doc) { described_class.find(ONLINE[:id]) }
+
+    it "can display online availabiliity" do
+      expect(solr_doc.physical_holdings).to be nil
     end
   end
 end
