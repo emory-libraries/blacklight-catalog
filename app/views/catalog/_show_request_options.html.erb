@@ -1,21 +1,26 @@
-<h2 class="section-title">Where to find it</h2>
-<h4 class="blacklight-Request Options">Request Options</h4>
-<dl class="row dl-invert document-metadata">
-  <dt class="blacklight-request_options col-md-4">Location:</dt>
-  <dd class="blacklight-request_options col-md-8">
-  <% document.holdings.each do |holding| %>
-    <%= holding[:library] %>
-    <br>
-    <%= holding[:location] %>
-    <br>
-    <%= holding[:call_number] %>
-    <br>
-    <%= pluralize(holding[:availability][:copies], 'copy') +
-      ", #{holding[:availability][:available]} available" +
-      ", " + pluralize(holding[:availability][:requests], 'request') %>
-    <br>
-    <br>
-  <% end %>
-  </dd>
-
-</dl>
+<div class="where-to-find-table">
+  <%= tag.h2 t('catalog.show.find_it_header'), class: "section-title find-it-header" %>
+  <h4 class="blacklight-Request Options">Request Options</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"><%= t('blacklight.availability.at_library') %></th>
+        <th scope="col"><%= t('blacklight.availability.call_number') %></th>
+        <th scope="col"><%= t('blacklight.availability.status') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% document.holdings.each do |holding| %>
+        <tr>
+          <td><%= "#{holding[:library]}: #{holding[:location]}" %></td>
+          <td><%=holding[:call_number] %></td>
+          <td><%= pluralize(holding[:availability][:copies], 'copy') +
+                  ", #{holding[:availability][:available]} available" +
+                  ", " + pluralize(holding[:availability][:requests], 'request')
+              %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -34,7 +34,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
           'Additional Physical Form:', 'Organization and Arrangement:', 'Biographical/Historical Note:',
           'Reproduction Note:', 'Location of Originals:', 'Ownership and Custodial History:',
           'Binding Note:', 'Copy and Version Identification:', 'Citation/Reference Note:',
-          'Related Collections:', 'Location:'
+          'Related Collections:'
         ]
       end
       let(:expected_values) do
@@ -53,7 +53,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
           'Filmed in Georgia, baby!', 'Also available in print.', 'Concerto in B minor.',
           'A historical note.', 'A note about this reproduction.', 'A note left by the janitor.',
           'University of Tuscaloosie', 'Notes on binding.', 'Notes on versions.', 'Notes on related collections.',
-          'Some notes on citations.', 'Robert W. Woodruff Library Book Stacks PT2613 .M45 Z92 2006 1 copy, 1 available, 0 requests'
+          'Some notes on citations.'
         ]
       end
 
@@ -329,7 +329,6 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     it "shows the location header", alma: true do
       expect(page).to have_content("Where to find it")
       expect(page).to have_content("REQUEST OPTIONS")
-      expect(page).to have_content("Location")
       expect(page).to have_content("Marian K. Heilbrun Music Media")
       expect(page).to have_content("Circulation Desk")
       expect(page).to have_content("ML410 .M5 H87 2019 CD-SOUND")
