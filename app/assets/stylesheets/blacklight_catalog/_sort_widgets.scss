@@ -1,40 +1,25 @@
 @import 'variables';
 
-.pagination-search-widgets {
-  margin-top: map-get($spacers, 4);
-  margin-bottom: map-get($spacers, 3);
-}
-
 div#sortAndPerPage {
-  margin-bottom: 1rem;
-  justify-content: space-between;
+  margin-bottom: map-get($spacers, 3);
   display: flex;
+  line-height: map-get($spacers, 5);
+  flex-wrap: wrap;
 
   > .search-widgets {
-    margin-left: auto;
-    right: 0;
-  }
+    flex: 1;
+    text-align: right;
+    min-width: fit-content;
 
-  > div.search-widgets > div.per-page-dropdown, div#sort-dropdown {
-    > button.dropdown-toggle {
+    > #sort-dropdown > .btn.btn-outline-secondary.dropdown-toggle, 
+      > #per_page-dropdown > .btn.btn-outline-secondary.dropdown-toggle {
       border-radius: $results-border-radius;
     }
 
-    > .dropdown-menu {
-      width: -webkit-fill-available;
-      border-radius: $results-border-radius;
-    }
+    > #per_page-dropdown > .dropdown-menu { min-width: $results-drop-menu-min-w; }
   }
-
-  > div.search-widgets > div.per-page-dropdown {
-    > .dropdown-menu {
-      min-width: $results-drop-menu-min-w;
-    }
-  }
-
-  > div.page-links {
-    margin: $results-pagination-margin $navbar-padding-y;
-    padding: .0375rem 0.75rem;
-    padding-left: 0;
+  > .page-links {
+    padding: 0 $pagination-padding-left-right;
+    max-width: fit-content;
   }
 }
