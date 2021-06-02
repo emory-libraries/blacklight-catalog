@@ -1,24 +1,5 @@
 <div class="where-to-find-table">
   <%= tag.h2 t('catalog.show.find_it_header'), class: "section-title find-it-header" %>
-
-  <% if document.online_holdings %>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col"><%= t('blacklight.availability.online') %></th>
-          <th scope="col">&nbsp;</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% document.online_holdings.each do |holding| %>
-          <tr>
-            <td><%= t('blacklight.availability.access_online') %></td>
-            <td><%= link_to(JSON.parse(holding).values.first, JSON.parse(holding).keys.first) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
   <% if document.physical_holdings %>
     <h4 class="blacklight-Request Options">Request Options</h4>
     <table class="table">
@@ -39,6 +20,24 @@
                     ", " + pluralize(holding[:availability][:requests], 'request')
                 %>
             </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+  <% if document.online_holdings %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><%= t('blacklight.availability.online') %></th>
+          <th scope="col">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% document.online_holdings.each do |holding| %>
+          <tr>
+            <td><%= t('blacklight.availability.access_online') %></td>
+            <td><%= link_to(JSON.parse(holding).values.first, JSON.parse(holding).keys.first) %></td>
           </tr>
         <% end %>
       </tbody>
