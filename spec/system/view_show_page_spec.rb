@@ -353,6 +353,14 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(page).to have_content('2 copies, 2 available, 1 request')
       expect(page).not_to have_content('2 copies, 2 available, 1 requests')
     end
+
+    it "has a button to request holdings" do
+      within '#physical-holding-1' do
+        expect(page).to have_button("Request")
+        click_on("Request")
+      end
+      expect(page).to have_content('Pickup Library:')
+    end
   end
 
   context "online holdings" do
