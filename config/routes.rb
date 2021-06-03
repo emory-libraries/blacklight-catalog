@@ -15,11 +15,13 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks", sessions: 'omniauth' }
+  devise_for :affiliate_users, controllers: {sessions: 'omniauth' }
 
   # Disable these routes if you are using Devise's
   # database_authenticatable in your development environment.
     devise_scope :user do
        get 'affiliate_login', to: 'omniauth#affiliate_login', as: :affiliate_login
+       post 'affiliate_login', to: 'omniauth#do_affiliate_login', as: :do_affiliate_login
        get 'db_login', to: 'omniauth#db_login'
        get 'sign_in', to: 'omniauth#shib_login', as: :shib_login
        post 'sign_in', to: 'omniauth_callbacks#shibboleth'

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require "#{Rails.root}/lib/affiliate_authenticatable"
 
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
@@ -286,7 +287,10 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
-
+  config.warden do |manager|
+    manager.strategies.add(:affiliate_user, Devise::Strategies::AffiliateAuthenticatable)
+    manager.default_strategies(:scope => :affiliate_user).unshift :affiliate_user
+  end
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
   # is mountable, there are some extra configurations to be taken into account.

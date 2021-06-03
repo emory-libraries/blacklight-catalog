@@ -5,6 +5,13 @@ class OmniauthController < Devise::SessionsController
     
   end
 
+  def do_affiliate_login
+    resource = AffiliateUser.new(uid: params[:uid])
+
+    sign_in(resource)
+    redirect_to "/"
+  end
+
 
   def shib_login
       session[:requested_page] = request.referer unless request.referer&.include?('sign_in')

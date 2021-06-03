@@ -1,1 +1,8 @@
-<p>affiliate_login.html.erb
+<div>
+
+<%=form_tag(do_affiliate_login_path, method: "post") do %>
+  <p>Your id: <%=text_field_tag "uid" %>
+  <p><%=button_tag "login"%>
+<%end%>
+</div>
+
