@@ -48,6 +48,7 @@ You must create a user via the rails console:
 ### Creating Solr test objects
 1. Save the output of the following to a Ruby file in `spec/support/solr_documents`
 ```
+bundle exec rails c
 solr = Blacklight.default_index.connection
 response = solr.get 'select', params: { q: 'id:YOUR_ID' }
 document = response["response"]["docs"].first

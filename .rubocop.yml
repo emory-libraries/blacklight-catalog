@@ -15,6 +15,7 @@ Layout/LineLength:
         - 'spec/support/solr_documents/multiple_holdings_item.rb'
         - 'spec/support/solr_documents/mla_handbook.rb'
         - 'spec/support/solr_documents/online.rb'
+        - 'spec/support/solr_documents/online_and_physical.rb'
 
 Metrics/AbcSize:
     Exclude:
