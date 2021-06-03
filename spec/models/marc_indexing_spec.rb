@@ -11,6 +11,7 @@ RSpec.describe 'Indexing fields with custom logic' do
   let(:solr_doc6) { SolrDocument.find('9937264718202485') }
   let(:solr_doc7) { SolrDocument.find('9937264717902485') }
   let(:solr_doc8) { SolrDocument.find('9937264718102485') }
+  let(:solr_doc9) { SolrDocument.find('990016148150302486') }
   before do
     delete_all_documents_from_solr
     # The command below is processing fixures/alma_marc_resource.xml
@@ -148,25 +149,30 @@ RSpec.describe 'Indexing fields with custom logic' do
     it('keeps the rest') { expect(solr_doc2['subject_display_ssim']).to match_array(included_elements) }
   end
 
-  describe 'url_fulltext_linktext_ssm field' do
+  describe 'url_fulltext_ssm field' do
+    context "when url does not include a protocol" do
+      it "adds the protocol at time of index" do
+        expect(solr_doc9['url_fulltext_ssm']).to eq(["{\"url\":\"https://pid.emory.edu/ark:/25593/b66vt/IA\",\"description\":\"Internet Archive version\"}"])
+      end
+    end
     context "when 856 3 and z are present and ind2 is equal to 1" do
       it 'has value of 856 3 since it has higher precedence than z' do
-        expect(solr_doc['url_fulltext_ssm']).to eq(["{\"http://purl.access.gpo.gov/GPO/LPS54510\":\"Subfield code 3\"}",
-                                                    "{\"http://catdir.loc.gov/catdir/toc/casalini15/3065159.pdf\":\"Table of contents only\"}"])
+        expect(solr_doc['url_fulltext_ssm']).to eq(["{\"url\":\"http://purl.access.gpo.gov/GPO/LPS54510\",\"description\":\"Subfield code 3\"}",
+                                                    "{\"url\":\"http://catdir.loc.gov/catdir/toc/casalini15/3065159.pdf\",\"description\":\"Table of contents only\"}"])
       end
     end
 
     context "when 856 y, 3, and z are present and ind2 is equal to 1" do
       it 'has value of 856 y since it has higher precedence than 3 and z' do
-        expect(solr_doc2['url_fulltext_ssm']).to eq(["{\"http://purl.access.gpo.gov/GPO/LPS54510\":\"Subfield code y\"}",
-                                                     "{\"http://hdl.loc.gov/loc.gmd/g7540.ct000822\":null}",
-                                                     "{\"http://purl.access.gpo.gov/GPO/LPS42214\":null}"])
+        expect(solr_doc2['url_fulltext_ssm']).to eq(["{\"url\":\"http://purl.access.gpo.gov/GPO/LPS54510\",\"description\":\"Subfield code y\"}",
+                                                     "{\"url\":\"http://hdl.loc.gov/loc.gmd/g7540.ct000822\",\"description\":null}",
+                                                     "{\"url\":\"http://purl.access.gpo.gov/GPO/LPS42214\",\"description\":null}"])
       end
     end
 
     context "when only 856 z is present" do
       it 'has value of 856 z' do
-        expect(solr_doc4['url_fulltext_ssm']).to eq(["{\"http://purl.access.gpo.gov/GPO/LPS54510\":\"Subfield code z\"}"])
+        expect(solr_doc4['url_fulltext_ssm']).to eq(["{\"url\":\"http://purl.access.gpo.gov/GPO/LPS54510\",\"description\":\"Subfield code z\"}"])
       end
     end
 
