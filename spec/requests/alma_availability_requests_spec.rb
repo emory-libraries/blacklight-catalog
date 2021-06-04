@@ -61,7 +61,6 @@ RSpec.describe 'Alma Availability requests', type: :request, alma: true do
 
   it 'returns the right json when subfield==q is Library Service Center' do
     get '/alma_availability/' + id + '.json'
-
     expect(response.body).to eq(expected_json)
   end
 

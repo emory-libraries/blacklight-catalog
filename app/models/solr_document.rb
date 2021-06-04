@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class SolrDocument
   include Blacklight::Solr::Document
+  include Statusable
   # The following shows how to setup this blacklight document to display marc documents
   extension_parameters[:marc_source_field] = :marc_display_tesi
   extension_parameters[:marc_format_type] = :marcxml
