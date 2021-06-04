@@ -380,9 +380,9 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       visit solr_document_path(ONLINE_AND_PHYSICAL[:id])
     end
 
-    xit "can find the online and physical object" do
+    it "can find the online and physical object" do
       expect(page).to have_content('Ritual and degree book of the United Brothers of Friendship')
-      expect(page).to have_link("Internet Archive version", href: "https://pid.emory.edu/ark:/25593/b66vt/IA")
+      expect(page).to have_link("Internet Archive version", href: "pid.emory.edu/ark:/25593/b66vt/IA")
     end
   end
 end

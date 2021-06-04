@@ -52,15 +52,24 @@ RSpec.describe SolrDocument do
       expect(solr_doc.physical_holdings[0][:availability]).to eq({ copies: 3, available: 3, requests: 0 })
       expect(solr_doc.physical_holdings[1][:availability]).to eq({ copies: 2, available: 2, requests: 1 })
       expect(solr_doc.physical_holdings[2][:availability]).to eq({ copies: 3, available: 1, requests: 0 })
+      expect(solr_doc.online_holdings).to be nil
     end
   end
 
   context 'online holding' do
-    let(:solr_doc) { described_class.find(ONLINE[:id]) }
+    let(:old_style_solr_doc) { described_class.find(ONLINE[:id]) }
+    let(:new_style_solr_doc) { described_class.find(ONLINE_NEW[:id]) }
+    let(:online_holdings) do
+      [{
+        url: "http://proxy.library.emory.edu/login?url=https://doi.org/10.31022/R082-83",
+        label: "Online resource from A-R Editions"
+      }]
+    end
 
     it "can display online availabiliity" do
-      expect(solr_doc.physical_holdings).to be nil
-      expect(solr_doc.online_holdings).to be
+      expect(old_style_solr_doc.physical_holdings).to be nil
+      expect(old_style_solr_doc.online_holdings).to eq(online_holdings)
+      expect(new_style_solr_doc.online_holdings).to eq(online_holdings)
     end
   end
 end
