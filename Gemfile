@@ -55,8 +55,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'cap-ec2-emory', github: 'emory-libraries/cap-ec2'
-  gem 'capistrano', '~> 3.14', require: false
+  gem 'cap-ec2-emory', github: 'curationexperts/cap-ec2'
+  gem 'capistrano', '= 3.14.1', require: false
   gem 'capistrano-passenger', require: false
   gem 'capistrano-rails', '~> 1.6', require: false
   gem 'capistrano-yarn'
