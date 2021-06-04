@@ -403,6 +403,7 @@ module Blacklight::Solr::Document::MarcExport
     pub_info += ", #{pub_date}" if pub_date.present?
     pub_info += ", #{clean_end_punctuation(publisher_location)}" if publisher_location.present?
     pub_info += ", #{clean_end_punctuation(doi)}" if doi.present?
+    pub_info += "."
     build_arr << pub_info
   end
 
