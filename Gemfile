@@ -34,7 +34,6 @@ gem 'secure_headers'
 gem 'simple_form' # For database authentication page from Devise
 gem 'sqlite3'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
