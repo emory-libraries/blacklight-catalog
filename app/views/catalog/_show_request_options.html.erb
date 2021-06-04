@@ -21,7 +21,7 @@
                     ", " + pluralize(holding[:availability][:requests], 'request')
                 %>
             </td>
-            <td><%= button_to("Request", new_holding_requests_path, {method: 'get'}) %></td>
+            <td><%= button_to("Request", new_holding_requests_path(mms_id: document.id), {method: 'get'}) %></td>
           </tr>
         <% end %>
       </tbody>

@@ -1,6 +1,9 @@
-<%= simple_form_for(@holding_request) do |form| %>
+<%= simple_form_for(@holding_request) do |f| %>
 
+  <%=f.input :pickup_library %>
+  <%=f.input :not_needed_after, as: :date, :input_html => { :value => Date.today} %>
+  <%=f.input :comment, as: :text%>
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>

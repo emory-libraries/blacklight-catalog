@@ -2,6 +2,6 @@
 class HoldingRequestsController < ApplicationController
   before_action :authenticate_user!
   def new
-    @holding_request = HoldingRequest.new
+    @holding_request = HoldingRequest.new params[:mms_id]
   end
 end
