@@ -37,7 +37,7 @@
         <% document.online_holdings.each do |holding| %>
           <tr>
             <td><%= t('blacklight.availability.access_online') %></td>
-            <td><%= link_to(JSON.parse(holding).values.first, JSON.parse(holding).keys.first) %></td>
+            <td><%= link_to(holding[:label], holding[:url]) %></td>
           </tr>
         <% end %>
       </tbody>

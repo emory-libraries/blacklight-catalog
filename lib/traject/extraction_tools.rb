@@ -18,7 +18,9 @@ module ExtractionTools
   end
 
   def accumulate_urls(field, accumulator)
-    url = field.find { |f| f.code == 'u' }&.value
+    base_url = field.find { |f| f.code == 'u' }&.value
+    return unless base_url
+    url = parse_url(base_url)
     link_text = if field['y'].present?
                   field['y']
                 elsif field['3'].present?
@@ -26,7 +28,13 @@ module ExtractionTools
                 elsif field['z'].present?
                   field['z']
                 end
-    accumulator << { url.to_s => link_text }.to_json
+    accumulator << { url: url, label: link_text }.to_json
+  end
+
+  def parse_url(base_url)
+    parsed_url = URI.parse(base_url)
+    return parsed_url if parsed_url.scheme
+    parsed_url.to_s.prepend("https://")
   end
 
   def fields_z3(field)
