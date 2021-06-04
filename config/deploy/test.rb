@@ -62,7 +62,7 @@ before 'deploy:symlink:linked_files', "deploy:copy_env"
 namespace :deploy do
   task :copy_env do
     on roles("web") do
-      upload!(".env.#{fetch(:stage).downcase}", "#{shared_path}/.env.production")
+      upload!(".env.blackcat-test", "#{shared_path}/.env.production")
       upload!("./config/secrets.yml", "#{shared_path}/config/secrets.yml")
     end
   end
