@@ -73,7 +73,14 @@ module Statusable
   end
 
   def online_holdings
-    url_fulltext
+    return nil unless url_fulltext
+    url_fulltext.map do |entry|
+      url_hash = JSON.parse(entry)
+      return url_hash if url_hash.keys.include?("url")
+      # TODO: Can remove following line and preceding guard clause once Solr
+      # has been re-indexed
+      { url: url_hash.keys.first, label: url_hash.values.first }
+    end
   end
 
   def physical_holdings
