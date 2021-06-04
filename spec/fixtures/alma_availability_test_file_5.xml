@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bib>
+  <mms_id>9937004854502486</mms_id>
+  <record_format>marc21</record_format>
+  <linked_record_id/>
+  <title>Listening to Mendelssohn : an owner's manual /</title>
+  <author>Hurwitz, David,</author>
+  <isbn>1574675001</isbn>
+  <network_numbers>
+    <network_number>(OCoLC)1101026825</network_number>
+    <network_number>on1101026825</network_number>
+  </network_numbers>
+  <place_of_publication>Lanham :</place_of_publication>
+  <date_of_publication>[2019]</date_of_publication>
+  <publisher_const>Amadeus Press,</publisher_const>
+  <holdings link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9937004854502486/holdings"/>
+  <created_by>System</created_by>
+  <created_date>2020-03-24Z</created_date>
+  <last_modified_by>System</last_modified_by>
+  <last_modified_date>2020-08-15Z</last_modified_date>
+  <suppress_from_publishing>false</suppress_from_publishing>
+  <suppress_from_external_search>false</suppress_from_external_search>
+  <sync_with_oclc>NONE</sync_with_oclc>
+  <sync_with_libraries_australia>NONE</sync_with_libraries_australia>
+  <originating_system>BACKSTAGE</originating_system>
+  <originating_system_id>on1101026825</originating_system_id>
+  <cataloging_level desc="Default Level">00</cataloging_level>
+  <record>
+    <leader>06287cam a2200889Ii 4500</leader>
+    <controlfield tag="001">9937004854502486</controlfield>
+    <controlfield tag="005">20200815033218.0</controlfield>
+    <controlfield tag="007">sd#fungnnmmned</controlfield>
+    <controlfield tag="008">190513s2019    mdu           000 0 eng d</controlfield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">9781574675009</subfield>
+      <subfield code="q">paperback</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">1574675001</subfield>
+      <subfield code="q">paperback</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">on1101026825</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(OCoLC)1101026825</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="040">
+      <subfield code="a">YDX</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="e">rda</subfield>
+      <subfield code="c">YDX</subfield>
+      <subfield code="d">PLF</subfield>
+      <subfield code="d">YDXIT</subfield>
+      <subfield code="d">OCLCF</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="049">
+      <subfield code="a">EMUG</subfield>
+      <subfield code="b">010003134968</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="050">
+      <subfield code="a">ML410.M5</subfield>
+      <subfield code="b">H87 2019</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="4" tag="082">
+      <subfield code="a">780.924</subfield>
+      <subfield code="2">23</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="100">
+      <subfield code="a">Hurwitz, David,</subfield>
+      <subfield code="d">1961-</subfield>
+      <subfield code="e">author.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="0" tag="245">
+      <subfield code="a">Listening to Mendelssohn :</subfield>
+      <subfield code="b">an owner's manual /</subfield>
+      <subfield code="c">David Hurwitz.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="1" tag="264">
+      <subfield code="a">Lanham :</subfield>
+      <subfield code="b">Amadeus Press,</subfield>
+      <subfield code="c">[2019]</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="300">
+      <subfield code="a">xix, 182 pages ;</subfield>
+      <subfield code="c">23 cm.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="300">
+      <subfield code="a">1 audio disc :</subfield>
+      <subfield code="b">digital ;</subfield>
+      <subfield code="c">4 3/4 in.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="336">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="336">
+      <subfield code="a">performed music</subfield>
+      <subfield code="b">prm</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="337">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="337">
+      <subfield code="a">audio</subfield>
+      <subfield code="b">s</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="338">
+      <subfield code="a">audio disc</subfield>
+      <subfield code="b">sd</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="338">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="340">
+      <subfield code="b">4 3/4 in.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="344">
+      <subfield code="a">digital</subfield>
+      <subfield code="2">rdatr</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="344">
+      <subfield code="b">optical</subfield>
+      <subfield code="2">rdarm</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="344">
+      <subfield code="c">1.4 m/s</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="347">
+      <subfield code="a">audio file</subfield>
+      <subfield code="2">rdaft</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="347">
+      <subfield code="b">CD audio</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="490">
+      <subfield code="a">Unlocking the masters series ;</subfield>
+      <subfield code="v">no. 31</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="500">
+      <subfield code="a">With accompanying compact disc, compled from Naxos 8.570794, Naxos 8.553161, Naxos 8.550681, Naxos 8.550861, and Naxos 8. 554055.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="520">
+      <subfield code="a">"The greatest musical prodigy since Mozart (some would say he was even greater), Felix Mendelssohn (1809-1847) excelled in everything he did, musical or otherwise, and during his brief life became Europe's most respected and beloved composer. Yet no musician suffered more drastic swings in his posthumous reputation, and as a result Mendelssohn's music was obscured by a host of extra-musical factors: changes in taste, the rise of nationalism, anti-Semitism, and contempt for Victorian culture. This "owner's manual" offers a guide to Mendelssohn's musical output, major and minor, providing points of entry into a large body of work, much of which remains far too little known. There's much more to Mendelssohn than the "Italian" Symphony and the "Midsummer Night's Dream" Overture, and a whole creative world of vivid, expressive, and fantastical music is ready for exploration."--</subfield>
+      <subfield code="c">Amazon.com.</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="511">
+      <subfield code="a">Performers on accompanying CD:  Track 1: New Zealand Symphony, James Judd (cond.); Tracks 2-4: Northern Chamber Orchestra, Nicholas Ward (cond.); Tracks 5-7: Benjamin Frith (piano), Slovak State Philharmonic Orchestra, Robert Stankovsky (cond.); Tracks 8-11: Aurora String Quartet; Tracks 12-14: Péter Nagy, (piano).</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="505">
+      <subfield code="a">Felix Mendelssohn: chronological list of works -- Introduction: Getting to know Mendelssohn's music -- The baroque Mendelssohn. String symphonies, nos. 1-6 ; Selected keyboard works (organ sonatas, six preludes and fugues, three preludes and fugues ; Oratorios (St. Paul and Elijah) -- The classical Mendelssohn. String symphonies, nos. 7-9 ; Chamber music (octet, string quartets, string quintets, chamber works with piano) ; Selected keyboard works (Variations sérieuses, piano sonatas, and more) -- The romantic Mendelssohn. String symphonies, nos. 10-13 ; Symphonies for full orchestra (and one sonata) ; Selected vocal works: songs, choral music, Lobgesang, Die erste Walpurgisnacht -- The progressive Mendelssohn. Overtures and incidental music ; Concertos and solos with orchestra ; Songs without words -- Conclusion: Listening to Mendelssohn -- Track list.</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="0" tag="505">
+      <subfield code="g">Works on accompanying CD:</subfield>
+      <subfield code="t">Overture to A midsummer night's dream --</subfield>
+      <subfield code="t">String symphony no. 3  in E minor -- Piano concerto no. 1 in G minor, op. 25 -- String quartet no. 6 in F minor, op. 80 --</subfield>
+      <subfield code="t">Songs without words.</subfield>
+      <subfield code="t">No 27 in E minor, op. 62/3, Funeral march ;</subfield>
+      <subfield code="t">No. 29 in A minor, op. 62/5, Gondolier's song ;</subfield>
+      <subfield code="t">No 39 in A major, op. 62/6, Spring song.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="590">
+      <subfield code="a">Accompanying sound recording kept at Music and Media Service desk.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="0" tag="600">
+      <subfield code="a">Mendelssohn-Bartholdy, Felix,</subfield>
+      <subfield code="d">1809-1847</subfield>
+      <subfield code="x">Criticism and interpretation.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Overtures.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Symphonies (String orchestra)</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Concertos (Piano)</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">String quartets.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Piano music.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Concertos.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01726450</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Criticism, interpretation, etc.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01411635</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Overtures.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01726472</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Sound recordings.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01411639</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Symphonies.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01726504</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Sound recordings.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Overtures.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Symphonies.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Concertos.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="2" tag="700">
+      <subfield code="i">Container of (work):</subfield>
+      <subfield code="a">Mendelssohn-Bartholdy, Felix,</subfield>
+      <subfield code="d">1809-1847.</subfield>
+      <subfield code="t">Sommernachtstraum.</subfield>
+      <subfield code="p">Ouverture.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="2" tag="700">
+      <subfield code="i">Container of (work):</subfield>
+      <subfield code="a">Mendelssohn-Bartholdy, Felix,</subfield>
+      <subfield code="d">1809-1847.</subfield>
+      <subfield code="t">Symphonies,</subfield>
+      <subfield code="m">string orchestra,</subfield>
+      <subfield code="n">no. 3,</subfield>
+      <subfield code="r">E minor.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="2" tag="700">
+      <subfield code="i">Container of (work):</subfield>
+      <subfield code="a">Mendelssohn-Bartholdy, Felix,</subfield>
+      <subfield code="d">1809-1847.</subfield>
+      <subfield code="t">Concertos,</subfield>
+      <subfield code="m">piano, orchestra,</subfield>
+      <subfield code="n">no. 1, op. 25,</subfield>
+      <subfield code="r">G minor.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="2" tag="700">
+      <subfield code="i">Container of (work):</subfield>
+      <subfield code="a">Mendelssohn-Bartholdy, Felix,</subfield>
+      <subfield code="d">1809-1847.</subfield>
+      <subfield code="t">Quartets,</subfield>
+      <subfield code="m">violins (2), viola, cello,</subfield>
+      <subfield code="n">no. 6, op. 80,</subfield>
+      <subfield code="r">F minor.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="2" tag="700">
+      <subfield code="i">Container of (work):</subfield>
+      <subfield code="a">Mendelssohn-Bartholdy, Felix,</subfield>
+      <subfield code="d">1809-1847.</subfield>
+      <subfield code="t">Lieder ohne Worte,</subfield>
+      <subfield code="m">piano,</subfield>
+      <subfield code="n">op. 62.</subfield>
+      <subfield code="n">Nr. 3,</subfield>
+      <subfield code="p">Trauermarsch.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="2" tag="700">
+      <subfield code="i">Container of (work):</subfield>
+      <subfield code="a">Mendelssohn-Bartholdy, Felix,</subfield>
+      <subfield code="d">1809-1847.</subfield>
+      <subfield code="t">Lieder ohne Worte,</subfield>
+      <subfield code="m">piano,</subfield>
+      <subfield code="n">op. 62.</subfield>
+      <subfield code="n">Nr. 5,</subfield>
+      <subfield code="p">Venetianisches Gondellied.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="2" tag="700">
+      <subfield code="i">Container of (work):</subfield>
+      <subfield code="a">Mendelssohn-Bartholdy, Felix,</subfield>
+      <subfield code="d">1809-1847.</subfield>
+      <subfield code="t">Lieder ohne Worte,</subfield>
+      <subfield code="m">piano,</subfield>
+      <subfield code="n">op. 62.</subfield>
+      <subfield code="n">Nr. 6,</subfield>
+      <subfield code="p">Frühlingslied.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="a">Judd, James,</subfield>
+      <subfield code="d">1949-</subfield>
+      <subfield code="e">conductor.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="a">Ward, Nicholas,</subfield>
+      <subfield code="d">1952-</subfield>
+      <subfield code="e">conductor.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="a">Frith, Benjamin,</subfield>
+      <subfield code="e">instrumentalist.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="a">Stankovsky, Robert,</subfield>
+      <subfield code="d">1964-</subfield>
+      <subfield code="e">conductor.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="a">Nagy, Péter,</subfield>
+      <subfield code="d">1960-</subfield>
+      <subfield code="e">instrumentalist.</subfield>
+    </datafield>
+    <datafield ind1="2" ind2=" " tag="710">
+      <subfield code="a">New Zealand Symphony Orchestra,</subfield>
+      <subfield code="e">performer.</subfield>
+    </datafield>
+    <datafield ind1="2" ind2=" " tag="710">
+      <subfield code="a">Štátna filharmónia (Košice, Slovakia),</subfield>
+      <subfield code="e">performer.</subfield>
+    </datafield>
+    <datafield ind1="2" ind2=" " tag="710">
+      <subfield code="a">Aurora String Quartet,</subfield>
+      <subfield code="e">performer.</subfield>
+    </datafield>
+    <datafield ind1="2" ind2=" " tag="710">
+      <subfield code="a">Northern Chamber Orchestra,</subfield>
+      <subfield code="e">performer.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="830">
+      <subfield code="a">Unlocking the masters series ;</subfield>
+      <subfield code="v">no. 31.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="910">
+      <subfield code="a">MARS</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="940">
+      <subfield code="a">YBPAPP</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="980">
+      <subfield code="a">20200310</subfield>
+      <subfield code="b">29.95</subfield>
+      <subfield code="d">391380</subfield>
+      <subfield code="e">27.55</subfield>
+      <subfield code="f">40029808587</subfield>
+      <subfield code="g">1</subfield>
+      <subfield code="h">16211791</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="981">
+      <subfield code="b">MUSIC</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="INT">
+      <subfield code="a">P</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="INST">
+      <subfield code="a">01GALI_EMORY</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="AVA">
+      <subfield code="0">9937004854502486</subfield>
+      <subfield code="8">22394150340002486</subfield>
+      <subfield code="a">01GALI_EMORY</subfield>
+      <subfield code="b">MUSME</subfield>
+      <subfield code="c">Book Stacks</subfield>
+      <subfield code="d">ML410.M5 H87 2019</subfield>
+      <subfield code="e">available</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="g">0</subfield>
+      <subfield code="j">STACK</subfield>
+      <subfield code="k">0</subfield>
+      <subfield code="p">1</subfield>
+      <subfield code="q">Marian K. Heilbrun Music Media</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="AVA">
+      <subfield code="0">9937004854502486</subfield>
+      <subfield code="8">22439796790002486</subfield>
+      <subfield code="a">01GALI_EMORY</subfield>
+      <subfield code="b">MUSME</subfield>
+      <subfield code="c">Circulation Desk</subfield>
+      <subfield code="d">ML410 .M5 H87 2019 CD-SOUND</subfield>
+      <subfield code="e">available</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="g">0</subfield>
+      <subfield code="j">CIRC</subfield>
+      <subfield code="k">0</subfield>
+      <subfield code="p">2</subfield>
+      <subfield code="q">Marian K. Heilbrun Music Media</subfield>
+    </datafield>
+  </record>
+</bib>

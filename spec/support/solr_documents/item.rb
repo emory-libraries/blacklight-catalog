@@ -28,7 +28,7 @@ TEST_ITEM = {
   summary_tesim: ['Short summary'],
   genre_ssim: ['Genre example'],
   lc_1letter_ssim: ['T - Technology'],
-  library_ssim: ['UNIV'],
+  library_ssim: ['Robert W. Woodruff Library'],
   title_series_ssim: ['The Jenkins Series'],
   title_added_entry_tesim: ['The Jenkins Story'],
   title_abbr_tesim: ['Jenk. Story'],
