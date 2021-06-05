@@ -23,10 +23,11 @@ RSpec.describe "Create a request for a holding", type: :system, js: true, alma: 
   end
 
   it "has a button to request holdings" do
+    sign_in(User.new(uid: "foo"))
     within '#physical-holding-1' do
       expect(page).to have_button("Request")
       click_on("Request")
     end
-    expect(page).to have_content('Pickup Library:')
+    expect(page).to have_content('Pickup library')
   end
 end
