@@ -1,7 +1,9 @@
 <%= simple_form_for @holding_request do |f| %>
 
-  <%= f.input :pickup_library %>
+  <%= f.input :holding_id, value: @holding_request.holding_id, readonly: true %>
+  <%= f.input :pickup_library, collection: HoldingRequest.pickup_libraries %>
   <%= f.input :not_needed_after, as: :date, :input_html => { :value => Date.today} %>
-  <%= f.input :comment, as: :text %>
+  <%= f.input :comment %>
   <%= f.submit %>
+
 <% end %>

@@ -358,7 +358,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       sign_in(User.new(uid: "foo"))
       within '#physical-holding-1' do
         expect(page).to have_css(".button_to")
-        expect(page.find('.button_to')['action']).to include "/new?mms_id=9936550118202486"
+        expect(page.find_field('holding_id', type: :hidden)).to be
         click_on("Request")
       end
       expect(page).to have_content('Pickup library')

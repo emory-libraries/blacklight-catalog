@@ -55,19 +55,27 @@ module Statusable
     end
   end
 
-  def physical_item_hash(availability)
-    copies = availability.at_xpath('subfield[@code="f"]').inner_text.to_i
+  def physical_item_values(availability)
+    @copies = availability.at_xpath('subfield[@code="f"]').inner_text.to_i
     unavailable = availability.at_xpath('subfield[@code="g"]').inner_text.to_i
-    available = copies - unavailable
-    holding_id = availability.at_xpath('subfield[@code="8"]').inner_text
+    @available = @copies - unavailable
+    @holding_id = availability.at_xpath('subfield[@code="8"]').inner_text
+    @library = availability.at_xpath('subfield[@code="q"]').inner_text
+    @location = availability.at_xpath('subfield[@code="c"]').inner_text
+    @call_number = availability.at_xpath('subfield[@code="d"]').inner_text
+  end
+
+  def physical_item_hash(availability)
+    physical_item_values(availability)
     {
-      library: availability.at_xpath('subfield[@code="q"]').inner_text,
-      location: availability.at_xpath('subfield[@code="c"]').inner_text,
-      call_number: availability.at_xpath('subfield[@code="d"]').inner_text,
+      holding_id: @holding_id,
+      library: @library,
+      location: @location,
+      call_number: @call_number,
       availability: {
-        copies: copies,
-        available: available,
-        requests: requests(holding_id)
+        copies: @copies,
+        available: @available,
+        requests: requests(@holding_id)
       }
     }
   end
