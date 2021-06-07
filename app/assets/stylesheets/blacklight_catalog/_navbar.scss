@@ -82,9 +82,10 @@ a.nav-link.last {
 }
 
 @media (min-width: 768px) {
-  .navbar-collapse.utility-nav.collapse {
+  #user-util-collapse > .navbar-nav > .nav-item.mobile-only {
     display: none !important;
   }
+
   .non-collapse-navbar {
     display: flex;
     flex-basis: auto;
@@ -97,6 +98,14 @@ a.nav-link.last {
 @media (max-width: 767px) {
   .non-mobile-links {
     display: none !important;
+  }
+  .container { max-width: unset !important; }
+  .navbar { padding: 0 0.9375rem !important; }
+  .navbar-search.navbar.navbar-light.bg-light.mb-3 > .container {
+    padding: 0;
+
+    > div { padding: 1rem 0;}
+    > form.search-query-form { padding-bottom: 0;}
   }
 }
 
