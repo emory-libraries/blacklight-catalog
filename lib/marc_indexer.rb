@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-$VERBOSE=nil
+$VERBOSE = nil
 $LOAD_PATH.unshift './config'
 require 'library_stdnums'
 require 'traject'

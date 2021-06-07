@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe OaiQueryStringService, :clean do
-  let(:logger) {double("logger", :info=>nil, :debug=>nil)}
+  let(:logger) { instance_double("logger", info: nil, debug: nil) }
   let(:oai_set) { 'blacklighttest' }
   let(:full_index) { false }
   let(:single_record) { true }
@@ -57,7 +57,7 @@ RSpec.describe OaiQueryStringService, :clean do
     end
 
     it 'returns nothing when full_index is true' do
-      expect(described_class.process_from_time(true,logger)).to be_nil
+      expect(described_class.process_from_time(true, logger)).to be_nil
     end
   end
 

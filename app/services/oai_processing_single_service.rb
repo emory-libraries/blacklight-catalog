@@ -4,7 +4,7 @@ require 'nokogiri'
 require 'traject'
 
 class OaiProcessingSingleService
-  def self.process_oai_with_marc_indexer(institution, qs, alma, logger=Logger.new(STDOUT))
+  def self.process_oai_with_marc_indexer(institution, qs, alma, logger = Logger.new(STDOUT))
     process_oai(institution, qs, alma, 'marc_indexer', logger)
   end
 

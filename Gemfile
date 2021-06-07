@@ -38,7 +38,6 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'bixby'
-  gem 'rspec-mocks'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara', '>= 2.15'
   gem 'coveralls', require: false
@@ -48,6 +47,7 @@ group :development, :test do
   gem 'pry-byebug' unless ENV['CI']
   gem 'rails-controller-testing'
   gem 'rspec-its'
+  gem 'rspec-mocks'
   gem 'rspec-rails', '~> 3.5'
   gem 'selenium-webdriver'
   gem 'solr_wrapper', '>= 0.3'

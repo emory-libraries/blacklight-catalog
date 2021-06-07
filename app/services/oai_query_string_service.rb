@@ -17,7 +17,7 @@ class OaiQueryStringService
     from_time
   end
 
-  def self.process_to_time(to_time, full_index, logger)
+  def self.process_to_time(to_time, full_index, _logger)
     return "&until=#{to_time}" if to_time.present? && !full_index
     ''
   end
@@ -30,5 +30,4 @@ class OaiQueryStringService
     # start a fresh set harvest
     "?verb=ListRecords&set=#{oai_set}&metadataPrefix=marc21#{to_time}#{from_time}"
   end
-
 end
