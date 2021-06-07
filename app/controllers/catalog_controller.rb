@@ -134,9 +134,11 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field 'author_display_ssim', label: 'Author/Creator'
-    config.add_index_field 'format_ssim', label: 'Resource Type'
-    config.add_index_field 'marc_resource_ssim', label: 'Access'
+    config.add_index_field 'author_display_ssim', label: 'Author/Creator', helper_method: :combine_author_vern
+    config.add_index_field('publication_main_display_ssim',
+      label: 'Publication/Creation',
+      helper_method: :multiple_values_new_line)
+    config.add_index_field 'format_ssim', label: 'Type'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
