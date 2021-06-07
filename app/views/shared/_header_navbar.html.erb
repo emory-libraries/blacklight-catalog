@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <div class="row non-mobile-links">
         <div class="non-collapse-navbar">
-          <%= render 'shared/static_links' %>
+          <%= render 'shared/static_links', mobile: false %>
         </div>
       </div>
       <div class="row justify-content-between branding-row header-main">
@@ -34,6 +34,7 @@
         </button>
 
         <div class="collapse navbar-collapse justify-content-md-end" id="user-util-collapse">
+          <%= render 'shared/static_links', mobile: true %>
           <%= render 'shared/user_util_links' %>
         </div>
       </div>
