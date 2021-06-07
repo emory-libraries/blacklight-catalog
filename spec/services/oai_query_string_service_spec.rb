@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe OaiQueryStringService, :clean do
-  let(:logger) { instance_double("logger", info: nil, debug: nil) }
+  let(:logger) { instance_double(Logger, "logger", info: nil, debug: nil) }
   let(:oai_set) { 'blacklighttest' }
   let(:full_index) { false }
   let(:single_record) { true }
