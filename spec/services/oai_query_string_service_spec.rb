@@ -2,6 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe OaiQueryStringService, :clean do
+  let(:logger) {double("logger", :info=>nil, :debug=>nil)}
   let(:oai_set) { 'blacklighttest' }
   let(:full_index) { false }
   let(:single_record) { true }
@@ -15,7 +16,7 @@ RSpec.describe OaiQueryStringService, :clean do
 
   context '#process_query_string' do
     it 'returns the right string when full_index false and resumption token not present and single_record true' do
-      qs = described_class.process_query_string(oai_set, full_index, to_time, single_record)
+      qs = described_class.process_query_string(oai_set, full_index, to_time, single_record, logger)
 
       check_other_methods_called
       expect(qs).to eq(
@@ -24,7 +25,7 @@ RSpec.describe OaiQueryStringService, :clean do
     end
 
     it 'returns the right string when full_index false and resumption token not present' do
-      qs = described_class.process_query_string(oai_set, full_index, to_time, false)
+      qs = described_class.process_query_string(oai_set, full_index, to_time, false, logger)
 
       check_other_methods_called
       expect(qs).to eq(
@@ -33,7 +34,7 @@ RSpec.describe OaiQueryStringService, :clean do
     end
 
     it 'returns the right string when full_index true and resumption token not present' do
-      qs = described_class.process_query_string(oai_set, true, to_time, false)
+      qs = described_class.process_query_string(oai_set, true, to_time, false, logger)
 
       check_other_methods_called
       expect(qs).to eq(
@@ -43,7 +44,7 @@ RSpec.describe OaiQueryStringService, :clean do
 
     it 'returns the right string when resumption token present' do
       PropertyBag.set('marc_ingest_resumption_token', 'Hello!')
-      qs = described_class.process_query_string(oai_set, full_index, to_time, false)
+      qs = described_class.process_query_string(oai_set, full_index, to_time, false, logger)
 
       check_other_methods_called
       expect(qs).to eq("?verb=ListRecords&resumptionToken=Hello!")
@@ -52,16 +53,16 @@ RSpec.describe OaiQueryStringService, :clean do
 
   context '#process_from_time' do
     it 'returns ingest_time inside a substring when full_index is false' do
-      expect(described_class.process_from_time(full_index)).to eq("&from=#{ingest_time}")
+      expect(described_class.process_from_time(full_index, logger)).to eq("&from=#{ingest_time}")
     end
 
     it 'returns nothing when full_index is true' do
-      expect(described_class.process_from_time(true)).to be_nil
+      expect(described_class.process_from_time(true,logger)).to be_nil
     end
   end
 
   def check_other_methods_called
-    expect(described_class).to respond_to(:process_from_time).with(1).argument
+    expect(described_class).to respond_to(:process_from_time).with(2).argument
     expect(described_class).to respond_to(:process_string).with(5).argument
   end
 end

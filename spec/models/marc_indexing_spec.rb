@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Indexing fields with custom logic' do
-  let(:logger) { Logger.new(STDOUT) }
+  let(:logger) { double("logger", :info=>nil, :debug=>nil)}
   let(:solr_doc) { SolrDocument.find('9937264718402486') }
   let(:solr_doc2) { SolrDocument.find('9937264718202486') }
   let(:solr_doc3) { SolrDocument.find('9937264717902486') }

@@ -5,6 +5,7 @@ require 'nokogiri'
 require 'traject'
 
 RSpec.describe OaiProcessingSingleService do
+  let(:logger) { double("logger", :info=>nil, :debug=>nil)}
   context '#process_oai_with_marc_indexer' do
     before do
       delete_all_documents_from_solr
@@ -12,7 +13,8 @@ RSpec.describe OaiProcessingSingleService do
       described_class.process_oai_with_marc_indexer(
         'blah',
         "?verb=GetRecord&identifier=oai:alma.blah:single_record&metadataPrefix=marc21",
-        'smackety'
+        'smackety',
+        logger
       )
     end
 
@@ -44,7 +46,7 @@ RSpec.describe OaiProcessingSingleService do
             # The command below is processing one record
             described_class.process_oai_with_marc_indexer('blah',
               "?verb=GetRecord&identifier=oai:alma.blah:single_record&metadataPrefix=marc21",
-              'smackety')
+              'smackety', logger)
           end.to change { solr_docs_map_of('_version_') }.and not_change { solr_docs_map_of('id') }
         end
       end
@@ -55,7 +57,7 @@ RSpec.describe OaiProcessingSingleService do
             # The command below is processing 990000954720302486
             described_class.process_oai_with_marc_indexer('blah',
               "?verb=GetRecord&identifier=oai:alma.blah:single_record_missing&metadataPrefix=marc21",
-              'smackety')
+              'smackety', logger)
           end.to change { solr_docs_count_of('lccn_ssim') }.from(1).to(0)
         end
       end
@@ -66,7 +68,7 @@ RSpec.describe OaiProcessingSingleService do
             # The command below is processing 990000954720302486
             described_class.process_oai_with_marc_indexer('blah',
               "?verb=GetRecord&identifier=oai:alma.blah:single_record_updated&metadataPrefix=marc21",
-              'smackety')
+              'smackety', logger)
           end.to change { solr_field_value_for('990000954720302486', 'material_type_display_tesim') }
             .from(['34 pages ; 26 cm.']).to(['44 pages ; 26 cm.'])
         end
@@ -81,7 +83,7 @@ RSpec.describe OaiProcessingSingleService do
         described_class.process_oai_with_marc_indexer(
           'blah',
           "?verb=GetRecord&identifier=oai:alma.blah:single_record_deleted&metadataPrefix=marc21",
-          'smackety'
+          'smackety', logger
         )
         expect(solr_docs_map_of('id')).not_to include("990000954720302486") # making sure second suppressed record ID is not present in SOLR
         expect(solr_num_of_docs).to eq 0

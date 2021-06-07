@@ -9,7 +9,7 @@ class OaiProcessingService
   MARC_URL = { 'marc' => "http://www.loc.gov/MARC21/slim" }.freeze
   OAI_URL = { 'oai' => 'http://www.openarchives.org/OAI/2.0/' }.freeze
 
-  def self.process_oai_with_marc_indexer(institution, qs, alma, logger)
+  def self.process_oai_with_marc_indexer(institution, qs, alma, logger=Logger.new(STDOUT))
     oai = call_oai_for_xml(alma, institution, qs, logger)
     document = Nokogiri::XML(oai.body)
     # handling of delete records
@@ -43,7 +43,7 @@ class OaiProcessingService
   end
 
   def self.ingest_with_traject(filename, logger)
-    indexer = Traject::Indexer::MarcIndexer.new("solr_writer.commit_on_close": true)
+    indexer = Traject::Indexer::MarcIndexer.new("solr_writer.commit_on_close": true, logger: logger )
     indexer.load_config_file(Rails.root.join('lib', 'marc_indexer.rb').to_s)
     indexer.process(filename)
   rescue => e

@@ -4,14 +4,15 @@ require 'nokogiri'
 require 'traject'
 
 class OaiProcessingSingleService
-  def self.process_oai_with_marc_indexer(institution, qs, alma)
-    process_oai(institution, qs, alma, 'marc_indexer')
+  def self.process_oai_with_marc_indexer(institution, qs, alma, logger=Logger.new(STDOUT))
+    process_oai(institution, qs, alma, 'marc_indexer', logger)
   end
 
-  def self.process_oai(institution, qs, alma, ingest_tool)
+  def self.process_oai(institution, qs, alma, ingest_tool, logger)
+    logger.info "ingest tool is #{ingest_tool}"
     oai_base = "https://#{alma}.alma.exlibrisgroup.com/view/oai/#{institution}/request"
 
-    log "Calling OAI with query string: #{qs}"
+    logger.info "Calling OAI with query string: #{qs}"
     oai = RestClient.get oai_base + qs
 
     document = Nokogiri::XML(oai)
@@ -20,21 +21,21 @@ class OaiProcessingSingleService
     # handling of delete records
     deleted_records = document.xpath('/oai:OAI-PMH/oai:GetRecord/oai:record[oai:header/@status="deleted"]', { 'oai' => 'http://www.openarchives.org/OAI/2.0/' })
     suppressed_records = document.xpath("//marc:record[substring(marc:leader, 6, 1)='d']", marc_url) # gets all records with `d` in the 6th (actual) position of leader string
-    log "Found #{deleted_records.count + suppressed_records.count} delete records."
+    logger.info "Found #{deleted_records.count + suppressed_records.count} delete records."
 
     if (deleted_records.count + suppressed_records.count).positive?
       deleted_ids = deleted_records.map { |n| n.at('header/identifier').text.split(':').last }
       deleted_ids << suppressed_records.map { |s| s.at_xpath("marc:controlfield[@tag='001']", marc_url).text.to_i } # collects ID from controlfield 001
       deleted_records.remove
       suppressed_records.remove
-      puts RestClient.post "#{ENV['SOLR_URL']}/update?commit=true",
+      logger.info RestClient.post "#{ENV['SOLR_URL']}/update?commit=true",
                            "<delete><id>#{deleted_ids.join('</id><id>')}</id></delete>",
                            content_type: :xml
     end
 
     # Index remaining necessary records
     record_count = document.xpath('/oai:OAI-PMH/oai:GetRecord/oai:record', { 'oai' => 'http://www.openarchives.org/OAI/2.0/' }).count - suppressed_records&.count || 0
-    log "#{record_count} records retrieved"
+    logger.info "#{record_count} records retrieved"
 
     resumption_token = document.xpath('/oai:OAI-PMH/oai:GetRecord/oai:resumptionToken', { 'oai' => 'http://www.openarchives.org/OAI/2.0/' }).text
 
@@ -46,12 +47,12 @@ class OaiProcessingSingleService
         f.write(template.transform(document).to_s)
       end
 
-      log "File written to tmp. Now indexing #{filename}"
+      logger.info "File written to tmp. Now indexing #{filename}"
       case ingest_tool
       when 'marc_indexer'
-        ingest_with_traject(filename)
+        ingest_with_traject(filename, logger)
       when 'solr_marc'
-        ingest_with_solr_marc(filename)
+        ingest_with_solr_marc(filename, logger)
       end
       File.delete(filename)
     end
@@ -64,15 +65,15 @@ class OaiProcessingSingleService
     sh "java -Dsolr.hosturl=#{ENV['SOLR_URL']} -jar #{File.dirname(__FILE__)}/solrmarc/solrmarc_core.jar #{File.dirname(__FILE__)}/solrmarc/config.properties \
       -solrj #{File.dirname(__FILE__)}/solrmarc/lib-solrj #{filename}"
   rescue => e
-    log e
+    logger.info e
   end
 
-  def self.ingest_with_traject(filename)
-    indexer = Traject::Indexer::MarcIndexer.new("solr_writer.commit_on_close": true)
+  def self.ingest_with_traject(filename, logger)
+    indexer = Traject::Indexer::MarcIndexer.new("solr_writer.commit_on_close": true, logger: logger)
     indexer.load_config_file(Rails.root.join('lib', 'marc_indexer.rb').to_s)
     indexer.process(filename)
   rescue => e
-    log e
+    logger.info e
   end
 
   def self.oai_to_marc
@@ -91,12 +92,5 @@ class OaiProcessingSingleService
       </xsl:template>
       </xsl:stylesheet>
     )
-  end
-
-  def self.log(msg)
-    time = Time.new.utc
-    time = time.strftime("%Y-%m-%d %H:%M:%S")
-    puts "#{time} - #{msg}"
-    true
   end
 end
