@@ -47,6 +47,7 @@ group :development, :test do
   gem 'pry-byebug' unless ENV['CI']
   gem 'rails-controller-testing'
   gem 'rspec-its'
+  gem 'rspec-mocks'
   gem 'rspec-rails', '~> 3.5'
   gem 'selenium-webdriver'
   gem 'solr_wrapper', '>= 0.3'
