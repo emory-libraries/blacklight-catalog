@@ -8,7 +8,7 @@ RSpec.describe CatalogController, type: :controller do
         .blacklight_config
         .index_fields.keys
     end
-    let(:expected_index_fields) { ['author_display_ssim', 'format_ssim', 'marc_resource_ssim'] }
+    let(:expected_index_fields) { ['author_display_ssim', 'format_ssim', 'publication_main_display_ssim'] }
     let(:field_title) { controller.blacklight_config.index.title_field }
 
     context 'field titles' do
