@@ -8,11 +8,12 @@
           <th scope="col"><%= t('blacklight.availability.at_library') %></th>
           <th scope="col"><%= t('blacklight.availability.call_number') %></th>
           <th scope="col"><%= t('blacklight.availability.status') %></th>
+          <th scope="col">&nbsp;</th>
         </tr>
       </thead>
       <tbody>
-        <% document.physical_holdings.each do |holding| %>
-          <tr>
+        <% document.physical_holdings.each.with_index(1) do |holding, index| %>
+          <tr id="physical-holding-<%= index.to_s %>">
             <td><%= "#{holding[:library]}: #{holding[:location]}" %></td>
             <td><%=holding[:call_number] %></td>
             <td><%= pluralize(holding[:availability][:copies], 'copy') +
@@ -20,6 +21,7 @@
                     ", " + pluralize(holding[:availability][:requests], 'request')
                 %>
             </td>
+            <td><%= button_to("Request", new_holding_requests_path, method: :get, params: {holding_id: holding[:holding_id]}) %></td>
           </tr>
         <% end %>
       </tbody>

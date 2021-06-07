@@ -38,6 +38,7 @@ RSpec.describe SolrDocument do
     let(:solr_doc) { described_class.find(MULTIPLE_HOLDINGS_TEST_ITEM[:id]) }
 
     it 'pulls holdings data from alma' do
+      expect(solr_doc.physical_holdings.last[:holding_id]).to eq "22439796790002486"
       expect(solr_doc.physical_holdings.last[:library]).to eq "Marian K. Heilbrun Music Media"
       expect(solr_doc.physical_holdings.last[:location]).to eq "Circulation Desk"
       expect(solr_doc.physical_holdings.last[:call_number]).to eq "ML410 .M5 H87 2019 CD-SOUND"

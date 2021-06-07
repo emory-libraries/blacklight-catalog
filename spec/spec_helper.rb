@@ -1,6 +1,9 @@
 # frozen_string_literal: true
-require 'coveralls'
-Coveralls.wear!
+
+unless RUBY_PLATFORM.match?(/darwin/) # don't run coverage on a dev machine (unless you want to, then do whatever)
+  require 'coveralls'
+  Coveralls.wear!
+end
 
 require 'webmock/rspec'
 WebMock.disable_net_connect!(allow_localhost: true, allow: 'https://chromedriver.storage.googleapis.com')

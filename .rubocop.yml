@@ -88,6 +88,7 @@ RSpec/ExampleLength:
         - spec/system/facet_by_year_spec.rb
         - spec/system/targeted_field_search_spec.rb
         - spec/system/view_show_page_spec.rb
+        - spec/system/request_holding_spec.rb
 
 Style/Next:
     Exclude:

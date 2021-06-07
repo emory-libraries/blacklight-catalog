@@ -353,6 +353,16 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(page).to have_content('2 copies, 2 available, 1 request')
       expect(page).not_to have_content('2 copies, 2 available, 1 requests')
     end
+
+    it "has a button to request holdings" do
+      sign_in(User.new(uid: "foo"))
+      within '#physical-holding-1' do
+        expect(page).to have_css(".button_to")
+        expect(page.find_field('holding_id', type: :hidden)).to be
+        click_on("Request")
+      end
+      expect(page).to have_content('Pickup library')
+    end
   end
 
   context "online holdings" do
@@ -367,22 +377,6 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     it "can find the online object" do
       expect(page).to have_content('Canzoni villanesche and villanelle')
       expect(page).to have_link("Online resource from A-R Editions", href: "http://proxy.library.emory.edu/login?url=https://doi.org/10.31022/R082-83")
-    end
-  end
-  context "online and physical holdings" do
-    let(:solr_doc) { described_class.find(ONLINE_AND_PHYSICAL[:id]) }
-    # http://pid.emory.edu/ark:/25593/b66vt/IA
-    before do
-      delete_all_documents_from_solr
-      solr = Blacklight.default_index.connection
-      solr.add(ONLINE_AND_PHYSICAL)
-      solr.commit
-      visit solr_document_path(ONLINE_AND_PHYSICAL[:id])
-    end
-
-    it "can find the online and physical object" do
-      expect(page).to have_content('Ritual and degree book of the United Brothers of Friendship')
-      expect(page).to have_link("Internet Archive version", href: "pid.emory.edu/ark:/25593/b66vt/IA")
     end
   end
 end
