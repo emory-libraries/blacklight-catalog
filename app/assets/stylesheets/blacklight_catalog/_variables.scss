@@ -59,6 +59,7 @@ $nav-link-padding-x:                1rem;
 
 $navbar-padding-y:                  0;
 $navbar-padding-x:                  1.875rem;
+$navbar-padding-mobile-x:           0.9375rem;
 
 $branding-organization-font-size:            0.875rem;
 $branding-division-font-size:                $h4-font-size;
@@ -115,6 +116,15 @@ $search-form-q-padding-x:           1.25rem;
 
 $search-form-button-width:          6rem;
 $search-form-button-padding-x:      1.5625rem;
+
+$search-form-mobile-min-width:      10%;
+$search-form-mobile-width:          15%;
+$search-form-mobile-sm-min-width:   20%;
+$search-form-mobile-sm-width:       25%;
+$search-form-mobile-padding-y:      0.375rem;
+$search-form-mobile-padding-right:  1.25rem;
+$search-form-mobile-padding-left:   0.5rem;
+
 
 // Hero Image
 
