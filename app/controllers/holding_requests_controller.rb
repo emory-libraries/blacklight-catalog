@@ -6,14 +6,14 @@ class HoldingRequestsController < ApplicationController
   end
 
   def show
-    @holding_request = HoldingRequest.find({ id: params[:id], user: current_user.uid })
+    @holding_request = HoldingRequest.find({ id: params[:id], user: current_user })
   end
 
   def create
     @holding_request = HoldingRequest.new({ mms_id: params["holding_request"]["mms_id"],
                                             holding_id: params["holding_request"]["holding_id"],
                                             pickup_library: params["holding_request"]["pickup_library"],
-                                            user: current_user.uid })
+                                            user: current_user })
     if @holding_request.save
       redirect_to holding_request_path @holding_request.id
     else

@@ -17,7 +17,7 @@ RSpec.describe "holding request new", type: :request do
     let(:user) { User.create(uid: "mkadel") }
     let(:valid_attributes) do
       {
-        user: "mkadel",
+        user: user,
         mms_id: "9936550118202486",
         holding_id: "22332597410002486",
         pickup_library: "MUSME"
