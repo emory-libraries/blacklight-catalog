@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class OaiQueryStringService
-  def self.process_query_string(oai_set, full_index, to_time, single_record, logger)
+  def self.process_query_string(oai_set, full_index, to_time, single_record, logger = Logger.new(STDOUT))
     from_time = process_from_time(full_index, logger)
     processed_to_time = process_to_time(to_time, full_index, logger)
     # check where to resume harvesting from
