@@ -60,15 +60,15 @@ class HoldingRequest
   end
 
   def holding_request_response
-    @holding_request_response = RestClient.post(title_request_url, request_object.to_json, { content_type: :json, accept: :json })
+    @holding_request_response ||= RestClient.post(title_request_url, request_object.to_json, { content_type: :json, accept: :json })
   end
 
   def request_object
     {
       "request_type": "HOLD",
-      "holding_id": "22332597410002486",
+      "holding_id": holding_id,
       "pickup_location_type": "LIBRARY",
-      "pickup_location_library": "MUSME",
+      "pickup_location_library": pickup_library,
       "pickup_location_institution": "01GALI_EMORY"
     }
   end

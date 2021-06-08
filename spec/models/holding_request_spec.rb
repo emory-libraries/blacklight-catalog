@@ -12,6 +12,30 @@ RSpec.describe HoldingRequest do
     ENV['ALMA_USER_KEY'] = orig_key
   end
 
+  it "sets the body with the params" do
+    sr = stub_request(:post, "http://www.example.com/almaws/v1/users//requests?allow_same_request=false&apikey=fakeuserkey456&mms_id=&user_id_type=all_unique")
+         .with(
+        body: {
+          "request_type": "HOLD",
+          "holding_id": "holding_id",
+          "pickup_location_type": "LIBRARY",
+          "pickup_location_library": "pull",
+          "pickup_location_institution": "01GALI_EMORY"
+        }
+      )
+    k = described_class.new(holding_id: "holding_id", pickup_library: "pull")
+    k.holding_request_response
+    expect(sr).to have_been_made.once
+  end
+
+  it "only calls restclient once in holding_request_response" do
+    sr = stub_request(:post, "http://www.example.com/almaws/v1/users//requests?allow_same_request=false&apikey=fakeuserkey456&mms_id=&user_id_type=all_unique")
+    k = described_class.new
+    k.holding_request_response
+    k.holding_request_response
+    expect(sr).to have_been_made.once
+  end
+
   it "has a holding id available" do
     hr = described_class.new(holding_id: "456")
     expect(hr.holding_id).to eq "456"

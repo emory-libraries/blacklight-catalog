@@ -34,7 +34,7 @@ RSpec.describe "holding request new", type: :request do
 
     it "can create a holding request" do
       post holding_requests_path, params: { holding_request: valid_attributes }
-      expect(response).to redirect_to(holding_requests_path)
+      expect(response).to redirect_to(holding_request_path("36181952270002486"))
     end
 
     it "renders a successful response" do
