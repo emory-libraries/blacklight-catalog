@@ -17,7 +17,7 @@ RSpec.describe "holding request new", type: :request do
     let(:user) { User.create(uid: "mkadel") }
     let(:valid_attributes) do
       {
-        user: "mkadel",
+        user: user,
         mms_id: "9936550118202486",
         holding_id: "22332597410002486",
         pickup_library: "MUSME"
@@ -35,13 +35,18 @@ RSpec.describe "holding request new", type: :request do
     it "can create a holding request" do
       post holding_requests_path, params: { holding_request: valid_attributes }
       expect(response).to redirect_to(holding_request_path("36181952270002486"))
+      follow_redirect!
+      expect(response).to render_template(:show)
+      expect(response.body).to include("36181952270002486")
+      expect(response.body).to include("MUSME")
     end
 
     it "renders a successful response" do
-      holding_request = HoldingRequest.new valid_attributes
-      holding_request.save
-      get holding_request_path(holding_request.id)
+      get holding_request_path("36181952270002486")
       expect(response).to be_successful
+      expect(response).to render_template(:show)
+      expect(response.body).to include("36181952270002486")
+      expect(response.body).to include("MUSME")
     end
   end
 

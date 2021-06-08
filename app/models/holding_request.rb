@@ -23,6 +23,7 @@ class HoldingRequest
   end
 
   def initialize(params = {})
+    @id = params[:id]
     @mms_id = params[:mms_id]
     @pickup_library = params[:pickup_library]
     @user = params[:user]

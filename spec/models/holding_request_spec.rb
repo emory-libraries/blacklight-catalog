@@ -5,12 +5,14 @@ RSpec.describe HoldingRequest do
   around do |example|
     orig_url = ENV['ALMA_API_URL']
     orig_key = ENV['ALMA_USER_KEY']
-    ENV['ALMA_API_URL'] = 'www.example.com'
+    ENV['ALMA_API_URL'] = 'http://www.example.com'
     ENV['ALMA_USER_KEY'] = "fakeuserkey456"
     example.run
     ENV['ALMA_API_URL'] = orig_url
     ENV['ALMA_USER_KEY'] = orig_key
   end
+
+  let(:user) { User.create(uid: "mkadel") }
 
   it "sets the body with the params" do
     sr = stub_request(:post, "http://www.example.com/almaws/v1/users//requests?allow_same_request=false&apikey=fakeuserkey456&mms_id=&user_id_type=all_unique")
@@ -42,13 +44,24 @@ RSpec.describe HoldingRequest do
   end
 
   it "can persist a holding request to Alma" do
-    hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", user: "mkadel")
+    hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", user: user)
     hr.save
     expect(hr.id).to eq "36181952270002486"
   end
 
   it "can find an existing holding request in Alma" do
-    hr = described_class.find(id: "36181952270002486", user: "mkadel")
+    hr = described_class.find(id: "36181952270002486", user: user)
     expect(hr.mms_id).to eq "9936550118202486"
+  end
+
+  it "build the correct for a title request" do
+    hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", user: user)
+    expected_url = "http://www.example.com/almaws/v1/users/mkadel/requests?user_id_type=all_unique&mms_id=9936550118202486&allow_same_request=false&apikey=fakeuserkey456"
+    expect(hr.title_request_url).to eq expected_url
+  end
+
+  xit "gives a list of allowed libraries for pickup" do
+    hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", user: user)
+    expect(hr.pickup_library_options).to be_an_instance_of Array
   end
 end
