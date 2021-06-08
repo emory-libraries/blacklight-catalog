@@ -15,7 +15,6 @@ class HoldingRequestsController < ApplicationController
                                             pickup_library: params["holding_request"]["pickup_library"],
                                             user: current_user.uid })
     if @holding_request.save
-      # How do we pass along the request_id through the redirect?
       redirect_to holding_request_path @holding_request.id
     else
       render :new

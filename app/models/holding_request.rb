@@ -39,7 +39,6 @@ class HoldingRequest
     end
   end
 
-  # TODO: Write this method...
   def self.find(params = {})
     hr = HoldingRequest.new(params)
     url = hr.find_request_url
