@@ -42,13 +42,11 @@ RSpec.describe "holding request new", type: :request do
     end
 
     it "renders a successful response" do
-      holding_request = HoldingRequest.new valid_attributes
-      holding_request.save
-      get holding_request_path(holding_request.id)
+      get holding_request_path("36181952270002486")
       expect(response).to be_successful
       expect(response).to render_template(:show)
-      expect(response.body).to include(holding_request.id)
-      expect(response.body).to include(holding_request.pickup_library)
+      expect(response.body).to include("36181952270002486")
+      expect(response.body).to include("MUSME")
     end
   end
 
