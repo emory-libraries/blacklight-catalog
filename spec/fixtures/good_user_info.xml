@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<user>
+  <record_type desc="Public">PUBLIC</record_type>
+  <primary_id>MLOONE21</primary_id>
+  <first_name>McClain</first_name>
+  <middle_name/>
+  <last_name>Looney</last_name>
+  <full_name>McClain Looney</full_name>
+  <user_title desc=""/>
+  <job_category desc=""/>
+  <job_description/>
+  <gender desc=""/>
+  <user_group desc="GT Patrons">GTPATRON</user_group>
+  <campus_code desc=""/>
+  <web_site_url/>
+  <cataloger_level desc="[00] Default Level">00</cataloger_level>
+  <preferred_language desc="English">en</preferred_language>
+  <account_type desc="External">EXTERNAL</account_type>
+  <external_id>SIS_temp</external_id>
+  <password/>
+  <force_password_change/>
+  <status desc="Active">ACTIVE</status>
+  <status_date>2020-11-09Z</status_date>
+  <last_patron_activity_date>2021-05-26Z</last_patron_activity_date>
+  <contact_info>
+    <addresses>
+      <address preferred="true" segment_type="External">
+        <line1>P.O. Box 19548</line1>
+        <city>Minneapolis</city>
+        <state_province/>
+        <postal_code>55419</postal_code>
+        <country desc=""/>
+        <address_note/>
+        <start_date>2020-11-09Z</start_date>
+        <address_types>
+          <address_type desc="Work">work</address_type>
+        </address_types>
+      </address>
+    </addresses>
+    <emails>
+      <email preferred="true" segment_type="External">
+        <email_address>mcclain@curationexperts.com</email_address>
+        <email_types>
+          <email_type desc="Work">work</email_type>
+        </email_types>
+      </email>
+    </emails>
+    <phones/>
+  </contact_info>
+  <pref_first_name/>
+  <pref_middle_name/>
+  <pref_last_name/>
+  <pref_name_suffix/>
+  <is_researcher>false</is_researcher>
+  <user_identifiers>
+    <user_identifier segment_type="External">
+      <id_type desc="NetID">02</id_type>
+      <value>mloone2</value>
+      <status>ACTIVE</status>
+    </user_identifier>
+  </user_identifiers>
+  <user_roles>
+    <user_role>
+      <status desc="Active">ACTIVE</status>
+      <scope desc="Robert W. Woodruff Library">UNIV</scope>
+      <role_type desc="Circulation Desk Operator">32</role_type>
+      <parameters>
+        <parameter>
+          <type>CirculationDesk</type>
+          <scope desc="Robert W. Woodruff Library">UNIV</scope>
+          <value desc="University Circulation">DEFAULT_CIRC_DESK</value>
+        </parameter>
+        <parameter>
+          <type>CantEditRestrictedUsers</type>
+          <scope desc="Robert W. Woodruff Library">UNIV</scope>
+          <value>false</value>
+        </parameter>
+      </parameters>
+    </user_role>
+    <user_role>
+      <status desc="Active">ACTIVE</status>
+      <scope desc="Emory University Libraries">01GALI_EMORY</scope>
+      <role_type desc="Patron">200</role_type>
+      <parameters/>
+    </user_role>
+  </user_roles>
+  <user_blocks/>
+  <user_notes/>
+  <user_statistics/>
+  <proxy_for_users/>
+</user>

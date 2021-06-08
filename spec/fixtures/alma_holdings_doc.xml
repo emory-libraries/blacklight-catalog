@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<holdings total_record_count="1">
+  <holding link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9937224214202486/holdings/22442434140002486">
+    <holding_id>22442434140002486</holding_id>
+    <library desc="Marian K. Heilbrun Music Media">MUSME</library>
+    <location desc="Music and Media Book Stacks">STACK</location>
+    <call_number>ML410.B1 S273 2020</call_number>
+    <suppress_from_publishing>false</suppress_from_publishing>
+  </holding>
+  <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9937224214202486">
+    <mms_id>9937224214202486</mms_id>
+    <title>Bach /</title>
+    <author>Schulenberg, David,</author>
+    <isbn>0190936304</isbn>
+    <network_numbers>
+      <network_number>(OCoLC)on1130328607</network_number>
+      <network_number>(OCoLC)1130328607</network_number>
+    </network_numbers>
+    <place_of_publication>New York :</place_of_publication>
+    <date_of_publication>[2020]</date_of_publication>
+    <publisher>Oxford University Press,</publisher>
+  </bib_data>
+</holdings>

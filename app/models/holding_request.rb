@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'alma_repo'
 class HoldingRequest
   include ActiveModel::Model
   attr_accessor :mms_id, :holding_id, :pickup_library, :not_needed_after, :comment, :id, :user

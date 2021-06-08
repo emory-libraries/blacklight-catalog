@@ -1,0 +1,41 @@
+  <request_option>
+    <type desc="Purchase">PURCHASE</type>
+    <request_url>https://api-na.hosted.exlibrisgroup.com/almaws/v1/users/MLOONE21/purchase-requests/</request_url>
+  </request_option>
+  <request_option>
+    <type desc="General Electronic Services">GES</type>
+    <request_url>http://emory-primoprod.hosted.exlibrisgroup.com/primo_library/libweb/action/dlSearch.do?institution=01EMORY&amp;vid=discovere&amp;query=facet_atoz%2ce
+xact%2cA&amp;indx=1&amp;bulkSize=30&amp;dym=false&amp;loc=local%2cscope%3a(AZ01EMORY)&amp;fn=goAlmaAz&amp;sortField=stitle&amp;almaAzSearch=true&amp;azSearch=true&amp;
+selectedAzAlmaLetter=A</request_url>
+    <general_electronic_service_details>
+      <code>atoz list</code>
+      <name>eJournals A-Z</name>
+      <public_name>eJournals A-Z</public_name>
+      <public_note>Search Emory's ejournals</public_note>
+      <avail_for_physical>false</avail_for_physical>
+      <avail_for_electronic>true</avail_for_electronic>
+    </general_electronic_service_details>
+  </request_option>
+  <request_option>
+    <type desc="General Electronic Services">GES</type>
+    <request_url>https://libraries.emory.edu/tools/report-issues-with-ejournals.html</request_url>
+    <general_electronic_service_details>
+      <code>Ask eJournals</code>
+      <name>Ask eJournals</name>
+      <public_name>Need help?  Ask eJournals</public_name>
+      <avail_for_physical>false</avail_for_physical>
+      <avail_for_electronic>true</avail_for_electronic>
+    </general_electronic_service_details>
+  </request_option>
+  <request_option>
+    <type desc="General Electronic Services">GES</type>
+    <request_url>empty</request_url>
+    <general_electronic_service_details>
+      <code>Hide for Local Material</code>
+      <name>Hide for Local Material</name>
+      <public_name>Hide for Local Material</public_name>
+      <avail_for_physical>true</avail_for_physical>
+      <avail_for_electronic>false</avail_for_electronic>
+    </general_electronic_service_details>
+  </request_option>
+</request_options>

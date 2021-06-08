@@ -43,6 +43,8 @@ RSpec.describe "holding request new", type: :request do
       get holding_request_path(holding_request.id)
       expect(response).to be_successful
     end
+    it "renders new with error message when bad" do
+    end
   end
 
   context "as an unauthenticated user" do
