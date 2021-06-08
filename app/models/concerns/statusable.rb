@@ -6,7 +6,7 @@ module Statusable
     ENV['ALMA_API_URL'] || "https://api-na.hosted.exlibrisgroup.com"
   end
 
-  def api_key
+  def api_bib_key
     ENV.fetch('ALMA_BIB_KEY')
   end
 
@@ -21,7 +21,7 @@ module Statusable
   end
 
   def full_record_url
-    "#{api_url}/almaws/v1/bibs/#{id}#{query_inst}#{api_key}"
+    "#{api_url}/almaws/v1/bibs/#{id}#{query_inst}#{api_bib_key}"
   end
 
   def query_inst
@@ -44,7 +44,7 @@ module Statusable
 
   def retrieve_requests(holding_id)
     base_requests_link = full_record.at_xpath('bib/requests').attributes["link"].value
-    url = base_requests_link + "?status=active&apikey=#{api_key}"
+    url = base_requests_link + "?status=active&apikey=#{api_bib_key}"
     response = RestClient.get url, { accept: :xml }
     body = Nokogiri::XML(response)
     request_holding_id = body.at_xpath('user_requests/user_request/holding_id').inner_text

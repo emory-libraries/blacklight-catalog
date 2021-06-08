@@ -1,0 +1,37 @@
+{
+  "user_primary_id": "mkadel1",
+  "request_id": "36181952270002486",
+  "additional_id": "361-819-522-7",
+  "request_type": "HOLD",
+  "request_sub_type": {
+    "value": "PATRON_PHYSICAL",
+    "desc": "Patron physical item request"
+  },
+  "mms_id": "9936550118202486",
+  "title": "MLA handbook.",
+  "author": null,
+  "description": null,
+  "holding_id": "22332597410002486",
+  "pickup_location": "Marian K. Heilbrun Music Media",
+  "pickup_location_type": "LIBRARY",
+  "pickup_location_library": "MUSME",
+  "managed_by_library": "Oxford College Library",
+  "managed_by_circulation_desk": "Oxford Circulation",
+  "managed_by_library_code": "OXFD",
+  "managed_by_circulation_desk_code": "DEFAULT_CIRC_DESK",
+  "material_type": {
+    "value": null,
+    "desc": null
+  },
+  "volume": "",
+  "issue": "",
+  "part": "",
+  "date_of_publication": "",
+  "comment": null,
+  "request_status": "IN_PROCESS",
+  "request_date": "2021-06-06Z",
+  "request_time": "2021-06-06T19:57:45.025Z",
+  "task_name": "Pickup From Shelf",
+  "expiry_date": "2021-06-19Z",
+  "barcode": null
+}

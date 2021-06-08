@@ -81,6 +81,7 @@ RSpec/DescribeClass:
 
 RSpec/ExampleLength:
     Exclude:
+        - spec/models/holding_request_spec.rb
         - spec/requests/not_found_requests_spec.rb
         - spec/routing/alma_availability_routes_spec.rb
         - spec/services/oai_processing_service_spec.rb
