@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bib>
+  <mms_id>9937242404302486</mms_id>
+  <record_format>marc21</record_format>
+  <linked_record_id/>
+  <title>Clinical cases in tropical medicine /</title>
+  <author>Rothe, Camilla,</author>
+  <isbn>9780702078798</isbn>
+  <complete_edition>Second edition.</complete_edition>
+  <network_numbers>
+    <network_number>(OCoLC)1190756519</network_number>
+    <network_number>on1190756519</network_number>
+    <network_number>(OCoLC)1199056946</network_number>
+  </network_numbers>
+  <place_of_publication>[London] :</place_of_publication>
+  <date_of_publication>[2022]</date_of_publication>
+  <publisher_const>Elsevier,</publisher_const>
+  <holdings link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9937242404302486/holdings"/>
+  <created_by>System</created_by>
+  <created_date>2020-12-01Z</created_date>
+  <last_modified_by>System</last_modified_by>
+  <last_modified_date>2021-02-06Z</last_modified_date>
+  <suppress_from_publishing>false</suppress_from_publishing>
+  <suppress_from_external_search>false</suppress_from_external_search>
+  <sync_with_oclc>NONE</sync_with_oclc>
+  <sync_with_libraries_australia>NONE</sync_with_libraries_australia>
+  <originating_system>BACKSTAGE</originating_system>
+  <originating_system_id>on1190756519</originating_system_id>
+  <cataloging_level desc="Default Level">00</cataloging_level>
+  <record>
+    <leader>02914cam a2200601Ii 4500</leader>
+    <controlfield tag="001">9937242404302486</controlfield>
+    <controlfield tag="005">20210206031052.0</controlfield>
+    <controlfield tag="006">m o d</controlfield>
+    <controlfield tag="007">cr |||||||||||</controlfield>
+    <controlfield tag="008">200826t20222022enka ob 000 0 eng d</controlfield>
+    <datafield ind1=" " ind2=" " tag="019">
+      <subfield code="a">1199056946</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">9780702078804</subfield>
+      <subfield code="q">electronic book</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">0702078808</subfield>
+      <subfield code="q">electronic book</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">9780702078811</subfield>
+      <subfield code="q">electronic book</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">0702078816</subfield>
+      <subfield code="q">electronic book</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="z">9780702078798</subfield>
+      <subfield code="q">paperback</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="z">0702078794</subfield>
+      <subfield code="q">paperback</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">on1190756519</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(OCoLC)1190756519</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="z">(OCoLC)1199056946</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="040">
+      <subfield code="a">OPELS</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="e">rda</subfield>
+      <subfield code="e">pn</subfield>
+      <subfield code="c">OPELS</subfield>
+      <subfield code="d">OCLCF</subfield>
+      <subfield code="d">INM</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">MMU</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">YDX</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="049">
+      <subfield code="a">EMUU</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="050">
+      <subfield code="a">RC961</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="060">
+      <subfield code="a">WC 680</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="4" tag="082">
+      <subfield code="a">616.9883</subfield>
+      <subfield code="2">23</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="0" tag="245">
+      <subfield code="a">Clinical cases in tropical medicine /</subfield>
+      <subfield code="c">edited by Camilla Rothe.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="250">
+      <subfield code="a">Second edition.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="1" tag="264">
+      <subfield code="a">[London] :</subfield>
+      <subfield code="b">Elsevier,</subfield>
+      <subfield code="c">[2022]</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="264">
+      <subfield code="c">©2022</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="300">
+      <subfield code="a">1 online resource (xxi, 291 pages)) :</subfield>
+      <subfield code="b">illustrations (chiefly color)</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="336">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="337">
+      <subfield code="a">computer</subfield>
+      <subfield code="b">c</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="338">
+      <subfield code="a">online resource</subfield>
+      <subfield code="b">cr</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="500">
+      <subfield code="a">Revised edition of: Clinical cases in tropical medicine / edited by Camilla Rothe. [2015]</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="504">
+      <subfield code="a">Includes bibliographical references.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="520">
+      <subfield code="a">"Clinical Cases in Tropical Medicine, 2nd Edition, provides more than 100 realistic scenarios for tropical infectious diseases. Full-color photographs and maps, a convenient question-and-answer presentation, and succinct summary boxes help you identify and understand the tropical diseases you're likely to encounter. This up-to-date 2nd Edition is an excellent resource and study tool for infectious diseases fellows, doctors preparing for exams in tropical medicine, primary care doctors with patients who are global travelers, and global health nurses and practitioners alike"--Publisher's description.</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="588">
+      <subfield code="a">Description based on online resource; title from electronic title page (ClinicalKey, viewed on November 17, 2020).</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="590">
+      <subfield code="a">Available to current Emory faculty, students and staff.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Tropical medicine.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="2" tag="650">
+      <subfield code="a">Tropical Medicine</subfield>
+      <subfield code="x">methods.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="2" tag="650">
+      <subfield code="a">Tropical Medicine.</subfield>
+    </datafield>
+    <datafield ind1="2" ind2="2" tag="650">
+      <subfield code="a">Signs and Symptoms.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="2" tag="655">
+      <subfield code="a">Case Reports.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="2" tag="655">
+      <subfield code="a">Handbook.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Tropical medicine</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01157469</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="655">
+      <subfield code="a">Electronic books.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="a">Rothe, Camilla,</subfield>
+      <subfield code="e">editor.</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="8" tag="776">
+      <subfield code="i">Print version:</subfield>
+      <subfield code="a">Rothe, Camilla.</subfield>
+      <subfield code="t">Clinical cases in tropical medicine.</subfield>
+      <subfield code="b">Second edition.</subfield>
+      <subfield code="d">Amsterdam : Elsevier, [2022]</subfield>
+      <subfield code="z">9780702078798</subfield>
+      <subfield code="w">(OCoLC)1180141175</subfield>
+    </datafield>
+    <datafield ind1="4" ind2="0" tag="856">
+      <subfield code="z">Online resource from Elsevier</subfield>
+      <subfield code="u">http://proxy.library.emory.edu/login?url=https://www.sciencedirect.com/science/book/9780702078798</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="910">
+      <subfield code="a">MARS</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="940">
+      <subfield code="a">SCIENCEDIRECTP</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="945">
+      <subfield code="a">EMU</subfield>
+      <subfield code="b">mk</subfield>
+      <subfield code="2">20201201</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="994">
+      <subfield code="a">92</subfield>
+      <subfield code="b">EMU</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="AVE">
+      <subfield code="8">53445539330002486</subfield>
+      <subfield code="e">Available</subfield>
+      <subfield code="l">UNIV</subfield>
+      <subfield code="n">Online resource from Elsevier</subfield>
+      <subfield code="t">Elsevier ScienceDirect</subfield>
+      <subfield code="u">publishing_base_url undefined?u.ignore_date_coverage=true&rft.mms_id=9937242404302486</subfield>
+    </datafield>
+  </record>
+  <requests>0</requests>
+</bib>

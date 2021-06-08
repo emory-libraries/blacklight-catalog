@@ -17,6 +17,7 @@ Layout/LineLength:
         - 'spec/support/solr_documents/online.rb'
         - 'spec/support/solr_documents/online_new.rb'
         - 'spec/support/solr_documents/online_and_physical.rb'
+        - 'spec/support/solr_documents/funky_url_party.rb'
 
 Metrics/AbcSize:
     Exclude:

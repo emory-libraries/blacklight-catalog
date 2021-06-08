@@ -84,10 +84,12 @@ module Statusable
     return nil unless url_fulltext
     url_fulltext.map do |entry|
       url_hash = JSON.parse(entry)
-      return url_hash if url_hash.keys.include?("url")
-      # TODO: Can remove following line and preceding guard clause once Solr
-      # has been re-indexed
-      { url: url_hash.keys.first, label: url_hash.values.first }
+      # TODO: Can remove conditional once re-index is completed, and just keep the "if" portion
+      if url_hash.keys.include?("url")
+        url_hash.symbolize_keys!
+      else
+        { url: url_hash.keys.first, label: url_hash.values.first }
+      end
     end
   end
 
