@@ -14,12 +14,16 @@ RSpec.feature 'View Search Results', type: :system, js: false do
       expect(page).to have_link('The Title of my Work')
     end
 
+    it 'displays the vernacular title if populated' do
+      expect(page).to have_css('p.vern-title-search-results-1', text: 'Title of my Work')
+    end
+
     it 'has the right metadata labels' do
-      ['Author/Creator:', 'Resource Type:', 'Access:'].each { |label| expect(page).to have_content(label) }
+      ['Author/Creator:', 'Type:', 'Publication/Creation:'].each { |label| expect(page).to have_content(label) }
     end
 
     it 'has the right values' do
-      ['George Jenkins', 'Book', 'Electronic Resource'].each { |value| expect(page).to have_content(value) }
+      ['George Jenkins', 'Book', 'A dummy publication'].each { |value| expect(page).to have_content(value) }
     end
   end
 

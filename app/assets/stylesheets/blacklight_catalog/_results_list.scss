@@ -23,6 +23,11 @@ article.document {
       margin-bottom: 0;
     }
   }
+
+  > p {
+    margin-bottom: $results-vern-title-bottom-marg;
+    margin-left: $results-vern-title-left-marg;
+  }
 }
 
 dd.document-details {
