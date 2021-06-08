@@ -519,6 +519,7 @@ DEPENDENCIES
   rest-client
   rsolr (>= 1.0)
   rspec-its
+  rspec-mocks
   rspec-rails (~> 3.5)
   rspec_junit_formatter
   sass-rails (~> 5.0)

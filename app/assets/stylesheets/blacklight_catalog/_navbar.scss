@@ -82,9 +82,10 @@ a.nav-link.last {
 }
 
 @media (min-width: 768px) {
-  .navbar-collapse.utility-nav.collapse {
+  #user-util-collapse > .navbar-nav > .nav-item.mobile-only {
     display: none !important;
   }
+
   .non-collapse-navbar {
     display: flex;
     flex-basis: auto;
@@ -95,8 +96,32 @@ a.nav-link.last {
 }
 
 @media (max-width: 767px) {
-  .non-mobile-links {
+  .non-mobile-links, .btn.btn-md.btn-primary.btn-login.rounded-0.mb-2 {
     display: none !important;
+  }
+  .container { max-width: unset !important; }
+  .navbar { padding: 0 $navbar-padding-mobile-x !important; }
+  .navbar-search.navbar.navbar-light.bg-light.mb-3 > .container {
+    padding: 0;
+
+    > div { padding: map-get($spacers, 3) 0; }
+    > form.search-query-form { 
+      padding-bottom: 0;
+      padding-right: 0;
+
+      > .input-group > select { 
+        min-width: $search-form-mobile-min-width;
+        width: $search-form-mobile-width;
+        padding: $search-form-mobile-padding-y $search-form-mobile-padding-right $search-form-mobile-padding-y $search-form-mobile-padding-left;
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .navbar-search.navbar.navbar-light.bg-light.mb-3 > .container > form.search-query-form > .input-group > select { 
+    min-width: $search-form-mobile-sm-min-width;
+    width: $search-form-mobile-sm-width;
   }
 }
 

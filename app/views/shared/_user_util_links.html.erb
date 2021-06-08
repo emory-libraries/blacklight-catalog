@@ -13,6 +13,9 @@
       <li class="nav-item">
         <%= link_to t('blacklight.header_links.login'), new_user_session_path, class: 'btn btn-md btn-primary btn-login rounded-0 mb-2' %>
       </li>
+      <li class="nav-item mobile-only">
+        <%= link_to t('blacklight.header_links.login'), new_user_session_path, class: 'nav-link' %>
+      </li>
     <% end %>
   <% end %>
 </ul>

@@ -5,7 +5,7 @@ require 'nokogiri'
 require 'traject'
 
 RSpec.describe OaiProcessingService do
-  let(:logger) { Logger.new(STDOUT) }
+  let(:logger) { instance_double(Logger, "logger", info: nil, debug: nil) }
   context '#process_oai_with_marc_indexer' do
     before do
       delete_all_documents_from_solr
