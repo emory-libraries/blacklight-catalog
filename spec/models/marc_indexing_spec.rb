@@ -12,6 +12,7 @@ RSpec.describe 'Indexing fields with custom logic' do
   let(:solr_doc7) { SolrDocument.find('9937264717902485') }
   let(:solr_doc8) { SolrDocument.find('9937264718102485') }
   let(:solr_doc9) { SolrDocument.find('990016148150302486') }
+  let(:solr_doc10) { SolrDocument.find('990023916570302486') }
   before do
     delete_all_documents_from_solr
     # The command below is processing fixures/alma_marc_resource.xml
@@ -153,6 +154,12 @@ RSpec.describe 'Indexing fields with custom logic' do
     context "when url does not include a protocol" do
       it "adds the protocol at time of index" do
         expect(solr_doc9['url_fulltext_ssm']).to eq(["{\"url\":\"https://pid.emory.edu/ark:/25593/b66vt/IA\",\"label\":\"Internet Archive version\"}"])
+      end
+    end
+
+    context "when the u field is present but does not contain a url" do
+      it "fails gracefully" do
+        expect(solr_doc10['url_fulltext_ssm']).to eq nil
       end
     end
     context "when 856 3 and z are present and ind2 is equal to 1" do

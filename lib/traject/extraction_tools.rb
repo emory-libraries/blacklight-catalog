@@ -28,13 +28,16 @@ module ExtractionTools
                 elsif field['z'].present?
                   field['z']
                 end
-    accumulator << { url: url, label: link_text }.to_json
+    accumulator << { url: url, label: link_text }.to_json unless url.nil?
   end
 
   def parse_url(base_url)
     parsed_url = URI.parse(base_url)
     return parsed_url if parsed_url.scheme
     parsed_url.to_s.prepend("https://")
+  rescue URI::InvalidURIError
+    Rails.logger.error "Invalid url saved in 856 subfield u. Url: #{base_url}"
+    nil
   end
 
   def fields_z3(field)
