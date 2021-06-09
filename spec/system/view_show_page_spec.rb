@@ -393,4 +393,21 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(page).to have_link("Online resource from Elsevier", href: "http://proxy.library.emory.edu/login?url=https://www.sciencedirect.com/science/book/9780702078798")
     end
   end
+
+  context "with missing copy information" do
+    let(:solr_doc) { described_class.find(LIMITED_AVA_INFO[:id]) }
+    before do
+      delete_all_documents_from_solr
+      solr = Blacklight.default_index.connection
+      solr.add(LIMITED_AVA_INFO)
+      solr.commit
+      visit solr_document_path(LIMITED_AVA_INFO[:id])
+    end
+    it "can display the object without copy information in the AVA field" do
+      expect(page).to have_content('The Review of politics')
+      within '#physical-holding-3' do
+        expect(page).to have_content("Check holdings")
+      end
+    end
+  end
 end

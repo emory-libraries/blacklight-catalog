@@ -56,13 +56,14 @@ module Statusable
   end
 
   def physical_item_values(availability)
-    @copies = availability.at_xpath('subfield[@code="f"]').inner_text.to_i
-    unavailable = availability.at_xpath('subfield[@code="g"]').inner_text.to_i
-    @available = @copies - unavailable
-    @holding_id = availability.at_xpath('subfield[@code="8"]').inner_text
-    @library = availability.at_xpath('subfield[@code="q"]').inner_text
-    @location = availability.at_xpath('subfield[@code="c"]').inner_text
-    @call_number = availability.at_xpath('subfield[@code="d"]').inner_text
+    @availability_phrase = availability.at_xpath('subfield[@code="e"]')&.inner_text
+    @copies = availability.at_xpath('subfield[@code="f"]')&.inner_text&.to_i
+    unavailable = availability.at_xpath('subfield[@code="g"]')&.inner_text&.to_i
+    @available = (@copies - unavailable if @copies)
+    @holding_id = availability.at_xpath('subfield[@code="8"]')&.inner_text
+    @library = availability.at_xpath('subfield[@code="q"]')&.inner_text
+    @location = availability.at_xpath('subfield[@code="c"]')&.inner_text
+    @call_number = availability.at_xpath('subfield[@code="d"]')&.inner_text
   end
 
   def physical_item_hash(availability)
@@ -75,7 +76,8 @@ module Statusable
       availability: {
         copies: @copies,
         available: @available,
-        requests: requests(@holding_id)
+        requests: requests(@holding_id),
+        availability_phrase: @availability_phrase
       }
     }
   end
