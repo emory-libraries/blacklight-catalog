@@ -16,10 +16,15 @@
           <tr id="physical-holding-<%= index.to_s %>">
             <td><%= "#{holding[:library]}: #{holding[:location]}" %></td>
             <td><%=holding[:call_number] %></td>
-            <td><%= pluralize(holding[:availability][:copies], 'copy') +
-                    ", #{holding[:availability][:available]} available" +
-                    ", " + pluralize(holding[:availability][:requests], 'request')
-                %>
+            <td>
+              <% if holding[:availability][:availability_phrase] != "check_holdings" %>
+                <%= pluralize(holding[:availability][:copies], 'copy') +
+                      ", #{holding[:availability][:available]} available" +
+                      ", " + pluralize(holding[:availability][:requests], 'request')
+                  %>
+              <% else %>
+                Check holdings
+              <% end %>
             </td>
             <td><%= button_to("Request", new_holding_request_path, method: :get, params: {mms_id: document.id, holding_id: holding[:holding_id]}) %></td>
           </tr>
