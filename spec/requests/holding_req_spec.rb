@@ -20,7 +20,8 @@ RSpec.describe "holding request new", type: :request do
         user: user,
         mms_id: "9936550118202486",
         holding_id: "22332597410002486",
-        pickup_library: "MUSME"
+        pickup_library: "MUSME",
+        comment: "IGNORE - TESTING"
       }
     end
     before do
@@ -47,6 +48,7 @@ RSpec.describe "holding request new", type: :request do
       expect(response).to render_template(:show)
       expect(response.body).to include("36181952270002486")
       expect(response.body).to include("MUSME")
+      expect(response.body).to include("IGNORE - TESTING")
     end
   end
 

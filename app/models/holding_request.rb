@@ -28,6 +28,7 @@ class HoldingRequest
     @pickup_library = params[:pickup_library]
     @user = params[:user]
     @holding_id = params[:holding_id]
+    @comment = params[:comment]
   end
 
   def save
@@ -48,6 +49,7 @@ class HoldingRequest
     hr.mms_id = body[:mms_id]
     hr.holding_id = body[:holding_id]
     hr.pickup_library = body[:pickup_location_library]
+    hr.comment = body[:comment]
     hr
   end
 
@@ -69,7 +71,8 @@ class HoldingRequest
       "holding_id": holding_id,
       "pickup_location_type": "LIBRARY",
       "pickup_location_library": pickup_library,
-      "pickup_location_institution": "01GALI_EMORY"
+      "pickup_location_institution": "01GALI_EMORY",
+      "comment": comment
     }
   end
 

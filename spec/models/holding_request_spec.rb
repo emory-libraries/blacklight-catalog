@@ -22,7 +22,8 @@ RSpec.describe HoldingRequest do
           "holding_id": "holding_id",
           "pickup_location_type": "LIBRARY",
           "pickup_location_library": "pull",
-          "pickup_location_institution": "01GALI_EMORY"
+          "pickup_location_institution": "01GALI_EMORY",
+          "comment": nil
         }
       )
     k = described_class.new(holding_id: "holding_id", pickup_library: "pull")
