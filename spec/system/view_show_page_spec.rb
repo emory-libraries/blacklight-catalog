@@ -6,13 +6,16 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     orig_url = ENV['ALMA_API_URL']
     orig_key = ENV['ALMA_BIB_KEY']
     orig_sand_url = ENV["ALMA_BASE_SANDBOX_URL"]
+    orig_inst = ENV["INSTITUTION"]
     ENV["ALMA_BASE_SANDBOX_URL"] = "http://example2.com"
     ENV['ALMA_API_URL'] = 'www.example.com'
     ENV['ALMA_BIB_KEY'] = "fakebibkey123"
+    ENV["INSTITUTION"] = "SOME_INSTITUTION"
     example.run
     ENV["ALMA_BASE_SANDBOX_URL"] = orig_sand_url
     ENV['ALMA_API_URL'] = orig_url
     ENV['ALMA_BIB_KEY'] = orig_key
+    ENV["INSTITUTION"] = orig_inst
   end
   let(:id) { '123' }
 
@@ -381,7 +384,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     it "can find the online object" do
       expect(page).to have_content('Canzoni villanesche and villanelle')
       expect(page).to have_link("Online resource from A-R Editions", href: "http://proxy.library.emory.edu/login?url=https://doi.org/10.31022/R082-83")
-      expect(page).to have_link("Services page", href: "http://example2.com/discovery/openurl?institution=01GALI_EMORY&vid=01GALI_EMORY:blacklight&rft.mms_id=9937275387802486")
+      expect(page).to have_link("Services page", href: "http://example2.com/discovery/openurl?institution=SOME_INSTITUTION&vid=SOME_INSTITUTION:blacklight&rft.mms_id=9937275387802486")
     end
   end
   context "url holdings" do
