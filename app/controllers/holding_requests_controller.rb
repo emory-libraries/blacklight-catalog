@@ -2,7 +2,8 @@
 class HoldingRequestsController < ApplicationController
   before_action :authenticate_user!
   def new
-    @holding_request = HoldingRequest.new({ mms_id: params[:mms_id], holding_id: params[:holding_id] })
+    @holding_request = HoldingRequest.new({ mms_id: params[:mms_id], holding_id: params[:holding_id],
+                                            holding_library: { label: params[:holding_library][:label], value: params[:holding_library][:value] } })
   end
 
   def show

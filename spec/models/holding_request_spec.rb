@@ -12,7 +12,7 @@ RSpec.describe HoldingRequest do
     ENV['ALMA_USER_KEY'] = orig_key
   end
 
-  let(:user) { User.create(uid: "mkadel") }
+  let(:user) { User.create(uid: "janeq") }
 
   it "sets the body with the params" do
     sr = stub_request(:post, "http://www.example.com/almaws/v1/users//requests?allow_same_request=false&apikey=fakeuserkey456&mms_id=&user_id_type=all_unique")
@@ -56,12 +56,18 @@ RSpec.describe HoldingRequest do
 
   it "build the correct for a title request" do
     hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", user: user)
-    expected_url = "http://www.example.com/almaws/v1/users/mkadel/requests?user_id_type=all_unique&mms_id=9936550118202486&allow_same_request=false&apikey=fakeuserkey456"
+    expected_url = "http://www.example.com/almaws/v1/users/janeq/requests?user_id_type=all_unique&mms_id=9936550118202486&allow_same_request=false&apikey=fakeuserkey456"
     expect(hr.title_request_url).to eq expected_url
   end
 
-  xit "gives a list of allowed libraries for pickup" do
-    hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", user: user)
+  it "gives a list of allowed libraries for pickup" do
+    stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?user_id_type=all_unique&view=full&expand=none&apikey=fakeuserkey456")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record_oxford.xml'), headers: {})
+    hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", user: user, holding_library: { label: "Oxford College Library", value: "OXFD" })
     expect(hr.pickup_library_options).to be_an_instance_of Array
+    expect(user.oxford_user?).to eq true
+    expect(hr.pickup_library_options).to include(["Oxford College Library", "OXFD"])
+    expect(hr.holding_library).to eq({ label: "Oxford College Library", value: "OXFD" })
+    # expect(hr.pickup_library_options).not_to include()
   end
 end

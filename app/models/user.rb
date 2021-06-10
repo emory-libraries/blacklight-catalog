@@ -26,6 +26,26 @@ class User < ApplicationRecord
     uid
   end
 
+  def user_group
+    user_info_from_alma.xpath("//user/user_group").text
+  end
+
+  def oxford_user?
+    oxford_user_group_ids.include?(user_group)
+  end
+
+  def oxford_user_group_ids
+    %w[23 24 25 26]
+  end
+
+  def user_info_from_alma
+    @user_info_from_alma ||= Nokogiri.XML(RestClient.get(alma_user_url).body)
+  end
+
+  def alma_user_url
+    "#{ENV['ALMA_API_URL']}/almaws/v1/users/#{uid}?user_id_type=all_unique&view=full&expand=none&apikey=#{ENV['ALMA_USER_KEY']}"
+  end
+
   # When a user authenticates via shibboleth, find their User object or make
   # a new one. Populate it with data we get from shibboleth.
   # @param [OmniAuth::AuthHash] auth

@@ -16,7 +16,7 @@ RSpec.describe "Create a request for a holding", type: :system, js: true, alma: 
   end
 
   let(:solr_doc) { described_class.find(MLA_HANDBOOK[:id]) }
-  let(:user) { User.create(uid: "mkadel") }
+  let(:user) { User.create(uid: "janeq") }
 
   before do
     delete_all_documents_from_solr
@@ -37,7 +37,7 @@ RSpec.describe "Create a request for a holding", type: :system, js: true, alma: 
 
   it "has a dropdown list of possible pickup libraries" do
     sign_in(user)
-    visit new_holding_request_path(params: { mms_id: MLA_HANDBOOK[:id], holding_id: "22332597410002486" })
+    visit new_holding_request_path(params: { mms_id: MLA_HANDBOOK[:id], holding_id: "22332597410002486", holding_library: { label: "Oxford College Library", value: "OXFD" } })
     expect(page).to have_field('Holding', with: '22332597410002486', readonly: true)
     page.select 'Law Library', from: 'Pickup library'
     click_on("Create Holding request")
