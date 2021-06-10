@@ -29,6 +29,7 @@ class HoldingRequest
     @user = params[:user]
     @holding_id = params[:holding_id]
     @comment = params[:comment]
+    @not_needed_after = params[:not_needed_after]
   end
 
   def save
@@ -73,7 +74,8 @@ class HoldingRequest
       "pickup_location_library": pickup_library,
       "pickup_location_institution": "01GALI_EMORY",
       # TODO: Build last_interest_date from parameters and display
-      "comment": comment
+      "comment": comment,
+      "last_interest_date": not_needed_after
     }
   end
 

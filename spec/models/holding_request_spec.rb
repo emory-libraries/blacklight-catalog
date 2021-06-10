@@ -23,10 +23,11 @@ RSpec.describe HoldingRequest do
           "pickup_location_type": "LIBRARY",
           "pickup_location_library": "pull",
           "pickup_location_institution": "01GALI_EMORY",
-          "comment": nil
+          "comment": "I love cheese",
+          "last_interest_date": "2021-06-10"
         }
       )
-    k = described_class.new(holding_id: "holding_id", pickup_library: "pull")
+    k = described_class.new(holding_id: "holding_id", pickup_library: "pull", comment: "I love cheese", not_needed_after: "2021-06-10")
     k.holding_request_response
     expect(sr).to have_been_made.once
   end
