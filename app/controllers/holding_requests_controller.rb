@@ -29,7 +29,7 @@ class HoldingRequestsController < ApplicationController
     year = params["holding_request"]["not_needed_after(1i)"].to_i
     month = params["holding_request"]["not_needed_after(2i)"].to_i
     day = params["holding_request"]["not_needed_after(3i)"].to_i
-    foo = Date.new(year, month, day)
-    foo.strftime("%Y-%m-%dZ")
+    date = Date.new(year, month, day)
+    date.strftime("%Y-%m-%dZ")
   end
 end
