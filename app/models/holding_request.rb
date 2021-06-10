@@ -12,6 +12,7 @@ class HoldingRequest
     @holding_library = params[:holding_library]
     @holding_location = params[:holding_location]
   end
+
   # Is there a way to pull labels from config/translation_maps?
   # Pickup libraries from spike, should be double checked
   def self.pickup_libraries
