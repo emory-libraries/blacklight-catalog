@@ -1,4 +1,11 @@
 # frozen_string_literal: true
+module OmniAuth
+  module Strategies
+    # tell OmniAuth to load our strategy
+    autoload :Affiliate, 'lib/affiliate_stategy'
+  end
+end
+
 class User < ApplicationRecord
   # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
@@ -15,7 +22,7 @@ class User < ApplicationRecord
   # Include devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # remove :database_authenticatable in production, remove :validatable to integrate with Shibboleth
-  devise_modules = [:omniauthable, :rememberable, :trackable, :timeoutable, omniauth_providers: [:shibboleth], authentication_keys: [:uid]]
+  devise_modules = [:omniauthable, :rememberable, :trackable, :timeoutable, omniauth_providers: [:shibboleth, :affiliate], authentication_keys: [:uid]]
   devise_modules.prepend(:database_authenticatable) if AuthConfig.use_database_auth?
   devise(*devise_modules)
 
