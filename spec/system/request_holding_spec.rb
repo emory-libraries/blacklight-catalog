@@ -37,7 +37,9 @@ RSpec.describe "Create a request for a holding", type: :system, js: true, alma: 
 
   it "has a dropdown list of possible pickup libraries" do
     sign_in(user)
-    visit new_holding_request_path(params: { mms_id: MLA_HANDBOOK[:id], holding_id: "22332597410002486", holding_library: { label: "Oxford College Library", value: "OXFD" } })
+    visit new_holding_request_path(params: { mms_id: MLA_HANDBOOK[:id], holding_id: "22332597410002486",
+                                             holding_library: { label: "Oxford College Library", value: "OXFD" },
+                                             holding_location: { label: "Book Stacks", value: "STACK" } })
     expect(page).to have_field('Holding', with: '22332597410002486', readonly: true)
     page.select 'Law Library', from: 'Pickup library'
     click_on("Create Holding request")

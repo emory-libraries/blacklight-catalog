@@ -27,10 +27,12 @@ RSpec.describe "holding request new", type: :request do
       sign_in(user)
     end
     it "renders the new template" do
-      get new_holding_request_path, params: { "holding_id" => "4567", holding_library: { "label" => "Oxford College Library", "value" => "OXFD" } }
+      get new_holding_request_path, params: { "holding_id" => "4567", holding_library: { "label" => "Oxford College Library", "value" => "OXFD" },
+                                              holding_location: { label: "Media Collection", value: "MEDIA" } }
       expect(response).to render_template(:new)
       expect(assigns(:holding_request).holding_id).to eq "4567"
       expect(assigns(:holding_request).holding_library).to eq({ label: "Oxford College Library", value: "OXFD" })
+      expect(assigns(:holding_request).holding_location).to eq({ label: "Media Collection", value: "MEDIA" })
     end
 
     it "can create a holding request" do

@@ -60,14 +60,30 @@ RSpec.describe HoldingRequest do
     expect(hr.title_request_url).to eq expected_url
   end
 
-  it "gives a list of allowed libraries for pickup" do
+  it "gives a list of allowed libraries for pickup for an Oxford user with an Oxford book" do
     stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?user_id_type=all_unique&view=full&expand=none&apikey=fakeuserkey456")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record_oxford.xml'), headers: {})
     hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", user: user, holding_library: { label: "Oxford College Library", value: "OXFD" })
-    expect(hr.pickup_library_options).to be_an_instance_of Array
     expect(user.oxford_user?).to eq true
-    expect(hr.pickup_library_options).to include(["Oxford College Library", "OXFD"])
+    expect(hr.pickup_library_options).to eq([{ label: "Oxford College Library", value: "OXFD" }])
     expect(hr.holding_library).to eq({ label: "Oxford College Library", value: "OXFD" })
-    # expect(hr.pickup_library_options).not_to include()
+  end
+  it "gives a list of allowed libraries for pickup for a non-Oxford user for an Oxford book" do
+    stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?user_id_type=all_unique&view=full&expand=none&apikey=fakeuserkey456")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
+    hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", user: user, holding_library: { label: "Oxford College Library", value: "OXFD" })
+    expect(user.oxford_user?).to eq false
+    expect(hr.pickup_library_options).to eq(described_class.pickup_libraries)
+    expect(hr.holding_library).to eq({ label: "Oxford College Library", value: "OXFD" })
+  end
+
+  it "gives a list of allowed libraries for pickup for a non-Oxford user for Media from the Music library" do
+    stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?user_id_type=all_unique&view=full&expand=none&apikey=fakeuserkey456")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
+    hr = described_class.new(mms_id: "9936984306602486", holding_id: "22391093010002486", user: user, holding_library: { label: "Marian K. Heilbrun Music Media", value: "MUSME" },
+                             holding_location: { label: "Media Collection", value: "MEDIA" })
+    expect(user.oxford_user?).to eq false
+    expect(hr.pickup_library_options).to eq([{ label: "Marian K. Heilbrun Music Media", value: "MUSME" }])
+    expect(hr.holding_library).to eq({ label: "Marian K. Heilbrun Music Media", value: "MUSME" })
   end
 end

@@ -63,7 +63,8 @@ module Statusable
     @holding_id = availability.at_xpath('subfield[@code="8"]')&.inner_text
     @library_label = availability.at_xpath('subfield[@code="q"]')&.inner_text
     @library_code = availability.at_xpath('subfield[@code="b"]')&.inner_text
-    @location = availability.at_xpath('subfield[@code="c"]')&.inner_text
+    @location_code = availability.at_xpath('subfield[@code="j"]')&.inner_text
+    @location_label = availability.at_xpath('subfield[@code="c"]')&.inner_text
     @call_number = availability.at_xpath('subfield[@code="d"]')&.inner_text
   end
 
@@ -72,7 +73,7 @@ module Statusable
     {
       holding_id: @holding_id,
       library: { label: @library_label, value: @library_code },
-      location: @location,
+      location: { label: @location_label, value: @location_code },
       call_number: @call_number,
       availability: {
         copies: @copies,
