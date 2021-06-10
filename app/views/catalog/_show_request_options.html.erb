@@ -16,16 +16,40 @@
           <tr id="physical-holding-<%= index.to_s %>">
             <td><%= "#{holding[:library]}: #{holding[:location]}" %></td>
             <td><%=holding[:call_number] %></td>
-            <td><%= pluralize(holding[:availability][:copies], 'copy') +
+            <td><a href="#" class="toggle-table"><%= pluralize(holding[:availability][:copies], 'copy') +
                     ", #{holding[:availability][:available]} available" +
                     ", " + pluralize(holding[:availability][:requests], 'request')
-                %>
+                %></a>
+                <table class="table toggled-table" style="display: none;">
+                  <thead>
+                    <tr>
+                      <th scope="col">barcode</th>
+                      <th scope="col">type</th>
+                      <th scope="col">policy</th>
+                      <th scope="col">status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% holding[:holding_view].each do |holding_item| %>
+                    <tr>
+                      <td><%=holding_item[:barcode] %></td>
+                      <td><%=holding_item[:type] %></td>
+                      <td><%=holding_item[:policy] %></td>
+                      <td><%=holding_item[:status] %></td>
+                    </tr>
+                    <% end %>
+                    
+                  </tbody>
+                </table>
+  
+
             </td>
             <td><%= button_to("Request", new_holding_requests_path, method: :get, params: {holding_id: holding[:holding_id]}) %></td>
           </tr>
+
         <% end %>
       </tbody>
-    </table>
+  </table>
   <% end %>
   <% if document.online_holdings %>
     <table class="table">

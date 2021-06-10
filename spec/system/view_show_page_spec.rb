@@ -354,6 +354,13 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(page).not_to have_content('2 copies, 2 available, 1 requests')
     end
 
+    it "shows item level holdings information" do
+      click_link('3 copies, 3 available, 0 requests')
+      expect(page).to have_content('010002885298')
+      expect(page).to have_content('Item in place')
+      expect(page).to have_content('barcode')
+    end
+
     it "has a button to request holdings" do
       sign_in(User.new(uid: "foo"))
       within '#physical-holding-1' do

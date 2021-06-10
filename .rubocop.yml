@@ -50,6 +50,7 @@ Metrics/ModuleLength:
         - 'app/models/concerns/blacklight/solr/document/marc_export.rb'
         - 'lib/traject/extraction_tools.rb'
         - 'config/prepends/custom_citation_logic.rb'
+        - 'app/models/concerns/statusable.rb'
 
 Metrics/PerceivedComplexity:
     Exclude:
