@@ -13,6 +13,7 @@ class HoldingRequestsController < ApplicationController
     @holding_request = HoldingRequest.new({ mms_id: params["holding_request"]["mms_id"],
                                             holding_id: params["holding_request"]["holding_id"],
                                             pickup_library: params["holding_request"]["pickup_library"],
+                                            comment: params["holding_request"]["comment"],
                                             user: current_user })
     if @holding_request.save
       redirect_to holding_request_path @holding_request.id

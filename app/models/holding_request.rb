@@ -72,6 +72,7 @@ class HoldingRequest
       "pickup_location_type": "LIBRARY",
       "pickup_location_library": pickup_library,
       "pickup_location_institution": "01GALI_EMORY",
+      # TODO: Build last_interest_date from parameters and display
       "comment": comment
     }
   end

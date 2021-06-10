@@ -40,6 +40,7 @@ RSpec.describe "holding request new", type: :request do
       expect(response).to render_template(:show)
       expect(response.body).to include("36181952270002486")
       expect(response.body).to include("MUSME")
+      expect(response.body).to include("IGNORE - TESTING")
     end
 
     it "renders a successful response" do
