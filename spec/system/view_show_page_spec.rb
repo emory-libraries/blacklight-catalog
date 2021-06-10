@@ -345,13 +345,15 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
 
   context "with requests" do
     let(:solr_doc) { described_class.find(MLA_HANDBOOK[:id]) }
-
+    let(:user) { User.create(uid: "janeq") }
     before do
       delete_all_documents_from_solr
       solr = Blacklight.default_index.connection
       solr.add(MLA_HANDBOOK)
       solr.commit
       visit solr_document_path(MLA_HANDBOOK[:id])
+      stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?user_id_type=all_unique&view=full&expand=none&apikey=fakeuserkey456")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
     end
 
     it "shows complex holdings and requests information" do
@@ -362,7 +364,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     end
 
     it "has a button to request holdings" do
-      sign_in(User.new(uid: "foo"))
+      sign_in(user)
       within '#physical-holding-1' do
         expect(page).to have_css(".button_to")
         expect(page.find_field('holding_id', type: :hidden)).to be

@@ -23,6 +23,8 @@ RSpec.describe "Create a request for a holding", type: :system, js: true, alma: 
     solr = Blacklight.default_index.connection
     solr.add(MLA_HANDBOOK)
     solr.commit
+    stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?user_id_type=all_unique&view=full&expand=none&apikey=fakeuserkey456")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
   end
 
   it "has a button to request holdings" do
