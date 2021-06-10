@@ -1670,5 +1670,172 @@
         </record>
       </metadata>
     </record>
+    <record>
+      <header>
+        <identifier>oai:alma.01GALI_EMORY:990023916570302486</identifier>
+        <datestamp>2021-01-29T19:47:03Z</datestamp>
+        <setSpec>print_books</setSpec>
+        <setSpec>blacklight</setSpec>
+      </header>
+      <metadata>
+        <record xmlns="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+          <leader>01571cam a2200445 a 4500</leader>
+          <controlfield tag="005">20160418235235.0</controlfield>
+          <controlfield tag="008">930729s1993    dcuab    b   f100 0 eng  </controlfield>
+          <controlfield tag="001">990023916570302486</controlfield>
+          <datafield tag="010" ind1=" " ind2=" ">
+            <subfield code="a">93030188</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(Aleph)002391657EMU01</subfield>
+          </datafield>
+          <datafield tag="035" ind1="9" ind2=" ">
+            <subfield code="a">u3302391</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">ocm28676704</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(Sirsi) o28676704</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(OCoLC)28676704</subfield>
+            <subfield code="0">(uri) http://www.worldcat.org/oclc/28676704</subfield>
+          </datafield>
+          <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">DLC</subfield>
+            <subfield code="c">DLC</subfield>
+            <subfield code="d">GPO</subfield>
+            <subfield code="d">AGL</subfield>
+            <subfield code="d">OCL</subfield>
+            <subfield code="d">BTCTA</subfield>
+            <subfield code="d">OCLCQ</subfield>
+            <subfield code="d">UtOrBLW</subfield>
+          </datafield>
+          <datafield tag="049" ind1=" " ind2=" ">
+            <subfield code="a">EMUU</subfield>
+          </datafield>
+          <datafield tag="050" ind1="0" ind2="0">
+            <subfield code="a">TP345.A1</subfield>
+            <subfield code="b">F88 1993</subfield>
+          </datafield>
+          <datafield tag="074" ind1=" " ind2=" ">
+            <subfield code="a">0624</subfield>
+          </datafield>
+          <datafield tag="082" ind1="0" ind2="0">
+            <subfield code="a">333.8/233</subfield>
+            <subfield code="2">20</subfield>
+          </datafield>
+          <datafield tag="086" ind1="0" ind2=" ">
+            <subfield code="a">I 19:1570</subfield>
+          </datafield>
+          <datafield tag="245" ind1="0" ind2="4">
+            <subfield code="a">The Future of energy gases /</subfield>
+            <subfield code="c">David G. Howell, editor ; associate editors, Katryn Wiese [and others].</subfield>
+          </datafield>
+          <datafield tag="264" ind1=" " ind2="2">
+            <subfield code="a">Denver, CO :</subfield>
+            <subfield code="b">For sale by the U.S. Geological Survey, Books and Open-File Reports.</subfield>
+          </datafield>
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">Washington :</subfield>
+            <subfield code="b">U.S. G.P.O.,</subfield>
+            <subfield code="c">1993.</subfield>
+          </datafield>
+          <datafield tag="300" ind1=" " ind2=" ">
+            <subfield code="a">x, 890 pages :</subfield>
+            <subfield code="b">illustrations, maps (some color) ;</subfield>
+            <subfield code="c">29 cm.</subfield>
+          </datafield>
+          <datafield tag="336" ind1=" " ind2=" ">
+            <subfield code="a">text</subfield>
+            <subfield code="b">txt</subfield>
+            <subfield code="2">rdacontent</subfield>
+          </datafield>
+          <datafield tag="337" ind1=" " ind2=" ">
+            <subfield code="a">unmediated</subfield>
+            <subfield code="b">n</subfield>
+            <subfield code="2">rdamedia</subfield>
+          </datafield>
+          <datafield tag="338" ind1=" " ind2=" ">
+            <subfield code="a">volume</subfield>
+            <subfield code="b">nc</subfield>
+            <subfield code="2">rdacarrier</subfield>
+          </datafield>
+          <datafield tag="490" ind1="1" ind2=" ">
+            <subfield code="a">U.S. Geological Survey professional paper ;</subfield>
+            <subfield code="v">1570</subfield>
+          </datafield>
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">Based on papers presented at a conference held in Palo Alto, Calif., Oct. 1992.</subfield>
+          </datafield>
+          <datafield tag="504" ind1=" " ind2=" ">
+            <subfield code="a">Includes bibliographical references.</subfield>
+          </datafield>
+          <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">Gas as fuel</subfield>
+            <subfield code="v">Congresses.</subfield>
+            <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh2008117782</subfield>
+          </datafield>
+          <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">Hydrogen as fuel</subfield>
+            <subfield code="v">Congresses.</subfield>
+            <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh2008122173</subfield>
+          </datafield>
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Howell, D. G.</subfield>
+            <subfield code="0">(uri) http://id.loc.gov/authorities/names/n79001880</subfield>
+            <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n79001880</subfield>
+          </datafield>
+          <datafield tag="830" ind1=" " ind2="0">
+            <subfield code="a">U.S. Geological Survey professional paper ;</subfield>
+            <subfield code="v">1570.</subfield>
+            <subfield code="0">(uri) http://id.loc.gov/authorities/names/n88643688</subfield>
+            <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n88643688</subfield>
+          </datafield>
+          <datafield tag="856" ind1="4" ind2="1">
+            <subfield code="u">EMU. Fixed (eip/sej 9/29/09).</subfield>
+          </datafield>
+          <datafield tag="910" ind1=" " ind2=" ">
+            <subfield code="a">RDA ENRICHED</subfield>
+          </datafield>
+          <datafield tag="910" ind1=" " ind2=" ">
+            <subfield code="a">MARS</subfield>
+          </datafield>
+          <datafield tag="945" ind1=" " ind2=" ">
+            <subfield code="a">EMU. Fixed (eip/sej 9/29/09).</subfield>
+          </datafield>
+          <datafield tag="945" ind1=" " ind2=" ">
+            <subfield code="a">9DT</subfield>
+            <subfield code="2">20090929</subfield>
+          </datafield>
+          <datafield tag="994" ind1=" " ind2=" ">
+            <subfield code="a">C0</subfield>
+            <subfield code="b">EMU</subfield>
+          </datafield>
+          <datafield tag="999" ind1=" " ind2=" ">
+            <subfield code="b">marc21</subfield>
+            <subfield code="c">10</subfield>
+            <subfield code="a">false</subfield>
+          </datafield>
+          <datafield tag="998" ind1=" " ind2=" ">
+            <subfield code="a">53290683670002486</subfield>
+            <subfield code="c">Not Available</subfield>
+            <subfield code="b">BOOK</subfield>
+            <subfield code="8">53290683670002486</subfield>
+          </datafield>
+          <datafield tag="HOL852" ind1="3" ind2=" ">
+            <subfield code="b">LSC</subfield>
+            <subfield code="c">USTORGD</subfield>
+            <subfield code="h"> I 19.16:1570 </subfield>
+            <subfield code="8">22330699290002486</subfield>
+          </datafield>
+          <datafield tag="997" ind1=" " ind2=" ">
+            <subfield code="b">GOVRECORD</subfield>
+            <subfield code="a">10002306173</subfield>
+          </datafield>
+        </record>
+      </metadata>
+    </record>
   </ListRecords>
 </OAI-PMH>

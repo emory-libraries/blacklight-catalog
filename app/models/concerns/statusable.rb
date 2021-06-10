@@ -6,7 +6,7 @@ module Statusable
     ENV['ALMA_API_URL'] || "https://api-na.hosted.exlibrisgroup.com"
   end
 
-  def api_key
+  def api_bib_key
     ENV.fetch('ALMA_BIB_KEY')
   end
 
@@ -29,11 +29,11 @@ module Statusable
   end
 
   def full_record_url
-    "#{api_url}/almaws/v1/bibs/#{id}#{query_inst}#{api_key}"
+    "#{api_url}/almaws/v1/bibs/#{id}#{query_inst}#{api_bib_key}"
   end
 
   def holding_view_url(holding_id)
-    "#{api_url}/almaws/v1/bibs/#{id}#{holding_query(holding_id)}#{api_key}"
+    "#{api_url}/almaws/v1/bibs/#{id}#{holding_query(holding_id)}#{api_bib_key}"
   end
 
   def holding_query(holding_id)
@@ -60,7 +60,7 @@ module Statusable
 
   def retrieve_requests(holding_id)
     base_requests_link = full_record.at_xpath('bib/requests').attributes["link"].value
-    url = base_requests_link + "?status=active&apikey=#{api_key}"
+    url = base_requests_link + "?status=active&apikey=#{api_bib_key}"
     response = RestClient.get url, { accept: :xml }
     body = Nokogiri::XML(response)
     request_holding_id = body.at_xpath('user_requests/user_request/holding_id').inner_text
@@ -72,13 +72,14 @@ module Statusable
   end
 
   def physical_item_values(availability)
-    @copies = availability.at_xpath('subfield[@code="f"]').inner_text.to_i
-    unavailable = availability.at_xpath('subfield[@code="g"]').inner_text.to_i
-    @available = @copies - unavailable
-    @holding_id = availability.at_xpath('subfield[@code="8"]').inner_text
-    @library = availability.at_xpath('subfield[@code="q"]').inner_text
-    @location = availability.at_xpath('subfield[@code="c"]').inner_text
-    @call_number = availability.at_xpath('subfield[@code="d"]').inner_text
+    @availability_phrase = availability.at_xpath('subfield[@code="e"]')&.inner_text
+    @copies = availability.at_xpath('subfield[@code="f"]')&.inner_text&.to_i
+    unavailable = availability.at_xpath('subfield[@code="g"]')&.inner_text&.to_i
+    @available = (@copies - unavailable if @copies)
+    @holding_id = availability.at_xpath('subfield[@code="8"]')&.inner_text
+    @library = availability.at_xpath('subfield[@code="q"]')&.inner_text
+    @location = availability.at_xpath('subfield[@code="c"]')&.inner_text
+    @call_number = availability.at_xpath('subfield[@code="d"]')&.inner_text
   end
 
   def holding_items_values(holding_id)
@@ -106,7 +107,8 @@ module Statusable
       availability: {
         copies: @copies,
         available: @available,
-        requests: requests(@holding_id)
+        requests: requests(@holding_id),
+        availability_phrase: @availability_phrase
       },
       holding_view: holding_items_values(@holding_id)
     }
@@ -116,10 +118,12 @@ module Statusable
     return nil unless url_fulltext
     url_fulltext.map do |entry|
       url_hash = JSON.parse(entry)
-      return url_hash if url_hash.keys.include?("url")
-      # TODO: Can remove following line and preceding guard clause once Solr
-      # has been re-indexed
-      { url: url_hash.keys.first, label: url_hash.values.first }
+      # TODO: Can remove conditional once re-index is completed, and just keep the "if" portion
+      if url_hash.keys.include?("url")
+        url_hash.symbolize_keys!
+      else
+        { url: url_hash.keys.first, label: url_hash.values.first }
+      end
     end
   end
 

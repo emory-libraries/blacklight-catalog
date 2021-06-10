@@ -56,6 +56,14 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   config.before do
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/990027507910302486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_10.xml'), headers: {})
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/9937242404302486?view=full&expand=p_avail,e_avail,d_avail,requests&apikey=fakebibkey123")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_9.xml'), headers: {})
+    stub_request(:get, "http://www.example.com/almaws/v1/users/mkadel/requests/36181952270002486?apikey=fakeuserkey456&user_id_type=all_unique")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_request_test_file.json'))
+    stub_request(:post, "http://www.example.com/almaws/v1/users/mkadel/requests?user_id_type=all_unique&mms_id=9936550118202486&allow_same_request=false&apikey=fakeuserkey456")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_request_test_file.json'))
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/990016148150302486?view=full&expand=p_avail,e_avail,d_avail,requests&apikey=fakebibkey123")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_8.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/9937275387802486?view=full&expand=p_avail,e_avail,d_avail,requests&apikey=fakebibkey123")
@@ -102,6 +110,13 @@ RSpec.configure do |config|
       .to_return(status: 200, body: File.read(fixture_path + '/22172707720002486.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/990005059530302486/holdings/22172707740002486/items?apikey=fakebibkey123")
       .to_return(status: 200, body: File.read(fixture_path + '/22172707740002486.xml'), headers: {})
+
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/990027507910302486/holdings/22236301230002486/items?apikey=fakebibkey123")
+      .to_return(status: 200, body: File.read(fixture_path + '/22236301230002486.xml'), headers: {})
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/990027507910302486/holdings/22311186980002486/items?apikey=fakebibkey123")
+      .to_return(status: 200, body: File.read(fixture_path + '/22311186980002486.xml'), headers: {})
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/990027507910302486/holdings/22319997630002486/items?apikey=fakebibkey123")
+      .to_return(status: 200, body: File.read(fixture_path + '/22319997630002486.xml'), headers: {})
 
     stub_request(
       :get,

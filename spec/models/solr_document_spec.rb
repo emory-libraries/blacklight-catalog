@@ -15,7 +15,7 @@ RSpec.describe SolrDocument do
   before do
     delete_all_documents_from_solr
     solr = Blacklight.default_index.connection
-    solr.add([TEST_ITEM, MULTIPLE_HOLDINGS_TEST_ITEM, MLA_HANDBOOK, ONLINE])
+    solr.add([TEST_ITEM, MULTIPLE_HOLDINGS_TEST_ITEM, MLA_HANDBOOK, ONLINE, FUNKY_URL_PARTY, LIMITED_AVA_INFO])
     solr.commit
   end
 
@@ -42,7 +42,7 @@ RSpec.describe SolrDocument do
       expect(solr_doc.physical_holdings.last[:library]).to eq "Marian K. Heilbrun Music Media"
       expect(solr_doc.physical_holdings.last[:location]).to eq "Circulation Desk"
       expect(solr_doc.physical_holdings.last[:call_number]).to eq "ML410 .M5 H87 2019 CD-SOUND"
-      expect(solr_doc.physical_holdings.last[:availability]).to eq({ copies: 1, available: 1, requests: 0 })
+      expect(solr_doc.physical_holdings.last[:availability]).to eq({ copies: 1, available: 1, requests: 0, availability_phrase: "available" })
     end
   end
 
@@ -50,10 +50,19 @@ RSpec.describe SolrDocument do
     let(:solr_doc) { described_class.find(MLA_HANDBOOK[:id]) }
 
     it "can calculate complex availability information" do
-      expect(solr_doc.physical_holdings[0][:availability]).to eq({ copies: 3, available: 3, requests: 0 })
-      expect(solr_doc.physical_holdings[1][:availability]).to eq({ copies: 2, available: 2, requests: 1 })
-      expect(solr_doc.physical_holdings[2][:availability]).to eq({ copies: 3, available: 1, requests: 0 })
+      expect(solr_doc.physical_holdings[0][:availability]).to eq({ copies: 3, available: 3, requests: 0, availability_phrase: "available" })
+      expect(solr_doc.physical_holdings[1][:availability]).to eq({ copies: 2, available: 2, requests: 1, availability_phrase: "available" })
+      expect(solr_doc.physical_holdings[2][:availability]).to eq({ copies: 3, available: 1, requests: 0, availability_phrase: "available" })
       expect(solr_doc.online_holdings).to be nil
+    end
+  end
+
+  context 'physical holdings with limited information from alma' do
+    let(:solr_doc) { described_class.find(LIMITED_AVA_INFO[:id]) }
+    it "does not raise an error" do
+      expect(solr_doc.physical_holdings[0][:availability]).to eq({ copies: 7, available: 7, requests: 0, availability_phrase: "available" })
+      expect(solr_doc.physical_holdings[1][:availability]).to eq({ copies: 3, available: 3, requests: 0, availability_phrase: "available" })
+      expect(solr_doc.physical_holdings[2][:availability]).to eq({ copies: nil, available: nil, requests: 0, availability_phrase: "check_holdings" })
     end
   end
 
@@ -71,6 +80,20 @@ RSpec.describe SolrDocument do
       expect(old_style_solr_doc.physical_holdings).to be nil
       expect(old_style_solr_doc.online_holdings).to eq(online_holdings)
       expect(new_style_solr_doc.online_holdings).to eq(online_holdings)
+    end
+  end
+
+  context 'funky url' do
+    let(:solr_doc) { described_class.find(FUNKY_URL_PARTY[:id]) }
+    let(:online_holdings) do
+      [{
+        url: "http://proxy.library.emory.edu/login?url=https://www.sciencedirect.com/science/book/9780702078798",
+        label: "Online resource from Elsevier"
+      }]
+    end
+
+    it "can display availability with the correct style" do
+      expect(solr_doc.online_holdings).to eq(online_holdings)
     end
   end
 end

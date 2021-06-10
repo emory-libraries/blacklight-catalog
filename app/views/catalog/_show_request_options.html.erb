@@ -16,10 +16,14 @@
           <tr id="physical-holding-<%= index.to_s %>">
             <td><%= "#{holding[:library]}: #{holding[:location]}" %></td>
             <td><%=holding[:call_number] %></td>
-            <td><a href="#" class="toggle-table"><%= pluralize(holding[:availability][:copies], 'copy') +
-                    ", #{holding[:availability][:available]} available" +
-                    ", " + pluralize(holding[:availability][:requests], 'request')
-                %></a>
+            <td><a href="#" class="toggle-table"><% if holding[:availability][:availability_phrase] != "check_holdings" %>
+                <%= pluralize(holding[:availability][:copies], 'copy') +
+                      ", #{holding[:availability][:available]} available" +
+                      ", " + pluralize(holding[:availability][:requests], 'request')
+                  %>
+              <% else %>
+                Check holdings
+              <% end %></a>
                 <table class="table toggled-table" style="display: none;">
                   <thead>
                     <tr>
@@ -41,10 +45,8 @@
                     
                   </tbody>
                 </table>
-  
-
             </td>
-            <td><%= button_to("Request", new_holding_requests_path, method: :get, params: {holding_id: holding[:holding_id]}) %></td>
+            <td><%= button_to("Request", new_holding_request_path, method: :get, params: {mms_id: document.id, holding_id: holding[:holding_id]}) %></td>
           </tr>
 
         <% end %>
@@ -69,4 +71,10 @@
       </tbody>
     </table>
   <% end %>
+<<<<<<< HEAD
 </div>
+=======
+  <!-- TODO: Change the link below to the production url for Alma if we continue to use this -->
+  <%= link_to("Services page", "#{ENV["ALMA_BASE_SANDBOX_URL"]}/discovery/openurl?institution=#{ENV["INSTITUTION"]}&vid=#{ENV["INSTITUTION"]}:blacklight&rft.mms_id=#{document.id}") %>
+</div>
+>>>>>>> main

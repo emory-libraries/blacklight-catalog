@@ -17,6 +17,8 @@ Layout/LineLength:
         - 'spec/support/solr_documents/online.rb'
         - 'spec/support/solr_documents/online_new.rb'
         - 'spec/support/solr_documents/online_and_physical.rb'
+        - 'spec/support/solr_documents/funky_url_party.rb'
+        - spec/support/solr_documents/limited_ava_info.rb
 
 Metrics/AbcSize:
     Exclude:
@@ -82,14 +84,7 @@ RSpec/DescribeClass:
 
 RSpec/ExampleLength:
     Exclude:
-        - spec/requests/not_found_requests_spec.rb
-        - spec/routing/alma_availability_routes_spec.rb
-        - spec/services/oai_processing_service_spec.rb
-        - spec/services/oai_processing_single_service_spec.rb
-        - spec/system/facet_by_year_spec.rb
-        - spec/system/targeted_field_search_spec.rb
-        - spec/system/view_show_page_spec.rb
-        - spec/system/request_holding_spec.rb
+        - 'spec/**/*'
 
 Style/Next:
     Exclude:
