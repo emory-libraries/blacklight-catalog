@@ -139,6 +139,7 @@ class CatalogController < ApplicationController
       label: 'Publication/Creation',
       helper_method: :multiple_values_new_line)
     config.add_index_field 'format_ssim', label: 'Type'
+    config.add_index_field 'edition_tsim', label: 'Edition', helper_method: :multiple_values_new_line
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
