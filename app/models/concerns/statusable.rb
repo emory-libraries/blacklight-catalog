@@ -63,7 +63,7 @@ module Statusable
     url = base_requests_link + "?status=active&apikey=#{api_bib_key}"
     response = RestClient.get url, { accept: :xml }
     body = Nokogiri::XML(response)
-    request_holding_id = body.at_xpath('user_requests/user_request/holding_id').inner_text
+    request_holding_id = body.at_xpath('user_requests/user_request/holding_id')&.inner_text
     if holding_id == request_holding_id
       1
     else

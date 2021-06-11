@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<user_requests total_record_count="1">
+  <user_request>
+    <request_id>2884008180002486</request_id>
+    <additional_id>288-400-818</additional_id>
+    <request_type>WORK_ORDER</request_type>
+    <request_sub_type desc="Technical Services">AcqWorkOrder</request_sub_type>
+    <mms_id>990010439240302486</mms_id>
+    <title>Walking with the wind : a memoir of the movement / John Lewis with Michael D'Orso.</title>
+    <author>Lewis, John, 1940-2020, author.</author>
+    <pickup_location>MARBL Circulation</pickup_location>
+    <pickup_location_type>CIRCULATION_DESK</pickup_location_type>
+    <pickup_location_library>MARBL</pickup_location_library>
+    <pickup_location_circulation_desk>DEFAULT_CIRC_DESK</pickup_location_circulation_desk>
+    <managed_by_library/>
+    <managed_by_circulation_desk/>
+    <managed_by_library_code/>
+    <managed_by_circulation_desk_code/>
+    <material_type desc="Book">BOOK</material_type>
+    <volume/>
+    <issue/>
+    <part/>
+    <date_of_publication/>
+    <request_status>In Process</request_status>
+    <request_date>2016-01-05Z</request_date>
+    <request_time>2016-01-05T19:33:35.580Z</request_time>
+    <task_name>In Process</task_name>
+    <expiry_date>2016-01-07Z</expiry_date>
+    <item_id>23191369680002486</item_id>
+    <barcode>010002630102</barcode>
+  </user_request>
+</user_requests>

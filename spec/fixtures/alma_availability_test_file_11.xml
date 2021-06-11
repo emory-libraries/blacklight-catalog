@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bib>
+  <mms_id>990010439240302486</mms_id>
+  <record_format>marc21</record_format>
+  <linked_record_id/>
+  <title>Walking with the wind : a memoir of the movement /</title>
+  <author>Lewis, John,</author>
+  <isbn>9781476797717</isbn>
+  <complete_edition>Simon &amp; Schuster trade paperback edtion.</complete_edition>
+  <network_numbers>
+    <network_number>(OCoLC)901049348</network_number>
+    <network_number>ocn901049348</network_number>
+    <network_number>u1768572</network_number>
+    <network_number>(Aleph)001043924EMU01</network_number>
+    <network_number>(OCoLC)904538856</network_number>
+  </network_numbers>
+  <place_of_publication>New York :</place_of_publication>
+  <date_of_publication>2015.</date_of_publication>
+  <publisher_const>Simon &amp; Schuster Paperbacks,</publisher_const>
+  <holdings link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990010439240302486/holdings"/>
+  <created_by>import</created_by>
+  <created_date>2015-12-03Z</created_date>
+  <last_modified_by>System</last_modified_by>
+  <last_modified_date>2020-08-29Z</last_modified_date>
+  <suppress_from_publishing>false</suppress_from_publishing>
+  <suppress_from_external_search>false</suppress_from_external_search>
+  <sync_with_oclc>NONE</sync_with_oclc>
+  <sync_with_libraries_australia>NONE</sync_with_libraries_australia>
+  <originating_system>BACKSTAGE</originating_system>
+  <originating_system_id>001043924-EMU01</originating_system_id>
+  <cataloging_level desc="Default Level">00</cataloging_level>
+  <record>
+    <leader>05288cam a2200901Ii 4500</leader>
+    <controlfield tag="001">990010439240302486</controlfield>
+    <controlfield tag="005">20200814054550.0</controlfield>
+    <controlfield tag="008">150129r20151998nyuaf         001 0aeng d</controlfield>
+    <datafield ind1=" " ind2=" " tag="019">
+      <subfield code="a">904538856</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">1476797714</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">9781476797717</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(Aleph)001043924EMU01</subfield>
+    </datafield>
+    <datafield ind1="9" ind2=" " tag="035">
+      <subfield code="a">u1768572</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">ocn901049348</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(OCoLC)901049348</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="z">(OCoLC)904538856</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="040">
+      <subfield code="a">YDXCP</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="e">rda</subfield>
+      <subfield code="c">YDXCP</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">BDX</subfield>
+      <subfield code="d">NOS</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">CDX</subfield>
+      <subfield code="d">HTM</subfield>
+      <subfield code="d">OCLCF</subfield>
+      <subfield code="d">OBE</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">WVU</subfield>
+      <subfield code="d">OCL</subfield>
+      <subfield code="d">PFLCL</subfield>
+      <subfield code="d">VBC</subfield>
+      <subfield code="d">DCB</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">OCL</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">UtOrBLW</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="043">
+      <subfield code="a">n-us---</subfield>
+      <subfield code="a">n-usu--</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="049">
+      <subfield code="b">050000099326</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="050">
+      <subfield code="a">E840.8.L43</subfield>
+      <subfield code="b">A3 2015</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="4" tag="082">
+      <subfield code="a">328.73092</subfield>
+      <subfield code="a">B</subfield>
+      <subfield code="2">23</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="092">
+      <subfield code="a">328.73092</subfield>
+      <subfield code="b">L6744W</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="100">
+      <subfield code="a">Lewis, John,</subfield>
+      <subfield code="d">1940-2020,</subfield>
+      <subfield code="e">author.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="0" tag="245">
+      <subfield code="a">Walking with the wind :</subfield>
+      <subfield code="b">a memoir of the movement /</subfield>
+      <subfield code="c">John Lewis with Michael D'Orso.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="250">
+      <subfield code="a">Simon &amp; Schuster trade paperback edtion.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="1" tag="264">
+      <subfield code="a">New York :</subfield>
+      <subfield code="b">Simon &amp; Schuster Paperbacks,</subfield>
+      <subfield code="c">2015.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="264">
+      <subfield code="c">©1998</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="300">
+      <subfield code="a">xvii, 526 pages, 16 unnumbered pages of plates :</subfield>
+      <subfield code="b">illustrations ;</subfield>
+      <subfield code="c">23 cm</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="336">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="337">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="338">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="590">
+      <subfield code="a">Oxford Library Special Collections copy from the library of Claude Sitton with his manuscript annotations.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="590">
+      <subfield code="a">Manuscript, Archives, and Rare Book Library copy has dust jacket; has presentation inscription: To Nelie, Happy Birthday! Best wishes, John Lewis, 7-18-98; forms part of the J. Willis Hurst Library.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="590">
+      <subfield code="a">Manuscript, Archives, and Rare Book Library copy has dust jacket; has presentation inscription: To Paul, my good friend. Keep the faith, Best wishes, John Lewis; from the library of Paul R. Jones.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="590">
+      <subfield code="a">Oxford Library Special Collections copy signed by John Lewis.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="500">
+      <subfield code="a">Includes index.</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="505">
+      <subfield code="a">Part one. Coming up -- "That was some hard times" -- A small world, a safe world -- Pilot light -- Part two. Nashville -- "The boy from Troy" -- Soul force -- "Nigras, nigras everywhere!" -- Part three. Freedom ride -- "This is the students" -- Last supper -- Mr. Greyhound -- Part four. Snick -- Rise up the rug -- "We march today" -- "Keep your stick down" -- Part five. "Uhuru" -- "Feel angry with me" -- Freedom fighters -- Into Selma -- Part six. Going down -- Bloody Sunday -- De-election -- "Why?" -- Part seven. Home -- The new South -- Old ghosts -- Onward.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="520">
+      <subfield code="a">"Lewis's role in the Nashville Movement - a student-led effort to desegregate the city of Nashville through nonviolent sit-ins - made him a defining activist of his day and helped set the tone for the civil rights movement. Though he was repeatedly a victim of violence and intimidation, his belief in peaceful action, inspired by his mentor, Dr. Martin Luther King, became the core of his cause and vision. In this classic bestseller, John Lewis vividly captures America's tumultuous civil rights era. His natural gift as a leader would continue. In 1986, he won a congressional seat in Georgia, and remains in office to this day."--The cover.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">African American author.</subfield>
+      <subfield code="2">local</subfield>
+      <subfield code="5">GEU</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="0" tag="600">
+      <subfield code="a">Lewis, John,</subfield>
+      <subfield code="d">1940-2020</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="7" tag="600">
+      <subfield code="a">Lewis, John,</subfield>
+      <subfield code="d">1940 February 21-</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01830728</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="0" tag="610">
+      <subfield code="a">United States.</subfield>
+      <subfield code="b">Congress.</subfield>
+      <subfield code="b">House</subfield>
+      <subfield code="v">Biography.</subfield>
+    </datafield>
+    <datafield ind1="2" ind2="0" tag="610">
+      <subfield code="a">Student Nonviolent Coordinating Committee (U.S.)</subfield>
+      <subfield code="v">Biography.</subfield>
+    </datafield>
+    <datafield ind1="2" ind2="7" tag="610">
+      <subfield code="a">Student Nonviolent Coordinating Committee (U.S.)</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00511190</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="7" tag="610">
+      <subfield code="a">United States.</subfield>
+      <subfield code="b">Congress.</subfield>
+      <subfield code="b">House.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00536930</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="648">
+      <subfield code="a">1900-1999</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Legislators</subfield>
+      <subfield code="z">United States</subfield>
+      <subfield code="v">Biography.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">African American legislators</subfield>
+      <subfield code="v">Biography.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Civil rights workers</subfield>
+      <subfield code="z">United States</subfield>
+      <subfield code="v">Biography.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">African American civil rights workers</subfield>
+      <subfield code="v">Biography.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">African Americans</subfield>
+      <subfield code="x">Civil rights.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Civil rights movements</subfield>
+      <subfield code="z">Southern States</subfield>
+      <subfield code="x">History</subfield>
+      <subfield code="y">20th century.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">African American civil rights workers.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00799093</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">African American legislators.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00799220</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">African Americans</subfield>
+      <subfield code="x">Civil rights.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00799575</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Civil rights movements.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00862708</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Civil rights workers.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00862721</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Legislators.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00995828</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="651">
+      <subfield code="a">Southern States.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01244550</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="651">
+      <subfield code="a">United States.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01204155</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="655">
+      <subfield code="a">Biography.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="655">
+      <subfield code="a">History.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Biographies.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01919896</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Biography.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01423686</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">History.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01411628</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Biographies.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="a">Lewis, John,</subfield>
+      <subfield code="d">1940-2020,</subfield>
+      <subfield code="e">inscriber.</subfield>
+      <subfield code="5">GEU</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="a">Hurst, J. Willis</subfield>
+      <subfield code="q">(John Willis),</subfield>
+      <subfield code="d">1920-2011,</subfield>
+      <subfield code="e">former owner.</subfield>
+      <subfield code="5">GEU</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="a">Jones, Paul R.</subfield>
+      <subfield code="q">(Paul Raymond),</subfield>
+      <subfield code="d">1928-2010,</subfield>
+      <subfield code="e">former owner.</subfield>
+      <subfield code="5">GEU</subfield>
+    </datafield>
+    <datafield ind1="2" ind2=" " tag="710">
+      <subfield code="a">Emory University Archives.</subfield>
+      <subfield code="5">GEU</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="a">D'Orso, Michael,</subfield>
+      <subfield code="e">author.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="910">
+      <subfield code="a">MARS</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="940">
+      <subfield code="a">OXFD-YBP</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="945">
+      <subfield code="a">EMU</subfield>
+      <subfield code="b">av</subfield>
+      <subfield code="2">20130503</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="945">
+      <subfield code="a">EMU</subfield>
+      <subfield code="b">av</subfield>
+      <subfield code="2">20120814</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="945">
+      <subfield code="a">EMU mfc</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="945">
+      <subfield code="a">9DT</subfield>
+      <subfield code="2">19980619</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="945">
+      <subfield code="a">EMO</subfield>
+      <subfield code="b">JHS</subfield>
+      <subfield code="2">20140917</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="945">
+      <subfield code="a">emt</subfield>
+      <subfield code="b">hcp</subfield>
+      <subfield code="2">20190110</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="INT">
+      <subfield code="a">P</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="INST">
+      <subfield code="a">01GALI_EMORY</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="AVA">
+      <subfield code="0">990010439240302486</subfield>
+      <subfield code="8">22191369710002486</subfield>
+      <subfield code="a">01GALI_EMORY</subfield>
+      <subfield code="b">OXFD</subfield>
+      <subfield code="c">Book Stacks</subfield>
+      <subfield code="d">328.73092 L6731w</subfield>
+      <subfield code="e">available</subfield>
+      <subfield code="f">2</subfield>
+      <subfield code="g">0</subfield>
+      <subfield code="j">STACK</subfield>
+      <subfield code="k">1</subfield>
+      <subfield code="p">1</subfield>
+      <subfield code="q">Oxford College Library</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="AVA">
+      <subfield code="0">990010439240302486</subfield>
+      <subfield code="8">22191369650002486</subfield>
+      <subfield code="a">01GALI_EMORY</subfield>
+      <subfield code="b">OXFD</subfield>
+      <subfield code="c">Special Collections</subfield>
+      <subfield code="d">328.73092 L6746w</subfield>
+      <subfield code="e">available</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="g">0</subfield>
+      <subfield code="j">SPCOL</subfield>
+      <subfield code="k">1</subfield>
+      <subfield code="p">2</subfield>
+      <subfield code="q">Oxford College Library</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="AVA">
+      <subfield code="0">990010439240302486</subfield>
+      <subfield code="8">22364286030002486</subfield>
+      <subfield code="a">01GALI_EMORY</subfield>
+      <subfield code="b">THEO</subfield>
+      <subfield code="c">Book Stacks, 1st Floor</subfield>
+      <subfield code="d">E840.8 .L43 A3 2015</subfield>
+      <subfield code="e">available</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="g">0</subfield>
+      <subfield code="j">STACK</subfield>
+      <subfield code="k">0</subfield>
+      <subfield code="p">3</subfield>
+      <subfield code="q">Pitts Theology Library</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="AVA">
+      <subfield code="0">990010439240302486</subfield>
+      <subfield code="8">22191369730002486</subfield>
+      <subfield code="a">01GALI_EMORY</subfield>
+      <subfield code="b">UNIV</subfield>
+      <subfield code="c">Book Stacks</subfield>
+      <subfield code="d">E840.8 .L43 A3 1998</subfield>
+      <subfield code="e">available</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="g">0</subfield>
+      <subfield code="j">STACK</subfield>
+      <subfield code="k">0</subfield>
+      <subfield code="p">4</subfield>
+      <subfield code="q">Robert W. Woodruff Library</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="AVA">
+      <subfield code="0">990010439240302486</subfield>
+      <subfield code="8">22191369670002486</subfield>
+      <subfield code="a">01GALI_EMORY</subfield>
+      <subfield code="b">MARBL</subfield>
+      <subfield code="c">Locked Stacks</subfield>
+      <subfield code="d">2013 509</subfield>
+      <subfield code="e">available</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="g">0</subfield>
+      <subfield code="j">STACK</subfield>
+      <subfield code="k">4</subfield>
+      <subfield code="p">5</subfield>
+      <subfield code="q">Stuart A. Rose Manuscript, Archives, and Rare Book Library</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="AVA">
+      <subfield code="0">990010439240302486</subfield>
+      <subfield code="8">22191369690002486</subfield>
+      <subfield code="a">01GALI_EMORY</subfield>
+      <subfield code="b">MARBL</subfield>
+      <subfield code="c">Locked Stacks</subfield>
+      <subfield code="d">2012 1294</subfield>
+      <subfield code="e">unavailable</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="g">1</subfield>
+      <subfield code="j">STACK</subfield>
+      <subfield code="k">4</subfield>
+      <subfield code="p">6</subfield>
+      <subfield code="q">Stuart A. Rose Manuscript, Archives, and Rare Book Library</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="AVA">
+      <subfield code="0">990010439240302486</subfield>
+      <subfield code="8">22314718870002486</subfield>
+      <subfield code="a">01GALI_EMORY</subfield>
+      <subfield code="b">LSC</subfield>
+      <subfield code="c">
+      </subfield>
+      <subfield code="d">E840.8 .L43 A3 1998</subfield>
+      <subfield code="e">unavailable</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="g">1</subfield>
+      <subfield code="j">USTOR</subfield>
+      <subfield code="k">0</subfield>
+      <subfield code="p">7</subfield>
+      <subfield code="q">Library Service Center</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="AVE">
+      <subfield code="8">53410037690002486</subfield>
+      <subfield code="c">61400066930002486</subfield>
+      <subfield code="e">Not Available</subfield>
+      <subfield code="m">HathiTrust Temporary Emergency Access</subfield>
+      <subfield code="u">publishing_base_url undefined?u.ignore_date_coverage=true&amp;rft.mms_id=990010439240302486</subfield>
+    </datafield>
+  </record>
+  <requests link="http://www.example.com/almaws/v1/bibs/990010439240302486/requests">1</requests>
+</bib>
