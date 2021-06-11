@@ -97,10 +97,10 @@ RSpec.describe SolrDocument do
     end
   end
 
-  context 'complex requests' do
+  context 'work order request with no holding id' do
     let(:solr_doc) { described_class.new("990010439240302486") }
 
-    it "can show the requests" do
+    it "can still show the requests" do
       stub_request(:get, "http://www.example.com/almaws/v1/bibs/990010439240302486/requests?status=active&apikey=fakebibkey123")
         .to_return(status: 200, body: File.read(fixture_path + '/alma_requests/work_order_request.xml'), headers: {})
       stub_request(:get, "http://www.example.com/almaws/v1/bibs/990010439240302486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
