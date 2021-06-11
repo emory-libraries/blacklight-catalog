@@ -12,7 +12,7 @@ class HoldingRequest
     @comment = params[:comment]
     @not_needed_after = params[:not_needed_after]
     @holding_library = params[:holding_library]
-    @holding_location = params[:holding_location]    
+    @holding_location = params[:holding_location]
   end
 
   # Is there a way to pull labels from config/translation_maps?
