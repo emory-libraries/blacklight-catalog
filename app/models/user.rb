@@ -15,8 +15,7 @@ class User < ApplicationRecord
   # Include devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # remove :database_authenticatable in production, remove :validatable to integrate with Shibboleth
-  devise_modules = [:omniauthable, :rememberable, :trackable, :timeoutable, omniauth_providers: [:shibboleth], authentication_keys: [:uid]]
-  devise_modules.prepend(:database_authenticatable) if AuthConfig.use_database_auth?
+  devise_modules = [:database_authenticatable, :omniauthable, :rememberable, :trackable, :timeoutable, omniauth_providers: [:shibboleth], authentication_keys: [:uid]]
   devise(*devise_modules)
 
   # Method added by Blacklight; Blacklight uses #to_s on your
@@ -40,5 +39,14 @@ class User < ApplicationRecord
     user
   rescue User::NilShibbolethUserError => e
     Rails.logger.error "Nil user detected: Shibboleth didn't pass a uid for #{e.auth.inspect}"
+  end
+
+  def self.from_affiliate(uid)
+    user = User.find_or_initialize_by(provider: 'affiliate', uid: uid)
+    data_service = AlmaUserDataService.new(uid)
+    user.assign_attributes(display_name: data_service.full_name)
+    user.email = data_service.first_email
+    user.save
+    user
   end
 end
