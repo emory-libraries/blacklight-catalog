@@ -22,14 +22,14 @@ module Statusable
 
   def record_response
     @record_response ||= RestClient.get full_record_url, { accept: :xml }
-  rescue
-    ''
+  rescue => e
+    Rails.logger.error "Communication with an API has failed: #{e}"
   end
 
   def holding_response(holding_id)
     RestClient.get holding_view_url(holding_id), { accept: :xml }
   rescue
-    ''
+    Rails.logger.error "Communication with an API has failed: #{e}"
   end
 
   def full_record_url
@@ -73,6 +73,8 @@ module Statusable
     else
       0
     end
+  rescue
+    Rails.logger.error "An error has occurred: #{e}"
   end
 
   def physical_item_values(availability)
