@@ -38,6 +38,9 @@ $(document).ready(function() {
     });
     /* end iffe */
   })();
-
+  $(".toggle-table").click(function(){
+    $(this).closest('td').find(".toggled-table").toggle();
+    return false;
+  });
   /* end ready */
 });
