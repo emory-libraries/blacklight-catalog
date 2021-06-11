@@ -5,7 +5,7 @@ RSpec.describe SolrDocument do
   around do |example|
     orig_url = ENV['ALMA_API_URL']
     orig_key = ENV['ALMA_BIB_KEY']
-    ENV['ALMA_API_URL'] = 'www.example.com'
+    ENV['ALMA_API_URL'] = 'http://www.example.com'
     ENV['ALMA_BIB_KEY'] = "fakebibkey123"
     example.run
     ENV['ALMA_API_URL'] = orig_url
@@ -94,6 +94,20 @@ RSpec.describe SolrDocument do
 
     it "can display availability with the correct style" do
       expect(solr_doc.online_holdings).to eq(online_holdings)
+    end
+  end
+
+  context 'work order request with no holding id' do
+    let(:solr_doc) { described_class.new("990010439240302486") }
+
+    it "can still show the requests" do
+      stub_request(:get, "http://www.example.com/almaws/v1/bibs/990010439240302486/requests?status=active&apikey=fakebibkey123")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_requests/work_order_request.xml'), headers: {})
+      stub_request(:get, "http://www.example.com/almaws/v1/bibs/990010439240302486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_11.xml'), headers: {})
+
+      expect(solr_doc.requests?).to eq true
+      expect(solr_doc.retrieve_requests("22191369710002486")).to eq 0
     end
   end
 end
