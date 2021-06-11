@@ -17,10 +17,14 @@ RSpec.describe "holding request new", type: :request do
     let(:user) { User.create(uid: "janeq") }
     let(:valid_attributes) do
       {
-        user: user,
-        mms_id: "9936550118202486",
-        holding_id: "22332597410002486",
-        pickup_library: "MUSME"
+        "user": user,
+        "mms_id": "9936550118202486",
+        "holding_id": "22332597410002486",
+        "pickup_library": "MUSME",
+        "comment": "IGNORE - TESTING",
+        "not_needed_after(1i)": "2021",
+        "not_needed_after(2i)": "6",
+        "not_needed_after(3i)": "10"
       }
     end
     before do
@@ -35,13 +39,21 @@ RSpec.describe "holding request new", type: :request do
       expect(assigns(:holding_request).holding_location).to eq({ label: "Media Collection", value: "MEDIA" })
     end
 
+    it "renders the new template and translates the date to a string" do
+      get new_holding_request_path, params: { "not_needed_after" => "2021-06-10Z" }
+      expect(response).to render_template(:new)
+      expect(assigns(:holding_request).not_needed_after).to eq "2021-06-10Z"
+    end
+
     it "can create a holding request" do
       post holding_requests_path, params: { holding_request: valid_attributes }
+      expect(assigns(:holding_request).not_needed_after).to eq "2021-06-10Z"
       expect(response).to redirect_to(holding_request_path("36181952270002486"))
       follow_redirect!
       expect(response).to render_template(:show)
       expect(response.body).to include("36181952270002486")
       expect(response.body).to include("MUSME")
+      expect(response.body).to include("IGNORE - TESTING")
     end
 
     it "renders a successful response" do
@@ -50,6 +62,7 @@ RSpec.describe "holding request new", type: :request do
       expect(response).to render_template(:show)
       expect(response.body).to include("36181952270002486")
       expect(response.body).to include("MUSME")
+      expect(response.body).to include("IGNORE - TESTING")
     end
   end
 

@@ -9,8 +9,10 @@ class HoldingRequest
     @pickup_library = params[:pickup_library]
     @user = params[:user]
     @holding_id = params[:holding_id]
+    @comment = params[:comment]
+    @not_needed_after = params[:not_needed_after]
     @holding_library = params[:holding_library]
-    @holding_location = params[:holding_location]
+    @holding_location = params[:holding_location]    
   end
 
   # Is there a way to pull labels from config/translation_maps?
@@ -82,6 +84,7 @@ class HoldingRequest
     hr.mms_id = body[:mms_id]
     hr.holding_id = body[:holding_id]
     hr.pickup_library = body[:pickup_location_library]
+    hr.comment = body[:comment]
     hr
   end
 
@@ -103,7 +106,9 @@ class HoldingRequest
       "holding_id": holding_id,
       "pickup_location_type": "LIBRARY",
       "pickup_location_library": pickup_library,
-      "pickup_location_institution": "01GALI_EMORY"
+      "pickup_location_institution": "01GALI_EMORY",
+      "comment": comment,
+      "last_interest_date": not_needed_after
     }
   end
 
