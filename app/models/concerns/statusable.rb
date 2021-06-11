@@ -22,10 +22,14 @@ module Statusable
 
   def record_response
     @record_response ||= RestClient.get full_record_url, { accept: :xml }
+  rescue
+    ''
   end
 
   def holding_response(holding_id)
     RestClient.get holding_view_url(holding_id), { accept: :xml }
+  rescue
+    ''
   end
 
   def full_record_url
