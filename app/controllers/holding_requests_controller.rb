@@ -4,8 +4,8 @@ class HoldingRequestsController < ApplicationController
   def new
     @holding_request = HoldingRequest.new({
                                             mms_id: params[:mms_id], holding_id: params[:holding_id], not_needed_after: params[:not_needed_after],
-                                            holding_library: { label: params[:holding_library][:label], value: params[:holding_library][:value] },
-                                            holding_location: { label: params[:holding_location][:label], value: params[:holding_location][:value] },
+                                            holding_library: { label: params[:holding_library].try(:[], :label), value: params[:holding_library].try(:[], :value) },
+                                            holding_location: { label: params[:holding_location].try(:[], :label), value: params[:holding_location].try(:[], :value) },
                                             user: current_user
                                           })
   end
