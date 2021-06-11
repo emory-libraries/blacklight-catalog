@@ -41,8 +41,18 @@ class HoldingRequest
   def oxford_user_pickup_library_options
     if holding_library[:value] == "OXFD"
       [{ label: "Oxford College Library", value: "OXFD" }]
+    elsif holding_library[:value] == "MUSME"
+      oxford_user_music_options
     else
       HoldingRequest.pickup_libraries
+    end
+  end
+
+  def oxford_user_music_options
+    if holding_location[:value] == "7DEQUIP"
+      [{ label: "Marian K. Heilbrun Music Media", value: "MUSME" }]
+    else
+      [{ label: "Oxford College Library", value: "OXFD" }]
     end
   end
 
@@ -51,7 +61,7 @@ class HoldingRequest
   end
 
   def restricted_locations
-    %w[DVDL MEDIA MEDIAOSIZE]
+    %w[DVDL MEDIA MEDIAOSIZE 7DEQUIP]
   end
 
   def save
