@@ -126,6 +126,12 @@ RSpec.describe 'Indexing fields with custom logic' do
       expect(second_holding["holding_id"]).to eq "22325154910002486"
       expect(second_holding["location_code"]).to eq "STACK"
     end
+
+    it 'maps holdings call numbers for non-lc works' do
+      expect(solr_doc9['holdings_ssim']).to be_an_instance_of Array
+      first_holding = JSON.parse(solr_doc9['holdings_ssim'].first)
+      expect(first_holding["call_number"]).to eq '2010 244'
+    end
   end
 
   describe 'collection_ssim field' do

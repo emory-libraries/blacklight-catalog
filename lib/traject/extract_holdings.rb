@@ -13,14 +13,22 @@ module ExtractHoldings
     holding_id = field['8']
     library_code = field['b']
     location_code = field['c']
-    call_number_start = field['h']
-    call_number_cutter = field['i']
-    call_number = call_number_start.to_s + call_number_cutter.to_s if call_number_start
     accumulator << {
       holding_id: holding_id,
       library_code: library_code,
       location_code: location_code,
-      call_number: call_number
+      call_number: call_number(field)
     }.to_json
+  end
+
+  def call_number(field)
+    lc_start = field['h']
+    lc_cutter = field['i']
+    shelving_control_num = field['j']
+    if lc_start
+      lc_start.to_s + lc_cutter.to_s
+    elsif shelving_control_num
+      shelving_control_num
+    end
   end
 end
