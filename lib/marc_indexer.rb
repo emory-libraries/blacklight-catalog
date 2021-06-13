@@ -39,6 +39,7 @@ require 'traject/extract_isbn'
 require 'traject/extract_other_standard_ids'
 require 'traject/extract_call_number'
 require 'traject/extract_library'
+require 'traject/extract_holdings'
 require 'traject/extract_marc_resource'
 require 'traject/extract_publication_main_display.rb'
 require 'traject/extract_publication_date'
@@ -65,6 +66,7 @@ extend ExtractIsbn
 extend ExtractOtherStandardIds
 extend ExtractCallNumber
 extend ExtractLibrary
+extend ExtractHoldings
 extend ExtractMarcResource
 extend ExtractPublicationMainDisplay
 extend ExtractPublicationDate
@@ -239,6 +241,7 @@ to_field 'url_suppl_ssim', extract_url_suppl
 
 # Library Fields
 to_field 'library_ssim', extract_library, translation_map('libraryname_map')
+to_field 'holdings_ssim', extract_holdings
 
 # Collection Fields
 to_field 'collection_ssim', extract_collection

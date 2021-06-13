@@ -113,6 +113,21 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
   end
 
+  describe 'holding information hash that does not frequently change' do
+    it 'maps holdings into an array, each of which contains json' do
+      expect(solr_doc['holdings_ssim']).to be_an_instance_of Array
+      first_holding = JSON.parse(solr_doc['holdings_ssim'].first)
+      second_holding = JSON.parse(solr_doc['holdings_ssim'].last)
+      expect(first_holding).to be_an_instance_of Hash
+      expect(first_holding["holding_id"]).to eq "22445527370002486"
+      expect(first_holding["library_code"]).to eq "UNIV"
+      expect(first_holding["location_code"]).to eq "ONFLY"
+      expect(first_holding["call_number"]).to eq " RC451.4.G39  N53 2021 "
+      expect(second_holding["holding_id"]).to eq "22325154910002486"
+      expect(second_holding["location_code"]).to eq "STACK"
+    end
+  end
+
   describe 'collection_ssim field' do
     it 'maps 710 indicator1 == 2, subfield == GEU first' do
       expect(solr_doc['collection_ssim']).to eq(
