@@ -77,8 +77,10 @@ module Statusable
     unavailable = availability.at_xpath('subfield[@code="g"]')&.inner_text&.to_i
     @available = (@copies - unavailable if @copies)
     @holding_id = availability.at_xpath('subfield[@code="8"]')&.inner_text
-    @library = availability.at_xpath('subfield[@code="q"]')&.inner_text
-    @location = availability.at_xpath('subfield[@code="c"]')&.inner_text
+    @library_label = availability.at_xpath('subfield[@code="q"]')&.inner_text
+    @library_code = availability.at_xpath('subfield[@code="b"]')&.inner_text
+    @location_code = availability.at_xpath('subfield[@code="j"]')&.inner_text
+    @location_label = availability.at_xpath('subfield[@code="c"]')&.inner_text
     @call_number = availability.at_xpath('subfield[@code="d"]')&.inner_text
   end
 
@@ -101,8 +103,8 @@ module Statusable
     physical_item_values(availability)
     {
       holding_id: @holding_id,
-      library: @library,
-      location: @location,
+      library: { label: @library_label, value: @library_code },
+      location: { label: @location_label, value: @location_code },
       call_number: @call_number,
       availability: {
         copies: @copies,

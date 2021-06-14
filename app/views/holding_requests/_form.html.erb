@@ -2,7 +2,7 @@
 
   <%= f.input :mms_id, value: @holding_request.mms_id, readonly: true %>
   <%= f.input :holding_id, value: @holding_request.holding_id, readonly: true %>
-  <%= f.input :pickup_library, collection: HoldingRequest.pickup_libraries %>
+  <%= f.input :pickup_library, collection: @holding_request.pickup_library_options.map { |h| [h[:label], h[:value]] } %>
   <%= f.input :not_needed_after, as: :date, :input_html => { :value => Date.today} %>
   <%= f.input :comment %>
   <%= f.submit %>

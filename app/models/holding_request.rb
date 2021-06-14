@@ -1,26 +1,7 @@
 # frozen_string_literal: true
 class HoldingRequest
   include ActiveModel::Model
-  attr_accessor :mms_id, :holding_id, :pickup_library, :not_needed_after, :comment, :id, :user
-
-  # Is there a way to pull labels from config/translation_maps?
-  # Pickup libraries from spike, should be double checked
-  def self.pickup_libraries
-    [["Library Service Center", "LSC"],
-     ["Robert W. Woodruff Library", "UNIV"],
-     ["Goizueta Business Library", "BUS"],
-     ["Marian K. Heilbrun Music Media", "MUSME"],
-     ["Health Sciences Library", "HLTH"],
-     ["Science Commons", "CHEM"],
-     ["Pitts Theology Library", "THEO"],
-     ["Law Library", "LAW"],
-     ["Oxford College Library", "OXFD"],
-     ["EMOL"],
-     ["EUH Branch Library", "EUH"],
-     ["Grady Branch Library", "GRADY"],
-     ["EUHM Branch Library", "MID"],
-     ["Rose Library (MARBL)", "MARBL"]]
-  end
+  attr_accessor :mms_id, :holding_id, :pickup_library, :not_needed_after, :comment, :id, :user, :holding_library, :holding_location
 
   def initialize(params = {})
     @id = params[:id]
@@ -30,6 +11,59 @@ class HoldingRequest
     @holding_id = params[:holding_id]
     @comment = params[:comment]
     @not_needed_after = params[:not_needed_after]
+    @holding_library = params[:holding_library]
+    @holding_location = params[:holding_location]
+  end
+
+  # Is there a way to pull labels from config/translation_maps?
+  # Pickup libraries from spike, should be double checked
+  def self.pickup_libraries
+    [
+      { label: "Health Sciences Library", value: "HLTH" },
+      { label: "Law Library", value: "LAW" },
+      { label: "Library Service Center", value: "LSC" },
+      { label: "Marian K. Heilbrun Music Media", value: "MUSME" },
+      { label: "Oxford College Library", value: "OXFD" },
+      { label: "Pitts Theology Library", value: "THEO" },
+      { label: "Robert W. Woodruff Library", value: "UNIV" },
+      { label: "Robert W. Woodruff Library Outdoor Lockers", value: "UNIVLOCK" }
+    ]
+  end
+
+  def pickup_library_options
+    if @user.oxford_user?
+      oxford_user_pickup_library_options
+    elsif holding_library[:value] == "MUSME" && restricted_location?
+      [{ label: "Marian K. Heilbrun Music Media", value: "MUSME" }]
+    else
+      HoldingRequest.pickup_libraries
+    end
+  end
+
+  def oxford_user_pickup_library_options
+    if holding_library[:value] == "OXFD"
+      [{ label: "Oxford College Library", value: "OXFD" }]
+    elsif holding_library[:value] == "MUSME"
+      oxford_user_music_options
+    else
+      HoldingRequest.pickup_libraries
+    end
+  end
+
+  def oxford_user_music_options
+    if holding_location[:value] == "7DEQUIP"
+      [{ label: "Marian K. Heilbrun Music Media", value: "MUSME" }]
+    else
+      [{ label: "Oxford College Library", value: "OXFD" }]
+    end
+  end
+
+  def restricted_location?
+    restricted_locations.include?(holding_location[:value])
+  end
+
+  def restricted_locations
+    %w[DVDL MEDIA MEDIAOSIZE 7DEQUIP]
   end
 
   def save

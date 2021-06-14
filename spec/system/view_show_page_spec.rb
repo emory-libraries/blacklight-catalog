@@ -3,12 +3,14 @@ require 'rails_helper'
 
 RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
   around do |example|
+    orig_user_key = ENV['ALMA_USER_KEY']
     orig_url = ENV['ALMA_API_URL']
     orig_key = ENV['ALMA_BIB_KEY']
     orig_sand_url = ENV["ALMA_BASE_SANDBOX_URL"]
     orig_inst = ENV["INSTITUTION"]
+    ENV['ALMA_USER_KEY'] = "fakeuserkey456"
     ENV["ALMA_BASE_SANDBOX_URL"] = "http://example2.com"
-    ENV['ALMA_API_URL'] = 'www.example.com'
+    ENV['ALMA_API_URL'] = 'http://www.example.com'
     ENV['ALMA_BIB_KEY'] = "fakebibkey123"
     ENV["INSTITUTION"] = "SOME_INSTITUTION"
     example.run
@@ -16,6 +18,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     ENV['ALMA_API_URL'] = orig_url
     ENV['ALMA_BIB_KEY'] = orig_key
     ENV["INSTITUTION"] = orig_inst
+    ENV['ALMA_USER_KEY'] = orig_user_key
   end
   let(:id) { '123' }
 
@@ -345,13 +348,15 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
 
   context "with requests" do
     let(:solr_doc) { described_class.find(MLA_HANDBOOK[:id]) }
-
+    let(:user) { User.create(uid: "janeq") }
     before do
       delete_all_documents_from_solr
       solr = Blacklight.default_index.connection
       solr.add(MLA_HANDBOOK)
       solr.commit
       visit solr_document_path(MLA_HANDBOOK[:id])
+      stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?user_id_type=all_unique&view=full&expand=none&apikey=fakeuserkey456")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
     end
 
     it "shows complex holdings and requests information" do
@@ -369,7 +374,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     end
 
     it "has a button to request holdings" do
-      sign_in(User.new(uid: "foo"))
+      sign_in(user)
       within '#physical-holding-1' do
         expect(page).to have_css(".button_to")
         expect(page.find_field('holding_id', type: :hidden)).to be

@@ -24,13 +24,13 @@ RSpec.describe User do
         }
       )
     end
-    let(:user) { described_class.from_omniauth(auth_hash) }
 
     before do
       described_class.delete_all
     end
 
     context "shibboleth" do
+      let(:user) { described_class.from_omniauth(auth_hash) }
       it "has a shibboleth provided name" do
         expect(user.display_name).to eq auth_hash.info.display_name
       end
@@ -41,6 +41,34 @@ RSpec.describe User do
       it "has a shibboleth provided email which is not nil" do
         expect(user.email).to eq auth_hash.info.mail
         expect(user.email).not_to eq nil
+      end
+    end
+    context "alma" do
+      let(:user) { described_class.from_omniauth(auth_hash) }
+      around do |example|
+        orig_url = ENV['ALMA_API_URL']
+        orig_key = ENV['ALMA_USER_KEY']
+        ENV['ALMA_API_URL'] = 'http://www.example.com'
+        ENV['ALMA_USER_KEY'] = "fakeuserkey456"
+        example.run
+        ENV['ALMA_API_URL'] = orig_url
+        ENV['ALMA_USER_KEY'] = orig_key
+      end
+
+      it "has a user group from alma" do
+        stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?user_id_type=all_unique&view=full&expand=none&apikey=fakeuserkey456")
+          .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
+        expect(user.uid).to eq "janeq"
+        expect(user.user_group).to eq "03"
+        expect(user.oxford_user?).to eq false
+      end
+
+      it "has an oxford user group from alma" do
+        stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?user_id_type=all_unique&view=full&expand=none&apikey=fakeuserkey456")
+          .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record_oxford.xml'), headers: {})
+        expect(user.uid).to eq "janeq"
+        expect(user.user_group).to eq "23"
+        expect(user.oxford_user?).to eq true
       end
     end
   end

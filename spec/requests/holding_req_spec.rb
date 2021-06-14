@@ -14,7 +14,7 @@ RSpec.describe "holding request new", type: :request do
     ENV['ALMA_USER_KEY'] = orig_user_key
   end
   context "as a logged in user" do
-    let(:user) { User.create(uid: "mkadel") }
+    let(:user) { User.create(uid: "janeq") }
     let(:valid_attributes) do
       {
         "user": user,
@@ -24,22 +24,23 @@ RSpec.describe "holding request new", type: :request do
         "comment": "IGNORE - TESTING",
         "not_needed_after(1i)": "2021",
         "not_needed_after(2i)": "6",
-        "not_needed_after(3i)": "10"
+        "not_needed_after(3i)": "10",
+        "holding_library": { "label" => "Oxford College Library", "value" => "OXFD" },
+        "holding_location": { "label" => "Media Collection", "value" => "MEDIA" }
       }
     end
     before do
       sign_in(user)
+      stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?apikey=fakeuserkey456&expand=none&user_id_type=all_unique&view=full")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
     end
     it "renders the new template" do
-      get new_holding_request_path, params: { "holding_id" => "4567" }
+      get new_holding_request_path, params: { "holding_id" => "4567", holding_library: { "label" => "Oxford College Library", "value" => "OXFD" },
+                                              holding_location: { label: "Media Collection", value: "MEDIA" } }
       expect(response).to render_template(:new)
       expect(assigns(:holding_request).holding_id).to eq "4567"
-    end
-
-    it "renders the new template and translates the date to a string" do
-      get new_holding_request_path, params: { "not_needed_after" => "2021-06-10Z" }
-      expect(response).to render_template(:new)
-      expect(assigns(:holding_request).not_needed_after).to eq "2021-06-10Z"
+      expect(assigns(:holding_request).holding_library).to eq({ label: "Oxford College Library", value: "OXFD" })
+      expect(assigns(:holding_request).holding_location).to eq({ label: "Media Collection", value: "MEDIA" })
     end
 
     it "can create a holding request" do

@@ -14,7 +14,7 @@
       <tbody>
         <% document.physical_holdings.each.with_index(1) do |holding, index| %>
           <tr id="physical-holding-<%= index.to_s %>">
-            <td><%= "#{holding[:library]}: #{holding[:location]}" %></td>
+            <td><%= "#{holding[:library][:label]}: #{holding[:location][:label]}" %></td>
             <td><%=holding[:call_number] %></td>
             <td><a href="#" class="toggle-table"><% if holding[:availability][:availability_phrase] != "check_holdings" %>
                 <%= pluralize(holding[:availability][:copies], 'copy') +
@@ -46,7 +46,7 @@
                   </tbody>
                 </table>
             </td>
-            <td><%= button_to("Request", new_holding_request_path, method: :get, params: {mms_id: document.id, holding_id: holding[:holding_id]}) %></td>
+            <td><%= button_to("Request", new_holding_request_path, method: :get, params: {mms_id: document.id, holding_id: holding[:holding_id], holding_library: holding[:library], holding_location: holding[:location]}) %></td>
           </tr>
 
         <% end %>
