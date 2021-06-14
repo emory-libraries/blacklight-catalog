@@ -19,14 +19,11 @@ RSpec.describe "hold request new", type: :request do
       {
         "user": user,
         "mms_id": "9936550118202486",
-        "holding_id": "22332597410002486",
         "pickup_library": "MUSME",
         "comment": "IGNORE - TESTING",
         "not_needed_after(1i)": "2021",
         "not_needed_after(2i)": "6",
-        "not_needed_after(3i)": "10",
-        "holding_library": { "label" => "Oxford College Library", "value" => "OXFD" },
-        "holding_location": { "label" => "Media Collection", "value" => "MEDIA" }
+        "not_needed_after(3i)": "10"
       }
     end
     before do
@@ -35,12 +32,11 @@ RSpec.describe "hold request new", type: :request do
         .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
     end
     it "renders the new template" do
-      get new_hold_request_path, params: { "holding_id" => "4567", holding_library: { "label" => "Oxford College Library", "value" => "OXFD" },
-                                           holding_location: { label: "Media Collection", value: "MEDIA" } }
+      get new_hold_request_path, params: { hold_request: valid_attributes }
       expect(response).to render_template(:new)
-      expect(assigns(:hold_request).holding_id).to eq "4567"
-      expect(assigns(:hold_request).holding_library).to eq({ label: "Oxford College Library", value: "OXFD" })
-      expect(assigns(:hold_request).holding_location).to eq({ label: "Media Collection", value: "MEDIA" })
+      # expect(assigns(:hold_request).holding_id).to eq "4567"
+      # expect(assigns(:hold_request).holding_library).to eq({ label: "Oxford College Library", value: "OXFD" })
+      # expect(assigns(:hold_request).holding_location).to eq({ label: "Media Collection", value: "MEDIA" })
     end
 
     it "can create a holding request" do

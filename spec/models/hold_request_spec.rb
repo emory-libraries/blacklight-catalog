@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require 'rails_helper'
-
+WebMock.allow_net_connect!
 RSpec.describe HoldRequest do
   around do |example|
     orig_url = ENV['ALMA_API_URL']
@@ -19,7 +19,6 @@ RSpec.describe HoldRequest do
          .with(
         body: {
           "request_type": "HOLD",
-          "holding_id": "holding_id",
           "pickup_location_type": "LIBRARY",
           "pickup_location_library": "pull",
           "pickup_location_institution": "01GALI_EMORY",
@@ -27,7 +26,7 @@ RSpec.describe HoldRequest do
           "last_interest_date": "2021-06-10"
         }
       )
-    k = described_class.new(holding_id: "holding_id", pickup_library: "pull", comment: "I love cheese", not_needed_after: "2021-06-10")
+    k = described_class.new(pickup_library: "pull", comment: "I love cheese", not_needed_after: "2021-06-10")
     k.hold_request_response
     expect(sr).to have_been_made.once
   end
@@ -46,7 +45,7 @@ RSpec.describe HoldRequest do
   end
 
   it "can persist a holding request to Alma" do
-    hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", user: user)
+    hr = described_class.new(mms_id: "9936550118202486", user: user)
     hr.save
     expect(hr.id).to eq "36181952270002486"
   end

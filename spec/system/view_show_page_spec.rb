@@ -338,7 +338,6 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
 
     it "shows the location header", alma: true do
       expect(page).to have_content("Where to find it")
-      expect(page).to have_content("REQUEST OPTIONS")
       expect(page).to have_content("Marian K. Heilbrun Music Media")
       expect(page).to have_content("Circulation Desk")
       expect(page).to have_content("ML410 .M5 H87 2019 CD-SOUND")
@@ -375,10 +374,11 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
 
     it "has a button to request holdings" do
       sign_in(user)
-      within '#physical-holding-1' do
-        expect(page).to have_css(".button_to")
-        expect(page.find_field('holding_id', type: :hidden)).to be
-        click_on("Request")
+      within '.where-to-find-table' do
+        expect(page).to have_button("Request")
+        find('.dropdown-toggle').click
+        expect(page).to have_link("Hold request")
+        click_on("Hold request")
       end
       expect(page).to have_content('Pickup library')
     end

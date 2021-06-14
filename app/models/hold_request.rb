@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 class HoldRequest
   include ActiveModel::Model
-  attr_accessor :mms_id, :holding_id, :pickup_library, :not_needed_after, :comment, :id, :user, :holding_library, :holding_location
+  attr_accessor :mms_id, :holding_id, :pickup_library, :not_needed_after, :comment, :id, :user, :holding_library, :holding_location, :title
 
   def initialize(params = {})
     @id = params[:id]
+    @title = params[:title]
     @mms_id = params[:mms_id]
     @pickup_library = params[:pickup_library]
     @user = params[:user]
@@ -103,7 +104,6 @@ class HoldRequest
   def request_object
     {
       "request_type": "HOLD",
-      "holding_id": holding_id,
       "pickup_location_type": "LIBRARY",
       "pickup_location_library": pickup_library,
       "pickup_location_institution": "01GALI_EMORY",

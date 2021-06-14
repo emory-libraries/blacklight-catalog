@@ -1,7 +1,18 @@
 <div class="where-to-find-table">
-  <%= tag.h2 t('catalog.show.find_it_header'), class: "section-title find-it-header" %>
+  <div class="row justify-content-between">
+    <div class="col-sm-4">
+      <%= tag.h2 t('catalog.show.find_it_header'), class: "section-title find-it-header" %>
+    </div>
+    <%# <%= button_to("Request", new_hold_request_path, method: :get, params: {mms_id: document.id}) %>
+    <div class="col-sm-4 request-options">
+      <%  %>
+      <%= dropdown 'Request', split: true, button: {class: "btn-primary"}, align: :right do %>
+        <%= link_to "Hold request", new_hold_request_path(params: {mms_id: document.id, title: document['title_display_tesim']&.first}) %>
+      <% end %>
+    </div>
+  </div>
+
   <% if document.physical_holdings %>
-    <h4 class="blacklight-Request Options">Request Options</h4>
     <table class="table">
       <thead>
         <tr>
@@ -46,7 +57,7 @@
                   </tbody>
                 </table>
             </td>
-            <td><%= button_to("Request", new_hold_request_path, method: :get, params: {mms_id: document.id, holding_id: holding[:holding_id], holding_library: holding[:library], holding_location: holding[:location]}) %></td>
+            <td></td>
           </tr>
 
         <% end %>

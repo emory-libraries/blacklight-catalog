@@ -30,21 +30,20 @@ RSpec.describe "Create a request for a holding", type: :system, js: true, alma: 
   it "has a button to request a hold" do
     visit solr_document_path(MLA_HANDBOOK[:id])
     sign_in(user)
-    within '#physical-holding-1' do
-      expect(page).to have_button("Request")
-      click_on("Request")
+    within '.where-to-find-table' do
+      find('.dropdown-toggle').click
+      click_on("Hold request")
     end
+    expect(page).to have_content("MLA handbook")
     expect(page).to have_content('Pickup library')
+    expect(page).to have_field('Mms', with: MLA_HANDBOOK[:id], readonly: true)
   end
 
   it "has a dropdown list of possible pickup libraries" do
     sign_in(user)
-    visit new_hold_request_path(params: { mms_id: MLA_HANDBOOK[:id], holding_id: "22332597410002486",
-                                          holding_library: { label: "Oxford College Library", value: "OXFD" },
-                                          holding_location: { label: "Book Stacks", value: "STACK" } })
-    expect(page).to have_field('Holding', with: '22332597410002486', readonly: true)
+    visit new_hold_request_path(params: { mms_id: MLA_HANDBOOK[:id] })
     page.select 'Law Library', from: 'Pickup library'
     click_on("Create Hold request")
-    expect(page).to have_content("Pickup library")
+    expect(page).to have_content("Hold Request")
   end
 end
