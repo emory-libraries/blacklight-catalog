@@ -135,4 +135,68 @@ RSpec.describe ShowPageHelper, type: :helper do
       expect(helper.direct_link('123')).to eq("www.example.com/catalog/123")
     end
   end
+
+  context '#multilined_links_to_title_search' do
+    let(:value) { SHOW_PAGE_VALUE.dup.merge(field: "title_former_ssim") }
+    let(:later_value) { SHOW_PAGE_VALUE.dup.merge(field: "title_later_ssim") }
+    let(:multi_value) do
+      dupe = SHOW_PAGE_VALUE.dup
+      dupe[:field] = "title_former_ssim"
+      dupe[:document]["title_former_ssim"] = [
+        "Contemporary keyboard 0361-5820 (DLC) 76641315 (OCoLC)2246955",
+        "Music technology buyer's guide 1099-2839"
+      ]
+      dupe
+    end
+    let(:value_no_format) do
+      dupe = SHOW_PAGE_VALUE.dup
+      dupe[:field] = "title_former_ssim"
+      dupe[:document]["format_ssim"] = []
+      dupe[:document]["title_former_ssim"] = ["Music technology buyer's guide 1099-2839"]
+      dupe
+    end
+    let(:value_empty) do
+      dupe = SHOW_PAGE_VALUE.dup
+      dupe[:field] = "title_former_ssim"
+      dupe[:document]["title_former_ssim"] = []
+      dupe
+    end
+
+    it 'processes a record value to link to a title search (former)' do
+      expect(helper.multilined_links_to_title_search(value)).to eq(
+        "<a href=\"/?f%5Bformat_ssim%5D%5B%5D=Book&amp;q=Contemporary+keyboard+" \
+        "0361-5820+%28DLC%29+76641315+%28OCoLC%292246955&amp;search_field=title\">" \
+        "Contemporary keyboard 0361-5820 (DLC) 76641315 (OCoLC)2246955</a>"
+      )
+    end
+
+    it 'processes a record value to link to a title search (later)' do
+      expect(helper.multilined_links_to_title_search(later_value)).to eq(
+        "<a href=\"/?f%5Bformat_ssim%5D%5B%5D=Book&amp;q=Music+technology+buyer%27s" \
+        "+guide+1099-2839&amp;search_field=title\">Music technology buyer&#39;s " \
+        "guide 1099-2839</a>"
+      )
+    end
+
+    it 'processes multiple record values to links to title search (former)' do
+      expect(helper.multilined_links_to_title_search(multi_value)).to eq(
+        "<a href=\"/?f%5Bformat_ssim%5D%5B%5D=Book&amp;q=Contemporary+keyboard+0361-5820" \
+        "+%28DLC%29+76641315+%28OCoLC%292246955&amp;search_field=title\">Contemporary" \
+        " keyboard 0361-5820 (DLC) 76641315 (OCoLC)2246955</a><br /><a href=\"/?f%5B" \
+        "format_ssim%5D%5B%5D=Book&amp;q=Music+technology+buyer%27s+guide+1099-2839&amp;" \
+        "search_field=title\">Music technology buyer&#39;s guide 1099-2839</a>"
+      )
+    end
+
+    it 'processes a record value to link to title search (former) with no format assigned' do
+      expect(helper.multilined_links_to_title_search(value_no_format)).to eq(
+        "<a href=\"/?q=Music+technology+buyer%27s+guide+1099-2839&amp;search_field=title\">" \
+        "Music technology buyer&#39;s guide 1099-2839</a>"
+      )
+    end
+
+    it 'returns nothing when field empty' do
+      expect(helper.multilined_links_to_title_search(value_empty)).to be_empty
+    end
+  end
 end
