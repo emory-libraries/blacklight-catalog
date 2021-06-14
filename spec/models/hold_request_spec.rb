@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe HoldingRequest do
+RSpec.describe HoldRequest do
   around do |example|
     orig_url = ENV['ALMA_API_URL']
     orig_key = ENV['ALMA_USER_KEY']
@@ -28,15 +28,15 @@ RSpec.describe HoldingRequest do
         }
       )
     k = described_class.new(holding_id: "holding_id", pickup_library: "pull", comment: "I love cheese", not_needed_after: "2021-06-10")
-    k.holding_request_response
+    k.hold_request_response
     expect(sr).to have_been_made.once
   end
 
-  it "only calls restclient once in holding_request_response" do
+  it "only calls restclient once in hold_request_response" do
     sr = stub_request(:post, "http://www.example.com/almaws/v1/users//requests?allow_same_request=false&apikey=fakeuserkey456&mms_id=&user_id_type=all_unique")
     k = described_class.new
-    k.holding_request_response
-    k.holding_request_response
+    k.hold_request_response
+    k.hold_request_response
     expect(sr).to have_been_made.once
   end
 

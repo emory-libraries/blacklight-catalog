@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require "rails_helper"
-RSpec.describe "holding request new", type: :request do
+RSpec.describe "hold request new", type: :request do
   around do |example|
     orig_url = ENV['ALMA_API_URL']
     orig_key = ENV['ALMA_BIB_KEY']
@@ -35,18 +35,18 @@ RSpec.describe "holding request new", type: :request do
         .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
     end
     it "renders the new template" do
-      get new_holding_request_path, params: { "holding_id" => "4567", holding_library: { "label" => "Oxford College Library", "value" => "OXFD" },
-                                              holding_location: { label: "Media Collection", value: "MEDIA" } }
+      get new_hold_request_path, params: { "holding_id" => "4567", holding_library: { "label" => "Oxford College Library", "value" => "OXFD" },
+                                           holding_location: { label: "Media Collection", value: "MEDIA" } }
       expect(response).to render_template(:new)
-      expect(assigns(:holding_request).holding_id).to eq "4567"
-      expect(assigns(:holding_request).holding_library).to eq({ label: "Oxford College Library", value: "OXFD" })
-      expect(assigns(:holding_request).holding_location).to eq({ label: "Media Collection", value: "MEDIA" })
+      expect(assigns(:hold_request).holding_id).to eq "4567"
+      expect(assigns(:hold_request).holding_library).to eq({ label: "Oxford College Library", value: "OXFD" })
+      expect(assigns(:hold_request).holding_location).to eq({ label: "Media Collection", value: "MEDIA" })
     end
 
     it "can create a holding request" do
-      post holding_requests_path, params: { holding_request: valid_attributes }
-      expect(assigns(:holding_request).not_needed_after).to eq "2021-06-10Z"
-      expect(response).to redirect_to(holding_request_path("36181952270002486"))
+      post hold_requests_path, params: { hold_request: valid_attributes }
+      expect(assigns(:hold_request).not_needed_after).to eq "2021-06-10Z"
+      expect(response).to redirect_to(hold_request_path("36181952270002486"))
       follow_redirect!
       expect(response).to render_template(:show)
       expect(response.body).to include("36181952270002486")
@@ -55,7 +55,7 @@ RSpec.describe "holding request new", type: :request do
     end
 
     it "renders a successful response" do
-      get holding_request_path("36181952270002486")
+      get hold_request_path("36181952270002486")
       expect(response).to be_successful
       expect(response).to render_template(:show)
       expect(response.body).to include("36181952270002486")
@@ -66,7 +66,7 @@ RSpec.describe "holding request new", type: :request do
 
   context "as an unauthenticated user" do
     it "redirects to login select if not logged in" do
-      get new_holding_request_path
+      get new_hold_request_path
       expect(response).to redirect_to(new_user_session_path)
     end
   end

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     concerns :range_searchable
   end
 
-  resources :holding_requests
+  resources :hold_requests
 
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
 
