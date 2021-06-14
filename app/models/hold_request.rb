@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class HoldingRequest
+class HoldRequest
   include ActiveModel::Model
   attr_accessor :mms_id, :holding_id, :pickup_library, :not_needed_after, :comment, :id, :user, :holding_library, :holding_location
 
@@ -36,7 +36,7 @@ class HoldingRequest
     elsif holding_library[:value] == "MUSME" && restricted_location?
       [{ label: "Marian K. Heilbrun Music Media", value: "MUSME" }]
     else
-      HoldingRequest.pickup_libraries
+      HoldRequest.pickup_libraries
     end
   end
 
@@ -46,7 +46,7 @@ class HoldingRequest
     elsif holding_library[:value] == "MUSME"
       oxford_user_music_options
     else
-      HoldingRequest.pickup_libraries
+      HoldRequest.pickup_libraries
     end
   end
 
@@ -67,17 +67,17 @@ class HoldingRequest
   end
 
   def save
-    if holding_request_response.code == 200
-      holding_request_body = JSON.parse(holding_request_response.body).deep_symbolize_keys!
-      @id = holding_request_body[:request_id]
+    if hold_request_response.code == 200
+      hold_request_body = JSON.parse(hold_request_response.body).deep_symbolize_keys!
+      @id = hold_request_body[:request_id]
       self
     else
-      holding_request_response
+      hold_request_response
     end
   end
 
   def self.find(params = {})
-    hr = HoldingRequest.new(params)
+    hr = HoldRequest.new(params)
     url = hr.find_request_url
     response = hr.find_request_response(url)
     body = JSON.parse(response.body).deep_symbolize_keys!
@@ -96,8 +96,8 @@ class HoldingRequest
     "#{api_url}/almaws/v1/users/#{@user}/requests/#{id}?user_id_type=all_unique&apikey=#{api_user_key}"
   end
 
-  def holding_request_response
-    @holding_request_response ||= RestClient.post(title_request_url, request_object.to_json, { content_type: :json, accept: :json })
+  def hold_request_response
+    @hold_request_response ||= RestClient.post(title_request_url, request_object.to_json, { content_type: :json, accept: :json })
   end
 
   def request_object

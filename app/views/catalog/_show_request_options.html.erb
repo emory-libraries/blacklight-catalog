@@ -42,11 +42,11 @@
                       <td><%=holding_item[:status] %></td>
                     </tr>
                     <% end %>
-                    
+
                   </tbody>
                 </table>
             </td>
-            <td><%= button_to("Request", new_holding_request_path, method: :get, params: {mms_id: document.id, holding_id: holding[:holding_id], holding_library: holding[:library], holding_location: holding[:location]}) %></td>
+            <td><%= button_to("Request", new_hold_request_path, method: :get, params: {mms_id: document.id, holding_id: holding[:holding_id], holding_library: holding[:library], holding_location: holding[:location]}) %></td>
           </tr>
 
         <% end %>

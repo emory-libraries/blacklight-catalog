@@ -27,7 +27,7 @@ RSpec.describe "Create a request for a holding", type: :system, js: true, alma: 
       .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
   end
 
-  it "has a button to request holdings" do
+  it "has a button to request a hold" do
     visit solr_document_path(MLA_HANDBOOK[:id])
     sign_in(user)
     within '#physical-holding-1' do
@@ -39,12 +39,12 @@ RSpec.describe "Create a request for a holding", type: :system, js: true, alma: 
 
   it "has a dropdown list of possible pickup libraries" do
     sign_in(user)
-    visit new_holding_request_path(params: { mms_id: MLA_HANDBOOK[:id], holding_id: "22332597410002486",
-                                             holding_library: { label: "Oxford College Library", value: "OXFD" },
-                                             holding_location: { label: "Book Stacks", value: "STACK" } })
+    visit new_hold_request_path(params: { mms_id: MLA_HANDBOOK[:id], holding_id: "22332597410002486",
+                                          holding_library: { label: "Oxford College Library", value: "OXFD" },
+                                          holding_location: { label: "Book Stacks", value: "STACK" } })
     expect(page).to have_field('Holding', with: '22332597410002486', readonly: true)
     page.select 'Law Library', from: 'Pickup library'
-    click_on("Create Holding request")
+    click_on("Create Hold request")
     expect(page).to have_content("Pickup library")
   end
 end
