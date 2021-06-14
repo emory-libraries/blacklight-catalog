@@ -1,0 +1,571 @@
+---
+- :code: 01GALI_EMORY
+  :label: Emory University Libraries
+- :code: BUS
+  :label: Goizueta Business Library
+  :locations:
+  - :code: NEWBK
+    :label: Business Book Display
+  - :code: CREF
+    :label: Career Reference
+  - :code: BSCH
+    :label: Goizueta Business School
+  - :code: OSIZE
+    :label: Oversize
+  - :code: XL
+    :label: Permanently Lost
+  - :code: XM
+    :label: Permanently Missing
+  - :code: REF
+    :label: Reference
+  - :code: UNASSIGNED
+    :label: ''
+  - :code: WD
+    :label: Withdrawn
+  - :code: STACK
+    :label: Woodruff Book Stacks
+- :code: CHEM
+  :label: Science Commons
+  :locations:
+  - :code: HATHI
+    :label: Available via Hathi Trust
+  - :code: STACK
+    :label: Book Stacks
+  - :code: RESRV
+    :label: Course Reserves
+  - :code: MSCI
+    :label: Current Periodicals
+  - :code: EXHIBIT
+    :label: Exhibit
+  - :code: MCN
+    :label: Popular Reading
+  - :code: NEWBK
+    :label: New Books
+  - :code: XL
+    :label: Permanently Lost
+  - :code: XM
+    :label: Permanently Missing
+  - :code: UNASSIGNED
+    :label: ''
+  - :code: WD
+    :label: Withdrawn
+- :code: COSS
+  :label: Clifton Road Remote Storage
+- :code: EUH
+  :label: EUH Branch Library
+  :locations:
+  - :code: STACK
+    :label: Book Stacks
+  - :code: CPER
+    :label: Current Periodicals
+  - :code: REF
+    :label: Reference
+- :code: GRADY
+  :label: Grady Branch Library
+  :locations:
+  - :code: STACK
+    :label: Book Stacks
+  - :code: RESRV
+    :label: Course Reserves
+  - :code: CPER
+    :label: Current Periodicals
+  - :code: MEDIA
+    :label: Media Collection
+  - :code: OSIZE
+    :label: Oversize
+  - :code: PER
+    :label: Periodicals
+  - :code: REF
+    :label: Reference
+  - :code: SPCOL
+    :label: Special Collections
+- :code: HLTH
+  :label: Health Sciences Library
+  :locations:
+  - :code: HATHI
+    :label: Available via Hathi Trust
+  - :code: STACK
+    :label: Book Stacks
+  - :code: CIRC
+    :label: Circulation Desk
+  - :code: RESRV
+    :label: Course Reserves
+  - :code: CPER
+    :label: Current Periodicals
+  - :code: DISPLAY
+    :label: Display
+  - :code: LKEY
+    :label: Health Sciences Locker Keys
+  - :code: MEDIA
+    :label: Media Collection
+  - :code: TYEC
+    :label: Myrtle Tye History of Medicine Collection
+  - :code: TYECO
+    :label: Myrtle Tye History of Medicine Collection, Oversized
+  - :code: NEWBK
+    :label: New Books
+  - :code: OSIZE
+    :label: Oversize
+  - :code: PER
+    :label: Periodicals
+  - :code: XL
+    :label: Permanently Lost
+  - :code: XM
+    :label: Permanently Missing
+  - :code: REF
+    :label: Reference
+  - :code: SPCOL
+    :label: Special Collections
+  - :code: STAFF
+    :label: Staff Use
+  - :code: SP
+    :label: Suppressed
+  - :code: THDIS
+    :label: Theses and Dissertations
+  - :code: WD
+    :label: Health Withdrawn
+- :code: LAW
+  :label: Law Library
+  :locations:
+  - :code: HATHI
+    :label: Available via Hathi Trust
+  - :code: RSTMT
+    :label: A.L.I. Restatements of the Law, 3rd Floor (Codes)
+  - :code: BLKMN
+    :label: Blackmun Collection, 3rd Floor, MacMillan
+  - :code: STACK
+    :label: Book Stacks, 3rd and 4th Floor
+  - :code: RESRV
+    :label: Course Reserves, Service Desk 2nd Floor
+  - :code: DISP
+    :label: Display Materials
+  - :code: DVDL
+    :label: DVD-Lend - 2nd Flr Leisure Area
+  - :code: SCODE
+    :label: Federal & Selected State Codes, 3rd Fl., Macmillan
+  - :code: FRNLW
+    :label: Foreign Law, Granger Hansell Room
+  - :code: GALAW
+    :label: Georgia Law, King & Spalding Room, 3rd Floor
+  - :code: CORE1
+    :label: Historical Core Collection, Granger Hansell Room
+  - :code: INDEX
+    :label: Index Table, 3rd Floor, MacMillan
+  - :code: FICT
+    :label: Legal Fiction and Leisure Reading, 2nd floor
+  - :code: LEISR
+    :label: Leisure Reading, 2nd Floor
+  - :code: CORE3
+    :label: Martindale-Hubbell Directories, 3rd Floor
+  - :code: MFORM
+    :label: Microforms, 1st Floor
+  - :code: SDOCS
+    :label: Official State Documents, Granger Hansell Room
+  - :code: PER
+    :label: Periodicals
+  - :code: REF
+    :label: Reference
+  - :code: RFDSK
+    :label: Reference Desk
+  - :code: ROB
+    :label: Robitscher Room, 4th Floor
+  - :code: CORE2
+    :label: Selected Reporters & Digests, 3rd Floor, MacMillan
+  - :code: CIRC
+    :label: Service Desk, 2nd Floor
+  - :code: SPCOL
+    :label: Special Collections, 2nd Floor
+  - :code: SPDIS
+    :label: Special Collections, 2nd Floor
+  - :code: SPISO
+    :label: Special Collections, 2nd Floor
+  - :code: SPCOV
+    :label: Special Collections, 2nd Floor
+  - :code: STAFF
+    :label: Staff Use
+  - :code: STLW
+    :label: Storage, 1st Floor
+  - :code: STOR
+    :label: Storage Library
+  - :code: PEMRV
+    :label: Study Aids, Service Desk 2nd Floor
+  - :code: USD
+    :label: U.S. Government Documents, 1st Floor
+  - :code: USDST
+    :label: U.S. Government Documents Storage, 1st Floor
+- :code: LSC
+  :label: Library Service Center
+  :locations:
+  - :code: HATHI
+    :label: Available via Hathi Trust
+  - :code: BSTORJ
+    :label: " "
+  - :code: BSTOR
+    :label: " "
+  - :code: HSTORJ
+    :label: " "
+  - :code: HSTORNC
+    :label: "- Non-Circulating"
+  - :code: HSTOR
+    :label: " "
+  - :code: OUT_RS_REQ
+    :label: " "
+  - :code: IN_RS_REQ
+    :label: " "
+  - :code: SP
+    :label: " "
+  - :code: WD
+    :label: " "
+  - :code: MSTORJ
+    :label: " "
+  - :code: MSTOR
+    :label: " "
+  - :code: RSTORDX
+    :label: "- Non-Circulating"
+  - :code: RSTORM
+    :label: " "
+  - :code: RSTORR
+    :label: " "
+  - :code: SSTORJ
+    :label: " "
+  - :code: SSTOR
+    :label: " "
+  - :code: TSTORJ
+    :label: " "
+  - :code: TSTORNC
+    :label: "- Non-Circulating"
+  - :code: TSTOR
+    :label: " "
+  - :code: USTORJ
+    :label: " "
+  - :code: USTORNC
+    :label: "- Non-Circulating"
+  - :code: USTOR
+    :label: " "
+  - :code: USTORGD
+    :label: " "
+- :code: MARBL
+  :label: Rose Library (MARBL)
+  :locations:
+  - :code: HATHI
+    :label: Available via Hathi Trust
+  - :code: STACK
+    :label: Locked Stacks
+  - :code: SPOZ
+    :label: Locked Stacks
+  - :code: VAUL1
+    :label: Locked Stacks
+  - :code: VAUL2
+    :label: Locked Stacks
+  - :code: MSSTK
+    :label: Locked Stacks
+  - :code: MAP
+    :label: Locked Stacks
+  - :code: MEDIA
+    :label: Locked Stacks
+  - :code: REF
+    :label: Locked Stacks
+  - :code: STAFF
+    :label: Locked Stacks
+  - :code: SP
+    :label: Suppressed
+  - :code: UNASSIGNED
+    :label: Locked Stacks
+- :code: MID
+  :label: EUHM Branch Library
+  :locations:
+  - :code: STACK
+    :label: Book Stacks
+  - :code: CIRC
+    :label: Circulation Desk
+  - :code: RESRV
+    :label: Course Reserves
+  - :code: MEDIA
+    :label: Media Collection
+  - :code: PER
+    :label: Periodicals
+  - :code: REF
+    :label: Reference
+  - :code: RFDSK
+    :label: Reference Desk
+  - :code: SPCOL
+    :label: Special Collections
+- :code: MUSME
+  :label: Marian K. Heilbrun Music Media
+  :locations:
+  - :code: HATHI
+    :label: Available via Hathi Trust
+  - :code: 24HRES
+    :label: 24 Hour Reserves
+  - :code: 2HRES
+    :label: 2 Hour Reserves
+  - :code: 3DEQUIP
+    :label: 3 Day Equipment
+  - :code: 3DRES
+    :label: 3 Day Reserves
+  - :code: 3HEQUIP
+    :label: 3 Hour Equipment
+  - :code: 3HLAP
+    :label: 3 Hour Laptop
+  - :code: 3HRES
+    :label: 3 Hour Reserves
+  - :code: 7DEQUIP
+    :label: 7 Day Equipment
+  - :code: STACK
+    :label: Book Stacks
+  - :code: CIRC
+    :label: Circulation Desk
+  - :code: CIRCR
+    :label: ''
+  - :code: RESRV
+    :label: Course Reserves
+  - :code: DUC1
+    :label: DUC 1 Day Equipment
+  - :code: DUC3
+    :label: DUC 3 Day Equipment
+  - :code: DVDL
+    :label: DVD-Lend
+  - :code: FLIP
+    :label: FLIP Permanent Reserves
+  - :code: FOLIO
+    :label: ''
+  - :code: MEDIA
+    :label: Media Collection
+  - :code: MINI
+    :label: ''
+  - :code: NEWBK
+    :label: New Books
+  - :code: OSIZE
+    :label: ''
+  - :code: XL
+    :label: Permanently Lost
+  - :code: XM
+    :label: Permanently Missing
+  - :code: REF
+    :label: Reference
+  - :code: STAFF
+    :label: Staff Use
+  - :code: SP
+    :label: Suppressed
+  - :code: UNASSIGNED
+    :label: ''
+  - :code: WD
+    :label: Withdrawn
+- :code: OXFD
+  :label: Oxford College Library
+  :locations:
+  - :code: 24HLAP
+    :label: ''
+  - :code: EQUIP7
+    :label: ''
+  - :code: HATHI
+    :label: Available via Hathi Trust
+  - :code: EMOAUT
+    :label: ''
+  - :code: GAMES
+    :label: GAMES
+  - :code: NEWACA
+    :label: New Academic Titles
+  - :code: NEWNYT
+    :label: New York Times Bestsellers
+  - :code: NOINV
+    :label: ''
+  - :code: 3DEQUIP
+    :label: ''
+  - :code: STACK
+    :label: Book Stacks
+  - :code: RESRV
+    :label: Course Reserves
+  - :code: DISPLAY
+    :label: Display
+  - :code: DVDER
+    :label: Educational Resource DVD
+  - :code: EQUIP
+    :label: Equipment
+  - :code: GRNOV
+    :label: Graphic Novel Collection
+  - :code: OXFKIT
+    :label: Oxford Kits
+  - :code: MEDIA
+    :label: Media Collection
+  - :code: OGTR
+    :label: Ogletree Lewis Collection
+  - :code: OSIZE
+    :label: Oversize
+  - :code: PER
+    :label: Periodicals
+  - :code: SPCOL
+    :label: Special Collections
+  - :code: STAFF
+    :label: Staff Use
+  - :code: XL
+    :label: ''
+  - :code: XM
+    :label: ''
+  - :code: SP
+    :label: ''
+  - :code: TEACH
+    :label: Teaching and Learning Collection
+  - :code: WD
+    :label: ''
+- :code: THEO
+  :label: Pitts Theology Library
+  :locations:
+  - :code: HATHI
+    :label: Available via Hathi Trust
+  - :code: 24HRES
+    :label: 24 Hour Reserves
+  - :code: 3DRES
+    :label: 3 Day Reserves
+  - :code: 3HRES
+    :label: 3 Hour Reserves
+  - :code: STACK
+    :label: Book Stacks, 1st Floor
+  - :code: LONGTERM
+    :label: ''
+  - :code: SHORTTERM
+    :label: ''
+  - :code: ETHIC
+    :label: Emory Center for Ethics
+  - :code: MEDIA
+    :label: Media, 2nd Floor
+  - :code: MFICH
+    :label: Microfiche, 2nd Floor
+  - :code: MFILM
+    :label: Microfilm, 2nd Floor
+  - :code: NEWAC
+    :label: New Acquisitions, 2nd floor
+  - :code: EXHIBIT
+    :label: ''
+  - :code: OSIZE
+    :label: Oversize, 1st Floor
+  - :code: PER
+    :label: Periodicals, 2nd Floor
+  - :code: XM
+    :label: ''
+  - :code: RFDSK
+    :label: Ready Reference, 2nd Floor
+  - :code: REF
+    :label: Reference, 2nd Floor
+  - :code: SPCOL
+    :label: Special Collections
+  - :code: SPDOZ
+    :label: Special Collections--Double Oversized
+  - :code: SPOFO
+    :label: Special Collections--Overflow Oversized
+  - :code: SPOZ
+    :label: Special Collections--Oversized
+  - :code: SPPAM
+    :label: Special Collections--Pamphlets
+  - :code: SPREF
+    :label: Special Collections--Reference
+  - :code: SPRES
+    :label: Special Collections--Restricted
+  - :code: STAFF
+    :label: Staff Use
+  - :code: STOR
+    :label: Storage Library
+  - :code: SPSTOR
+    :label: Theology Storage Library - Non Circulating
+  - :code: STORP
+    :label: Theology Storage Library Periodicals
+  - :code: SP
+    :label: Suppressed
+  - :code: UNASSIGNED
+    :label: ''
+- :code: THEOCURB
+  :label: Pitts Theology Library
+  :locations:
+  - :code: UNASSIGNED
+    :label: ''
+- :code: UNIV
+  :label: Robert W. Woodruff Library
+  :locations:
+  - :code: HATHI
+    :label: Available via Hathi Trust
+  - :code: SDL
+    :label: Student Digital Life Item
+  - :code: STACK
+    :label: Book Stacks
+  - :code: BRITTLE
+    :label: Brittle Books
+  - :code: USCEN
+    :label: Census Reference
+  - :code: CFDE
+    :label: Center for Faculty Development and Excellence
+  - :code: COX
+    :label: Cox Hall
+  - :code: CPER
+    :label: Current Periodicals
+  - :code: EDATA
+    :label: Electronic Data Center
+  - :code: ECIT
+    :label: Emory Center for Interactive Teaching
+  - :code: EXHIBIT
+    :label: Exhibit
+  - :code: FOLIO
+    :label: Folio
+  - :code: REFFO
+    :label: Folio Reference
+  - :code: UKD
+    :label: Government Documents, United Kingdom
+  - :code: UKDF
+    :label: Government Documents, United Kingdom, Folio
+  - :code: UNDF
+    :label: League of Nations Reference
+  - :code: 24EQUIP
+    :label: Library Service Desk
+  - :code: 3HRES
+    :label: Library Service Desk
+  - :code: MAPS
+    :label: Map Cases, 1st Floor
+  - :code: MGID
+    :label: Microform Guides
+  - :code: MFORM
+    :label: Microforms
+  - :code: NEWBK
+    :label: New Books
+  - :code: NEWSP
+    :label: Newspapers, Matheson Reading Room
+  - :code: ONFLY
+    :label: On-the-Fly
+  - :code: OSIZE
+    :label: Oversize
+  - :code: REFOV
+    :label: Oversize Reference
+  - :code: XL
+    :label: ''
+  - :code: XM
+    :label: ''
+  - :code: MCN
+    :label: Popular Reading
+  - :code: QUIET
+    :label: ''
+  - :code: PRES
+    :label: Preservation Office
+  - :code: REF
+    :label: Reference
+  - :code: STAFF
+    :label: Staff Use
+  - :code: STUDIO
+    :label: Student Production Studio
+  - :code: SP
+    :label: ''
+  - :code: UMBR
+    :label: ''
+  - :code: UNASSIGNED
+    :label: ''
+  - :code: UND
+    :label: UN Reference
+  - :code: WD
+    :label: Withdrawn
+- :code: UNIVCURB
+  :label: Robert W. Woodruff Library
+  :locations:
+  - :code: UNASSIGNED
+    :label: ''
+- :code: UNIVLOCK
+  :label: Robert W. Woodruff Library
+  :locations:
+  - :code: UNASSIGNED
+    :label: ''

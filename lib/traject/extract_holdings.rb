@@ -11,14 +11,29 @@ module ExtractHoldings
 
   def build_holding_hash(field, accumulator)
     holding_id = field['8']
-    library_code = field['b']
-    location_code = field['c']
+
     accumulator << {
       holding_id: holding_id,
-      library_code: library_code,
-      location_code: location_code,
+      library: library(field),
+      location: location(field),
       call_number: call_number(field)
     }.to_json
+  end
+
+  def library(field)
+    map = Traject::TranslationMap.new('libraryname_map')
+    library_code = field['b']
+    library_label = map[library_code]
+    { label: library_label,
+      value: library_code }
+  end
+
+  def location(field)
+    location_code = field['c']
+    {
+      label: "Ur, I dunno",
+      value: location_code
+    }
   end
 
   def call_number(field)

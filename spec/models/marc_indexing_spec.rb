@@ -120,11 +120,13 @@ RSpec.describe 'Indexing fields with custom logic' do
       second_holding = JSON.parse(solr_doc['holdings_ssim'].last)
       expect(first_holding).to be_an_instance_of Hash
       expect(first_holding["holding_id"]).to eq "22445527370002486"
-      expect(first_holding["library_code"]).to eq "UNIV"
-      expect(first_holding["location_code"]).to eq "ONFLY"
+      expect(first_holding["library"]).to eq({ "label" => "Robert W. Woodruff Library", "value" => "UNIV" })
+      # expect(first_holding["location_code"]).to eq "ONFLY"
+      expect(first_holding["location"]).to eq({ "label" => "Ur, I dunno", "value" => "ONFLY" })
       expect(first_holding["call_number"]).to eq " RC451.4.G39  N53 2021 "
       expect(second_holding["holding_id"]).to eq "22325154910002486"
-      expect(second_holding["location_code"]).to eq "STACK"
+      # expect(second_holding["location_code"]).to eq "STACK"
+      expect(second_holding["location"]).to eq({ "label" => "Ur, I dunno", "value" => "STACK" })
     end
 
     it 'maps holdings call numbers for non-lc works' do
