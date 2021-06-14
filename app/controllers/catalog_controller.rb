@@ -155,8 +155,8 @@ class CatalogController < ApplicationController
     #   Additional/Related Title Information Section
     config.add_show_field 'title_addl_tesim', label: 'Full Title', helper_method: :multiple_values_new_line
     config.add_show_field 'title_uniform_ssim', label: 'Uniform Title', helper_method: :multilined_links_to_facet
-    config.add_show_field 'title_former_ssim', label: 'Former Titles', helper_method: :multilined_links_to_facet
-    config.add_show_field 'title_later_ssim', label: 'Later Titles', helper_method: :multilined_links_to_facet
+    config.add_show_field 'title_former_ssim', label: 'Former Titles', helper_method: :multilined_links_to_title_search
+    config.add_show_field 'title_later_ssim', label: 'Later Titles', helper_method: :multilined_links_to_title_search
     config.add_show_field 'title_series_ssim', label: 'Series Titles', helper_method: :multiple_values_new_line
     config.add_show_field 'emory_collection_tesim', label: 'Collection', helper_method: :multiple_values_new_line
     config.add_show_field('title_added_entry_tesim',

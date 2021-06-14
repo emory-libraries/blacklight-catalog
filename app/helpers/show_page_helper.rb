@@ -100,14 +100,19 @@ module ShowPageHelper
     link_text + link
   end
 
-  def build_availability_iframes(document_id, physical)
-    tag.iframe('',
-              id: "request-options#{physical ? '-physical' : '-online'}",
-              style: 'border: 1px solid #6c757d;',
-              width: '90%',
-              height: 200,
-              seamless: "seamless",
-              frameBorder: 0,
-              src: openurl(document_id, physical ? 'getit' : 'viewit'))
+  def multilined_links_to_title_search(value)
+    links = build_title_search_links(values_of_field(value), value[:document]['format_ssim'].map { |v| CGI.escape(v) })
+    return safe_join(links, tag('br')) if links.present?
+    ''
+  end
+
+  def build_title_search_links(record_values, record_formats)
+    record_values.map do |v|
+      query = "/?"
+      query += safe_join(record_formats.map { |f| "f%5Bformat_ssim%5D%5B%5D=#{f}" }, "&") if record_formats.present?
+      query += record_formats.present? ? "&q=#{CGI.escape(v)}" : "q=#{CGI.escape(v)}"
+      query += "&search_field=title"
+      link_to v, query
+    end
   end
 end

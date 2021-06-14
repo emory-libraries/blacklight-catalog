@@ -18,7 +18,9 @@ SHOW_PAGE_VALUE = {
     "author_addl_display_tesim": ["Tim Jenkins"], "subject_display_ssim": ["Adventure"],
     "url_suppl_ssim": ["http://www.example.com"], "issn_ssim": ["SOME OTHER MAGICAL NUMBER .12Q"],
     "oclc_ssim": ["8675309"], "other_standard_ids_tesim": ["M080142677"], "publisher_number_tesim": ["H. 4260 H."],
-    "timestamp": "2021-03-18T14:43:52.592Z", "title_vern_display_tesim": ['Title of my Work']
+    "timestamp": "2021-03-18T14:43:52.592Z", "title_vern_display_tesim": ['Title of my Work'],
+    "title_former_ssim": ["Contemporary keyboard 0361-5820 (DLC) 76641315 (OCoLC)2246955"],
+    "title_later_ssim": ["Music technology buyer's guide 1099-2839"]
   },
   field: "url_suppl_ssim"
 }.with_indifferent_access.freeze
