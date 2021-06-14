@@ -35,8 +35,10 @@ RSpec.describe "Create a request for a holding", type: :system, js: true, alma: 
       click_on("Hold request")
     end
     expect(page).to have_content("MLA handbook")
-    expect(page).to have_content('Pickup library')
+    expect(page).to have_field('Pickup library')
+    expect(find_field('Pickup library')[:required]).to eq "true"
     expect(page).to have_field('Mms', with: MLA_HANDBOOK[:id], readonly: true)
+    click_on("Create Hold request")
   end
 
   it "has a dropdown list of possible pickup libraries" do
