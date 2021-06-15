@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class HoldRequest
   include ActiveModel::Model
+  include Statusable
   validates :pickup_library, presence: true
   attr_accessor :mms_id, :holding_id, :pickup_library, :not_needed_after, :comment, :id, :user, :holding_library, :holding_location, :title
 
@@ -30,6 +31,10 @@ class HoldRequest
       { label: "Robert W. Woodruff Library", value: "UNIV" },
       { label: "Robert W. Woodruff Library Outdoor Lockers", value: "UNIVLOCK" }
     ]
+  end
+
+  def holding_libraries
+    byebug
   end
 
   def pickup_library_options

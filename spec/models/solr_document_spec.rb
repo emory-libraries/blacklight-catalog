@@ -19,6 +19,14 @@ RSpec.describe SolrDocument do
     solr.commit
   end
 
+  context "with an alias for an identifier" do
+    let(:solr_doc) { described_class.find(TEST_ITEM[:id]) }
+    it "has an alias for identifier and mms_id" do
+      expect(solr_doc.id).to eq(TEST_ITEM[:id])
+      expect(solr_doc.mms_id).to eq(TEST_ITEM[:id])
+    end
+  end
+
   context "with a regular test item" do
     let(:solr_doc) { described_class.find(TEST_ITEM[:id]) }
 

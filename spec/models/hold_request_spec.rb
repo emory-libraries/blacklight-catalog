@@ -4,12 +4,15 @@ require 'rails_helper'
 RSpec.describe HoldRequest do
   around do |example|
     orig_url = ENV['ALMA_API_URL']
-    orig_key = ENV['ALMA_USER_KEY']
+    orig_user_key = ENV['ALMA_USER_KEY']
+    orig_bib_key = ENV['ALMA_BIB_KEY']
     ENV['ALMA_API_URL'] = 'http://www.example.com'
     ENV['ALMA_USER_KEY'] = "fakeuserkey456"
+    ENV['ALMA_BIB_KEY'] = "fakebibkey123"
     example.run
     ENV['ALMA_API_URL'] = orig_url
-    ENV['ALMA_USER_KEY'] = orig_key
+    ENV['ALMA_USER_KEY'] = orig_user_key
+    ENV['ALMA_BIB_KEY'] = orig_bib_key
   end
 
   let(:user) { User.create(uid: "janeq") }
@@ -69,7 +72,10 @@ RSpec.describe HoldRequest do
   it "gives a list of allowed libraries for pickup for an Oxford user with an Oxford book" do
     stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?user_id_type=all_unique&view=full&expand=none&apikey=fakeuserkey456")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record_oxford.xml'), headers: {})
-    hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", user: user, holding_library: { label: "Oxford College Library", value: "OXFD" })
+    # hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", user: user, holding_library: { label: "Oxford College Library", value: "OXFD" })
+    hr = described_class.new(mms_id: "9936550118202486", user: user)
+    expect(hr.physical_holdings).to be
+    expect(hr.holding_libraries).to be_an_instance_of Array
     expect(user.oxford_user?).to eq true
     expect(hr.pickup_library_options).to eq([{ label: "Oxford College Library", value: "OXFD" }])
     expect(hr.holding_library).to eq({ label: "Oxford College Library", value: "OXFD" })
