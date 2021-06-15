@@ -14,8 +14,8 @@
       <tbody>
         <% document.physical_holdings.each.with_index(1) do |holding, index| %>
           <tr id="physical-holding-<%= index.to_s %>">
-            <td><%= "#{holding[:library][:label]}: #{holding[:location][:label]}" %></td>
-            <td><%=holding[:call_number] %></td>
+            <td><%= colonizer(holding[:library][:label], holding[:location][:label]) %></td>
+            <td><%= holding[:call_number] %></td>
             <td><a href="#" class="toggle-table"><% if holding[:availability][:availability_phrase] != "check_holdings" %>
                 <%= pluralize(holding[:availability][:copies], 'copy') +
                       ", #{holding[:availability][:available]} available" +
