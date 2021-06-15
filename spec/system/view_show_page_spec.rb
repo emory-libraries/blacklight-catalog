@@ -309,7 +309,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       it 'shows the section when format_ssim populated' do
         visit solr_document_path(id)
 
-        expect(page).to have_css('h2', text: 'MORE OPTIONS')
+        expect(page.body).to have_css('h2', text: 'More Options')
         expect(page).to have_link('Find more information about Books')
       end
 
@@ -322,7 +322,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         end
 
         it 'does not show the section' do
-          expect(page).not_to have_css('h2', text: 'MORE OPTIONS')
+          expect(page.body).not_to have_css('h2', text: 'More Options')
           expect(page).not_to have_link('Find more information about Books')
         end
       end
@@ -338,7 +338,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
 
     it "shows the location header", alma: true do
       expect(page).to have_content("Where to find it")
-      expect(page).to have_content("REQUEST OPTIONS")
+      expect(page.body).to have_content("Request Options")
       expect(page).to have_content("Marian K. Heilbrun Music Media")
       expect(page).to have_content("Circulation Desk")
       expect(page).to have_content("ML410 .M5 H87 2019 CD-SOUND")
@@ -368,9 +368,9 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
 
     it "shows item level holdings information" do
       click_link('3 copies, 3 available, 0 requests')
-      expect(page).to have_content('010002885298')
-      expect(page).to have_content('Item in place')
-      expect(page).to have_content('barcode')
+      expect(page.body).to have_content('010002885298')
+      expect(page.body).to have_content('Item in place')
+      expect(page.body).to have_content('barcode')
     end
 
     it "has a button to request holdings" do
