@@ -3,11 +3,10 @@
     <div class="col-sm-4">
       <%= tag.h2 t('catalog.show.find_it_header'), class: "section-title find-it-header" %>
     </div>
-    <%# <%= button_to("Request", new_hold_request_path, method: :get, params: {mms_id: document.id}) %>
     <div class="col-sm-4 request-options">
       <%  %>
       <%= dropdown 'Request', split: true, button: {class: "btn-primary"}, align: :right do %>
-        <%= link_to "Hold request", new_hold_request_path(params: {mms_id: document.id, title: document['title_display_tesim']&.first}) %>
+        <%= link_to "Hold request", new_hold_request_path(hold_request: {mms_id: document.id, title: document['title_display_tesim']&.first}) %>
       <% end %>
     </div>
   </div>

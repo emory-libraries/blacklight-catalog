@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require 'rails_helper'
-WebMock.allow_net_connect!
+
 RSpec.describe HoldRequest do
   around do |example|
     orig_url = ENV['ALMA_API_URL']
@@ -13,6 +13,11 @@ RSpec.describe HoldRequest do
   end
 
   let(:user) { User.create(uid: "janeq") }
+
+  it "validates the presence of the pickup location library" do
+    hr = described_class.new(mms_id: "9936550118202486", user: user)
+    expect(hr.valid?).to be false
+  end
 
   it "sets the body with the params" do
     sr = stub_request(:post, "http://www.example.com/almaws/v1/users//requests?allow_same_request=false&apikey=fakeuserkey456&mms_id=&user_id_type=all_unique")

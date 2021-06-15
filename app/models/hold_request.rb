@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class HoldRequest
   include ActiveModel::Model
+  validates :pickup_library, presence: true
   attr_accessor :mms_id, :holding_id, :pickup_library, :not_needed_after, :comment, :id, :user, :holding_library, :holding_location, :title
 
   def initialize(params = {})
@@ -34,7 +35,7 @@ class HoldRequest
   def pickup_library_options
     if @user.oxford_user?
       oxford_user_pickup_library_options
-    elsif holding_library[:value] == "MUSME" && restricted_location?
+    elsif holding_library.try(:[], :value) == "MUSME" && restricted_location?
       [{ label: "Marian K. Heilbrun Music Media", value: "MUSME" }]
     else
       HoldRequest.pickup_libraries

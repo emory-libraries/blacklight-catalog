@@ -26,6 +26,18 @@ RSpec.describe "hold request new", type: :request do
         "not_needed_after(3i)": "10"
       }
     end
+
+    let(:invalid_attributes) do
+      {
+        "user": user.uid,
+        "mms_id": "9936550118202486",
+        "comment": "IGNORE - TESTING",
+        "not_needed_after(1i)": "2021",
+        "not_needed_after(2i)": "6",
+        "not_needed_after(3i)": "10"
+      }
+    end
+
     before do
       sign_in(user)
       stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?apikey=fakeuserkey456&expand=none&user_id_type=all_unique&view=full")
@@ -44,7 +56,9 @@ RSpec.describe "hold request new", type: :request do
       expect(assigns(:hold_request).not_needed_after).to eq "2021-06-10Z"
       expect(response).to redirect_to(hold_request_path("36181952270002486"))
       follow_redirect!
+      expect(flash[:notice]).to eq('Hold request was successfully created.')
       expect(response).to render_template(:show)
+      expect(response.body).to include('Hold request was successfully created.')
       expect(response.body).to include("36181952270002486")
       expect(response.body).to include("MUSME")
       expect(response.body).to include("IGNORE - TESTING")
@@ -57,6 +71,15 @@ RSpec.describe "hold request new", type: :request do
       expect(response.body).to include("36181952270002486")
       expect(response.body).to include("MUSME")
       expect(response.body).to include("IGNORE - TESTING")
+    end
+
+    it "validates the presence of a Pickup Library" do
+      post hold_requests_path, params: { hold_request: invalid_attributes }
+      expect(response).to redirect_to(new_hold_request_path(params: { hold_request: invalid_attributes }))
+      # expect(response).to redirect_to(new_hold_request_path)
+      follow_redirect!
+      expect(flash[:errors]).to eq(["Pickup library can't be blank"])
+      expect(response.body).to include("Pickup library can&#39;t be blank")
     end
   end
 

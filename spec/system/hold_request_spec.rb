@@ -43,9 +43,10 @@ RSpec.describe "Create a request for a holding", type: :system, js: true, alma: 
 
   it "has a dropdown list of possible pickup libraries" do
     sign_in(user)
-    visit new_hold_request_path(params: { mms_id: MLA_HANDBOOK[:id] })
+    visit new_hold_request_path(hold_request: { mms_id: MLA_HANDBOOK[:id] })
     page.select 'Law Library', from: 'Pickup library'
     click_on("Create Hold request")
     expect(page).to have_content("Hold Request")
+    expect(page).to have_content('Hold request was successfully created.')
   end
 end
