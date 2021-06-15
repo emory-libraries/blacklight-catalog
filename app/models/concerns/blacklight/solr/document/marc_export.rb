@@ -314,7 +314,7 @@ module Blacklight::Solr::Document::MarcExport
     # Get Author
     get_author_from_solr_mla(record, build_arr) if record['100'].present?
     # Get title/edition/volume info
-    build_title_apa(solr_doc, build_arr)
+    build_title_mla(solr_doc, build_arr)
     # Get Publisher doi info
     get_publisher_doi_from_solr_mla(solr_doc, build_arr)
 
@@ -382,8 +382,13 @@ module Blacklight::Solr::Document::MarcExport
     build_arr << clean_end_punctuation(doi) if doi.present?
   end
 
+  def build_title_mla(solr_doc, build_arr)
+    title = solr_doc['title_citation_ssi'].present? ? citation_title(replace_whitespace_colon(solr_doc['title_citation_ssi'])) : ''
+    build_arr << "<i>#{title}</i>." if title.present?
+  end
+
   def build_title_apa(solr_doc, build_arr)
-    title = solr_doc['title_citation_ssi'].present? ? replace_whitespace_colon(solr_doc['title_citation_ssi']) : ''
+    title = solr_doc['title_citation_ssi'].present? ? capitalize_apa(replace_whitespace_colon(solr_doc['title_citation_ssi'])) : ''
     build_arr << "<i>#{title}</i>." if title.present?
   end
 
@@ -506,5 +511,10 @@ module Blacklight::Solr::Document::MarcExport
 
   def replace_whitespace_colon(str)
     str.gsub(/\s:/, ':')
+  end
+
+  def capitalize_apa(str)
+    cap_colon = str.gsub(/: [a-z]/, &:upcase)
+    cap_colon.gsub(/- [a-z]/, &:upcase)
   end
 end
