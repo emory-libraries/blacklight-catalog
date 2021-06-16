@@ -18,6 +18,10 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
 
+  devise_scope :user do
+    get "alma/social_login_callback", to: "sessions#social_login_callback"
+  end
+
   # Disable these routes if you are using Devise's
   # database_authenticatable in your development environment.
   unless AuthConfig.use_database_auth?
