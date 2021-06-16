@@ -19,6 +19,9 @@ class HoldRequestsController < ApplicationController
       flash[:errors] = @hold_request.errors.full_messages
       redirect_to new_hold_request_path(hold_request: hold_request_params)
     end
+  rescue RestClient::Exception => x
+    flash[:error] = JSON.parse(x.response)["errorList"]["error"].map { |y| y["errorMessage"] }.join("<br/>")
+    render :new
   end
 
   private

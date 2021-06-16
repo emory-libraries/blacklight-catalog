@@ -52,6 +52,8 @@ RSpec.describe "hold request new", type: :request do
     end
 
     it "can create a holding request" do
+      stub_request(:post, "http://www.example.com/almaws/v1/users/janeq/requests?user_id_type=all_unique&mms_id=9936550118202486&allow_same_request=false&apikey=fakeuserkey456")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_request_test_file.json'))
       post hold_requests_path, params: { hold_request: valid_attributes }
       expect(response).to redirect_to(hold_request_path("36181952270002486"))
       follow_redirect!
@@ -79,6 +81,14 @@ RSpec.describe "hold request new", type: :request do
       follow_redirect!
       expect(flash[:errors]).to eq(["Pickup library can't be blank"])
       expect(response.body).to include("Pickup library can&#39;t be blank")
+
+     it "handles errors" do
+      stub_request(:post, "http://www.example.com/almaws/v1/users/janeq/requests?user_id_type=all_unique&mms_id=9936550118202486&allow_same_request=false&apikey=fakeuserkey456")
+        .to_raise(RestClient::Exception.new(File.read(File.join(fixture_path, 'request_exists.json')), 400))
+      post hold_requests_path, params: { hold_request: valid_attributes.merge({ hold_request: { mms_id: "steamed hams" } }) }
+      expect(response).to render_template(:new)
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to eq "Failed to save the request: Patron has active request for selected item"
     end
   end
 
