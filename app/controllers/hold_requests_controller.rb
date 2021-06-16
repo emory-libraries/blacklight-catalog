@@ -15,17 +15,18 @@ class HoldRequestsController < ApplicationController
   end
 
   def create
-    @hold_request = HoldRequest.new({ mms_id: params["hold_request"]["mms_id"],
-                                      holding_id: params["hold_request"]["holding_id"],
-                                      pickup_library: params["hold_request"]["pickup_library"],
-                                      comment: params["hold_request"]["comment"],
-                                      not_needed_after: not_needed_after,
-                                      user: current_user })
+    hold = params["hold_request"]
+    @hold_request = HoldRequest.new(mms_id: hold["mms_id"], holding_id: hold["holding_id"],
+                                    pickup_library: hold["pickup_library"], comment: hold["comment"],
+                                    not_needed_after: not_needed_after, user: current_user)
     if @hold_request.save
       redirect_to hold_request_path @hold_request.id
     else
       render :new
     end
+  rescue RestClient::Exception => x
+    flash[:error] = JSON.parse(x.response)["errorList"]["error"].map { |y| y["errorMessage"] }.join("<br/>")
+    render :new
   end
 
   private
