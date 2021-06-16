@@ -18,33 +18,53 @@ RSpec.describe HoldRequest do
   let(:user) { User.create(uid: "janeq") }
 
   it "validates the presence of the pickup location library" do
-    hr = described_class.new(mms_id: "9936550118202486", user: user)
+    hr = described_class.new(mms_id: "9936550118202486")
     expect(hr.valid?).to be false
   end
 
+  it "validates the presence of an mms_id" do
+    hr = described_class.new(pickup_library: "pull")
+    expect(hr.valid?).to be false
+  end
+
+  it "validates the presence of physical holdings" do
+    hr = described_class.new(mms_id: "9937275387802486", pickup_library: "pull")
+    expect(hr.valid?).to be false
+  end
+
+  it "validates as true if physical holdings, pickup library, and mms_id are all present" do
+    hr = described_class.new(mms_id: "9936550118202486", pickup_library: "pull")
+    expect(hr.valid?).to be true
+  end
+
   it "sets the body with the params" do
-    sr = stub_request(:post, "http://www.example.com/almaws/v1/users//requests?allow_same_request=false&apikey=fakeuserkey456&mms_id=&user_id_type=all_unique")
-         .with(
+    sr_bib = stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936550118202486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
+             .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_6.xml'), headers: {})
+    sr_post = stub_request(:post, "http://www.example.com/almaws/v1/users//requests?allow_same_request=false&apikey=fakeuserkey456&mms_id=9936550118202486&user_id_type=all_unique")
+              .with(
         body: {
           "request_type": "HOLD",
           "pickup_location_type": "LIBRARY",
           "pickup_location_library": "pull",
           "pickup_location_institution": "01GALI_EMORY",
           "comment": "I love cheese",
+          "holding_id": "22360885950002486",
           "last_interest_date": "2021-06-10"
         }
       )
-    k = described_class.new(pickup_library: "pull", comment: "I love cheese", not_needed_after: "2021-06-10")
+    k = described_class.new(mms_id: "9936550118202486", pickup_library: "pull", comment: "I love cheese", not_needed_after: "2021-06-10")
+    expect(k.valid?).to eq true
     k.hold_request_response
-    expect(sr).to have_been_made.once
+    expect(sr_post).to have_been_made.once
+    expect(sr_bib).to have_been_made.once
   end
 
   it "only calls restclient once in hold_request_response" do
-    sr = stub_request(:post, "http://www.example.com/almaws/v1/users//requests?allow_same_request=false&apikey=fakeuserkey456&mms_id=&user_id_type=all_unique")
-    k = described_class.new
+    sr_post = stub_request(:post, "http://www.example.com/almaws/v1/users//requests?allow_same_request=false&apikey=fakeuserkey456&mms_id=9936550118202486&user_id_type=all_unique")
+    k = described_class.new(mms_id: "9936550118202486", pickup_library: "pull")
     k.hold_request_response
     k.hold_request_response
-    expect(sr).to have_been_made.once
+    expect(sr_post).to have_been_made.once
   end
 
   it "has a holding id available" do
@@ -72,29 +92,33 @@ RSpec.describe HoldRequest do
   it "gives a list of allowed libraries for pickup for an Oxford user with an Oxford book" do
     stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?user_id_type=all_unique&view=full&expand=none&apikey=fakeuserkey456")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record_oxford.xml'), headers: {})
-    # hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", user: user, holding_library: { label: "Oxford College Library", value: "OXFD" })
     hr = described_class.new(mms_id: "9936550118202486", user: user)
     expect(hr.physical_holdings).to be
     expect(hr.holding_libraries).to be_an_instance_of Array
     expect(user.oxford_user?).to eq true
     expect(hr.pickup_library_options).to eq([{ label: "Oxford College Library", value: "OXFD" }])
-    expect(hr.holding_library).to eq({ label: "Oxford College Library", value: "OXFD" })
   end
-  it "gives a list of allowed libraries for pickup for a non-Oxford user for an Oxford book" do
+  it "gives a list of allowed libraries for pickup for a non-Oxford user" do
     stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?user_id_type=all_unique&view=full&expand=none&apikey=fakeuserkey456")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
-    hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", user: user, holding_library: { label: "Oxford College Library", value: "OXFD" })
+    hr = described_class.new(mms_id: "9936550118202486", user: user)
     expect(user.oxford_user?).to eq false
     expect(hr.pickup_library_options).to eq(described_class.pickup_libraries)
-    expect(hr.holding_library).to eq({ label: "Oxford College Library", value: "OXFD" })
+    expect(hr.holding_library).to eq({ label: "Robert W. Woodruff Library", value: "UNIV" })
   end
 
   it "gives a list of allowed libraries for pickup for a non-Oxford user for Media from the Music library" do
+    # WebMock.allow_net_connect!
     stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?user_id_type=all_unique&view=full&expand=none&apikey=fakeuserkey456")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
-    hr = described_class.new(mms_id: "9936984306602486", holding_id: "22391093010002486", user: user, holding_library: { label: "Marian K. Heilbrun Music Media", value: "MUSME" },
-                             holding_location: { label: "Media Collection", value: "MEDIA" })
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936984306602486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_bib_records/sound_recording.xml'), headers: {})
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936984306602486/holdings/22391093010002486/items?apikey=fakebibkey123")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/sound_recording_item_record.xml'), headers: {})
+    # user = User.create(uid: "mkadel")
+    hr = described_class.new(mms_id: "9936984306602486", user: user)
     expect(user.oxford_user?).to eq false
+    expect(hr.holding_to_request).to eq(hr.physical_holdings.first)
     expect(hr.pickup_library_options).to eq([{ label: "Marian K. Heilbrun Music Media", value: "MUSME" }])
     expect(hr.holding_library).to eq({ label: "Marian K. Heilbrun Music Media", value: "MUSME" })
   end

@@ -3,7 +3,10 @@ class HoldRequest
   include ActiveModel::Model
   include Statusable
   validates :pickup_library, presence: true
-  attr_accessor :mms_id, :holding_id, :pickup_library, :not_needed_after, :comment, :id, :user, :holding_library, :holding_location, :title
+  validates :mms_id, presence: true
+  validate :validate_physical_holdings
+  # validates :physical_holdings, presence: true
+  attr_accessor :mms_id, :holding_id, :pickup_library, :not_needed_after, :comment, :id, :user, :title
 
   def initialize(params = {})
     @id = params[:id]
@@ -14,14 +17,17 @@ class HoldRequest
     @holding_id = params[:holding_id]
     @comment = params[:comment]
     @not_needed_after = params[:not_needed_after]
-    @holding_library = params[:holding_library]
-    @holding_location = params[:holding_location]
+  end
+
+  def validate_physical_holdings
+    return false if mms_id.blank?
+    errors.add(:physical_holdings, "This object has no physical holdings to be requested") if physical_holdings.blank?
   end
 
   # Is there a way to pull labels from config/translation_maps?
-  # Pickup libraries from spike, should be double checked
   def self.pickup_libraries
     [
+      { label: "Science Commons", value: "CHEM" },
       { label: "Health Sciences Library", value: "HLTH" },
       { label: "Law Library", value: "LAW" },
       { label: "Library Service Center", value: "LSC" },
@@ -34,13 +40,40 @@ class HoldRequest
   end
 
   def holding_libraries
-    byebug
+    physical_holdings.map { |holding| holding[:library].try(:[], :value) }
+  end
+
+  def holding_to_request
+    raise StandardError, "No physical holdings to request" unless physical_holdings
+    if physical_holdings.count == 1
+      physical_holdings.first
+    # elsif @user.oxford_user?
+    #   byebug
+    else
+      priority_scores = physical_holdings.map do |holding|
+        source_library_priority_list.index(holding[:library][:value])
+      end
+      priority_holding_index = priority_scores.index(priority_scores.min)
+      physical_holdings[priority_holding_index]
+    end
+  end
+
+  def source_library_priority_list
+    %w[LSC UNIV BUS MUSME HLTH CHEM THEO LAW OXFD EMOL EUH GRADY MID MARBL]
+  end
+
+  def holding_library
+    holding_to_request[:library]
+  end
+
+  def holding_location
+    holding_to_request[:location]
   end
 
   def pickup_library_options
     if @user.oxford_user?
       oxford_user_pickup_library_options
-    elsif holding_library.try(:[], :value) == "MUSME" && restricted_location?
+    elsif holding_libraries.include?("MUSME") && restricted_location?
       [{ label: "Marian K. Heilbrun Music Media", value: "MUSME" }]
     else
       HoldRequest.pickup_libraries
@@ -48,20 +81,10 @@ class HoldRequest
   end
 
   def oxford_user_pickup_library_options
-    if holding_library[:value] == "OXFD"
+    if holding_libraries.include?("OXFD") || holding_libraries.include?("MUSME")
       [{ label: "Oxford College Library", value: "OXFD" }]
-    elsif holding_library[:value] == "MUSME"
-      oxford_user_music_options
     else
       HoldRequest.pickup_libraries
-    end
-  end
-
-  def oxford_user_music_options
-    if holding_location[:value] == "7DEQUIP"
-      [{ label: "Marian K. Heilbrun Music Media", value: "MUSME" }]
-    else
-      [{ label: "Oxford College Library", value: "OXFD" }]
     end
   end
 
@@ -114,6 +137,7 @@ class HoldRequest
       "pickup_location_library": pickup_library,
       "pickup_location_institution": "01GALI_EMORY",
       "comment": comment,
+      "holding_id": holding_to_request[:holding_id],
       "last_interest_date": not_needed_after
     }
   end
