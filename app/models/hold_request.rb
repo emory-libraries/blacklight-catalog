@@ -46,8 +46,6 @@ class HoldRequest
     raise StandardError, "No physical holdings to request" unless physical_holdings
     if physical_holdings.count == 1
       physical_holdings.first
-    # elsif @user.oxford_user?
-    #   byebug
     else
       priority_scores = physical_holdings.map do |holding|
         source_library_priority_list.index(holding[:library][:value])
@@ -141,7 +139,6 @@ class HoldRequest
     }
   end
 
-  # def last_interest_date(year, month, day)
   def last_interest_date(*args)
     @last_interest_date ||= (Date.new(args[0].to_i, args[1].to_i, args[2].to_i).strftime("%Y-%m-%dZ") if args.present?)
   end

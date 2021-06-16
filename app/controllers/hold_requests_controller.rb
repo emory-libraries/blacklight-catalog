@@ -2,12 +2,6 @@
 class HoldRequestsController < ApplicationController
   before_action :authenticate_user!
   def new
-    # @hold_request = HoldRequest.new({
-    #                                   title: params[:title], mms_id: params[:mms_id], holding_id: params[:holding_id],
-    #                                   holding_library: { label: params[:holding_library].try(:[], :label), value: params[:holding_library].try(:[], :value) },
-    #                                   holding_location: { label: params[:holding_location].try(:[], :label), value: params[:holding_location].try(:[], :value) },
-    #                                   user: current_user
-    #                                 })
     @hold_request = HoldRequest.new(hold_request_params.merge(user: current_user))
   end
 
