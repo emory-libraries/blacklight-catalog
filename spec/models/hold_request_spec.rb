@@ -12,6 +12,11 @@ RSpec.describe HoldRequest do
     ENV['ALMA_USER_KEY'] = orig_key
   end
 
+  before do
+    stub_request(:post, "http://www.example.com/almaws/v1/users/janeq/requests?user_id_type=all_unique&mms_id=9936550118202486&allow_same_request=false&apikey=fakeuserkey456")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_request_test_file.json'))
+  end
+
   let(:user) { User.create(uid: "janeq") }
 
   it "sets the body with the params" do
