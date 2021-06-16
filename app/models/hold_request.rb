@@ -5,7 +5,6 @@ class HoldRequest
   validates :pickup_library, presence: true
   validates :mms_id, presence: true
   validate :validate_physical_holdings
-  # validates :physical_holdings, presence: true
   attr_accessor :mms_id, :holding_id, :pickup_library, :not_needed_after, :comment, :id, :user, :title
 
   def initialize(params = {})
