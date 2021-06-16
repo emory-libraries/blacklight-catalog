@@ -15,7 +15,7 @@ class HoldRequest
     @user = params[:user]
     @holding_id = params[:holding_id]
     @comment = params[:comment]
-    @not_needed_after = params[:not_needed_after]
+    @last_interest_date = last_interest_date(params[:"not_needed_after(1i)"], params[:"not_needed_after(2i)"], params[:"not_needed_after(3i)"]) if params[:"not_needed_after(1i)"].present?
   end
 
   def validate_physical_holdings
@@ -137,8 +137,13 @@ class HoldRequest
       "pickup_location_institution": "01GALI_EMORY",
       "comment": comment,
       "holding_id": holding_to_request[:holding_id],
-      "last_interest_date": not_needed_after
+      "last_interest_date": last_interest_date
     }
+  end
+
+  # def last_interest_date(year, month, day)
+  def last_interest_date(*args)
+    @last_interest_date ||= (Date.new(args[0].to_i, args[1].to_i, args[2].to_i).strftime("%Y-%m-%dZ") if args.present?)
   end
 
   def api_url

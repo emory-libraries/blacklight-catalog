@@ -71,6 +71,10 @@ module Statusable
     end
   end
 
+  def hold_requestable?
+    physical_holdings.present?
+  end
+
   def physical_item_values(availability)
     @availability_phrase = availability.at_xpath('subfield[@code="e"]')&.inner_text
     @copies = availability.at_xpath('subfield[@code="f"]')&.inner_text&.to_i

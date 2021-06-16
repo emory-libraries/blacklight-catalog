@@ -42,6 +42,7 @@ RSpec.describe SolrDocument do
       end
     end
   end
+
   context 'holdings' do
     let(:solr_doc) { described_class.find(MULTIPLE_HOLDINGS_TEST_ITEM[:id]) }
 
@@ -62,6 +63,10 @@ RSpec.describe SolrDocument do
       expect(solr_doc.physical_holdings[1][:availability]).to eq({ copies: 2, available: 2, requests: 1, availability_phrase: "available" })
       expect(solr_doc.physical_holdings[2][:availability]).to eq({ copies: 3, available: 1, requests: 0, availability_phrase: "available" })
       expect(solr_doc.online_holdings).to be nil
+    end
+
+    it "can say whether or not the title is available for a hold request" do
+      expect(solr_doc.hold_requestable?).to eq true
     end
   end
 
@@ -88,6 +93,10 @@ RSpec.describe SolrDocument do
       expect(old_style_solr_doc.physical_holdings).to be nil
       expect(old_style_solr_doc.online_holdings).to eq(online_holdings)
       expect(new_style_solr_doc.online_holdings).to eq(online_holdings)
+    end
+
+    it "can say whether or not the title is available for a hold request" do
+      expect(new_style_solr_doc.hold_requestable?).to eq false
     end
   end
 

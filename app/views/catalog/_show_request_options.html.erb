@@ -6,7 +6,9 @@
     <div class="col-sm-4 request-options">
       <%  %>
       <%= dropdown 'Request', split: true, button: {class: "btn-primary"}, align: :right do %>
-        <%= link_to "Hold request", new_hold_request_path(hold_request: {mms_id: document.id, title: document['title_display_tesim']&.first}) %>
+        <% if document.hold_requestable? %>
+          <%= link_to "Hold request", new_hold_request_path(hold_request: {mms_id: document.id, title: document['title_display_tesim']&.first}) %>
+        <% end %>
       <% end %>
     </div>
   </div>

@@ -53,7 +53,6 @@ RSpec.describe "hold request new", type: :request do
 
     it "can create a holding request" do
       post hold_requests_path, params: { hold_request: valid_attributes }
-      expect(assigns(:hold_request).not_needed_after).to eq "2021-06-10Z"
       expect(response).to redirect_to(hold_request_path("36181952270002486"))
       follow_redirect!
       expect(flash[:notice]).to eq('Hold request was successfully created.')

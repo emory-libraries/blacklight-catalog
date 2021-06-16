@@ -17,24 +17,45 @@ RSpec.describe HoldRequest do
 
   let(:user) { User.create(uid: "janeq") }
 
-  it "validates the presence of the pickup location library" do
-    hr = described_class.new(mms_id: "9936550118202486")
-    expect(hr.valid?).to be false
+  context "validates attributes" do
+    it "validates the presence of the pickup location library" do
+      hr = described_class.new(mms_id: "9936550118202486")
+      expect(hr.valid?).to be false
+    end
+
+    it "validates the presence of an mms_id" do
+      hr = described_class.new(pickup_library: "pull")
+      expect(hr.valid?).to be false
+    end
+
+    it "validates the presence of physical holdings" do
+      hr = described_class.new(mms_id: "9937275387802486", pickup_library: "pull")
+      expect(hr.valid?).to be false
+    end
+
+    it "validates as true if physical holdings, pickup library, and mms_id are all present" do
+      hr = described_class.new(mms_id: "9936550118202486", pickup_library: "pull")
+      expect(hr.valid?).to be true
+    end
   end
 
-  it "validates the presence of an mms_id" do
-    hr = described_class.new(pickup_library: "pull")
-    expect(hr.valid?).to be false
-  end
-
-  it "validates the presence of physical holdings" do
-    hr = described_class.new(mms_id: "9937275387802486", pickup_library: "pull")
-    expect(hr.valid?).to be false
-  end
-
-  it "validates as true if physical holdings, pickup library, and mms_id are all present" do
-    hr = described_class.new(mms_id: "9936550118202486", pickup_library: "pull")
-    expect(hr.valid?).to be true
+  context "formatting dates" do
+    let(:valid_attributes) do
+      {
+        "user": user,
+        "mms_id": "9936550118202486",
+        "pickup_library": "MUSME",
+        "comment": "IGNORE - TESTING",
+        "not_needed_after(1i)": "2021",
+        "not_needed_after(2i)": "6",
+        "not_needed_after(3i)": "10"
+      }
+    end
+    it "formats the last_interest_date field for Alma" do
+      k = described_class.new(valid_attributes)
+      expect(k.valid?).to be true
+      expect(k.last_interest_date).to eq "2021-06-10Z"
+    end
   end
 
   it "sets the body with the params" do
@@ -49,10 +70,10 @@ RSpec.describe HoldRequest do
           "pickup_location_institution": "01GALI_EMORY",
           "comment": "I love cheese",
           "holding_id": "22360885950002486",
-          "last_interest_date": "2021-06-10"
+          "last_interest_date": "2021-06-10Z"
         }
       )
-    k = described_class.new(mms_id: "9936550118202486", pickup_library: "pull", comment: "I love cheese", not_needed_after: "2021-06-10")
+    k = described_class.new(mms_id: "9936550118202486", pickup_library: "pull", comment: "I love cheese", "not_needed_after(1i)": "2021", "not_needed_after(2i)": "6", "not_needed_after(3i)": "10")
     expect(k.valid?).to eq true
     k.hold_request_response
     expect(sr_post).to have_been_made.once

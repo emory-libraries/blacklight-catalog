@@ -372,7 +372,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(page).to have_content('barcode')
     end
 
-    it "has a button to request holdings" do
+    it "has a button to request a hold" do
       sign_in(user)
       within '.where-to-find-table' do
         expect(page).to have_button("Request")
@@ -386,6 +386,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
 
   context "online holdings" do
     let(:solr_doc) { described_class.find(ONLINE[:id]) }
+    let(:user) { User.create(uid: "janeq") }
     before do
       delete_all_documents_from_solr
       solr = Blacklight.default_index.connection
@@ -397,6 +398,15 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(page).to have_content('Canzoni villanesche and villanelle')
       expect(page).to have_link("Online resource from A-R Editions", href: "http://proxy.library.emory.edu/login?url=https://doi.org/10.31022/R082-83")
       expect(page).to have_link("Services page", href: "http://example2.com/discovery/openurl?institution=SOME_INSTITUTION&vid=SOME_INSTITUTION:blacklight&rft.mms_id=9937275387802486")
+    end
+
+    it "disables the hold request link when there are no physical holdings" do
+      sign_in(user)
+      within '.where-to-find-table' do
+        expect(page).to have_button("Request")
+        find('.dropdown-toggle').click
+        expect(page).not_to have_link("Hold request")
+      end
     end
   end
   context "url holdings" do
