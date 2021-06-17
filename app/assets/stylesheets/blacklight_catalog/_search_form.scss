@@ -50,9 +50,10 @@ div.bootstrap-select {
   min-width: $search-form-select-width;
 }
 
-.dropdown-toggle::after {
-  display: none !important;
-}
+// If we end up needing this, make it more targeted to the specific class - right now killing all dropdown carets
+// .dropdown-toggle::after {
+//   display: none !important;
+// }
 
 button.fielded-search {
   border: $search-form-select-border;
@@ -74,6 +75,16 @@ div.bootstrap-select .dropdown-toggle:focus {
     box-shadow: $search-form-box-shadow;
     border-radius: 0;
   }
+}
+
+.request-options .dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
 }
 
 div.dropdown-menu {

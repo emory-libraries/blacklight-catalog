@@ -1,3 +1,13 @@
-<h1>Requesting <%= @hold_request.mms_id %></h1>
+<% if flash[:errors] %>
+  <div class="flash_messages">
+      <% flash[:errors].each do |e| %>
+        <div class="alert alert-warning">
+          <%= e %>
+        <a class="close" data-dismiss="alert" href="#">×</a>
+      <% end %>
+  </div>
+<% end %>
+
+<h1>Requesting <%= @hold_request.title %></h1>
 
 <%= render 'form', hold_request: @hold_request %>

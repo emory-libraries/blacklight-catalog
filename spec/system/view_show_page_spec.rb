@@ -338,7 +338,6 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
 
     it "shows the location header", alma: true do
       expect(page).to have_content("Where to find it")
-      expect(page.body).to have_content("Request Options")
       expect(page).to have_content("Marian K. Heilbrun Music Media")
       expect(page).to have_content("Circulation Desk")
       expect(page).to have_content("ML410 .M5 H87 2019 CD-SOUND")
@@ -373,12 +372,13 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(page.body).to have_content('barcode')
     end
 
-    it "has a button to request holdings" do
+    it "has a button to request a hold" do
       sign_in(user)
-      within '#physical-holding-1' do
-        expect(page).to have_css(".button_to")
-        expect(page.find_field('holding_id', type: :hidden)).to be
-        click_on("Request")
+      within '.where-to-find-table' do
+        expect(page).to have_button("Request")
+        find('.dropdown-toggle').click
+        expect(page).to have_link("Hold request")
+        click_on("Hold request")
       end
       expect(page).to have_content('Pickup library')
     end
@@ -386,6 +386,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
 
   context "online holdings" do
     let(:solr_doc) { described_class.find(ONLINE[:id]) }
+    let(:user) { User.create(uid: "janeq") }
     before do
       delete_all_documents_from_solr
       solr = Blacklight.default_index.connection
@@ -397,6 +398,15 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(page).to have_content('Canzoni villanesche and villanelle')
       expect(page).to have_link("Online resource from A-R Editions", href: "http://proxy.library.emory.edu/login?url=https://doi.org/10.31022/R082-83")
       expect(page).to have_link("Services page", href: "http://example2.com/discovery/openurl?institution=SOME_INSTITUTION&vid=SOME_INSTITUTION:blacklight&rft.mms_id=9937275387802486")
+    end
+
+    it "disables the hold request link when there are no physical holdings" do
+      sign_in(user)
+      within '.where-to-find-table' do
+        expect(page).to have_button("Request")
+        find('.dropdown-toggle').click
+        expect(page).not_to have_link("Hold request")
+      end
     end
   end
   context "url holdings" do

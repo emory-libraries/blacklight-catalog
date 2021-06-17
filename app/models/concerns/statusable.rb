@@ -29,11 +29,11 @@ module Statusable
   end
 
   def full_record_url
-    "#{api_url}/almaws/v1/bibs/#{id}#{query_inst}#{api_bib_key}"
+    "#{api_url}/almaws/v1/bibs/#{mms_id}#{query_inst}#{api_bib_key}"
   end
 
   def holding_view_url(holding_id)
-    "#{api_url}/almaws/v1/bibs/#{id}#{holding_query(holding_id)}#{api_bib_key}"
+    "#{api_url}/almaws/v1/bibs/#{mms_id}#{holding_query(holding_id)}#{api_bib_key}"
   end
 
   def holding_query(holding_id)
@@ -69,6 +69,10 @@ module Statusable
     else
       0
     end
+  end
+
+  def hold_requestable?
+    physical_holdings.present?
   end
 
   def physical_item_values(availability)

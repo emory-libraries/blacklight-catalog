@@ -1,24 +1,32 @@
 # frozen_string_literal: true
 class HoldRequest
   include ActiveModel::Model
-  attr_accessor :mms_id, :holding_id, :pickup_library, :not_needed_after, :comment, :id, :user, :holding_library, :holding_location
+  include Statusable
+  validates :pickup_library, presence: true
+  validates :mms_id, presence: true
+  validate :validate_physical_holdings
+  attr_accessor :mms_id, :holding_id, :pickup_library, :not_needed_after, :comment, :id, :user, :title
 
   def initialize(params = {})
     @id = params[:id]
+    @title = params[:title]
     @mms_id = params[:mms_id]
     @pickup_library = params[:pickup_library]
     @user = params[:user]
     @holding_id = params[:holding_id]
     @comment = params[:comment]
-    @not_needed_after = params[:not_needed_after]
-    @holding_library = params[:holding_library]
-    @holding_location = params[:holding_location]
+    @last_interest_date = last_interest_date(params[:"not_needed_after(1i)"], params[:"not_needed_after(2i)"], params[:"not_needed_after(3i)"]) if params[:"not_needed_after(1i)"].present?
+  end
+
+  def validate_physical_holdings
+    return false if mms_id.blank?
+    errors.add(:physical_holdings, "This object has no physical holdings to be requested") if physical_holdings.blank?
   end
 
   # Is there a way to pull labels from config/translation_maps?
-  # Pickup libraries from spike, should be double checked
   def self.pickup_libraries
     [
+      { label: "Science Commons", value: "CHEM" },
       { label: "Health Sciences Library", value: "HLTH" },
       { label: "Law Library", value: "LAW" },
       { label: "Library Service Center", value: "LSC" },
@@ -30,10 +38,39 @@ class HoldRequest
     ]
   end
 
+  def holding_libraries
+    physical_holdings.map { |holding| holding[:library].try(:[], :value) }
+  end
+
+  def holding_to_request
+    raise StandardError, "No physical holdings to request" unless physical_holdings
+    if physical_holdings.count == 1
+      physical_holdings.first
+    else
+      priority_scores = physical_holdings.map do |holding|
+        source_library_priority_list.index(holding[:library][:value])
+      end
+      priority_holding_index = priority_scores.index(priority_scores.min)
+      physical_holdings[priority_holding_index]
+    end
+  end
+
+  def source_library_priority_list
+    %w[LSC UNIV BUS MUSME HLTH CHEM THEO LAW OXFD EMOL EUH GRADY MID MARBL]
+  end
+
+  def holding_library
+    holding_to_request[:library]
+  end
+
+  def holding_location
+    holding_to_request[:location]
+  end
+
   def pickup_library_options
     if @user.oxford_user?
       oxford_user_pickup_library_options
-    elsif holding_library[:value] == "MUSME" && restricted_location?
+    elsif holding_libraries.include?("MUSME") && restricted_location?
       [{ label: "Marian K. Heilbrun Music Media", value: "MUSME" }]
     else
       HoldRequest.pickup_libraries
@@ -41,20 +78,10 @@ class HoldRequest
   end
 
   def oxford_user_pickup_library_options
-    if holding_library[:value] == "OXFD"
+    if holding_libraries.include?("OXFD") || holding_libraries.include?("MUSME")
       [{ label: "Oxford College Library", value: "OXFD" }]
-    elsif holding_library[:value] == "MUSME"
-      oxford_user_music_options
     else
       HoldRequest.pickup_libraries
-    end
-  end
-
-  def oxford_user_music_options
-    if holding_location[:value] == "7DEQUIP"
-      [{ label: "Marian K. Heilbrun Music Media", value: "MUSME" }]
-    else
-      [{ label: "Oxford College Library", value: "OXFD" }]
     end
   end
 
@@ -103,13 +130,17 @@ class HoldRequest
   def request_object
     {
       "request_type": "HOLD",
-      "holding_id": holding_id,
       "pickup_location_type": "LIBRARY",
       "pickup_location_library": pickup_library,
       "pickup_location_institution": "01GALI_EMORY",
       "comment": comment,
-      "last_interest_date": not_needed_after
+      "holding_id": holding_to_request[:holding_id],
+      "last_interest_date": last_interest_date
     }
+  end
+
+  def last_interest_date(*args)
+    @last_interest_date ||= (Date.new(args[0].to_i, args[1].to_i, args[2].to_i).strftime("%Y-%m-%dZ") if args.present?)
   end
 
   def api_url
