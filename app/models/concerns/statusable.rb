@@ -91,12 +91,13 @@ module Statusable
   def items_by_holding_values(holding_id)
     items = []
     holding_items = items_by_holding_record(holding_id)
-    holding_items.xpath("//item").each do |node|
+    holding_items.xpath("//item/item_data").each do |node|
       item_info = {
-        barcode: node.xpath("item_data/barcode")&.inner_text,
-        type: node.xpath("item_data/physical_material_type").attr("desc")&.value,
-        policy: node.xpath('item_data/policy').attr("desc")&.value,
-        status: node.xpath('item_data/base_status').attr("desc")&.value
+        barcode: node.xpath("barcode")&.inner_text,
+        type: node.xpath("physical_material_type").attr("desc")&.value,
+        policy: node.xpath('policy').attr("desc")&.value,
+        description: node.xpath("description")&.inner_text,
+        status: node.xpath('base_status').attr("desc")&.value
       }
       items.append(item_info)
     end

@@ -370,6 +370,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(page.body).to have_content('010002885298')
       expect(page.body).to have_content('Item in place')
       expect(page.body).to have_content('barcode')
+      expect(page.body).to have_content('Non-circ., Reading Rm Only')
     end
 
     it "has a button to request a hold" do
@@ -437,6 +438,15 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(page).to have_content('The Review of politics')
       within '#physical-holding-3' do
         expect(page).to have_content("Check holdings")
+      end
+    end
+
+    it "can display item record level description" do
+      click_link("7 copies, 7 available, 0 requests")
+      within '#physical-holding-1' do
+        expect(page).to have_content("Bound Issue")
+        expect(page).to have_content("description")
+        expect(page).to have_content("v.75(2013)")
       end
     end
   end
