@@ -16,27 +16,27 @@ module Statusable
     Nokogiri::XML(record_response)
   end
 
-  def holding_view(holding_id)
-    Nokogiri::XML(holding_response(holding_id))
+  def items_by_holding_record(holding_id)
+    Nokogiri::XML(items_by_holding_response(holding_id))
   end
 
   def record_response
     @record_response ||= RestClient.get full_record_url, { accept: :xml }
   end
 
-  def holding_response(holding_id)
-    RestClient.get holding_view_url(holding_id), { accept: :xml }
+  def items_by_holding_response(holding_id)
+    RestClient.get items_by_holding_url(holding_id), { accept: :xml }
   end
 
   def full_record_url
     "#{api_url}/almaws/v1/bibs/#{mms_id}#{query_inst}#{api_bib_key}"
   end
 
-  def holding_view_url(holding_id)
-    "#{api_url}/almaws/v1/bibs/#{mms_id}#{holding_query(holding_id)}#{api_bib_key}"
+  def items_by_holding_url(holding_id)
+    "#{api_url}/almaws/v1/bibs/#{mms_id}#{items_by_holding_query(holding_id)}#{api_bib_key}"
   end
 
-  def holding_query(holding_id)
+  def items_by_holding_query(holding_id)
     "/holdings/#{holding_id}/items?apikey="
   end
 
@@ -88,9 +88,9 @@ module Statusable
     @call_number = availability.at_xpath('subfield[@code="d"]')&.inner_text
   end
 
-  def holding_items_values(holding_id)
+  def items_by_holding_values(holding_id)
     items = []
-    holding_items = holding_view(holding_id)
+    holding_items = items_by_holding_record(holding_id)
     holding_items.xpath("//item").each do |node|
       item_info = {
         barcode: node.xpath("item_data/barcode")&.inner_text,
@@ -116,7 +116,7 @@ module Statusable
         requests: requests(@holding_id),
         availability_phrase: @availability_phrase
       },
-      holding_view: holding_items_values(@holding_id)
+      items_by_holding: items_by_holding_values(@holding_id)
     }
   end
 
