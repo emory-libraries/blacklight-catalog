@@ -4,12 +4,14 @@
       <%= tag.h2 t('catalog.show.find_it_header'), class: "section-title find-it-header" %>
     </div>
     <div class="col-sm-4 request-options">
-      <%  %>
-      <%= dropdown 'Request', split: true, button: {class: "btn-primary"}, align: :right do %>
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Request
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <% if document.hold_requestable? %>
-          <%= link_to "Hold request", new_hold_request_path(hold_request: {mms_id: document.id, title: document['title_display_tesim']&.first}) %>
-        <% end %>
+          <%= link_to "Hold request", new_hold_request_path(hold_request: {mms_id: document.id, title: document['title_display_tesim']&.first}), class: "dropdown-item" %>
       <% end %>
+      </div>
     </div>
   </div>
 
