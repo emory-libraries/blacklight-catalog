@@ -75,7 +75,7 @@ module Statusable
     physical_holdings.present?
   end
 
-  def physical_item_values(availability)
+  def physical_holding_values(availability)
     @availability_phrase = availability.at_xpath('subfield[@code="e"]')&.inner_text
     @copies = availability.at_xpath('subfield[@code="f"]')&.inner_text&.to_i
     unavailable = availability.at_xpath('subfield[@code="g"]')&.inner_text&.to_i
@@ -104,8 +104,8 @@ module Statusable
     items
   end
 
-  def physical_item_hash(availability)
-    physical_item_values(availability)
+  def physical_holding_hash(availability)
+    physical_holding_values(availability)
     {
       holding_id: @holding_id,
       library: { label: @library_label, value: @library_code },
@@ -136,6 +136,6 @@ module Statusable
 
   def physical_holdings
     return nil unless raw_physical_availability
-    raw_physical_availability.map { |availability| physical_item_hash(availability) }
+    raw_physical_availability.map { |availability| physical_holding_hash(availability) }
   end
 end
