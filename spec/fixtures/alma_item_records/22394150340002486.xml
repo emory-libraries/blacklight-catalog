@@ -3,6 +3,7 @@
   <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9937004854502486/holdings/22394150340002486/items/23394150330002486">
     <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9937004854502486">
       <mms_id>9937004854502486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
       <title>Listening to Mendelssohn : an owner's manual /</title>
       <author>Hurwitz, David,</author>
       <isbn>1574675001</isbn>
@@ -18,6 +19,7 @@
     </bib_data>
     <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9937004854502486/holdings/22394150340002486">
       <holding_id>22394150340002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
       <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
       <permanent_call_number>ML410.M5 H87 2019</permanent_call_number>
       <call_number_type desc="Library of Congress classification">0</call_number_type>
@@ -113,6 +115,7 @@
       </public_note>
       <fulfillment_note>
       </fulfillment_note>
+      <due_date_policy>Loanable</due_date_policy>
       <internal_note_1>
       </internal_note_1>
       <internal_note_2>

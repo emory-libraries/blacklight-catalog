@@ -3,6 +3,7 @@
   <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027507910302486/holdings/22311186980002486/items/23236301140002486">
     <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027507910302486">
       <mms_id>990027507910302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
       <title>The Review of politics.</title>
       <author>Gurian, Waldemar,</author>
       <issn>0034-6705</issn>
@@ -24,6 +25,7 @@
     </bib_data>
     <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027507910302486/holdings/22311186980002486">
       <holding_id>22311186980002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
       <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
       <permanent_call_number>JA1 .R4</permanent_call_number>
       <call_number_type desc="Library of Congress classification">0</call_number_type>
@@ -117,6 +119,7 @@
       </public_note>
       <fulfillment_note>
       </fulfillment_note>
+      <due_date_policy>Loanable</due_date_policy>
       <internal_note_1>
       </internal_note_1>
       <internal_note_2>
@@ -136,6 +139,7 @@
   <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027507910302486/holdings/22311186980002486/items/23236301150002486">
     <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027507910302486">
       <mms_id>990027507910302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
       <title>The Review of politics.</title>
       <author>Gurian, Waldemar,</author>
       <issn>0034-6705</issn>
@@ -157,6 +161,7 @@
     </bib_data>
     <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027507910302486/holdings/22311186980002486">
       <holding_id>22311186980002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
       <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
       <permanent_call_number>JA1 .R4</permanent_call_number>
       <call_number_type desc="Library of Congress classification">0</call_number_type>
@@ -250,6 +255,7 @@
       </public_note>
       <fulfillment_note>
       </fulfillment_note>
+      <due_date_policy>Loanable</due_date_policy>
       <internal_note_1>
       </internal_note_1>
       <internal_note_2>
@@ -269,6 +275,7 @@
   <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027507910302486/holdings/22311186980002486/items/23321382360002486">
     <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027507910302486">
       <mms_id>990027507910302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
       <title>The Review of politics.</title>
       <author>Gurian, Waldemar,</author>
       <issn>0034-6705</issn>
@@ -290,6 +297,7 @@
     </bib_data>
     <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027507910302486/holdings/22311186980002486">
       <holding_id>22311186980002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
       <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
       <permanent_call_number>JA1 .R4</permanent_call_number>
       <call_number_type desc="Library of Congress classification">0</call_number_type>
@@ -380,6 +388,7 @@
       </public_note>
       <fulfillment_note>
       </fulfillment_note>
+      <due_date_policy>Loanable</due_date_policy>
       <internal_note_1>
       </internal_note_1>
       <internal_note_2>

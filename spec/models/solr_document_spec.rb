@@ -77,6 +77,16 @@ RSpec.describe SolrDocument do
       expect(solr_doc.physical_holdings[1][:availability]).to eq({ copies: 3, available: 3, requests: 0, availability_phrase: "available" })
       expect(solr_doc.physical_holdings[2][:availability]).to eq({ copies: nil, available: nil, requests: 0, availability_phrase: "check_holdings" })
     end
+
+    context 'as a logged in user' do
+      let(:user) { User.create(uid: 'janeq') }
+
+      it "can get the due_date_policy based on the user" do
+        expect(solr_doc.items_by_holding_query("22319997630002486", user)).to eq "/holdings/22319997630002486/items?expand=due_date_policy&user_id=janeq&apikey="
+        expect(solr_doc.physical_holdings(user).first[:items_by_holding].first).to eq({ barcode: "010002752069", type: "Bound Issue",
+                                                                                        policy: "28 Days Loan", description: "v.75(2013)", status: "Item in place" })
+      end
+    end
   end
 
   context 'online holding' do
