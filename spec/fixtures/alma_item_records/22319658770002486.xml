@@ -3,6 +3,7 @@
   <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9936550118202486/holdings/22319658770002486/items/23319658760002486">
     <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9936550118202486">
       <mms_id>9936550118202486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
       <title>MLA handbook.</title>
       <author>Modern Language Association of America.</author>
       <isbn>1603292624</isbn>
@@ -19,6 +20,7 @@
     </bib_data>
     <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9936550118202486/holdings/22319658770002486">
       <holding_id>22319658770002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
       <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
       <permanent_call_number>LB2369 .G53 2016</permanent_call_number>
       <call_number_type desc="Library of Congress classification">0</call_number_type>
@@ -114,6 +116,7 @@
       </public_note>
       <fulfillment_note>
       </fulfillment_note>
+      <due_date_policy>Loanable</due_date_policy>
       <internal_note_1>
       </internal_note_1>
       <internal_note_2>
@@ -126,13 +129,14 @@
       </statistics_note_2>
       <statistics_note_3>
       </statistics_note_3>
-      <requested>false</requested>
+      <requested>true</requested>
       <physical_condition/>
     </item_data>
   </item>
   <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9936550118202486/holdings/22319658770002486/items/23359914280002486">
     <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9936550118202486">
       <mms_id>9936550118202486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
       <title>MLA handbook.</title>
       <author>Modern Language Association of America.</author>
       <isbn>1603292624</isbn>
@@ -149,6 +153,7 @@
     </bib_data>
     <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9936550118202486/holdings/22319658770002486">
       <holding_id>22319658770002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
       <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
       <permanent_call_number>LB2369 .G53 2016</permanent_call_number>
       <call_number_type desc="Library of Congress classification">0</call_number_type>
@@ -173,8 +178,8 @@
       <pid>23359914280002486</pid>
       <barcode>010002885300</barcode>
       <creation_date>2018-11-01Z</creation_date>
-      <modification_date>2021-05-11Z</modification_date>
-      <base_status desc="Item in place">1</base_status>
+      <modification_date>2021-02-09Z</modification_date>
+      <base_status desc="Item not in place">0</base_status>
       <awaiting_reshelving>false</awaiting_reshelving>
       <physical_material_type desc="Book">BOOK</physical_material_type>
       <policy desc="Regular Loan">01</policy>
@@ -222,8 +227,7 @@
       <description>
       </description>
       <receiving_operator>0374928</receiving_operator>
-      <process_type>
-      </process_type>
+      <process_type desc="Hold Shelf">HOLDSHELF</process_type>
       <inventory_number>
       </inventory_number>
       <inventory_price>
@@ -244,6 +248,7 @@
       </public_note>
       <fulfillment_note>
       </fulfillment_note>
+      <due_date_policy>Loanable</due_date_policy>
       <internal_note_1>
       </internal_note_1>
       <internal_note_2>
@@ -256,13 +261,14 @@
       </statistics_note_2>
       <statistics_note_3>
       </statistics_note_3>
-      <requested>false</requested>
+      <requested>true</requested>
       <physical_condition/>
     </item_data>
   </item>
   <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9936550118202486/holdings/22319658770002486/items/23360885960002486">
     <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9936550118202486">
       <mms_id>9936550118202486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
       <title>MLA handbook.</title>
       <author>Modern Language Association of America.</author>
       <isbn>1603292624</isbn>
@@ -279,6 +285,7 @@
     </bib_data>
     <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9936550118202486/holdings/22319658770002486">
       <holding_id>22319658770002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
       <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
       <permanent_call_number>LB2369 .G53 2016</permanent_call_number>
       <call_number_type desc="Library of Congress classification">0</call_number_type>
@@ -372,6 +379,7 @@
       </public_note>
       <fulfillment_note>
       </fulfillment_note>
+      <due_date_policy>Loanable</due_date_policy>
       <internal_note_1>
       </internal_note_1>
       <internal_note_2>
@@ -384,7 +392,7 @@
       </statistics_note_2>
       <statistics_note_3>
       </statistics_note_3>
-      <requested>false</requested>
+      <requested>true</requested>
       <physical_condition/>
     </item_data>
   </item>

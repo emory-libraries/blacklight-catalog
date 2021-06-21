@@ -6,7 +6,7 @@
     <div class="col-sm-4 request-options">
       <%  %>
       <%= dropdown 'Request', split: true, button: {class: "btn-primary"}, align: :right do %>
-        <% if document.hold_requestable? %>
+        <% if document.hold_requestable?(current_or_guest_user) %>
           <%= link_to "Hold request", new_hold_request_path(hold_request: {mms_id: document.id, title: document['title_display_tesim']&.first}) %>
         <% end %>
       <% end %>
@@ -24,7 +24,7 @@
         </tr>
       </thead>
       <tbody>
-        <% document.physical_holdings.each.with_index(1) do |holding, index| %>
+        <% document.physical_holdings(current_or_guest_user).each.with_index(1) do |holding, index| %>
           <tr id="physical-holding-<%= index.to_s %>">
             <td><%= colonizer(holding[:library][:label], holding[:location][:label]) %></td>
             <td><%= holding[:call_number] %></td>

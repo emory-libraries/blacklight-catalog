@@ -79,11 +79,12 @@ RSpec.describe SolrDocument do
     end
 
     context 'as a logged in user' do
-      let(:user) { User.create(uid: 'mkadel') }
+      let(:user) { User.create(uid: 'janeq') }
 
       it "can get the due_date_policy based on the user" do
-        expect(solr_doc.items_by_holding_query("22319997630002486", user)).to eq "/holdings/22319997630002486/items?expand=due_date_policy&user_id=mkadel&apikey="
-        expect(solr_doc.physical_holdings(user).first[:items_by_holding].first).to eq({:barcode=>"010002752069", :type=>"Bound Issue", :policy=>"28 Days Loan", :description=>"v.75(2013)", :status=>"Item in place"})
+        expect(solr_doc.items_by_holding_query("22319997630002486", user)).to eq "/holdings/22319997630002486/items?expand=due_date_policy&user_id=janeq&apikey="
+        expect(solr_doc.physical_holdings(user).first[:items_by_holding].first).to eq({ barcode: "010002752069", type: "Bound Issue",
+                                                                                        policy: "28 Days Loan", description: "v.75(2013)", status: "Item in place" })
       end
     end
   end

@@ -1,25 +1,25 @@
 # frozen_string_literal: true
 require 'rails_helper'
-WebMock.allow_net_connect!
+
 RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
-  # around do |example|
-  #   orig_user_key = ENV['ALMA_USER_KEY']
-  #   orig_url = ENV['ALMA_API_URL']
-  #   orig_key = ENV['ALMA_BIB_KEY']
-  #   orig_sand_url = ENV["ALMA_BASE_SANDBOX_URL"]
-  #   orig_inst = ENV["INSTITUTION"]
-  #   ENV['ALMA_USER_KEY'] = "fakeuserkey456"
-  #   ENV["ALMA_BASE_SANDBOX_URL"] = "http://example2.com"
-  #   ENV['ALMA_API_URL'] = 'http://www.example.com'
-  #   ENV['ALMA_BIB_KEY'] = "fakebibkey123"
-  #   ENV["INSTITUTION"] = "SOME_INSTITUTION"
-  #   example.run
-  #   ENV["ALMA_BASE_SANDBOX_URL"] = orig_sand_url
-  #   ENV['ALMA_API_URL'] = orig_url
-  #   ENV['ALMA_BIB_KEY'] = orig_key
-  #   ENV["INSTITUTION"] = orig_inst
-  #   ENV['ALMA_USER_KEY'] = orig_user_key
-  # end
+  around do |example|
+    orig_user_key = ENV['ALMA_USER_KEY']
+    orig_url = ENV['ALMA_API_URL']
+    orig_key = ENV['ALMA_BIB_KEY']
+    orig_sand_url = ENV["ALMA_BASE_SANDBOX_URL"]
+    orig_inst = ENV["INSTITUTION"]
+    ENV['ALMA_USER_KEY'] = "fakeuserkey456"
+    ENV["ALMA_BASE_SANDBOX_URL"] = "http://example2.com"
+    ENV['ALMA_API_URL'] = 'http://www.example.com'
+    ENV['ALMA_BIB_KEY'] = "fakebibkey123"
+    ENV["INSTITUTION"] = "SOME_INSTITUTION"
+    example.run
+    ENV["ALMA_BASE_SANDBOX_URL"] = orig_sand_url
+    ENV['ALMA_API_URL'] = orig_url
+    ENV['ALMA_BIB_KEY'] = orig_key
+    ENV["INSTITUTION"] = orig_inst
+    ENV['ALMA_USER_KEY'] = orig_user_key
+  end
   let(:id) { '123' }
 
   context "with the standard test item" do
@@ -450,7 +450,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
           expect(page).to have_content("description")
           expect(page).to have_content("v.75(2013)")
           # logged out
-          expect(page).to have_content("Loanable")
+          expect(page).to have_content("30 Day Loan Storage")
         end
       end
     end
@@ -469,6 +469,5 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         end
       end
     end
-
   end
 end

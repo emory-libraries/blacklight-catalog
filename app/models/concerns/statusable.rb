@@ -36,8 +36,8 @@ module Statusable
     "#{api_url}/almaws/v1/bibs/#{mms_id}#{items_by_holding_query(holding_id, user)}#{api_bib_key}"
   end
 
-  def items_by_holding_query(holding_id, user = nil )
-    if !user.present? || user&.guest
+  def items_by_holding_query(holding_id, user = nil)
+    if user.blank? || user&.guest
       "/holdings/#{holding_id}/items?expand=due_date_policy&user_id=GUEST&apikey="
     else
       "/holdings/#{holding_id}/items?expand=due_date_policy&user_id=#{user.uid}&apikey="
@@ -75,7 +75,7 @@ module Statusable
     end
   end
 
-  def hold_requestable?
+  def hold_requestable?(_user = nil)
     physical_holdings.present?
   end
 
@@ -99,13 +99,21 @@ module Statusable
       item_info = {
         barcode: node.xpath("barcode")&.inner_text,
         type: node.xpath("physical_material_type").attr("desc")&.value,
-        policy: node.xpath('due_date_policy')&.inner_text,
+        policy: item_policy(node, user),
         description: node.xpath("description")&.inner_text,
         status: node.xpath('base_status').attr("desc")&.value
       }
       items.append(item_info)
     end
     items
+  end
+
+  def item_policy(node, user)
+    if user.blank? || user&.guest
+      node.xpath('policy').attr("desc")&.value
+    else
+      node.xpath('due_date_policy')&.inner_text
+    end
   end
 
   def physical_holding_hash(availability, user = nil)
