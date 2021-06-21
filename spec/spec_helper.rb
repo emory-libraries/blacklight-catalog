@@ -56,6 +56,8 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   config.before do
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/990027507910302486/holdings/22319997630002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=mkadel")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22319997630002486_w_user.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/990027507910302486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_10.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/9937242404302486?view=full&expand=p_avail,e_avail,d_avail,requests&apikey=fakebibkey123")
@@ -113,6 +115,8 @@ RSpec.configure do |config|
       .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22236301230002486.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/990027507910302486/holdings/22311186980002486/items?apikey=fakebibkey123")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22311186980002486.xml'), headers: {})
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/990027507910302486/holdings/22311186980002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=mkadel")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22311186980002486_w_user.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/990027507910302486/holdings/22319997630002486/items?apikey=fakebibkey123")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22319997630002486.xml'), headers: {})
     stub_request(

@@ -1,25 +1,25 @@
 # frozen_string_literal: true
 require 'rails_helper'
-
+WebMock.allow_net_connect!
 RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
-  around do |example|
-    orig_user_key = ENV['ALMA_USER_KEY']
-    orig_url = ENV['ALMA_API_URL']
-    orig_key = ENV['ALMA_BIB_KEY']
-    orig_sand_url = ENV["ALMA_BASE_SANDBOX_URL"]
-    orig_inst = ENV["INSTITUTION"]
-    ENV['ALMA_USER_KEY'] = "fakeuserkey456"
-    ENV["ALMA_BASE_SANDBOX_URL"] = "http://example2.com"
-    ENV['ALMA_API_URL'] = 'http://www.example.com'
-    ENV['ALMA_BIB_KEY'] = "fakebibkey123"
-    ENV["INSTITUTION"] = "SOME_INSTITUTION"
-    example.run
-    ENV["ALMA_BASE_SANDBOX_URL"] = orig_sand_url
-    ENV['ALMA_API_URL'] = orig_url
-    ENV['ALMA_BIB_KEY'] = orig_key
-    ENV["INSTITUTION"] = orig_inst
-    ENV['ALMA_USER_KEY'] = orig_user_key
-  end
+  # around do |example|
+  #   orig_user_key = ENV['ALMA_USER_KEY']
+  #   orig_url = ENV['ALMA_API_URL']
+  #   orig_key = ENV['ALMA_BIB_KEY']
+  #   orig_sand_url = ENV["ALMA_BASE_SANDBOX_URL"]
+  #   orig_inst = ENV["INSTITUTION"]
+  #   ENV['ALMA_USER_KEY'] = "fakeuserkey456"
+  #   ENV["ALMA_BASE_SANDBOX_URL"] = "http://example2.com"
+  #   ENV['ALMA_API_URL'] = 'http://www.example.com'
+  #   ENV['ALMA_BIB_KEY'] = "fakebibkey123"
+  #   ENV["INSTITUTION"] = "SOME_INSTITUTION"
+  #   example.run
+  #   ENV["ALMA_BASE_SANDBOX_URL"] = orig_sand_url
+  #   ENV['ALMA_API_URL'] = orig_url
+  #   ENV['ALMA_BIB_KEY'] = orig_key
+  #   ENV["INSTITUTION"] = orig_inst
+  #   ENV['ALMA_USER_KEY'] = orig_user_key
+  # end
   let(:id) { '123' }
 
   context "with the standard test item" do
@@ -440,14 +440,35 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         expect(page).to have_content("Check holdings")
       end
     end
-
-    it "can display item record level description" do
-      click_link("7 copies, 7 available, 0 requests")
-      within '#physical-holding-1' do
-        expect(page).to have_content("Bound Issue")
-        expect(page).to have_content("description")
-        expect(page).to have_content("v.75(2013)")
+    context "as an unauthenticated user" do
+      it "can display item record level description" do
+        click_link("7 copies, 7 available, 0 requests")
+        within '#physical-holding-1' do
+          # mms_id - 990027507910302486
+          # holding_id - 22319997630002486
+          expect(page).to have_content("Bound Issue")
+          expect(page).to have_content("description")
+          expect(page).to have_content("v.75(2013)")
+          # logged out
+          expect(page).to have_content("Loanable")
+        end
       end
     end
+    context "as an authenticated user" do
+      let(:user) { User.create(uid: "janeq") }
+
+      it "can display item record level description" do
+        sign_in(user)
+        click_link("Login")
+        visit solr_document_path(LIMITED_AVA_INFO[:id])
+        click_link("7 copies, 7 available, 0 requests")
+        within '#physical-holding-1' do
+          # mms_id - 990027507910302486
+          # holding_id - 22319997630002486
+          expect(page).to have_content("28 Days Loan")
+        end
+      end
+    end
+
   end
 end

@@ -16,28 +16,32 @@ module Statusable
     Nokogiri::XML(record_response)
   end
 
-  def items_by_holding_record(holding_id)
-    Nokogiri::XML(items_by_holding_response(holding_id))
+  def items_by_holding_record(holding_id, user = nil)
+    Nokogiri::XML(items_by_holding_response(holding_id, user))
   end
 
   def record_response
     @record_response ||= RestClient.get full_record_url, { accept: :xml }
   end
 
-  def items_by_holding_response(holding_id)
-    RestClient.get items_by_holding_url(holding_id), { accept: :xml }
+  def items_by_holding_response(holding_id, user = nil)
+    RestClient.get items_by_holding_url(holding_id, user), { accept: :xml }
   end
 
   def full_record_url
     "#{api_url}/almaws/v1/bibs/#{mms_id}#{query_inst}#{api_bib_key}"
   end
 
-  def items_by_holding_url(holding_id)
-    "#{api_url}/almaws/v1/bibs/#{mms_id}#{items_by_holding_query(holding_id)}#{api_bib_key}"
+  def items_by_holding_url(holding_id, user = nil)
+    "#{api_url}/almaws/v1/bibs/#{mms_id}#{items_by_holding_query(holding_id, user)}#{api_bib_key}"
   end
 
-  def items_by_holding_query(holding_id)
-    "/holdings/#{holding_id}/items?apikey="
+  def items_by_holding_query(holding_id, user = nil )
+    if !user.present? || user&.guest
+      "/holdings/#{holding_id}/items?expand=due_date_policy&user_id=GUEST&apikey="
+    else
+      "/holdings/#{holding_id}/items?expand=due_date_policy&user_id=#{user.uid}&apikey="
+    end
   end
 
   def query_inst
@@ -88,14 +92,14 @@ module Statusable
     @call_number = availability.at_xpath('subfield[@code="d"]')&.inner_text
   end
 
-  def items_by_holding_values(holding_id)
+  def items_by_holding_values(holding_id, user = nil)
     items = []
-    holding_items = items_by_holding_record(holding_id)
+    holding_items = items_by_holding_record(holding_id, user)
     holding_items.xpath("//item/item_data").each do |node|
       item_info = {
         barcode: node.xpath("barcode")&.inner_text,
         type: node.xpath("physical_material_type").attr("desc")&.value,
-        policy: node.xpath('policy').attr("desc")&.value,
+        policy: node.xpath('due_date_policy')&.inner_text,
         description: node.xpath("description")&.inner_text,
         status: node.xpath('base_status').attr("desc")&.value
       }
@@ -104,7 +108,7 @@ module Statusable
     items
   end
 
-  def physical_holding_hash(availability)
+  def physical_holding_hash(availability, user = nil)
     physical_holding_values(availability)
     {
       holding_id: @holding_id,
@@ -117,7 +121,7 @@ module Statusable
         requests: requests(@holding_id),
         availability_phrase: @availability_phrase
       },
-      items_by_holding: items_by_holding_values(@holding_id)
+      items_by_holding: items_by_holding_values(@holding_id, user)
     }
   end
 
@@ -134,8 +138,8 @@ module Statusable
     end
   end
 
-  def physical_holdings
+  def physical_holdings(user = nil)
     return nil unless raw_physical_availability
-    raw_physical_availability.map { |availability| physical_holding_hash(availability) }
+    raw_physical_availability.map { |availability| physical_holding_hash(availability, user) }
   end
 end
