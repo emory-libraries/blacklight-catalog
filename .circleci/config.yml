@@ -50,13 +50,13 @@ jobs:
             - run:
                 name: Get yarn version
                 command: echo $(yarn --version) >> "YARN_VERSION"
-            
+
             - restore_cache:
                 keys:
                     - v1-yarn-{{ checksum "yarn.lock" }}-{{ checksum "YARN_VERSION" }}
-            
+
             - run: yarn
-            
+
             - save_cache:
                 key: v1-yarn-{{ checksum "yarn.lock" }}-{{ checksum "YARN_VERSION" }}
                 paths:
@@ -72,18 +72,18 @@ jobs:
                     curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
                     chmod +x ./cc-test-reporter
                     ./cc-test-reporter before-build
-            
+
             # Dockerize is installed in CircleCI docker images by default.
             - run:
                 name: Wait for MySQL, if necessary.
                 command: dockerize -wait tcp://${DATABASE_HOST}:${DATABASE_PORT} -timeout 1m
 
             - samvera/parallel_rspec
-            
+
             - run:
                 name: Generate CC coverage
                 command:  ./cc-test-reporter format-coverage -t simplecov -o "coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
-            
+
             - persist_to_workspace:
                 root: coverage
                 paths: codeclimate.*.json
@@ -93,19 +93,19 @@ jobs:
 
     coverage:
         docker:
-            - image: circleci/ruby:2.5.7
+            - image: circleci/ruby:2.6.7
         working_directory: ~/project
         parallelism: 1
         steps:
             - attach_workspace:
                 at: /tmp/codeclimate
-    
+
             - run:
                 name: Install Code Climate test reporter
                 command: |
                     curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
                     chmod +x ./cc-test-reporter
-    
+
             - run:
                 name: Upload Coverage
                 command: |
