@@ -24,7 +24,7 @@ module Sessions::SocialLogin
 
     social_login_populate_session(jwt)
 
-    redirect_to root_path
+    redirect_to social_login_redirect
   end
 
   # populate the session
@@ -38,5 +38,10 @@ module Sessions::SocialLogin
   # @return [Class] class object to use for users
   def social_login_user_model
     User
+  end
+
+  # @return URL to redirect to after login
+  def social_login_redirect
+    request.referer || root_path
   end
 end
