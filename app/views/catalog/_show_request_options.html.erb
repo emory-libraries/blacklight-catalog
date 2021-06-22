@@ -26,7 +26,7 @@
         </tr>
       </thead>
       <tbody>
-        <% document.physical_holdings.each.with_index(1) do |holding, index| %>
+        <% document.physical_holdings(current_or_guest_user).each.with_index(1) do |holding, index| %>
           <tr id="physical-holding-<%= index.to_s %>">
             <td><%= colonizer(holding[:library][:label], holding[:location][:label]) %></td>
             <td><%= holding[:call_number] %></td>
@@ -44,17 +44,19 @@
                       <th scope="col">barcode</th>
                       <th scope="col">type</th>
                       <th scope="col">policy</th>
+                      <th scope="col">description</th>
                       <th scope="col">status</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <% holding[:holding_view].each do |holding_item| %>
-                    <tr>
-                      <td><%=holding_item[:barcode] %></td>
-                      <td><%=holding_item[:type] %></td>
-                      <td><%=holding_item[:policy] %></td>
-                      <td><%=holding_item[:status] %></td>
-                    </tr>
+                    <% holding[:items_by_holding].each do |item| %>
+                      <tr>
+                        <td><%= item[:barcode] %></td>
+                        <td><%= item[:type] %></td>
+                        <td><%= item[:policy] %></td>
+                        <td><%= item[:description] %></td>
+                        <td><%= item[:status] %></td>
+                      </tr>
                     <% end %>
 
                   </tbody>

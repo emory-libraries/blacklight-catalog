@@ -370,6 +370,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(page.body).to have_content('010002885298')
       expect(page.body).to have_content('Item in place')
       expect(page.body).to have_content('barcode')
+      expect(page.body).to have_content('Non-circ., Reading Rm Only')
     end
 
     it "has a button to request a hold" do
@@ -437,6 +438,35 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(page).to have_content('The Review of politics')
       within '#physical-holding-3' do
         expect(page).to have_content("Check holdings")
+      end
+    end
+    context "as an unauthenticated user" do
+      it "can display item record level description" do
+        click_link("7 copies, 7 available, 0 requests")
+        within '#physical-holding-1' do
+          # mms_id - 990027507910302486
+          # holding_id - 22319997630002486
+          expect(page).to have_content("Bound Issue")
+          expect(page).to have_content("description")
+          expect(page).to have_content("v.75(2013)")
+          # logged out
+          expect(page).to have_content("30 Day Loan Storage")
+        end
+      end
+    end
+    context "as an authenticated user" do
+      let(:user) { User.create(uid: "janeq") }
+
+      it "can display item record level description" do
+        sign_in(user)
+        click_link("Login")
+        visit solr_document_path(LIMITED_AVA_INFO[:id])
+        click_link("7 copies, 7 available, 0 requests")
+        within '#physical-holding-1' do
+          # mms_id - 990027507910302486
+          # holding_id - 22319997630002486
+          expect(page).to have_content("28 Days Loan")
+        end
       end
     end
   end

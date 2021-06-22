@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items total_record_count="1">
-  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9936984306602486/holdings/22391093010002486/items/23391093000002486">
-    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9936984306602486">
-      <mms_id>9936984306602486</mms_id>
-      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
-      <title>Loudspeakers /</title>
-      <author>Amirkhanian, Charles,</author>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990005988630302486/holdings/22171079010002486/items/23171079000002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990005988630302486">
+      <mms_id>990005988630302486</mms_id>
+      <title>Illusionslos--hoffnungsvoll : die Zeitstücke und Exilromane Anna Gmeyners /</title>
+      <author>Werner, Birte.</author>
+      <isbn>9783835300194 (pbk.)</isbn>
       <complete_edition>
       </complete_edition>
       <network_numbers>
-        <network_number>(OCoLC)1136534399</network_number>
-        <network_number>on1136534399</network_number>
+        <network_number>(OCoLC)68629249</network_number>
+        <network_number>(Sirsi) o68629249</network_number>
+        <network_number>u2726200</network_number>
+        <network_number>(Aleph)000598863EMU01</network_number>
       </network_numbers>
-      <place_of_publication>Brooklyn, NY :</place_of_publication>
-      <date_of_publication>[2019]</date_of_publication>
-      <publisher_const>New World Records</publisher_const>
+      <place_of_publication>Göttingen :</place_of_publication>
+      <date_of_publication>2006.</date_of_publication>
+      <publisher_const>Wallstein</publisher_const>
     </bib_data>
-    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9936984306602486/holdings/22391093010002486">
-      <holding_id>22391093010002486</holding_id>
-      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
-      <permanent_call_number_type desc="Shelving control number">4</permanent_call_number_type>
-      <permanent_call_number>CD 23411</permanent_call_number>
-      <call_number_type desc="Shelving control number">4</call_number_type>
-      <call_number>CD 23411</call_number>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990005988630302486/holdings/22171079010002486">
+      <holding_id>22171079010002486</holding_id>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>PT2613 .M45 Z92 2006</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>PT2613 .M45 Z92 2006</call_number>
       <accession_number>
       </accession_number>
       <copy_id>
@@ -40,20 +41,20 @@
       </temp_policy>
     </holding_data>
     <item_data>
-      <pid>23391093000002486</pid>
-      <barcode>010003170597</barcode>
-      <creation_date>2020-01-27Z</creation_date>
-      <modification_date>2020-11-13Z</modification_date>
+      <pid>23171079000002486</pid>
+      <barcode>010001233671</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2020-07-30Z</modification_date>
       <base_status desc="Item in place">1</base_status>
       <awaiting_reshelving>false</awaiting_reshelving>
-      <physical_material_type desc="Compact Disc">CD</physical_material_type>
-      <policy>
-      </policy>
+      <physical_material_type desc="Book">BOOK</physical_material_type>
+      <policy desc="Regular Loan">01</policy>
       <provenance>
       </provenance>
-      <po_line>POL-75801</po_line>
-      <arrival_date>2020-02-07Z</arrival_date>
-      <expected_arrival_date>2020-01-27Z</expected_arrival_date>
+      <po_line>
+      </po_line>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2006-07-06Z</arrival_date>
       <year_of_issue>
       </year_of_issue>
       <enumeration_a>
@@ -92,15 +93,15 @@
       </type_of_unit>
       <description>
       </description>
-      <receiving_operator>0005092</receiving_operator>
+      <receiving_operator>import</receiving_operator>
       <process_type>
       </process_type>
       <inventory_number>
       </inventory_number>
       <inventory_price>
       </inventory_price>
-      <library desc="Marian K. Heilbrun Music Media">MUSME</library>
-      <location desc="Music and Media Media Collection">MEDIA</location>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
       <alternative_call_number>
       </alternative_call_number>
       <alternative_call_number_type>
@@ -115,7 +116,6 @@
       </public_note>
       <fulfillment_note>
       </fulfillment_note>
-      <due_date_policy>Loanable</due_date_policy>
       <internal_note_1>
       </internal_note_1>
       <internal_note_2>

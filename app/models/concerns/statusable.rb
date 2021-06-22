@@ -16,28 +16,32 @@ module Statusable
     Nokogiri::XML(record_response)
   end
 
-  def holding_view(holding_id)
-    Nokogiri::XML(holding_response(holding_id))
+  def items_by_holding_record(holding_id, user = nil)
+    Nokogiri::XML(items_by_holding_response(holding_id, user))
   end
 
   def record_response
     @record_response ||= RestClient.get full_record_url, { accept: :xml }
   end
 
-  def holding_response(holding_id)
-    RestClient.get holding_view_url(holding_id), { accept: :xml }
+  def items_by_holding_response(holding_id, user = nil)
+    RestClient.get items_by_holding_url(holding_id, user), { accept: :xml }
   end
 
   def full_record_url
     "#{api_url}/almaws/v1/bibs/#{mms_id}#{query_inst}#{api_bib_key}"
   end
 
-  def holding_view_url(holding_id)
-    "#{api_url}/almaws/v1/bibs/#{mms_id}#{holding_query(holding_id)}#{api_bib_key}"
+  def items_by_holding_url(holding_id, user = nil)
+    "#{api_url}/almaws/v1/bibs/#{mms_id}#{items_by_holding_query(holding_id, user)}#{api_bib_key}"
   end
 
-  def holding_query(holding_id)
-    "/holdings/#{holding_id}/items?apikey="
+  def items_by_holding_query(holding_id, user = nil)
+    if user.blank? || user&.guest
+      "/holdings/#{holding_id}/items?expand=due_date_policy&user_id=GUEST&apikey="
+    else
+      "/holdings/#{holding_id}/items?expand=due_date_policy&user_id=#{user.uid}&apikey="
+    end
   end
 
   def query_inst
@@ -71,11 +75,11 @@ module Statusable
     end
   end
 
-  def hold_requestable?
+  def hold_requestable?(_user = nil)
     physical_holdings.present?
   end
 
-  def physical_item_values(availability)
+  def physical_holding_values(availability)
     @availability_phrase = availability.at_xpath('subfield[@code="e"]')&.inner_text
     @copies = availability.at_xpath('subfield[@code="f"]')&.inner_text&.to_i
     unavailable = availability.at_xpath('subfield[@code="g"]')&.inner_text&.to_i
@@ -88,23 +92,32 @@ module Statusable
     @call_number = availability.at_xpath('subfield[@code="d"]')&.inner_text
   end
 
-  def holding_items_values(holding_id)
+  def items_by_holding_values(holding_id, user = nil)
     items = []
-    holding_items = holding_view(holding_id)
-    holding_items.xpath("//item").each do |node|
+    holding_items = items_by_holding_record(holding_id, user)
+    holding_items.xpath("//item/item_data").each do |node|
       item_info = {
-        barcode: node.xpath("item_data/barcode")&.inner_text,
-        type: node.xpath("item_data/physical_material_type").attr("desc")&.value,
-        policy: node.xpath('item_data/policy').attr("desc")&.value,
-        status: node.xpath('item_data/base_status').attr("desc")&.value
+        barcode: node.xpath("barcode")&.inner_text,
+        type: node.xpath("physical_material_type").attr("desc")&.value,
+        policy: item_policy(node, user),
+        description: node.xpath("description")&.inner_text,
+        status: node.xpath('base_status').attr("desc")&.value
       }
       items.append(item_info)
     end
     items
   end
 
-  def physical_item_hash(availability)
-    physical_item_values(availability)
+  def item_policy(node, user)
+    if user.blank? || user&.guest
+      node.xpath('policy').attr("desc")&.value
+    else
+      node.xpath('due_date_policy')&.inner_text
+    end
+  end
+
+  def physical_holding_hash(availability, user = nil)
+    physical_holding_values(availability)
     {
       holding_id: @holding_id,
       library: { label: @library_label, value: @library_code },
@@ -116,7 +129,7 @@ module Statusable
         requests: requests(@holding_id),
         availability_phrase: @availability_phrase
       },
-      holding_view: holding_items_values(@holding_id)
+      items_by_holding: items_by_holding_values(@holding_id, user)
     }
   end
 
@@ -133,8 +146,8 @@ module Statusable
     end
   end
 
-  def physical_holdings
+  def physical_holdings(user = nil)
     return nil unless raw_physical_availability
-    raw_physical_availability.map { |availability| physical_item_hash(availability) }
+    raw_physical_availability.map { |availability| physical_holding_hash(availability, user) }
   end
 end
