@@ -5,11 +5,14 @@ RSpec.describe SolrDocument do
   around do |example|
     orig_url = ENV['ALMA_API_URL']
     orig_key = ENV['ALMA_BIB_KEY']
+    orig_openurl = ENV['ALMA_BASE_SANDBOX_URL']
     ENV['ALMA_API_URL'] = 'http://www.example.com'
+    ENV['ALMA_BASE_SANDBOX_URL'] = 'http://www.example.com/hello'
     ENV['ALMA_BIB_KEY'] = "fakebibkey123"
     example.run
     ENV['ALMA_API_URL'] = orig_url
     ENV['ALMA_BIB_KEY'] = orig_key
+    ENV['ALMA_BASE_SANDBOX_URL'] = orig_openurl
   end
 
   before do
@@ -86,6 +89,9 @@ RSpec.describe SolrDocument do
       [{
         url: "http://proxy.library.emory.edu/login?url=https://doi.org/10.31022/R082-83",
         label: "Online resource from A-R Editions"
+      }, {
+        label: "Online resource from A-R Editions",
+        url: "http://www.example.com/hello/discovery/openurl?institution=&vid=:blacklight&u.ignore_date_coverage=true&force_direct=true&portfolio_pid=53450970510002486"
       }]
     end
 
@@ -106,6 +112,9 @@ RSpec.describe SolrDocument do
       [{
         url: "http://proxy.library.emory.edu/login?url=https://www.sciencedirect.com/science/book/9780702078798",
         label: "Online resource from Elsevier"
+      }, {
+        label: "Online resource from Elsevier",
+        url: "http://www.example.com/hello/discovery/openurl?institution=&vid=:blacklight&u.ignore_date_coverage=true&force_direct=true&portfolio_pid=53445539330002486"
       }]
     end
 
