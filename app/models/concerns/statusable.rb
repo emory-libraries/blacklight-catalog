@@ -129,7 +129,7 @@ module Statusable
   end
 
   def online_holdings
-    return nil if online_from_availability.blank?
+    return [] if online_from_availability.blank?
     online_from_availability.map do |entry|
       url_hash = JSON.parse(entry)
       # TODO: Can remove conditional once re-index is completed, and just keep the "if" portion

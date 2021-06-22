@@ -68,7 +68,7 @@ RSpec.describe SolrDocument do
       expect(solr_doc.physical_holdings[0][:availability]).to eq({ copies: 3, available: 3, requests: 0, availability_phrase: "available" })
       expect(solr_doc.physical_holdings[1][:availability]).to eq({ copies: 2, available: 2, requests: 1, availability_phrase: "available" })
       expect(solr_doc.physical_holdings[2][:availability]).to eq({ copies: 3, available: 1, requests: 0, availability_phrase: "available" })
-      expect(solr_doc.online_holdings).to be nil
+      expect(solr_doc.online_holdings).to be_empty
     end
 
     it "can say whether or not the title is available for a hold request" do
