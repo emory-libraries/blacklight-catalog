@@ -6,13 +6,16 @@ RSpec.describe SolrDocument do
     orig_url = ENV['ALMA_API_URL']
     orig_key = ENV['ALMA_BIB_KEY']
     orig_openurl = ENV['ALMA_BASE_SANDBOX_URL']
+    orig_inst = ENV["INSTITUTION"]
     ENV['ALMA_API_URL'] = 'http://www.example.com'
     ENV['ALMA_BASE_SANDBOX_URL'] = 'http://www.example.com/hello'
     ENV['ALMA_BIB_KEY'] = "fakebibkey123"
+    ENV["INSTITUTION"] = "SOME_INSTITUTION"
     example.run
     ENV['ALMA_API_URL'] = orig_url
     ENV['ALMA_BIB_KEY'] = orig_key
     ENV['ALMA_BASE_SANDBOX_URL'] = orig_openurl
+    ENV["INSTITUTION"] = orig_inst
   end
 
   before do
@@ -91,7 +94,7 @@ RSpec.describe SolrDocument do
         label: "Online resource from A-R Editions"
       }, {
         label: "Online resource from A-R Editions",
-        url: "http://www.example.com/hello/discovery/openurl?institution=&vid=:blacklight&u.ignore_date_coverage=true&force_direct=true&portfolio_pid=53450970510002486"
+        url: "http://www.example.com/hello/discovery/openurl?institution=SOME_INSTITUTION&vid=SOME_INSTITUTION:blacklight&u.ignore_date_coverage=true&force_direct=true&portfolio_pid=53450970510002486"
       }]
     end
 
@@ -114,7 +117,7 @@ RSpec.describe SolrDocument do
         label: "Online resource from Elsevier"
       }, {
         label: "Online resource from Elsevier",
-        url: "http://www.example.com/hello/discovery/openurl?institution=&vid=:blacklight&u.ignore_date_coverage=true&force_direct=true&portfolio_pid=53445539330002486"
+        url: "http://www.example.com/hello/discovery/openurl?institution=SOME_INSTITUTION&vid=SOME_INSTITUTION:blacklight&u.ignore_date_coverage=true&force_direct=true&portfolio_pid=53445539330002486"
       }]
     end
 
