@@ -10,6 +10,14 @@ module Statusable
     ENV.fetch('ALMA_BIB_KEY')
   end
 
+  def alma_openurl_base
+    ENV.fetch('ALMA_BASE_SANDBOX_URL')
+  end
+
+  def alma_institution
+    ENV.fetch('INSTITUTION')
+  end
+
   # Documentation for availability field from Alma
   # https://knowledge.exlibrisgroup.com/Primo/Knowledge_Articles/What_does_each_subfield_in_the_AVA_tag_hold_when_records_are_extracted_from_Voyager_for_Primo%3F
   def full_record
@@ -134,8 +142,8 @@ module Statusable
   end
 
   def online_holdings
-    return nil unless url_fulltext
-    url_fulltext.map do |entry|
+    return [] if online_from_availability.blank?
+    online_from_availability.map do |entry|
       url_hash = JSON.parse(entry)
       # TODO: Can remove conditional once re-index is completed, and just keep the "if" portion
       if url_hash.keys.include?("url")
@@ -149,5 +157,29 @@ module Statusable
   def physical_holdings(user = nil)
     return nil unless raw_physical_availability
     raw_physical_availability.map { |availability| physical_holding_hash(availability, user) }
+  end
+
+  def online_from_availability
+    ave_availability = full_record.xpath('bib/record/datafield[@tag="AVE"]')
+    ret_array = ave_availability.reduce([]) do |memo, value|
+      next memo unless ave_u_8_present?(ave_availability)
+      memo << {
+        "label" => value.at_xpath('subfield[@code="m"]')&.text || value.at_xpath('subfield[@code="n"]')&.text || value.at_xpath('subfield[@code="t"]')&.text,
+        "url" => build_ave_url(value.at_xpath('subfield[@code="8"]').text)
+      }.to_json
+    end
+    url_fulltext.present? ? url_fulltext + ret_array : ret_array
+  end
+
+  def ave_u_8_present?(availability)
+    availability.at_xpath('subfield[@code="u"]').present? && availability.at_xpath('subfield[@code="8"]').present?
+  end
+
+  def build_ave_url(portfolio_id)
+    "#{alma_openurl_base}/discovery/openurl#{ave_query}#{portfolio_id}"
+  end
+
+  def ave_query
+    "?institution=#{alma_institution}&vid=#{alma_institution}:blacklight&u.ignore_date_coverage=true&force_direct=true&portfolio_pid="
   end
 end
