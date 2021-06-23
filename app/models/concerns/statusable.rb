@@ -3,41 +3,9 @@ module Statusable
   extend ActiveSupport::Concern
   include AlmaRequestable
 
-  # Documentation for availability field from Alma
-  # https://knowledge.exlibrisgroup.com/Primo/Knowledge_Articles/What_does_each_subfield_in_the_AVA_tag_hold_when_records_are_extracted_from_Voyager_for_Primo%3F
-
-  def items_by_holding_record(holding_id, user = nil)
-    url = items_by_holding_url(holding_id, user)
-    item_record(url)
-  end
-
-  def base_url
-    "#{api_url}/almaws/v1/bibs/#{mms_id}"
-  end
-
-  def full_record_url
-    "#{base_url}#{full_record_query}#{bib_key_phrase}"
-  end
-
-  def bib_key_phrase
-    "apikey=#{api_bib_key}"
-  end
-
-  def items_by_holding_url(holding_id, user = nil)
-    "#{base_url}#{items_by_holding_query(holding_id, user)}#{bib_key_phrase}"
-  end
-
-  def items_by_holding_query(holding_id, user = nil)
-    user_id = if user.blank? || user&.guest
-                "GUEST"
-              else
-                user.uid
-              end
-    "/holdings/#{holding_id}/items?expand=due_date_policy&user_id=#{user_id}&"
-  end
-
-  def full_record_query
-    "?view=full&expand=p_avail,e_avail,d_avail,requests&"
+  def physical_holdings(user = nil)
+    return nil unless raw_physical_availability
+    raw_physical_availability.map { |availability| physical_holding_hash(availability, user) }
   end
 
   def raw_physical_availability
@@ -84,22 +52,16 @@ module Statusable
   end
 
   def items_by_holding_values(holding_id, user = nil)
-    items = []
-    # url = items_by_holding_url(holding_id, user)
-    #
-    # item_record(url).xpath("//item/item_data").each do |node|
-    holding_items = items_by_holding_record(holding_id, user)
-    holding_items.xpath("//item/item_data").each do |node|
-      item_info = {
+    url = items_by_holding_url(holding_id, user)
+    item_record(url).xpath("//item/item_data").map do |node|
+      {
         barcode: node.xpath("barcode")&.inner_text,
         type: node.xpath("physical_material_type").attr("desc")&.value,
         policy: item_policy(node, user),
         description: node.xpath("description")&.inner_text,
         status: node.xpath('base_status').attr("desc")&.value
       }
-      items.append(item_info)
     end
-    items
   end
 
   def item_policy(node, user)
@@ -138,11 +100,6 @@ module Statusable
         { url: url_hash.keys.first, label: url_hash.values.first }
       end
     end
-  end
-
-  def physical_holdings(user = nil)
-    return nil unless raw_physical_availability
-    raw_physical_availability.map { |availability| physical_holding_hash(availability, user) }
   end
 
   def online_from_availability
