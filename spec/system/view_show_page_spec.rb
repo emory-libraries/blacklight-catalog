@@ -373,15 +373,31 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(page.body).to have_content('Non-circ., Reading Rm Only')
     end
 
-    it "has a button to request a hold" do
-      sign_in(user)
-      within '.where-to-find-table' do
-        expect(page).to have_button("Request")
-        find('.dropdown-toggle').click
-        expect(page).to have_link("Hold request")
-        click_on("Hold request")
+    context 'when user signed in' do
+      before do
+        sign_in(user)
+        visit solr_document_path(MLA_HANDBOOK[:id])
       end
-      expect(page).to have_content('Pickup library')
+
+      it "has a button to request a hold" do
+        within '.where-to-find-table' do
+          expect(page).to have_button("Request")
+          find('.dropdown-toggle').click
+          expect(page).to have_link("Hold request")
+          click_on("Hold request")
+        end
+        expect(page).to have_content('Pickup library')
+      end
+
+      context 'when user is document delivery qualified' do
+        it "has a button to request an article or chapter" do
+          within '.where-to-find-table' do
+            expect(page).to have_button("Request")
+            find('.dropdown-toggle').click
+            expect(page).to have_link("Request Article or Chapter")
+          end
+        end
+      end
     end
   end
 
@@ -442,12 +458,19 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       solr.commit
       visit solr_document_path(LIMITED_AVA_INFO[:id])
     end
+    around do |example|
+      Capybara.ignore_hidden_elements = false
+      example.run
+      Capybara.ignore_hidden_elements = true
+    end
+
     it "can display the object without copy information in the AVA field" do
       expect(page).to have_content('The Review of politics')
       within '#physical-holding-3' do
         expect(page).to have_content("Check holdings")
       end
     end
+
     context "as an unauthenticated user" do
       it "can display item record level description" do
         click_link("7 copies, 7 available, 0 requests")
@@ -462,12 +485,17 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         end
       end
     end
+
     context "as an authenticated user" do
+      before do
+        stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?apikey=fakeuserkey456&expand=none&user_id_type=all_unique&view=full")
+          .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
+      end
       let(:user) { User.create(uid: "janeq") }
 
       it "can display item record level description" do
         sign_in(user)
-        click_link("Login")
+        click_link("Login", match: :first)
         visit solr_document_path(LIMITED_AVA_INFO[:id])
         click_link("7 copies, 7 available, 0 requests")
         within '#physical-holding-1' do

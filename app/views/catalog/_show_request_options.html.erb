@@ -10,7 +10,10 @@
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <% if document.hold_requestable? %>
           <%= link_to "Hold request", new_hold_request_path(hold_request: {mms_id: document.id, title: document['title_display_tesim']&.first}), class: "dropdown-item" %>
-      <% end %>
+        <% end %>
+        <% if current_or_guest_user&.doc_delivery? %>
+          <%= link_to "Request Article or Chapter", '/#', class: "dropdown-item" %>
+        <% end %>
       </div>
     </div>
   </div>
