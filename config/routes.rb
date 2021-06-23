@@ -16,13 +16,12 @@ Rails.application.routes.draw do
 
   resources :hold_requests
 
-  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks", sessions: "sessions" }
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }, skip: "sessions"
 
   devise_scope :user do
-    unless AuthConfig.use_database_auth?
-      get 'sign_in', to: 'sessions#new', as: :new_user_session
-      get 'sign_out', to: 'sessions#destroy', as: :destroy_user_session
-    end
+    get 'sign_in', to: 'sessions#new', as: :new_user_session
+    post 'sign_in', to: 'sessions#create', as: :user_session
+    get 'sign_out', to: 'sessions#destroy', as: :destroy_user_session
     get 'shib/sign_in', to: 'omniauth#new', as: :new_user_shib_session
     post 'shib/sign_in', to: 'omniauth_callbacks#shibboleth', as: :new_session
     get "alma/social_login_callback", to: "sessions#social_login_callback"
