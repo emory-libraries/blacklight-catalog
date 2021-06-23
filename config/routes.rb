@@ -28,9 +28,6 @@ Rails.application.routes.draw do
     get "alma/social_login_callback", to: "sessions#social_login_callback"
   end
 
-  # Disable these routes if you are using Devise's
-  # database_authenticatable in your development environment.
-
   concern :exportable, Blacklight::Routes::Exportable.new
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do

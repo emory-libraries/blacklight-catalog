@@ -20,11 +20,14 @@ RSpec.describe 'User login', type: :system, js: true do
   end
 
   context "development mode" do
-    before do
-      visit("/users/sign_in")
+    around do |example|
+      ENV['RAILS_ENV'] = 'development'
+      example.run
+      ENV['RAILS_ENV'] = 'test'
     end
-
     it "does have dev login options" do
+      expect(ENV['RAILS_ENV']).to eq('development')
+      visit("/users/sign_in")
       ["Uid", "Password"].each do |content|
         expect(page).to have_content(content)
       end
