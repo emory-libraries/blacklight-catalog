@@ -74,6 +74,24 @@ RSpec.describe SolrDocument do
     it "can say whether or not the title is available for a hold request" do
       expect(solr_doc.hold_requestable?).to eq true
     end
+
+    it "limits the number of calls to the Alma API for bib requests" do
+      stub_bib_request = stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936550118202486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
+                         .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_6.xml'), headers: {})
+      solr_doc.physical_holdings
+      solr_doc.physical_holdings
+      solr_doc.online_holdings
+      expect(stub_bib_request).to have_been_made.once
+    end
+
+    xit "limits the number of calls to the Alma API for item requests" do
+      stub_item_request = stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936550118202486/holdings/22360885950002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=GUEST")
+                          .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22360885950002486.xml'), headers: {})
+      solr_doc.physical_holdings
+      solr_doc.physical_holdings
+      solr_doc.online_holdings
+      expect(stub_item_request).to have_been_made.once
+    end
   end
 
   context 'physical holdings with limited information from alma' do
@@ -88,9 +106,10 @@ RSpec.describe SolrDocument do
       let(:user) { User.create(uid: 'janeq') }
 
       it "can get the due_date_policy based on the user" do
-        expect(solr_doc.items_by_holding_query("22319997630002486", user)).to eq "/holdings/22319997630002486/items?expand=due_date_policy&user_id=janeq&apikey="
+        expect(solr_doc.items_by_holding_query("22319997630002486", user)).to eq "/holdings/22319997630002486/items?expand=due_date_policy&user_id=janeq&"
         expect(solr_doc.physical_holdings(user).first[:items_by_holding].first).to eq({ barcode: "010002752069", type: "Bound Issue",
                                                                                         policy: "28 Days Loan", description: "v.75(2013)", status: "Item in place" })
+        expect(solr_doc.physical_holdings(user).last[:items_by_holding]).to eq([])
       end
     end
   end
@@ -146,7 +165,7 @@ RSpec.describe SolrDocument do
         .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_11.xml'), headers: {})
 
       expect(solr_doc.requests?).to eq true
-      expect(solr_doc.retrieve_requests("22191369710002486")).to eq 0
+      expect(solr_doc.number_of_requests("22191369710002486")).to eq 0
     end
   end
 end

@@ -1,80 +1,63 @@
 # frozen_string_literal: true
 module Statusable
   extend ActiveSupport::Concern
-
-  def api_url
-    ENV['ALMA_API_URL'] || "https://api-na.hosted.exlibrisgroup.com"
-  end
-
-  def api_bib_key
-    ENV.fetch('ALMA_BIB_KEY')
-  end
-
-  def alma_openurl_base
-    ENV.fetch('ALMA_BASE_SANDBOX_URL')
-  end
-
-  def alma_institution
-    ENV.fetch('INSTITUTION')
-  end
+  include AlmaRequestable
 
   # Documentation for availability field from Alma
   # https://knowledge.exlibrisgroup.com/Primo/Knowledge_Articles/What_does_each_subfield_in_the_AVA_tag_hold_when_records_are_extracted_from_Voyager_for_Primo%3F
-  def full_record
-    Nokogiri::XML(record_response)
-  end
 
   def items_by_holding_record(holding_id, user = nil)
-    Nokogiri::XML(items_by_holding_response(holding_id, user))
+    url = items_by_holding_url(holding_id, user)
+    item_record(url)
   end
 
-  def record_response
-    @record_response ||= RestClient.get full_record_url, { accept: :xml }
-  end
-
-  def items_by_holding_response(holding_id, user = nil)
-    RestClient.get items_by_holding_url(holding_id, user), { accept: :xml }
+  def base_url
+    "#{api_url}/almaws/v1/bibs/#{mms_id}"
   end
 
   def full_record_url
-    "#{api_url}/almaws/v1/bibs/#{mms_id}#{query_inst}#{api_bib_key}"
+    "#{base_url}#{full_record_query}#{bib_key_phrase}"
+  end
+
+  def bib_key_phrase
+    "apikey=#{api_bib_key}"
   end
 
   def items_by_holding_url(holding_id, user = nil)
-    "#{api_url}/almaws/v1/bibs/#{mms_id}#{items_by_holding_query(holding_id, user)}#{api_bib_key}"
+    "#{base_url}#{items_by_holding_query(holding_id, user)}#{bib_key_phrase}"
   end
 
   def items_by_holding_query(holding_id, user = nil)
-    if user.blank? || user&.guest
-      "/holdings/#{holding_id}/items?expand=due_date_policy&user_id=GUEST&apikey="
-    else
-      "/holdings/#{holding_id}/items?expand=due_date_policy&user_id=#{user.uid}&apikey="
-    end
+    user_id = if user.blank? || user&.guest
+                "GUEST"
+              else
+                user.uid
+              end
+    "/holdings/#{holding_id}/items?expand=due_date_policy&user_id=#{user_id}&"
   end
 
-  def query_inst
-    "?view=full&expand=p_avail,e_avail,d_avail,requests&apikey="
+  def full_record_query
+    "?view=full&expand=p_avail,e_avail,d_avail,requests&"
   end
 
   def raw_physical_availability
-    raw_availability = full_record.xpath('bib/record/datafield[@tag="AVA"]')
+    raw_availability = bib_record(full_record_url).xpath('bib/record/datafield[@tag="AVA"]')
     return nil if raw_availability.empty?
     raw_availability
   end
 
   def requests?
-    full_record.xpath("bib/requests").inner_text.to_i.positive?
+    bib_record(full_record_url).xpath("bib/requests").inner_text.to_i.positive?
   end
 
   def requests(holding_id)
-    requests? == false ? 0 : retrieve_requests(holding_id)
+    requests? == false ? 0 : number_of_requests(holding_id)
   end
 
-  def retrieve_requests(holding_id)
-    base_requests_link = full_record.at_xpath('bib/requests').attributes["link"].value
+  def number_of_requests(holding_id)
+    base_requests_link = bib_record(full_record_url).at_xpath('bib/requests').attributes["link"].value
     url = base_requests_link + "?status=active&apikey=#{api_bib_key}"
-    response = RestClient.get url, { accept: :xml }
-    body = Nokogiri::XML(response)
+    body = request_record(url)
     request_holding_id = body.at_xpath('user_requests/user_request/holding_id')&.inner_text
     if holding_id == request_holding_id
       1
@@ -102,6 +85,9 @@ module Statusable
 
   def items_by_holding_values(holding_id, user = nil)
     items = []
+    # url = items_by_holding_url(holding_id, user)
+    #
+    # item_record(url).xpath("//item/item_data").each do |node|
     holding_items = items_by_holding_record(holding_id, user)
     holding_items.xpath("//item/item_data").each do |node|
       item_info = {
@@ -160,7 +146,7 @@ module Statusable
   end
 
   def online_from_availability
-    ave_availability = full_record.xpath('bib/record/datafield[@tag="AVE"]')
+    ave_availability = bib_record(full_record_url).xpath('bib/record/datafield[@tag="AVE"]')
     ret_array = ave_availability.reduce([]) do |memo, value|
       next memo unless ave_u_8_present?(ave_availability)
       memo << {
