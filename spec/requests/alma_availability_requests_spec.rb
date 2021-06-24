@@ -13,7 +13,7 @@ RSpec.describe 'Alma Availability requests', type: :request, alma: true do
           "available": '<span class="item-available">Available</span>'
         },
         "online": {
-          "links": [{ "http://www.example2.com": "Link Text for Book" }],
+          "links": [{ "url": "http://www.example2.com", "label": "Link Text for Book" }],
           "uresolver": false
         }
       }
@@ -28,7 +28,7 @@ RSpec.describe 'Alma Availability requests', type: :request, alma: true do
           "available": '<span class="item-available">One or more copies available</span>'
         },
         "online": {
-          "links": [{ "http://www.example2.com": "Link Text for Book" }],
+          "links": [{ "url": "http://www.example2.com", "label": "Link Text for Book" }],
           "uresolver": false
         }
       }
