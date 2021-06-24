@@ -96,8 +96,7 @@ RSpec.describe SolrDocument do
   end
 
   context 'online holding' do
-    let(:old_style_solr_doc) { described_class.find(ONLINE[:id]) }
-    let(:new_style_solr_doc) { described_class.find(ONLINE_NEW[:id]) }
+    let(:solr_doc) { described_class.find(ONLINE[:id]) }
     let(:online_holdings) do
       [{
         url: "http://proxy.library.emory.edu/login?url=https://doi.org/10.31022/R082-83",
@@ -109,13 +108,11 @@ RSpec.describe SolrDocument do
     end
 
     it "can display online availabiliity" do
-      expect(old_style_solr_doc.physical_holdings).to be nil
-      expect(old_style_solr_doc.online_holdings).to eq(online_holdings)
-      expect(new_style_solr_doc.online_holdings).to eq(online_holdings)
+      expect(solr_doc.online_holdings).to eq(online_holdings)
     end
 
     it "can say whether or not the title is available for a hold request" do
-      expect(new_style_solr_doc.hold_requestable?).to eq false
+      expect(solr_doc.hold_requestable?).to eq false
     end
   end
 

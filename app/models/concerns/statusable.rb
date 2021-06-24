@@ -2,6 +2,41 @@
 module Statusable
   extend ActiveSupport::Concern
 
+  def physical_holdings(user = nil)
+    return nil unless raw_physical_availability
+    raw_physical_availability.map { |availability| physical_holding_hash(availability, user) }
+  end
+
+  def online_holdings
+    return [] if raw_online_availability.blank?
+    raw_online_availability.map do |online_availability|
+      availability = JSON.parse(online_availability)
+      availability.symbolize_keys!
+    end
+  end
+
+  def hold_requestable?(_user = nil)
+    physical_holdings.present?
+  end
+
+  def raw_online_availability
+    ave_availability = full_record.xpath('bib/record/datafield[@tag="AVE"]')
+    ret_array = ave_availability.reduce([]) do |memo, value|
+      next memo unless ave_u_8_present?(ave_availability)
+      memo << {
+        "label" => value.at_xpath('subfield[@code="m"]')&.text || value.at_xpath('subfield[@code="n"]')&.text || value.at_xpath('subfield[@code="t"]')&.text,
+        "url" => build_ave_url(value.at_xpath('subfield[@code="8"]').text)
+      }.to_json
+    end
+    url_fulltext.present? ? url_fulltext + ret_array : ret_array
+  end
+
+  def raw_physical_availability
+    raw_availability = full_record.xpath('bib/record/datafield[@tag="AVA"]')
+    return nil if raw_availability.empty?
+    raw_availability
+  end
+
   def api_url
     ENV['ALMA_API_URL'] || "https://api-na.hosted.exlibrisgroup.com"
   end
@@ -56,12 +91,6 @@ module Statusable
     "?view=full&expand=p_avail,e_avail,d_avail,requests&apikey="
   end
 
-  def raw_physical_availability
-    raw_availability = full_record.xpath('bib/record/datafield[@tag="AVA"]')
-    return nil if raw_availability.empty?
-    raw_availability
-  end
-
   def requests?
     full_record.xpath("bib/requests").inner_text.to_i.positive?
   end
@@ -81,10 +110,6 @@ module Statusable
     else
       0
     end
-  end
-
-  def hold_requestable?(_user = nil)
-    physical_holdings.present?
   end
 
   def physical_holding_values(availability)
@@ -139,36 +164,6 @@ module Statusable
       },
       items_by_holding: items_by_holding_values(@holding_id, user)
     }
-  end
-
-  def online_holdings
-    return [] if online_from_availability.blank?
-    online_from_availability.map do |entry|
-      url_hash = JSON.parse(entry)
-      # TODO: Can remove conditional once re-index is completed, and just keep the "if" portion
-      if url_hash.keys.include?("url")
-        url_hash.symbolize_keys!
-      else
-        { url: url_hash.keys.first, label: url_hash.values.first }
-      end
-    end
-  end
-
-  def physical_holdings(user = nil)
-    return nil unless raw_physical_availability
-    raw_physical_availability.map { |availability| physical_holding_hash(availability, user) }
-  end
-
-  def online_from_availability
-    ave_availability = full_record.xpath('bib/record/datafield[@tag="AVE"]')
-    ret_array = ave_availability.reduce([]) do |memo, value|
-      next memo unless ave_u_8_present?(ave_availability)
-      memo << {
-        "label" => value.at_xpath('subfield[@code="m"]')&.text || value.at_xpath('subfield[@code="n"]')&.text || value.at_xpath('subfield[@code="t"]')&.text,
-        "url" => build_ave_url(value.at_xpath('subfield[@code="8"]').text)
-      }.to_json
-    end
-    url_fulltext.present? ? url_fulltext + ret_array : ret_array
   end
 
   def ave_u_8_present?(availability)
