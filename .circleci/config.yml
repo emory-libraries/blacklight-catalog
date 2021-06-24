@@ -30,8 +30,11 @@ jobs:
             DATABASE_HOST: 127.0.0.1
             DATABASE_PORT: 3306
             DATABASE_USERNAME: root
+            DATABASE_AUTH: true
         docker:
             - image: circleci/ruby:<< parameters.ruby_version >>-node-browsers-legacy
+              environment:
+                - DATABASE_AUTH=true
             - image: solr:7-alpine
               command: bin/solr -cloud -noprompt -f -p <<parameters.solr_port>>
             - image: circleci/redis:<<parameters.redis_version>>

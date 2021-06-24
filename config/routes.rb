@@ -16,20 +16,15 @@ Rails.application.routes.draw do
 
   resources :hold_requests
 
-  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }, skip: "sessions"
 
   devise_scope :user do
+    get 'sign_in', to: 'sessions#new', as: :new_user_session
+    post 'sign_in', to: 'sessions#create', as: :user_session
+    get 'sign_out', to: 'sessions#destroy', as: :destroy_user_session
+    get 'shib/sign_in', to: 'omniauth#new', as: :new_user_shib_session
+    post 'shib/sign_in', to: 'omniauth_callbacks#shibboleth', as: :new_session
     get "alma/social_login_callback", to: "sessions#social_login_callback"
-  end
-
-  # Disable these routes if you are using Devise's
-  # database_authenticatable in your development environment.
-  unless AuthConfig.use_database_auth?
-    devise_scope :user do
-      get 'sign_in', to: 'omniauth#new', as: :new_user_session
-      post 'sign_in', to: 'omniauth_callbacks#shibboleth', as: :new_session
-      get 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
-    end
   end
 
   concern :exportable, Blacklight::Routes::Exportable.new
