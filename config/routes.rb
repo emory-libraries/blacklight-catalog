@@ -48,5 +48,7 @@ Rails.application.routes.draw do
   get "/contact", to: "static#contact"
   get "/about", to: "static#about"
   get "/help", to: "static#help"
-  match '/404', to: 'static#not_found', via: :all
+  match '/404', to: 'errors#not_found', via: :all
+  match '/500', to: 'errors#unhandled_exception', via: :all
+  match '/422', to: 'errors#unprocessable', via: :all
 end

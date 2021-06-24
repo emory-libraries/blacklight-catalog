@@ -34,6 +34,10 @@ en:
   static:
     not_found:
       header: "404 Error - Page Not Found"
+    unhandled_exception:
+      header: "500 Error - Something went wrong"
+    unprocessable:
+      header: "422 - Unprocessable Entity"
   about: 'About Emory Library Catalog'
   contact: 'Emory Library Catalog Contacts'
   help: 'Emory Library Catalog Help'
