@@ -21,7 +21,7 @@ RSpec.describe SolrDocument do
   before do
     delete_all_documents_from_solr
     solr = Blacklight.default_index.connection
-    solr.add([TEST_ITEM, MULTIPLE_HOLDINGS_TEST_ITEM, MLA_HANDBOOK, ONLINE, FUNKY_URL_PARTY, LIMITED_AVA_INFO])
+    solr.add([TEST_ITEM, MULTIPLE_HOLDINGS_TEST_ITEM, MLA_HANDBOOK, ONLINE_NEW, FUNKY_URL_PARTY, LIMITED_AVA_INFO])
     solr.commit
   end
 
@@ -96,7 +96,7 @@ RSpec.describe SolrDocument do
   end
 
   context 'online holding' do
-    let(:old_style_solr_doc) { described_class.find(ONLINE[:id]) }
+    # let(:old_style_solr_doc) { described_class.find(ONLINE[:id]) }
     let(:new_style_solr_doc) { described_class.find(ONLINE_NEW[:id]) }
     let(:online_holdings) do
       [{
@@ -109,8 +109,8 @@ RSpec.describe SolrDocument do
     end
 
     it "can display online availabiliity" do
-      expect(old_style_solr_doc.physical_holdings).to be nil
-      expect(old_style_solr_doc.online_holdings).to eq(online_holdings)
+      # expect(old_style_solr_doc.physical_holdings).to be nil
+      # expect(old_style_solr_doc.online_holdings).to eq(online_holdings)
       expect(new_style_solr_doc.online_holdings).to eq(online_holdings)
     end
 
