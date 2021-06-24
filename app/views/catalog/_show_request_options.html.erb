@@ -56,7 +56,11 @@
                       <tr>
                         <td><%= item[:barcode] %></td>
                         <td><%= item[:type] %></td>
-                        <td><%= item[:policy][:policy_desc] %></td>
+                        <% if current_or_guest_user.guest? %>
+                          <td><%= item[:policy][:policy_desc] %></td>
+                        <% else %>
+                          <td><%= item[:policy][:due_date_policy] %></td>
+                        <% end%>
                         <td><%= item[:description] %></td>
                         <td><%= item[:status] %></td>
                       </tr>
