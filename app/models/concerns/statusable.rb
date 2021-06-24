@@ -15,8 +15,9 @@ module Statusable
     end
   end
 
-  def hold_requestable?(_user = nil)
-    physical_holdings.present?
+  def hold_requestable?(user = nil)
+    return false unless physical_holdings(user).present?
+    true
   end
 
   def raw_online_availability
@@ -142,11 +143,13 @@ module Statusable
   end
 
   def item_policy(node, user)
-    if user.blank? || user&.guest
-      node.xpath('policy').attr("desc")&.value
-    else
-      node.xpath('due_date_policy')&.inner_text
-    end
+    policy_desc = if user.blank? || user&.guest
+                    node.xpath('policy').attr("desc")&.value
+                  else
+                    node.xpath('due_date_policy')&.inner_text
+                  end
+    policy_id = node.xpath('policy')&.inner_text
+    { policy_desc: policy_desc, policy_id: policy_id }
   end
 
   def physical_holding_hash(availability, user = nil)

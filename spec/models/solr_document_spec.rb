@@ -63,6 +63,7 @@ RSpec.describe SolrDocument do
 
   context 'lots of holdings' do
     let(:solr_doc) { described_class.find(MLA_HANDBOOK[:id]) }
+    let(:user) { User.create(uid: "janeq") }
 
     it "can calculate complex availability information" do
       expect(solr_doc.physical_holdings[0][:availability]).to eq({ copies: 3, available: 3, requests: 0, availability_phrase: "available" })
@@ -72,7 +73,7 @@ RSpec.describe SolrDocument do
     end
 
     it "can say whether or not the title is available for a hold request" do
-      expect(solr_doc.hold_requestable?).to eq true
+      expect(solr_doc.hold_requestable?(user)).to eq true
     end
   end
 
@@ -84,13 +85,19 @@ RSpec.describe SolrDocument do
       expect(solr_doc.physical_holdings[2][:availability]).to eq({ copies: nil, available: nil, requests: 0, availability_phrase: "check_holdings" })
     end
 
-    context 'as a logged in user' do
+    context 'getting the policy for guest and logged in users' do
       let(:user) { User.create(uid: 'janeq') }
 
       it "can get the due_date_policy based on the user" do
         expect(solr_doc.items_by_holding_query("22319997630002486", user)).to eq "/holdings/22319997630002486/items?expand=due_date_policy&user_id=janeq&apikey="
         expect(solr_doc.physical_holdings(user).first[:items_by_holding].first).to eq({ barcode: "010002752069", type: "Bound Issue",
-                                                                                        policy: "28 Days Loan", description: "v.75(2013)", status: "Item in place" })
+                                                                                        policy: { policy_desc: "28 Days Loan", policy_id: "17" }, description: "v.75(2013)", status: "Item in place" })
+      end
+
+      it "can get the due_date_policy for a guest user" do
+        expect(solr_doc.items_by_holding_query("22319997630002486")).to eq "/holdings/22319997630002486/items?expand=due_date_policy&user_id=GUEST&apikey="
+        expect(solr_doc.physical_holdings.first[:items_by_holding].first).to eq({ barcode: "010002752069", type: "Bound Issue",
+                                                                                  policy: { policy_desc: "30 Day Loan Storage", policy_id: "17" }, description: "v.75(2013)", status: "Item in place" })
       end
     end
   end

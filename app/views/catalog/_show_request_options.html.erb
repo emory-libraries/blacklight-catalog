@@ -8,7 +8,7 @@
         Request
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <% if document.hold_requestable? %>
+        <% if document.hold_requestable?(current_or_guest_user) %>
           <%= link_to "Hold request", new_hold_request_path(hold_request: {mms_id: document.id, title: document['title_display_tesim']&.first}), class: "dropdown-item" %>
         <% end %>
         <% if current_or_guest_user&.doc_delivery? %>
@@ -56,12 +56,11 @@
                       <tr>
                         <td><%= item[:barcode] %></td>
                         <td><%= item[:type] %></td>
-                        <td><%= item[:policy] %></td>
+                        <td><%= item[:policy][:policy_desc] %></td>
                         <td><%= item[:description] %></td>
                         <td><%= item[:status] %></td>
                       </tr>
                     <% end %>
-
                   </tbody>
                 </table>
             </td>

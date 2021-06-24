@@ -125,7 +125,7 @@ RSpec.configure do |config|
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/990027507910302486/holdings/22311186980002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=janeq")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22311186980002486_w_user.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/990027507910302486/holdings/22319997630002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=GUEST")
-      .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22319997630002486.xml'), headers: {})
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22319997630002486_w_guest.xml'), headers: {})
     stub_request(
       :get,
       "https://smackety.alma.exlibrisgroup.com/view/oai/blah/request?verb=GetRecord&identifier=oai:alma.blah:single_record&metadataPrefix=marc21"
