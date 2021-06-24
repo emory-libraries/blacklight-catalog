@@ -21,7 +21,7 @@ RSpec.describe SolrDocument do
   before do
     delete_all_documents_from_solr
     solr = Blacklight.default_index.connection
-    solr.add([TEST_ITEM, MULTIPLE_HOLDINGS_TEST_ITEM, MLA_HANDBOOK, ONLINE, FUNKY_URL_PARTY, LIMITED_AVA_INFO])
+    solr.add([TEST_ITEM, MULTIPLE_HOLDINGS_TEST_ITEM, MLA_HANDBOOK, ONLINE, FUNKY_URL_PARTY, LIMITED_AVA_INFO, SITTING_FROG])
     solr.commit
   end
 
@@ -61,8 +61,24 @@ RSpec.describe SolrDocument do
     end
   end
 
+  context "special collections only" do
+    before do
+      stub_request(:get, "http://www.example.com/almaws/v1/bibs/990005412600302486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_bib_records/sitting_frog.xml'), headers: {})
+      stub_request(:get, "http://www.example.com/almaws/v1/bibs/990005412600302486/holdings/22177450170002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=janeq")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22177450170002486_w_user.xml'), headers: {})
+    end
+    # mms_id = 990005412600302486
+    let(:solr_doc) { described_class.find(SITTING_FROG[:id]) }
+    let(:user) { User.create(uid: "janeq") }
+    it 'calculates whether a special collections item is hold requestable' do
+      expect(solr_doc.hold_requestable?(user)).to eq false
+    end
+  end
+
   context 'lots of holdings' do
     let(:solr_doc) { described_class.find(MLA_HANDBOOK[:id]) }
+    let(:user) { User.create(uid: "janeq") }
 
     it "can calculate complex availability information" do
       expect(solr_doc.physical_holdings[0][:availability]).to eq({ copies: 3, available: 3, requests: 0, availability_phrase: "available" })
@@ -72,7 +88,7 @@ RSpec.describe SolrDocument do
     end
 
     it "can say whether or not the title is available for a hold request" do
-      expect(solr_doc.hold_requestable?).to eq true
+      expect(solr_doc.hold_requestable?(user)).to eq true
     end
   end
 
@@ -84,13 +100,23 @@ RSpec.describe SolrDocument do
       expect(solr_doc.physical_holdings[2][:availability]).to eq({ copies: nil, available: nil, requests: 0, availability_phrase: "check_holdings" })
     end
 
-    context 'as a logged in user' do
+    context 'getting the policy for guest and logged in users' do
       let(:user) { User.create(uid: 'janeq') }
 
       it "can get the due_date_policy based on the user" do
         expect(solr_doc.items_by_holding_query("22319997630002486", user)).to eq "/holdings/22319997630002486/items?expand=due_date_policy&user_id=janeq&apikey="
         expect(solr_doc.physical_holdings(user).first[:items_by_holding].first).to eq({ barcode: "010002752069", type: "Bound Issue",
-                                                                                        policy: "28 Days Loan", description: "v.75(2013)", status: "Item in place" })
+                                                                                        policy: { policy_desc: "30 Day Loan Storage", policy_id: "17", due_date_policy: "28 Days Loan" },
+                                                                                        description: "v.75(2013)", status: "Item in place" })
+        expect(solr_doc.hold_requestable?).to eq true
+      end
+
+      it "can get the due_date_policy for a guest user" do
+        expect(solr_doc.items_by_holding_query("22319997630002486")).to eq "/holdings/22319997630002486/items?expand=due_date_policy&user_id=GUEST&apikey="
+        expect(solr_doc.physical_holdings.first[:items_by_holding].first).to eq({ barcode: "010002752069", type: "Bound Issue",
+                                                                                  policy: { policy_desc: "30 Day Loan Storage", policy_id: "17", due_date_policy: "Loanable" },
+                                                                                  description: "v.75(2013)", status: "Item in place" })
+        expect(solr_doc.hold_requestable?).to eq true
       end
     end
   end

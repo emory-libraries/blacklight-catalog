@@ -15,8 +15,24 @@ module Statusable
     end
   end
 
-  def hold_requestable?(_user = nil)
-    physical_holdings.present?
+  def hold_requestable?(user = nil)
+    return false if physical_holdings(user).blank?
+    date_policy_count = due_date_policies(user).count
+    not_loanable_count = due_date_policies(user).count("Not loanable")
+    # If there is a due date policy other than "Not loanable", the title is hold requestable
+    if date_policy_count > not_loanable_count
+      true
+    else
+      false
+    end
+  end
+
+  def due_date_policies(user = nil)
+    physical_holdings(user).map do |holding|
+      holding[:items_by_holding].map do |item|
+        item[:policy][:due_date_policy]
+      end
+    end.flatten!
   end
 
   def raw_online_availability
@@ -141,12 +157,11 @@ module Statusable
     items
   end
 
-  def item_policy(node, user)
-    if user.blank? || user&.guest
-      node.xpath('policy').attr("desc")&.value
-    else
-      node.xpath('due_date_policy')&.inner_text
-    end
+  def item_policy(node, _user)
+    policy_desc = node.xpath('policy').attr("desc")&.value
+    policy_id = node.xpath('policy')&.inner_text
+    due_date_policy = node.xpath('due_date_policy')&.inner_text
+    { policy_desc: policy_desc, policy_id: policy_id, due_date_policy: due_date_policy }
   end
 
   def physical_holding_hash(availability, user = nil)

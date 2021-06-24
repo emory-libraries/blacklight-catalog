@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bib>
+  <mms_id>990005412600302486</mms_id>
+  <record_format>marc21</record_format>
+  <linked_record_id/>
+  <title>Sitting frog : poetry from Naropa Institute /</title>
+  <author>Peters, Rachel,</author>
+  <network_numbers>
+    <network_number>(Sirsi) o03024490</network_number>
+    <network_number>(OCoLC)03024490</network_number>
+    <network_number>u2659644</network_number>
+    <network_number>(Aleph)000541260EMU01</network_number>
+  </network_numbers>
+  <place_of_publication>Brunswick, Me. :</place_of_publication>
+  <date_of_publication>©1976</date_of_publication>
+  <publisher_const>Blackberry,</publisher_const>
+  <holdings link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990005412600302486/holdings"/>
+  <created_by>import</created_by>
+  <created_date>2015-12-03Z</created_date>
+  <last_modified_by>exl_api</last_modified_by>
+  <last_modified_date>2020-06-22Z</last_modified_date>
+  <suppress_from_publishing>false</suppress_from_publishing>
+  <suppress_from_external_search>false</suppress_from_external_search>
+  <sync_with_oclc>NONE</sync_with_oclc>
+  <sync_with_libraries_australia>NONE</sync_with_libraries_australia>
+  <originating_system>OTHER</originating_system>
+  <originating_system_id>000541260-EMU01</originating_system_id>
+  <cataloging_level desc="Default Level">00</cataloging_level>
+  <record>
+    <leader>01283cam a2200373Ia 4500</leader>
+    <controlfield tag="001">990005412600302486</controlfield>
+    <controlfield tag="005">20200622130354.0</controlfield>
+    <controlfield tag="008">770608s1976    meuc          000 0 eng d</controlfield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(Aleph)000541260EMU01</subfield>
+    </datafield>
+    <datafield ind1="9" ind2=" " tag="035">
+      <subfield code="a">u2659644</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(OCoLC)03024490</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(Sirsi) o03024490</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="040">
+      <subfield code="a">IUL</subfield>
+      <subfield code="c">IUL</subfield>
+      <subfield code="d">EMU</subfield>
+      <subfield code="d">UtOrBLW</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="090">
+      <subfield code="a">PS615</subfield>
+      <subfield code="b">.S623</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="0" tag="245">
+      <subfield code="a">Sitting frog :</subfield>
+      <subfield code="b">poetry from Naropa Institute /</subfield>
+      <subfield code="c">edited by Rachel Peters and Eero Ruuttila.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="264">
+      <subfield code="c">©1976</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="1" tag="264">
+      <subfield code="a">Brunswick, Me. :</subfield>
+      <subfield code="b">Blackberry,</subfield>
+      <subfield code="c">[1976]</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="300">
+      <subfield code="a">114 unnumbered pages :</subfield>
+      <subfield code="b">illustrations ;</subfield>
+      <subfield code="c">25 cm</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="336">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="337">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="338">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="590">
+      <subfield code="a">Manuscript, Archives, and Rare Book Library copy forms part of the Raymond Danowski Poetry Library.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">American poetry</subfield>
+      <subfield code="y">20th century.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="a">Peters, Rachel,</subfield>
+      <subfield code="e">editor.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="a">Ruuttila, Eero,</subfield>
+      <subfield code="e">editor.</subfield>
+    </datafield>
+    <datafield ind1="2" ind2=" " tag="710">
+      <subfield code="a">Naropa Institute.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="a">Danowski, Raymond,</subfield>
+      <subfield code="e">collector.</subfield>
+      <subfield code="5">GEU</subfield>
+    </datafield>
+    <datafield ind1="2" ind2=" " tag="710">
+      <subfield code="a">Raymond Danowski Poetry Library (Emory University. General Libraries)</subfield>
+      <subfield code="5">GEU</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="910">
+      <subfield code="a">RDA ENRICHED</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="910">
+      <subfield code="a">MARS</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="940">
+      <subfield code="a">COVID19</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="945">
+      <subfield code="a">EMU emumarbl kd</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="945">
+      <subfield code="a">9DT</subfield>
+      <subfield code="2">20051031</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="994">
+      <subfield code="a">Z0</subfield>
+      <subfield code="b">EMU</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="INT">
+      <subfield code="a">P</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="INST">
+      <subfield code="a">01GALI_EMORY</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="AVA">
+      <subfield code="0">990005412600302486</subfield>
+      <subfield code="8">22177450170002486</subfield>
+      <subfield code="a">01GALI_EMORY</subfield>
+      <subfield code="b">MARBL</subfield>
+      <subfield code="c">Locked Stacks</subfield>
+      <subfield code="d">PS615 .S488 1976 DANOWSKI</subfield>
+      <subfield code="e">available</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="g">0</subfield>
+      <subfield code="j">STACK</subfield>
+      <subfield code="k">0</subfield>
+      <subfield code="p">1</subfield>
+      <subfield code="q">Stuart A. Rose Manuscript, Archives, and Rare Book Library</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="AVE">
+      <subfield code="8">53405517550002486</subfield>
+      <subfield code="c">61400066930002486</subfield>
+      <subfield code="e">Not Available</subfield>
+      <subfield code="m">HathiTrust Temporary Emergency Access</subfield>
+      <subfield code="u">publishing_base_url undefined?u.ignore_date_coverage=true&amp;rft.mms_id=990005412600302486</subfield>
+    </datafield>
+  </record>
+  <requests>0</requests>
+</bib>

@@ -12,13 +12,7 @@ AllCops:
 
 Layout/LineLength:
     Exclude:
-        - 'spec/support/solr_documents/multiple_holdings_item.rb'
-        - 'spec/support/solr_documents/mla_handbook.rb'
-        - 'spec/support/solr_documents/online.rb'
-        - 'spec/support/solr_documents/online_new.rb'
-        - 'spec/support/solr_documents/online_and_physical.rb'
-        - 'spec/support/solr_documents/funky_url_party.rb'
-        - spec/support/solr_documents/limited_ava_info.rb
+        - 'spec/support/solr_documents/*'
 
 Metrics/AbcSize:
     Exclude:
