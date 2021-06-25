@@ -361,8 +361,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     it "shows complex holdings and requests information" do
       expect(page).to have_content('3 copies, 3 available, 0 requests')
       expect(page).to have_content('3 copies, 1 available, 0 requests')
-      expect(page).to have_content('2 copies, 2 available, 1 request')
-      expect(page).not_to have_content('2 copies, 2 available, 1 requests')
+      expect(page).to have_content('2 copies, 2 available, 2 requests')
     end
 
     it "shows item level holdings information" do

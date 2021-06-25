@@ -82,9 +82,18 @@ RSpec.describe SolrDocument do
 
     it "can calculate complex availability information" do
       expect(solr_doc.physical_holdings[0][:availability]).to eq({ copies: 3, available: 3, requests: 0, availability_phrase: "available" })
-      expect(solr_doc.physical_holdings[1][:availability]).to eq({ copies: 2, available: 2, requests: 1, availability_phrase: "available" })
+      expect(solr_doc.physical_holdings[1][:availability]).to eq({ copies: 2, available: 2, requests: 2, availability_phrase: "available" })
       expect(solr_doc.physical_holdings[2][:availability]).to eq({ copies: 3, available: 1, requests: 0, availability_phrase: "available" })
       expect(solr_doc.online_holdings).to be_empty
+    end
+
+    it "limits the number of calls to the Alma API for bib requests" do
+      stub_bib_request = stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936550118202486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
+                         .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_6.xml'), headers: {})
+      solr_doc.physical_holdings
+      solr_doc.physical_holdings
+      solr_doc.online_holdings
+      expect(stub_bib_request).to have_been_made.once
     end
 
     it "can say whether or not the title is available for a hold request" do
