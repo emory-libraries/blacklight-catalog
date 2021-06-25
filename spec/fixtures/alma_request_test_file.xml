@@ -1,32 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<user_requests total_record_count="1">
+<user_requests total_record_count="2">
   <user_request>
-    <user_primary_id>janeq1</user_primary_id>
-    <request_id>38387672620002486</request_id>
-    <additional_id>383-876-726-2</additional_id>
+    <user_primary_id>mkadel1</user_primary_id>
+    <request_id>36187952390002486</request_id>
+    <additional_id>361-879-523-9</additional_id>
     <request_type>HOLD</request_type>
     <request_sub_type desc="Patron physical item request">PATRON_PHYSICAL</request_sub_type>
     <mms_id>9936550118202486</mms_id>
     <title>MLA handbook.</title>
     <holding_id>22332597410002486</holding_id>
-    <pickup_location>Marian K. Heilbrun Music Media</pickup_location>
+    <pickup_location>Robert W. Woodruff Library</pickup_location>
     <pickup_location_type>LIBRARY</pickup_location_type>
-    <pickup_location_library>MUSME</pickup_location_library>
+    <pickup_location_library>UNIV</pickup_location_library>
     <managed_by_library>Oxford College Library</managed_by_library>
     <managed_by_circulation_desk>Oxford Circulation</managed_by_circulation_desk>
     <managed_by_library_code>OXFD</managed_by_library_code>
     <managed_by_circulation_desk_code>DEFAULT_CIRC_DESK</managed_by_circulation_desk_code>
     <material_type/>
-    <last_interest_date>2021-05-30Z</last_interest_date>
+    <last_interest_date>2021-06-25Z</last_interest_date>
     <volume/>
     <issue/>
     <part/>
     <date_of_publication/>
-    <comment>IGNORE - TESTING</comment>
     <request_status>In Process</request_status>
-    <request_date>2021-05-29Z</request_date>
-    <request_time>2021-05-29T22:53:09.218Z</request_time>
+    <request_date>2021-06-25Z</request_date>
+    <request_time>2021-06-25T13:36:43.007Z</request_time>
     <task_name>Pickup From Shelf</task_name>
-    <expiry_date>2021-05-30Z</expiry_date>
+    <expiry_date>2021-06-25Z</expiry_date>
+  </user_request>
+  <user_request>
+    <user_primary_id>mkadel1</user_primary_id>
+    <request_id>36187952470002486</request_id>
+    <additional_id>361-879-524-7</additional_id>
+    <request_type>HOLD</request_type>
+    <request_sub_type desc="Patron physical item request">PATRON_PHYSICAL</request_sub_type>
+    <mms_id>9936550118202486</mms_id>
+    <title>MLA handbook.</title>
+    <holding_id>22332597410002486</holding_id>
+    <pickup_location>Robert W. Woodruff Library</pickup_location>
+    <pickup_location_type>LIBRARY</pickup_location_type>
+    <pickup_location_library>UNIV</pickup_location_library>
+    <managed_by_library>Oxford College Library</managed_by_library>
+    <managed_by_circulation_desk>Oxford Circulation</managed_by_circulation_desk>
+    <managed_by_library_code>OXFD</managed_by_library_code>
+    <managed_by_circulation_desk_code>DEFAULT_CIRC_DESK</managed_by_circulation_desk_code>
+    <material_type/>
+    <last_interest_date>2021-06-25Z</last_interest_date>
+    <volume/>
+    <issue/>
+    <part/>
+    <date_of_publication/>
+    <comment>test 2 </comment>
+    <request_status>In Process</request_status>
+    <request_date>2021-06-25Z</request_date>
+    <request_time>2021-06-25T13:37:26.617Z</request_time>
+    <task_name>Pickup From Shelf</task_name>
+    <expiry_date>2021-06-25Z</expiry_date>
   </user_request>
 </user_requests>
