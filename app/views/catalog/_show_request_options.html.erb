@@ -37,9 +37,9 @@
                   </td>
 
                   <td>
-                    <a href="#" class="toggle-table">
+                    <a href="#" class="toggle-table collapsed">
                       <% if holding[:availability][:availability_phrase] != "check_holdings" %>
-                        <%= pluralize(holding[:availability][:copies], 'copy') +
+                        <%= pluralize(holding[:availability][:copies], 'item') +
                       ", #{holding[:availability][:available]} available" +
                       ", " + pluralize(holding[:availability][:requests], 'request')
                   %>
@@ -50,11 +50,11 @@
                     <table class="table table-sm toggled-table" style="display: none;">
                       <thead>
                         <tr>
-                          <th scope="col">barcode</th>
-                          <th scope="col">type</th>
-                          <th scope="col">policy</th>
-                          <th scope="col">description</th>
-                          <th scope="col">status</th>
+                          <th scope="col" width="15%">barcode</th>
+                          <th scope="col" width="10%">type</th>
+                          <th scope="col" width="25%">policy</th>
+                          <th scope="col" width="25%">description</th>
+                          <th scope="col" width="25%">status</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -63,11 +63,11 @@
                             <td><%= item[:barcode] %></td>
                             <td><%= item[:type] %></td>
                             <% if current_or_guest_user.guest? %>
-                              <td><%= item[:policy][:policy_desc] %></td>
+                              <td class="word-wrap"><%= item[:policy][:policy_desc] %></td>
                             <% else %>
-                              <td><%= item[:policy][:due_date_policy] %></td>
-                              <% end%>
-                              <td><%= item[:description] %></td>
+                              <td class="word-wrap"><%= item[:policy][:due_date_policy] %></td>
+                            <% end%>
+                              <td class="word-wrap"><%= item[:description] %></td>
                               <td><%= item[:status] %></td>
                             </tr>
                           <% end %>
