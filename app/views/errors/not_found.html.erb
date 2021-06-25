@@ -1,5 +1,19 @@
 <div class="container not-found-container">
-    <div class="row static-heading-row not-found">
-      <h1><%= t('static.not_found.header') %></h1>
+  <div class="row static-heading-row not-found">
+    <h1 class="static-heading"><%= t('static.not_found.header') %></h1>
+    <div class="row static-subheading">
+      <p class="intro-subtitle">
+        Uh-oh. We can't find this item. We swear it was here at one point in time, but it seems to have either been relocated or removed altogether.</p>
+      <hr class="static-rule rule"></div>
     </div>
-</div>
+    <main class="section-main-body">
+      <p>Perhaps our
+        <a href="index.html">homepage</a>
+        can get you back on track. You'll be able to search our site from there to see if the information or resource you're looking for might be on a different page.</p>
+      <p>Otherwise, you could try browsing for what you need with the navigation menu above.</p>
+      <p>If all else fails, you can always
+        <a href="https://emory.libanswers.com/" title="Ask-A-Librarian">ask a librarian</a>.</p>
+      <p></p>
+      <%= image_tag '404.jpg', alt: "404: Page or file not found"   %>
+    </main>
+  </div>
