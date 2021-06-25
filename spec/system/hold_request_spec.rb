@@ -27,6 +27,8 @@ RSpec.describe "Create a request for a holding", type: :system, js: true, alma: 
       .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
     stub_request(:post, "http://www.example.com/almaws/v1/users/janeq/requests?user_id_type=all_unique&mms_id=9936550118202486&allow_same_request=false&apikey=fakeuserkey456")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_request_test_file.json'))
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/990011434390302486/holdings/22187557270002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=janeq")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22187557270002486.xml'), headers: {})
   end
 
   it "has a button to request a hold" do
@@ -50,5 +52,11 @@ RSpec.describe "Create a request for a holding", type: :system, js: true, alma: 
     click_on("Create Hold request")
     expect(page).to have_content("Hold Request")
     expect(page).to have_content('Hold request was successfully created.')
+  end
+
+  it 'has a dropdown with item level call number and description for unique item level descriptions' do
+    sign_in(user)
+    visit new_hold_request_path(hold_request: { mms_id: "990011434390302486" })
+    expect(page).to have_select("hold_request_holding_item_id", with_options: ["ML549 .E38 V.21-24 2003-2006"])
   end
 end

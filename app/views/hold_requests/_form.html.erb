@@ -1,6 +1,7 @@
 <%= simple_form_for @hold_request do |f| %>
   <%= f.input :mms_id, value: @hold_request.mms_id, readonly: true %>
   <%= f.input :pickup_library, collection: @hold_request.pickup_library_options.map { |h| [h[:label], h[:value]] }, required: true, prompt: "--" %>
+  <%= f.input :holding_item_id, collection: @hold_request.items.map { |h| [h[:label], h[:value]] }, required: true, prompt: "--" unless @hold_request.items.empty? %>
   <%= f.input :not_needed_after, as: :date, :input_html => { :value => Date.today} %>
   <%= f.input :comment %>
   <%= f.submit %>

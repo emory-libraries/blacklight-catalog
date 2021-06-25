@@ -27,6 +27,6 @@ class HoldRequestsController < ApplicationController
   private
 
   def hold_request_params
-    params.require(:hold_request).permit(:id, :mms_id, :title, :holding_id, :pickup_library, :not_needed_after, :comment, :user, :holding_library, :holding_location)
+    params.require(:hold_request).permit(:id, :mms_id, :title, :holding_id, :pickup_library, :not_needed_after, :comment, :user, :holding_library, :holding_location, :holding_item_id)
   end
 end

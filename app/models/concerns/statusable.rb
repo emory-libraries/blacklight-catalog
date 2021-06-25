@@ -142,6 +142,7 @@ module Statusable
     holding_items = items_by_holding_record(holding_id, user)
     holding_items.xpath("//item/item_data").each do |node|
       item_info = {
+        pid: node.xpath("pid")&.inner_text,
         barcode: node.xpath("barcode")&.inner_text,
         type: node.xpath("physical_material_type").attr("desc")&.value,
         policy: item_policy(node, user),
