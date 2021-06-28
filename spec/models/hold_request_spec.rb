@@ -115,6 +115,12 @@ RSpec.describe HoldRequest do
     expect(hr.title_request_url).to eq expected_url
   end
 
+  it "builds correct url for a title request with item pid" do
+    hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", holding_item_id: "23187557230002486", user: user)
+    expected_url = "http://www.example.com/almaws/v1/users/janeq/requests?user_id_type=all_unique&mms_id=9936550118202486&item_pid=23187557230002486&allow_same_request=false&apikey=fakeuserkey456"
+    expect(hr.title_request_url).to eq expected_url
+  end
+
   it "gives a list of allowed libraries for pickup for an Oxford user with an Oxford book" do
     stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?user_id_type=all_unique&view=full&expand=none&apikey=fakeuserkey456")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record_oxford.xml'), headers: {})
@@ -147,5 +153,15 @@ RSpec.describe HoldRequest do
     expect(hr.holding_to_request).to eq(hr.physical_holdings.first)
     expect(hr.pickup_library_options).to eq([{ label: "Marian K. Heilbrun Music Media", value: "MUSME" }])
     expect(hr.holding_library).to eq({ label: "Marian K. Heilbrun Music Media", value: "MUSME" })
+  end
+
+  describe "#items" do
+    it "returns holding_items in an array" do
+      hr = described_class.new(mms_id: "990011434390302486")
+      expect(hr.items).to eq [{ label: "ML549 .E38 v.25-29(2010-2012)", value: "23187557230002486" },
+                              { label: "ML549 .E38 v.30(2013)", value: "23187557240002486" },
+                              { label: "ML549 .E38 V.21-24 2003-2006", value: "23187557250002486" },
+                              { label: "ML549 .E38 V.18-20 2000-2002", value: "23187557260002486" }]
+    end
   end
 end

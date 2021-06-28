@@ -166,5 +166,9 @@ RSpec.configure do |config|
       :get,
       "https://jalapeno.alma.exlibrisgroup.com/view/oai/tabasco/request?identifier=oai:alma.blah:single_record&metadataPrefix=marc21&verb=GetRecord"
     ).to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file.xml'), headers: {})
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/990011434390302486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_multiple_holdings_item_level.xml'), headers: {})
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/990011434390302486/holdings/22187557270002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=GUEST")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22187557270002486.xml'), headers: {})
   end
 end

@@ -5,7 +5,7 @@ class HoldRequest
   validates :pickup_library, presence: true
   validates :mms_id, presence: true
   validate :validate_physical_holdings
-  attr_accessor :mms_id, :holding_id, :pickup_library, :not_needed_after, :comment, :id, :user, :title
+  attr_accessor :mms_id, :holding_id, :pickup_library, :not_needed_after, :comment, :id, :user, :title, :holding_item_id
 
   def initialize(params = {})
     @id = params[:id]
@@ -16,6 +16,7 @@ class HoldRequest
     @holding_id = params[:holding_id]
     @comment = params[:comment]
     @last_interest_date = last_interest_date(params[:"not_needed_after(1i)"], params[:"not_needed_after(2i)"], params[:"not_needed_after(3i)"]) if params[:"not_needed_after(1i)"].present?
+    @holding_item_id = params[:holding_item_id]
   end
 
   def validate_physical_holdings
@@ -152,6 +153,18 @@ class HoldRequest
   end
 
   def title_request_url
-    "#{api_url}/almaws/v1/users/#{@user}/requests?user_id_type=all_unique&mms_id=#{@mms_id}&allow_same_request=false&apikey=#{api_user_key}"
+    item_pid = @holding_item_id ? "&item_pid=#{@holding_item_id}" : nil
+    "#{api_url}/almaws/v1/users/#{@user}/requests?user_id_type=all_unique&mms_id=#{@mms_id}#{item_pid}&allow_same_request=false&apikey=#{api_user_key}"
+  end
+
+  def items
+    holding_items = []
+    physical_holdings(@user).each do |holding|
+      call_number = holding[:call_number]
+      holding[:items_by_holding].each do |item|
+        holding_items << { label: call_number + " " + item[:description], value: item[:pid] } unless item[:description].to_s.strip.empty?
+      end
+    end
+    holding_items
   end
 end
