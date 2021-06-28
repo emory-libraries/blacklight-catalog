@@ -17,21 +17,18 @@
   // height: $navbar-toggler-height;
   line-height: $show-button-line-height;
   border-radius: $results-border-radius;
-  
+
   &:hover {
     color: $white;
     text-decoration: none;
   }
-
 
   &.back-to {
     border: 1px solid transparent;
     background-color: transparent;
     border-color: $charcoal;
     color: $charcoal;
-    transition: color 0.15s ease-in-out, 
-      background-color 0.15s ease-in-out, 
-      border-color 0.15s ease-in-out, 
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
       box-shadow 0.15s ease-in-out;
 
     &:hover {
@@ -42,8 +39,7 @@
   }
 }
 
-
-.advanced_search.btn{
+.advanced_search.btn {
   border-radius: $results-border-radius;
 }
 
@@ -54,7 +50,8 @@ span.applied-filter.constraint {
   vertical-align: top;
   margin-bottom: map-get($spacers, 1);
 
-  > .constraint-value, .btn.remove {
+  > .constraint-value,
+  .btn.remove {
     border-radius: $results-border-radius;
   }
 
@@ -72,5 +69,19 @@ span.applied-filter.constraint {
   > .btn.remove {
     padding-right: $branding-padding-y;
     padding-left: $branding-padding-y;
+  }
+}
+
+.constraints-container {
+  .btn.catalog_startOverLink {
+    line-height: 1.98;
+  }
+  .btn-outline-secondary {
+    border-radius: 0;
+    font: normal bold 0.6875rem "Open Sans", sans-serif;
+    letter-spacing: 0.05rem;
+    line-height: 1.98;
+    text-transform: uppercase;
+    padding: $branding-padding-y $search-form-button-padding-x;
   }
 }
