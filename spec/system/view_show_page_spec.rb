@@ -329,6 +329,35 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     end
   end
 
+  context 'A special collections item' do
+    let(:user) { User.create(uid: "janeq") }
+    # rubocop:disable Layout/LineLength
+    let(:openurl) { "https://aeon.library.emory.edu/aeon/aeon.dll?Action=10&Form=30&ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rfr_id=info%3Asid%2Fprimo%3A010001072974&rft.genre=book&rft.btitle=Sitting+frog+%3A+poetry+from+Naropa+Institute&rft.title=Sitting+frog+%3A+poetry+from+Naropa+Institute&rft.au=Peters%2C+Rachel&rft.date=1976&rft.place=Brunswick%2C+Me.&rft.pub=%5BBlackberry%5D&rft.edition&rft.isbn&rft.callnumber=PS615+.S488+1976+DANOWSKI&rft.item_location=MARBL+STACK&rft.barcode=010001072974&rft.doctype=RB&rft.lib=EMU&SITE=MARBLEU" }
+    # rubocop:enable Layout/LineLength
+    before do
+      sign_in(user)
+      stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?apikey=fakeuserkey456&expand=none&user_id_type=all_unique&view=full")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
+      stub_request(:get, "http://www.example.com/almaws/v1/bibs/990005412600302486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_bib_records/sitting_frog.xml'), headers: {})
+      stub_request(:get, "http://www.example.com/almaws/v1/bibs/990005412600302486/holdings/22177450170002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=janeq")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22177450170002486_w_user.xml'), headers: {})
+      stub_request(:get, "http://www.example.com/almaws/v1/bibs/990005412600302486/holdings/22177450170002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=GUEST")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22177450170002486.xml'), headers: {})
+      delete_all_documents_from_solr
+      build_solr_docs(SITTING_FROG)
+      visit solr_document_path(SITTING_FROG[:id])
+    end
+
+    it "has a link for special collections requests" do
+      expect(page).to have_content("Sitting frog : poetry from Naropa Institute")
+      within '.where-to-find-table' do
+        expect(page).to have_button("Request")
+        find('.dropdown-toggle').click
+        expect(page).to have_link("Request from Special Collections", href: openurl)
+      end
+    end
+  end
   context 'Holdings details' do
     before do
       delete_all_documents_from_solr

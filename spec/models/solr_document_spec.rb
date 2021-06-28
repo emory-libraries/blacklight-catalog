@@ -71,8 +71,17 @@ RSpec.describe SolrDocument do
     # mms_id = 990005412600302486
     let(:solr_doc) { described_class.find(SITTING_FROG[:id]) }
     let(:user) { User.create(uid: "janeq") }
-    it 'calculates whether a special collections item is hold requestable' do
+    # rubocop:disable Layout/LineLength
+    let(:openurl) { "https://aeon.library.emory.edu/aeon/aeon.dll?Action=10&Form=30&ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rfr_id=info%3Asid%2Fprimo%3A010001072974&rft.genre=book&rft.btitle=Sitting+frog+%3A+poetry+from+Naropa+Institute&rft.title=Sitting+frog+%3A+poetry+from+Naropa+Institute&rft.au=Peters%2C+Rachel&rft.date=1976&rft.place=Brunswick%2C+Me.&rft.pub=%5BBlackberry%5D&rft.edition&rft.isbn&rft.callnumber=PS615+.S488+1976+DANOWSKI&rft.item_location=MARBL+STACK&rft.barcode=010001072974&rft.doctype=RB&rft.lib=EMU&SITE=MARBLEU" }
+    # rubocop:enable Layout/LineLength
+    it 'calculates whether a special collections item is requestable' do
       expect(solr_doc.hold_requestable?(user)).to eq false
+      expect(solr_doc.special_collections_requestable?(user)).to eq true
+    end
+
+    it 'builds an openurl for aeon special collections' do
+      puts solr_doc.special_collections_url(user)
+      expect(solr_doc.special_collections_url(user)).to eq openurl
     end
   end
 
@@ -89,6 +98,7 @@ RSpec.describe SolrDocument do
 
     it "can say whether or not the title is available for a hold request" do
       expect(solr_doc.hold_requestable?(user)).to eq true
+      expect(solr_doc.special_collections_requestable?(user)).to eq false
     end
   end
 
@@ -139,6 +149,7 @@ RSpec.describe SolrDocument do
 
     it "can say whether or not the title is available for a hold request" do
       expect(solr_doc.hold_requestable?).to eq false
+      expect(solr_doc.special_collections_requestable?).to eq false
     end
   end
 
