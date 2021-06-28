@@ -80,7 +80,6 @@ RSpec.describe SolrDocument do
     end
 
     it 'builds an openurl for aeon special collections' do
-      puts solr_doc.special_collections_url(user)
       expect(solr_doc.special_collections_url(user)).to eq openurl
     end
   end
