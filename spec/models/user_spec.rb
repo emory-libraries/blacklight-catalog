@@ -61,7 +61,6 @@ RSpec.describe User do
         expect(user.uid).to eq "janeq"
         expect(user.user_group).to eq "03"
         expect(user.oxford_user?).to eq false
-        expect(user.doc_delivery?).to be_truthy
       end
 
       it "has an oxford user group from alma" do
@@ -70,7 +69,6 @@ RSpec.describe User do
         expect(user.uid).to eq "janeq"
         expect(user.user_group).to eq "23"
         expect(user.oxford_user?).to eq true
-        expect(user.doc_delivery?).to be_truthy
       end
     end
   end

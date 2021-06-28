@@ -2,6 +2,18 @@
 module Statusable
   extend ActiveSupport::Concern
 
+  DOC_DELIVERY_SERVICES = {
+    "BUS": Verification::BusUserVerificationService,
+    "CHEM": Verification::ChemUserVerificationService,
+    "HLTH": Verification::HlthUserVerificationService,
+    "LAW": Verification::LawUserVerificationService,
+    "LSC": Verification::LscUserVerificationService,
+    "MUSME": Verification::MusmeUserVerificationService,
+    "OXFD": Verification::OxfdUserVerificationService,
+    "THEO": Verification::TheoUserVerificationService,
+    "UNIV": Verification::UnivUserVerificationService
+  }.with_indifferent_access.freeze
+
   def physical_holdings(user = nil)
     return nil unless raw_physical_availability
     raw_physical_availability.map { |availability| physical_holding_hash(availability, user) }
@@ -137,7 +149,7 @@ module Statusable
     @call_number = availability.at_xpath('subfield[@code="d"]')&.inner_text
   end
 
-  def items_by_holding_values(holding_id, user = nil)
+  def items_by_holding_values(holding_id, user = nil) # rubocop:disable Metrics/MethodLength
     items = []
     holding_items = items_by_holding_record(holding_id, user)
     holding_items.xpath("//item/item_data").each do |node|
@@ -145,6 +157,7 @@ module Statusable
         pid: node.xpath("pid")&.inner_text,
         barcode: node.xpath("barcode")&.inner_text,
         type: node.xpath("physical_material_type").attr("desc")&.value,
+        type_code: node.xpath("physical_material_type")&.text,
         policy: item_policy(node, user),
         description: node.xpath("description")&.inner_text,
         status: node.xpath('base_status').attr("desc")&.value
@@ -152,7 +165,7 @@ module Statusable
       items.append(item_info)
     end
     items
-  end
+  end # rubocop:enable Metrics/MethodLength
 
   def item_policy(node, _user)
     policy_desc = node.xpath('policy').attr("desc")&.value
@@ -188,5 +201,13 @@ module Statusable
 
   def ave_query
     "?institution=#{alma_institution}&vid=#{alma_institution}:blacklight&u.ignore_date_coverage=true&force_direct=true&portfolio_pid="
+  end
+
+  def doc_delivery?(phys_holdings, user = nil)
+    return false if user.blank? || user.guest
+    phys_holdings&.any? do |h|
+      service = DOC_DELIVERY_SERVICES[h[:library][:value]]
+      service.present? ? service.new(user.user_group, h).document_delivery? : false
+    end
   end
 end

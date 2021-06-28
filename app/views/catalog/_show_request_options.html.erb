@@ -1,3 +1,4 @@
+<% physical_holdings = document.physical_holdings(current_or_guest_user) %>
 <div class="where-to-find-table">
   <div class="row justify-content-between">
     <div class="col-sm-4">
@@ -11,7 +12,7 @@
         <% if document.hold_requestable?(current_or_guest_user) %>
           <%= link_to "Hold request", new_hold_request_path(hold_request: {mms_id: document.id, title: document['title_display_tesim']&.first}), class: "dropdown-item" %>
         <% end %>
-        <% if current_or_guest_user&.doc_delivery? %>
+        <% if document.doc_delivery?(physical_holdings, current_or_guest_user) %>
           <%= link_to "Request Article or Chapter", '/#', class: "dropdown-item" %>
         <% end %>
       </div>
@@ -29,7 +30,7 @@
         </tr>
       </thead>
       <tbody>
-        <% document.physical_holdings(current_or_guest_user).each.with_index(1) do |holding, index| %>
+        <% physical_holdings.each.with_index(1) do |holding, index| %>
           <tr id="physical-holding-<%= index.to_s %>">
             <td><%= colonizer(holding[:library][:label], holding[:location][:label]) %></td>
             <td><%= holding[:call_number] %></td>

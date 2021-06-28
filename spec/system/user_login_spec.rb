@@ -9,7 +9,7 @@ RSpec.describe 'User login', type: :system, js: true do
 
     it "does not have dev login options" do
       visit("/")
-      click_on("Login")
+      click_on("Login", match: :first)
       ["Uid", "Password"].each do |content|
         expect(page).not_to have_content(content)
       end
