@@ -116,7 +116,7 @@ RSpec.describe SolrDocument do
         expect(solr_doc.items_by_holding_query("22319997630002486", user)).to eq "/holdings/22319997630002486/items?expand=due_date_policy&user_id=janeq&apikey="
         expect(solr_doc.physical_holdings(user).first[:items_by_holding].first).to eq({ barcode: "010002752069", type: "Bound Issue", pid: "23236301160002486",
                                                                                         policy: { policy_desc: "30 Day Loan Storage", policy_id: "17", due_date_policy: "28 Days Loan" },
-                                                                                        description: "v.75(2013)", status: "Item in place" })
+                                                                                        description: "v.75(2013)", status: "Item in place", type_code: "ISSBD" })
         expect(solr_doc.hold_requestable?).to eq true
       end
 
@@ -179,6 +179,107 @@ RSpec.describe SolrDocument do
 
       expect(solr_doc.requests?).to eq true
       expect(solr_doc.retrieve_requests("22191369710002486")).to eq 0
+    end
+  end
+
+  context '#doc_delivery?' do
+    let(:solr_doc) { described_class.new("990010439240302486") }
+    let(:user) { User.create(uid: "jose_c") }
+    let(:items) do
+      {
+        barcode: "300000465664",
+        type: "Bound Issue",
+        type_code: "ISSBD",
+        policy: "Not loanable",
+        description: "v.1:3,5 (1970); v.2:3-4 (1971); v.3:3-4 (1972); v.4:3-4 (1973); v.8:1 (1977) v.10:2 (1979)",
+        status: "Item in place"
+      }
+    end
+    let(:phys_holdings) do
+      [
+        { holding_id: "22353944560002486",
+          library: {
+            label: "Pitts Theology Library",
+            value: "THEO"
+          },
+          location: {
+            label: "Periodicals, 2nd Floor",
+            value: "PER"
+          },
+          call_number: "ALPHA BY TITLE",
+          availability: {
+            copies: 1,
+            available: 1,
+            requests: 0,
+            availability_phrase: "available"
+          },
+          items_by_holding: [items] }
+      ]
+    end
+    before { allow(user).to receive(:user_group).and_return("02") }
+
+    it "returns the right boolean value when rules align with holding and user data (BUS)" do
+      phys_holdings.first[:library][:value] = "BUS"
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+      phys_holdings.first[:location][:value] = "STACK"
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+    end
+
+    it "returns the right boolean value when rules align with holding and user data (CHEM)" do
+      phys_holdings.first[:library][:value] = "CHEM"
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+      phys_holdings.first[:location][:value] = "STACK"
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+    end
+
+    it "returns the right boolean value when rules align with holding and user data (HLTH)" do
+      phys_holdings.first[:library][:value] = "HLTH"
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+      phys_holdings.first[:location][:value] = "CIRC"
+      allow(user).to receive(:user_group).and_return("24")
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+    end
+
+    it "returns the right boolean value when rules align with holding and user data (LAW)" do
+      allow(user).to receive(:user_group).and_return("03")
+      phys_holdings.first[:library][:value] = "LAW"
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+      phys_holdings.first[:location][:value] = "STACK"
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+    end
+
+    it "returns the right boolean value when rules align with holding and user data (LSC)" do
+      phys_holdings.first[:library][:value] = "LSC"
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+      phys_holdings.first[:location][:value] = "USTOR"
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+    end
+
+    it "returns the right boolean value when rules align with holding and user data (MUSME)" do
+      phys_holdings.first[:library][:value] = "MUSME"
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+      phys_holdings.first[:location][:value] = "STACK"
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+    end
+
+    it "returns the right boolean value when rules align with holding and user data (OXFD)" do
+      phys_holdings.first[:library][:value] = "OXFD"
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+      phys_holdings.first[:location][:value] = "GRNOV"
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+    end
+
+    it "returns the right boolean value when rules align with holding and user data (THEO)" do
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+      phys_holdings.first[:location][:value] = "STACK"
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+    end
+
+    it "returns the right boolean value when rules align with holding and user data (UNIV)" do
+      phys_holdings.first[:library][:value] = "UNIV"
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+      phys_holdings.first[:location][:value] = "STACK"
+      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
     end
   end
 end

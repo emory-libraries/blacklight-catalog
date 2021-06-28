@@ -2,6 +2,18 @@
 module Statusable
   extend ActiveSupport::Concern
 
+  DOC_DELIVERY_SERVICES = {
+    "BUS": Verification::BusUserVerificationService,
+    "CHEM": Verification::ChemUserVerificationService,
+    "HLTH": Verification::HlthUserVerificationService,
+    "LAW": Verification::LawUserVerificationService,
+    "LSC": Verification::LscUserVerificationService,
+    "MUSME": Verification::MusmeUserVerificationService,
+    "OXFD": Verification::OxfdUserVerificationService,
+    "THEO": Verification::TheoUserVerificationService,
+    "UNIV": Verification::UnivUserVerificationService
+  }.with_indifferent_access.freeze
+
   def physical_holdings(user = nil)
     return nil unless raw_physical_availability
     raw_physical_availability.map { |availability| physical_holding_hash(availability, user) }
@@ -145,6 +157,7 @@ module Statusable
         pid: node.xpath("pid")&.inner_text,
         barcode: node.xpath("barcode")&.inner_text,
         type: node.xpath("physical_material_type").attr("desc")&.value,
+        type_code: node.xpath("physical_material_type")&.text,
         policy: item_policy(node, user),
         description: node.xpath("description")&.inner_text,
         status: node.xpath('base_status').attr("desc")&.value
@@ -188,5 +201,16 @@ module Statusable
 
   def ave_query
     "?institution=#{alma_institution}&vid=#{alma_institution}:blacklight&u.ignore_date_coverage=true&force_direct=true&portfolio_pid="
+  end
+
+  def doc_delivery?(phys_holdings, user = nil)
+    return false if user.blank? || user.guest
+    phys_holdings&.any? { |h| holding_doc_delivery?(h, user.user_group) }
+  end
+
+  def holding_doc_delivery?(holding, user_group)
+    service = DOC_DELIVERY_SERVICES[holding[:library][:value]]
+    return service.new(user_group, holding).document_delivery? if service.present?
+    false
   end
 end

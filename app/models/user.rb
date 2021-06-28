@@ -46,15 +46,6 @@ class User < ApplicationRecord
     "#{ENV['ALMA_API_URL']}/almaws/v1/users/#{uid}?user_id_type=all_unique&view=full&expand=none&apikey=#{ENV['ALMA_USER_KEY']}"
   end
 
-  def doc_delivery?
-    return false if guest
-    doc_delivery_user_group_ids.include?(user_group)
-  end
-
-  def doc_delivery_user_group_ids
-    %w[01 02 03 04 09 10 12 20 22 23 24 25]
-  end
-
   # When a user authenticates via shibboleth, find their User object or make
   # a new one. Populate it with data we get from shibboleth.
   # @param [OmniAuth::AuthHash] auth
