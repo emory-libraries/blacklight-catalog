@@ -124,7 +124,7 @@ RSpec.describe SolrDocument do
         expect(solr_doc.items_by_holding_query("22319997630002486")).to eq "/holdings/22319997630002486/items?expand=due_date_policy&user_id=GUEST&apikey="
         expect(solr_doc.physical_holdings.first[:items_by_holding].first).to eq({ barcode: "010002752069", type: "Bound Issue", pid: "23236301160002486",
                                                                                   policy: { policy_desc: "30 Day Loan Storage", policy_id: "17", due_date_policy: "Loanable" },
-                                                                                  description: "v.75(2013)", status: "Item in place" })
+                                                                                  description: "v.75(2013)", status: "Item in place", type_code: "ISSBD" })
         expect(solr_doc.hold_requestable?).to eq true
       end
     end

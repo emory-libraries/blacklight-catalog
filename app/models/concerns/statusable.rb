@@ -149,7 +149,7 @@ module Statusable
     @call_number = availability.at_xpath('subfield[@code="d"]')&.inner_text
   end
 
-  def items_by_holding_values(holding_id, user = nil)
+  def items_by_holding_values(holding_id, user = nil) # rubocop:disable Metrics/MethodLength
     items = []
     holding_items = items_by_holding_record(holding_id, user)
     holding_items.xpath("//item/item_data").each do |node|
@@ -165,7 +165,7 @@ module Statusable
       items.append(item_info)
     end
     items
-  end
+  end # rubocop:enable Metrics/MethodLength
 
   def item_policy(node, _user)
     policy_desc = node.xpath('policy').attr("desc")&.value
@@ -205,12 +205,9 @@ module Statusable
 
   def doc_delivery?(phys_holdings, user = nil)
     return false if user.blank? || user.guest
-    phys_holdings&.any? { |h| holding_doc_delivery?(h, user.user_group) }
-  end
-
-  def holding_doc_delivery?(holding, user_group)
-    service = DOC_DELIVERY_SERVICES[holding[:library][:value]]
-    return service.new(user_group, holding).document_delivery? if service.present?
-    false
+    phys_holdings&.any? do |h|
+      service = DOC_DELIVERY_SERVICES[h[:library][:value]]
+      service.present? ? service.new(user.user_group, h).document_delivery? : false
+    end
   end
 end
