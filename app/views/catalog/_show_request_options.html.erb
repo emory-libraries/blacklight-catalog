@@ -35,7 +35,6 @@
                 <br><%= holding[:location][:label] %>
                   <br><%= holding[:call_number] %>
                   </td>
-
                   <td>
                     <a href="#" class="toggle-table collapsed">
                       <% if holding[:availability][:availability_phrase] != "check_holdings" %>
@@ -47,35 +46,37 @@
                         Check holdings
                       <% end %>
                     </a>
-                    <table class="table table-sm toggled-table" style="display: none;">
-                      <thead>
-                        <tr>
-                          <th scope="col" width="15%">barcode</th>
-                          <th scope="col" width="10%">type</th>
-                          <th scope="col" width="25%">policy</th>
-                          <th scope="col" width="25%">description</th>
-                          <th scope="col" width="25%">status</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% holding[:items_by_holding].each do |item| %>
+                    <div class="table-responsive toggled-table" style="display: none;">
+                      <table class="table table-sm">
+                        <thead>
                           <tr>
-                            <td><%= item[:barcode] %></td>
-                            <td><%= item[:type] %></td>
-                            <% if current_or_guest_user.guest? %>
-                              <td class="word-wrap"><%= item[:policy][:policy_desc] %></td>
-                            <% else %>
-                              <td class="word-wrap"><%= item[:policy][:due_date_policy] %></td>
-                            <% end%>
-                              <td class="word-wrap"><%= item[:description] %></td>
-                              <td><%= item[:status] %></td>
-                            </tr>
-                          <% end %>
-                        </tbody>
-                      </table>
+                            <th scope="col" width="15%">barcode</th>
+                            <th scope="col" width="10%">type</th>
+                            <th scope="col" width="25%">policy</th>
+                            <th scope="col" width="25%">description</th>
+                            <th scope="col" width="25%">status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% holding[:items_by_holding].each do |item| %>
+                            <tr>
+                              <td><%= item[:barcode] %></td>
+                              <td><%= item[:type] %></td>
+                              <% if current_or_guest_user.guest? %>
+                                <td class="word-wrap"><%= item[:policy][:policy_desc] %></td>
+                              <% else %>
+                                <td class="word-wrap"><%= item[:policy][:due_date_policy] %></td>
+                                <% end%>
+                                <td class="word-wrap"><%= item[:description] %></td>
+                                <td><%= item[:status] %></td>
+                              </tr>
+                            <% end %>
+
+                          </tbody>
+                        </table>
+                      </div>
                     </td>
                   </tr>
-
                 <% end %>
               </tbody>
             </table>

@@ -46,6 +46,13 @@ h1.show-header {
   // overflow-wrap: break-word;
 }
 
+.toggled-table{
+  max-height: 320px;
+  margin-top: 1rem;
+  border-left: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
 .toggle-table.collapsed::before {
   transform: rotate(0deg);
   transition: transform 0.1s ease;
@@ -59,5 +66,5 @@ h1.show-header {
 }
 
 .toggled-table {
-  margin-top: 1rem;
+
 }
