@@ -8,8 +8,7 @@ form.search-query-form {
 .form-inline {
   &.col-lg-7,
   &.col-md-12,
-  &.col-sm-12
-  {
+  &.col-sm-12 {
     padding-right: 0;
     padding-bottom: $search-form-padding-y;
   }
@@ -20,8 +19,6 @@ form.search-query-form {
     padding-right: 0;
   }
 
-
-
   // Search form text input
   > .form-control {
     &.search-q {
@@ -29,8 +26,8 @@ form.search-query-form {
       margin-right: $search-form-margin-x;
       padding: $search-form-q-padding-y $search-form-q-padding-x;
 
-      border-radius:      $border-radius-xs !important;
-      box-shadow:         $search-form-box-shadow;
+      border-radius: $border-radius-xs !important;
+      box-shadow: $search-form-box-shadow;
       color: $charcoal;
     }
     &.search-q:focus {
@@ -38,8 +35,6 @@ form.search-query-form {
     }
   }
 }
-
-
 
 // Search form dropdown
 div.bootstrap-select {
@@ -61,7 +56,7 @@ button.fielded-search {
   box-shadow: $search-form-box-shadow;
   padding-left: $search-form-select-padding-x;
 
-  &[aria-expanded="true"]{
+  &[aria-expanded="true"] {
     background: $search-form-select-active-background;
     box-shadow: none;
   }
@@ -71,13 +66,15 @@ div.bootstrap-select .dropdown-toggle:focus {
   outline: 0 !important;
   box-shadow: none;
 
-  &[aria-expanded="true"]{
+  &[aria-expanded="true"] {
     box-shadow: $search-form-box-shadow;
     border-radius: 0;
   }
 }
 
-.request-options .dropdown-menu>li>a {
+.request-options {
+  text-align: right;
+  .dropdown-menu > li > a {
     display: block;
     padding: 3px 20px;
     clear: both;
@@ -85,6 +82,7 @@ div.bootstrap-select .dropdown-toggle:focus {
     line-height: 1.42857143;
     color: #333;
     white-space: nowrap;
+  }
 }
 
 div.dropdown-menu {
@@ -105,8 +103,6 @@ a.dropdown-item {
   }
 }
 
-
-
 // Search form submit button
 button#search {
   width: $search-form-button-width;
@@ -125,14 +121,14 @@ button#search {
   }
 }
 
-.navbar-search .search-query-form{
+.navbar-search .search-query-form {
   padding-left: 0;
 }
 
-select.search-field{
+select.search-field {
   border-radius: $results-border-radius;
 }
-.twitter-typeahead{
+.twitter-typeahead {
   flex-grow: 2;
   z-index: 1000;
 }
