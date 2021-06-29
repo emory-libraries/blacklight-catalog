@@ -73,7 +73,7 @@ div.bootstrap-select .dropdown-toggle:focus {
 }
 
 .request-options {
-  text-align: right;
+  text-align: right !important;
   .dropdown-menu > li > a {
     display: block;
     padding: 3px 20px;
@@ -84,7 +84,6 @@ div.bootstrap-select .dropdown-toggle:focus {
     white-space: nowrap;
   }
 }
-
 div.dropdown-menu {
   border-radius: 0;
   margin-top: 0;

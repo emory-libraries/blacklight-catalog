@@ -38,8 +38,10 @@ $(document).ready(function() {
     });
     /* end iffe */
   })();
+
   $(".toggle-table").click(function(){
     $(this).closest('td').find(".toggled-table").toggle();
+    $(this).toggleClass('collapsed');
     return false;
   });
   /* end ready */
