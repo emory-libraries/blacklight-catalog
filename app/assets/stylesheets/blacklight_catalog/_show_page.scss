@@ -1,6 +1,5 @@
 @import "blacklight_catalog/variables";
 
-
 h1.show-header {
   font: normal bold $h1-show-font-size/normal $font-family-serif;
   text-transform: none;
@@ -17,29 +16,55 @@ h1.show-header {
   }
 
   h4 {
-    font: normal 600 .75rem/1 "Open Sans", sans-serif;
+    font: normal 600 0.75rem/1 "Open Sans", sans-serif;
     letter-spacing: 0.05rem;
     text-transform: uppercase;
     color: $mid-blue;
   }
 }
 
-.document-metadata, .collapsible-document-metadata {
+.document-metadata,
+.collapsible-document-metadata {
   dt {
-    font-family:  "Cardo", serif;
+    font-family: "Cardo", serif;
     font-weight: 500;
     color: $dark-blue;
   }
-  
 }
 
-
-
-
-.show-document + .page-sidebar{
+.show-document + .page-sidebar {
   margin-top: 4.6875rem;
 }
 
-.show-document h1[itemprop="name"]{
+.show-document h1[itemprop="name"] {
   @extend .show-header;
+}
+
+.word-wrap {
+  word-break: break-all;
+  // word-wrap: break-word;
+  // overflow-wrap: break-word;
+}
+
+.toggled-table{
+  max-height: 320px;
+  margin-top: 1rem;
+  border-left: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.toggle-table.collapsed::before {
+  transform: rotate(0deg);
+  transition: transform 0.1s ease;
+}
+
+.toggle-table::before {
+  content: "❯";
+  float: left;
+  margin-right: .5rem;
+  transform: rotate(90deg);
+}
+
+.toggled-table {
+
 }

@@ -104,8 +104,8 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         expect(find_all('.where-to-find-table')).not_to be_empty
         within '.where-to-find-table' do
           [
-            'At the Library', 'Call Number', 'Status', 'Robert W. Woodruff Library: Book Stacks',
-            'PT2613 .M45 Z92 2006', '1 copy, 1 available, 0 requests', 'Online', 'Access online:', 'Link Text for Book'
+            'At the Library', 'Status', 'Robert W. Woodruff Library', 'Book Stacks',
+            'PT2613 .M45 Z92 2006', '1 item, 1 available, 0 requests', 'Online', 'Access online:', 'Link Text for Book'
           ].each { |t| expect(page).to have_content(t) }
         end
       end
@@ -118,8 +118,8 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
 
         within '.where-to-find-table' do
           [
-            'At the Library', 'Call Number', 'Status', 'Robert W. Woodruff Library: Book Stacks',
-            'PT2613 .M45 Z92 2006', '1 copy, 0 available, 0 requests', 'Online', 'Access online:',
+            'At the Library', 'Status', 'Robert W. Woodruff Library', 'Book Stacks',
+            'PT2613 .M45 Z92 2006', '1 item, 0 available, 0 requests', 'Online', 'Access online:',
             'Link Text for Book'
           ].each { |t| expect(page).to have_content(t) }
         end
@@ -370,7 +370,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(page).to have_content("Marian K. Heilbrun Music Media")
       expect(page).to have_content("Circulation Desk")
       expect(page).to have_content("ML410 .M5 H87 2019 CD-SOUND")
-      expect(page).to have_content("1 copy, 1 available, 0 requests")
+      expect(page).to have_content("1 item, 1 available, 0 requests")
     end
   end
 
@@ -388,13 +388,13 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     end
 
     it "shows complex holdings and requests information" do
-      expect(page).to have_content('3 copies, 3 available, 0 requests')
-      expect(page).to have_content('3 copies, 1 available, 0 requests')
-      expect(page).to have_content('2 copies, 2 available, 2 requests')
+      expect(page).to have_content('3 items, 3 available, 0 requests')
+      expect(page).to have_content('3 items, 1 available, 0 requests')
+      expect(page).to have_content('2 items, 2 available, 2 requests')
     end
 
     it "shows item level holdings information" do
-      click_link('3 copies, 3 available, 0 requests')
+      click_link('3 items, 3 available, 0 requests')
       expect(page.body).to have_content('010002885298')
       expect(page.body).to have_content('Item in place')
       expect(page.body).to have_content('barcode')
@@ -501,7 +501,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
 
     context "as an unauthenticated user" do
       it "can display item record level description" do
-        click_link("7 copies, 7 available, 0 requests")
+        click_link("7 items, 7 available, 0 requests")
         within '#physical-holding-1' do
           # mms_id - 990027507910302486
           # holding_id - 22319997630002486
@@ -525,7 +525,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         sign_in(user)
         click_link("Login", match: :first)
         visit solr_document_path(LIMITED_AVA_INFO[:id])
-        click_link("7 copies, 7 available, 0 requests")
+        click_link("7 items, 7 available, 0 requests")
         within '#physical-holding-1' do
           # mms_id - 990027507910302486
           # holding_id - 22319997630002486
