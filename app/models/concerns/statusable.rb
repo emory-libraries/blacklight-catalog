@@ -102,7 +102,11 @@ module Statusable
   end
 
   def items_record(user = nil)
-    @items_record ||= Nokogiri::XML(items_response(user))
+    @items_record ||= items_record_first_page(user)
+  end
+
+  def items_record_first_page(user = nil)
+    @items_record_first_page ||= Nokogiri::XML(items_response(user))
   end
 
   def items_response(user = nil)
@@ -114,7 +118,7 @@ module Statusable
   end
 
   def items_query(user = nil)
-    "/holdings/ALL/items?expand=due_date_policy&user_id=#{api_user_name(user)}&order_by=chron_i&apikey="
+    "/holdings/ALL/items?limit=100&offset=0&expand=due_date_policy&user_id=#{api_user_name(user)}&order_by=chron_i&apikey="
   end
 
   def api_user_name(user)

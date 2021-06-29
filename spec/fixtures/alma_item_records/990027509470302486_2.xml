@@ -1,0 +1,3134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items total_record_count="133">
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402520002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402520002486</pid>
+      <barcode>010002756824</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2015-06-26Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>30</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1952</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.30 1952</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402530002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402530002486</pid>
+      <barcode>010002756823</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2015-06-26Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>29</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1951</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.29 1951</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402540002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402540002486</pid>
+      <barcode>010002756822</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2015-06-26Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>28</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1950</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.28 1950</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402670002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402670002486</pid>
+      <barcode>010002756821</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>27</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1949</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.27 1949</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402680002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402680002486</pid>
+      <barcode>010002756820</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>26</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1948</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.26 1948</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402690002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402690002486</pid>
+      <barcode>010002756819</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>25</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1946</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.25 1946/47</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402700002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402700002486</pid>
+      <barcode>010002756818</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>24</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1945</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.24 1945/46</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402710002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402710002486</pid>
+      <barcode>010002756817</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>23</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1944</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.23 1944/45</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402720002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402720002486</pid>
+      <barcode>010002756816</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>22</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1943</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.22 1943/44</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402730002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402730002486</pid>
+      <barcode>010002756815</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>21</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1942</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.21 1942/43</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402740002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402740002486</pid>
+      <barcode>010002756814</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>20</enumeration_a>
+      <enumeration_b>1-3</enumeration_b>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1941</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.20 NO.1-3 1941/42</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402760002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402760002486</pid>
+      <barcode>010002756813</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>19</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1940</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.19 1939/1940</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402770002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402770002486</pid>
+      <barcode>010002756812</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>18</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1939</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.18 1938/1939</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402780002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402780002486</pid>
+      <barcode>010002756811</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>17</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1938</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.17 1937/1938</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402790002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402790002486</pid>
+      <barcode>010002756810</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>16</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1937</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.16 1937/1938</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402800002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402800002486</pid>
+      <barcode>010002756809</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>15</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1936</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.15 1936/1937</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402810002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402810002486</pid>
+      <barcode>010002756808</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>14</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1935</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.14 1935/1936</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402820002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402820002486</pid>
+      <barcode>010002756807</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>13</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1934</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.13 1934/1935</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402830002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402830002486</pid>
+      <barcode>010002756806</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>12</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1933</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.12 1933/1934</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402840002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402840002486</pid>
+      <barcode>010002756805</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>11</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1932</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.11 1932/1933</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402850002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402850002486</pid>
+      <barcode>010002756804</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>10</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1931</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.10 1931/1932</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402600002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402600002486</pid>
+      <barcode>010002756803</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>9</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1930</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.9 1930/31</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402610002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402610002486</pid>
+      <barcode>010002756802</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>8</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1929</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.8 1929/30</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402620002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402620002486</pid>
+      <barcode>010002756801</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>7</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1928</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.7 1928/29</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402630002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402630002486</pid>
+      <barcode>010002756800</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>6</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1927</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.6 1927/28</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402640002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402640002486</pid>
+      <barcode>010002756799</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>5</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1926</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.5 1926/27</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402650002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402650002486</pid>
+      <barcode>010002756798</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>4</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1925</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.4 1925/26</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402660002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402660002486</pid>
+      <barcode>010002756797</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>3</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1924</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.3 1924/25</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402750002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402750002486</pid>
+      <barcode>010002756796</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2014-10-07Z</arrival_date>
+      <expected_arrival_date>1994-05-27Z</expected_arrival_date>
+      <year_of_issue/>
+      <enumeration_a>2</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1923</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.2 1923/1924</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236402950002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236402950002486</pid>
+      <barcode>010001267855</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>2008-01-31Z</arrival_date>
+      <year_of_issue/>
+      <enumeration_a>1-15</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1922</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>INDEX V.1-15 1922-1937</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486/items/23236383430002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383440002486">
+      <holding_id>22236383440002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Library of Congress classification">0</permanent_call_number_type>
+      <permanent_call_number>HF5001 .H3</permanent_call_number>
+      <call_number_type desc="Library of Congress classification">0</call_number_type>
+      <call_number>HF5001 .H3</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236383430002486</pid>
+      <barcode>000011612296</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2019-03-14Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="4 Day Loan">05</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>1994-05-27Z</arrival_date>
+      <year_of_issue/>
+      <enumeration_a>1</enumeration_a>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i>1922</chronology_i>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description>V.1 1922/1923</description>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Robert W. Woodruff Library">UNIV</library>
+      <location desc="Woodruff Book Stacks">STACK</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383640002486/items/23236383630002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383640002486">
+      <holding_id>22236383640002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="National Library of Medicine classification">2</permanent_call_number_type>
+      <permanent_call_number>UNCLASSIFIED</permanent_call_number>
+      <call_number_type desc="National Library of Medicine classification">2</call_number_type>
+      <call_number>UNCLASSIFIED</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236383630002486</pid>
+      <barcode>1044751-5001</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2015-12-03Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy desc="Non-circ., Reading Rm Only">02</policy>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>1996-08-08Z</arrival_date>
+      <year_of_issue/>
+      <enumeration_a/>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i/>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description/>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="EUHM Branch Library">MID</library>
+      <location desc="Emory Midtown Periodicals">PER</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+  <item link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383460002486/items/23236383450002486">
+    <bib_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486">
+      <mms_id>990027509470302486</mms_id>
+      <bib_suppress_from_publishing>false</bib_suppress_from_publishing>
+      <title>Harvard business review.</title>
+      <issn>0017-8012</issn>
+      <complete_edition/>
+      <network_numbers>
+        <network_number>(OCoLC)1751795</network_number>
+        <network_number>(Sirsi) o01751795</network_number>
+        <network_number>(OCoLC)01751795</network_number>
+        <network_number>u1044751</network_number>
+        <network_number>(Aleph)002750947EMU01</network_number>
+        <network_number>(OCoLC)17557786</network_number>
+        <network_number>(OCoLC)1369474</network_number>
+        <network_number>(OCoLC)1068253</network_number>
+      </network_numbers>
+      <place_of_publication>Boston [etc.] :</place_of_publication>
+      <date_of_publication>1922</date_of_publication>
+      <publisher_const>Graduate School of Business Administration Harvard University</publisher_const>
+    </bib_data>
+    <holding_data link="https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/990027509470302486/holdings/22236383460002486">
+      <holding_id>22236383460002486</holding_id>
+      <holding_suppress_from_publishing>false</holding_suppress_from_publishing>
+      <permanent_call_number_type desc="Shelving control number">4</permanent_call_number_type>
+      <permanent_call_number>ALPHA BY TITLE</permanent_call_number>
+      <call_number_type desc="Shelving control number">4</call_number_type>
+      <call_number>ALPHA BY TITLE</call_number>
+      <accession_number/>
+      <copy_id>1</copy_id>
+      <in_temp_location>false</in_temp_location>
+      <temp_library/>
+      <temp_location/>
+      <temp_call_number_type/>
+      <temp_call_number/>
+      <temp_call_number_source/>
+      <temp_policy/>
+    </holding_data>
+    <item_data>
+      <pid>23236383450002486</pid>
+      <barcode>1044751-33001</barcode>
+      <creation_date>2015-12-03Z</creation_date>
+      <modification_date>2016-08-09Z</modification_date>
+      <base_status desc="Item in place">1</base_status>
+      <awaiting_reshelving>false</awaiting_reshelving>
+      <physical_material_type desc="Bound Issue">ISSBD</physical_material_type>
+      <policy/>
+      <provenance/>
+      <po_line/>
+      <is_magnetic>false</is_magnetic>
+      <arrival_date>1998-01-15Z</arrival_date>
+      <year_of_issue/>
+      <enumeration_a/>
+      <enumeration_b/>
+      <enumeration_c/>
+      <enumeration_d/>
+      <enumeration_e/>
+      <enumeration_f/>
+      <enumeration_g/>
+      <enumeration_h/>
+      <chronology_i/>
+      <chronology_j/>
+      <chronology_k/>
+      <chronology_l/>
+      <chronology_m/>
+      <break_indicator/>
+      <pattern_type/>
+      <linking_number/>
+      <type_of_unit/>
+      <description/>
+      <receiving_operator>import</receiving_operator>
+      <process_type/>
+      <inventory_number/>
+      <inventory_price/>
+      <library desc="Pitts Theology Library">THEO</library>
+      <location desc="Theology Emory Center for Ethics">ETHIC</location>
+      <alternative_call_number/>
+      <alternative_call_number_type/>
+      <storage_location_id/>
+      <pages/>
+      <pieces/>
+      <public_note/>
+      <fulfillment_note/>
+      <due_date_policy>Loanable</due_date_policy>
+      <internal_note_1/>
+      <internal_note_2/>
+      <internal_note_3/>
+      <statistics_note_1/>
+      <statistics_note_2/>
+      <statistics_note_3/>
+      <requested>false</requested>
+      <physical_condition/>
+    </item_data>
+  </item>
+</items>

@@ -145,7 +145,7 @@ RSpec.describe HoldRequest do
       .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936984306602486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_bib_records/sound_recording.xml'), headers: {})
-    stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936984306602486/holdings/ALL/items?apikey=fakebibkey123&expand=due_date_policy&order_by=chron_i&user_id=GUEST")
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936984306602486/holdings/ALL/items?apikey=fakebibkey123&expand=due_date_policy&limit=100&offset=0&order_by=chron_i&user_id=GUEST")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/9936984306602486.xml'), headers: {})
     # user = User.create(uid: "janeq")
     hr = described_class.new(mms_id: "9936984306602486", user: user)
