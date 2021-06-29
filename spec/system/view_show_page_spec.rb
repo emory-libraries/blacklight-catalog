@@ -447,6 +447,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         href: "http://example2.com/discovery/openurl?institution=SOME_INSTITUTION&vid=SOME_INSTITUTION:blacklight&u.ignore_date_coverage=true&force_direct=true&portfolio_pid=53450970510002486"
       )
       expect(page).to have_link("Services page", href: "http://example2.com/discovery/openurl?institution=SOME_INSTITUTION&vid=SOME_INSTITUTION:blacklight&rft.mms_id=9937275387802486")
+      expect(find_link("Services page")[:target]).to eq("_blank")
     end
 
     it "disables the hold request link when there are no physical holdings" do
