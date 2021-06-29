@@ -93,8 +93,8 @@ module Statusable
     Nokogiri::XML(record_response)
   end
 
-  def items_by_holding_record(holding_id, user = nil)
-    Nokogiri::XML(items_by_holding_response(holding_id, user))
+  def items_by_holding_record(_holding_id, user = nil)
+    items_record(user)
   end
 
   def record_response
@@ -103,6 +103,30 @@ module Statusable
 
   def items_by_holding_response(holding_id, user = nil)
     RestClient.get items_by_holding_url(holding_id, user), { accept: :xml }
+  end
+
+  def items_record(user = nil)
+    @items_record ||= Nokogiri::XML(items_response(user))
+  end
+
+  def items_response(user = nil)
+    @items_response ||= RestClient.get items_url(user), { accept: :xml }
+  end
+
+  def items_url(user = nil)
+    "#{api_url}/almaws/v1/bibs/#{mms_id}#{items_query(user)}#{api_bib_key}"
+  end
+
+  def items_query(user = nil)
+    "/holdings/ALL/items?expand=due_date_policy&user_id=#{api_user_name(user)}&order_by=chron_i&apikey="
+  end
+
+  def api_user_name(user)
+    if user.blank? || user&.guest
+      'GUEST'
+    else
+      user.uid
+    end
   end
 
   def full_record_url
@@ -156,11 +180,10 @@ module Statusable
   end
 
   def items_by_holding_values(holding_id, user = nil) # rubocop:disable Metrics/MethodLength
-    items = []
     holding_items = items_by_holding_record(holding_id, user)
     foo = holding_items.xpath("//holding_id[text()='#{holding_id}']/parent::holding_data/following-sibling::item_data")
-    foo.each do |node|
-      item_info = {
+    foo.map do |node|
+      {
         pid: node.xpath("pid")&.inner_text,
         barcode: node.xpath("barcode")&.inner_text,
         type: node.xpath("physical_material_type").attr("desc")&.value,
@@ -169,9 +192,7 @@ module Statusable
         description: node.xpath("description")&.inner_text,
         status: node.xpath('base_status').attr("desc")&.value
       }
-      items.append(item_info)
     end
-    items
   end # rubocop:enable Metrics/MethodLength
 
   def item_policy(node, _user)
