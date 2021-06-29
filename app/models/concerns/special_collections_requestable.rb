@@ -1,6 +1,4 @@
 # frozen_string_literal: true
-require 'csv'
-
 module SpecialCollectionsRequestable
   extend ActiveSupport::Concern
 
@@ -74,14 +72,7 @@ module SpecialCollectionsRequestable
     end
   end
 
-  # TODO: Turn this into configuration from csv file, as output by Alma
   def special_collections_locations
-    @special_collections_locations ||= begin
-      path = Rails.root.join("config", "special_collections_locations.csv")
-      file = File.read(path)
-      CSV.parse(file, headers: true).map do |row|
-        { library_code: row["Library Code (Active)"], location_code: row["Location Code"] }
-      end
-    end
+    SPECIAL_COLLECTIONS_LOCATIONS
   end
 end
