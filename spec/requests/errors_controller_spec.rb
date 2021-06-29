@@ -2,7 +2,6 @@
 require "rails_helper"
 # rubocop:disable RSpec/AnyInstance
 RSpec.describe ErrorsController, type: :request do
-
   it "loads the page when 500 error detected" do
     allow_any_instance_of(CatalogController).to receive(:show).and_raise("Whoa Beavis!")
     get '/catalog/1'
