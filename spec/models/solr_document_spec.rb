@@ -112,8 +112,7 @@ RSpec.describe SolrDocument do
       solr_doc.physical_holdings
       solr_doc.physical_holdings
       solr_doc.online_holdings
-      expect(stub_item_request).to have_been_made
-      # expect(stub_item_request).to have_been_made.once
+      expect(stub_item_request).to have_been_made.once
     end
 
     it "can say whether or not the title is available for a hold request" do
@@ -146,7 +145,7 @@ RSpec.describe SolrDocument do
       let(:user) { User.create(uid: 'janeq') }
 
       it "can get the due_date_policy based on the user" do
-        expect(solr_doc.items_by_holding_query("22319997630002486", user)).to eq "/holdings/22319997630002486/items?expand=due_date_policy&user_id=janeq&apikey="
+        expect(solr_doc.items_query(user)).to eq "/holdings/ALL/items?expand=due_date_policy&user_id=janeq&order_by=chron_i&apikey="
         expect(solr_doc.physical_holdings(user).first[:items].last).to eq({ barcode: "010002752069", type: "Bound Issue", pid: "23236301160002486",
                                                                             policy: { policy_desc: "30 Day Loan Storage", policy_id: "17", due_date_policy: "28 Days Loan" },
                                                                             description: "v.75(2013)", status: "Item in place", type_code: "ISSBD" })
@@ -154,7 +153,7 @@ RSpec.describe SolrDocument do
       end
 
       it "can get the due_date_policy for a guest user" do
-        expect(solr_doc.items_by_holding_query("22319997630002486")).to eq "/holdings/22319997630002486/items?expand=due_date_policy&user_id=GUEST&apikey="
+        expect(solr_doc.items_query).to eq "/holdings/ALL/items?expand=due_date_policy&user_id=GUEST&order_by=chron_i&apikey="
         expect(solr_doc.physical_holdings.first[:items].last).to eq({ barcode: "010002752069", type: "Bound Issue", pid: "23236301160002486",
                                                                       policy: { policy_desc: "30 Day Loan Storage", policy_id: "17", due_date_policy: "Loanable" },
                                                                       description: "v.75(2013)", status: "Item in place", type_code: "ISSBD" })

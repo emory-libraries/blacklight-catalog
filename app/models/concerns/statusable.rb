@@ -93,16 +93,12 @@ module Statusable
     Nokogiri::XML(record_response)
   end
 
-  def items_by_holding_record(_holding_id, user = nil)
-    items_record(user)
+  def items_by_holding_record(holding_id, user = nil)
+    items_record(user).xpath("//holding_id[text()='#{holding_id}']/parent::holding_data/following-sibling::item_data")
   end
 
   def record_response
     @record_response ||= RestClient.get full_record_url, { accept: :xml }
-  end
-
-  def items_by_holding_response(holding_id, user = nil)
-    RestClient.get items_by_holding_url(holding_id, user), { accept: :xml }
   end
 
   def items_record(user = nil)
@@ -131,18 +127,6 @@ module Statusable
 
   def full_record_url
     "#{api_url}/almaws/v1/bibs/#{mms_id}#{query_inst}#{api_bib_key}"
-  end
-
-  def items_by_holding_url(holding_id, user = nil)
-    "#{api_url}/almaws/v1/bibs/#{mms_id}#{items_by_holding_query(holding_id, user)}#{api_bib_key}"
-  end
-
-  def items_by_holding_query(holding_id, user = nil)
-    if user.blank? || user&.guest
-      "/holdings/#{holding_id}/items?expand=due_date_policy&user_id=GUEST&apikey="
-    else
-      "/holdings/#{holding_id}/items?expand=due_date_policy&user_id=#{user.uid}&apikey="
-    end
   end
 
   def query_inst
@@ -179,10 +163,8 @@ module Statusable
     @call_number = availability.at_xpath('subfield[@code="d"]')&.inner_text
   end
 
-  def items_by_holding_values(holding_id, user = nil) # rubocop:disable Metrics/MethodLength
-    holding_items = items_by_holding_record(holding_id, user)
-    foo = holding_items.xpath("//holding_id[text()='#{holding_id}']/parent::holding_data/following-sibling::item_data")
-    foo.map do |node|
+  def items_by_holding_values(holding_id, user = nil)
+    items_by_holding_record(holding_id, user).map do |node|
       {
         pid: node.xpath("pid")&.inner_text,
         barcode: node.xpath("barcode")&.inner_text,
@@ -193,7 +175,7 @@ module Statusable
         status: node.xpath('base_status').attr("desc")&.value
       }
     end
-  end # rubocop:enable Metrics/MethodLength
+  end
 
   def item_policy(node, _user)
     policy_desc = node.xpath('policy').attr("desc")&.value
