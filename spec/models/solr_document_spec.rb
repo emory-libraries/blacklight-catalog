@@ -18,10 +18,10 @@ RSpec.describe SolrDocument do
     ENV["INSTITUTION"] = orig_inst
   end
 
-  before do
+  before :all do
     delete_all_documents_from_solr
     solr = Blacklight.default_index.connection
-    solr.add([TEST_ITEM, MULTIPLE_HOLDINGS_TEST_ITEM, MLA_HANDBOOK, ONLINE, FUNKY_URL_PARTY, LIMITED_AVA_INFO, SITTING_FROG])
+    solr.add([TEST_ITEM, MULTIPLE_HOLDINGS_TEST_ITEM, MLA_HANDBOOK, ONLINE, FUNKY_URL_PARTY, LIMITED_AVA_INFO, SITTING_FROG, HARVARD_BUSINESS_REVIEW])
     solr.commit
   end
 
@@ -65,8 +65,10 @@ RSpec.describe SolrDocument do
     before do
       stub_request(:get, "http://www.example.com/almaws/v1/bibs/990005412600302486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
         .to_return(status: 200, body: File.read(fixture_path + '/alma_bib_records/sitting_frog.xml'), headers: {})
-      stub_request(:get, "http://www.example.com/almaws/v1/bibs/990005412600302486/holdings/22177450170002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=janeq")
-        .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22177450170002486_w_user.xml'), headers: {})
+      stub_request(:get, "http://www.example.com/almaws/v1/bibs/990005412600302486/holdings/ALL/items?apikey=fakebibkey123&expand=due_date_policy&limit=100&offset=0&order_by=chron_i&user_id=janeq")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/990005412600302486_w_user.xml'), headers: {})
+      stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936550118202486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_6.xml'), headers: {})
     end
     # mms_id = 990005412600302486
     let(:solr_doc) { described_class.find(SITTING_FROG[:id]) }
@@ -104,14 +106,65 @@ RSpec.describe SolrDocument do
       expect(stub_bib_request).to have_been_made.once
     end
 
+    it "limits the number of calls to the Alma API for item requests" do
+      stub_item_request = stub_request(:get,
+                            "http://www.example.com/almaws/v1/bibs/9936550118202486/holdings/ALL/items?apikey=fakebibkey123&expand=due_date_policy&limit=100&offset=0&order_by=chron_i&user_id=GUEST")
+                          .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/9936550118202486.xml'), headers: {})
+      solr_doc.physical_holdings
+      solr_doc.physical_holdings
+      solr_doc.online_holdings
+      expect(stub_item_request).to have_been_made.once
+    end
+
     it "can say whether or not the title is available for a hold request" do
       expect(solr_doc.hold_requestable?(user)).to eq true
       expect(solr_doc.special_collections_requestable?(user)).to eq false
+    end
+
+    it "includes item information as part of physical holdings" do
+      expect(solr_doc.physical_holdings[0][:holding_id]).to eq "22360885950002486"
+      expect(solr_doc.physical_holdings[1][:holding_id]).to eq "22332597410002486"
+      expect(solr_doc.physical_holdings[2][:holding_id]).to eq "22319658770002486"
+      expect(solr_doc.physical_holdings[0][:items].count).to eq 3
+      expect(solr_doc.physical_holdings[1][:items].count).to eq 2
+      expect(solr_doc.physical_holdings[2][:items].count).to eq 3
+      expect(solr_doc.physical_holdings[0][:items][0][:barcode]).to eq("010002885296")
+      expect(solr_doc.physical_holdings[1][:items][1][:barcode]).to eq("050000091186")
+      expect(solr_doc.physical_holdings[2][:items][2][:barcode]).to eq("010002954783")
+    end
+  end
+
+  context "over 100 physical items" do
+    let(:items_page_one_stub) do
+      stub_request(:get, "http://www.example.com/almaws/v1/bibs/990027509470302486/holdings/ALL/items?apikey=fakebibkey123&expand=due_date_policy&limit=100&offset=0&order_by=chron_i&user_id=GUEST")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/990027509470302486.xml'), headers: {})
+    end
+    let(:items_page_two_stub) do
+      stub_request(:get, "http://www.example.com/almaws/v1/bibs/990027509470302486/holdings/ALL/items?apikey=fakebibkey123&expand=due_date_policy&limit=100&offset=100&order_by=chron_i&user_id=GUEST")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/990027509470302486_2.xml'), headers: {})
+    end
+    before do
+      items_page_one_stub
+      items_page_two_stub
+      stub_request(:get, "http://www.example.com/almaws/v1/bibs/990027509470302486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_bib_records/harvard_business_review.xml'), headers: {})
+    end
+    let(:solr_doc) { described_class.find(HARVARD_BUSINESS_REVIEW[:id]) }
+
+    xit "retrieves the first 100 items in a single call" do
+      expect(solr_doc.physical_holdings.count).to eq 4
+      # expect(solr_doc.physical_holdings[0][:items].count).to eq 107
+      # expect(solr_doc.physical_holdings[1][:items].count).to eq 1
+      # expect(solr_doc.physical_holdings[2][:items].count).to eq 1
+      # expect(solr_doc.physical_holdings[3][:items].count).to eq 24
+      expect(items_page_one_stub).to have_been_made.once
+      # expect(items_page_two_stub).to have_been_made.once
     end
   end
 
   context 'physical holdings with limited information from alma' do
     let(:solr_doc) { described_class.find(LIMITED_AVA_INFO[:id]) }
+
     it "does not raise an error" do
       expect(solr_doc.physical_holdings[0][:availability]).to eq({ copies: 7, available: 7, requests: 0, availability_phrase: "available" })
       expect(solr_doc.physical_holdings[1][:availability]).to eq({ copies: 3, available: 3, requests: 0, availability_phrase: "available" })
@@ -122,18 +175,18 @@ RSpec.describe SolrDocument do
       let(:user) { User.create(uid: 'janeq') }
 
       it "can get the due_date_policy based on the user" do
-        expect(solr_doc.items_by_holding_query("22319997630002486", user)).to eq "/holdings/22319997630002486/items?expand=due_date_policy&user_id=janeq&apikey="
-        expect(solr_doc.physical_holdings(user).first[:items_by_holding].first).to eq({ barcode: "010002752069", type: "Bound Issue", pid: "23236301160002486",
-                                                                                        policy: { policy_desc: "30 Day Loan Storage", policy_id: "17", due_date_policy: "28 Days Loan" },
-                                                                                        description: "v.75(2013)", status: "Item in place", type_code: "ISSBD" })
+        expect(solr_doc.items_query(user)).to eq "/holdings/ALL/items?limit=100&offset=0&expand=due_date_policy&user_id=janeq&order_by=chron_i&apikey="
+        expect(solr_doc.physical_holdings(user).first[:items].last).to eq({ barcode: "010002752069", type: "Bound Issue", pid: "23236301160002486",
+                                                                            policy: { policy_desc: "30 Day Loan Storage", policy_id: "17", due_date_policy: "28 Days Loan" },
+                                                                            description: "v.75(2013)", status: "Item in place", type_code: "ISSBD" })
         expect(solr_doc.hold_requestable?).to eq true
       end
 
       it "can get the due_date_policy for a guest user" do
-        expect(solr_doc.items_by_holding_query("22319997630002486")).to eq "/holdings/22319997630002486/items?expand=due_date_policy&user_id=GUEST&apikey="
-        expect(solr_doc.physical_holdings.first[:items_by_holding].first).to eq({ barcode: "010002752069", type: "Bound Issue", pid: "23236301160002486",
-                                                                                  policy: { policy_desc: "30 Day Loan Storage", policy_id: "17", due_date_policy: "Loanable" },
-                                                                                  description: "v.75(2013)", status: "Item in place", type_code: "ISSBD" })
+        expect(solr_doc.items_query).to eq "/holdings/ALL/items?limit=100&offset=0&expand=due_date_policy&user_id=GUEST&order_by=chron_i&apikey="
+        expect(solr_doc.physical_holdings.first[:items].last).to eq({ barcode: "010002752069", type: "Bound Issue", pid: "23236301160002486",
+                                                                      policy: { policy_desc: "30 Day Loan Storage", policy_id: "17", due_date_policy: "Loanable" },
+                                                                      description: "v.75(2013)", status: "Item in place", type_code: "ISSBD" })
         expect(solr_doc.hold_requestable?).to eq true
       end
     end
@@ -223,7 +276,7 @@ RSpec.describe SolrDocument do
             requests: 0,
             availability_phrase: "available"
           },
-          items_by_holding: [items] }
+          items: [items] }
       ]
     end
     before { allow(user).to receive(:user_group).and_return("02") }

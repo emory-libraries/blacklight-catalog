@@ -47,7 +47,7 @@ module Statusable
 
   def due_date_policies(user = nil)
     physical_holdings(user).map do |holding|
-      holding[:items_by_holding].map do |item|
+      holding[:items].map do |item|
         item[:policy][:due_date_policy]
       end
     end.flatten!
@@ -94,31 +94,45 @@ module Statusable
   end
 
   def items_by_holding_record(holding_id, user = nil)
-    Nokogiri::XML(items_by_holding_response(holding_id, user))
+    items_record(user).xpath("//holding_id[text()='#{holding_id}']/parent::holding_data/following-sibling::item_data")
   end
 
   def record_response
     @record_response ||= RestClient.get full_record_url, { accept: :xml }
   end
 
-  def items_by_holding_response(holding_id, user = nil)
-    RestClient.get items_by_holding_url(holding_id, user), { accept: :xml }
+  def items_record(user = nil)
+    @items_record ||= items_record_first_page(user)
+  end
+
+  # TODO: If there are more than 100 items, make another request with a different offset value
+  # and merge that response with this response. Harvard Business Review is an example title
+  def items_record_first_page(user = nil)
+    @items_record_first_page ||= Nokogiri::XML(items_response(user))
+  end
+
+  def items_response(user = nil)
+    @items_response ||= RestClient.get items_url(user), { accept: :xml }
+  end
+
+  def items_url(user = nil)
+    "#{api_url}/almaws/v1/bibs/#{mms_id}#{items_query(user)}#{api_bib_key}"
+  end
+
+  def items_query(user = nil)
+    "/holdings/ALL/items?limit=100&offset=0&expand=due_date_policy&user_id=#{api_user_name(user)}&order_by=chron_i&apikey="
+  end
+
+  def api_user_name(user)
+    if user.blank? || user&.guest
+      'GUEST'
+    else
+      user.uid
+    end
   end
 
   def full_record_url
     "#{api_url}/almaws/v1/bibs/#{mms_id}#{query_inst}#{api_bib_key}"
-  end
-
-  def items_by_holding_url(holding_id, user = nil)
-    "#{api_url}/almaws/v1/bibs/#{mms_id}#{items_by_holding_query(holding_id, user)}#{api_bib_key}"
-  end
-
-  def items_by_holding_query(holding_id, user = nil)
-    if user.blank? || user&.guest
-      "/holdings/#{holding_id}/items?expand=due_date_policy&user_id=GUEST&apikey="
-    else
-      "/holdings/#{holding_id}/items?expand=due_date_policy&user_id=#{user.uid}&apikey="
-    end
   end
 
   def query_inst
@@ -155,11 +169,9 @@ module Statusable
     @call_number = availability.at_xpath('subfield[@code="d"]')&.inner_text
   end
 
-  def items_by_holding_values(holding_id, user = nil) # rubocop:disable Metrics/MethodLength
-    items = []
-    holding_items = items_by_holding_record(holding_id, user)
-    holding_items.xpath("//item/item_data").each do |node|
-      item_info = {
+  def items_by_holding_values(holding_id, user = nil)
+    items_by_holding_record(holding_id, user).map do |node|
+      {
         pid: node.xpath("pid")&.inner_text,
         barcode: node.xpath("barcode")&.inner_text,
         type: node.xpath("physical_material_type").attr("desc")&.value,
@@ -168,10 +180,8 @@ module Statusable
         description: node.xpath("description")&.inner_text,
         status: node.xpath('base_status').attr("desc")&.value
       }
-      items.append(item_info)
     end
-    items
-  end # rubocop:enable Metrics/MethodLength
+  end
 
   def item_policy(node, _user)
     policy_desc = node.xpath('policy').attr("desc")&.value
@@ -193,7 +203,7 @@ module Statusable
         requests: requests(@holding_id),
         availability_phrase: @availability_phrase
       },
-      items_by_holding: items_by_holding_values(@holding_id, user)
+      items: items_by_holding_values(@holding_id, user)
     }
   end
 

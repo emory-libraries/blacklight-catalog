@@ -27,7 +27,7 @@ class Verification::IlliadVerificationService
   end
 
   def item_type_codes(holding)
-    holding[:items_by_holding]&.map { |i| i[:type_code] }&.compact&.uniq
+    holding[:items]&.map { |i| i[:type_code] }&.compact&.uniq
   end
 
   def analyze_values(user_groups, location, expected_type_codes, holding)

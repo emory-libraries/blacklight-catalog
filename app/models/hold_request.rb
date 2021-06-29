@@ -161,7 +161,7 @@ class HoldRequest
     holding_items = []
     physical_holdings(@user).each do |holding|
       call_number = holding[:call_number]
-      holding[:items_by_holding].each do |item|
+      holding[:items].each do |item|
         holding_items << { label: call_number + " " + item[:description], value: item[:pid] } unless item[:description].to_s.strip.empty?
       end
     end
