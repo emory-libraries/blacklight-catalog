@@ -105,6 +105,8 @@ module Statusable
     @items_record ||= items_record_first_page(user)
   end
 
+  # TODO: If there are more than 100 items, make another request with a different offset value
+  # and merge that response with this response. Harvard Business Review is an example title
   def items_record_first_page(user = nil)
     @items_record_first_page ||= Nokogiri::XML(items_response(user))
   end
