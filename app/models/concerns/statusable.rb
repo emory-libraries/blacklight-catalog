@@ -1,6 +1,8 @@
 # frozen_string_literal: true
+
 module Statusable
   extend ActiveSupport::Concern
+  include SpecialCollectionsRequestable
 
   DOC_DELIVERY_SERVICES = {
     "BUS": Verification::BusUserVerificationService,
@@ -37,6 +39,10 @@ module Statusable
     else
       false
     end
+  end
+
+  def special_collections_requestable?(user = nil)
+    holding_to_request(user).present?
   end
 
   def due_date_policies(user = nil)

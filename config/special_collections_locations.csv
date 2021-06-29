@@ -1,0 +1,25 @@
+Library Code (Active),Library Name (Active),Location Code,Location Name,Suppressed from Discovery
+LAW,Law Library,SPCOL,"Law Special Collections, 2nd Floor",No
+LAW,Law Library,SPCOV,"Law Special Collections, Oversized, 2nd Floor",No
+LAW,Law Library,SPDIS,"Law Special Collections, Early Dissertations, 2nd Floor",No
+LAW,Law Library,SPISO,"Law Special Collections, Isolation, 2nd Floor",No
+LSC,Library Service Center,RSTORDX,Rose Library - Dark Storage,Yes
+LSC,Library Service Center,RSTORM,Rose Library - Manuscripts,No
+LSC,Library Service Center,RSTORR,Rose Library - Rare Books,No
+OXFD,Oxford College Library,SPCOL,Oxford Special Collections,No
+THEO,Pitts Theology Library,SPCOL,Theology Special Collections,No
+THEO,Pitts Theology Library,SPDOZ,Theology Special Collections--Double Oversized,No
+THEO,Pitts Theology Library,SPOZ,Theology Special Collections--Oversized,No
+THEO,Pitts Theology Library,SPPAM,Theology Special Collections--Pamphlets,No
+THEO,Pitts Theology Library,SPREF,Theology Special Collections Reference,No
+THEO,Pitts Theology Library,SPRES,Theology Special Collections--Restricted,No
+MARBL,"Stuart A. Rose Manuscript, Archives, and Rare Book Library",MAP,MARBL Map Collection,No
+MARBL,"Stuart A. Rose Manuscript, Archives, and Rare Book Library",MEDIA,MARBL Media Collection,No
+MARBL,"Stuart A. Rose Manuscript, Archives, and Rare Book Library",MSSTK,MARBL Manuscript Shelving,No
+MARBL,"Stuart A. Rose Manuscript, Archives, and Rare Book Library",REF,MARBL Reference,No
+MARBL,"Stuart A. Rose Manuscript, Archives, and Rare Book Library",SPOZ,MARBL Folio Stacks,No
+MARBL,"Stuart A. Rose Manuscript, Archives, and Rare Book Library",STACK,MARBL Book Stacks,No
+MARBL,"Stuart A. Rose Manuscript, Archives, and Rare Book Library",STAFF,MARBL Staff Use,No
+MARBL,"Stuart A. Rose Manuscript, Archives, and Rare Book Library",UNASSIGNED,MARBL UNASSIGNED,No
+MARBL,"Stuart A. Rose Manuscript, Archives, and Rare Book Library",VAUL2,"MARBL Locked Stacks, 11th Floor",No
+HLTH,Woodruff Health Sciences Cntr.,SPCOL,Health Sciences Special Collections,No
