@@ -104,7 +104,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         expect(find_all('.where-to-find-table')).not_to be_empty
         within '.where-to-find-table' do
           [
-            'At the Library', 'Status', 'Robert W. Woodruff Library: Book Stacks',
+            'At the Library', 'Status', 'Robert W. Woodruff Library', 'Book Stacks',
             'PT2613 .M45 Z92 2006', '1 item, 1 available, 0 requests', 'Online', 'Access online:', 'Link Text for Book'
           ].each { |t| expect(page).to have_content(t) }
         end
@@ -118,7 +118,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
 
         within '.where-to-find-table' do
           [
-            'At the Library', 'Status', 'Robert W. Woodruff Library: Book Stacks',
+            'At the Library', 'Status', 'Robert W. Woodruff Library', 'Book Stacks',
             'PT2613 .M45 Z92 2006', '1 item, 0 available, 0 requests', 'Online', 'Access online:',
             'Link Text for Book'
           ].each { |t| expect(page).to have_content(t) }
