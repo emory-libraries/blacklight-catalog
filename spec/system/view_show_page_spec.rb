@@ -500,6 +500,13 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       end
     end
 
+    it "can display holding level descriptions for periodicals" do
+      expect(page).to have_content('The Review of politics')
+      within '#physical-holding-1' do
+        expect(page).to have_content("from:69 2007 until:75 2013")
+      end
+    end
+
     context "as an unauthenticated user" do
       it "can display item record level description" do
         click_link("7 items, 7 available, 0 requests")
