@@ -1,11 +1,13 @@
 @media print {
   #appliedParams, .pagination-search-widgets, #where-to-find-section, #trunc-short-text, .moreless.less, .page-sidebar.col-lg-3, footer,
-    .additional-titles.btn.btn-link.additional-fields, .btn.btn-link.additional-authors-collapse, .footer-version, .availability-badge { 
+    .additional-titles.additional-fields, .additional-authors-collapse, .footer-version, .availability-badge, .request-options { 
       display: none !important; 
   }
   #trunc-full-text { display: block !important; }
   #extended-terms { display: flex !important; }
   #extended-author-addl { display: inline !important; }
+
+  table, pre { page-break-inside:avoid }
   dd { margin-bottom: 1rem; }
   dt { font-weight: bold !important; }
   a { 

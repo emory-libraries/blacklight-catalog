@@ -1,23 +1,27 @@
 a {
-    &.btn.btn-link.additional-authors-collapse {
+    &.additional-authors-collapse {
       &.collapsed:after {
-        content: "Show more Author/Creators";
+        content: "+ Show more Author/Creators";
       }
   
       &:not(.collapsed):after {
-        content: "Show less Author/Creators";
+        content: "- Show less Author/Creators";
       }
+      margin-left: 1rem;
+      text-transform: uppercase;
+      font-size: .875rem;
     }
   
-    &.additional-titles.btn.btn-link.additional-fields {
+    &.additional-titles.additional-fields {
       &.collapsed:after {
-        content: "Show more Title Information";
+        content: "+ Show more Title Information";
       }
-  
       &:not(.collapsed):after {
-        content: "Show less Title Information";
+        content: "– Show less Title Information";
       }
   
       margin-left: 1rem;
+      text-transform: uppercase;
+      font-size: .875rem;
     }
   }
