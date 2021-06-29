@@ -96,10 +96,13 @@ RSpec.configure do |config|
       .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22332597410002486.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936550118202486/holdings/22332597410002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=janeq")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22332597410002486.xml'), headers: {})
+
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936550118202486/holdings/22319658770002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=GUEST")
-      .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22360885950002486.xml'), headers: {})
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22319658770002486.xml'), headers: {})
+
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936550118202486/holdings/22319658770002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=janeq")
-      .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22360885950002486.xml'), headers: {})
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22319658770002486.xml'), headers: {})
+
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/9937004854502486/holdings/22439796790002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=GUEST")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22439796790002486.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/9937004854502486/holdings/22394150340002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=GUEST")

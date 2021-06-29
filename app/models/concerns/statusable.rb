@@ -47,7 +47,7 @@ module Statusable
 
   def due_date_policies(user = nil)
     physical_holdings(user).map do |holding|
-      holding[:items_by_holding].map do |item|
+      holding[:items].map do |item|
         item[:policy][:due_date_policy]
       end
     end.flatten!
@@ -158,7 +158,8 @@ module Statusable
   def items_by_holding_values(holding_id, user = nil) # rubocop:disable Metrics/MethodLength
     items = []
     holding_items = items_by_holding_record(holding_id, user)
-    holding_items.xpath("//item/item_data").each do |node|
+    foo = holding_items.xpath("//holding_id[text()='#{holding_id}']/parent::holding_data/following-sibling::item_data")
+    foo.each do |node|
       item_info = {
         pid: node.xpath("pid")&.inner_text,
         barcode: node.xpath("barcode")&.inner_text,
@@ -193,7 +194,7 @@ module Statusable
         requests: requests(@holding_id),
         availability_phrase: @availability_phrase
       },
-      items_by_holding: items_by_holding_values(@holding_id, user)
+      items: items_by_holding_values(@holding_id, user)
     }
   end
 

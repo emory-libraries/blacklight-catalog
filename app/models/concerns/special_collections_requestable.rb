@@ -28,7 +28,7 @@ module SpecialCollectionsRequestable
       "Form": 30,
       "ctx_ver": "Z39.88-2004",
       "rft_val_fmt": "info:ofi/fmt:kev:mtx:#{try(:[], :format_ssim)&.first&.downcase}",
-      "rfr_id": "info:sid/primo:#{holding_to_request(user)[:items_by_holding].first[:barcode]}",
+      "rfr_id": "info:sid/primo:#{holding_to_request(user)[:items].first[:barcode]}",
       "rft.genre": try(:[], :format_ssim)&.first&.downcase,
       "rft.btitle": try(:[], :title_main_display_tesim)&.first,
       "rft.title": try(:[], :title_main_display_tesim)&.first,
@@ -40,7 +40,7 @@ module SpecialCollectionsRequestable
       "rft.isbn": try(:[], :isbn_ssim)&.first,
       "rft.callnumber": try(:[], :local_call_number_tesim)&.first,
       "rft.item_location": holding_to_request(user)[:library][:value] + " " + holding_to_request(user)[:location][:value],
-      "rft.barcode": holding_to_request(user)[:items_by_holding].first[:barcode],
+      "rft.barcode": holding_to_request(user)[:items].first[:barcode],
       "rft.doctype": "RB",
       "rft.lib": "EMU",
       "SITE": special_locations_site(holding_to_request(user)[:library][:value], holding_to_request(user)[:location][:value])
