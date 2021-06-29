@@ -15,6 +15,9 @@
         <% if document.doc_delivery?(physical_holdings, current_or_guest_user) %>
           <%= link_to "Request Article or Chapter", '/#', class: "dropdown-item" %>
         <% end %>
+        <% if document.special_collections_requestable?(current_or_guest_user) %>
+          <%= link_to "Request from Special Collections", document.special_collections_url, class: "dropdown-item" %>
+        <% end %>
       </div>
     </div>
   </div>
