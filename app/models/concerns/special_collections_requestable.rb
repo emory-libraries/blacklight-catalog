@@ -81,6 +81,7 @@ module SpecialCollectionsRequestable
       "MARBLEU"
     end
   end
+
   # TODO: Turn this into configuration from csv file, as output by Alma
   def special_collections_locations
     [{ library_code: "LAW", location_code: "SPCOL" }, { library_code: "LAW", location_code: "SPCOV" }, { library_code: "LAW", location_code: "SPDIS" },
