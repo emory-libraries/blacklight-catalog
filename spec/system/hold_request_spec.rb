@@ -27,8 +27,8 @@ RSpec.describe "Create a request for a holding", type: :system, js: true, alma: 
       .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
     stub_request(:post, "http://www.example.com/almaws/v1/users/janeq/requests?user_id_type=all_unique&mms_id=9936550118202486&allow_same_request=false&apikey=fakeuserkey456")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_request_test_file.json'))
-    stub_request(:get, "http://www.example.com/almaws/v1/bibs/990011434390302486/holdings/22187557270002486/items?apikey=fakebibkey123&expand=due_date_policy&user_id=janeq")
-      .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/22187557270002486.xml'), headers: {})
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/990011434390302486/holdings/ALL/items?apikey=fakebibkey123&expand=due_date_policy&user_id=janeq")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/990011434390302486.xml'), headers: {})
   end
 
   it "has a button to request a hold" do
