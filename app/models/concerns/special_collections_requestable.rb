@@ -4,14 +4,6 @@ require 'csv'
 module SpecialCollectionsRequestable
   extend ActiveSupport::Concern
 
-  # def special_collections_location_for_holding(user = nil)
-  #   return false if physical_holdings(user).blank?
-  #   holding_locations = physical_holdings(user).map { |holding| { library_code: holding[:library][:value], location_code: holding[:location][:value] } }
-  #   common_locations = holding_locations & special_collections_locations
-  #   return false if common_locations.empty?
-  #   common_locations
-  # end
-
   def holding_to_request(user = nil)
     @holding_to_request ||= begin
       return false if physical_holdings(user).blank?
@@ -84,13 +76,12 @@ module SpecialCollectionsRequestable
 
   # TODO: Turn this into configuration from csv file, as output by Alma
   def special_collections_locations
-    [{ library_code: "LAW", location_code: "SPCOL" }, { library_code: "LAW", location_code: "SPCOV" }, { library_code: "LAW", location_code: "SPDIS" },
-     { library_code: "LAW", location_code: "SPISO" }, { library_code: "LSC", location_code: "RSTORDX" }, { library_code: "LSC", location_code: "RSTORM" },
-     { library_code: "LSC", location_code: "RSTORR" }, { library_code: "OXFD", location_code: "SPCOL" }, { library_code: "THEO", location_code: "SPCOL" },
-     { library_code: "THEO", location_code: "SPDOZ" }, { library_code: "THEO", location_code: "SPOZ" }, { library_code: "THEO", location_code: "SPPAM" },
-     { library_code: "THEO", location_code: "SPREF" }, { library_code: "THEO", location_code: "SPRES" }, { library_code: "MARBL", location_code: "MAP" },
-     { library_code: "MARBL", location_code: "MEDIA" }, { library_code: "MARBL", location_code: "MSSTK" }, { library_code: "MARBL", location_code: "REF" },
-     { library_code: "MARBL", location_code: "SPOZ" }, { library_code: "MARBL", location_code: "STACK" }, { library_code: "MARBL", location_code: "STAFF" },
-     { library_code: "MARBL", location_code: "UNASSIGNED" }, { library_code: "MARBL", location_code: "VAUL2" }, { library_code: "HLTH", location_code: "SPCOL" }]
+    @special_collections_locations ||= begin
+      path = Rails.root.join("config", "special_collections_locations.csv")
+      file = File.read(path)
+      CSV.parse(file, headers: true).map do |row|
+        { library_code: row["Library Code (Active)"], location_code: row["Location Code"] }
+      end
+    end
   end
 end
