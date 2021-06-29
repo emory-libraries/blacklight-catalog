@@ -49,13 +49,15 @@
                     <a href="#" class="toggle-table collapsed">
                       <% if holding[:availability][:availability_phrase] != "check_holdings" %>
                         <%= pluralize(holding[:availability][:copies], 'item') +
-                      ", #{holding[:availability][:available]} available" +
-                      ", " + pluralize(holding[:availability][:requests], 'request')
-                  %>
+                              ", #{holding[:availability][:available]} available" +
+                              ", " + pluralize(holding[:availability][:requests], 'request')
+                        %>
                       <% else %>
                         Check holdings
                       <% end %>
                     </a>
+                    <br>
+                    <%= holding[:description] %>
                     <div class="table-responsive toggled-table" style="display: none;">
                       <table class="table table-sm">
                         <thead>
