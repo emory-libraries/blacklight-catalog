@@ -153,16 +153,17 @@ RSpec.describe SolrDocument do
 
     it "retrieves the first 100 items in a single call" do
       expect(solr_doc.physical_holdings.count).to eq 4
-      expect(items_page_one_stub).to have_been_made.once
       expect(solr_doc.physical_holdings[0][:description]).to eq "from:1 1922 until:95 2017 "
+      expect(items_page_one_stub).to have_been_made.once
     end
 
-    xit "retrieves the next set of items and combines them with the first set" do
-      expect(items_page_two_stub).to have_been_made.once
+    it "retrieves the next set of items and combines them with the first set" do
       expect(solr_doc.physical_holdings[0][:items].count).to eq 107
       expect(solr_doc.physical_holdings[1][:items].count).to eq 1
       expect(solr_doc.physical_holdings[2][:items].count).to eq 1
       expect(solr_doc.physical_holdings[3][:items].count).to eq 24
+      expect(items_page_one_stub).to have_been_made.once
+      expect(items_page_two_stub).to have_been_made.once
     end
   end
 

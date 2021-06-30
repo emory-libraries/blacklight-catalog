@@ -102,25 +102,41 @@ module Statusable
   end
 
   def items_record(user = nil)
-    @items_record ||= items_record_first_page(user)
+    @items_record ||= begin
+      first_page = Nokogiri::XML(items_response(user, 0))
+      total_record_count = first_page.xpath("//items").attr("total_record_count").value.to_i
+      if total_record_count <= 100
+        first_page
+      else
+        combine_items_records(user, first_page, total_record_count)
+      end
+    end
   end
 
-  # TODO: If there are more than 100 items, make another request with a different offset value
-  # and merge that response with this response. Harvard Business Review is an example title
-  def items_record_first_page(user = nil)
-    @items_record_first_page ||= Nokogiri::XML(items_response(user))
+  def combine_items_records(user, first_page, total_record_count)
+    record = first_page
+    records_left = total_record_count - 100
+    offset = 100
+    while records_left.positive?
+      next_page = Nokogiri::XML(items_response(user, offset))
+      new_items = next_page.search('item')
+      record.at('items').add_child(new_items)
+      records_left -= 100
+      offset += 100
+    end
+    record
   end
 
-  def items_response(user = nil)
-    @items_response ||= RestClient.get items_url(user), { accept: :xml }
+  def items_response(user = nil, offset = 0)
+    RestClient.get items_url(user, offset), { accept: :xml }
   end
 
-  def items_url(user = nil)
-    "#{api_url}/almaws/v1/bibs/#{mms_id}#{items_query(user)}#{api_bib_key}"
+  def items_url(user = nil, offset = 0)
+    "#{api_url}/almaws/v1/bibs/#{mms_id}#{items_query(user, offset)}#{api_bib_key}"
   end
 
-  def items_query(user = nil)
-    "/holdings/ALL/items?limit=100&offset=0&expand=due_date_policy&user_id=#{api_user_name(user)}&order_by=chron_i&apikey="
+  def items_query(user = nil, offset = 0)
+    "/holdings/ALL/items?limit=100&offset=#{offset}&expand=due_date_policy&user_id=#{api_user_name(user)}&order_by=chron_i&apikey="
   end
 
   def api_user_name(user)
