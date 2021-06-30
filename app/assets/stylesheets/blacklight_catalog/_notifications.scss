@@ -5,9 +5,17 @@
   color: map-get($notification-colors, "default-text");
   border-radius: unset !important;
   border: unset !important;
-  .close { 
+  .close {
+    font-weight: 100;
+    opacity: 1; 
+    text-shadow: none;
     color: map-get($notification-colors, "default-x") !important; 
     &:hover { color: map-get($notification-colors, "default-x-hover") !important; }
+    &:not(:disabled):not(.disabled) {
+      &:hover, &:focus {
+        opacity: 1;
+      }
+    }
   }
 }
 
