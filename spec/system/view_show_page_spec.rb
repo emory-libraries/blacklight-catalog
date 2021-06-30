@@ -170,10 +170,10 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
           # all they tested for was the Cite modal title as well.
           execute_script("document.querySelector('#citationLink').click()")
           within '#blacklight-modal' do
-            expect(page).to have_css('h1', text: 'Cite')
+            expect(page).to have_css('h5', text: 'Cite')
           end
 
-          within 'div.modal-body .citation-warning.row .col-11' do
+          within 'div.modal-body .citation-warning' do
             expect(page).to have_content(expected_warning_text)
           end
         end
@@ -189,7 +189,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         it 'has the correct direct link' do
           click_on 'Direct Link'
           within '#modal-window' do
-            expect(page).to have_css('h1', text: 'Direct Link')
+            expect(page).to have_css('h5', text: 'Direct Link')
             expect(page).to have_selector('input[value="www.example.com/catalog/123"]')
           end
         end
