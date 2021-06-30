@@ -14,9 +14,7 @@ module ToolsSidebarHelper
               class: 'nav-link', target: "_blank", rel: 'noopener noreferrer')
   end
 
-  def export_as_ris_solr_document_path opts = {}, *_
-    if opts[:id]
-      solr_document_url(opts[:id], format: :ris)
-    end
+  def export_as_ris_solr_document_path(opts = {}, *_)
+    solr_document_url(opts[:id], format: :ris) if opts[:id]
   end
 end
