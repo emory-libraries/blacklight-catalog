@@ -4,9 +4,9 @@
     <% if current_user %>
       <li class="nav-item">
         <% if current_user.display_name %>
-          <%= link_to "#{t('blacklight.header_links.logout')} #{current_user.display_name} ", destroy_user_session_path, class: 'nav-link' %>
+          <%= link_to "#{t('blacklight.header_links.logout')} #{current_user.display_name} ", destroy_user_session_path, class: 'nav-link last' %>
         <% else %>
-          <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path, class: 'nav-link' %>
+          <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path, class: 'nav-link last' %>
         <% end %>
       </li>
     <% else %>
