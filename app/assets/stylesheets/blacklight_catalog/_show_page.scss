@@ -42,8 +42,8 @@ h1.show-header {
 
 .word-wrap {
   word-break: break-all;
-  // word-wrap: break-word;
-  // overflow-wrap: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .toggled-table{
