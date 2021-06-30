@@ -11,10 +11,12 @@
 .homepage-content-heading {
   font-size: $homepage-content-heading-font-size;
   color: $base-blue;
+  line-height: 2;
+  margin-bottom: 0;
 }
 
 .facets > .navbar {
-  padding: $navbar-padding-y;
+  padding: $navbar-padding-y !important;
   margin-bottom: $facets-heading-margin-y;
 }
 
