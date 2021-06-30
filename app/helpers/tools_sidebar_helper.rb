@@ -13,4 +13,10 @@ module ToolsSidebarHelper
               "https://emory.libwizard.com/f/blacklight?refer_url=#{url}",
               class: 'nav-link', target: "_blank", rel: 'noopener noreferrer')
   end
+
+  def export_as_ris_solr_document_path opts = {}, *_
+    if opts[:id]
+      solr_document_url(opts[:id], format: :ris)
+    end
+  end
 end
