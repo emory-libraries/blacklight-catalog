@@ -7,13 +7,13 @@
 div#sortAndPerPage {
   margin-bottom: map-get($spacers, 3);
   display: flex;
-  line-height: map-get($spacers, 5);
+  line-height: 3;
   flex-wrap: wrap;
 
   > .search-widgets {
     flex: 1;
     text-align: right;
-    min-width: fit-content;
+    // min-width: fit-content;
 
     > #sort-dropdown > .btn.btn-outline-secondary.dropdown-toggle, 
       > #per_page-dropdown > .btn.btn-outline-secondary.dropdown-toggle {
