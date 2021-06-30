@@ -1,16 +1,21 @@
 <%# Overwrite of Blacklight 7.4.1 partial of same name. L#9 includes text advising users that citations are auto-generated. %>
 <div class="modal-header">
-  <h1><%= t('blacklight.tools.citation') %></h1>
+  <h5 class="mb-0"><%= t('blacklight.tools.citation') %></h5>
   <button type="button" class="blacklight-modal-close close" data-dismiss="modal" aria-label="<%= t('blacklight.modal.close') %>">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
+
 <div class="modal-body">
-  <div class='citation-warning row'>
-    <div class='col-1'>
-      <svg xmlns="http://www.w3.org/2000/svg"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path></svg>
+  <div class='citation-warning d-flex flex-row px-3 py-2'>
+    <div class="icon  mr-3 align-self-center">
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path>
+      </svg>
     </div>
-    <div class='col-11'><%= t('blacklight.tools.citation_warning') %></div>
+
+    <%= t('blacklight.tools.citation_warning') %>
+
   </div>
   <%= render_citations(@documents) %>
 </div>
