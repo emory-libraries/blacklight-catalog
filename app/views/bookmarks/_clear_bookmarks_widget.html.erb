@@ -4,3 +4,10 @@
               :data => { :confirm => t('blacklight.bookmarks.clear.action_confirm') }, 
               :class => 'clear-bookmarks btn btn-danger' 
 %>
+<%= link_to 'Cite', "#", class: 'cite-bookmarks btn btn-outline-primary rounded-0' %>
+
+<%#= render_show_doc_actions document_list, document: nil, document_list: @response.documents, url_opts: Blacklight::Parameters.sanitize(params.to_unsafe_h) do |config, inner| %>
+  <%# if inner.include?("Cite") %>
+      <%#= inner %>
+  <%# end %>
+<%# end %>
