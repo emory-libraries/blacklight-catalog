@@ -12,6 +12,7 @@ module Blacklight::Solr::Document::MarcExport
     document.will_export_as(:openurl_ctx_kev, "application/x-openurl-ctx-kev")
     document.will_export_as(:refworks_marc_txt, "text/plain")
     document.will_export_as(:endnote, "application/x-endnote-refer")
+    document.will_export_as(:ris, "application/ris")
   end
 
   def export_as_marc
@@ -123,6 +124,29 @@ module Blacklight::Solr::Document::MarcExport
     # it seems to want C form normalization, although RefWorks support
     # couldn't tell me that. -jrochkind
     text = ActiveSupport::Multibyte::Unicode.normalize(text, :c)
+    text
+  end
+
+  # Very preliminary implementation of RIS format. Only gives first value of multi-value Solr fields
+  def export_as_ris
+    ris_format = {
+      "AU" => :author_display_ssim,
+      "TI" => :title_display_tesim,
+      "PB" => :published_tesim,
+      "CY" => :publisher_location_ssim,
+      "PY" => :pub_date_isim,
+      "CN" => :lc_callnum_ssim,
+      "ET" => :edition_tsim,
+      "ER" => ""
+    }
+    ris_format.each do |ris_key, solr_field|
+      ris_format[ris_key] = try(:[], solr_field)&.first
+    end
+    # TODO: crosswalk formats with allowed Type values for RIS
+    text = "TY - GEN\n"
+    ris_format.each do |ris_key, value|
+      text += "#{ris_key} - #{value}\n"
+    end
     text
   end
 

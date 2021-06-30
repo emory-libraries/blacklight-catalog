@@ -24,6 +24,13 @@ RSpec.describe 'Indexing fields with custom logic' do
     )
   end
 
+  describe "exporting RIS formatted citation" do
+    it "exports to ris" do
+      # expect(solr_doc.export_as_marcxml).to be
+      expect(solr_doc.export_as_ris).to be
+    end
+  end
+
   describe 'marc_resource_ssim field, when url_fulltext_ssm is populated' do
     it 'is mapped with online' do
       [solr_doc, solr_doc2, solr_doc3, solr_doc4].each do |sd|
