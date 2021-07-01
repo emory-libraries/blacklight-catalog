@@ -417,16 +417,6 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         end
         expect(page).to have_content('Pickup library')
       end
-
-      context 'when user is document delivery qualified' do
-        it "has a button to request an article or chapter" do
-          within '.where-to-find-table' do
-            expect(page).to have_button("Request")
-            find('.dropdown-toggle').click
-            expect(page).to have_link("Request Article or Chapter")
-          end
-        end
-      end
     end
   end
 

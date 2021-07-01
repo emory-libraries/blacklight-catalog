@@ -3,18 +3,7 @@
 module Statusable
   extend ActiveSupport::Concern
   include SpecialCollectionsRequestable
-
-  DOC_DELIVERY_SERVICES = {
-    "BUS": Verification::BusUserVerificationService,
-    "CHEM": Verification::ChemUserVerificationService,
-    "HLTH": Verification::HlthUserVerificationService,
-    "LAW": Verification::LawUserVerificationService,
-    "LSC": Verification::LscUserVerificationService,
-    "MUSME": Verification::MusmeUserVerificationService,
-    "OXFD": Verification::OxfdUserVerificationService,
-    "THEO": Verification::TheoUserVerificationService,
-    "UNIV": Verification::UnivUserVerificationService
-  }.with_indifferent_access.freeze
+  include DocumentDeliveryRequestable
 
   def physical_holdings(user = nil)
     return nil unless raw_physical_availability
@@ -239,13 +228,5 @@ module Statusable
 
   def ave_query
     "?institution=#{alma_institution}&vid=#{alma_institution}:blacklight&u.ignore_date_coverage=true&force_direct=true&portfolio_pid="
-  end
-
-  def doc_delivery?(phys_holdings, user = nil)
-    return false if user.blank? || user.guest
-    phys_holdings&.any? do |h|
-      service = DOC_DELIVERY_SERVICES[h[:library][:value]]
-      service.present? ? service.new(user.user_group, h).document_delivery? : false
-    end
   end
 end

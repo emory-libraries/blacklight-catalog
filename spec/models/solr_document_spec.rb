@@ -250,7 +250,7 @@ RSpec.describe SolrDocument do
     end
   end
 
-  context '#doc_delivery?' do
+  context '#doc_delivery_links' do
     let(:solr_doc) { described_class.new("990010439240302486") }
     let(:user) { User.create(uid: "jose_c") }
     let(:items) do
@@ -286,68 +286,78 @@ RSpec.describe SolrDocument do
     end
     before { allow(user).to receive(:user_group).and_return("02") }
 
-    it "returns the right boolean value when rules align with holding and user data (BUS)" do
+    it "returns an array of hashes when rules pass (BUS)" do
       phys_holdings.first[:library][:value] = "BUS"
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+      doc_delivery_falsey
       phys_holdings.first[:location][:value] = "STACK"
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+      doc_delivery_truth
     end
 
     it "returns the right boolean value when rules align with holding and user data (CHEM)" do
       phys_holdings.first[:library][:value] = "CHEM"
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+      doc_delivery_falsey
       phys_holdings.first[:location][:value] = "STACK"
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+      doc_delivery_truth
     end
 
     it "returns the right boolean value when rules align with holding and user data (HLTH)" do
       phys_holdings.first[:library][:value] = "HLTH"
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+      doc_delivery_truth
       phys_holdings.first[:location][:value] = "CIRC"
       allow(user).to receive(:user_group).and_return("24")
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+      doc_delivery_falsey
     end
 
     it "returns the right boolean value when rules align with holding and user data (LAW)" do
       allow(user).to receive(:user_group).and_return("03")
       phys_holdings.first[:library][:value] = "LAW"
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+      doc_delivery_falsey
       phys_holdings.first[:location][:value] = "STACK"
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+      doc_delivery_truth
     end
 
     it "returns the right boolean value when rules align with holding and user data (LSC)" do
       phys_holdings.first[:library][:value] = "LSC"
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+      doc_delivery_falsey
       phys_holdings.first[:location][:value] = "USTOR"
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+      doc_delivery_truth
     end
 
     it "returns the right boolean value when rules align with holding and user data (MUSME)" do
       phys_holdings.first[:library][:value] = "MUSME"
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+      doc_delivery_falsey
       phys_holdings.first[:location][:value] = "STACK"
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+      doc_delivery_truth
     end
 
     it "returns the right boolean value when rules align with holding and user data (OXFD)" do
       phys_holdings.first[:library][:value] = "OXFD"
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+      doc_delivery_truth
       phys_holdings.first[:location][:value] = "GRNOV"
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+      doc_delivery_falsey
     end
 
     it "returns the right boolean value when rules align with holding and user data (THEO)" do
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+      doc_delivery_truth
       phys_holdings.first[:location][:value] = "STACK"
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+      doc_delivery_falsey
     end
 
     it "returns the right boolean value when rules align with holding and user data (UNIV)" do
       phys_holdings.first[:library][:value] = "UNIV"
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_falsey
+      doc_delivery_falsey
       phys_holdings.first[:location][:value] = "STACK"
-      expect(solr_doc.doc_delivery?(phys_holdings, user)).to be_truthy
+      doc_delivery_truth
     end
+  end
+
+  def doc_delivery_truth
+    expect(solr_doc.doc_delivery_links(phys_holdings, user).first[:urls].first).to include(
+        '30000046566', 'https://illiad.library.emory.edu/illiad/illiad.dll?'
+      )
+  end
+
+  def doc_delivery_falsey
+    expect(solr_doc.doc_delivery_links(phys_holdings, user)).to be_empty
   end
 end
