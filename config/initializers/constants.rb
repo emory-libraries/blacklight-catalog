@@ -11,4 +11,16 @@ def special_collections_locations
   end
 end
 
+def document_delivery_rules
+  @document_delivery_rules ||= begin
+    path = Rails.root.join("config", "document_delivery_rules.csv")
+    file = File.read(path)
+    CSV.parse(file, headers: true).map do |row|
+      { user_group: row["User Group"], library_code: row["Library Code"],
+        location_code: row["Location Code"], item_code: row["Item Code"] }
+    end
+  end
+end
+
 SPECIAL_COLLECTIONS_LOCATIONS = special_collections_locations
+DOCUMENT_DELIVERY_RULES = document_delivery_rules

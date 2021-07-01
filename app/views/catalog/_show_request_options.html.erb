@@ -5,7 +5,6 @@
       <%= tag.h2 t('catalog.show.find_it_header'), class: "section-title find-it-header" %>
     </div>
     <div class="col-6 request-options">
-
       <div class="btn-group">
         <button class="btn btn-primary rounded-0">Request</button>
         <button class="btn btn-primary rounded-0 dropdown-toggle dropdown-toggle-split" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -15,14 +14,13 @@
           <% if document.hold_requestable?(current_or_guest_user) %>
             <%= link_to "Hold request", new_hold_request_path(hold_request: {mms_id: document.id, title: document['title_display_tesim']&.first}), class: "dropdown-item" %>
           <% end %>
-          <% if document.doc_delivery?(physical_holdings, current_or_guest_user) %>
-            <%= link_to "Request Article or Chapter", '/#', class: "dropdown-item" %>
+          <% if document.one_step_doc_delivery?(physical_holdings, current_or_guest_user) %>
+            <%= link_to "Request Article or Chapter", document.one_step_link, class: "dropdown-item" %>
           <% end %>
           <% if document.special_collections_requestable?(current_or_guest_user) %>
             <%= link_to "Request from Special Collections", document.special_collections_url, class: "dropdown-item" %>
           <% end %>
         </div>
-
       </div>
 
     </div>
@@ -38,7 +36,7 @@
           </tr>
         </thead>
         <tbody>
-          <% document.physical_holdings(current_or_guest_user).each.with_index(1) do |holding, index| %>
+          <% physical_holdings.each.with_index(1) do |holding, index| %>
             <tr id="physical-holding-<%= index.to_s %>" class="d-flex">
               <td class="col-sm-4">
                 <%= holding[:library][:label] %>
