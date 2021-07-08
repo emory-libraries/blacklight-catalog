@@ -57,15 +57,16 @@
 
 set :stage, :TEST
 
-before 'deploy:check:linked_files', "deploy:copy_env"
-before 'deploy:symlink:linked_files', "deploy:copy_env"
+before 'deploy:check:linked_files', "deploy:copy_secrets"
+before 'deploy:symlink:linked_files', "deploy:copy_secrets"
 namespace :deploy do
-  task :copy_env do
+  task :copy_secrets do
     on roles("web") do
-      upload!(".env.blackcat-test", "#{shared_path}/.env.production")
       upload!("./config/secrets.yml", "#{shared_path}/config/secrets.yml")
     end
   end
+
+  after :starting, 'envvars:load'
 end
 
 set :ec2_region, %w[us-east-1]
