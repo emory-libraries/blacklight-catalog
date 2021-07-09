@@ -19,9 +19,14 @@ class HoldRequest
     @holding_item_id = params[:holding_item_id]
   end
 
+  def physical_holdings_with_user
+    physical_holdings = physical_holdings(@user)
+    physical_holdings
+  end
+
   def validate_physical_holdings
     return false if mms_id.blank?
-    errors.add(:physical_holdings, "This object has no physical holdings to be requested") if physical_holdings.blank?
+    errors.add(:physical_holdings, "This object has no physical holdings to be requested") if physical_holdings_with_user.blank?
   end
 
   # Is there a way to pull labels from config/translation_maps?
@@ -40,19 +45,19 @@ class HoldRequest
   end
 
   def holding_libraries
-    physical_holdings.map { |holding| holding[:library].try(:[], :value) }
+    physical_holdings_with_user.map { |holding| holding[:library].try(:[], :value) }
   end
 
   def holding_to_request
-    raise StandardError, "No physical holdings to request" unless physical_holdings
-    if physical_holdings.count == 1
-      physical_holdings.first
+    raise StandardError, "No physical holdings to request" unless physical_holdings_with_user
+    if physical_holdings_with_user.count == 1
+      physical_holdings_with_user.first
     else
-      priority_scores = physical_holdings.map do |holding|
+      priority_scores = physical_holdings_with_user.map do |holding|
         source_library_priority_list.index(holding[:library][:value])
       end
       priority_holding_index = priority_scores.index(priority_scores.min)
-      physical_holdings[priority_holding_index]
+      physical_holdings_with_user[priority_holding_index]
     end
   end
 
@@ -159,10 +164,13 @@ class HoldRequest
 
   def items
     holding_items = []
-    physical_holdings(@user).each do |holding|
+    physical_holdings_with_user.each do |holding|
       call_number = holding[:call_number]
+      holding_library = holding[:library][:label]
+      holding_location = holding[:location][:label]
       holding[:items].each do |item|
-        holding_items << { label: call_number + " " + item[:description], value: item[:pid] } unless item[:description].to_s.strip.empty?
+        label_prefix = "Library: " + holding_library + ", Location: " + holding_location + ", " + call_number + ", Description: "
+        holding_items << { label: label_prefix + item[:description], value: item[:pid] } unless item[:description].to_s.strip.empty?
       end
     end
     holding_items
