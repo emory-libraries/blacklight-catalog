@@ -145,7 +145,7 @@ RSpec.describe HoldRequest do
       .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936984306602486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_bib_records/sound_recording.xml'), headers: {})
-    stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936984306602486/holdings/ALL/items?apikey=fakebibkey123&expand=due_date_policy&limit=100&offset=0&order_by=chron_i&user_id=GUEST")
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936984306602486/holdings/ALL/items?apikey=fakebibkey123&expand=due_date_policy&limit=100&offset=0&order_by=chron_i&user_id=janeq")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/9936984306602486.xml'), headers: {})
     # user = User.create(uid: "janeq")
     hr = described_class.new(mms_id: "9936984306602486", user: user)
@@ -157,12 +157,14 @@ RSpec.describe HoldRequest do
 
   describe "#items" do
     it "returns holding_items in an array" do
+      stub_request(:get, "http://www.example.com/almaws/v1/bibs/990011434390302486/holdings/ALL/items?apikey=fakebibkey123&expand=due_date_policy&limit=100&offset=0&order_by=chron_i&user_id=GUEST")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/990011434390302486.xml'), headers: {})
       hr = described_class.new(mms_id: "990011434390302486")
       expect(hr.items).to eq [
-        { label: "ML549 .E38 v.30(2013)", value: "23187557240002486" },
-        { label: "ML549 .E38 v.25-29(2010-2012)", value: "23187557230002486" },
-        { label: "ML549 .E38 V.21-24 2003-2006", value: "23187557250002486" },
-        { label: "ML549 .E38 V.18-20 2000-2002", value: "23187557260002486" }
+        { label: "Library: Marian K. Heilbrun Music Media, Location: Book Stacks, ML549 .E38, Description: v.30(2013)", value: "23187557240002486" },
+        { label: "Library: Marian K. Heilbrun Music Media, Location: Book Stacks, ML549 .E38, Description: v.25-29(2010-2012)", value: "23187557230002486" },
+        { label: "Library: Marian K. Heilbrun Music Media, Location: Book Stacks, ML549 .E38, Description: V.21-24 2003-2006", value: "23187557250002486" },
+        { label: "Library: Marian K. Heilbrun Music Media, Location: Book Stacks, ML549 .E38, Description: V.18-20 2000-2002", value: "23187557260002486" }
       ]
     end
   end

@@ -26,7 +26,7 @@ RSpec.describe User do
     end
 
     before do
-      described_class.delete_all
+      described_class.destroy_all
     end
 
     context "shibboleth" do
