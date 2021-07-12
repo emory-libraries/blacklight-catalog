@@ -1,1 +1,1 @@
-<%= link_to t('blacklight.tools.export_as_ris'), solr_document_url(@document.id, format: :ris), class: 'nav-link' %>
+<%= link_to t('blacklight.tools.export_as_ris'), solr_document_url(@document.id, format: :ris), class: 'nav-link' if @document.present? %>
