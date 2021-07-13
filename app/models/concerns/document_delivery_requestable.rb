@@ -11,9 +11,17 @@ module DocumentDeliveryRequestable
           { user_group: user.user_group, library_code: hol[:library][:value], location_code: hol[:location][:value], item_code: i[:type_code] }
         )
       end
-      { library: hol[:library][:label], location: hol[:location][:label], urls: eligible_items.map { |i| document_delivery_url(hol, i) } } if eligible_items.present?
+      if eligible_items.present?
+        { library: hol[:library][:label], location: hol[:location][:label], call_number: hol[:call_number], descriptions: eligible_items.map { |i| i[:description] },
+          urls: eligible_items.map { |i| document_delivery_url(hol, i) } }
+      end
     end&.compact
     links
+  end
+
+  def item_descriptions(item)
+    descriptions = []
+    descriptions << item[:description]
   end
 
   def document_delivery_url(holding, item)
@@ -61,7 +69,18 @@ module DocumentDeliveryRequestable
     check_for_one_step
   end
 
+  def two_step_doc_delivery?(phys_holdings, user = nil)
+    links = doc_delivery_links(phys_holdings, user)
+    check_for_two_step = links.empty? ? false : (links.count > 1 || links.first[:urls].size > 1)
+    @two_step_links = links if check_for_two_step
+    check_for_two_step
+  end
+
   def one_step_link
     @one_step_link
+  end
+
+  def two_step_links
+    @two_step_links
   end
 end
