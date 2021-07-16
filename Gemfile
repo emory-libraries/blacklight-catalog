@@ -36,6 +36,7 @@ gem 'simple_form' # For database authentication page from Devise
 gem 'sqlite3'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 gem 'uglifier', '>= 1.3.0'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'bixby'
