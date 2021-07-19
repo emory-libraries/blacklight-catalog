@@ -5,7 +5,7 @@ extend ExtractionTools
 module ExtractUrlSuppl
   def extract_url_suppl
     lambda do |rec, acc|
-      url_fields = rec.fields('856').select { |f| f.indicator2 == '2' }
+      url_fields = rec.fields('856').select { |f| f.indicator2 == '2' || f.indicator2.blank? }
       url_fields.each do |uf|
         next if uf['u'].blank?
         build_str = uf['u']
