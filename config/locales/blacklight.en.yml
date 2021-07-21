@@ -12,6 +12,7 @@ en:
     bookmarks:
       add:
         button: 'Bookmark Item'
+      cite: 'Cite'
     citation:
       mla: 'MLA (8th Edition)'
       apa: 'APA (7th Edition)'
