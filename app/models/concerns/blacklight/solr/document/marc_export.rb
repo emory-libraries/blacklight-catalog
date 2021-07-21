@@ -143,9 +143,9 @@ module Blacklight::Solr::Document::MarcExport
       ris_format[ris_key] = try(:[], solr_field)&.first
     end
     # TODO: crosswalk formats with allowed Type values for RIS
-    text = "TY - GEN\n"
+    text = "TY  - GEN\n"
     ris_format.each do |ris_key, value|
-      text += "#{ris_key} - #{value}\n"
+      text += "#{ris_key}  - #{value}\n"
     end
     text
   end

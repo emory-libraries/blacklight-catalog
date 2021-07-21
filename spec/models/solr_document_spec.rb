@@ -25,8 +25,9 @@ RSpec.describe SolrDocument do
     solr.commit
   end
 
+  let(:solr_doc) { described_class.find(TEST_ITEM[:id]) }
+
   context "with an alias for an identifier" do
-    let(:solr_doc) { described_class.find(TEST_ITEM[:id]) }
     it "has an alias for identifier and mms_id" do
       expect(solr_doc.id).to eq(TEST_ITEM[:id])
       expect(solr_doc.mms_id).to eq(TEST_ITEM[:id])
@@ -34,8 +35,6 @@ RSpec.describe SolrDocument do
   end
 
   context "with a regular test item" do
-    let(:solr_doc) { described_class.find(TEST_ITEM[:id]) }
-
     context '#combined_author_display_vern' do
       it 'combines together author_display_ssim and author_vern_ssim' do
         expect(solr_doc.combined_author_display_vern).to eq ['George Jenkins', 'G. Jenkins']
