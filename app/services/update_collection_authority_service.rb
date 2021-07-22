@@ -6,6 +6,7 @@ class UpdateCollectionAuthorityService
     json_response = JSON.parse(response.body)
     collections = json_response["facet_counts"]["facet_fields"]["collection_ssim"]
     collections = collections&.delete_if { |n| n.is_a? Integer }
+    Qa::LocalAuthorityEntry.delete_all
     collection_auth = Qa::LocalAuthority.find_or_create_by(name: 'collections')
     collections&.each do |col|
       Qa::LocalAuthorityEntry.create(local_authority: collection_auth, label: col, uri: col)
