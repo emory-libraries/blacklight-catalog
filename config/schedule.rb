@@ -21,6 +21,9 @@
 
 # Learn more: http://github.com/javan/whenever
 
+set :output, "log/cron_log.log"
+env :PATH, ENV['PATH']
+
 every 30.minutes do
   rake "delete_old_guests_and_associations"
 end
