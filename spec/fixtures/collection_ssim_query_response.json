@@ -1,0 +1,31 @@
+{
+  "responseHeader":{
+    "status":0,
+    "QTime":1,
+    "params":{
+      "facet.limit":"-1",
+      "facet.field":"collection_ssim",
+      "fl":"collection_ssim",
+      "facet":"true"}},
+  "response":{"numFound":5081,"start":0,"docs":[
+      {
+        "collection_ssim":["Psychology of popular culture series",
+          "Smart pop"]},
+      {
+        "collection_ssim":["Literature",
+          "Oxford handbooks online"]},
+      {
+        "collection_ssim":["Nature, culture, and literature"]},
+      {
+        "collection_ssim":["Harry Potter"]},
+      {
+        "collection_ssim":["Harry Potter"]}]
+  },
+  "facet_counts":{
+    "facet_queries":{},
+    "facet_fields":{
+      "collection_ssim":[
+        "--For example",17]},
+    "facet_ranges":{},
+    "facet_intervals":{},
+    "facet_heatmaps":{}}}

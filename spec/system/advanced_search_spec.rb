@@ -5,6 +5,9 @@ RSpec.feature 'Advanced Search Page', type: :system, js: false do
   before do
     delete_all_documents_from_solr
     build_solr_docs(TEST_ITEM)
+    collection_auth = Qa::LocalAuthority.create(name: 'collections')
+    col = TEST_ITEM[:collection_ssim]
+    Qa::LocalAuthorityEntry.create(local_authority: collection_auth, label: col, uri: col)
     visit '/advanced'
   end
 
@@ -34,6 +37,10 @@ RSpec.feature 'Advanced Search Page', type: :system, js: false do
 
     it 'has the Search button' do
       expect(search_button).not_to be_nil
+    end
+
+    it 'has Collection facet dropdown with correct option' do
+      expect(page).to have_select("collection_ssim", with_options: ['American county histories'])
     end
   end
 

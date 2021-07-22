@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201124131933) do
+ActiveRecord::Schema.define(version: 20210721211326) do
 
   create_table "bookmarks", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci" do |t|
     t.integer "user_id", null: false
@@ -28,6 +28,24 @@ ActiveRecord::Schema.define(version: 20201124131933) do
     t.string "name"
     t.string "value"
     t.index ["name"], name: "index_property_bag_on_name", unique: true
+  end
+
+  create_table "qa_local_authorities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci" do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_qa_local_authorities_on_name", unique: true
+  end
+
+  create_table "qa_local_authority_entries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci" do |t|
+    t.bigint "local_authority_id"
+    t.string "label"
+    t.string "uri"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.virtual "lower_label", type: :string, limit: 256, as: "lower(`label`)"
+    t.index ["local_authority_id"], name: "index_qa_local_authority_entries_on_local_authority_id"
+    t.index ["lower_label", "local_authority_id"], name: "index_qa_local_authority_entries_on_lower_label_and_authority"
   end
 
   create_table "searches", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci" do |t|
@@ -60,4 +78,5 @@ ActiveRecord::Schema.define(version: 20201124131933) do
     t.index ["uid"], name: "index_users_on_uid"
   end
 
+  add_foreign_key "qa_local_authority_entries", "qa_local_authorities", column: "local_authority_id"
 end

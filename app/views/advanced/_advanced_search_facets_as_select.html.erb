@@ -30,6 +30,29 @@
   <% end %>
 <% end %>
 
+<% unless @collection_ssim_facet&.empty? %>
+  <div class="form-group advanced-search-facet">
+    <%= label_tag "collection_ssim".parameterize, class: 'col-sm-3 control-label' do %>
+      <%= facet_field_label("collection_ssim") %>
+    <% end %>
+
+    <div class="col-sm-9">
+      <%= content_tag(:select,
+                      multiple: true,
+                      name: "f_inclusive[collection_ssim][]",
+                      id: "collection_ssim".parameterize,
+                      class: 'form-control selectpicker',
+                      data: { 'live-search': 'true', placeholder: "Type or select #{facet_field_label("collection_ssim").downcase.pluralize}", 'size': '6' }) do %>
+        <% @collection_ssim_facet&.each do |facet_item| %>
+          <%= content_tag :option, value: facet_item, style: "white-space: normal;", selected: facet_value_checked?("collection_ssim", facet_item) do %>
+            <%= facet_display_value("collection_ssim", facet_item) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
 <%# Publication Date is a range input %>
 <% pub_date = facet_configuration_for_field('pub_date_isim') %>
 <div class="form-group advanced-search-facet row">
