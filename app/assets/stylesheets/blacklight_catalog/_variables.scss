@@ -201,7 +201,6 @@ $static-not-found-list-margin:          $facet-label-font-size;
 $static-not-found-list-line-h:          1.938rem;
 
 // Advanced Search
-
 $advanced-search-subtitle-font-size:  $font-size-base * 1.5;
 $advanced-search-button-height:       3.125rem;
 $advanced-search-button-padding:      0.875rem 1.5625rem;
@@ -221,4 +220,8 @@ $constraint-container-margin-top:   1.25rem;
 // Pagination/Sort
 $pagination-padding-left-right:   0.3125rem;
 
-
+// Bookmarks
+$bookmarks-button-line-height:          1.968;
+$bookmarks-button-clear-padding:        0.75rem 1rem;
+$bookmarks-button-cite-padding:         0.6875rem 1rem;
+$bookmarks-button-cite-letter-spacing:  0.05rem;
