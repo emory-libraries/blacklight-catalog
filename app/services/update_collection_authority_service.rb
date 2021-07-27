@@ -9,7 +9,7 @@ class UpdateCollectionAuthorityService
     Qa::LocalAuthorityEntry.delete_all
     collection_auth = Qa::LocalAuthority.find_or_create_by(name: 'collections')
     collections&.each do |col|
-      Qa::LocalAuthorityEntry.create(local_authority: collection_auth, label: col, uri: col)
+      Qa::LocalAuthorityEntry.create(local_authority: collection_auth, uri: col)
     end
   end
 end

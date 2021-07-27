@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210721211326) do
+ActiveRecord::Schema.define(version: 20210726233825) do
 
   create_table "bookmarks", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci" do |t|
     t.integer "user_id", null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20210721211326) do
   create_table "qa_local_authority_entries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci" do |t|
     t.bigint "local_authority_id"
     t.string "label"
-    t.string "uri"
+    t.text "uri"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.virtual "lower_label", type: :string, limit: 256, as: "lower(`label`)"
