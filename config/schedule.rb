@@ -27,3 +27,7 @@ env :PATH, ENV['PATH']
 every 30.minutes do
   rake "delete_old_guests_and_associations"
 end
+
+every 1.day, at: '3am' do
+  runner "UpdateCollectionAuthorityService.update_authority_entries"
+end

@@ -35,7 +35,4 @@ task marc_index_ingest: [:environment] do
   ingest_logger&.info("Storing 'to' time")
   PropertyBag.set('marc_ingest_time', to_time) unless single_record
   ingest_logger&.info("Ingesting Complete!")
-  ingest_logger&.info("Starting update of collections local authority table")
-  UpdateCollectionAuthorityService.update_authority_entries
-  ingest_logger&.info("Update of collections local authority table complete")
 end
