@@ -130,22 +130,45 @@ module Blacklight::Solr::Document::MarcExport
   # Very preliminary implementation of RIS format. Only gives first value of multi-value Solr fields
   def export_as_ris
     ris_format = {
+      "A1" => :author_display_ssim,
+      "A2" => :author_addl_ssim,
       "AU" => :author_display_ssim,
-      "TI" => :title_display_tesim,
-      "PB" => :published_tesim,
+      "CN" => :local_call_number_tesim,
       "CY" => :publisher_location_ssim,
-      "PY" => :pub_date_isim,
-      "CN" => :lc_callnum_ssim,
+      "DA" => :pub_date_isim,
+      "DO" => :other_standard_ids_tesim,
       "ET" => :edition_tsim,
+      "L2" => :url_fulltext_ssm,
+      "LA" => :language_tesim,
+      "PB" => :published_tesim,
+      "PP" => :publisher_location_ssim,
+      "PY" => :pub_date_isim,
+      "SN" => :isbn_ssim,
+      "T1" => :title_citation_ssi,
+      "TI" => :title_citation_ssi,
+      "TT" => :title_translation_tesim,
+      "VO" => :other_standard_ids_tesim,
       "ER" => ""
     }
     ris_format.each do |ris_key, solr_field|
-      ris_format[ris_key] = try(:[], solr_field)&.first
+      ris_format[ris_key] = [*try(:[], solr_field)]
     end
     # TODO: crosswalk formats with allowed Type values for RIS
     text = "TY  - GEN\n"
     ris_format.each do |ris_key, value|
-      text += "#{ris_key}  - #{value}\n"
+      if ris_key == "DO"
+        dois = value.select { |v| v.include? "doi:" }
+        dois.each { |d| text += "DO  - #{d.split(': ').last}\n" } if dois.present?
+      elsif ris_key == "VO"
+        psn = value.select { |v| !v.include? "doi:" }
+        psn.each { |p| text += "VO  - #{p}\n" } if psn.present?
+      elsif ris_key == "ER"
+        text += "#{ris_key}  - \n"
+      elsif ris_key == "L2" && value.present?
+        value.each { |v| text += "#{ris_key}  - #{JSON.parse(v)['url']}\n" }
+      elsif value.present?
+        value.each { |v| text += "#{ris_key}  - #{v}\n" }
+      end
     end
     text
   end
