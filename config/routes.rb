@@ -53,4 +53,5 @@ Rails.application.routes.draw do
   match '/404', to: 'errors#not_found', via: :all
   match '/500', to: 'errors#unhandled_exception', via: :all
   match '/422', to: 'errors#unprocessable', via: :all
+  get '/collections/search', to: 'collections#search'
 end
