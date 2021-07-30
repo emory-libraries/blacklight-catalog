@@ -56,21 +56,24 @@
 <script>
   $(document).on('keyup', '#collection_facet .bs-searchbox input', function(e){
     var q = e.target.value;
-    $.ajax({
-      type: "GET",
-      url: "/collections/search",
-      data: {'uri': q},
-      dataType: "json",
-      success: function(data) {
-        var data = data.collection_result;
-        options = [];
-        data.forEach(function(v) {
-          options += '<option value=' + v + '>' + v + '</option>';
-        });
-        $('#collection_ssim').html(options);
-        $('#collection_ssim').selectpicker('refresh');
-      }
-    });
+    if(q.length >= 3) {
+      $.ajax({
+        type: "GET",
+        url: "/collections/search",
+        data: {'uri': q},
+        dataType: "json",
+        success: function(data) {
+          var data = data.collection_result;
+          $('#collection_ssim').selectpicker('refresh');
+          options = [];
+          data.forEach(function(v) {
+            options += '<option value=' + v + '>' + v + '</option>';
+          });
+          $('#collection_ssim').html(options);
+          $('#collection_ssim').selectpicker('refresh');
+        }
+      });
+    }
   });
 </script>
 
