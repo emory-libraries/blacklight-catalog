@@ -21,7 +21,7 @@ en:
         alt:
           logo: 'Emory Library'
         emory_university: 'Emory University'
-        library_catalog: 'Library Catalog'
+        emory_libraries: 'Emory Libraries'
       static_links:
         about_library_search: 'About Library Search'
         contact: 'Contact'
