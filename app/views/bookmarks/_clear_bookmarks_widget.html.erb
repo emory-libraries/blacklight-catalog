@@ -6,3 +6,5 @@
 <%= link_to t('blacklight.bookmarks.cite'), citation_bookmarks_path, 
               class: 'cite-bookmarks btn btn-outline-primary rounded-0',
               data: { "blacklight-modal": "trigger" } %>
+<%= link_to t('blacklight.bookmarks.export_as_ris'), "/export_multiple_ris/#{@response.documents.map(&:id).join(',')}",
+              class: 'export-ris-bookmarks btn btn-outline-primary rounded-0' %>

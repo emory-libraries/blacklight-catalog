@@ -7,7 +7,7 @@ a.clear-bookmarks.btn {
   padding:        $bookmarks-button-clear-padding;
   border:         none;
 }
-.cite-bookmarks.btn {
+.cite-bookmarks.btn, .export-ris-bookmarks.btn {
   background-color: $bright-blue;
   color:            $white;
   font:             normal bold $font-size-sm "Open Sans", sans-serif;
