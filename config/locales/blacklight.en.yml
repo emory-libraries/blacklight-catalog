@@ -13,6 +13,7 @@ en:
       add:
         button: 'Bookmark Item'
       cite: 'Cite'
+      export_as_ris: 'Export as RIS'
     citation:
       mla: 'MLA (8th Edition)'
       apa: 'APA (7th Edition)'
