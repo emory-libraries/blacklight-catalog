@@ -130,9 +130,8 @@ module Blacklight::Solr::Document::MarcExport
   # Very preliminary implementation of RIS format. Only gives first value of multi-value Solr fields
   def export_as_ris
     ris_format = {
-      "A1" => :author_display_ssim,
       "A2" => :author_addl_ssim,
-      "AU" => :author_display_ssim,
+      "AU" => :author_ssim,
       "CN" => :local_call_number_tesim,
       "CY" => :publisher_location_ssim,
       "DA" => :pub_date_isim,
@@ -144,7 +143,6 @@ module Blacklight::Solr::Document::MarcExport
       "PP" => :publisher_location_ssim,
       "PY" => :pub_date_isim,
       "SN" => :isbn_ssim,
-      "T1" => :title_citation_ssi,
       "TI" => :title_citation_ssi,
       "TT" => :title_translation_tesim,
       "VO" => :other_standard_ids_tesim,

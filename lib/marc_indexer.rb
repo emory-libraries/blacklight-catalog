@@ -223,7 +223,7 @@ to_field 'publication_main_display_ssim', extract_publication_main_display
 to_field 'published_tesim', extract_published
 to_field 'published_vern_ssim', extract_marc('260a', alternate_script: :only), trim_punctuation
 to_field 'publisher_details_display_ssim', extract_publisher_details_display
-to_field 'publisher_location_ssim', extract_marc("260a:264a:008[15-17]"), trim_punctuation
+to_field 'publisher_location_ssim', extract_marc("260a:264a"), trim_punctuation
 to_field 'publisher_number_tesim', extract_marc('028ab')
 
 # Library of Congress Fields
