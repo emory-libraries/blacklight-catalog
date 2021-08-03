@@ -67,7 +67,7 @@
           $('#collection_ssim').selectpicker('refresh');
           options = [];
           data.forEach(function(v) {
-            options += '<option value=' + v + '>' + v + '</option>';
+            options += '<option value="' + v + '">' + v + '</option>';
           });
           $('#collection_ssim').html(options);
           $('#collection_ssim').selectpicker('refresh');
