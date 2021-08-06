@@ -18,7 +18,7 @@ HARVARD_BUSINESS_REVIEW = {
   title_addl_tesim: ["Harvard business review"],
   title_details_display_tesim: ["Harvard business review."],
   title_key_tesim: ["Harvard business review"],
-  title_main_display_tesim: ["Harvard business review"],
+  title_main_display_ssim: ["Harvard business review"],
   subject_addl_tsim: ["Periodicals."],
   subject_display_ssim: ["Business--Periodicals", "Economic history--Periodicals"],
   subject_ssim: ["Business", "Economic history"],

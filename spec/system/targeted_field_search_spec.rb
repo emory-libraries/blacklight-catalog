@@ -19,14 +19,14 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
     fields.each_with_index do |f, i|
       solr.add(
         id: "Junk#{i}",
-        title_main_display_tesim: "Target in #{f}",
+        title_main_display_ssim: "Target in #{f}",
         f.to_sym => ['iMCnR6E8']
       )
     end
 
     solr.add(
       id: 'iMCnR6E8',
-      title_main_display_tesim: ['Target in id']
+      title_main_display_ssim: ['Target in id']
     )
     solr.commit
     visit root_path

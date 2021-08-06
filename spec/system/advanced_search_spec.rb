@@ -72,5 +72,12 @@ RSpec.feature 'Advanced Search Page', type: :system, js: false do
 
       expect(page).to have_css(document_title_heading)
     end
+
+    it 'finds the one object with a main title (wildcard) search of the solr value' do
+      fill_in 'title_wildcard_advanced', with: 'T*'
+      search_button.click
+
+      expect(page).to have_css(document_title_heading)
+    end
   end
 end

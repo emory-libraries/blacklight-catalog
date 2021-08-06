@@ -17,7 +17,7 @@ SITTING_FROG = {
   subtitle_t: ["poetry from Naropa Institute /"],
   title_addl_tesim: ["Sitting frog : poetry from Naropa Institute / edited by Rachel Peters and Eero Ruuttila"],
   title_details_display_tesim: ["Sitting frog: poetry from Naropa Institute /. "],
-  title_main_display_tesim: ["Sitting frog : poetry from Naropa Institute"],
+  title_main_display_ssim: ["Sitting frog : poetry from Naropa Institute"],
   author_addl_display_tesim: ["Peters, Rachel relator: editor", "Ruuttila, Eero relator: editor", "Danowski, Raymond relator: collector", "Naropa Institute", "Raymond Danowski Poetry Library (Emory University. General Libraries)"],
   author_addl_ssim: ["Peters, Rachel", "Ruuttila, Eero", "Naropa Institute", "Danowski, Raymond", "Raymond Danowski Poetry Library (Emory University. General Libraries)"],
   author_ssim: ["Peters, Rachel", "Ruuttila, Eero", "Naropa Institute", "Danowski, Raymond", "Raymond Danowski Poetry Library (Emory University. General Libraries)"],

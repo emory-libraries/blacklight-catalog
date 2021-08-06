@@ -20,7 +20,7 @@ FUNKY_URL_PARTY = {
   "title_tesim": ["Clinical cases in tropical medicine /"],
   "title_addl_tesim": ["Clinical cases in tropical medicine / edited by Camilla Rothe"],
   "title_details_display_tesim": ["Clinical cases in tropical medicine /"],
-  "title_main_display_tesim": ["Clinical cases in tropical medicine"],
+  "title_main_display_ssim": ["Clinical cases in tropical medicine"],
   "author_addl_display_tesim": ["Rothe, Camilla relator: editor"],
   "author_addl_ssim": ["Rothe, Camilla"],
   "author_ssim": ["Rothe, Camilla"],

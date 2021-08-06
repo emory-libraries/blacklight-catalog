@@ -10,7 +10,7 @@ RSpec.describe 'Facet the catalog by year', type: :system, js: false do
   let(:llama) do
     {
       id: '111',
-      title_main_display_tesim: ['Llama Love'],
+      title_main_display_ssim: ['Llama Love'],
       pub_date_isim: 1920
     }
   end
@@ -18,7 +18,7 @@ RSpec.describe 'Facet the catalog by year', type: :system, js: false do
   let(:newt) do
     {
       id: '222',
-      title_main_display_tesim: ['Newt Nutrition'],
+      title_main_display_ssim: ['Newt Nutrition'],
       pub_date_isim: 1940
     }
   end
@@ -26,7 +26,7 @@ RSpec.describe 'Facet the catalog by year', type: :system, js: false do
   let(:eagle) do
     {
       id: '333',
-      title_main_display_tesim: ['Eagle Excellence']
+      title_main_display_ssim: ['Eagle Excellence']
     }
   end
 

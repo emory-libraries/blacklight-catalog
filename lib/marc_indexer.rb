@@ -46,7 +46,7 @@ require 'traject/extract_published'
 require 'traject/extract_publisher_details_display'
 require 'traject/extract_subject_display'
 require 'traject/extract_title_details_display'
-require 'traject/extract_title_main_display'
+require 'traject/extract_title_main_first_char'
 require 'traject/extract_url_fulltext'
 require 'traject/extract_url_suppl'
 
@@ -72,7 +72,7 @@ extend ExtractPublished
 extend ExtractPublisherDetailsDisplay
 extend ExtractSubjectDisplay
 extend ExtractTitleDetailsDisplay
-extend ExtractTitleMainDisplay
+extend ExtractTitleMainFirstChar
 extend ExtractUrlFulltext
 extend ExtractUrlSuppl
 
@@ -185,7 +185,8 @@ to_field 'title_host_item_tesim', extract_marc("773#{ATOZ}:774#{ATOZ}")
 to_field 'title_key_tesim', extract_marc('222ab')
 to_field 'title_later_ssim', extract_marc('785abcdgikmnorstuxyz')
 to_field 'title_later_tesim', extract_marc('785abcdgikmnorstuxyz')
-to_field 'title_main_display_tesim', extract_marc('245abfgknps', alternate_script: false), trim_punctuation
+to_field 'title_main_display_ssim', extract_marc('245abfgknps', alternate_script: false), trim_punctuation
+to_field 'title_main_first_char_ssim', extract_title_main_first_char
 to_field 'title_series_ssim', extract_marc(title_series_str(ATOG))
 to_field 'title_series_tesim', extract_marc(title_series_str(ATOG))
 to_field 'title_ssort', marc_sortable_title
