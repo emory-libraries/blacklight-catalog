@@ -131,10 +131,9 @@ module Blacklight::Solr::Document::MarcExport
   def export_as_ris
     ris_format = {
       "A2" => :author_addl_ssim,
-      "AU" => :author_ssim,
+      "AU" => :author_tesim,
       "CN" => :local_call_number_tesim,
       "CY" => :publisher_location_ssim,
-      "DA" => :pub_date_isim,
       "DO" => :other_standard_ids_tesim,
       "ET" => :edition_tsim,
       "L2" => :url_fulltext_ssm,
