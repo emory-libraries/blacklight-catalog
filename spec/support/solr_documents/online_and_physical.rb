@@ -17,7 +17,7 @@ ONLINE_AND_PHYSICAL = {
   subtitle_t: ["containing forms and ceremonies of the first, second, third, and fourth degrees."],
   title_addl_tesim: ["Ritual and degree book of the United Brothers of Friendship : containing forms and ceremonies of the first, second, third, and fourth degrees"],
   title_details_display_tesim: ["Ritual and degree book of the United Brothers of Friendship: containing forms and ceremonies of the first, second, third, and fourth degrees.. "],
-  title_main_display_tesim: ["Ritual and degree book of the United Brothers of Friendship : containing forms and ceremonies of the first, second, third, and fourth degrees"],
+  title_main_display_ssim: ["Ritual and degree book of the United Brothers of Friendship : containing forms and ceremonies of the first, second, third, and fourth degrees"],
   author_addl_display_tesim: ["Wilson, J. H., 1865-1944 relator: former owner"],
   author_addl_ssim: ["Wilson, J. H., 1865-1944"],
   author_display_ssim: ["United Brothers of Friendship"],

@@ -34,13 +34,14 @@ RSpec.feature 'View Search Results', type: :system, js: false do
     let(:facet_headers) { facet_buttons.map(&:text) }
 
     it 'has the right number of facets' do
-      expect(facet_buttons.size).to eq 12
+      expect(facet_buttons.size).to eq 13
     end
 
     it 'has the right headers' do
       expect(facet_headers).to match_array(
         ['Access', 'Author/Creator', 'Collection', 'Era', 'Language', 'Region',
-         'Resource Type', 'Subject', 'Genre', 'LC Classification', 'Library', 'Publication/Creation Date']
+         'Resource Type', 'Subject', 'Genre', 'LC Classification', 'Library',
+         'Publication/Creation Date', 'Title Starts With']
       )
     end
   end

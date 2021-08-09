@@ -97,8 +97,8 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
   end
 
-  describe 'title_main_display_tesim field' do
-    it('maps 245abnp') { expect(solr_doc2['title_main_display_tesim']).to eq(["Physical Map Test"]) }
+  describe 'title_main_display_ssim field' do
+    it('maps 245abnp') { expect(solr_doc2['title_main_display_ssim']).to eq(["Physical Map Test"]) }
   end
 
   describe 'lc_1letter_ssim field' do

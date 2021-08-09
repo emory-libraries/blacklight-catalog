@@ -21,7 +21,7 @@ LIMITED_AVA_INFO = {
   title_addl_tesim: ["The Review of politics"],
   title_details_display_tesim: ["The Review of politics."],
   title_key_tesim: ["The Review of politics."],
-  title_main_display_tesim: ["The Review of politics"],
+  title_main_display_ssim: ["The Review of politics"],
   author_addl_display_tesim: ["Gurian, Waldemar, 1902-1954", "University of Notre Dame"],
   author_addl_ssim: ["Gurian, Waldemar, 1902-1954", "University of Notre Dame"],
   author_ssim: ["Gurian, Waldemar, 1902-1954", "University of Notre Dame"],

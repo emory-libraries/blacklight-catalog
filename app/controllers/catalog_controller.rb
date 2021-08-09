@@ -12,11 +12,12 @@ class CatalogController < ApplicationController
     config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
     # config.advanced_search[:qt] ||= 'advanced'
     config.advanced_search[:url_key] ||= 'advanced'
-    config.advanced_search[:query_parser] ||= 'dismax'
+    config.advanced_search[:query_parser] ||= 'edismax'
     config.advanced_search[:form_solr_parameters] ||= {
       'facet.field' => [
-        "marc_resource_ssim", "library_ssim", "format_ssim", "language_ssim"
+        "title_main_first_char_ssim", "marc_resource_ssim", "library_ssim", "format_ssim", "language_ssim"
       ],
+      "f.title_main_first_char_ssim.facet.limit" => -1,
       "f.marc_resource_ssim.facet.limit" => -1,
       "f.library_ssim.facet.limit" => -1,
       "f.format_ssim.facet.limit" => -1,
@@ -50,7 +51,7 @@ class CatalogController < ApplicationController
     # config.per_page = [10,20,50,100]
 
     # solr field configuration for search results/index views
-    config.index.title_field = 'title_main_display_tesim'
+    config.index.title_field = 'title_main_display_ssim'
     # config.index.display_type_field = 'format'
     # config.index.thumbnail_field = 'thumbnail_path_ss'
 
@@ -115,6 +116,7 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
+    config.add_facet_field 'title_main_first_char_ssim', label: 'Title Starts With', limit: 5
     config.add_facet_field 'marc_resource_ssim', label: 'Access', limit: 5
     config.add_facet_field 'library_ssim', label: 'Library', limit: 25
     config.add_facet_field 'format_ssim', label: 'Resource Type', limit: 25
@@ -341,6 +343,14 @@ class CatalogController < ApplicationController
       field.include_in_simple_select = false
       field.solr_parameters = {
         qf: title_advanced_fields.join(' '),
+        pf: ''
+      }
+    end
+
+    config.add_search_field('title_wildcard_advanced', label: 'Main Title (Wildcard Search)') do |field|
+      field.include_in_simple_select = false
+      field.solr_parameters = {
+        qf: 'title_main_display_ssim',
         pf: ''
       }
     end

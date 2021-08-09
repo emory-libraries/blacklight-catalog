@@ -14,7 +14,7 @@ RSpec.describe CatalogController, type: :controller do
     let(:field_title) { controller.blacklight_config.index.title_field }
 
     context 'field titles' do
-      it { expect(field_title).to eq('title_main_display_tesim') }
+      it { expect(field_title).to eq('title_main_display_ssim') }
     end
 
     it { expect(index_fields).to contain_exactly(*expected_index_fields) }
@@ -55,12 +55,17 @@ RSpec.describe CatalogController, type: :controller do
     let(:expected_facet_fields) do
       ["author_ssim", "format_ssim", "language_ssim", "marc_resource_ssim",
        "subject_era_ssim", "subject_geo_ssim", "subject_ssim", "library_ssim",
-       "collection_ssim", "genre_ssim", "pub_date_isim", "lc_1letter_ssim"]
+       "collection_ssim", "genre_ssim", "pub_date_isim", "lc_1letter_ssim", "title_main_first_char_ssim"]
     end
     let(:homepage_facet_fields) { controller.blacklight_config.homepage_facet_fields }
 
     context 'homepage facet fields' do
-      it { expect(homepage_facet_fields).to eq(['marc_resource_ssim', 'library_ssim', 'format_ssim', 'language_ssim', 'pub_date_isim']) }
+      it do
+        expect(homepage_facet_fields).to eq(
+          ['marc_resource_ssim', 'library_ssim', 'format_ssim', 'language_ssim',
+           'pub_date_isim']
+        )
+      end
     end
 
     it { expect(facet_fields).to contain_exactly(*expected_facet_fields) }
@@ -69,7 +74,7 @@ RSpec.describe CatalogController, type: :controller do
   describe 'advanced search facet fields' do
     let(:adv_search_facets_config) { controller.blacklight_config.advanced_search.form_solr_parameters }
     let(:expected_facet_fields) do
-      ["marc_resource_ssim", "library_ssim", "format_ssim", "language_ssim"]
+      ["marc_resource_ssim", "library_ssim", "format_ssim", "language_ssim", 'title_main_first_char_ssim']
     end
 
     context 'configuration settings' do
@@ -102,7 +107,8 @@ RSpec.describe CatalogController, type: :controller do
     let(:expected_search_fields) { ['keyword', 'title', 'author', 'subject'] }
     let(:expected_advanced_search_fields) do
       ['all_fields_advanced', 'title_advanced', 'author_advanced', 'subject_advanced',
-       'publisher_advanced', 'title_series_advanced', 'identifier_advanced', 'call_number_advanced']
+       'publisher_advanced', 'title_series_advanced', 'identifier_advanced', 'call_number_advanced',
+       'title_wildcard_advanced']
     end
 
     it { expect(search_fields).to contain_exactly(*expected_search_fields + expected_advanced_search_fields) }
