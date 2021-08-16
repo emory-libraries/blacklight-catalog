@@ -39,7 +39,7 @@ en:
     unprocessable:
       header: "422 - Unprocessable Entity"
   about: 'About Emory Library Catalog'
-  contact: 'Emory Library Catalog Contacts'
+  contact: 'Emory Library Search Points of Contact'
   help: 'Emory Library Catalog Help'
   catalog:
     show:
