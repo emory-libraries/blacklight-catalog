@@ -365,7 +365,7 @@ RSpec.describe 'Indexing fields with custom logic' do
     it 'has a string with no puctuation' do
       match_results = [solr_doc, solr_doc2, solr_doc3, solr_doc4, solr_doc5, solr_doc6,
                        solr_doc7, solr_doc8, solr_doc9, solr_doc10].map do |d|
-                         d['title_ssort'].match(/[[:punct:]]/)
+                         d['title_ssort']&.match(/[[:punct:]]/)
                        end
       expect(match_results.compact).to be_empty
     end
@@ -375,7 +375,7 @@ RSpec.describe 'Indexing fields with custom logic' do
     it 'has a string with no puctuation' do
       match_results = [solr_doc, solr_doc2, solr_doc3, solr_doc4, solr_doc5, solr_doc6,
                        solr_doc7, solr_doc8, solr_doc9, solr_doc10].map do |d|
-                         d['author_ssort'].match(/[[:punct:]]/)
+                         d['author_ssort']&.match(/[[:punct:]]/)
                        end
       expect(match_results.compact).to be_empty
     end
