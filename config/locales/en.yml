@@ -54,7 +54,7 @@ en:
       header: "500 Error - Something went wrong"
     unprocessable:
       header: "422 - Unprocessable Entity"
-  contact: "Emory Library Catalog Contacts"
+  contact: "Emory Library Search Points of Contact"
   help: "Emory Library Catalog Help"
   catalog:
     show:
