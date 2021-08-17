@@ -33,7 +33,7 @@ RSpec.describe SessionsController, type: :controller do
       expect(response).to redirect_to(root_path)
       expect(flash[:error]).to be(nil)
       expect(session[:alma_id]).to eq('bukowski1')
-      expect(User.first.uid).to eq('bukowski1')
+      expect(User.last.uid).to eq('bukowski1')
     end
   end
 end

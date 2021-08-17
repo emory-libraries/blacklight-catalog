@@ -38,6 +38,8 @@ require 'traject/extract_format_string'
 require 'traject/extract_isbn'
 require 'traject/extract_other_standard_ids'
 require 'traject/extract_call_number'
+require 'traject/extract_emory_sortable_author'
+require 'traject/extract_emory_sortable_title'
 require 'traject/extract_library'
 require 'traject/extract_marc_resource'
 require 'traject/extract_publication_main_display.rb'
@@ -64,6 +66,8 @@ extend ExtractFormatString
 extend ExtractIsbn
 extend ExtractOtherStandardIds
 extend ExtractCallNumber
+extend ExtractEmorySortableAuthor
+extend ExtractEmorySortableTitle
 extend ExtractLibrary
 extend ExtractMarcResource
 extend ExtractPublicationMainDisplay
@@ -189,7 +193,7 @@ to_field 'title_main_display_ssim', extract_marc('245abfgknps', alternate_script
 to_field 'title_main_first_char_ssim', extract_title_main_first_char
 to_field 'title_series_ssim', extract_marc(title_series_str(ATOG))
 to_field 'title_series_tesim', extract_marc(title_series_str(ATOG))
-to_field 'title_ssort', marc_sortable_title
+to_field 'title_ssort', extract_emory_sortable_title
 to_field 'title_translation_tesim', extract_marc("242#{ATOZ}")
 to_field 'title_uniform_ssim', extract_marc("130adfklmnoprs:240#{ATOG}knps")
 to_field 'title_varying_tesim', extract_marc("246#{ATOG}inp")
@@ -199,7 +203,7 @@ to_field 'author_addl_display_tesim', extract_author_addl_display
 to_field 'author_addl_ssim', extract_marc("700abcdgqt:710abcdgn:711acdegnqe", alternate_script: false), trim_punctuation
 to_field 'author_display_ssim', extract_author_display
 # JSTOR isn't an author. Try to not use it as one
-to_field 'author_ssort', marc_sortable_author
+to_field 'author_ssort', extract_emory_sortable_author
 to_field 'author_ssim', extract_marc("100abcdq:110abd:111acd:700abcdq:710abd:711acd"), trim_punctuation
 to_field 'author_ssm', extract_marc("100abcdq:110#{ATOZ}:111#{ATOZ}", alternate_script: false)
 to_field 'author_tesim', extract_marc("100abcegqu:110abcdegnu:111acdegjnqu")

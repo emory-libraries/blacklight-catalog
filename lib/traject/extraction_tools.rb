@@ -5,6 +5,14 @@ module ExtractionTools
     Traject::Macros::Marc21
   end
 
+  def marc_semantics
+    Traject::Macros::Marc21Semantics
+  end
+
+  def remove_punct_from_string(str)
+    str.gsub(/[[:punct:]]/, "")
+  end
+
   def extract_join_remove(record, field_num_tag)
     marc21.extract_marc_from(record, field_num_tag).join(' ').remove(" :", "[", "]")
   end
