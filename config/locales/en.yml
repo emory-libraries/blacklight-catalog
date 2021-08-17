@@ -32,15 +32,30 @@
 en:
   hello: "Hello world"
   static:
+    about:
+      title: "About Emory Library Search"
+      subheading: "The NEW Emory Libraries Search Tool is the primary tool for searching Emory Libraries catalog including books, e-books, videos, journals, articles, and some digital media. Present the roadmap and differences between Primo and Blacklight. Might also look at this under technology."
+      technology:
+        blurb_header: "Technology"
+        blurb: 'The NEW Emory Libraries Search Tool is developed in Blacklight, which is an open-source Ruby on Rails "engine" that provides a basic discovery interface for searching an Apache Solr index. The product development is part of a multi-phase project that started in 2019.'
+      accessibility:
+        blurb_header: "Accessibility"
+        blurb: "Emory Libraries is committed to the principles of universal design and strives to provide equitable services online and in our spaces. We assess and enhance the usability and accessibility of our digital interfaces on an ongoing basis, and use Section 508 of the Rehabilitation Act and current WCAG AA standards as benchmarks. For further information, please use our feedback form or consult Emory’s Department of Accessibility Services."
+      help:
+        blurb_header: "Questions, Help, and Feedback"
+        blurb: "Please visit our Contact page for more information about Emory Libraries collections, catalog, electronic resources, and access. You can also reach out via our feedback form or visit our project wiki."
+      explore:
+        materials_link_text: "Information about Libraries Materials"
+        research_link_text: "Research Guides"
+        contact_link_text: "Contact Us"
     not_found:
       header: "404 Error - Page Not Found"
     unhandled_exception:
       header: "500 Error - Something went wrong"
     unprocessable:
       header: "422 - Unprocessable Entity"
-  about: 'About Emory Library Catalog'
-  contact: 'Emory Library Search Points of Contact'
-  help: 'Emory Library Catalog Help'
+  contact: "Emory Library Search Points of Contact"
+  help: "Emory Library Catalog Help"
   catalog:
     show:
       more_details_header: "More Details"
@@ -55,7 +70,7 @@ en:
       more_options: "More Options"
   blacklight_advanced_search:
     form:
-      title: 'Advanced Search'
-      sort_label: 'Sort by'
-      search_btn: 'Search'
-      start_over: 'Clear Form'
+      title: "Advanced Search"
+      sort_label: "Sort by"
+      search_btn: "Search"
+      start_over: "Clear Form"
