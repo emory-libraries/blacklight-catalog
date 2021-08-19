@@ -380,4 +380,8 @@ RSpec.describe 'Indexing fields with custom logic' do
       expect(match_results.compact).to be_empty
     end
   end
+
+  describe 'title_main_first_char_ssim field' do
+    it('remains empty if value is just punctuation') { expect(solr_doc10['title_main_first_char_ssim']).to be_nil }
+  end
 end

@@ -6,7 +6,8 @@ module ExtractTitleMainFirstChar
   def extract_title_main_first_char
     lambda do |rec, acc|
       title = marc_semantics.get_sortable_title(rec)
-      acc << title.match(/(\w|\p{L})/)[0].upcase if title.present?
+      matched_chars = title&.match(/(\w|\p{L})/)
+      acc << matched_chars[0].upcase if matched_chars.present?
     end
   end
 end
