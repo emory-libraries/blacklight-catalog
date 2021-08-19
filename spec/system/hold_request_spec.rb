@@ -31,7 +31,7 @@ RSpec.describe "Create a request for a holding", type: :system, js: true, alma: 
       .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/990011434390302486.xml'), headers: {})
   end
 
-  it "has a button to request a hold" do
+  xit "has a button to request a hold" do
     visit solr_document_path(MLA_HANDBOOK[:id])
     sign_in(user)
     within '.where-to-find-table' do

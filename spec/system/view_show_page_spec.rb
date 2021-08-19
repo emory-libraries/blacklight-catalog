@@ -350,7 +350,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       visit solr_document_path(SITTING_FROG[:id])
     end
 
-    it "has a link for special collections requests" do
+    xit "has a link for special collections requests" do
       expect(page).to have_content("Sitting frog : poetry from Naropa Institute")
       within '.where-to-find-table' do
         expect(page).to have_button("Request")
@@ -408,7 +408,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         visit solr_document_path(MLA_HANDBOOK[:id])
       end
 
-      it "has a button to request a hold" do
+      xit "has a button to request a hold" do
         within '.where-to-find-table' do
           expect(page).to have_button("Request")
           find('.dropdown-toggle').click
@@ -441,7 +441,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       expect(find_link("Services page")[:target]).to eq("_blank")
     end
 
-    it "disables the hold request link when there are no physical holdings" do
+    xit "disables the hold request link when there are no physical holdings" do
       sign_in(user)
       within '.where-to-find-table' do
         expect(page).to have_button("Request")
