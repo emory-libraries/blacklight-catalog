@@ -32,6 +32,8 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
     visit root_path
   end
 
+  it('has the right placeholder text') { expect(find('input[placeholder="Search the Library Catalog"]')).to be_truthy }
+
   it 'has the right options' do
     options = find_all('select.custom-select.search-field > option').map(&:text)
 

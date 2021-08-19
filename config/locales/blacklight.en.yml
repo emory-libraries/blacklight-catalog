@@ -37,6 +37,9 @@ en:
     search:
       bookmarks:
         absent: 'Bookmark Item'
+      form:
+        search:
+          placeholder: 'Search the Library Catalog'
       librarian_view: 
         title: 'Staff View'
     tools:
