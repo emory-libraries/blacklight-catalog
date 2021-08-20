@@ -43,6 +43,7 @@ en:
         blurb: "Emory Libraries is committed to the principles of universal design and strives to provide equitable services online and in our spaces. We assess and enhance the usability and accessibility of our digital interfaces on an ongoing basis, and use Section 508 of the Rehabilitation Act and current WCAG AA standards as benchmarks. For further information, please use our feedback form or consult Emory’s Department of Accessibility Services."
       help:
         blurb_header: "Questions, Help, and Feedback"
+        blurb: "Please visit our <a href='https://blackcat-test.library.emory.edu/contact'>Contact page</a> for more information about Emory Libraries collections, catalog, electronic resources, and access. You can also reach out via our feedback form or visit our project wiki."
       explore:
         materials_link_text: "Information about Libraries Materials"
         research_link_text: "Research Guides"
