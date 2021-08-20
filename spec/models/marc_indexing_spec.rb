@@ -319,6 +319,11 @@ RSpec.describe 'Indexing fields with custom logic' do
       # 2002 comes from the marc21 publication_date
       it('is blank') { expect(solr_doc2['pub_date_isim']).to eq([2002]) }
     end
+
+    context 'when the end year is 0000, but the start year is valid and the 008[6] is s' do
+      # 2002 comes from the marc21 publication_date
+      it('takes the start year') { expect(solr_doc10['pub_date_isim']).to eq([1993]) }
+    end
   end
 
   describe 'publication_main_display_ssim field' do
