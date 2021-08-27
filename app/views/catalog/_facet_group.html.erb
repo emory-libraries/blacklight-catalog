@@ -1,6 +1,6 @@
 <% # Override of BlacklLight 7.4.1 -%>
 <% # main container for facets/limits menu -%>
-<% page_specific_field_names = request.fullpath == '/' ? blacklight_config.homepage_facet_fields : facet_field_names(groupname) %>
+<% page_specific_field_names = request.fullpath == '/' ? blacklight_config.homepage_facet_fields : facet_field_names(groupname) - ["title_main_first_char_ssim"] %>
 <% if has_facet_values? facet_field_names(groupname), @response %>
 <div id="facets<%= "-#{groupname}" unless groupname.nil? %>" class="facets sidenav facets-toggleable-md">
 

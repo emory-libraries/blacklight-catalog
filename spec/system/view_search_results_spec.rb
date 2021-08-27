@@ -29,19 +29,42 @@ RSpec.feature 'View Search Results', type: :system, js: false do
     end
   end
 
+  context 'Title Starts With section' do
+    it('has a label') { expect(page).to have_content('Title Starts With') }
+
+    it 'has links for all letters' do
+      ('A'..'Z').each { |letter| expect(page).to have_link(letter, class: 'page-link') }
+    end
+
+    it 'has a link that clears this facet' do
+      expect(page).to have_link('All', class: "page-link")
+    end
+
+    it 'finds the title and clears facet successfully' do
+      find('.first-main-char-ol li a.page-link', text: 'T').click
+      results = find_all('.documents-list article')
+
+      expect(results).not_to be_empty
+
+      find('.first-main-char-ol li a.page-link', text: 'All').click
+
+      expect(results).not_to be_empty
+    end
+  end
+
   context 'facets' do
     let(:facet_buttons) { find_all('h3.card-header.p-0.facet-field-heading button') }
     let(:facet_headers) { facet_buttons.map(&:text) }
 
     it 'has the right number of facets' do
-      expect(facet_buttons.size).to eq 13
+      expect(facet_buttons.size).to eq 12
     end
 
     it 'has the right headers' do
       expect(facet_headers).to match_array(
         ['Access', 'Author/Creator', 'Collection', 'Era', 'Language', 'Region',
          'Resource Type', 'Subject', 'Genre', 'LC Classification', 'Library',
-         'Publication/Creation Date', 'Title Starts With']
+         'Publication/Creation Date']
       )
     end
   end

@@ -13,6 +13,8 @@ RSpec.describe 'front page', type: :system do
     expect(page).to have_css('h1.jumbotron-heading', text: 'Welcome!')
   end
 
+  it('does not have the Title Starts With nav') { expect(page).not_to have_css('.first-main-char-ol') }
+
   context 'facets' do
     let(:facet_buttons) { find_all('h3.card-header.p-0.facet-field-heading button') }
     let(:facet_headers) { facet_buttons.map(&:text) }

@@ -1,0 +1,19 @@
+nav.alpha-filter.first-main-char-nav {
+  padding: $title-starts-with-padding;
+  > ol {
+    display: flex;
+    list-style: none;
+    padding-inline-start: 0px;
+    > li.page-item > a.page-link {
+      padding: $title-starts-with-page-link-padding;
+      font-size: $font-size-base;
+      line-height: $title-starts-with-page-link-line-h;
+      margin-left: $title-starts-with-page-link-margin-left;
+    }
+    > li.page-item.first-main-char-descriptor { 
+      font-weight: $font-weight-bold;
+      padding-right: map-get($spacers, 3); 
+      margin: auto;
+    }
+  }
+}
