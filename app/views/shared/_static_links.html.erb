@@ -1,7 +1,7 @@
 <ul class="navbar-nav">
   <li class="nav-item<%= " mobile-only" if mobile %>"><%= link_to t('blacklight.header.static_links.home'), root_path, class: "nav-link" %></li>
-  <li class="nav-item<%= " mobile-only" if mobile %>"><%= link_to t('blacklight.header.static_links.about_library_search'), about_path, class: "nav-link" %></li>
-  <li class="nav-item<%= " mobile-only" if mobile %>"><%= link_to t('blacklight.header.static_links.contact'), contact_path, class: "nav-link last" %></li>
+  <li class="nav-item<%= " mobile-only" if mobile %>"><%= link_to t('blacklight.header.static_links.articles_plus'), root_path, class: "nav-link" %></li>
+  <li class="nav-item<%= " mobile-only" if mobile %>"><%= link_to t('blacklight.header.static_links.databases'), "https://guides.libraries.emory.edu/az.php", class: "nav-link last" %></li>
 </ul>
 <ul class="navbar-nav">
   <%= render_nav_actions do |config, action|%>

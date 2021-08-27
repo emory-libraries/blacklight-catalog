@@ -74,3 +74,8 @@ en:
       sort_label: "Sort by"
       search_btn: "Search"
       start_over: "Clear Form"
+  blacklight:
+    header:
+      static_links:
+        articles_plus: "Articles +"
+        databases: "Databases@Emory"
