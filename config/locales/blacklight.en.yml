@@ -37,6 +37,8 @@ en:
     search:
       bookmarks:
         absent: 'Bookmark Item'
+      first_char:
+        label: 'Title Starts With'
       form:
         search:
           placeholder: 'Search the Library Catalog'
