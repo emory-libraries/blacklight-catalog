@@ -1,4 +1,4 @@
-@import 'variables';
+@import "variables";
 
 .pagination-search-widgets {
   margin-bottom: 1rem;
@@ -7,7 +7,6 @@
 div#sortAndPerPage {
   margin-bottom: map-get($spacers, 3);
   display: flex;
-  line-height: 3;
   flex-wrap: wrap;
 
   > .search-widgets {
@@ -15,12 +14,14 @@ div#sortAndPerPage {
     text-align: right;
     // min-width: fit-content;
 
-    > #sort-dropdown > .btn.btn-outline-secondary.dropdown-toggle, 
-      > #per_page-dropdown > .btn.btn-outline-secondary.dropdown-toggle {
+    > #sort-dropdown > .btn.btn-outline-secondary.dropdown-toggle,
+    > #per_page-dropdown > .btn.btn-outline-secondary.dropdown-toggle {
       border-radius: $results-border-radius;
     }
 
-    > #per_page-dropdown > .dropdown-menu { min-width: $results-drop-menu-min-w; }
+    > #per_page-dropdown > .dropdown-menu {
+      min-width: $results-drop-menu-min-w;
+    }
   }
   > .page-links {
     padding: 0 $pagination-padding-left-right;
