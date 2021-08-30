@@ -292,7 +292,7 @@ class CatalogController < ApplicationController
     config.add_search_field('keyword', label: 'Keyword') do |field|
       field.include_in_advanced_search = false
       field.solr_parameters = {
-        qf: 'text_tesi id local_call_number_tesim',
+        qf: 'text_tesi id local_call_number_tesim other_standard_ids_tesim',
         pf: ''
       }
     end
