@@ -87,7 +87,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         expect(exposed_values + collapsed_values).to match_array(expected_values)
       end
 
-      it 'has fulltext hyperlink with text' do
+      xit 'has fulltext hyperlink with text' do
         # test presence of fulltext hyperlink with link text
         expect(page).to have_link('Link Text for Book', href: 'http://www.example2.com')
       end
@@ -100,7 +100,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     end
 
     context 'displaying availability table' do
-      it 'shows the Available and Online tables' do
+      xit 'shows the Available and Online tables' do
         expect(find_all('.where-to-find-table')).not_to be_empty
         within '.where-to-find-table' do
           [
@@ -126,7 +126,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         end
       end
 
-      it 'shows online table only' do
+      xit 'shows online table only' do
         delete_all_documents_from_solr
         build_solr_docs(TEST_ITEM.merge(id: '789'))
         visit solr_document_path('789')
@@ -367,7 +367,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       visit solr_document_path("9937004854502486")
     end
 
-    it "shows the location header", alma: true do
+    xit "shows the location header", alma: true do
       expect(page).to have_content("Where to find it")
       expect(page).to have_content("Marian K. Heilbrun Music Media")
       expect(page).to have_content("Circulation Desk")
@@ -389,13 +389,13 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
     end
 
-    it "shows complex holdings and requests information" do
+    xit "shows complex holdings and requests information" do
       expect(page).to have_content('3 items, 3 available, 0 requests')
       expect(page).to have_content('3 items, 1 available, 0 requests')
       expect(page).to have_content('2 items, 2 available, 2 requests')
     end
 
-    it "shows item level holdings information" do
+    xit "shows item level holdings information" do
       click_link('3 items, 3 available, 0 requests')
       expect(page.body).to have_content('010002885298')
       expect(page.body).to have_content('Item in place')
@@ -431,7 +431,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       solr.commit
       visit solr_document_path(ONLINE[:id])
     end
-    it "can find the online object" do
+    xit "can find the online object" do
       expect(page).to have_content('Canzoni villanesche and villanelle')
       expect(page).to have_link("Online resource from A-R Editions", href: "http://proxy.library.emory.edu/login?url=https://doi.org/10.31022/R082-83")
       expect(page).to have_link(
@@ -460,7 +460,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       solr.commit
       visit solr_document_path(FUNKY_URL_PARTY[:id])
     end
-    it "can find the funky url object" do
+    xit "can find the funky url object" do
       expect(page).to have_content('Clinical cases in tropical medicine')
       expect(page).to have_link("Online resource from Elsevier", href: "http://proxy.library.emory.edu/login?url=https://www.sciencedirect.com/science/book/9780702078798")
       expect(page).to have_link(
@@ -486,14 +486,14 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       Capybara.ignore_hidden_elements = true
     end
 
-    it "can display the object without copy information in the AVA field" do
+    xit "can display the object without copy information in the AVA field" do
       expect(page).to have_content('The Review of politics')
       within '#physical-holding-3' do
         expect(page).to have_content("Check holdings")
       end
     end
 
-    it "can display holding level descriptions for periodicals" do
+    xit "can display holding level descriptions for periodicals" do
       expect(page).to have_content('The Review of politics')
       within '#physical-holding-1' do
         expect(page).to have_content("from:69 2007 until:75 2013")
@@ -501,7 +501,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     end
 
     context "as an unauthenticated user" do
-      it "can display item record level description" do
+      xit "can display item record level description" do
         click_link("7 items, 7 available, 0 requests")
         within '#physical-holding-1' do
           # mms_id - 990027507910302486
@@ -523,7 +523,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       end
       let(:user) { User.create(uid: "janeq") }
 
-      it "can display item record level description" do
+      xit "can display item record level description" do
         sign_in(user)
         click_link("Login", match: :first)
         visit solr_document_path(LIMITED_AVA_INFO[:id])

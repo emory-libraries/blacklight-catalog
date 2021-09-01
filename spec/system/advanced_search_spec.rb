@@ -87,4 +87,11 @@ RSpec.feature 'Advanced Search Page', type: :system, js: false do
       expect(page).to have_css(document_title_heading)
     end
   end
+
+  it 'can reach advanced search page from search results page' do
+    visit '/'
+    find('#search').click
+    click_link 'Advanced Search'
+    expect(page).to have_content 'Find items that match'
+  end
 end
