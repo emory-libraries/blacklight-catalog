@@ -111,7 +111,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       end
 
       # availability pulled from alma_availability_test_file_3.xml
-      it 'shows as Unavailable in the table' do
+      xit 'shows as Unavailable in the table' do
         delete_all_documents_from_solr
         build_solr_docs(TEST_ITEM.merge(id: '456'))
         visit solr_document_path('456')
