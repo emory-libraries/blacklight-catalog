@@ -27,4 +27,32 @@ module SearchResultsHelper
     state['f']&.delete('title_main_first_char_ssim')
     state
   end
+
+  def render_physical_avail_spans(avail_values, service_page_link)
+    return unless avail_values[:physical_exists]
+    label = phys_label_span(avail_values)
+    service_page_anchor = serv_page_anch(avail_values, service_page_link)
+    dt = tag.span(service_page_anchor, class: "phys-avail-button")
+
+    safe_join([label, dt])
+  end
+
+  def phys_label_span(avail_values)
+    tag.span("#{'Not ' unless avail_values[:physical_available]}Available",
+      class: "btn rounded-0 mb-2 phys-avail-label avail-#{avail_values[:physical_available] ? 'success' : 'danger'}")
+  end
+
+  def serv_page_anch(avail_values, service_page_link)
+    tag.a("#{'LOCATE/' if avail_values[:physical_available]}REQUEST",
+           href: service_page_link, target: '_blank', rel: 'noopener noreferrer',
+           class: 'btn btn-md rounded-0 mb-2 btn-outline-primary avail-link-el')
+  end
+
+  def render_online_link_span(mms_id)
+    tag.span(online_modal_link(mms_id), class: "online-avail-button")
+  end
+
+  def online_modal_link(mms_id)
+    tag.a("CONNECT", href: "#", data: { toggle: 'modal', target: "#avail-modal-#{mms_id}" }, class: "btn btn-md rounded-0 mb-2 btn-outline-primary avail-link-el")
+  end
 end

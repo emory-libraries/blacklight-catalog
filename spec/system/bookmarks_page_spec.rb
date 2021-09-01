@@ -7,6 +7,14 @@ RSpec.describe 'Bookmarks page', type: :system, js: true do
     build_solr_docs([TEST_ITEM])
     sign_in(user)
   end
+
+  around do |example|
+    orig_key = ENV['ALMA_BIB_KEY']
+    ENV['ALMA_BIB_KEY'] = "some_fake_key"
+    example.run
+    ENV['ALMA_BIB_KEY'] = orig_key
+  end
+
   let(:solr_doc) { SolrDocument.find('123') }
   let(:user) { User.create(uid: "janeq") }
 

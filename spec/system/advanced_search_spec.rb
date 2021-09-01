@@ -11,6 +11,13 @@ RSpec.feature 'Advanced Search Page', type: :system, js: false do
     visit '/advanced'
   end
 
+  around do |example|
+    orig_key = ENV['ALMA_BIB_KEY']
+    ENV['ALMA_BIB_KEY'] = "some_fake_key"
+    example.run
+    ENV['ALMA_BIB_KEY'] = orig_key
+  end
+
   let(:search_fields) { CatalogController.new.blacklight_config.search_fields.reject { |_k, v| v.include_in_advanced_search == false }.keys }
   let(:pulled_search_fields) { find_all('div.form-group.advanced-search-field label').map { |e| e['for'] } }
   let(:select_facet_fields) { CatalogController.new.blacklight_config.advanced_search[:form_solr_parameters]["facet.field"] }

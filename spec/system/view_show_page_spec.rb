@@ -110,6 +110,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         end
       end
 
+      # availability pulled from alma_availability_test_file_3.xml
       it 'shows as Unavailable in the table' do
         delete_all_documents_from_solr
         build_solr_docs(TEST_ITEM.merge(id: '456'))
@@ -469,6 +470,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     end
   end
 
+  # availability pulled from alma_availability_test_file_10.xml
   context "with missing copy information" do
     let(:solr_doc) { described_class.find(LIMITED_AVA_INFO[:id]) }
     before do
@@ -513,6 +515,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       end
     end
 
+    # availability pulled from alma_availability_test_file_10.xml
     context "as an authenticated user" do
       before do
         stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?apikey=fakeuserkey456&expand=none&user_id_type=all_unique&view=full")

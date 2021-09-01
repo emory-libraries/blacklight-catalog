@@ -1,0 +1,18 @@
+<div id="avail-modal-<%= document.id %>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div id="direct-link" class="modal-header">
+        <h1>Online Versions</h1>
+        <button type="button" class="blacklight-modal-close close" data-dismiss="modal" aria-label="<%= t('blacklight.modal.close') %>">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% document.url_fulltext.each do |url| %>
+          <% parsed_url = JSON.parse(url) %>
+          <%= link_to parsed_url['label'] || parsed_url['url'], parsed_url['url'] %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

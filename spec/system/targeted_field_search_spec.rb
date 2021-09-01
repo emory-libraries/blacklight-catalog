@@ -29,7 +29,22 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       title_main_display_ssim: ['Target in id']
     )
     solr.commit
+    # The following allows the availability function to process while not delivering any
+    # matching data.
+    ['iMCnR6E8,Junk17,Junk18,Junk22', 'Junk0,Junk1,Junk2,Junk3,Junk20,Junk21',
+     'Junk4,Junk5,Junk6,Junk7,Junk8,Junk9,Junk11,Junk12,Junk13,Junk14', 'Junk15,Junk16,Junk19',
+     'Junk10'].each do |str|
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?apikey=some_fake_key&expand=p_avail,e_avail,d_avail&mms_id=#{str}&view=full")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file.xml'), headers: {})
+    end
     visit root_path
+  end
+
+  around do |example|
+    orig_key = ENV['ALMA_BIB_KEY']
+    ENV['ALMA_BIB_KEY'] = "some_fake_key"
+    example.run
+    ENV['ALMA_BIB_KEY'] = orig_key
   end
 
   it('has the right placeholder text') { expect(find('input[placeholder="Search the Library Catalog"]')).to be_truthy }
