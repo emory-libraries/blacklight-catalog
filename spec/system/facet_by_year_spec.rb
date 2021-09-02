@@ -5,6 +5,19 @@ RSpec.describe 'Facet the catalog by year', type: :system, js: false do
   before do
     delete_all_documents_from_solr
     build_solr_docs([llama, newt, eagle])
+    # The following allows the availability function to process while not delivering any
+    # matching data.
+    ['222,111,333', '111', '333'].each do |str|
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?apikey=some_fake_key&expand=p_avail,e_avail,d_avail&mms_id=#{str}&view=full")
+        .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file.xml'), headers: {})
+    end
+  end
+
+  around do |example|
+    orig_key = ENV['ALMA_BIB_KEY']
+    ENV['ALMA_BIB_KEY'] = "some_fake_key"
+    example.run
+    ENV['ALMA_BIB_KEY'] = orig_key
   end
 
   let(:llama) do

@@ -9,6 +9,13 @@ RSpec.describe 'front page', type: :system do
     visit root_path
   end
 
+  around do |example|
+    orig_key = ENV['ALMA_BIB_KEY']
+    ENV['ALMA_BIB_KEY'] = "some_fake_key"
+    example.run
+    ENV['ALMA_BIB_KEY'] = orig_key
+  end
+
   it 'has expected text' do
     expect(page).to have_css('h1.jumbotron-heading', text: 'Welcome!')
   end

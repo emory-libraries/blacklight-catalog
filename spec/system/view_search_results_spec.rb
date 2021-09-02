@@ -9,6 +9,13 @@ RSpec.feature 'View Search Results', type: :system, js: false do
     click_on 'search'
   end
 
+  around do |example|
+    orig_key = ENV['ALMA_BIB_KEY']
+    ENV['ALMA_BIB_KEY'] = "some_fake_key"
+    example.run
+    ENV['ALMA_BIB_KEY'] = orig_key
+  end
+
   context 'displaying metadata' do
     it 'has a title link' do
       expect(page).to have_link('The Title of my Work')
@@ -94,6 +101,42 @@ RSpec.feature 'View Search Results', type: :system, js: false do
       click_on 'search'
       # above search will return no results, therefore, suggestions will be displayed
       expect(page).to have_content 'Did you mean'
+    end
+  end
+
+  context 'displaying availability badges' do
+    before do
+      delete_all_documents_from_solr
+      build_solr_docs(TEST_ITEM.merge(id: '990005988630302486'))
+      visit root_path
+      click_on 'search'
+    end
+
+    around do |example|
+      api_url = ENV['ALMA_API_URL']
+      orig_key = ENV['ALMA_BIB_KEY']
+      ENV['ALMA_API_URL'] = 'http://www.example.com'
+      ENV['ALMA_BIB_KEY'] = "fakebibkey123"
+      example.run
+      ENV['ALMA_API_URL'] = api_url
+      ENV['ALMA_BIB_KEY'] = orig_key
+    end
+
+    it 'shows the right badges and links' do
+      expect(page).to have_css('dt', class: 'avail-label blacklight-access-availability-990005988630302486 col-md-3')
+      expect(page).to have_css('dd', class: 'avail-dd blacklight-access-availability-990005988630302486 col-md-9')
+      expect(page).to have_css(
+        'span', class: 'btn rounded-0 mb-2 phys-avail-label avail-success', text: 'Available'
+      )
+      expect(page).to have_link(
+        'LOCATE/REQUEST', class: 'btn btn-md rounded-0 mb-2 btn-outline-primary avail-link-el'
+      )
+      expect(page).to have_css(
+        'span', class: 'btn rounded-0 mb-2 online-avail-label avail-default', text: 'Online'
+      )
+      expect(
+        find('a.btn.btn-md.rounded-0.mb-2.btn-outline-primary.avail-link-el[data-target="#avail-modal-990005988630302486"]').present?
+      ).to be_truthy
     end
   end
 end

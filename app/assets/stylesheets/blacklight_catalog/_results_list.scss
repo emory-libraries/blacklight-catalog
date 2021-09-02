@@ -71,3 +71,38 @@ dt.index-field-name {
   clear: both;
   content: "";
 }
+
+.btn.online-avail-label.avail-default {
+  background-color: $light-slate;
+}
+
+.phys-avail-label.avail-success {
+  background-color: $light-green;
+}
+
+.phys-avail-label.avail-danger {
+  background-color: $light-red;
+}
+
+.phys-avail-label, .online-avail-label {
+  min-width: 7.813rem;
+}
+
+.avail-link-el { min-width: 10.313rem; }
+
+.phys-avail-button, .online-avail-button {
+  a.avail-link-el {
+    font-weight: $font-weight-bold !important; 
+    &:hover, &:focus {
+      border-color:     $bright-blue;
+      background-color: $light-blue;
+      color:            $bright-blue;
+    }
+  }
+}
+
+.online-avail-button { margin-left: -0.25rem;}
+
+.avail-label { margin-top: 0.563rem; }
+
+.avail-label, .avail-dd { padding-top: 1rem;}

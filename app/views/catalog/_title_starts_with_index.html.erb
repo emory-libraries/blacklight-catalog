@@ -1,6 +1,6 @@
 <% state = first_char_search_state(search_state) %>
 <% active_letter = first_char_active_letter(state) %>
-<% if state['q'] %>
+<% if state['q'] || state['search_field'] == 'advanced' %>
   <nav class="alpha-filter first-main-char-nav">
     <ol class="first-main-char-ol">
       <li class="page-item first-main-char-descriptor"><%= t('blacklight.search.first_char.label') %></li>

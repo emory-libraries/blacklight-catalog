@@ -72,9 +72,9 @@ RSpec.configure do |config|
       .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_6.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/9937004854502486?view=full&expand=p_avail,e_avail,d_avail,requests&apikey=fakebibkey123")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_5.xml'), headers: {})
-    stub_request(:get, "http://www.example.com/almaws/v1/bibs/990005988630302486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail&view=full")
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail&mms_id=990005988630302486&view=full")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file.xml'), headers: {})
-    stub_request(:get, "http://www.example.com/almaws/v1/bibs/990005059530302486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail&view=full")
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail&mms_id=990005059530302486&view=full")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_2.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/123?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail&view=full")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file.xml'), headers: {})
@@ -145,5 +145,11 @@ RSpec.configure do |config|
     ).to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/990011434390302486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_multiple_holdings_item_level.xml'), headers: {})
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?apikey=some_fake_key&expand=p_avail,e_avail,d_avail&mms_id=222,111,333&view=full")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file.xml'), headers: {})
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?apikey=some_fake_key&expand=p_avail,e_avail,d_avail&mms_id=123&view=full")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file.xml'), headers: {})
+    stub_request(:get, "http://www.example.com/almaws/v1/bibs?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail&mms_id=990005988630302486,990005059530302486&view=full")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_12.xml'), headers: {})
   end
 end
