@@ -30,7 +30,9 @@
   .card-header {
     background-color: $base-blue;
 
-    > button { color: $white; }
+    > button {
+      color: $white;
+    }
   }
 }
 
@@ -46,7 +48,6 @@
   margin-bottom: $navbar-padding-y;
 
   li {
-
     display: table-row;
     font-size: $facet-label-font-size;
     line-height: $facet-label-line-height;
@@ -58,7 +59,6 @@
         font-weight: $font-weight-normal;
       }
     }
-
   }
 
   @mixin hyphens-auto {
@@ -73,7 +73,8 @@
     text-indent: -$spacer;
     padding-left: $spacer;
     padding-bottom: $spacer / 2;
-    @include hyphens-auto;
+    // @include hyphens-auto;
+    word-wrap: normal !important;
 
     a {
       font-weight: $font-weight-bold;
@@ -98,11 +99,11 @@
 
 .facet-extended-list {
   .sort-options {
-    text-align:right;
+    text-align: right;
   }
 
   .prev-next-links {
-    float:left;
+    float: left;
   }
 }
 
@@ -116,7 +117,7 @@
 
 .facet-field-heading {
   border-bottom: $results-border-radius;
-  
+
   button {
     &::after {
       content: "❯";
@@ -141,7 +142,7 @@ section#sidebar.search {
 
 .browse-link {
   color: $base-blue;
-  
+
   &:hover {
     color: $bright-blue;
     text-decoration: none;
@@ -150,5 +151,5 @@ section#sidebar.search {
 
 // top facet-pagination should be hidden
 .facet-pagination.top {
-    display: none;
-  }
+  display: none;
+}
