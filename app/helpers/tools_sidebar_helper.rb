@@ -5,7 +5,7 @@ module ToolsSidebarHelper
   end
 
   def render_help_in_toolbar
-    link_to(t('blacklight.tools.help'), '/#', class: 'nav-link', target: "_blank", rel: 'noopener noreferrer')
+    link_to(t('blacklight.tools.help'), 'https://search.libraries.emory.edu/help', class: 'nav-link', target: "_blank", rel: 'noopener noreferrer')
   end
 
   def render_feedback_in_toolbar(url)
