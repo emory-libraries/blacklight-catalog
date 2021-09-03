@@ -77,6 +77,14 @@ RSpec.describe 'Indexing fields with custom logic' do
     context 'when leader 6 is e' do
       it('is mapped as a Map') { expect(solr_doc2['format_ssim']).to eq(["Map"]) }
     end
+
+    context 'when leader 6 position is k' do
+      it('is mapped as a Video or Visual Material') { expect(solr_doc10['format_ssim']).to eq(["Video or Visual Material"]) }
+    end
+
+    context 'when leader 6 position is p' do
+      it('is mapped as a Archival Material or Manuscripts') { expect(solr_doc9['format_ssim']).to eq(["Archival Material or Manuscripts"]) }
+    end
   end
 
   describe 'publication_main_dispaly_ssm field' do
