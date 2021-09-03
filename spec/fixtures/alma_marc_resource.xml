@@ -1517,7 +1517,7 @@
       </header>
       <metadata>
         <record xmlns="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
-          <leader>01847cam a2200433Ia 4500</leader>
+          <leader>01847cp  a2200433Ia 4500</leader>
           <controlfield tag="005">20160418225355.0</controlfield>
           <controlfield tag="008">100722s1894 kyuae 000 0 eng d</controlfield>
           <controlfield tag="001">990016148150302486</controlfield>
@@ -1679,7 +1679,7 @@
       </header>
       <metadata>
         <record xmlns="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
-          <leader>01571cam a2200445 a 4500</leader>
+          <leader>01571ck  a2200445 a 4500</leader>
           <controlfield tag="005">20160418235235.0</controlfield>
           <controlfield tag="008">930729s19930000dcuab    b   f100 0 eng  </controlfield>
           <controlfield tag="001">990023916570302486</controlfield>

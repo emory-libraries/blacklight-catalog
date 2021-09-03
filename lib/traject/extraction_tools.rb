@@ -168,9 +168,9 @@ module ExtractionTools
   def format_map_ldr_six
     {
       'c' => "Musical Score", 'd' => "Musical Score", 'e' => "Map", 'f' => "Map",
-      'g' => "Video/Visual Material", 'i' => "Sound Recording", 'j' => "Sound Recording",
-      'k' => "Video/Visual Material", 'm' => "Computer File", 'o' => "Video/Visual Material",
-      'p' => "Archival Material/Manuscripts", 'r' => "Video/Visual Material"
+      'g' => "Video or Visual Material", 'i' => "Sound Recording", 'j' => "Sound Recording",
+      'k' => "Video or Visual Material", 'm' => "Computer File", 'o' => "Video or Visual Material",
+      'p' => "Archival Material or Manuscripts", 'r' => "Video or Visual Material"
     }.freeze
   end
 
