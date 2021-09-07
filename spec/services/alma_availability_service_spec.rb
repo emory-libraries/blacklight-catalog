@@ -27,13 +27,13 @@ RSpec.describe AlmaAvailabilityService, alma: true do
 
     it 'returns the correct response #2' do
       expect(service2.availability_of_documents).to eq(
-        { "990005059530302486" => { online_available: false, physical_available: false, physical_exists: true } }
+        { "990005059530302486" => { online_available: false, physical_available: true, physical_exists: true } }
       )
     end
 
     it 'returns the correct response #3' do
       expect(service3.availability_of_documents).to eq(
-        { "990005059530302486" => { online_available: false, physical_available: false, physical_exists: true },
+        { "990005059530302486" => { online_available: false, physical_available: true, physical_exists: true },
           "990005988630302486" => { online_available: false, physical_available: true, physical_exists: true } }
       )
     end
