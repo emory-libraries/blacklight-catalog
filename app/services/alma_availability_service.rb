@@ -17,7 +17,7 @@ class AlmaAvailabilityService
       ret_hsh[record.xpath('mms_id').text] = {
         physical_exists: record.xpath('record/datafield[@tag="AVA"]').present?,
         physical_available: physical_any_available?(record),
-        online_available: record.xpath('record/datafield[@tag="AVE"]/subfield[@code="e"]')&.text&.downcase == 'available'
+        online_available: online_any_available?(record)
       }
     end
     ret_hsh
@@ -41,11 +41,11 @@ class AlmaAvailabilityService
 
   def physical_any_available?(record)
     phys_fields = record.xpath('record/datafield[@tag="AVA"]/subfield[@code="e"]')
-    phys_fields.any? { |f| f.text.casecmp('available').zero? } if phys_fields.present?
+    phys_fields.present? ? phys_fields.any? { |f| f.text.casecmp('available').zero? } : false
   end
 
   def online_any_available?(record)
     online_fields = record.xpath('record/datafield[@tag="AVE"]/subfield[@code="e"]')
-    online_fields.any? { |f| f.text.casecmp('available').zero? } if online_fields.present?
+    online_fields.present? ? online_fields.any? { |f| f.text.casecmp('available').zero? } : false
   end
 end
