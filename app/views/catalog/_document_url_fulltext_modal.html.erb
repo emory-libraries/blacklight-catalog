@@ -11,6 +11,7 @@
         <% document.url_fulltext.each do |url| %>
           <% parsed_url = JSON.parse(url) %>
           <%= link_to parsed_url['label'] || parsed_url['url'], parsed_url['url'] %>
+          <br />
         <% end %>
       </div>
     </div>

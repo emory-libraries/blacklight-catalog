@@ -84,15 +84,15 @@ dt.index-field-name {
   background-color: $light-red;
 }
 
-.phys-avail-label, .online-avail-label {
-  min-width: 7.813rem;
+.avail-link-el, .phys-avail-label, .online-avail-label {
+  min-width: $results-avail-badge-min-width;
 }
-
-.avail-link-el { min-width: 10.313rem; }
 
 .phys-avail-button, .online-avail-button {
   a.avail-link-el {
+    font-size:   $results-avail-link-font-size;
     font-weight: $font-weight-bold !important; 
+    padding:     $results-avail-link-padding;
     &:hover, &:focus {
       border-color:     $bright-blue;
       background-color: $light-blue;
@@ -101,8 +101,13 @@ dt.index-field-name {
   }
 }
 
-.online-avail-button { margin-left: -0.25rem;}
+.btn.rounded-0.mb-2.phys-avail-label, .btn.rounded-0.mb-2.online-avail-label { 
+  font-size: $results-button-label-font-size;
+  padding:   $results-button-label-padding;
+}
 
-.avail-label { margin-top: 0.563rem; }
+.online-avail-button { margin-left: $results-online-avail-button-f-s;}
 
-.avail-label, .avail-dd { padding-top: 1rem;}
+.avail-label { margin-top: $results-avail-label-maring-top; }
+
+.avail-label, .avail-dd { padding-top: map-get($spacers, 3);}
