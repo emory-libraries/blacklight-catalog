@@ -102,6 +102,7 @@ dt.index-field-name {
 }
 
 .btn.rounded-0.mb-2.phys-avail-label, .btn.rounded-0.mb-2.online-avail-label { 
+  cursor:    default;
   font-size: $results-button-label-font-size;
   padding:   $results-button-label-padding;
 }
