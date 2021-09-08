@@ -57,6 +57,20 @@ RSpec.feature 'View Search Results', type: :system, js: false do
 
       expect(results).not_to be_empty
     end
+
+    around do |example|
+      Capybara.ignore_hidden_elements = false
+      example.run
+      Capybara.ignore_hidden_elements = true
+    end
+
+    it 'keeps previous facets when character is chosen', js: true do
+      click_on('Collection')
+      click_on('American county histories')
+      expect(page).to have_content 'Remove constraint Collection: American county histories'
+      find('.first-main-char-ol li a.page-link', text: 'T').click
+      expect(page).to have_content 'Remove constraint Collection: American county histories'
+    end
   end
 
   context 'facets' do
