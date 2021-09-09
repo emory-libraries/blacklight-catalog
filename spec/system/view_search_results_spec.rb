@@ -58,15 +58,18 @@ RSpec.feature 'View Search Results', type: :system, js: false do
       expect(results).not_to be_empty
     end
 
-    context 'when choosing a fact from the homepage', js: true do
-      it 'brings you to the search results page with the Title Starts With section' do
-        visit root_path
-        click_on('Language')
-        click_on('English')
+    around do |example|
+      Capybara.ignore_hidden_elements = false
+      example.run
+      Capybara.ignore_hidden_elements = true
+    end
 
-        ('A'..'Z').each { |letter| expect(page).to have_link(letter, class: 'page-link') }
-        expect(page).to have_link('All', class: "page-link")
-      end
+    it 'keeps previous facets when character is chosen', js: true do
+      click_on('Collection')
+      click_on('American county histories')
+      expect(page).to have_content 'Remove constraint Collection: American county histories'
+      find('.first-main-char-ol li a.page-link', text: 'T').click
+      expect(page).to have_content 'Remove constraint Collection: American county histories'
     end
   end
 

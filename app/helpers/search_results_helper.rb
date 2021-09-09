@@ -19,7 +19,7 @@ module SearchResultsHelper
 
   def first_char_letter_hash(state, letter)
     letter_state = state.dup
-    letter_state['f'] = { 'title_main_first_char_ssim': [letter] }
+    letter_state['f'] = processed_facet(letter_state, letter)
     letter_state
   end
 
@@ -54,5 +54,10 @@ module SearchResultsHelper
 
   def online_modal_link(mms_id)
     tag.a("CONNECT", href: "#", data: { toggle: 'modal', target: "#avail-modal-#{mms_id}" }, class: "btn btn-md rounded-0 mb-2 btn-outline-primary avail-link-el")
+  end
+
+  def processed_facet(letter_state, letter)
+    return letter_state['f'].merge('title_main_first_char_ssim': [letter]) if letter_state['f'].present?
+    { 'title_main_first_char_ssim': [letter] }
   end
 end
