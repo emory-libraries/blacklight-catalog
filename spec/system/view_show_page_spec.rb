@@ -328,6 +328,25 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         end
       end
     end
+
+    context 'displaying availability badges show page' do
+      before do
+        delete_all_documents_from_solr
+        build_solr_docs(TEST_ITEM.merge(id: '990005988630302486'))
+        visit solr_document_path('990005988630302486')
+      end
+
+      it 'shows the right badges and links' do
+        find('.phys-avail-label').should have_content('Available')
+        find('.online-avail-label').should have_content('Online')
+        expect(page).to have_link(
+          'LOCATE/REQUEST', class: 'btn btn-md rounded-0 mb-2 btn-outline-primary avail-link-el'
+        )
+        expect(
+          find('a.btn.btn-md.rounded-0.mb-2.btn-outline-primary.avail-link-el[data-target="#avail-modal-990005988630302486"]').present?
+        ).to be_truthy
+      end
+    end
   end
 
   context 'A special collections item' do

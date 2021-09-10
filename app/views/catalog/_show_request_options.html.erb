@@ -1,9 +1,27 @@
-<% physical_holdings = document.physical_holdings(current_or_guest_user) %>
+<% doc_avail_values = @documents_availability[document.id] if @documents_availability.present? %>
+<% service_page_link = "#{ENV["ALMA_BASE_SANDBOX_URL"]}/discovery/openurl?institution=#{ENV["INSTITUTION"]}&vid=#{ENV["INSTITUTION"]}:blacklight&rft.mms_id=#{document.id}" %>
 <div class="where-to-find-table">
   <div class="row justify-content-between align-items-center">
     <div class="col"> <%# Replace col with col-6 if request-options is restored %>
       <%= tag.h2 t('catalog.show.find_it_header'), class: "section-title find-it-header" %>
     </div>
+    <% if doc_avail_values.present? %>
+    <div class="col-12">
+      <%= render_physical_avail_spans(doc_avail_values, service_page_link) %>
+      <%= tag('br') if doc_avail_values[:physical_exists] && (doc_avail_values[:online_available] || document.url_fulltext.present?) %>
+      <% if doc_avail_values[:online_available] || document.url_fulltext.present? %>
+        <span class="btn rounded-0 mb-2 online-avail-label avail-default">Online</span>
+        <% if !doc_avail_values[:online_available] %>
+          <%= render_online_link_span(document.id) %>
+          <%= render 'document_url_fulltext_modal', document: document %>
+        <% else %>
+          <span class="online-avail-button">
+            <%= link_to "CONNECT", service_page_link, target: "_blank", class: "btn btn-md rounded-0 mb-2 btn-outline-primary avail-link-el" %>
+          </span>
+        <% end %>
+      <% end %>
+    </div>
+    <% end %>
     <%#
     <div class="col-6 request-options">
       <div class="btn-group">
@@ -119,9 +137,10 @@
               </tbody>
             </table>
           <% end %>
-<% end %>
+
           <!-- TODO: Change the link below to the production url for Alma if we continue to use this -->
           <%= link_to("Services page", "#{ENV["ALMA_BASE_SANDBOX_URL"]}/discovery/openurl?institution=#{ENV["INSTITUTION"]}&vid=#{ENV["INSTITUTION"]}:blacklight&rft.mms_id=#{document.id}", target: "_blank") %>
+<% end %>
         </div>
 
 
