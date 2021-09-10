@@ -22,10 +22,11 @@ Metrics/AbcSize:
 
 Metrics/BlockLength:
     Exclude:
-        - app/controllers/catalog_controller.rb
-        - config/initializers/simple_form_bootstrap.rb
-        - config/routes.rb
-        - lib/tasks/marc_index_ingester.rake
+        - 'app/controllers/catalog_controller.rb'
+        - 'config/initializers/simple_form_bootstrap.rb'
+        - 'config/routes.rb'
+        - 'lib/tasks/marc_index_ingester.rake'
+        - 'config/initializers/catalog_index_override.rb'
         - 'spec/**/*'
 
 Metrics/ClassLength:
@@ -64,7 +65,7 @@ Metrics/PerceivedComplexity:
 
 Lint/EmptyWhen:
     Exclude:
-        - app/models/marc_indexer.rb
+        - 'app/models/marc_indexer.rb'
 
 Lint/PercentStringArray:
     Exclude:
