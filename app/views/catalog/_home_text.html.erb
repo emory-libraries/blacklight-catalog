@@ -1,0 +1,16 @@
+ <%# Override of Blacklight v7.4.1 partial of same name; %>
+ <% if !request.fullpath.include?('/advanced') %>
+ <div class="col-12">
+   <h3 class="header-search">Search books, eBooks, videos and more</h2>
+ </div>
+  <div class="navbar-search navbar navbar-light mb-12 p-0" role="navigation">
+    <div class="<%= container_classes %>">
+      <%= render_search_bar  %>
+    </div>
+  </div>
+  <div class="col-12">
+    <p>For help in searching the Catalog, try our <a href="https://wiki.emory.edu/display/BDL/How-to+articles">Search Tips</a>.<br>
+      For additional assistance, please <a href="https://emory.libanswers.com/">Ask a Librarian</a>.<br>
+      Or <a href="/contact">send us comments or suggestions</a> that may help us improve the catalog.</p>
+  </div>
+<% end %>
