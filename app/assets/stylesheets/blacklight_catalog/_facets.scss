@@ -8,9 +8,14 @@
   }
 }
 
+.facets-heading{
+  margin-top: 15px;
+  color:#091C44;
+}
+
 .homepage-content-heading {
   font-size: $homepage-content-heading-font-size;
-  color: $base-blue;
+  color:#091C44;
   line-height: 2;
   margin-bottom: 0;
 }
@@ -38,7 +43,7 @@
 
 .facet-field-heading > .btn {
   line-height: $facet-line-height;
-  color: $alt-dark-blue;
+  color: #091C44;
 }
 
 .facet-values {
@@ -114,15 +119,18 @@
 
 // The following rules are selectively brought in
 // and adapted from Blacklight's _bootstrap_overrides.scss
+.facet-heading-home{
+  background-color: #fff !important;
+}
 
 .facet-field-heading {
   border-bottom: $results-border-radius;
-
   button {
     &::after {
       content: "❯";
       float: right;
       transform: rotate(90deg);
+      color: #091C44; 
     }
 
     &.collapsed {
@@ -134,6 +142,10 @@
       }
     }
   }
+}
+
+div.facet-home > div#facet-panel-collapse > div.card > h3 {
+    background-color: #fff !important;   
 }
 
 section#sidebar.search {
