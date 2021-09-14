@@ -36,8 +36,8 @@
     <div class="row">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
+    <%= render partial: 'catalog/other_resources_accordions' %>
   </main>
-
     <%= render partial: 'shared/footer' %>
     <%= render partial: 'shared/modal' %>
   </body>

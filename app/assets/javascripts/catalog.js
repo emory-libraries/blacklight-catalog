@@ -44,5 +44,15 @@ $(document).ready(function() {
     $(this).toggleClass('collapsed');
     return false;
   });
+
+  $('#show-all').on('click', function(e) {
+      $('#other-resources-panel .collapse').removeAttr("data-parent");
+      $('#other-resources-panel .collapse').collapse('show');
+  })
+  $('#hide-all').on('click', function(e) {
+      $('#other-resources-panel .collapse').attr("data-parent","#other-resources-panel");
+      $('#other-resources-panel .collapse').collapse('hide');
+  });
   /* end ready */
 });
+
