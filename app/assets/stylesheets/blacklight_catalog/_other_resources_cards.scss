@@ -1,0 +1,97 @@
+.col-centered {
+    float: none;
+    margin: 0 auto;
+    padding-left: 15px !important;
+    padding-right: 15px;
+    max-width: 1000px !important;
+   
+}
+
+div.resources-header{
+  background-color: rgba(231,234,241,0.5);
+  min-height: 71px;
+}
+
+div.border-resources{
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border: 1px solid rgba(182,189,204,0.5);
+    border-top: 2px solid #5387F7;
+}
+
+span.rounded-lightbulb{
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    background-color: #5387F7;
+    padding: 15px;
+    display: inline-block;
+    
+}
+
+div.lightbulb{
+    margin-top: -40px;
+    text-align: center;
+}
+
+h1#other-resources-title{
+    text-align: center;
+    /* Cardo/Regular 48 */
+    font-family: Cardo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 78px;
+    /* identical to box height */
+
+    text-align: center;
+
+    /* Type / Charcoal */
+
+    color: #605858;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#other-resources-title::after{
+    content:"";
+    display:block;
+    left: 50%;
+    position:absolute;
+    width:50px;
+    height:5px;
+    margin-left: -30px;
+    background-color:#E9BF55;
+}
+
+p.text-other-resources{
+    font-family: Open Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 12px;
+line-height: 20px;
+text-align: center;
+letter-spacing: 0.05em;
+text-transform: uppercase;
+margin-top: 10px;
+
+/* Emory Blue */
+
+color: #082B73;
+text-align: center;
+}
+
+h3.bigtext-other-resources{
+    /* Cardo/Regular 26 */
+
+font-family: Cardo;
+font-style: normal;
+font-weight: normal;
+font-size: 26px;
+line-height: 35px;
+text-align: center;
+
+/* Emory Blue */
+
+color: #082B73;
+}

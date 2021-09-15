@@ -37,6 +37,9 @@
 
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
+    <% if request.fullpath == "/" %>
+    <%= render partial: 'catalog/other_resources_cards' %>
+    <% end %>
   </main>
 
     <%= render partial: 'shared/footer' %>
