@@ -17,6 +17,7 @@
 @import 'blacklight_catalog/layout';
 @import 'blacklight_catalog/navbar';
 @import 'blacklight_catalog/notifications';
+@import "blacklight_catalog/other_resources_accordions";
 @import 'blacklight_catalog/other_resources_cards';
 @import 'blacklight_catalog/results_list';
 @import 'blacklight_catalog/search_form';
@@ -25,11 +26,11 @@
 @import 'blacklight_catalog/show_page';
 @import 'blacklight_catalog/static_pages';
 
-@import 'bootstrap';
+@import "bootstrap";
 
-@import 'blacklight_marc';
-@import 'blacklight_catalog/date_slider';
-@import 'blacklight_catalog/more_less';
-@import 'blacklight_catalog/print';
+@import "blacklight_marc";
+@import "blacklight_catalog/date_slider";
+@import "blacklight_catalog/more_less";
+@import "blacklight_catalog/print";
 
-@import 'blacklight_catalog/tmp'
+@import "blacklight_catalog/tmp";

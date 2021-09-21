@@ -37,11 +37,13 @@
 
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
+
     <% if request.fullpath == "/" %>
     <%= render partial: 'catalog/other_resources_cards' %>
+    <%= render partial: 'catalog/other_resources_accordions' %>
     <% end %>
-  </main>
 
+  </main>
     <%= render partial: 'shared/footer' %>
     <%= render partial: 'shared/modal' %>
   </body>

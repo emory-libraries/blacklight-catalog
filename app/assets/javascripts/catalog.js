@@ -44,5 +44,44 @@ $(document).ready(function() {
     $(this).toggleClass('collapsed');
     return false;
   });
+
+  $('#show-all').on('click', function(e) {
+      $('#other-resources-panel .collapse').removeAttr("data-parent");
+      $('#other-resources-panel .collapse').collapse('show');
+      $('.resource-body').css('background', 'rgba(231, 234, 241, 0.5)')
+      $('.panel-title').css('background', 'rgba(231, 234, 241, 0.5)')
+  })
+  $('#hide-all').on('click', function(e) {
+      $('#other-resources-panel .collapse').attr("data-parent","#other-resources-panel");
+      $('#other-resources-panel .collapse').collapse('hide');
+      $('.resource-body').css('background', 'none')
+      $('.panel-title').css('background', 'none')
+  });
+
+  $('.resource-body').on('hide.bs.collapse', function () {
+    $(this).css('background', 'none')
+    $(this).prev().children('.panel-title').css('background', 'none')
+  })
+  $('.resource-body').on('show.bs.collapse', function () {
+    $(this).css('background', 'rgba(231, 234, 241, 0.5)')
+    $(this).prev().children('.panel-title').css('background', 'rgba(231, 234, 241, 0.5)')
+  // do something…
+  })
   /* end ready */
 });
+
+const redirect = selectObject => {
+
+  const selection = selectObject.value;
+
+  // Ignore empty selections.
+  if(selection == null || selection === '') return;
+
+  // Get the location of the targeted site.
+  const href = selection.startsWith('http://') || selection.startsWith('https://') ? selection : `${selection}`;
+
+  // Redirect the site to the target location.
+  window.location.href = href;
+
+}
+
