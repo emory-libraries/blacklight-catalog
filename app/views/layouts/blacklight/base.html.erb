@@ -33,10 +33,16 @@
 
     <%= render partial: 'shared/flash_msg', layout: 'shared/flash_messages' %>
 
-    <div class="row">
+    <div class="row <%= "content-row" if request.fullpath == "/" %>">
+
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
+
+    <% if request.fullpath == "/" %>
+    <%= render partial: 'catalog/other_resources_cards' %>
     <%= render partial: 'catalog/other_resources_accordions' %>
+    <% end %>
+
   </main>
     <%= render partial: 'shared/footer' %>
     <%= render partial: 'shared/modal' %>

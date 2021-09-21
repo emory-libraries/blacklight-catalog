@@ -26,6 +26,13 @@
     padding-bottom: .75rem;
   }
 
+  .search-query-form-home {
+    @extend .col-md-12;
+    padding-left: 0 !important;
+    padding-top: .5rem;
+    padding-bottom: .75rem;
+  }
+
   // .submit-search-text {
   //   // hide 'search' label at very small screens
   //   @media screen and (max-width: breakpoint-max(xs)) {

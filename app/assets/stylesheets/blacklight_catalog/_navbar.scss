@@ -6,6 +6,14 @@
   margin-bottom: 0;
 }
 
+#user-util-collapse{
+  margin-bottom: 20px;
+}
+
+.no-padding{
+  padding:0px !important;
+}
+
 .branding-header {
   display: inline-block;
   color: $dark-blue;
@@ -14,6 +22,7 @@
     color: $branding-hover-color;
     text-decoration: none;
   }
+  z-index:99;
 }
 
 .branding-header.organization {

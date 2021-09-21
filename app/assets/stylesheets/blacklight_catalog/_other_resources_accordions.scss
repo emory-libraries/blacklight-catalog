@@ -6,6 +6,12 @@
   //   margin-left: 25%;
   //   float: right;
 }
+#other-resources-panel{
+  padding: 0px;
+}
+.accordion-row{
+  margin-top:30px;
+}
 
 .accordion-menu {
   display: flex;
@@ -17,11 +23,34 @@
   //   padding: 0px;
 }
 
-.dropdown-header {
-  font: normal normal 12px $font-family-sans-serif;
-  font-weight: $font-weight-bold;
-  text-transform: uppercase;
-  color: $mid-blue !important;
+h2.accordion-title{
+font-family: Open Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 12px;
+line-height: 20px;
+padding-left:0px;
+/* identical to box height */
+
+letter-spacing: 0.05em;
+text-transform: uppercase;
+
+/* Emory Mid Blue */
+
+color: #004990;
+}
+
+#show-all{
+  padding-right:0px;
+}
+
+#hide-all{
+  padding-right:0px;
+}
+
+#separate-btn{
+  color: $base-slate;
+  padding-left: 15px;
 }
 
 .btn.accordion-toggle-all {
@@ -38,21 +67,49 @@
   padding-left: 32px;
 }
 
+div.resource-body{
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 15px;
+}
+
+.resource-body .btn{
+  font-size: 11px;
+line-height: 18px;
+text-align: center;
+}
+
 .panel-title {
   font: normal normal 28px/1.7692 $font-family-serif;
   color: $dark-blue;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  border-top: 1px solid #B6BDCC;
+  padding: 20px;
 }
 .panel-title p {
   color: $charcoal;
   font: normal normal 16px $font-family-sans-serif;
+  
 }
 
-a.btn {
-  display: block !important;
+.panel-title h2{
+
+font-family: Cardo;
+font-style: normal;
+font-weight: normal;
+font-size: 28px;
+margin-bottom:0px;
+
+display: flex;
+align-items: center;
+
+/* Emory Dark */
+
+color: #091C44;
 }
+
 
 .panel-toggler {
   display: inline-block;
@@ -65,6 +122,7 @@ a.btn {
     &::after {
       content: "❯";
       float: right;
+      color: #5387F7;
       transform: rotate(90deg);
     }
 
@@ -73,6 +131,7 @@ a.btn {
 
       &::after {
         transform: rotate(0deg);
+        color: #5387F7;
         transition: transform 0.1s ease;
       }
     }
