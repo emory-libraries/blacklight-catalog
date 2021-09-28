@@ -13,7 +13,7 @@ RSpec.describe 'User login', type: :system, js: true do
       ["Uid", "Password"].each do |content|
         expect(page).not_to have_content(content)
       end
-      ["Sign in with Shibboleth", "Affiliate login"].each do |link|
+      ["Emory Users Login", "Affiliate login"].each do |link|
         expect(page).to have_link(link)
       end
     end
@@ -31,7 +31,7 @@ RSpec.describe 'User login', type: :system, js: true do
       ["Uid", "Password"].each do |content|
         expect(page).to have_content(content)
       end
-      ["Sign in with Shibboleth", "Affiliate login"].each do |link|
+      ["Emory Users Login", "Affiliate login"].each do |link|
         expect(page).not_to have_link(link)
       end
     end
