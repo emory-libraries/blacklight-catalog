@@ -24,7 +24,7 @@
     <% if provider == "Shibboleth" %>
       <%= link_to "Emory Users Login", new_user_shib_session_path %><br />
     <% else %>
-      <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+      <%= link_to "Emory Users Login", omniauth_authorize_path(resource_name, provider) %><br />
     <% end %>
   <% end %>
   <%= link_to "Affiliate login", alma_social_login_url(redirect_to: request.referer) %>
