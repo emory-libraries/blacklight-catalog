@@ -26,5 +26,7 @@ div#sortAndPerPage {
   > .page-links {
     padding: 0 $pagination-padding-left-right;
     max-width: fit-content;
+    align-items: center;
+    display: flex;
   }
 }
