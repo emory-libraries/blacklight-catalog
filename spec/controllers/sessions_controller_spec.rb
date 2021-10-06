@@ -9,6 +9,7 @@ RSpec.describe SessionsController, type: :controller do
                  "name" => "BUKOWSKI, CHARLES", "email" => "example@example.com",
                  "provider" => "EMAIL" }, 'super_secret_key', 'HS256')
   end
+
   before do
     request.env["devise.mapping"] = Devise.mappings[:user]
   end
@@ -34,6 +35,24 @@ RSpec.describe SessionsController, type: :controller do
       expect(flash[:error]).to be(nil)
       expect(session[:alma_id]).to eq('bukowski1')
       expect(User.last.uid).to eq('bukowski1')
+    end
+  end
+
+  describe '#new' do
+    context 'when request referer is present' do
+      it 'sets the referer as session requested page' do
+        request.headers[:HTTP_REFERER] = '/referer'
+        get :new
+        expect(session[:requested_page]).to eq('/referer')
+      end
+    end
+
+    context 'when request referer os not present' do
+      it 'sets the root path as session requested page' do
+        request.headers[:HTTP_REFERER] = nil
+        get :new
+        expect(session[:requested_page]).to eq(root_path)
+      end
     end
   end
 end
