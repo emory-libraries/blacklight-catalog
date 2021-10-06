@@ -13,6 +13,11 @@ module SearchResultsHelper
     search_state.to_h.merge('sort': 'title_ssort asc, pub_date_isim desc')
   end
 
+  def articles_plus_url_builder(search_state)
+    state_query = search_state.to_h['q']
+    "https://emory-psb.primo.exlibrisgroup.com/discovery/search?vid=01GALI_EMORY:articles&query=any,contains,#{state_query}&lang=en"
+  end
+
   def first_char_active_letter(state)
     state['f']['title_main_first_char_ssim']&.first if state['f']
   end
