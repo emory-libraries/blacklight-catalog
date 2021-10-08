@@ -35,6 +35,11 @@ en:
         help: 'Help'
         home: 'Home'
     search:
+      alternate_catalog:
+        inside_link: 'results in Articles +'
+        outside_link: 'Search for '
+        question: 'Looking for articles?'
+        title: 'ARTICLES +'
       bookmarks:
         absent: 'Bookmark Item'
       first_char:

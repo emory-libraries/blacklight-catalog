@@ -9,10 +9,14 @@
         <%= image_tag("lightbulb.svg", :height => "32", :width => "32") %>
         </span>
         </div>
-        <p class="text-other-resources">ARTICLES +</p>
-        <h3 class="bigtext-other-resources">Looking for articles?</h3>
+        <p class="text-other-resources"><%= t('blacklight.search.alternate_catalog.title') %></p>
+        <h3 class="bigtext-other-resources"><%= t('blacklight.search.alternate_catalog.question') %></h3>
         <p id="results-p">
-          Your search also found <a href="<%= articles_plus_url_builder(search_state) %>" id="articles-plus-url"><span class="alternate-catalog-count"></span>results in Articles +</a>
+          <%= t('blacklight.search.alternate_catalog.outside_link') %>
+          <a href="<%= articles_plus_url_builder(search_state) %>" id="articles-plus-url">
+            <span class="alternate-catalog-count"></span>
+            <%= t('blacklight.search.alternate_catalog.inside_link') %>
+          </a>
         </p>
       </div>
     </div>
