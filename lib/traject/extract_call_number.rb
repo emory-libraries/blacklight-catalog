@@ -2,19 +2,11 @@
 
 module ExtractCallNumber
   def extract_call_number
-    lambda do |rec, acc|
-      rec.fields('HOL852').each do |field|
-        ret_array = collect_subfields(field)
-        ret_array&.each { |r| acc << field[r] }
+    lambda do |record, accumulator|
+      record.fields('HOL852').each do |field|
+        call_number = ['h', 'i', 'j'].map { |code| field[code]&.strip }.compact.join(' ')
+        accumulator << call_number unless accumulator.include?(call_number)
       end
     end
-  end
-
-  private
-
-  def collect_subfields(field)
-    subfields_map = { '0' => ["h", "i"], '1' => ["h"], '2' => ["h"], '3' => ["h", "i"], '4' => ["c", "j"],
-                      '8' => ["b", "c", "j"] }
-    subfields_map[field.indicator1]
   end
 end
