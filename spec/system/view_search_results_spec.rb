@@ -34,6 +34,10 @@ RSpec.feature 'View Search Results', type: :system, js: false do
         expect(page).to have_content(value)
       end
     end
+
+    it 'no bentobox display with empty search' do
+      expect(page).to have_no_content('Looking for articles?')
+    end
   end
 
   context 'Title Starts With section' do

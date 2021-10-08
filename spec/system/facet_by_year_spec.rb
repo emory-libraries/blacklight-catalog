@@ -64,25 +64,25 @@ RSpec.describe 'Facet the catalog by year', type: :system, js: false do
     end
   end
 
-  context 'from homepage' do
-    before do
-      visit root_path
-      # Apply date facet with default parameters and make sure search results appear
-      find('input[value="Apply"]').click
-    end
+  # context 'from homepage' do
+  #   before do
+  #     visit root_path
+  #     # Apply date facet with default parameters and make sure search results appear
+  #     find('input[value="Apply"]').click
+  #   end
 
-    include_examples "gets_all_possible_documents"
-  end
+  #   include_examples "gets_all_possible_documents"
+  # end
 
   describe 'when "unknown" limiter is clicked' do
-    context 'on homepage' do
-      before do
-        visit root_path
-        click_on "Unknown"
-      end
+    # context 'on homepage' do
+    #   before do
+    #     visit root_path
+    #     click_on "Unknown"
+    #   end
 
-      include_examples "provides_constraint_on_next_page_unknown"
-    end
+    #   include_examples "provides_constraint_on_next_page_unknown"
+    # end
 
     context 'on search results page' do
       before do

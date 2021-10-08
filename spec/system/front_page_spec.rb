@@ -27,11 +27,11 @@ RSpec.describe 'front page', type: :system do
     let(:facet_headers) { facet_buttons.map(&:text) }
 
     it 'has the right number of facets' do
-      expect(facet_buttons.size).to eq 5
+      expect(facet_buttons.size).to eq 4
     end
 
     it 'has the right headers' do
-      expect(facet_headers).to match_array(['Resource Type', 'Language', 'Library', 'Access', 'Publication/Creation Date'])
+      expect(facet_headers).to match_array(['Resource Type', 'Language', 'Library', 'Access'])
     end
   end
 end

@@ -62,8 +62,7 @@ RSpec.describe CatalogController, type: :controller do
     context 'homepage facet fields' do
       it do
         expect(homepage_facet_fields).to eq(
-          ['marc_resource_ssim', 'library_ssim', 'format_ssim', 'language_ssim',
-           'pub_date_isim']
+          ['marc_resource_ssim', 'library_ssim', 'format_ssim', 'language_ssim']
         )
       end
     end

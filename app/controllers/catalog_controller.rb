@@ -81,7 +81,7 @@ class CatalogController < ApplicationController
     # solr fields that will be used for homepage facets
     # When users venture away from the homepage, the full list of facets will
     # be available to them. Any field listed below will appear on the homepage facets.
-    config.homepage_facet_fields = ['marc_resource_ssim', 'library_ssim', 'format_ssim', 'language_ssim', 'pub_date_isim']
+    config.homepage_facet_fields = ['marc_resource_ssim', 'library_ssim', 'format_ssim', 'language_ssim']
     config.truncate_field_values = [
       'table_of_contents_tesim', 'summary_tesim', 'note_publication_tesim', 'note_publication_dates_tesim',
       'note_language_tesim', 'note_accessibility_tesim', 'note_production_tesim', 'material_type_display_tesim',
