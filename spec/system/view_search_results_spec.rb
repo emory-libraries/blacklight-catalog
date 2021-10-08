@@ -157,4 +157,12 @@ RSpec.feature 'View Search Results', type: :system, js: false do
       ).to be_truthy
     end
   end
+
+  context 'articles + card', js: true do
+    it 'shows up when value in query' do
+      fill_in 'q', with: '123'
+      click_on 'search'
+      expect(page).to have_content 'Search for results in Articles +'
+    end
+  end
 end
