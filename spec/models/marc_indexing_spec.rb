@@ -354,7 +354,7 @@ RSpec.describe 'Indexing fields with custom logic' do
 
   describe 'local_call_number_tesim field' do
     it 'has correct value for call number' do
-      expect(solr_doc['local_call_number_tesim']).to eq([" RC451.4.G39 ", " N53 2021 ", "TL789.8.U5", "S434 2017"])
+      expect(solr_doc['local_call_number_tesim']).to eq(["RC451.4.G39 N53 2021", "TL789.8.U5 S434 2017"])
     end
   end
 
