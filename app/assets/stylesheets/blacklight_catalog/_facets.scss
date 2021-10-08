@@ -8,15 +8,15 @@
   }
 }
 
-.facets-heading{
-  margin-top: 15px;
-  color:#091C44;
+.facets-heading {
+  // margin-top: 15px;
+  color: #091c44;
 }
 
 .homepage-content-heading {
   font-size: $homepage-content-heading-font-size;
-  color:#091C44;
-  line-height: 2;
+  color: #091c44;
+  line-height: 1.88;
   margin-bottom: 0;
 }
 
@@ -43,7 +43,7 @@
 
 .facet-field-heading > .btn {
   line-height: $facet-line-height;
-  color: #091C44;
+  color: #091c44;
 }
 
 .facet-values {
@@ -119,7 +119,7 @@
 
 // The following rules are selectively brought in
 // and adapted from Blacklight's _bootstrap_overrides.scss
-.facet-heading-home{
+.facet-heading-home {
   background-color: #fff !important;
 }
 
@@ -130,7 +130,7 @@
       content: "❯";
       float: right;
       transform: rotate(90deg);
-      color: #091C44; 
+      color: #091c44;
     }
 
     &.collapsed {
@@ -145,7 +145,7 @@
 }
 
 div.facet-home > div#facet-panel-collapse > div.card > h3 {
-    background-color: #fff !important;   
+  background-color: #fff !important;
 }
 
 section#sidebar.search {
