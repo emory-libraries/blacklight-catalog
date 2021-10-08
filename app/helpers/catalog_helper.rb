@@ -105,6 +105,6 @@ module CatalogHelper
   end
 
   def service_page_url(doc_id)
-    "#{ENV["ALMA_BASE_SANDBOX_URL"]}/discovery/openurl?institution=#{ENV["INSTITUTION"]}&vid=#{ENV["INSTITUTION"]}:services&rft.mms_id=#{doc_id}"
+    "#{ENV['ALMA_BASE_SANDBOX_URL']}/discovery/openurl?institution=#{ENV['INSTITUTION']}&vid=#{ENV['INSTITUTION']}:services&rft.mms_id=#{doc_id}"
   end
 end
