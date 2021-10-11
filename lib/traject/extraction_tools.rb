@@ -1,6 +1,17 @@
 # frozen_string_literal: true
 
 module ExtractionTools
+  MARC_RESOURCE_FORMATS = {
+    "music": "Musical Score",
+    "map": "Map",
+    "visual": "Video or Visual Material",
+    "sound": "Sound Recording",
+    "file": "Computer File",
+    "archival": "Archival Material or Manuscripts",
+    "book": "Book",
+    "journal": "Journal, Newspaper or Serial"
+  }.with_indifferent_access
+
   def marc21
     Traject::Macros::Marc21
   end
@@ -167,19 +178,24 @@ module ExtractionTools
 
   def format_map_ldr_six
     {
-      'c' => "Musical Score", 'd' => "Musical Score", 'e' => "Map", 'f' => "Map",
-      'g' => "Video or Visual Material", 'i' => "Sound Recording", 'j' => "Sound Recording",
-      'k' => "Video or Visual Material", 'm' => "Computer File", 'o' => "Video or Visual Material",
-      'p' => "Archival Material or Manuscripts", 'r' => "Video or Visual Material"
+      'c' => MARC_RESOURCE_FORMATS[:music], 'd' => MARC_RESOURCE_FORMATS[:music],
+      'e' => MARC_RESOURCE_FORMATS[:map], 'f' => MARC_RESOURCE_FORMATS[:map],
+      'g' => MARC_RESOURCE_FORMATS[:visual], 'i' => MARC_RESOURCE_FORMATS[:sound],
+      'j' => MARC_RESOURCE_FORMATS[:sound], 'k' => MARC_RESOURCE_FORMATS[:visual],
+      'm' => MARC_RESOURCE_FORMATS[:file], 'o' => MARC_RESOURCE_FORMATS[:visual],
+      'p' => MARC_RESOURCE_FORMATS[:archival], 'r' => MARC_RESOURCE_FORMATS[:visual]
     }.freeze
   end
 
   def format_map_ldr_six_seven
     {
-      'aa' => "Book", 'ab' => "Journal, Newspaper or Serial", 'ac' => "Book", 'ad' => "Book",
-      'ai' => "Journal, Newspaper or Serial", 'am' => "Book", 'as' => "Journal, Newspaper or Serial",
-      'ta' => "Book", 'tb' => "Journal, Newspaper or Serial", 'tc' => "Book", 'td' => "Book",
-      'ti' => "Journal, Newspaper or Serial", 'tm' => "Book", 'ts' => "Journal, Newspaper or Serial"
+      'aa' => MARC_RESOURCE_FORMATS[:book], 'ab' => MARC_RESOURCE_FORMATS[:journal],
+      'ac' => MARC_RESOURCE_FORMATS[:book], 'ad' => MARC_RESOURCE_FORMATS[:book],
+      'ai' => MARC_RESOURCE_FORMATS[:journal], 'am' => MARC_RESOURCE_FORMATS[:book],
+      'as' => MARC_RESOURCE_FORMATS[:journal], 'ta' => MARC_RESOURCE_FORMATS[:book],
+      'tb' => MARC_RESOURCE_FORMATS[:journal], 'tc' => MARC_RESOURCE_FORMATS[:book],
+      'td' => MARC_RESOURCE_FORMATS[:book], 'ti' => MARC_RESOURCE_FORMATS[:journal],
+      'tm' => MARC_RESOURCE_FORMATS[:book], 'ts' => MARC_RESOURCE_FORMATS[:journal]
     }.freeze
   end
 end

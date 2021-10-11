@@ -14,22 +14,23 @@ RSpec.describe MoreOptionsHelper, type: :helper do
       ]
     )
   end
+  let(:formats) { ::ExtractionTools::MARC_RESOURCE_FORMATS }
   let(:links_hash) do
     {
-      "Musical Score" => { "Music and Scores" => "music-scores.html" },
-      "Map" => { "General Materials" => "index.html" },
-      "Video/Visual Material" => [
+      formats[:music] => { "Music and Scores" => "music-scores.html" },
+      formats[:map] => { "General Materials" => "index.html" },
+      formats[:visual] => [
         { "Films and Videos" => "film-videos/index.html" },
         { "Images" => "images.html" }
       ],
-      "Sound Recording" => { "Music and Scores" => "music-scores.html" },
-      "Computer File" => { "General Materials" => "index.html" },
-      "Archival Material/Manuscripts" => { "Archives and Special Collections" => "archives-special-collections.html" },
-      "Journal, Newspaper or Serial" => [
+      formats[:sound] => { "Music and Scores" => "music-scores.html" },
+      formats[:file] => { "General Materials" => "index.html" },
+      formats[:archival] => { "Archives and Special Collections" => "archives-special-collections.html" },
+      formats[:journal] => [
         { "Journals and Newspapers" => "journals-newspapers.html" },
         { "Articles" => "articles.html" }
       ],
-      "Book" => { "Books" => "books.html" }
+      formats[:book] => { "Books" => "books.html" }
     }
   end
   let(:solr_doc) { SolrDocument.find(TEST_ITEM[:id]) }
