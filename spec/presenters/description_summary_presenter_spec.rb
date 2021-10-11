@@ -13,6 +13,7 @@ RSpec.describe DescriptionSummaryPresenter do
       note_participant_tesim: ['A note about a performer.'],
       note_production_tesim: ['Directed by Tim Burton.'],
       note_publication_dates_tesim: ['Began with: Vol. 1, no. 1 (Jan./Feb. 2009)'],
+      holdings_note_tesim: ['Hey, look! Holding notes, bustah!'],
       note_publication_tesim: ['This is a Publication Note.'],
       note_technical_tesim: ['CDROM included.'],
       note_access_restriction_tesim: ['Open Access'],
