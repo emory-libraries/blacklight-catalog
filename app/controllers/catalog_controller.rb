@@ -187,6 +187,7 @@ class CatalogController < ApplicationController
     config.add_show_field('note_publication_dates_tesim',
       label: 'Publication Dates',
       helper_method: :multiple_values_new_line)
+    config.add_show_field 'holdings_note_tesim', label: 'Holdings Note', helper_method: :multiple_values_new_line
     config.add_show_field 'language_ssim', label: 'Language', helper_method: :multilined_links_to_facet
     config.add_show_field 'note_language_tesim', label: 'Language Note', helper_method: :multiple_values_new_line
     config.add_show_field('note_accessibility_tesim',

@@ -397,4 +397,9 @@ RSpec.describe 'Indexing fields with custom logic' do
   describe 'title_main_first_char_ssim field' do
     it('remains empty if value is just punctuation') { expect(solr_doc10['title_main_first_char_ssim']).to be_nil }
   end
+
+  describe 'holdings_note_tesim field' do
+    it('maps the 966a fields') { expect(solr_doc['holdings_note_tesim']).to eq(['Hey, look! Holding notes, bustah!']) }
+    it('returns nil when no 966a fields') { expect(solr_doc2['holdings_note_tesim']).to be_nil }
+  end
 end

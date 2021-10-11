@@ -34,13 +34,14 @@ RSpec.describe CatalogController, type: :controller do
        'genre_ssim', 'subject_display_ssim', 'url_suppl_ssim', 'issn_ssim', 'oclc_ssim',
        'other_standard_ids_tesim', 'publisher_number_tesim', 'url_fulltext_ssm', 'title_uniform_ssim',
        'title_former_ssim', 'title_later_ssim', 'emory_collection_tesim', 'finding_aid_url_ssim',
-       'table_of_contents_tesim', 'summary_tesim', 'note_publication_tesim', 'note_publication_dates_tesim',
-       'note_language_tesim', 'note_accessibility_tesim', 'note_technical_tesim',
-       'note_access_restriction_tesim', 'note_use_tesim', 'note_local_tesim', 'note_participant_tesim',
-       'note_production_tesim', 'note_time_place_event_tesim', 'note_addl_form_tesim',
-       'note_arrangement_tesim', 'note_historical_tesim', 'note_reproduction_tesim',
-       'note_location_originals_tesim', 'note_custodial_tesim', 'note_copy_identification_tesim',
-       'note_binding_tesim', 'note_citation_tesim', 'note_related_collections_tesim']
+       'holdings_note_tesim', 'table_of_contents_tesim', 'summary_tesim', 'note_publication_tesim',
+       'note_publication_dates_tesim', 'note_language_tesim', 'note_accessibility_tesim',
+       'note_technical_tesim', 'note_access_restriction_tesim', 'note_use_tesim',
+       'note_local_tesim', 'note_participant_tesim', 'note_production_tesim', 'note_time_place_event_tesim',
+       'note_addl_form_tesim', 'note_arrangement_tesim', 'note_historical_tesim',
+       'note_reproduction_tesim', 'note_location_originals_tesim', 'note_custodial_tesim',
+       'note_copy_identification_tesim', 'note_binding_tesim', 'note_citation_tesim',
+       'note_related_collections_tesim']
     end
 
     it { expect(show_fields).to contain_exactly(*expected_show_fields) }
