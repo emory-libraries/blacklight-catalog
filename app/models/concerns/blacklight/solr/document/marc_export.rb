@@ -45,12 +45,8 @@ module Blacklight::Solr::Document::MarcExport
 
   # Exports as an OpenURL KEV (key-encoded value) query string.
   # For use to create COinS, among other things. COinS are
-  # for Zotero, among other things. TODO: This is wierd and fragile
-  # code, it should use ruby OpenURL gem instead to work a lot
-  # more sensibly. The "format" argument was in the old marc.marc.to_zotero
-  # call, but didn't neccesarily do what it thought it did anyway. Left in
-  # for now for backwards compatibilty, but should be replaced by
-  # just ruby OpenURL.
+  # for Zotero, among other things.
+
   def export_as_openurl_ctx_kev(format = nil)
     format = self[:format_ssim]
     title = to_marc.find { |field| field.tag == '245' }
