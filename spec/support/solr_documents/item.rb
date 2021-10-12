@@ -72,5 +72,7 @@ TEST_ITEM = {
   note_copy_identification_tesim: ['Notes on versions.'],
   note_binding_tesim: ['Notes on binding.'],
   note_citation_tesim: ['Some notes on citations.'],
-  note_related_collections_tesim: ['Notes on related collections.']
+  note_related_collections_tesim: ['Notes on related collections.'],
+  holdings_note_tesim: ['Hey, look! Holding notes, bustah!'],
+  local_call_number_tesim: ['MST .3000']
 }.freeze

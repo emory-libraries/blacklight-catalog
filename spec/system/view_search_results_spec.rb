@@ -26,11 +26,13 @@ RSpec.feature 'View Search Results', type: :system, js: false do
     end
 
     it 'has the right metadata labels' do
-      ['Author/Creator:', 'Type:', 'Publication/Creation:', 'Edition:'].each { |label| expect(page).to have_content(label) }
+      ['Author/Creator:', 'Type:', 'Publication/Creation:', 'Edition:', 'Call Number:'].each do |label|
+        expect(page).to have_content(label)
+      end
     end
 
     it 'has the right values' do
-      ['George Jenkins', 'Book', 'A dummy publication', 'A sample edition'].each do |value|
+      ['George Jenkins', 'Book', 'A dummy publication', 'A sample edition', 'MST .3000'].each do |value|
         expect(page).to have_content(value)
       end
     end

@@ -164,6 +164,9 @@
             <subfield code="h">emugdonlin</subfield>
             <subfield code="w">ASIS</subfield>
           </datafield>
+          <datafield tag="966" ind1=" " ind2=" ">
+            <subfield code="a">Hey, look! Holding notes, bustah!</subfield>
+          </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>
             <subfield code="a">false</subfield>

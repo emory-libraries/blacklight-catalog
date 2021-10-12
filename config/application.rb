@@ -17,6 +17,6 @@ module BlacklightCatalog
     # -- all .rb files in that directory are automatically loaded.
 
     config.exceptions_app = routes
-    config.autoload_paths += %W[#{config.root}/app/loggers]
+    config.autoload_paths += %W[#{config.root}/app/loggers lib/traject]
   end
 end

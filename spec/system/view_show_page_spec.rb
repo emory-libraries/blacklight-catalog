@@ -31,25 +31,25 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     context 'displaying metadata' do
       let(:expected_labels) do
         [
-          'Author/Creator:', 'Publication/Creation:', 'Type:', 'Edition:', 'Full Title:',
+          'Author/Creator:', 'Publication/Creation:', 'Type:', 'Edition:', 'Call Number:', 'Full Title:',
           'Series Titles:', 'Related/Included Titles:', 'Variant Titles:', 'Abbreviated Titles:',
           'Translated Titles:', 'Additional Author/Creators:', 'Genre:', 'Subjects:',
           'Language:', 'Physical Type/Description:', 'General Note:', 'Related Resources Link:',
           'Catalog ID (MMSID):', 'ISBN:', 'ISSN:', 'OCLC Number:', 'Other Identifiers:',
           'Publisher Number:', 'Uniform Title:', 'Former Titles:', 'Later Titles:',
           'Collection:', 'Summary:', 'Finding Aid:', 'Table of Contents:', 'Publication Note:',
-          'Publication Dates:', 'Language Note:', 'Accessibility Note:', 'Technical Note:',
-          'Restrictions on Access:', 'Use and Reproduction:', 'Local Note:', 'Participant/Performer Note:',
-          'Creation/Production Credits Note:', 'Date/Time and Place of an Event:',
-          'Additional Physical Form:', 'Organization and Arrangement:', 'Biographical/Historical Note:',
-          'Reproduction Note:', 'Location of Originals:', 'Ownership and Custodial History:',
-          'Binding Note:', 'Copy and Version Identification:', 'Citation/Reference Note:',
-          'Related Collections:'
+          'Publication Dates:', 'Holdings Note:', 'Language Note:', 'Accessibility Note:',
+          'Technical Note:', 'Restrictions on Access:', 'Use and Reproduction:',
+          'Local Note:', 'Participant/Performer Note:', 'Creation/Production Credits Note:',
+          'Date/Time and Place of an Event:', 'Additional Physical Form:', 'Organization and Arrangement:',
+          'Biographical/Historical Note:', 'Reproduction Note:', 'Location of Originals:',
+          'Ownership and Custodial History:', 'Binding Note:', 'Copy and Version Identification:',
+          'Citation/Reference Note:', 'Related Collections:'
         ]
       end
       let(:expected_values) do
         [
-          "George JenkinsG. Jenkins", 'A dummy publication', 'A sample edition', 'Book',
+          "George JenkinsG. Jenkins", 'A dummy publication', 'A sample edition', 'MST .3000', 'Book',
           'More title info', 'The Jenkins Series', 'The Jenkins Story', 'Variant title',
           'Jenk. Story', 'Le Stori de Jenkins', 'Tim Jenkins', 'Genre example', 'Adventure--More Adventures.',
           'English', 'Short summary', '1 online resource (111 pages)', 'General note',
@@ -57,8 +57,8 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
           'SOME MAGICAL NUM .66G', 'SOME OTHER MAGICAL NUMBER .12Q', 'Uniform Title',
           'Former Titles', 'Later Titles', "Emory's Collection", "1,2: Freddy's Coming For You",
           'Finding Aid Text', 'This is a Publication Note.', 'Began with: Vol. 1, no. 1 (Jan./Feb. 2009)',
-          'Language notes.', 'A note on accessibility', 'CDROM included.', 'Open Access',
-          'This eBook is made available Open Access under a CC BY-NC-ND 4.0 license:',
+          'Hey, look! Holding notes, bustah!', 'Language notes.', 'A note on accessibility',
+          'CDROM included.', 'Open Access', 'This eBook is made available Open Access under a CC BY-NC-ND 4.0 license:',
           'A local note.', 'A note about a performer.', 'Directed by Tim Burton.',
           'Filmed in Georgia, baby!', 'Also available in print.', 'Concerto in B minor.',
           'A historical note.', 'A note about this reproduction.', 'A note left by the janitor.',

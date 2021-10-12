@@ -119,6 +119,7 @@ end
 to_field "id", extract_marc("001"), trim, first_only
 
 # Mass of Data Fields
+to_field 'holdings_note_tesim', extract_marc('966a')
 to_field 'marc_display_tesi', get_xml
 to_field 'note_access_restriction_tesim', extract_marc('506a3')
 to_field 'note_accessibility_tesim', extract_marc('532a:341abcde3')
@@ -137,11 +138,11 @@ to_field 'note_production_tesim', extract_marc('508a')
 to_field 'note_publication_tesim', extract_marc('581a3')
 to_field 'note_related_collections_tesim', extract_marc('544n')
 to_field 'note_reproduction_tesim', extract_marc('533a3')
+to_field 'note_technical_tesim', extract_marc('538a')
 to_field 'note_time_place_event_tesim', extract_marc('518adop')
 to_field 'note_use_tesim', extract_marc('540a3')
 to_field 'summary_tesim', extract_marc('520a')
 to_field 'table_of_contents_tesim', extract_marc('505agrt')
-to_field 'note_technical_tesim', extract_marc('538a')
 to_field "text_tesi", extract_all_marc_values(from: '010', to: '899') do |_r, acc|
   acc.replace [acc.join(' ')] # turn it into a single string
 end

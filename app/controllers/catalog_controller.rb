@@ -143,6 +143,7 @@ class CatalogController < ApplicationController
       helper_method: :multiple_values_new_line)
     config.add_index_field 'format_ssim', label: 'Type'
     config.add_index_field 'edition_tsim', label: 'Edition', helper_method: :multiple_values_new_line
+    config.add_index_field 'local_call_number_tesim', label: 'Call Number', helper_method: :multiple_sorted_values_new_line
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -153,6 +154,7 @@ class CatalogController < ApplicationController
       helper_method: :multiple_values_new_line)
     config.add_show_field 'format_ssim', label: 'Type', helper_method: :multiple_values_new_line
     config.add_show_field 'edition_tsim', label: 'Edition', helper_method: :multiple_values_new_line
+    config.add_show_field 'local_call_number_tesim', label: 'Call Number', helper_method: :multiple_sorted_values_new_line
     #   Where to find it section
     config.add_show_field 'url_fulltext_ssm', label: 'Full Text Access', helper_method: :multiple_values_new_line
     #   Additional/Related Title Information Section
@@ -187,6 +189,7 @@ class CatalogController < ApplicationController
     config.add_show_field('note_publication_dates_tesim',
       label: 'Publication Dates',
       helper_method: :multiple_values_new_line)
+    config.add_show_field 'holdings_note_tesim', label: 'Holdings Note', helper_method: :multiple_values_new_line
     config.add_show_field 'language_ssim', label: 'Language', helper_method: :multilined_links_to_facet
     config.add_show_field 'note_language_tesim', label: 'Language Note', helper_method: :multiple_values_new_line
     config.add_show_field('note_accessibility_tesim',
