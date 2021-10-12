@@ -355,6 +355,15 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('title_precise', label: 'Precise Title', type: 'hidden') do |field|
+      field.include_in_simple_select = false
+      field.include_in_advanced_search = false
+      field.solr_parameters = {
+        qf: 'title_precise_tesim',
+        pf: ''
+      }
+    end
+
     config.add_search_field('author_advanced', label: 'Author/Creator') do |field|
       field.include_in_simple_select = false
       field.solr_parameters = {

@@ -1,0 +1,45 @@
+
+<h2 class="static-heading">eJournals A-Z</h2>
+<form class="advanced form-horizontal" action="/catalog" accept-charset="UTF-8" method="get">
+  <input name="utf8" type="hidden" value="✓">
+  <input type="hidden" name="f_inclusive[marc_resource_ssim][]" value="Online" id="marc_resource">
+  <input type="hidden" name="f_inclusive[format_ssim][]" value="Journal, Newspaper or Serial" id="format_ssim">
+  <input type="hidden" name="search_field" value="advanced" id="search_field">
+  <div class="input-criteria">
+
+    <div class="query-criteria">
+
+      <div id="advanced_search">
+        <div class="input-group">
+
+          
+          <span class="twitter-typeahead" style="position: relative; display: inline-block;">
+              <input type="text" name="title_precise" id="title_precise" class="form-control">
+          </span>
+          <span class="input-group-append">
+            <input type="submit" name="commit" value="Search" class="btn btn-primary rounded-0 advanced-search-submit" id="advanced-search-submit" data-disable-with="Search">
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>
+
+<h2 class="static-heading-margin">Browse by eJournal Title</h2>
+<% state = first_char_search_state_ejournals(search_state) %>
+<% active_letter = first_char_active_letter(state) %>
+
+  <nav class="alpha-filter first-main-char-nav">
+    <ol class="first-main-char-ol">
+      <li class="page-item first-main-char-descriptor"><%= t('blacklight.search.first_char.label') %></li>
+      <% ("A".."Z").each do |letter| %>
+        <li class="page-item <%= 'active' if active_letter == letter %>">
+          <%= link_to(letter, first_char_letter_hash_ejournals(state, letter), class: 'page-link') %>
+        </li>
+      <% end %>
+      <li class="page-item <%= 'active' if active_letter.blank? %>">
+        <%= link_to t('blacklight.search.facets.all'), first_char_cleared_hash(state), class: 'page-link' %>
+      </li>
+    </ol>
+  </nav>

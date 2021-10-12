@@ -45,7 +45,7 @@
   </div>
 </nav>
 
-<% if !request.fullpath.include?('/advanced') && request.fullpath != "/" %>
+<% if !request.fullpath.include?('/advanced') && request.fullpath != "/" && !request.fullpath.include?('/ejournals') %>
   <div class="navbar-search navbar navbar-light bg-light mb-3" role="navigation">
     <div class="<%= container_classes %>">
       <%= render_search_bar  %>
