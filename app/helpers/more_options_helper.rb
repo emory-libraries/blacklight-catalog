@@ -1,18 +1,20 @@
 # frozen_string_literal: true
+
 module MoreOptionsHelper
+  formats = ::ExtractionTools::MARC_RESOURCE_FORMATS
   MATERIAL_TYPE_PAGE_LINKS = {
-    'Musical Score': { 'Music and Scores': 'music-scores.html' },
-    'Map': { 'General Materials': 'index.html' },
-    'Video/Visual Material': [
+    formats[:music] => { 'Music and Scores': 'music-scores.html' },
+    formats[:map] => { 'General Materials': 'index.html' },
+    formats[:visual] => [
       { 'Films and Videos': 'film-videos/index.html' }, { 'Images': 'images.html' }
     ],
-    'Sound Recording': { 'Music and Scores': 'music-scores.html' },
-    'Computer File': { 'General Materials': 'index.html' },
-    'Archival Material/Manuscripts': { 'Archives and Special Collections': 'archives-special-collections.html' },
-    'Journal, Newspaper or Serial': [
+    formats[:sound] => { 'Music and Scores': 'music-scores.html' },
+    formats[:file] => { 'General Materials': 'index.html' },
+    formats[:archival] => { 'Archives and Special Collections': 'archives-special-collections.html' },
+    formats[:journal] => [
       { 'Journals and Newspapers': 'journals-newspapers.html' }, { 'Articles': 'articles.html' }
     ],
-    'Book': { 'Books': 'books.html' }
+    formats[:book] => { 'Books': 'books.html' }
   }.with_indifferent_access.freeze
 
   def render_more_options_links(document)
