@@ -92,6 +92,19 @@ h1.static-heading {
   line-height: $h1-line-height;
 }
 
+h2.static-heading {
+  font: normal bold 2 rem $font-family-serif;
+  color: $base-blue;
+  line-height: $h1-line-height;
+}
+
+h2.static-heading-margin {
+  font: normal bold 2 rem $font-family-serif;
+  color: $base-blue;
+  line-height: $h1-line-height;
+  margin-top: 50px;
+}
+
 div.row.static-subheading {
   > p {
     font: normal normal $hero-title-font-size/normal $font-family-serif;

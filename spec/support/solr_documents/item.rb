@@ -15,6 +15,7 @@ TEST_ITEM = {
   subject_geo_ssim: ['Texas'],
   subject_ssim: ['Frontier and pioneer life', 'Electronic books'],
   title_main_display_ssim: ['The Title of my Work'],
+  title_precise_tesim: ['The Title of my Work'],
   title_main_first_char_ssim: ['T'],
   title_details_display_tesim: ['The Title of my Work'],
   title_addl_tesim: ['More title info'],

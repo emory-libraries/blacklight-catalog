@@ -13,6 +13,13 @@ module SearchResultsHelper
     search_state.to_h.merge('sort': 'title_ssort asc, pub_date_isim desc')
   end
 
+  def first_char_search_state_ejournals(search_state)
+    search_state.to_h['controller'] = 'catalog'
+    search_state.to_h['action'] = 'index'
+    search_state.to_h.merge('sort': 'title_ssort asc, pub_date_isim desc')
+    search_state.to_h.merge('search_field': 'advanced', 'commit': 'Search', 'utf8': '✓')
+  end
+
   def articles_plus_url_builder(search_state)
     state_query = search_state.to_h['q']
     "https://emory-psb.primo.exlibrisgroup.com/discovery/search?vid=01GALI_EMORY:articles&query=any,contains,#{state_query}&lang=en"
@@ -25,6 +32,12 @@ module SearchResultsHelper
   def first_char_letter_hash(state, letter)
     letter_state = state.dup
     letter_state['f'] = processed_facet(letter_state, letter)
+    letter_state
+  end
+
+  def first_char_letter_hash_ejournals(state, letter)
+    letter_state = state.dup
+    letter_state['f'] = processed_facet_ejournals(letter_state, letter)
     letter_state
   end
 
@@ -64,5 +77,10 @@ module SearchResultsHelper
   def processed_facet(letter_state, letter)
     return letter_state['f'].merge('title_main_first_char_ssim': [letter]) if letter_state['f'].present?
     { 'title_main_first_char_ssim': [letter] }
+  end
+
+  def processed_facet_ejournals(letter_state, letter)
+    return letter_state['f'].merge('title_main_first_char_ssim': [letter]) if letter_state['f'].present?
+    { 'title_main_first_char_ssim': [letter], 'marc_resource_ssim': ["Online"], 'format_ssim': ["Journal, Newspaper or Serial"] }
   end
 end
