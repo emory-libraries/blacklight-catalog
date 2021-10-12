@@ -31,9 +31,21 @@ en:
         emory_libraries: 'Emory Libraries'
       static_links:
         about_library_search: 'About Library Search'
+        articles_plus: "Articles +"
         contact: 'Contact'
+        databases: "Databases@Emory"
+        ejournals: 'eJournals A-Z'
         help: 'Help'
         home: 'Home'
+        my_library_card: 'My Library Card'
+    other_resources: 
+      title: 'Other Resources'
+      card_descriptor:
+        search_tool: 'Search Tool'
+      url_text:
+        articles_plus: 'Articles+'
+        databases: 'Databases@Emory'
+        ejournals: 'eJournals (A-Z)'
     search:
       alternate_catalog:
         inside_link: 'results in Articles +'
