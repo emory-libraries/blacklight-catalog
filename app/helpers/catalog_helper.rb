@@ -26,6 +26,10 @@ module CatalogHelper
     safe_join(values_of_field(value), tag('br'))
   end
 
+  def multiple_sorted_values_new_line(value)
+    safe_join(values_of_field(value)&.map(&:strip)&.uniq&.sort, tag('br'))
+  end
+
   def combine_author_vern(value)
     combined_values = value[:document].combined_author_display_vern
     return safe_join(combined_values, tag('br')) if combined_values.present?

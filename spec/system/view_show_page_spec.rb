@@ -31,7 +31,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     context 'displaying metadata' do
       let(:expected_labels) do
         [
-          'Author/Creator:', 'Publication/Creation:', 'Type:', 'Edition:', 'Full Title:',
+          'Author/Creator:', 'Publication/Creation:', 'Type:', 'Edition:', 'Call Number:', 'Full Title:',
           'Series Titles:', 'Related/Included Titles:', 'Variant Titles:', 'Abbreviated Titles:',
           'Translated Titles:', 'Additional Author/Creators:', 'Genre:', 'Subjects:',
           'Language:', 'Physical Type/Description:', 'General Note:', 'Related Resources Link:',
@@ -49,7 +49,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       end
       let(:expected_values) do
         [
-          "George JenkinsG. Jenkins", 'A dummy publication', 'A sample edition', 'Book',
+          "George JenkinsG. Jenkins", 'A dummy publication', 'A sample edition', 'MST .3000', 'Book',
           'More title info', 'The Jenkins Series', 'The Jenkins Story', 'Variant title',
           'Jenk. Story', 'Le Stori de Jenkins', 'Tim Jenkins', 'Genre example', 'Adventure--More Adventures.',
           'English', 'Short summary', '1 online resource (111 pages)', 'General note',

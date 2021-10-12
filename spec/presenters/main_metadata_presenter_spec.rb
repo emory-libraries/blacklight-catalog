@@ -7,7 +7,8 @@ RSpec.describe MainMetadataPresenter do
     { author_display_ssim: ['George Jenkins'],
       publication_main_display_ssim: ['A dummy publication'],
       format_ssim: ['Book'],
-      edition_tsim: ['A sample edition'] }
+      edition_tsim: ['A sample edition'],
+      local_call_number_tesim: ['MST .3000'] }
   end
   context 'with a solr document' do
     describe '#terms' do
