@@ -49,48 +49,38 @@ module Blacklight::Solr::Document::MarcExport
 
   def export_as_openurl_ctx_kev(format = nil)
     format = self[:format_ssim]
-    title = to_marc.find { |field| field.tag == '245' }
-    author = to_marc.find { |field| field.tag == '100' }
-    corp_author = to_marc.find { |field| field.tag == '110' }
-    publisher_info = to_marc.find { |field| field.tag == '264' }
-    edition = to_marc.find { |field| field.tag == '250' }
-    isbn = to_marc.find { |field| field.tag == '020' }
-    issn = to_marc.find { |field| field.tag == '022' }
-
-    unless format.nil?
-      format = format.is_a?(Array) ? format[0].downcase.strip : format.downcase.strip
-    end
+    format = format.is_a?(Array) ? format[0].downcase.strip : format.downcase.strip if format.present?
 
     context_object = OpenURL::ContextObject.new
 
     if format == 'book'
       context_object.referent.set_format('book')
-      context_object.referent.set_metadata('genre', 'book')
-      context_object.referent.set_metadata('btitle', clean_end_punctuation([title['a'], title['b']].compact.join(' '))) if title.present?
-      context_object.referent.set_metadata('title', clean_end_punctuation([title['a'], title['b']].compact.join(' '))) if title.present?
-      context_object.referent.set_metadata('au', author['a'].to_s) if author.present?
-      context_object.referent.set_metadata('aucorp', [corp_author['a'], corp_author['b']].compact.join(' ')) if corp_author.present?
-      context_object.referent.set_metadata('date', clean_end_punctuation(publisher_info['c'].to_s)) if publisher_info.present?
-      context_object.referent.set_metadata('place', clean_end_punctuation(publisher_info['a'].to_s)) if publisher_info.present?
-      context_object.referent.set_metadata('pub', clean_end_punctuation(publisher_info['b'].to_s)) if publisher_info.present?
-      context_object.referent.set_metadata('edition', edition['a'].to_s) if edition.present?
-      context_object.referent.set_metadata('isbn', isbn['a']) if isbn.present?
-    elsif /journal/i.match?(format)
-      context_object.referent.set_format('journal')
-      context_object.referent.set_metadata('genre', 'journal')
-      context_object.referent.set_metadata('title', clean_end_punctuation([title['a'], title['b']].compact.join(' '))) if title.present?
-      context_object.referent.set_metadata('atitle', clean_end_punctuation([title['a'], title['b']].compact.join(' '))) if title.present?
-      context_object.referent.set_metadata('aucorp', [corp_author['a'], corp_author['b']].compact.join(' ')) if corp_author.present?
-      context_object.referent.set_metadata('date', clean_end_punctuation(publisher_info['c'].to_s)) if publisher_info.present?
-      context_object.referent.set_metadata('issn', issn['a']) if issn.present?
+      metadata = {
+        'genre' => 'book',
+        'title' => self[:title_citation_ssi],
+        'btitle' => self[:title_citation_ssi],
+        'au' => self[:author_ssim],
+        'date' => self[:pub_date_isim],
+        'place' => self[:publisher_location_ssim],
+        'pub' => self[:published_tesim]&.first&.gsub(/\[|\]/, ''),
+        'edition' => self[:edition_tsim],
+        'isbn' => self[:isbn_ssim]
+      }
     else
       context_object.referent.set_format('dc')
-      context_object.referent.set_metadata('title', clean_end_punctuation([title['a'], title['b']].compact.join(' '))) if title.present?
-      context_object.referent.set_metadata('creator', author['a'].to_s) if author.present?
-      context_object.referent.set_metadata('aucorp', [corp_author['a'], corp_author['b']].compact.join(' ')) if corp_author.present?
-      context_object.referent.set_metadata('date', clean_end_punctuation(publisher_info['c'].to_s)) if publisher_info.present?
-      context_object.referent.set_metadata('place', clean_end_punctuation(publisher_info['a'].to_s)) if publisher_info.present?
-      context_object.referent.set_metadata('pub', clean_end_punctuation(publisher_info['b'].to_s)) if publisher_info.present?
+      metadata = {
+        'genre' => 'dc',
+        'title' => self[:title_citation_ssi],
+        'creator' => self[:author_ssim],
+        'date' => self[:pub_date_isim],
+        'place' => self[:publisher_location_ssim],
+        'pub' => self[:published_tesim]&.first&.gsub(/\[|\]/, '')
+      }
+    end
+
+    metadata.each do |key, value|
+      data = value.is_a?(Array) ? value&.first.to_s : value.to_s
+      context_object.referent.set_metadata(key, data.strip)
     end
 
     context_object.kev
