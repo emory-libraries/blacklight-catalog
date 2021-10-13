@@ -61,8 +61,20 @@ RSpec.describe OaiQueryStringService, :clean do
     end
   end
 
+  context '#process_resumption_token' do
+    it 'returns token when full_index is false' do
+      allow(PropertyBag).to receive(:get).with('marc_ingest_resumption_token').and_return('Hello!')
+      expect(described_class.process_resumption_token(false)).to eq("Hello!")
+    end
+
+    it 'returns nil when full_index is true' do
+      expect(described_class.process_resumption_token(true)).to be_nil
+    end
+  end
+
   def check_other_methods_called
     expect(described_class).to respond_to(:process_from_time).with(2).argument
     expect(described_class).to respond_to(:process_string).with(5).argument
+    expect(described_class).to respond_to(:process_resumption_token).with(1).argument
   end
 end
