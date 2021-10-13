@@ -5,7 +5,7 @@ class OaiQueryStringService
     from_time = process_from_time(full_index, logger)
     processed_to_time = process_to_time(to_time, full_index, logger)
     # check where to resume harvesting from
-    saved_resumption_token = PropertyBag.get('marc_ingest_resumption_token')
+    saved_resumption_token = process_resumption_token(full_index)
 
     process_string(saved_resumption_token, oai_set, from_time, processed_to_time, single_record)
   end
@@ -29,5 +29,10 @@ class OaiQueryStringService
     return "?verb=GetRecord&identifier=oai:alma.#{ENV['INSTITUTION']}:#{oai_set}&metadataPrefix=marc21" if single_record
     # start a fresh set harvest
     "?verb=ListRecords&set=#{oai_set}&metadataPrefix=marc21#{to_time}#{from_time}"
+  end
+
+  def self.process_resumption_token(full_index)
+    return nil if full_index
+    PropertyBag.get('marc_ingest_resumption_token')
   end
 end
