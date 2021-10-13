@@ -2,100 +2,100 @@
 
 // Colors from Emory Libraries Pattern Library: https://github.com/emory-libraries/Pattern-Library/blob/master/src/scss/vends/emory-libraries/config/_colors.scss
 
-$dark-blue: #091C44;
+$dark-blue: #091c44;
 $alt-dark-blue: #212529;
-$base-blue: #082B73;
+$base-blue: #082b73;
 $mid-blue: #004990;
-$bright-blue: #336BE6;
-$alt-bright-blue: #5387F7;
-$light-blue: #D0DEFD;
+$bright-blue: #336be6;
+$alt-bright-blue: #5387f7;
+$light-blue: #d0defd;
 
-$gold: #E9BF55;
-$dark-gold: #D69A03;
+$gold: #e9bf55;
+$dark-gold: #d69a03;
 
 $charcoal: #605858;
-$base-slate: #B6BDCC;
-$light-slate: #E7EAF1;
-$super-light-slate: #E5E7EC;
+$base-slate: #b6bdcc;
+$light-slate: #e7eaf1;
+$super-light-slate: #e5e7ec;
 $black: #000000;
-$white: #FFFFFF;
+$white: #ffffff;
 
-$alt-green: #1DB003;
+$alt-green: #1db003;
 
-$red:         #B82216;
-$light-red:   #EABDB9;
-$orange:      #AB750C;
-$yellow:      #F6E4C1;
-$green:       #28A745;
-$light-green: #E0F6DA;
+$red: #b82216;
+$light-red: #eabdb9;
+$orange: #ab750c;
+$yellow: #f6e4c1;
+$green: #28a745;
+$light-green: #e0f6da;
 
 $colors: ();
 // stylelint-disable-next-line scss/dollar-variable-default
 $colors: map-merge(
   (
-    "dark-blue":  $dark-blue,
-    "mid-blue":   $mid-blue,
-    "blue":       $base-blue,
-    "gold":       $gold,
-    "red":        $red,
-    "orange":     $orange,
-    "yellow":     $yellow,
-    "green":      $green,
-    "white":      $white,
-    "black":      $black
+    "dark-blue": $dark-blue,
+    "mid-blue": $mid-blue,
+    "blue": $base-blue,
+    "gold": $gold,
+    "red": $red,
+    "orange": $orange,
+    "yellow": $yellow,
+    "green": $green,
+    "white": $white,
+    "black": $black,
   ),
   $colors
 );
 
-$primary:       $bright-blue;
-$secondary:     $charcoal;
-$success:       $green;
-$info:          $light-blue;
-$warning:       $yellow;
-$danger:        $red;
+$primary: $bright-blue;
+$secondary: $charcoal;
+$success: $green;
+$info: $light-blue;
+$warning: $yellow;
+$danger: $red;
 
 $theme-colors: ();
 // stylelint-disable-next-line scss/dollar-variable-default
 $theme-colors: map-merge(
   (
-    "primary":    $primary,
-    "secondary":  $secondary,
-    "success":    $success,
-    "info":       $info,
-    "warning":    $warning,
-    "danger":     $danger
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
   ),
   $theme-colors
 );
 
 // static colors
-$explorer-box-shadow:       rgba(231, 234, 241, 0.3);
-
+$explorer-box-shadow: rgba($light-slate, 0.3);
+$content-row-background: rgba($light-slate, 0.5);
 // notification colors
 $notification-colors: ();
 // stylelint-disable-next-line scss/dollar-variable-default
 $notification-colors: map-merge(
   (
-    "default-back":     $light-slate,
-    "default-text":     $charcoal,
-    "default-x":        $base-blue,
-    "default-x-hover":  $dark-blue,
-    "info-back":        $base-blue,
-    "info-text":        $white,
-    "info-x":           $gold,
-    "info-x-hover":     $dark-gold,
-    "success-back":     $alt-green,
-    "success-text":     $dark-blue,
-    "success-x":        $base-blue,
-    "success-x-hover":  $dark-blue,
-    "warning-back":     $gold,
-    "warning-text":     $dark-blue,
-    "warning-x":        $base-blue,
-    "warning-x-hover":  $dark-blue,
-    "danger-back":      $red,
-    "danger-text":      $white,
-    "danger-x":         $light-slate,
-    "danger-x-hover":   $base-slate
+    "default-back": $light-slate,
+    "default-text": $charcoal,
+    "default-x": $base-blue,
+    "default-x-hover": $dark-blue,
+    "info-back": $base-blue,
+    "info-text": $white,
+    "info-x": $gold,
+    "info-x-hover": $dark-gold,
+    "success-back": $alt-green,
+    "success-text": $dark-blue,
+    "success-x": $base-blue,
+    "success-x-hover": $dark-blue,
+    "warning-back": $gold,
+    "warning-text": $dark-blue,
+    "warning-x": $base-blue,
+    "warning-x-hover": $dark-blue,
+    "danger-back": $red,
+    "danger-text": $white,
+    "danger-x": $light-slate,
+    "danger-x-hover": $base-slate,
   ),
   $notification-colors
 );
