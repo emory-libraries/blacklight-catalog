@@ -52,6 +52,7 @@ Metrics/MethodLength:
 
 Metrics/ModuleLength:
     Exclude:
+        - 'app/helpers/catalog_helper.rb'
         - 'app/models/concerns/blacklight/solr/document/marc_export.rb'
         - 'lib/traject/extraction_tools.rb'
         - 'config/prepends/custom_citation_logic.rb'

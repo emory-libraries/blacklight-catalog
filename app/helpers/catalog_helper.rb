@@ -111,4 +111,16 @@ module CatalogHelper
   def service_page_url(doc_id)
     "#{ENV['ALMA_BASE_SANDBOX_URL']}/discovery/openurl?institution=#{ENV['INSTITUTION']}&vid=#{ENV['INSTITUTION']}:services&rft.mms_id=#{doc_id}"
   end
+
+  def databases_url
+    'https://guides.libraries.emory.edu/az.php'
+  end
+
+  def articles_plus_url
+    'https://emory-psb.primo.exlibrisgroup.com/discovery/search?vid=01GALI_EMORY:articles'
+  end
+
+  def my_library_card_url
+    'https://emory-psb.primo.exlibrisgroup.com/discovery/account?vid=01GALI_EMORY:services&section=overview&lang=en'
+  end
 end

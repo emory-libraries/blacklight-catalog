@@ -34,4 +34,28 @@ RSpec.describe 'front page', type: :system do
       expect(facet_headers).to match_array(['Resource Type', 'Language', 'Library', 'Access'])
     end
   end
+
+  context 'header links' do
+    let(:nav_links) { find_all('.non-collapse-navbar .navbar-nav .nav-link') }
+    let(:link_text_arr) { nav_links.map(&:text) }
+    let(:link_href_arr) { nav_links.map { |nl| nl['href'] } }
+    let(:expected_results_arr) do
+      [
+        { text: "Home", url: "/" },
+        { text: "eJournals A-Z", url: "/ejournals" },
+        { text: "Articles +", url: "https://emory-psb.primo.exlibrisgroup.com/discovery/search?vid=01GALI_EMORY:articles" },
+        { text: "Databases@Emory", url: "https://guides.libraries.emory.edu/az.php" },
+        { text: "My Library Card", url: "https://emory-psb.primo.exlibrisgroup.com/discovery/account?vid=01GALI_EMORY:services&section=overview&lang=en" },
+        { text: "Bookmarks 0", url: "/bookmarks" },
+        { text: "History", url: "/search_history" },
+        { text: "Help", url: "/help" }
+      ]
+    end
+
+    it 'has all the right links' do
+      nav_links.each_with_index do |_hsh, ind|
+        expect(expected_results_arr[ind]).to eq({ text: link_text_arr[ind], url: link_href_arr[ind] })
+      end
+    end
+  end
 end
