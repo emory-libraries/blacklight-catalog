@@ -1,5 +1,5 @@
-@import 'colors';
-@import 'fonts';
+@import "colors";
+@import "fonts";
 
 // Variables
 //
@@ -10,24 +10,24 @@
 //
 // Settings for the `<body>` element.
 
-$body-bg:                   $white;
-$body-color:                $charcoal;
+$body-bg: $white;
+$body-color: $charcoal;
 
 // stylelint-enable value-keyword-case
-$font-size-base:              1rem; // Assumes the browser default, typically `16px`
-$font-size-base-serif:        $font-size-base * 1.125; // Emory uses slightly larger fonts for serif
-$font-size-sm:                $font-size-base * 0.6875;
-$font-size-lg:                $font-size-base * 1.25;
+$font-size-base: 1rem; // Assumes the browser default, typically `16px`
+$font-size-base-serif: $font-size-base * 1.125; // Emory uses slightly larger fonts for serif
+$font-size-sm: $font-size-base * 0.6875;
+$font-size-lg: $font-size-base * 1.25;
 
-$h4-font-size:                $font-size-base * 1.5;
-$h1-show-font-size:           $font-size-base * 3;
+$h4-font-size: $font-size-base * 1.5;
+$h1-show-font-size: $font-size-base * 3;
 
-$font-weight-normal:          400;
-$font-weight-bold:            700;
-$font-weight-bolder:          bolder;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$font-weight-bolder: bolder;
 
-$line-height-base:            1.64;
-$h1-line-height:              3.438rem;
+$line-height-base: 1.64;
+$h1-line-height: 3.438rem;
 
 // Spacing
 //
@@ -35,206 +35,221 @@ $h1-line-height:              3.438rem;
 // variables. Mostly focused on spacing.
 // You can add more entries to the $spacers map, should you need more variation.
 
-$spacer: 1rem ;
+$spacer: 1rem;
 $spacers: ();
 // stylelint-disable-next-line scss/dollar-variable-default
 $spacers: map-merge(
   (
     0: 0,
-    1: ($spacer * .25),
-    2: ($spacer * .5),
+    1: (
+      $spacer * 0.25,
+    ),
+    2: (
+      $spacer * 0.5,
+    ),
     3: $spacer,
-    4: ($spacer * 1.5),
-    5: ($spacer * 3)
+    4: (
+      $spacer * 1.5,
+    ),
+    5: (
+      $spacer * 3,
+    ),
   ),
   $spacers
 );
 
 // Navs
 
-$nav-link-padding-y:                1rem;
-$nav-link-padding-x:                1rem;
+$nav-link-padding-y: 1rem;
+$nav-link-padding-x: 1rem;
 
 // Navbar
 
-$navbar-padding-y:                  0;
-$navbar-padding-x:                  1.875rem;
-$navbar-padding-mobile-x:           0.9375rem;
+$navbar-padding-y: 0;
+$navbar-padding-x: 1.875rem;
+$navbar-padding-mobile-x: 0.9375rem;
 
-$branding-organization-font-size:            0.875rem;
-$branding-division-font-size:                $h4-font-size;
+$branding-organization-font-size: 0.875rem;
+$branding-division-font-size: $h4-font-size;
 // Compute the branding padding-y so the branding will have the same height as navbar-text and nav-link
-$nav-link-height:                            $font-size-sm * $line-height-base + $nav-link-padding-y * 2;
-$branding-organization-height:               1.4375rem;
-$branding-division-height:                   1.5rem;
+$nav-link-height: $font-size-sm * $line-height-base + $nav-link-padding-y * 2;
+$branding-organization-height: 1.4375rem;
+$branding-division-height: 1.5rem;
 
-$branding-padding-y:                         0.875rem;
-$branding-padding-x:                         0.5rem;
+$branding-padding-y: 0.875rem;
+$branding-padding-x: 0.5rem;
 
-$branding-margin-top:                        0.625rem;
+$branding-margin-top: 0.625rem;
 
-$branding-hover-color:                        $mid-blue;
+$branding-hover-color: $mid-blue;
 
-$navbar-light-color:                         $mid-blue;
-$navbar-light-hover-color:                   $bright-blue;
-$nav-link-weight:                            $font-weight-bold;
-$nav-link-disabled-color:                    $base-slate;
+$navbar-light-color: $mid-blue;
+$navbar-light-hover-color: $bright-blue;
+$nav-link-weight: $font-weight-bold;
+$nav-link-disabled-color: $base-slate;
 
-$navbar-nav-link-padding-x:         0.625rem;
+$navbar-nav-link-padding-x: 0.625rem;
 
-$navbar-border-color:               $super-light-slate;
-$navbar-border-width:               1px;
+$navbar-border-color: $super-light-slate;
+$navbar-border-width: 1px;
 
-$nav-divider-color:                 $super-light-slate;
-$nav-divider-height:                0.75rem;
-$nav-divider-width:                 1px;
+$nav-divider-color: $super-light-slate;
+$nav-divider-height: 0.75rem;
+$nav-divider-width: 1px;
 
-$nav-divider-top:                   0.875rem;
-$nav-divider-right:                 0;
+$nav-divider-top: 0.875rem;
+$nav-divider-right: 0;
 
-$navbar-toggler-height:             3.125rem;
+$navbar-toggler-height: 3.125rem;
 
 // Search Form
 
-$search-form-height:                3.125rem;
-$search-form-padding-y:             1.25rem;
-$search-form-margin-x:              0.3125rem;
-$search-form-box-shadow:            inset 1px 2px 4px rgba($base-slate, 0.5);
+$search-form-height: 3.125rem;
+$search-form-padding-y: 1.25rem;
+$search-form-margin-x: 0.3125rem;
+$search-form-box-shadow: inset 1px 2px 4px rgba($base-slate, 0.5);
 
-$search-form-select-width:             12.5rem;
-$search-form-select-padding-left:      3.75rem;
-$search-form-select-padding-right:     1.25rem;
-$custom-select-color:                  $charcoal;
-$input-line-height:                    2.375;
-$search-form-select-background:        image-url("blue-arrow-down.svg") no-repeat right 0.875rem center;
-$search-form-select-active-background: $light-slate image-url("blue-arrow-down.svg") no-repeat right 0.875rem center;
-$search-form-select-border:            1px solid $base-slate;
-$search-form-select-padding-x:         1.125rem;
+$search-form-select-width: 12.5rem;
+$search-form-select-padding-left: 3.75rem;
+$search-form-select-padding-right: 1.25rem;
+$custom-select-color: $charcoal;
+$input-line-height: 2.375;
+$search-form-select-background: image-url("blue-arrow-down.svg") no-repeat right
+  0.875rem center;
+$search-form-select-active-background: $light-slate
+  image-url("blue-arrow-down.svg") no-repeat right 0.875rem center;
+$search-form-select-border: 1px solid $base-slate;
+$search-form-select-padding-x: 1.125rem;
 
-$search-form-q-padding-y:           0.625rem;
-$search-form-q-padding-x:           1.25rem;
+$search-form-q-padding-y: 0.625rem;
+$search-form-q-padding-x: 1.25rem;
 
-$search-form-button-width:          6rem;
-$search-form-button-padding-x:      1.5625rem;
+$search-form-button-width: 6rem;
+$search-form-button-padding-x: 1.5625rem;
 
-$search-form-mobile-min-width:      10%;
-$search-form-mobile-width:          15%;
-$search-form-mobile-sm-min-width:   20%;
-$search-form-mobile-sm-width:       25%;
-$search-form-mobile-padding-y:      0.375rem;
-$search-form-mobile-padding-right:  1.25rem;
-$search-form-mobile-padding-left:   0.5rem;
-
+$search-form-mobile-min-width: 10%;
+$search-form-mobile-width: 15%;
+$search-form-mobile-sm-min-width: 20%;
+$search-form-mobile-sm-width: 25%;
+$search-form-mobile-padding-y: 0.375rem;
+$search-form-mobile-padding-right: 1.25rem;
+$search-form-mobile-padding-left: 0.5rem;
 
 // Hero Image
 
-$hero-title-font-size:                $font-size-base * 1.75;
-$hero-title-font-size-md:             $font-size-base * 2.5;
-$hero-title-font-size-large:          $font-size-base * 3.125;
-$hero-bottom-margin:                  2.063rem;
+$hero-title-font-size: $font-size-base * 1.75;
+$hero-title-font-size-md: $font-size-base * 2.5;
+$hero-title-font-size-large: $font-size-base * 3.125;
+$hero-bottom-margin: 2.063rem;
 
 // Facets
 
-$facets-heading-font-size:    $font-size-base * 1.5;
-$facets-heading-margin-y:     1.125rem;
+$facets-heading-font-size: $font-size-base * 1.5;
+$facets-heading-margin-y: 1.125rem;
 
-$homepage-content-heading-font-size:    $font-size-base * 1.5;
+$homepage-content-heading-font-size: $font-size-base * 1.5;
 
-$facet-line-height:           1.5rem;
+$facet-line-height: 1.5rem;
 
-$facet-label-font-size:       $font-size-base * 0.9375;
-$facet-label-line-height:     $facet-label-font-size * 1.2;
-$facet-top-margin:            0.3125rem;
+$facet-label-font-size: $font-size-base * 0.9375;
+$facet-label-line-height: $facet-label-font-size * 1.2;
+$facet-top-margin: 0.3125rem;
 
-$facet-toggler-position:      13.438rem;
+$facet-toggler-position: 13.438rem;
 
 // Explore Collections Cards
 
-$explore-collections-title-font-size:       $font-size-base * 1.375;
+$explore-collections-title-font-size: $font-size-base * 1.375;
 $explore-collections-description-font-size: $font-size-base * 0.875;
-$explore-collections-action-font-size:      $font-size-base * 0.75;
-$explore-collections-badge-font-size:       $font-size-base * 0.75;
-$explore-collections-top-margin:            2.5rem;
+$explore-collections-action-font-size: $font-size-base * 0.75;
+$explore-collections-badge-font-size: $font-size-base * 0.75;
+$explore-collections-top-margin: 2.5rem;
 
 // Darken percentage for links with `.text-*` class (e.g. `.text-success`)
 $emphasized-link-hover-darken-percentage: 15%;
 
-$border-radius:               0.3125rem;
-$border-radius-lg:            0.3rem;
-$border-radius-sm:            0.2rem;
-$border-radius-xs:            0.125rem;
+$border-radius: 0.3125rem;
+$border-radius-lg: 0.3rem;
+$border-radius-sm: 0.2rem;
+$border-radius-xs: 0.125rem;
 
 // Buttons + Forms
 //
 // Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
 
-$input-btn-line-height:             $line-height-base * 1.2;
+$input-btn-line-height: $line-height-base * 1.2;
 
 // Form
-$input-border-color:                $base-slate;
+$input-border-color: $base-slate;
 
 // Links
-$link-hover-transition:     all 0.25s ease;
+$link-hover-transition: all 0.25s ease;
 
 // Button
-$show-button-line-height:            1.25rem;
+$show-button-line-height: 1.25rem;
 
 // Breadcrumb
-$bread-font-size-after:              0.75rem;
-$bread-crumb-font-size:              0.8125rem;
-$bread-crumb-margin:                 0.45rem;
-$bread-container-margin-top:         0.75rem;
-$bread-container-margin-bottom:      1rem;
+$bread-font-size-after: 0.75rem;
+$bread-crumb-font-size: 0.8125rem;
+$bread-crumb-margin: 0.45rem;
+$bread-container-margin-top: 0.75rem;
+$bread-container-margin-bottom: 1rem;
 
 // Search Results
-$results-border-radius:              0;
-$results-drop-menu-min-w:            4.063rem;
-$results-pagination-margin:          0.563rem;
-$results-thumbnail-width:            11.5rem;
-$results-document-bottom-margin:     2rem;
-$results-vern-title-bottom-marg:     0.5rem;
-$results-vern-title-left-marg:       1.75rem;
-$results-avail-badge-min-width:      8.5rem;
-$results-avail-link-font-size:       0.688rem;
-$results-avail-link-padding:         0.375rem;
-$results-button-label-font-size:     0.875rem;
-$results-button-label-padding:       0.188rem 0.375rem;
-$results-online-avail-button-f-s:    -0.25rem;
-$results-avail-label-maring-top:     0.25rem;
+$results-border-radius: 0;
+$results-drop-menu-min-w: 4.063rem;
+$results-pagination-margin: 0.563rem;
+$results-thumbnail-width: 11.5rem;
+$results-document-bottom-margin: 2rem;
+$results-vern-title-bottom-marg: 0.5rem;
+$results-vern-title-left-marg: 1.75rem;
+$results-avail-badge-min-width: 8.5rem;
+$results-avail-link-font-size: 0.688rem;
+$results-avail-link-padding: 0.375rem;
+$results-button-label-font-size: 0.875rem;
+$results-button-label-padding: 0.188rem 0.375rem;
+$results-online-avail-button-f-s: -0.25rem;
+$results-avail-label-maring-top: 0.25rem;
 
 // Static
-$static-explorer-head-letter-space:     0.038rem;
-$static-not-found-list-margin:          $facet-label-font-size;
-$static-not-found-list-line-h:          1.938rem;
+$static-explorer-head-letter-space: 0.038rem;
+$static-not-found-list-margin: $facet-label-font-size;
+$static-not-found-list-line-h: 1.938rem;
+$static-contacts-blurb-p-margin: 0.5rem;
+$static-explore-box-shadow-light-slate: 0 0 0 1px $explorer-box-shadow;
+$static-explore-box-shadow-mid-blue: 0 0 0 $facet-label-font-size $mid-blue;
 
 // Advanced Search
-$advanced-search-subtitle-font-size:  $font-size-base * 1.5;
-$advanced-search-button-height:       3.125rem;
-$advanced-search-button-padding:      0.875rem 1.5625rem;
+$advanced-search-subtitle-font-size: $font-size-base * 1.5;
+$advanced-search-button-height: 3.125rem;
+$advanced-search-button-padding: 0.875rem 1.5625rem;
+
+// Grids
+$grid-column-one: 1fr;
 
 // Footer
-$footer-max-height:         28.5625rem;
-$footer-margin-top:         5rem;
-$footer-grid-row-gap:       0.9375rem;
-$footer-standard-padding:   $search-form-padding-y;
-$footer-wide-padding:       $search-form-padding-y * 2;
-$footer-font-nine-twelve:   0.78125rem;
-$footer-margin-left-right:  $advanced-search-button-height;
+$footer-max-height: 28.5625rem;
+$footer-margin-top: 5rem;
+$footer-grid-row-gap: 0.9375rem;
+$footer-standard-padding: $search-form-padding-y;
+$footer-wide-padding: $search-form-padding-y * 2;
+$footer-font-nine-twelve: 0.78125rem;
+$footer-margin-left-right: $advanced-search-button-height;
 
 // Constraints
-$constraint-container-margin-top:   1.25rem;
+$constraint-container-margin-top: 1.25rem;
 
 // Pagination/Sort
-$pagination-padding-left-right:   0.3125rem;
+$pagination-padding-left-right: 0.3125rem;
 
 // Bookmarks
-$bookmarks-button-line-height:          1.968;
-$bookmarks-button-clear-padding:        0.75rem 1rem;
-$bookmarks-button-cite-padding:         0.6875rem 1rem;
-$bookmarks-button-cite-letter-spacing:  0.05rem;
+$bookmarks-button-line-height: 1.968;
+$bookmarks-button-clear-padding: 0.75rem 1rem;
+$bookmarks-button-cite-padding: 0.6875rem 1rem;
+$bookmarks-button-cite-letter-spacing: 0.05rem;
 
 // Title Starts With Nav
-$title-starts-with-padding:               1rem 0;
-$title-starts-with-page-link-padding:     0.25rem 0.75rem;
-$title-starts-with-page-link-line-h:      1.5rem;
+$title-starts-with-padding: 1rem 0;
+$title-starts-with-page-link-padding: 0.25rem 0.75rem;
+$title-starts-with-page-link-line-h: 1.5rem;
 $title-starts-with-page-link-margin-left: -0.063rem;

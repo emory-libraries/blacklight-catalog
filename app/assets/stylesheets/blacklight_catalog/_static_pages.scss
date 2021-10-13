@@ -20,7 +20,7 @@ p.static-blurb-body > a {
 }
 
 .content-row {
-  background: rgba(231, 234, 241, 0.5);
+  background: $content-row-background;
   border: $light-slate;
   box-sizing: border-box;
 }
@@ -30,15 +30,15 @@ div.explore-card {
   padding: $navbar-padding-x;
   background-color: $mid-blue;
   margin: $facet-label-font-size;
-  -webkit-box-shadow: 0 0 0 1px $explorer-box-shadow,
-    0 0 0 $facet-label-font-size $mid-blue;
-  box-shadow: 0 0 0 1px $explorer-box-shadow,
-    0 0 0 $facet-label-font-size $mid-blue;
+  -webkit-box-shadow: $static-explore-box-shadow-light-slate,
+    $static-explore-box-shadow-mid-blue;
+  box-shadow: $static-explore-box-shadow-light-slate,
+    $static-explore-box-shadow-mid-blue;
   font: normal normal $branding-organization-font-size $font-family-sans-serif;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: $grid-column-one;
   grid-template-areas: "heading" "list";
-  grid-template-rows: repeat(2, min-content) 1fr;
+  grid-template-rows: repeat(2, min-content) $grid-column-one;
   color: $charcoal;
   margin-block-start: $explore-collections-top-margin;
 }
@@ -54,8 +54,8 @@ span.explore-header {
 
 ul.explore-links {
   list-style-type: none;
-  padding: 0;
-  margin: 0;
+  padding: map-get($spacers, 0);
+  margin: map-get($spacers, 0);
   grid-area: list;
 }
 
@@ -66,8 +66,8 @@ li.explore-link-item {
 
 a.explore-link {
   color: $light-slate;
-  transition: all 0.25s ease;
-  -webkit-transition: all 0.25s ease;
+  transition: $link-hover-transition;
+  -webkit-transition: $link-hover-transition;
   background: 0 0;
   border: none;
   display: inline-flex;
@@ -149,5 +149,5 @@ h2.static-blurb-header {
 }
 
 p.contacts-blurb {
-  margin-bottom: 0.5rem;
+  margin-bottom: map-get($spacers, 2);
 }
