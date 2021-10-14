@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'openurl'
+
 # Overwrites the apa_citation and mla_citation methods from module of same name
 #   v7.0.0, as well as adds new methods to assist the new logic.
 module Blacklight::Solr::Document::MarcExport
@@ -43,56 +45,45 @@ module Blacklight::Solr::Document::MarcExport
 
   # Exports as an OpenURL KEV (key-encoded value) query string.
   # For use to create COinS, among other things. COinS are
-  # for Zotero, among other things. TODO: This is wierd and fragile
-  # code, it should use ruby OpenURL gem instead to work a lot
-  # more sensibly. The "format" argument was in the old marc.marc.to_zotero
-  # call, but didn't neccesarily do what it thought it did anyway. Left in
-  # for now for backwards compatibilty, but should be replaced by
-  # just ruby OpenURL.
+  # for Zotero, among other things.
+
   def export_as_openurl_ctx_kev(format = nil)
-    title = to_marc.find { |field| field.tag == '245' }
-    author = to_marc.find { |field| field.tag == '100' }
-    corp_author = to_marc.find { |field| field.tag == '110' }
-    publisher_info = to_marc.find { |field| field.tag == '260' }
-    edition = to_marc.find { |field| field.tag == '250' }
-    isbn = to_marc.find { |field| field.tag == '020' }
-    issn = to_marc.find { |field| field.tag == '022' }
-    unless format.nil?
-      format = format.is_a?(Array) ? format[0].downcase.strip : format.downcase.strip
-    end
-    export_text = ""
+    format = self[:format_ssim]
+    format = format.is_a?(Array) ? format[0].downcase.strip : format.downcase.strip if format.present?
+
+    context_object = OpenURL::ContextObject.new
 
     if format == 'book'
-      export_text += "ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rfr_id=info%3Asid%2Fblacklight.rubyforge.org%3Agenerator&amp;rft.genre=book&amp;"
-      export_text += "rft.btitle=#{title.nil? || title['a'].nil? ? '' : CGI.escape(title['a'])}+#{title.nil? || title['b'].nil? ? '' : CGI.escape(title['b'])}&amp;"
-      export_text += "rft.title=#{title.nil? || title['a'].nil? ? '' : CGI.escape(title['a'])}+#{title.nil? || title['b'].nil? ? '' : CGI.escape(title['b'])}&amp;"
-      export_text += "rft.au=#{author.nil? || author['a'].nil? ? '' : CGI.escape(author['a'])}&amp;"
-      export_text += "rft.aucorp=#{CGI.escape(corp_author['a']) if corp_author['a']}+#{CGI.escape(corp_author['b']) if corp_author['b']}&amp;" if corp_author.present?
-      export_text += "rft.date=#{publisher_info.nil? || publisher_info['c'].nil? ? '' : CGI.escape(publisher_info['c'])}&amp;"
-      export_text += "rft.place=#{publisher_info.nil? || publisher_info['a'].nil? ? '' : CGI.escape(publisher_info['a'])}&amp;"
-      export_text += "rft.pub=#{publisher_info.nil? || publisher_info['b'].nil? ? '' : CGI.escape(publisher_info['b'])}&amp;"
-      export_text += "rft.edition=#{edition.nil? || edition['a'].nil? ? '' : CGI.escape(edition['a'])}&amp;"
-      export_text += "rft.isbn=#{isbn.nil? || isbn['a'].nil? ? '' : isbn['a']}"
-    elsif format.match?(/journal/i) # checking using include because institutions may use formats like Journal or Journal/Magazine
-      export_text += "ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rfr_id=info%3Asid%2Fblacklight.rubyforge.org%3Agenerator&amp;rft.genre=article&amp;"
-      export_text += "rft.title=#{title.nil? || title['a'].nil? ? '' : CGI.escape(title['a'])}+#{title.nil? || title['b'].nil? ? '' : CGI.escape(title['b'])}&amp;"
-      export_text += "rft.atitle=#{title.nil? || title['a'].nil? ? '' : CGI.escape(title['a'])}+#{title.nil? || title['b'].nil? ? '' : CGI.escape(title['b'])}&amp;"
-      export_text += "rft.aucorp=#{CGI.escape(corp_author['a']) if corp_author['a']}+#{CGI.escape(corp_author['b']) if corp_author['b']}&amp;" if corp_author.present?
-      export_text += "rft.date=#{publisher_info.nil? || publisher_info['c'].nil? ? '' : CGI.escape(publisher_info['c'])}&amp;"
-      export_text += "rft.issn=#{issn.nil? || issn['a'].nil? ? '' : issn['a']}"
+      context_object.referent.set_format('book')
+      metadata = {
+        'genre' => 'book',
+        'title' => self[:title_citation_ssi],
+        'btitle' => self[:title_citation_ssi],
+        'au' => self[:author_ssim],
+        'date' => self[:pub_date_isim],
+        'place' => self[:publisher_location_ssim],
+        'pub' => self[:published_tesim]&.first&.gsub(/\[|\]/, ''),
+        'edition' => self[:edition_tsim],
+        'isbn' => self[:isbn_ssim]
+      }
     else
-      export_text += "ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rfr_id=info%3Asid%2Fblacklight.rubyforge.org%3Agenerator&amp;"
-      export_text += "rft.title=" + (title.nil? || title['a'].nil? ? '' : CGI.escape(title['a']))
-      export_text += (title.nil? || title['b'].nil? ? '' : CGI.escape(' ') + CGI.escape(title['b']))
-      export_text += "&amp;rft.creator=" + (author.nil? || author['a'].nil? ? '' : CGI.escape(author['a']))
-      export_text += "&amp;rft.aucorp=#{CGI.escape(corp_author['a']) if corp_author['a']}+#{CGI.escape(corp_author['b']) if corp_author['b']}" if corp_author.present?
-      export_text += "&amp;rft.date=" + (publisher_info.nil? || publisher_info['c'].nil? ? '' : CGI.escape(publisher_info['c']))
-      export_text += "&amp;rft.place=" + (publisher_info.nil? || publisher_info['a'].nil? ? '' : CGI.escape(publisher_info['a']))
-      export_text += "&amp;rft.pub=" + (publisher_info.nil? || publisher_info['b'].nil? ? '' : CGI.escape(publisher_info['b']))
-      export_text += "&amp;rft.format=" + (format.nil? ? '' : CGI.escape(format))
+      context_object.referent.set_format('dc')
+      metadata = {
+        'genre' => 'dc',
+        'title' => self[:title_citation_ssi],
+        'creator' => self[:author_ssim],
+        'date' => self[:pub_date_isim],
+        'place' => self[:publisher_location_ssim],
+        'pub' => self[:published_tesim]&.first&.gsub(/\[|\]/, '')
+      }
     end
 
-    export_text.html_safe if export_text.present?
+    metadata.each do |key, value|
+      data = value.is_a?(Array) ? value&.first.to_s : value.to_s
+      context_object.referent.set_metadata(key, data.strip)
+    end
+
+    context_object.kev
   end
 
   # This format used to be called 'refworks', which wasn't really
