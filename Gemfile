@@ -9,6 +9,8 @@ end
 
 ruby '>=2.5.0'
 
+gem 'app_profiler'
+gem 'benchmark-ips'
 gem 'blacklight', '7.4.1'
 gem 'blacklight-marc', '>= 7.0.0.rc1'
 gem 'blacklight_advanced_search'
@@ -29,7 +31,7 @@ gem 'omniauth-shibboleth', '~> 1.3'
 gem 'openurl'
 gem 'puma', '~> 3.7'
 gem 'qa'
-gem 'rails', '~> 5.1.7'
+gem 'rails', '~> 5.2'
 gem 'rest-client'
 gem 'rsolr', '>= 1.0'
 gem 'sass-rails', '~> 5.0'
