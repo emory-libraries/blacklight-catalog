@@ -33,12 +33,12 @@
 
     <%= render partial: 'shared/flash_msg', layout: 'shared/flash_messages' %>
 
-    <div class="row <%= "content-row" if request.fullpath == "/" %>">
+    <div class="row <%= "content-row" if request.fullpath == "/" || request.fullpath.include?('profile=') && !request.fullpath.include?('q=') %>">
 
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
 
-    <% if request.fullpath == "/" %>
+    <% if request.fullpath == "/" || request.fullpath.include?('profile=') && !request.fullpath.include?('q=') %>
     <%= render partial: 'catalog/other_resources_cards' %>
     <%= render partial: 'catalog/other_resources_accordions' %>
     <% end %>
