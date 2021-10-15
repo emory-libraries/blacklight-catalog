@@ -13,7 +13,7 @@
         <h3 class="bigtext-other-resources"><%= t('blacklight.search.alternate_catalog.question') %></h3>
         <p id="results-p">
           <%= t('blacklight.search.alternate_catalog.outside_link') %>
-          <a href="<%= articles_plus_url_builder(search_state) %>" id="articles-plus-url">
+          <a href="<%= articles_plus_url_builder(search_state) %>" id="articles-plus-url" target="_blank" rel="noopener noreferrer">
             <span class="alternate-catalog-count"></span>
             <%= t('blacklight.search.alternate_catalog.inside_link') %>
           </a>
