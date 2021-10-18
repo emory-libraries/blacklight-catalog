@@ -16,8 +16,7 @@ module SearchResultsHelper
   def first_char_search_state_ejournals(search_state)
     search_state.to_h['controller'] = 'catalog'
     search_state.to_h['action'] = 'index'
-    search_state.to_h.merge('sort': 'title_ssort asc, pub_date_isim desc')
-    search_state.to_h.merge('search_field': 'advanced', 'commit': 'Search', 'utf8': '✓')
+    search_state.to_h.merge('search_field': 'advanced', 'commit': 'Search', 'utf8': '✓', 'sort': 'title_ssort asc, pub_date_isim desc')
   end
 
   def articles_plus_url_builder(search_state)

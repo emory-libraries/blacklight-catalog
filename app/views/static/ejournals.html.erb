@@ -1,5 +1,5 @@
-
-<h2 class="static-heading">eJournals A-Z</h2>
+<%= render 'catalog/breadcrumbs', crumb_hashes: [{ curr_page: true, abbr: nil, link: '/ejournals', title: "eJournals A-Z" }] %>
+<h1 class="static-heading">eJournals A-Z</h1>
 <form class="advanced form-horizontal" action="/catalog" accept-charset="UTF-8" method="get">
   <input name="utf8" type="hidden" value="✓">
   <input type="hidden" name="f_inclusive[marc_resource_ssim][]" value="Online" id="marc_resource">
@@ -14,7 +14,7 @@
 
           
           <span class="twitter-typeahead" style="position: relative; display: inline-block;">
-              <input type="text" name="title_precise" id="title_precise" class="form-control">
+              <input type="text" name="title_precise" id="title_precise" class="form-control" placeholder="Search for Journals by Title">
           </span>
           <span class="input-group-append">
             <input type="submit" name="commit" value="Search" class="btn btn-primary rounded-0 advanced-search-submit" id="advanced-search-submit" data-disable-with="Search">
@@ -26,7 +26,7 @@
 
 </form>
 
-<h2 class="static-heading-margin">Browse by eJournal Title</h2>
+<h2 class="static-blurb-header feedback-blurb-header">Browse by eJournal Title</h2>
 <% state = first_char_search_state_ejournals(search_state) %>
 <% active_letter = first_char_active_letter(state) %>
 
