@@ -17,7 +17,7 @@ RSpec.feature 'eJournals Page', type: :system, js: false do
 
   context 'expected elements' do
     it 'has the correct header' do
-      expect(page).to have_css('h2', text: 'eJournals A-Z')
+      expect(page).to have_css('h1', text: 'eJournals A-Z')
       expect(page).to have_css('h2', text: 'Browse by eJournal Title')
     end
 
