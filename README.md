@@ -70,5 +70,5 @@ document.deep_symbolize_keys!
 
 ## Profiling and Flamegraphs
 
-In development mode, this app uses the `rack-mini-profiler` and `stackprof` for profiling and generating flamegraphs. To generate a flamegraph, add `?pp=flamegraph` to any page you visit locally, e.g. `http://localhost:3000/?pp=flamegraph` will generate a flamegraph for the home page.
+In development mode, this app uses gems `rack-mini-profiler` and `stackprof` for profiling and generating flamegraphs. To generate a flamegraph, add `?pp=flamegraph` to any page you visit locally, e.g. `http://localhost:3000/?pp=flamegraph` will generate a flamegraph for the home page.
 
