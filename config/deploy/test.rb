@@ -59,14 +59,13 @@ set :stage, :TEST
 
 before 'deploy:check:linked_files', "deploy:copy_secrets"
 before 'deploy:symlink:linked_files', "deploy:copy_secrets"
+before 'deploy:assets:precompile', 'envvars:load'
 namespace :deploy do
   task :copy_secrets do
     on roles("web") do
       upload!("./config/secrets.yml", "#{shared_path}/config/secrets.yml")
     end
   end
-
-  after :starting, 'envvars:load'
 end
 
 set :ec2_region, %w[us-east-1]
