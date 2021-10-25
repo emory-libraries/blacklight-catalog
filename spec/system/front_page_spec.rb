@@ -43,9 +43,9 @@ RSpec.describe 'front page', type: :system do
       [
         { text: "Home", url: "/" },
         { text: "eJournals A-Z", url: "/ejournals" },
-        { text: "Articles +", url: "https://emory-psb.primo.exlibrisgroup.com/discovery/search?vid=01GALI_EMORY:articles" },
+        { text: "Articles +", url: "https://emory.primo.exlibrisgroup.com/discovery/search?vid=01GALI_EMORY:articles" },
         { text: "Databases@Emory", url: "https://guides.libraries.emory.edu/az.php" },
-        { text: "My Library Card", url: "https://emory-psb.primo.exlibrisgroup.com/discovery/account?vid=01GALI_EMORY:services&section=overview&lang=en" },
+        { text: "My Library Card", url: "https://emory.primo.exlibrisgroup.com/discovery/account?vid=01GALI_EMORY:services&section=overview&lang=en" },
         { text: "Bookmarks 0", url: "/bookmarks" },
         { text: "History", url: "/search_history" },
         { text: "Help", url: "/help" }

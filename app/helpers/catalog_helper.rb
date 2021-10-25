@@ -117,10 +117,10 @@ module CatalogHelper
   end
 
   def articles_plus_url
-    'https://emory-psb.primo.exlibrisgroup.com/discovery/search?vid=01GALI_EMORY:articles'
+    'https://emory.primo.exlibrisgroup.com/discovery/search?vid=01GALI_EMORY:articles'
   end
 
   def my_library_card_url
-    'https://emory-psb.primo.exlibrisgroup.com/discovery/account?vid=01GALI_EMORY:services&section=overview&lang=en'
+    'https://emory.primo.exlibrisgroup.com/discovery/account?vid=01GALI_EMORY:services&section=overview&lang=en'
   end
 end
