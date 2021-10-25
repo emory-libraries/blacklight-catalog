@@ -21,7 +21,7 @@ module SearchResultsHelper
 
   def articles_plus_url_builder(search_state)
     state_query = search_state.to_h['q']
-    "https://emory-psb.primo.exlibrisgroup.com/discovery/search?vid=01GALI_EMORY:articles&query=any,contains,#{state_query}&lang=en"
+    "https://emory.primo.exlibrisgroup.com/discovery/search?vid=01GALI_EMORY:articles&query=any,contains,#{state_query}&lang=en"
   end
 
   def first_char_active_letter(state)

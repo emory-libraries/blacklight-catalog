@@ -69,7 +69,7 @@ module Statusable
   end
 
   def alma_openurl_base
-    ENV.fetch('ALMA_BASE_SANDBOX_URL')
+    ENV.fetch('ALMA_BASE_URL')
   end
 
   def alma_institution
