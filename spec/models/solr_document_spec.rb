@@ -5,16 +5,16 @@ RSpec.describe SolrDocument do
   around do |example|
     orig_url = ENV['ALMA_API_URL']
     orig_key = ENV['ALMA_BIB_KEY']
-    orig_openurl = ENV['ALMA_BASE_SANDBOX_URL']
+    orig_openurl = ENV['ALMA_BASE_URL']
     orig_inst = ENV["INSTITUTION"]
     ENV['ALMA_API_URL'] = 'http://www.example.com'
-    ENV['ALMA_BASE_SANDBOX_URL'] = 'http://www.example.com/hello'
+    ENV['ALMA_BASE_URL'] = 'http://www.example.com/hello'
     ENV['ALMA_BIB_KEY'] = "fakebibkey123"
     ENV["INSTITUTION"] = "SOME_INSTITUTION"
     example.run
     ENV['ALMA_API_URL'] = orig_url
     ENV['ALMA_BIB_KEY'] = orig_key
-    ENV['ALMA_BASE_SANDBOX_URL'] = orig_openurl
+    ENV['ALMA_BASE_URL'] = orig_openurl
     ENV["INSTITUTION"] = orig_inst
   end
 
