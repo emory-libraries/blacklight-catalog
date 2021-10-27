@@ -1,29 +1,29 @@
-<% @page_title = "#{t('help')} - #{application_name}" %>
-<% title = I18n.t('help'); abbr = title.split(' ').first(3).join(' ') + '...' %>
+<% @page_title = "#{t('help.title')} - #{application_name}" %>
+<% title = t('help.title'); abbr = title.split(' ').first(3).join(' ') + '...' %>
 
 <%= render 'catalog/breadcrumbs', crumb_hashes: [{ curr_page: true, abbr: abbr, link: '/help', title: title }]
 %>
 <div class="row static-heading-row about">
   <%= render 'static/static_heading', 
               title: title, 
-              subheading: "Pariatur qui ut veniam nostrud velit in eu adipisicing proident officia. Qui ullamco in et fugiat velit ipsum minim eiusmod. Sunt aute eu eu cupidatat mollit et proident ipsum anim occaecat do excepteur. Ipsum consequat esse veniam dolore aute mollit occaecat anim id commodo veniam sit quis est. Mollit eu minim anim eiusmod laboris velit eiusmod sunt ipsum voluptate dolor velit." 
-%>
-  </div>
+              subheading: t('help.subheading').html_safe
+  %>
+</div>
   <div class="row static-body help">
     <div class="col-lg-8 about-blurbs">
       <%= render 'static/static_content_blurbs', 
                     blurb_header_klass: " dlp-blurb-header",
-                    blurb_header: "Help Content Goes here",
+                    blurb_header: "",
                     blurb_body_klass: " dlp-blurb",
-                    blurb: "Exercitation esse proident sunt quis nisi aliquip cillum Lorem incididunt. Nostrud esse duis officia nulla velit nostrud dolore consectetur voluptate. Enim aliqua minim excepteur ad.".html_safe
+                    blurb: "".html_safe
     %>
       <%= render 'static/static_content_blurbs', 
                     blurb_header_klass: " dlp-blurb-header",
-                    blurb_header: "More Help Content Goes here",
+                    blurb_header: "",
                     blurb_body_klass: " dlp-blurb",
-                    blurb: "Exercitation esse proident sunt quis nisi aliquip cillum Lorem incididunt. Nostrud esse duis officia nulla velit nostrud dolore consectetur voluptate. Enim aliqua minim excepteur ad.".html_safe
+                    blurb: "".html_safe
     %>
-    </div>
+  </div>
     <div class=" col-lg-4">
       <div class="explore-card about-explore">
         <span class="explore-header">Explore</span>
