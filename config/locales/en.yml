@@ -55,7 +55,9 @@ en:
     unprocessable:
       header: "422 - Unprocessable Entity"
   contact: "Emory Library Search Points of Contact"
-  help: "Emory Library Catalog Help"
+  help:
+    title: "Emory Library Search Help"
+    subheading: "Library Search is the new discovery platform developed for searching Emory Libraries catalog including books, e-books, videos, journals, and some electronic items within the catalog. Links to articles, databases, and other resources used for research are provided. </br></br>Help with using Library Search is available via our User Guide and help articles on our <a href='https://wiki.emory.edu/display/BDL/Library+Search+User+Guide' target='_blank' rel='noopener noreferrer'>Wiki Site</a>."
   catalog:
     show:
       more_details_header: "More Details"
