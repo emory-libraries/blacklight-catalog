@@ -1,51 +1,20 @@
 <% @page_title = "#{t('contact')} - #{application_name}" %>
 <% title = I18n.t('contact'); abbr = nil %>
 
-<%= render 'catalog/breadcrumbs', crumb_hashes: [{ curr_page: true, abbr: abbr, link: '/contact', title: title }]
-%>
+<%= render 'catalog/breadcrumbs', crumb_hashes: [{ curr_page: true, abbr: abbr, link: '/contact', title: title }] %>
 <div class="row static-heading-row contact">
-  <%= render 'static/static_heading', 
-              title: title, 
-              subheading: "Contact points for technical assistance and additional information about our Emory Libraries Catalog and Search" 
-%>
+  <%= render 'static/static_heading', title: title, subheading: t('static.contact.subheader') %>
 </div>
 <div class="row static-body contact">
   <div class="col-lg-8 contact-blurbs">
-    <h2 class="static-blurb-header feedback-blurb-header">Send Feedback or Report a Problem</h2>
+    <h2 class="static-blurb-header feedback-blurb-header"><%= t('static.contact.headers.feedback') %></h2>
     <p class="static-blurb-body feedback-blurb">
-        <a href='https://emory.libwizard.com/f/blacklight' class="static-blurb-link">Send feedback to the development team</a>  
-      </p>
+      <a href='https://emory.libwizard.com/f/blacklight' target="_blank" class="static-blurb-link">
+        <%= t('static.contact.links.feedback') %>
+      </a>
+    </p>
 
-      <h2 class="static-blurb-header contacts-blurb-header">Assistance with Emory Libraries Services</h2>
-      <p class="static-blurb-body contacts-blurb">
-        <a href='https://libraries.emory.edu/services/purchase-request/index.html' class="static-blurb-link">Request a purchase</a>
-      </p>
-      <p class="static-blurb-body contacts-blurb">
-        <a href='https://emory.libanswers.com/' class="static-blurb-link">Ask a Librarian</a>
-      </p>
-      <p class="static-blurb-body contacts-blurb">
-        <a href='https://libraries.emory.edu/tools/report-issues-with-ejournals.html' class="static-blurb-link">Ask eJournals</a>
-      </p>
-      <p class="static-blurb-body contacts-blurb">
-        <a href='https://libraries.emory.edu/contact/subject-librarian-directory.html' class="static-blurb-link">Find a subject librarian</a>
-      </p>
-      <p class="static-blurb-body contacts-blurb">
-        <a href='https://libraries.emory.edu/services/access-course-reserves.html' class="static-blurb-link">Access Course Reserves</a>
-      </p>
-      <p class="static-blurb-body contacts-blurb">
-        <a href='https://libraries.emory.edu/services/submit-ill-request.html' class="static-blurb-link">Submit an ILL Request</a>
-      </p>
-          
-            </div>
-            <div class=" col-lg-4">
-              <div class="explore-card contact-explore">
-                <span class="explore-header">Explore</span>
-                <ul class="explore-links">
-                  <li class="explore-link-item"><%= link_to "Emory Libraries Policies", "https://libraries.emory.edu/about/policies/index.html", class: "explore-link" %></li>
-                  <li class="explore-link-item"><%= link_to "Using the Library", "https://libraries.emory.edu/using-the-library/index.html", class: "explore-link" %></li>
-                  <li class="explore-link-item"><%= link_to "Libraries Hours", "https://libraries.emory.edu/hours/index.html", class: "explore-link" %></li>
-                  <li class="explore-link-item"><%= link_to "Contact Library Staff and Departments", "https://libraries.emory.edu/contact/index.html", class: "explore-link" %></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+    <%= render 'static/contact/assistance' %>
+  </div>
+  <%= render 'static/contact/explore_card' %>
+</div>

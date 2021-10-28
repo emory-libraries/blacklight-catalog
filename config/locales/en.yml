@@ -48,6 +48,26 @@ en:
         materials_link_text: "Information about Libraries Materials"
         research_link_text: "Research Guides"
         contact_link_text: "Contact Us"
+    contact:
+      explore:
+        title: "Explore"
+        links:
+          contact_lib_staff: "Contact Library Staff and Departments"
+          lib_hours: "Libraries Hours"
+          policies: "Emory Libraries Policies"
+          using_lib: "Using the Library"
+      headers:
+        assistance: "Assistance with Emory Libraries Services"
+        feedback: "Send Feedback or Report a Problem"
+      links:
+        ask_ejournals: "Ask eJournals"
+        ask_lib: "Ask a Librarian"
+        course_reserves: "Access Course Reserves"
+        feedback: "Send feedback to the development team"
+        find_sub_lib: "Find a subject librarian"
+        ill_request: "Submit an ILL Request"
+        purchase: "Request a purchase"
+      subheader: "Contact points for technical assistance and additional information about our Emory Libraries Catalog and Search"
     not_found:
       header: "404 Error - Page Not Found"
     unhandled_exception:
