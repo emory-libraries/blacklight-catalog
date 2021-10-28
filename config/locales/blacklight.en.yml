@@ -1,6 +1,6 @@
 en:
   blacklight:
-    application_name: 'Library Catalog'
+    application_name: 'Library Search - Emory Libraries'
     availability:
       access_online: 'Access online:'
       at_library: 'At the Library'
@@ -61,6 +61,10 @@ en:
           placeholder: 'Search the Library Catalog'
       librarian_view: 
         title: 'Staff View'
+      page_title:
+        title: 'Search Results - %{application_name}'
+      show:
+        title: 'Item Detail - %{application_name}'
     tools:
       citation_warning: 'These citations are automatically generated and may not always be correct. Remember to check your citations for accuracy before including them in your work.'
       direct_link: 'Direct Link'
