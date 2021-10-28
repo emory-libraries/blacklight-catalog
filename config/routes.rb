@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :hold_requests
+  resources :availability_indicators, only: [:index], constraints: ->(request) { request.format == :json }
 
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }, skip: "sessions"
 
