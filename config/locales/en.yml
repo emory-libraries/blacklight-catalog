@@ -33,7 +33,7 @@ en:
   hello: "Hello world"
   static:
     about:
-      title: "About Emory Library Search"
+      title: "About Library Search"
       subheading: "The NEW Emory Libraries Search Tool is the primary tool for searching Emory Libraries catalog including books, e-books, videos, journals, articles, and some digital media."
       technology:
         blurb_header: "Technology"
@@ -48,6 +48,8 @@ en:
         materials_link_text: "Information about Libraries Materials"
         research_link_text: "Research Guides"
         contact_link_text: "Contact Us"
+    ejournals:
+      title: 'eJournals A-Z'
     not_found:
       header: "404 Error - Page Not Found"
     unhandled_exception:
@@ -56,7 +58,7 @@ en:
       header: "422 - Unprocessable Entity"
   contact: "Emory Library Search Points of Contact"
   help:
-    title: "Emory Library Search Help"
+    title: "Help"
     subheading: "Library Search is the new discovery platform developed for searching Emory Libraries catalog including books, e-books, videos, journals, and some electronic items within the catalog. Links to articles, databases, and other resources used for research are provided. </br></br>Help with using Library Search is available via our User Guide and help articles on our <a href='https://wiki.emory.edu/display/BDL/Library+Search+User+Guide' target='_blank' rel='noopener noreferrer'>Wiki Site</a>."
   catalog:
     show:
