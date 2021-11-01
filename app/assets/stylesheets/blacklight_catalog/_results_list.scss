@@ -101,6 +101,52 @@ dt.index-field-name {
   }
 }
 
+.loading-avail-block {
+  height: 38px;
+  width: 400px;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.loading-avail-block li {
+  box-sizing: border-box;
+  display: inline-block;
+  font-family: "Open Sans", sans-serif;
+  list-style-type: none;
+  width: 138px;
+  height: 38px;
+  text-align: center;
+  margin-right: 0;
+  line-height: 34px;
+}
+
+.loading-avail-badge {
+  font-size: 14px;
+  line-height: 30px;
+}
+
+li.loading-avail-badge {
+  border: 1px solid #E7EAF1;
+  width: 138px;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+li.loading-avail-badge span {
+  vertical-align: middle;
+}
+
+.loading-avail-message {
+  color: #091C44;
+}
+
+.loading-avail-spinner {
+  margin-right: 1em;
+}
+
 .btn.rounded-0.mb-2.phys-avail-label, .btn.rounded-0.mb-2.online-avail-label { 
   cursor:    default;
   font-size: $results-button-label-font-size;

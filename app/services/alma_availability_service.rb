@@ -8,8 +8,11 @@ class AlmaAvailabilityService
   end
 
   def availability_of_documents
-    return if @mms_ids.blank?
+    return nil if @mms_ids.blank?
+
     response = query_availability
+    return nil if response.blank?
+
     xml = Nokogiri::XML(response)
     bib_records = xml.xpath("//bib")
     ret_hsh = {}
@@ -25,6 +28,8 @@ class AlmaAvailabilityService
 
   def query_availability
     RestClient.get "#{api_url}/almaws/v1/bibs?mms_id=#{@mms_ids.join('%2C')}#{query_inst}#{api_key}"
+  rescue
+    nil
   end
 
   def query_inst
