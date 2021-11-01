@@ -3,6 +3,10 @@
 module CatalogHelper
   include Blacklight::CatalogHelperBehavior
 
+  def application_name
+    t('blacklight.application_name',
+        default: t('blacklight.application_name', locale: I18n.default_locale))
+  end
   def generic_solr_value_to_url(value)
     url_arr = build_arr_links_text_split(values_of_field(value))
     return safe_join(url_arr, tag('br')) if url_arr.present?
