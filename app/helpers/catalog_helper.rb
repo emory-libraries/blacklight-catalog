@@ -3,6 +3,8 @@
 module CatalogHelper
   include Blacklight::CatalogHelperBehavior
 
+  # Overrides Blacklight's method, since it retains the application name in cache,
+  # causing "Blacklight" to persist after changing to production name.
   def application_name
     t('blacklight.application_name',
         default: t('blacklight.application_name', locale: I18n.default_locale))
