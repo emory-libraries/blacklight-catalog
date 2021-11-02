@@ -15,20 +15,20 @@ form.search-query-form {
 }
 
 .advanced_search_home {
-  float:right;
+  float: right;
 }
 
-.advanced-search-text a{
-  float:right;
+.advanced-search-text a {
+  float: right;
 }
 
-.header-search{
-  
-  color: #091C44;
-  margin-top: 20px;
+.header-search {
+  color: #091c44;
+  margin-top: 1.25rem;
   font-family: Cardo;
   font-size: 1.75rem;
-  margin-bottom: 20px;
+  margin-bottom: map-get($spacers, 2);
+  line-height: 1.88;
 }
 
 .input-group {
