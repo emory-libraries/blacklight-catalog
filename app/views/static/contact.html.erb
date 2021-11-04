@@ -1,7 +1,7 @@
 <% @page_title = "#{t('contact')} - #{application_name}" %>
 <% title = I18n.t('contact'); abbr = nil %>
 
-<%= render 'catalog/breadcrumbs', crumb_hashes: [{ curr_page: true, abbr: abbr, link: '/contact', title: title }] %>
+<%= render 'shared/breadcrumbs', crumb_hashes: [{ curr_page: true, abbr: abbr, link: '/contact', title: title }] %>
 <div class="row static-heading-row contact">
   <%= render 'static/static_heading', title: title, subheading: t('static.contact.subheader') %>
 </div>

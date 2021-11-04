@@ -7,7 +7,7 @@
   <dl class="row dl-invert document-metadata">
     <% if fields.length > 0 %>
       <% fields.each do |field_name, field| %>
-        <%= render('metadata_line', 
+        <%= render('catalog/show_tools/metadata_line', 
               field_name: field_name, 
               document: document, 
               doc_presenter: doc_presenter, 
@@ -18,7 +18,7 @@
   <% if collapsible_fields.length > 0 %>
     <dl id="extended-terms" class='collapse row dl-invert collapsible-document-metadata'>
       <% collapsible_fields.each do |field_name, field| %>
-        <%= render('metadata_line', 
+        <%= render('catalog/show_tools/metadata_line', 
               field_name: field_name, 
               document: document, 
               doc_presenter: doc_presenter, 

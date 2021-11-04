@@ -1,7 +1,7 @@
 <%# [Overwrite-Blacklight-Advanced-Search-v7.0.0] removes start over button from page top %>
 <% @page_title = "More Search Options - #{application_name}" %>
 
-<%= render('catalog/breadcrumbs', 
+<%= render('shared/breadcrumbs', 
       crumb_hashes: [{ curr_page: true, abbr: nil, link: '/advanced', title: "Advanced Search" }]) %>
 <div class="advanced-search-form col-sm-12">
   <h1 class="advanced page-header show-header">

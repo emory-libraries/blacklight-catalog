@@ -1,7 +1,7 @@
 <% @page_title = "#{t('static.about.title')} - #{application_name}" %>
 <% title = t('static.about.title'); abbr = title.split(' ').first(3).join(' ') + '...' %>
 
-<%= render 'catalog/breadcrumbs', crumb_hashes: [{ curr_page: true, abbr: abbr, link: '/about', title: title }]
+<%= render 'shared/breadcrumbs', crumb_hashes: [{ curr_page: true, abbr: abbr, link: '/about', title: title }]
 %>
 <div class="row static-heading-row about">
   <%= render 'static/static_heading', 

@@ -2,11 +2,11 @@
   <div class="col-12 col-centered">
     <h1 id="other-resources-title"><%= t('blacklight.other_resources.title') %></h1>
     <div class="card-deck">
-      <%= render('catalog/other_resource_card', 
+      <%= render('catalog/other_resources/card', 
             url: databases_url, new_page: true, url_text: t('blacklight.other_resources.url_text.databases')) %>
-      <%= render('catalog/other_resource_card', 
+      <%= render('catalog/other_resources/card', 
             url: ejournals_path, new_page: false, url_text: t('blacklight.other_resources.url_text.ejournals')) %>
-      <%= render('catalog/other_resource_card', 
+      <%= render('catalog/other_resources/card', 
             url: articles_plus_url, new_page: true, url_text: t('blacklight.other_resources.url_text.articles_plus')) %>
     </div>
   </div>
