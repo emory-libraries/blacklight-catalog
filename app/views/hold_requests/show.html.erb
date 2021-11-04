@@ -1,14 +1,14 @@
-<h1>Hold Request</h1>
+<%= tag.h1(t('hold_requests.title')) %>
 
 <p>
-  <strong>Pickup library:</strong>
+  <strong><%= t('hold_requests.pickup_library') %></strong>
   <%= @hold_request.pickup_library %>
 </p>
 <p>
-  <strong>Hold Request id</strong>
+  <strong><%= t('hold_requests.hold_request_id') %></strong>
   <%= @hold_request.id %>
 </p>
 <p>
-  <strong>Comment</strong>
+  <strong><%= t('hold_requests.comment') %></strong>
   <%= @hold_request.comment %>
 </p>

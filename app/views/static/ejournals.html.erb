@@ -1,6 +1,8 @@
 <% @page_title = "#{t('static.ejournals.title')} - #{application_name}" %>
-<%= render 'catalog/breadcrumbs', crumb_hashes: [{ curr_page: true, abbr: nil, link: '/ejournals', title: "eJournals A-Z" }] %>
-<h1 class="static-heading">eJournals A-Z</h1>
+
+<%= render('catalog/breadcrumbs', 
+      crumb_hashes: [{ curr_page: true, abbr: nil, link: '/ejournals', title: t('static.ejournals.title') }]) %>
+<h1 class="static-heading"><%= t('static.ejournals.title') %></h1>
 <form class="advanced form-horizontal" action="/catalog" accept-charset="UTF-8" method="get">
   <input name="utf8" type="hidden" value="✓">
   <input type="hidden" name="f_inclusive[marc_resource_ssim][]" value="Online" id="marc_resource">
@@ -27,7 +29,7 @@
 
 </form>
 
-<h2 class="static-blurb-header feedback-blurb-header">Browse by eJournal Title</h2>
+<h2 class="static-blurb-header feedback-blurb-header"><%= t('static.ejournals.browse_by') %></h2>
 <% state = first_char_search_state_ejournals(search_state) %>
 <% active_letter = first_char_active_letter(state) %>
 

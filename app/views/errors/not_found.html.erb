@@ -2,8 +2,7 @@
   <div class="row static-heading-row not-found">
     <h1 class="static-heading"><%= t('static.not_found.header') %></h1>
     <div class="row static-subheading">
-      <p class="intro-subtitle">
-        Uh-oh. We can't find this item. We swear it was here at one point in time, but it seems to have either been relocated or removed altogether.</p>
+      <p class="intro-subtitle"><%= t('static.not_found.subtitle') %></p>
       <hr class="static-rule rule"></div>
     </div>
     <main class="section-main-body">
@@ -14,6 +13,6 @@
       <p>If all else fails, you can always
         <a href="https://emory.libanswers.com/" title="Ask-A-Librarian">ask a librarian</a>.</p>
       <p></p>
-      <%= image_tag '404.jpg', alt: "404: Page or file not found"   %>
+      <%= image_tag '404.jpg', alt: "404: Page or file not found" %>
     </main>
   </div>

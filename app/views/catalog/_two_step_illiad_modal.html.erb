@@ -1,22 +1,24 @@
 <div id="two-step-illiad" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div id="direct-link" class="modal-header">
-                    <h5 class="mb-0">Request Item</h5>
-                    <button type="button" class="blacklight-modal-close close" data-dismiss="modal" aria-label="<%= t('blacklight.modal.close') %>">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <% document.two_step_links.each do |holding| %>
-                    <p><%= holding[:library] %> <%= holding[:location] %></p>
-                    <ul>
-                    <% holding[:urls].each.with_index(0) do |item, index| %>
-                    <li class="mt-2"><%= holding[:call_number] %> <%= holding[:descriptions][index] %> <%= link_to "Request", item, class: "btn btn-primary" %></li>
-                    <% end %>
-                  </ul>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div id="direct-link" class="modal-header">
+        <h5 class="mb-0"><%= t('blacklight.illiad_modal.request_item') %></h5>
+        <button type="button" class="blacklight-modal-close close" data-dismiss="modal" aria-label="<%= t('blacklight.modal.close') %>">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% document.two_step_links.each do |holding| %>
+          <p><%= holding[:library] %> <%= holding[:location] %></p>
+          <ul>
+            <% holding[:urls].each.with_index(0) do |item, index| %>
+              <li class="mt-2">
+                <%= holding[:call_number] %> <%= holding[:descriptions][index] %> <%= link_to t('blacklight.illiad_modal.request'), item, class: "btn btn-primary" %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

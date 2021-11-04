@@ -69,13 +69,17 @@ en:
         purchase: "Request a purchase"
       subheader: "Contact points for technical assistance and additional information about our Emory Libraries Catalog and Search"
     ejournals:
+      browse_by: 'Browse by eJournal Title'
       title: 'eJournals A-Z'
     not_found:
       header: "404 Error - Page Not Found"
+      subtitle: "Uh-oh. We can't find this item. We swear it was here at one point in time, but it seems to have either been relocated or removed altogether."
     unhandled_exception:
       header: "500 Error - Something went wrong"
+      subtitle: "We apologize and are fixing the problem. Please try again at a later time."
     unprocessable:
       header: "422 - Unprocessable Entity"
+      subtitle: "Make sure you have access to the thing you tried to change."
   contact: "Emory Library Search Points of Contact"
   help:
     title: "Help"
@@ -94,7 +98,36 @@ en:
       more_options: "More Options"
   blacklight_advanced_search:
     form:
-      title: "Advanced Search"
-      sort_label: "Sort by"
+      pub_date_facet:
+        end: 'Publication date range (ending year)'
+        start: 'Publication date range (starting year)'
       search_btn: "Search"
+      sort_label: "Sort by"
       start_over: "Clear Form"
+      title: "Advanced Search"
+    search_tips:
+      lis:
+        boolean: 'Use "OR", "AND", and "NOT" to create complex boolean logic. You can use parentheses in your complex expressions.'
+        combine: 'Combine keywords and attributes to find specific items.'
+        exclude: 'Use "-" before a word or phrase to exclude.'
+        match_all: 'Select "match all" to require all fields.'
+        match_any: 'Select "match any" to find at least one field.'
+        phrase: 'Use quotation marks to search as a phrase.'
+        require: 'Use "+" before a term to make it required. (Otherwise results matching only some of your terms may be included).'
+        trunc_wildcard: 'Truncation and wildcards are not supported unless specifically noted. Word-stemming is done automatically.'
+      title: 'Search tips'
+  breadcrumbs:
+    home: 'Home'
+  devise:
+    affiliate_login: "Affiliate login"
+    emory_login: 'Emory Users Login'
+    forgot_password: 'Forgot your password?'
+    log_in: 'Log in'
+    not_receive_conf: "Didn't receive confirmation instructions?"
+    not_receive_unlock: "Didn't receive unlock instructions?"
+    sign_up: 'Sign up'
+  hold_requests:
+    comment: 'Comment'
+    hold_request_id: 'Hold Request id'
+    pickup_library: 'Pickup library:'
+    title: 'Hold Request'
