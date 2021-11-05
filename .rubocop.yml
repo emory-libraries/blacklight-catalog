@@ -48,11 +48,9 @@ Metrics/MethodLength:
         - 'app/services/oai_processing_single_service.rb'
         - 'lib/traject/extract_publication_date.rb'
         - 'app/controllers/sessions/social_login.rb'
-        - 'app/helpers/users_helper.rb'
 
 Metrics/ModuleLength:
     Exclude:
-        - 'app/helpers/catalog_helper.rb'
         - 'app/models/concerns/blacklight/solr/document/marc_export.rb'
         - 'lib/traject/extraction_tools.rb'
         - 'config/prepends/custom_citation_logic.rb'

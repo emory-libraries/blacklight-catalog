@@ -9,19 +9,6 @@ module CatalogHelper
     ''
   end
 
-  def build_arr_links_text_split(values)
-    values.map do |v|
-      url, text = pull_url_text_from_str(v)
-      tag.a(text, href: url, target: '_blank', rel: 'noopener noreferrer')
-    end
-  end
-
-  def pull_url_text_from_str(str)
-    link_pieces = str.split(' text: ')
-    # url first, text second
-    [link_pieces.first, (link_pieces.size > 1 ? link_pieces[1] : link_pieces.first)]
-  end
-
   def multiple_values_new_line(value)
     safe_join(values_of_field(value), tag('br'))
   end
@@ -60,6 +47,36 @@ module CatalogHelper
     ret_str
   end
 
+  def multilined_links_to_title_search(value)
+    links = build_title_search_links(values_of_field(value), value[:document]['format_ssim'].map { |v| CGI.escape(v) })
+    return safe_join(links, tag('br')) if links.present?
+    ''
+  end
+
+  def availability_present?(doc_avail_values, document)
+    doc_avail_values[:physical_exists] &&
+      (doc_avail_values[:online_available] || document.url_fulltext.present?)
+  end
+
+  private
+
+  def values_of_field(value)
+    value[:document][value[:field]]
+  end
+
+  def pull_url_text_from_str(str)
+    link_pieces = str.split(' text: ')
+    # url first, text second
+    [link_pieces.first, (link_pieces.size > 1 ? link_pieces[1] : link_pieces.first)]
+  end
+
+  def build_arr_links_text_split(values)
+    values.map do |v|
+      url, text = pull_url_text_from_str(v)
+      tag.a(text, href: url, target: '_blank', rel: 'noopener noreferrer')
+    end
+  end
+
   def author_additional_collapse_link
     link_to('',
           '#extended-author-addl',
@@ -88,16 +105,6 @@ module CatalogHelper
     ''
   end
 
-  def values_of_field(value)
-    value[:document][value[:field]]
-  end
-
-  def multilined_links_to_title_search(value)
-    links = build_title_search_links(values_of_field(value), value[:document]['format_ssim'].map { |v| CGI.escape(v) })
-    return safe_join(links, tag('br')) if links.present?
-    ''
-  end
-
   def build_title_search_links(record_values, record_formats)
     record_values.map do |v|
       query = "/?"
@@ -106,33 +113,5 @@ module CatalogHelper
       query += "&search_field=title"
       link_to v, query
     end
-  end
-
-  def service_page_url(doc_id)
-    "#{ENV['ALMA_BASE_URL']}/discovery/openurl?institution=#{ENV['INSTITUTION']}&vid=#{ENV['INSTITUTION']}:services&rft.mms_id=#{doc_id}"
-  end
-
-  def databases_url
-    'https://guides.libraries.emory.edu/az.php'
-  end
-
-  def articles_plus_url
-    'https://emory.primo.exlibrisgroup.com/discovery/search?vid=01GALI_EMORY:articles'
-  end
-
-  def my_library_card_url
-    'https://emory.primo.exlibrisgroup.com/discovery/account?vid=01GALI_EMORY:services&section=overview&lang=en'
-  end
-
-  def rounded_lightbulb
-    tag.div(
-      tag.span(image_tag("lightbulb.svg", height: "32", width: "32"), class: "rounded-lightbulb"),
-      class: "lightbulb"
-    )
-  end
-
-  def availability_present?(doc_avail_values, document)
-    doc_avail_values[:physical_exists] &&
-      (doc_avail_values[:online_available] || document.url_fulltext.present?)
   end
 end

@@ -8,4 +8,11 @@ module AlternateCatalogHelper
 
     false
   end
+
+  def rounded_lightbulb
+    tag.div(
+      tag.span(image_tag("lightbulb.svg", height: "32", width: "32"), class: "rounded-lightbulb"),
+      class: "lightbulb"
+    )
+  end
 end
