@@ -61,7 +61,7 @@ en:
         home: 'Home'
         my_library_card: 'My Library Card'
     homepage:
-      header_search: 'Search books, eBooks, videos and more'
+      header_search: 'Search books, eBooks, journals, videos and more'
       hero_title: 'Welcome To Emory University Library Catalog'
     illiad_modal:
       request: 'Request'
