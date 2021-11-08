@@ -72,4 +72,37 @@ RSpec.describe User do
       end
     end
   end
+
+  describe '#ltds_admin_user?' do
+    before do
+      allow(ENV).to receive(:[]).with('LTDS_ADMIN_NET_ID_LIST').and_return('ltds_admin')
+    end
+
+    context 'when user is ltds admin' do
+      let(:auth_hash) do
+        OmniAuth::AuthHash.new(
+          provider: 'shibboleth',
+          uid: "ltds_admin",
+          info: {
+            display_name: "LTDS Admin",
+            uid: 'ltds_admin',
+            mail: 'ltds_admin@emory.edu'
+          }
+        )
+      end
+      let(:user) { described_class.from_omniauth(auth_hash) }
+
+      it 'returns true' do
+        expect(user.ltds_admin_user?).to be true
+      end
+    end
+
+    context 'when user is not ltds admin' do
+      let(:user) { described_class.create(uid: "test") }
+
+      it 'returns false' do
+        expect(user.ltds_admin_user?).to be false
+      end
+    end
+  end
 end

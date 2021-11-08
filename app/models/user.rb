@@ -34,6 +34,11 @@ class User < ApplicationRecord
     oxford_user_group_ids.include?(user_group)
   end
 
+  def ltds_admin_user?
+    ltds_admin_net_ids = ENV['LTDS_ADMIN_NET_ID_LIST']&.split(',')&.map(&:strip) || []
+    provider&.downcase == 'shibboleth' && ltds_admin_net_ids.include?(uid)
+  end
+
   def oxford_user_group_ids
     %w[23 24 25 26]
   end

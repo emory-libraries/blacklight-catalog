@@ -179,6 +179,8 @@ GEM
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
+    flipflop (2.6.0)
+      activesupport (>= 4.0)
     geocoder (1.6.7)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -536,6 +538,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails (~> 4.11.1)
   ffaker
+  flipflop (~> 2.3)
   inline_svg
   jbuilder (~> 2.5)
   jquery-rails
