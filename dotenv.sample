@@ -24,3 +24,6 @@ oai_set_name=blacklighttest
 
 # provide SOLR_URL for solr connections
 SOLR_URL=
+
+# provide a comma-separated list of network IDs of LTDS users who can perform administrative tasks
+LTDS_ADMIN_NET_ID_LIST=

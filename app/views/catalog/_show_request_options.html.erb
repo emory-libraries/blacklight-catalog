@@ -6,23 +6,22 @@
     <div class="col"> <%# Replace col with col-6 if request-options is restored %>
       <%= tag.h2 t('catalog.show.find_it_header'), class: "section-title find-it-header" %>
     </div>
-    <% if doc_avail_values.present? %>
-    <div class="col-12">
-      <%= render_physical_avail_spans(doc_avail_values, service_page_link) %>
-      <%= tag('br') if availability_present?(doc_avail_values, document) %>
-      <% if doc_avail_values[:online_available] || document.url_fulltext.present? %>
-        <span class="btn rounded-0 mb-2 online-avail-label avail-default">Online</span>
-        <% if !doc_avail_values[:online_available] %>
-          <%= render_online_link_span(document.id) %>
-          <%= render 'shared/document_url_fulltext_modal', document: document %>
-        <% else %>
-          <span class="online-avail-button">
-            <%= link_to(t('blacklight.availability.connect'), service_page_link, 
-                  target: "_blank", class: "btn btn-md rounded-0 mb-2 btn-outline-primary avail-link-el") %>
-          </span>
+    <% if !Flipflop.enable_requesting_using_api? && doc_avail_values.present? %>
+      <div class="col-12">
+        <%= render_physical_avail_spans(doc_avail_values, service_page_link) %>
+        <%= tag('br') if doc_avail_values[:physical_exists] && (doc_avail_values[:online_available] || document.url_fulltext.present?) %>
+        <% if doc_avail_values[:online_available] || document.url_fulltext.present? %>
+          <span class="btn rounded-0 mb-2 online-avail-label avail-default">Online</span>
+          <% if !doc_avail_values[:online_available] %>
+            <%= render_online_link_span(document.id) %>
+            <%= render 'document_url_fulltext_modal', document: document %>
+          <% else %>
+            <span class="online-avail-button">
+              <%= link_to "CONNECT", service_page_link, target: "_blank", class: "btn btn-md rounded-0 mb-2 btn-outline-primary avail-link-el" %>
+            </span>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
     <% end %>
     <%#
     <div class="col-6 request-options">
@@ -33,116 +32,110 @@
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
     %>
-          <%# if document.hold_requestable?(current_or_guest_user) %>
-            <%#= link_to "Hold request", new_hold_request_path(hold_request: {mms_id: document.id, title: document['title_display_tesim']&.first}), class: "dropdown-item" %>
-          <%# end %>
-          <%# if document.one_step_doc_delivery?(physical_holdings, current_or_guest_user) %>
-            <%#= link_to "Request Article or Chapter", document.one_step_link, class: "dropdown-item" %>
-          <%# end %>
-          <%# if document.two_step_doc_delivery?(physical_holdings, current_or_guest_user) %>
-            <%#= link_to "Request Article or Chapter", "#", class: "dropdown-item", data: {toggle: "modal", target: "#two-step-illiad"} %>
-          <%# end %>
-          <%# if document.special_collections_requestable?(current_or_guest_user) %>
-            <%#= link_to "Request from Special Collections", document.special_collections_url, class: "dropdown-item" %>
-          <%# end %>
+    <%# if document.hold_requestable?(current_or_guest_user) %>
+    <%#= link_to "Hold request", new_hold_request_path(hold_request: {mms_id: document.id, title: document['title_display_tesim']&.first}), class: "dropdown-item" %>
+    <%# end %>
+    <%# if document.one_step_doc_delivery?(physical_holdings, current_or_guest_user) %>
+    <%#= link_to "Request Article or Chapter", document.one_step_link, class: "dropdown-item" %>
+    <%# end %>
+    <%# if document.two_step_doc_delivery?(physical_holdings, current_or_guest_user) %>
+    <%#= link_to "Request Article or Chapter", "#", class: "dropdown-item", data: {toggle: "modal", target: "#two-step-illiad"} %>
+    <%# end %>
+    <%# if document.special_collections_requestable?(current_or_guest_user) %>
+    <%#= link_to "Request from Special Collections", document.special_collections_url, class: "dropdown-item" %>
+    <%# end %>
     <%#
         </div>
       </div>
     </div>
     %>
   </div>
-<% if false %>
-  <% if document.physical_holdings %>
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr class="d-flex">
-            <th scope="col" class="col-sm-4"><%= t('blacklight.availability.at_library') %></th>
-            <th scope="col" class="col-sm-8"><%= t('blacklight.availability.status') %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% physical_holdings.each.with_index(1) do |holding, index| %>
-            <tr id="physical-holding-<%= index.to_s %>" class="d-flex">
-              <td class="col-sm-4">
-                <%= holding[:library][:label] %>
-                <br><%= holding[:location][:label] %>
-                  <br><%= holding[:call_number] %>
-                  </td>
-                  <td class="col-sm-8">
-                    <a href="#" class="toggle-table collapsed">
-                      <% if holding[:availability][:availability_phrase] != "check_holdings" %>
-                        <%= pluralize(holding[:availability][:copies], 'item') +
+  <% if Flipflop.enable_requesting_using_api? %>
+    <% if document.physical_holdings&.any? %>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr class="d-flex">
+              <th scope="col" class="col-sm-4"><%= t('blacklight.availability.at_library') %></th>
+              <th scope="col" class="col-sm-8"><%= t('blacklight.availability.status') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% document.physical_holdings.each.with_index(1) do |holding, index| %>
+              <tr id="physical-holding-<%= index.to_s %>" class="d-flex">
+                <td class="col-sm-4">
+                  <%= holding[:library][:label] %>
+                  <br>
+                  <%= holding[:location][:label] %>
+                  <br>
+                  <%= holding[:call_number] %>
+                </td>
+                <td class="col-sm-8">
+                  <a href="#" class="toggle-table collapsed">
+                    <% if holding[:availability][:availability_phrase] != "check_holdings" %>
+                      <%= pluralize(holding[:availability][:copies], 'item') +
                               ", #{holding[:availability][:available]} available" +
                               ", " + pluralize(holding[:availability][:requests], 'request')
                         %>
-                      <% else %>
-                        Check holdings
-                      <% end %>
-                    </a>
-                    <br>
-                      <%= holding[:description] %>
-                      <div class="table-responsive toggled-table" style="display: none;">
-                        <table class="table table-sm">
-                          <thead>
-                            <tr>
-                              <th scope="col" width="15%">barcode</th>
-                              <th scope="col" width="10%">type</th>
-                              <th scope="col" width="25%">policy</th>
-                              <th scope="col" width="25%">description</th>
-                              <th scope="col" width="25%">status</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <% holding[:items].each do |item| %>
-                              <tr>
-                                <td><%= item[:barcode] %></td>
-                                <td><%= item[:type] %></td>
-                                <% if current_or_guest_user.guest? %>
-                                  <td class="word-wrap"><%= item[:policy][:policy_desc] %></td>
-                                <% else %>
-                                  <td class="word-wrap"><%= item[:policy][:due_date_policy] %></td>
-                                  <% end%>
-                                  <td class="word-wrap"><%= item[:description] %></td>
-                                  <td><%= item[:status] %></td>
-                                </tr>
-                              <% end %>
-
-                            </tbody>
-                          </table>
-                        </div>
-                      </td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-            <% if document.two_step_doc_delivery?(physical_holdings, current_or_guest_user) %>
-              <%= render 'two_step_illiad_modal', document: document, physical_holdings: physical_holdings %>
+                    <% else %>
+                      Check holdings
+                    <% end %>
+                  </a>
+                  <br>
+                  <%= holding[:description] %>
+                  <div class="table-responsive toggled-table" style="display: none;">
+                    <table class="table table-sm">
+                      <thead>
+                        <tr>
+                          <th scope="col" width="15%">barcode</th>
+                          <th scope="col" width="10%">type</th>
+                          <th scope="col" width="25%">policy</th>
+                          <th scope="col" width="25%">description</th>
+                          <th scope="col" width="25%">status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% holding[:items].each do |item| %>
+                          <tr>
+                            <td><%= item[:barcode] %></td>
+                            <td><%= item[:type] %></td>
+                            <td class="word-wrap"><%= item[:policy][:policy_desc] %></td>
+                            <td class="word-wrap"><%= item[:description] %></td>
+                            <td><%= item[:status] %></td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
             <% end %>
+          </tbody>
+        </table>
+      </div>
+      <% if document.two_step_doc_delivery?(document.physical_holdings, current_or_guest_user) %>
+        <%= render 'two_step_illiad_modal', document: document, physical_holdings: document.physical_holdings %>
+      <% end %>
+    <% end %>
+    <% if document.online_holdings&.any? %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"><%= t('blacklight.availability.online') %></th>
+            <th scope="col">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% document.online_holdings.each do |holding| %>
+            <tr>
+              <td><%= t('blacklight.availability.access_online') %></td>
+              <td><%= link_to(holding[:label], holding[:url]) %></td>
+            </tr>
           <% end %>
-          <% if document.online_holdings %>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col"><%= t('blacklight.availability.online') %></th>
-                  <th scope="col">&nbsp;</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% document.online_holdings.each do |holding| %>
-                  <tr>
-                    <td><%= t('blacklight.availability.access_online') %></td>
-                    <td><%= link_to(holding[:label], holding[:url]) %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          <% end %>
-
-          <!-- TODO: Change the link below to the production url for Alma if we continue to use this -->
-          <%= link_to("Services page", service_page_link, target: "_blank") %>
-<% end %>
-        </div>
-
-
+        </tbody>
+      </table>
+    <% end %>
+    <!-- TODO: Change the link below to the production url for Alma if we continue to use this -->
+    <%= link_to("Services page", service_page_link, target: "_blank") %>
+  <% end %>
+</div>
