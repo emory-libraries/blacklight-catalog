@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
 
     respond_to { |format| format.any { render json: availability } }
   end
+
+  def require_authenticated_ltds_admin_user
+    head :forbidden unless user_signed_in? && current_user.ltds_admin_user?
+  end
 end

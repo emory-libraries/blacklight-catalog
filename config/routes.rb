@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
+  mount Flipflop::Engine => "/features"
   mount Qa::Engine => '/qa'
 
   concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
