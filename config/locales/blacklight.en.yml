@@ -22,6 +22,7 @@ en:
         contact_feedback: 'Contact & Feedback'
         donate: 'Donate'
         harmful_language: 'Harmful Language in the Catalog'
+    header:
       static_links:
         about_library_search: 'About Library Search'
         articles_plus: "Articles +"
