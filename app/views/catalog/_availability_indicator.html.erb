@@ -3,7 +3,7 @@
 <dd class="avail-dd col-md-9" id="availability-indicator-<%= document.id %>">
     <% if doc_avail_values.present? %>
       <%= render_physical_avail_spans(doc_avail_values, service_page_link) %>
-      <%= tag('br') if doc_avail_values[:physical_exists] && (doc_avail_values[:online_available] || document.url_fulltext.present?) %>
+      <%= tag('br') if availability_present?(doc_avail_values, document) %>
       <% if doc_avail_values[:online_available] || document.url_fulltext.present? %>
         <%= tag.span(t('blacklight.availability.online'), class: "btn rounded-0 mb-2 online-avail-label avail-default") %>
         <% if !doc_avail_values[:online_available] %>
