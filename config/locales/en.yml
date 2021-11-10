@@ -70,12 +70,6 @@ en:
       subheader: "Contact points for technical assistance and additional information about our Emory Libraries Catalog and Search"
     ejournals:
       title: 'eJournals A-Z'
-    not_found:
-      header: "404 Error - Page Not Found"
-    unhandled_exception:
-      header: "500 Error - Something went wrong"
-    unprocessable:
-      header: "422 - Unprocessable Entity"
   contact: "Emory Library Search Points of Contact"
   help:
     title: "Help"
@@ -94,7 +88,7 @@ en:
       more_options: "More Options"
   blacklight_advanced_search:
     form:
-      title: "Advanced Search"
-      sort_label: "Sort by"
       search_btn: "Search"
+      sort_label: "Sort by"
       start_over: "Clear Form"
+      title: "Advanced Search"

@@ -1,12 +1,8 @@
 <div class="border-resources card mb-3">
   <div class="card-header bg-resources resources-header"></div>
   <div class="card-body">
-    <div class="lightbulb">
-    <span class="rounded-lightbulb">
-    <%= image_tag("lightbulb.svg", :height => "32", :width => "32") %>
-    </span>
-    </div>
-    <p class="text-other-resources"><%= t('blacklight.other_resources.card_descriptor.search_tool') %></p>
+    <%= rounded_lightbulb %>
+    <p class="text-other-resources">Search Tool</p>
     <a href=<%= url %><%= ' target="_blank"' if new_page %>>
     <h3 class="bigtext-other-resources"><%= url_text %></h3>
     </a>

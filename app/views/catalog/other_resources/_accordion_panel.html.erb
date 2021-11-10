@@ -1,0 +1,14 @@
+<a href="#" class="collapsed panel-anchor" data-toggle="collapse" data-target="#<%= data_target %>">
+<div class="panel-title">
+  <h2><%= panel_header %></h2>
+  <button type="button" class="btn panel-toggler collapsed" data-toggle="collapse" data-target="#<%= data_target %>">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</div>
+</a>
+<div id="<%= data_target %>" class="resource-body collapse">
+  <p><%= body_text %></p>
+  <a class="btn btn-md btn-primary btn-login rounded-0 mb-2" href="<%= body_link %>" target="_blank">
+    View <%= panel_header %>
+  </a>
+</div>

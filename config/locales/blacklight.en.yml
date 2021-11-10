@@ -5,7 +5,6 @@ en:
       access_online: 'Access online:'
       at_library: 'At the Library'
       call_number: 'Call Number'
-      online: 'Online'
       status: 'Status'
       view_more_options: 'View more access options'
       view_options: 'View access options'
@@ -17,18 +16,13 @@ en:
     citation:
       mla: 'MLA (8th Edition)'
       apa: 'APA (7th Edition)'
-    footer: 
+    footer:
       links:
         about_library_search: 'About Library Search'
         contact_feedback: 'Contact & Feedback'
         donate: 'Donate'
         harmful_language: 'Harmful Language in the Catalog'
     header:
-      logo_text:
-        alt:
-          logo: 'Emory Library'
-        emory_university: 'Emory University'
-        emory_libraries: 'Emory Libraries'
       static_links:
         about_library_search: 'About Library Search'
         articles_plus: "Articles +"
@@ -38,20 +32,7 @@ en:
         help: 'Help'
         home: 'Home'
         my_library_card: 'My Library Card'
-    other_resources: 
-      title: 'Other Resources'
-      card_descriptor:
-        search_tool: 'Search Tool'
-      url_text:
-        articles_plus: 'Articles+'
-        databases: 'Databases@Emory'
-        ejournals: 'eJournals (A-Z)'
     search:
-      alternate_catalog:
-        inside_link: 'results in Articles +'
-        outside_link: 'Search for '
-        question: 'Looking for articles?'
-        title: 'ARTICLES +'
       bookmarks:
         absent: 'Bookmark Item'
       first_char:

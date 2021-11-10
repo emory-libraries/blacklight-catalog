@@ -12,54 +12,19 @@
 
 <div class="limit_content range_limit">
   <% if has_selected_range_limit?(field_name) %>
-    <ul class="current list-unstyled facet-values">
-      <li class="selected">
-        <span class="facet-label">
-          <span class="selected"><%= range_display(field_name) %></span>
-          <%= link_to search_action_url(remove_range_param(field_name).except(:controller, :action)), :class=>"remove", :title => t('blacklight.range_limit.remove_limit') do %>
-            <span class="remove-icon">✖</span>
-            <span class="sr-only">[<%= t('blacklight.range_limit.remove_limit') %>]</span>
-          <% end %>
-        </span>
-        <span class="selected facet-count"><%= number_with_delimiter(@response.total) %></span>
-      </li>
-    </ul>
-
+    <%= render 'blacklight_range_limit/remove_range_limit', field_name: field_name %>
   <% end %>
 
   <!-- no results profile if missing is selected -->
   <% unless selected_missing_for_range_limit?(field_name) %>
-    <!-- you can hide this if you want, but it has to be on page if you want
-         JS slider and calculated facets to show up, JS sniffs it. -->
-    <div class="profile">
-        <% if stats_for_field?(field_name) %>
-          <!-- No stats information found for field  in search response -->
-        <% end %>
+    <%= render('blacklight_range_limit/slider_container', field_name: field_name, field_config: field_config) %>
 
-        <% if (min = range_results_endpoint(field_name, :min)) &&
-              (max = range_results_endpoint(field_name, :max)) %>
-
-          <% if field_config[:segments] != false %>
-            <div class="distribution subsection <%= 'chart_js' unless field_config[:chart_js] == false %>">
-              <!-- if  we already fetched segments from solr, display them
-                   here. Otherwise, display a link to fetch them, which JS
-                   will AJAX fetch.  -->
-              <% if solr_range_queries_to_a(field_name).length > 0 %>
-
-                 <%= render(:partial => "blacklight_range_limit/range_segments", :locals => {:solr_field => field_name}) %>
-
-              <% else %>
-                <%= link_to(t('blacklight.range_limit.view_distribution'), range_limit_url(range_field: field_name, range_start: min, range_end: max), :class => "load_distribution") %>
-              <% end %>
-            </div>
-          <% end %>
-          <p class="range subsection <%= "slider_js" unless field_config[:slider_js] == false %>">
-            <%= t('blacklight.range_limit.results_range_html', min: range_results_endpoint(field_name, :min), max: range_results_endpoint(field_name, :max)) %>
-          </p>
-        <% end %>
-    </div>
-
-    <%= form_tag search_action_path, :method => :get, class: [BlacklightRangeLimit.classes[:form], "range_#{field_name} d-flex justify-content-center"].join(' ') do %>
+    <%= form_tag(search_action_path, 
+          :method => :get, 
+          class: [
+            BlacklightRangeLimit.classes[:form], 
+            "range_#{field_name} d-flex justify-content-center"
+          ].join(' ')) do %>
       <%= render_hash_as_hidden_fields(search_state.params_for_search.except(:page)) %>
 
       <!-- Include a dummy search_field parameter if none exists to trick blacklight

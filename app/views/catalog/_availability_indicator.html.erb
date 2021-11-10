@@ -3,19 +3,20 @@
 <dd class="avail-dd col-md-9" id="availability-indicator-<%= document.id %>">
     <% if doc_avail_values.present? %>
       <%= render_physical_avail_spans(doc_avail_values, service_page_link) %>
-      <%= tag('br') if doc_avail_values[:physical_exists] && (doc_avail_values[:online_available] || document.url_fulltext.present?) %>
+      <%= tag('br') if availability_present?(doc_avail_values, document) %>
       <% if doc_avail_values[:online_available] || document.url_fulltext.present? %>
-        <span class="btn rounded-0 mb-2 online-avail-label avail-default">Online</span>
+        <%= tag.span('Online', class: "btn rounded-0 mb-2 online-avail-label avail-default") %>
         <% if !doc_avail_values[:online_available] %>
           <%= render_online_link_span(document.id) %>
-          <%= render 'catalog/document_url_fulltext_modal', document: document %>
+          <%= render 'shared/document_url_fulltext_modal', document: document %>
         <% else %>
           <span class="online-avail-button">
-            <%= link_to "CONNECT", service_page_link, target: "_blank", class: "btn btn-md rounded-0 mb-2 btn-outline-primary avail-link-el" %>
+            <%= link_to('CONNECT', service_page_link, 
+                  target: "_blank", class: "btn btn-md rounded-0 mb-2 btn-outline-primary avail-link-el") %>
           </span>
         <% end %>
       <% end %>
     <% else %>
-      <span class="btn rounded-0 mb-2 phys-avail-label avail-danger">Unknown</span>  
+      <span class="btn rounded-0 mb-2 phys-avail-label avail-danger">Unknown</span>
     <% end %>
 </dd>

@@ -123,4 +123,16 @@ module CatalogHelper
   def my_library_card_url
     'https://emory.primo.exlibrisgroup.com/discovery/account?vid=01GALI_EMORY:services&section=overview&lang=en'
   end
+
+  def rounded_lightbulb
+    tag.div(
+      tag.span(image_tag("lightbulb.svg", height: "32", width: "32"), class: "rounded-lightbulb"),
+      class: "lightbulb"
+    )
+  end
+
+  def availability_present?(doc_avail_values, document)
+    doc_avail_values[:physical_exists] &&
+      (doc_avail_values[:online_available] || document.url_fulltext.present?)
+  end
 end

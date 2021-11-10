@@ -1,0 +1,16 @@
+<% doc_presenter = show_presenter(document) %>
+<% fields = presenter.new(document: doc_presenter.fields_to_render).terms %>
+
+<% if fields.length > 0 %>
+  <h4 class="blacklight-<%= title %>"><%= title %></h4>
+  <dl class="row dl-invert document-metadata">
+    <% fields.each do |field_name, field| %>
+      <dt class="blacklight-<%= field_name.parameterize %> col-md-4">
+        <%= render_document_show_field_label document, field: field_name %>
+      </dt>
+      <dd class="blacklight-<%= field_name.parameterize %> col-md-8<%= " truncate" if blacklight_config.truncate_field_values.include? field_name %>">
+        <%= doc_presenter.field_value field %>
+      </dd>
+    <% end %>
+  </dl>
+<% end %>

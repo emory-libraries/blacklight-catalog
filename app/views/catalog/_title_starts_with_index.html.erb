@@ -1,5 +1,6 @@
 <% state = first_char_search_state(search_state) %>
 <% active_letter = first_char_active_letter(state) %>
+
 <% if request.url.include?('?') && !request.url.include?('/advance') %>
   <nav class="alpha-filter first-main-char-nav">
     <ol class="first-main-char-ol">
