@@ -1,14 +1,14 @@
 <%# [Devise-4.7.3 Overwrite] Adds login links for Shibboleth and Affiliate %>
 <%- if controller_name != 'sessions' %>
-  <%= link_to 'Log in', new_session_path(resource_name) %><br />
+  <%= link_to "Log in", new_session_path(resource_name) %><br />
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to 'Sign up', new_registration_path(resource_name) %><br />
+  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
 <% end %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to 'Forgot your password?', new_password_path(resource_name) %><br />
+  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
@@ -22,9 +22,9 @@
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
     <% if provider == "Shibboleth" %>
-      <%= link_to 'Emory Users Login', new_user_shib_session_path %><br />
+      <%= link_to "Emory Users Login", new_user_shib_session_path %><br />
     <% else %>
-      <%= link_to 'Emory Users Login', omniauth_authorize_path(resource_name, provider) %><br />
+      <%= link_to "Emory Users Login", omniauth_authorize_path(resource_name, provider) %><br />
     <% end %>
   <% end %>
   <%= link_to "Affiliate login", alma_social_login_url(redirect_to: session[:requested_page]) %>
