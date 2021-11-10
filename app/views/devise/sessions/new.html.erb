@@ -1,4 +1,4 @@
-<h2><%= t('devise.log_in') %></h2>
+<h2>Log in</h2>
 
 <% unless AuthConfig.use_database_auth? %>
   <%= render "devise/shared/links" %>
@@ -13,7 +13,7 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, t('devise.log_in') %>
+      <%= f.button :submit, 'Log in' %>
     </div>
   <% end %>
 <% end %>

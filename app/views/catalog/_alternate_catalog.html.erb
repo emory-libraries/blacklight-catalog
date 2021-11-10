@@ -5,13 +5,13 @@
         <div class="card-header bg-resources resources-header"></div>
         <div class="card-body">
           <%= rounded_lightbulb %>
-          <p class="text-other-resources"><%= t('blacklight.search.alternate_catalog.title') %></p>
-          <h3 class="bigtext-other-resources"><%= t('blacklight.search.alternate_catalog.question') %></h3>
+          <p class="text-other-resources">ARTICLES +</p>
+          <h3 class="bigtext-other-resources">Looking for articles?</h3>
           <p id="results-p">
-            <%= t('blacklight.search.alternate_catalog.outside_link') %>
+            Search for 
             <a href="<%= articles_plus_url_builder(search_state) %>" id="articles-plus-url" target="_blank" rel="noopener noreferrer">
               <span class="alternate-catalog-count"></span>
-              <%= t('blacklight.search.alternate_catalog.inside_link') %>
+              results in Articles +
             </a>
           </p>
         </div>

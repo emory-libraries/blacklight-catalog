@@ -5,10 +5,7 @@ en:
       access_online: 'Access online:'
       at_library: 'At the Library'
       call_number: 'Call Number'
-      connect: 'CONNECT'
-      online: 'Online'
       status: 'Status'
-      unknown: 'Unknown'
       view_more_options: 'View more access options'
       view_options: 'View access options'
     bookmarks:
@@ -19,27 +16,7 @@ en:
     citation:
       mla: 'MLA (8th Edition)'
       apa: 'APA (7th Edition)'
-    copyright:
-      address: ' 201 Dowman Drive, Atlanta, Georgia 30322 '
-      all_rights: 'All Rights Reserved.'
-      owner: 'Emory University'
-      phone: ' 404.727.6123 '
-      privacy_policy: ' Privacy Policy '
-      statement: ' Copyright Statement '
     footer:
-      dropdown_links:
-        business: 'Business'
-        computing_center: 'Computing Center at Cox Hall'
-        default: 'Select a Location'
-        health_sciences: 'Health Sciences'
-        law: 'Law'
-        lsc: 'Library Service Center'
-        music_media: 'Music & Media'
-        oxford: 'Oxford College'
-        rose: 'Rose'
-        science_commons: 'Science Commons'
-        theology: 'Theology'
-        woodruff: 'Woodruff'
       links:
         about_library_search: 'About Library Search'
         contact_feedback: 'Contact & Feedback'
@@ -49,8 +26,6 @@ en:
       logo_text:
         alt:
           logo: 'Emory Library'
-        emory_university: 'Emory University'
-        emory_libraries: 'Emory Libraries'
       static_links:
         about_library_search: 'About Library Search'
         articles_plus: "Articles +"
@@ -60,51 +35,7 @@ en:
         help: 'Help'
         home: 'Home'
         my_library_card: 'My Library Card'
-    homepage:
-      header_search: 'Search books, eBooks, journals, videos and more'
-      hero_title: 'Welcome To Emory University Library Catalog'
-    illiad_modal:
-      request: 'Request'
-      request_item: 'Request Item'
-    other_resources: 
-      accordion:
-        course_reserves:
-          body: "Course Reserves are required and recommended course materials made available to students at the request of faculty."
-          header: 'Course Reserves'
-        digital_repository:
-          body: "Emory's digital collections support the University's research and teaching needs and are our digital front door to unique cultural heritage and scholarship collections from Emory University."
-          header: 'Emory Digital Collections Repository'
-        etd_repository:
-          body: "The Emory Theses and Dissertations (ETD) Repository holds theses and dissertations from the Laney Graduate School, the Rollins School of Public Health, and the Candler School of Theology, as well as undergraduate honors papers from Emory College of Arts and Sciences."
-          header: 'Emory Theses and Dissertations Repository'
-        finding_aids:
-          body: "The EmoryFindingAids database provides centralized access to detailed descriptions of archival and manuscript collections held in various repositories at Emory."
-          header: 'Finding Aids'
-        header: 'Other Research Resources'
-        hide_all: 'Hide All Sections'
-        ill:
-          body: "ILLiad is the system for Emory Libraries Interlibrary Loan and Electronic Document Delivery."
-          header: 'InterLibrary Loan'
-        openemory:
-          body: "OpenEmory is an open access repository of Emory faculty works and a service of Emory Libraries and Information Technology."
-          header: 'OpenEmory Repository'
-        research_guides:
-          body: 'Research guides offer research assistance, subject guides, and useful resources created and curated by expert librarians and staff at the Emory Libraries.'
-          header: 'Research Guides'
-        show_all: 'Show All Sections'
-      title: 'Other Resources'
-      card_descriptor:
-        search_tool: 'Search Tool'
-      url_text:
-        articles_plus: 'Articles+'
-        databases: 'Databases@Emory'
-        ejournals: 'eJournals (A-Z)'
     search:
-      alternate_catalog:
-        inside_link: 'results in Articles +'
-        outside_link: 'Search for '
-        question: 'Looking for articles?'
-        title: 'ARTICLES +'
       bookmarks:
         absent: 'Bookmark Item'
       first_char:
@@ -116,9 +47,6 @@ en:
         title: 'Staff View'
       page_title:
         title: 'Search Results - %{application_name}'
-      results:
-        access_availability: 'Access & Availability:'
-        loading: 'Loading'
       show:
         title: 'Item Detail - %{application_name}'
     tools:
@@ -127,9 +55,6 @@ en:
       feedback: 'Feedback'
       help: 'Help'
       librarian_view: 'Staff View'
-      more_like_this: 'More Like This'
       print: 'Print'
       direct_link_url_text: 'Direct Link URL'
       export_as_ris: 'Export as RIS'
-    url_fulltext_modal:
-      online_versions: 'Online Versions'

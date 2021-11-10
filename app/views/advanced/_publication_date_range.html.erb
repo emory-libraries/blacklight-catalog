@@ -6,11 +6,11 @@
   <% end %>
   <div class="col-sm-8 range_limit">
     <label for="range_pub_date_start_sort_begin" class="sr-only">
-      <%= t('blacklight_advanced_search.form.pub_date_facet.start') %>
+      Publication date range (starting year)
     </label>
     <%= render_range_input(pub_date.field, :begin) %> – 
     <label for="range_pub_date_start_sort_end" class="sr-only">
-      <%= t('blacklight_advanced_search.form.pub_date_facet.end') %>
+      Publication date range (ending year)
     </label>
     <%= render_range_input(pub_date.field, :end) %>
   </div>
