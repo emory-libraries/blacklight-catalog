@@ -32,3 +32,4 @@ yarn.lock
 
 # Ignore JMeter logs.
 *jmeter.log
+.ruby-version

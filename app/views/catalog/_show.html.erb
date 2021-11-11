@@ -15,3 +15,15 @@
 <%= render('catalog/show_tools/metadata_block', 
       document: document, presenter: DescriptionSummaryPresenter, title: t('catalog.show.description_summary')) %>
 <%= render 'catalog/show_tools/metadata_block', document: document, presenter: AddlIdsPresenter, title: t('catalog.show.addl_ids') %>
+
+<script type="text/javascript">
+  gtag('event', '<%= document['library_ssim']&.first %>', {
+    'event_category': 'library_view',
+    'event_label': '<%= document['title_main_display_ssim'].first %>'
+  });
+
+  gtag('event', '<%= document['format_ssim']&.first %>', {
+    'event_category': 'library_view',
+    'event_label': '<%= document['title_main_display_ssim'].first %>'
+  });
+</script>
