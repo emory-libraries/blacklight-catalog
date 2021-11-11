@@ -19,3 +19,16 @@
   </div>
 </div>
 <% end %>
+
+<script type="text/javascript">
+  [...document.querySelectorAll('.facet-select')].forEach(function(item) {
+    item.addEventListener('mouseover', function() {
+      var facetParent = item.parentElement.parentElement.parentElement.parentElement.parentElement.id;
+      console.log(facetParent);
+    });
+  });
+
+  document.querySelector('.submit.btn.btn-secondary').addEventListener('mouseover', function() {
+    
+  });
+</script>

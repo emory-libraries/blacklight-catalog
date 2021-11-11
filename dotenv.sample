@@ -27,3 +27,4 @@ SOLR_URL=
 
 # provide a comma-separated list of network IDs of LTDS users who can perform administrative tasks
 LTDS_ADMIN_NET_ID_LIST=
+GA_TRACKING_CODE=your_google_analytics_code
