@@ -55,6 +55,7 @@ Metrics/ModuleLength:
         - 'lib/traject/extraction_tools.rb'
         - 'config/prepends/custom_citation_logic.rb'
         - 'app/models/concerns/statusable.rb'
+        - 'app/helpers/catalog_helper.rb'
 
 Metrics/PerceivedComplexity:
     Exclude:
