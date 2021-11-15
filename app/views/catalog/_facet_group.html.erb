@@ -21,7 +21,7 @@
 <% end %>
 
 <script type="text/javascript">
-  [...document.querySelectorAll('.facet-select')].forEach(function(item) {
+  document.querySelectorAll('.facet-select').forEach(function(item) {
     item.addEventListener('click', function() {
       var facetParent = item.parentElement.parentElement.parentElement.parentElement.parentElement.id;
       
@@ -39,7 +39,7 @@
     });
   });
 
-  [...document.querySelectorAll('.btn.btn-block.p-2.text-left.collapse-toggle.collapsed')].forEach(function(item) {
+  document.querySelectorAll('.btn.btn-block.p-2.text-left.collapse-toggle.collapsed').forEach(function(item) {
     item.addEventListener('click', function() {
       gtag('event', item.innerText, {
         'event_category': 'facet_viewed',
