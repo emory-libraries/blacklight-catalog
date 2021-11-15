@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  before_action do
+    Rack::MiniProfiler.authorize_request if authenticated_ltds_admin_user?
+  end
+
   def guest_uid_authentication_key(key)
     guest_email_authentication_key(key)
   end
@@ -18,6 +22,12 @@ class ApplicationController < ActionController::Base
   end
 
   def require_authenticated_ltds_admin_user
-    head :forbidden unless user_signed_in? && current_user.ltds_admin_user?
+    head :forbidden unless authenticated_ltds_admin_user?
+  end
+
+  private
+
+  def authenticated_ltds_admin_user?
+    user_signed_in? && current_user.ltds_admin_user?
   end
 end

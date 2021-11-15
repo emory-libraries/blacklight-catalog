@@ -22,5 +22,7 @@ module BlacklightCatalog
 
     config.exceptions_app = routes
     config.autoload_paths += %W[#{config.root}/app/loggers lib/traject]
+
+    Rack::MiniProfiler.config.authorization_mode = :allow_authorized
   end
 end
