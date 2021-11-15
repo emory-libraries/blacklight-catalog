@@ -18,7 +18,11 @@ module CatalogHelper
   end
 
   def combine_author_vern(value)
-    combined_values = value[:document].combined_author_display_vern
+    combined_values =
+      (multilined_links_to_facet_flexible(values_of_field(value), 'author_display_ssim') +
+        multilined_links_to_facet_flexible(
+          value[:document]['author_vern_ssim'], 'author_vern_ssim'
+        ))&.compact&.uniq
     return safe_join(combined_values, tag('br')) if combined_values.present?
     ''
   end
@@ -103,6 +107,14 @@ module CatalogHelper
     end
     return safe_join(ret_vals, tag('br')) if ret_vals.present?
     ''
+  end
+
+  def multilined_links_to_facet_flexible(values, field_name)
+    ret_vals = values&.map do |v|
+      link_to(v, ("/?f%5B#{field_name}%5D%5B%5D=" + CGI.escape(v))).to_s
+    end
+    return ret_vals if ret_vals.present?
+    []
   end
 
   def build_title_search_links(record_values, record_formats)

@@ -35,12 +35,6 @@ RSpec.describe SolrDocument do
   end
 
   context "with a regular test item" do
-    context '#combined_author_display_vern' do
-      it 'combines together author_display_ssim and author_vern_ssim' do
-        expect(solr_doc.combined_author_display_vern).to eq ['George Jenkins', 'G. Jenkins']
-      end
-    end
-
     context '#more_options' do
       it 'pulls the format_ssim value' do
         expect(solr_doc.more_options).to eq solr_doc['format_ssim']

@@ -93,6 +93,20 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       end
     end
 
+    context 'displaying author values' do
+      it 'shows a facet link for the author_display_ssim field' do
+        expect(page).to have_link(
+          'George Jenkins', href: '/?f%5Bauthor_display_ssim%5D%5B%5D=George+Jenkins'
+        )
+      end
+
+      it 'shows a facet link for the author_vern_ssim field, when present' do
+        expect(page).to have_link(
+          'G. Jenkins', href: '/?f%5Bauthor_vern_ssim%5D%5B%5D=G.+Jenkins'
+        )
+      end
+    end
+
     context 'displaying vernacular title' do
       it 'has the vernacular title below the main title' do
         expect(find('h1[itemprop="name"]+h2.vernacular_title_1').text).to eq('Title of my Work')
