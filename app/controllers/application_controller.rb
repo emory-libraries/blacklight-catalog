@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action do
-    Rack::MiniProfiler.authorize_request if authenticated_ltds_admin_user?
+    Rack::MiniProfiler.authorize_request unless ENV['BLACKLIGHT_BASE_URL'] == 'https://search.libraries.emory.edu'
   end
 
   def guest_uid_authentication_key(key)
