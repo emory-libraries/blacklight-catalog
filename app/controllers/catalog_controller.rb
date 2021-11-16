@@ -271,7 +271,7 @@ class CatalogController < ApplicationController
       'title_tesim', 'title_vern_display_tesim', 'title_addl_tesim', 'title_abbr_tesim',
       'title_added_entry_tesim', 'title_enhanced_tesim', 'title_former_tesim',
       'title_host_item_tesim', 'title_key_tesim', 'title_translation_tesim', 'title_varying_tesim',
-      'title_later_tesim', 'title_series_tesim'
+      'title_later_tesim', 'title_series_tesim', 'title_precise_tesim^5'
     ]
     title_advanced_fields = [
       'title_addl_tesim', 'title_added_entry_tesim', 'title_abbr_tesim', 'title_former_tesim',
