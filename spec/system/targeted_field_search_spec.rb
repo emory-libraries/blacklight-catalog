@@ -9,7 +9,8 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       'title_added_entry_tesim', 'title_enhanced_tesim', 'subject_tesim', 'title_former_tesim',
       'title_host_item_tesim', 'title_key_tesim', 'title_series_tesim', 'title_translation_tesim',
       'title_varying_tesim', 'text_tesi', 'local_call_number_tesim', 'title_later_tesim',
-      'note_production_tesim', 'note_participant_tesim', 'other_standard_ids_tesim'
+      'note_production_tesim', 'note_participant_tesim', 'other_standard_ids_tesim',
+      'title_precise_tesim'
     ]
   end
 
@@ -66,6 +67,10 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
     end
 
     expect(result_titles).to contain_exactly(
+      'Target in title_precise_tesim',
+      'Target in author_tesim',
+      'Target in author_addl_display_tesim',
+      'Target in subject_tesim',
       'Target in text_tesi',
       'Target in id',
       'Target in local_call_number_tesim',

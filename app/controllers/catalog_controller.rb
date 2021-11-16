@@ -263,6 +263,10 @@ class CatalogController < ApplicationController
     # urls.  A display label will be automatically calculated from the :key,
     # or can be specified manually to be different.
 
+    keyword_fields = [
+      'title_precise_tesim^100', 'author_tesim^50', 'author_addl_display_tesim^50',
+      'subject_tesim^10', 'text_tesi', 'id', 'local_call_number_tesim', 'other_standard_ids_tesim'
+    ]
     author_fields = [
       'author_tesim', 'author_vern_tesim', 'author_ssort', 'author_addl_display_tesim',
       'note_participant_tesim', 'note_production_tesim'
@@ -295,7 +299,7 @@ class CatalogController < ApplicationController
     config.add_search_field('keyword', label: 'Keyword') do |field|
       field.include_in_advanced_search = false
       field.solr_parameters = {
-        qf: 'text_tesi id local_call_number_tesim other_standard_ids_tesim',
+        qf: keyword_fields.join(' '),
         pf: ''
       }
     end
