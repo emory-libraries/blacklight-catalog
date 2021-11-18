@@ -124,7 +124,8 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       'Target in title_series_tesim',
       'Target in title_translation_tesim',
       'Target in title_varying_tesim',
-      'Target in title_later_tesim'
+      'Target in title_later_tesim',
+      'Target in title_precise_tesim'
     )
   end
 
