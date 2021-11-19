@@ -123,4 +123,20 @@ RSpec.describe CatalogController, type: :controller do
 
     it { expect(tool_menu_items).to contain_exactly(*expected_tool_menu_items) }
   end
+
+  describe '#index' do
+    context 'when visiting homepage' do
+      it 'fetches data from the Solr cache' do
+        expect(SolrCacheEntry).to receive(:find_by).with(key: 'catalog/index/homepage_search_results')
+        get :index
+      end
+    end
+
+    context 'when not visiting homepage' do
+      it 'does not fetch data from the Solr cache' do
+        expect(SolrCacheEntry).not_to receive(:find_by).with(key: 'catalog/index/homepage_search_results')
+        get :index, params: { search_field: 'keyword', q: 'test' }
+      end
+    end
+  end
 end
