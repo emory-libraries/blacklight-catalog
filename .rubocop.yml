@@ -90,6 +90,9 @@ RSpec/ExampleLength:
     Exclude:
         - 'spec/**/*'
 
+RSpec/MessageSpies:
+    EnforcedStyle: 'receive'
+
 Style/Next:
     Exclude:
         - 'app/models/concerns/blacklight/solr/document/marc_export.rb'

@@ -5,9 +5,9 @@
 
 CatalogController.class_eval do
   def index
-    (@response, deprecated_document_list) = search_service.search_results
-    @document_list = ActiveSupport::Deprecation::DeprecatedObjectProxy.new(deprecated_document_list, 'The @document_list instance variable is deprecated; use @response.documents instead.')
-    @document_ids = @response&.documents&.map(&:id) || []
+    @response = homepage? ? fetch_cached_search_results : fetch_live_search_results
+    @document_list = @response.documents
+    @document_ids = @response.documents&.map(&:id) || []
 
     respond_to do |format|
       format.html { store_preferred_view }
@@ -20,5 +20,29 @@ CatalogController.class_eval do
       additional_response_formats(format)
       document_export_formats(format)
     end
+  end
+
+  private
+
+  def fetch_live_search_results
+    search_service.search_results.first
+  end
+
+  def fetch_cached_search_results
+    solr_cach_entry = SolrCacheEntry.find_by(key: 'catalog/index/homepage_search_results')
+    if solr_cach_entry&.unexpired?
+      data = JSON.parse(solr_cach_entry.value)
+      Blacklight::Solr::Response.new(data, data["responseHeader"]["params"], blacklight_config: blacklight_config)
+    else
+      solr_cach_entry&.delete
+      data = search_service.search_results.first
+      SolrCacheEntry.create(key: 'catalog/index/homepage_search_results', value: data.to_json, expiration_time: DateTime.now + 6.hours)
+      data
+    end
+  end
+
+  def homepage?
+    query_params = params.keys - ['action', 'controller']
+    query_params.empty?
   end
 end
