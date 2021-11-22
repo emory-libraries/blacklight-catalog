@@ -29,12 +29,12 @@ CatalogController.class_eval do
   end
 
   def fetch_cached_search_results
-    solr_cach_entry = SolrCacheEntry.find_by(key: 'catalog/index/homepage_search_results')
-    if solr_cach_entry&.unexpired?
-      data = JSON.parse(solr_cach_entry.value)
+    solr_cache_entry = SolrCacheEntry.find_by(key: 'catalog/index/homepage_search_results')
+    if solr_cache_entry&.unexpired?
+      data = JSON.parse(solr_cache_entry.value)
       Blacklight::Solr::Response.new(data, data["responseHeader"]["params"], blacklight_config: blacklight_config)
     else
-      solr_cach_entry&.delete
+      solr_cache_entry&.delete
       data = search_service.search_results.first
       SolrCacheEntry.create(key: 'catalog/index/homepage_search_results', value: data.to_json, expiration_time: DateTime.now + 6.hours)
       data

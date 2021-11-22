@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211119164442) do
+ActiveRecord::Schema.define(version: 20211122204257) do
 
   create_table "bookmarks", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci" do |t|
     t.integer "user_id", null: false
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20211119164442) do
     t.string "key"
     t.json "value"
     t.datetime "expiration_time"
-    t.index ["key"], name: "index_solr_cache_entries_on_key"
+    t.index ["key"], name: "index_solr_cache_entries_on_key", unique: true
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci" do |t|
