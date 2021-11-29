@@ -14,12 +14,12 @@ class AlmaAvailabilityService
     return nil if response.blank?
 
     xml = Nokogiri::XML(response)
-    bib_records = xml.xpath("//bib")
     ret_hsh = {}
-    bib_records.each do |record|
+    xml.xpath("//bib").each do |record|
       ret_hsh[record.xpath('mms_id').text] = {
         physical_exists: record.xpath('record/datafield[@tag="AVA"]').present?,
-        physical_available: physical_any_available?(record),
+        physical_available: physical_any_with?('available', record),
+        physical_check_holdings: physical_any_with?('check_holdings', record),
         online_available: online_any_available?(record)
       }
     end
@@ -44,9 +44,9 @@ class AlmaAvailabilityService
     ENV.fetch('ALMA_BIB_KEY')
   end
 
-  def physical_any_available?(record)
+  def physical_any_with?(field_value, record)
     phys_fields = record.xpath('record/datafield[@tag="AVA"]/subfield[@code="e"]')
-    phys_fields.present? ? phys_fields.any? { |f| f.text.casecmp('available').zero? } : false
+    phys_fields.present? ? phys_fields.any? { |f| f.text.casecmp(field_value).zero? } : false
   end
 
   def online_any_available?(record)

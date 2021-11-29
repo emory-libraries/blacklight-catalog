@@ -42,20 +42,21 @@ module SearchResultsHelper
 
   def render_physical_avail_spans(avail_values, service_page_link)
     return unless avail_values[:physical_exists]
-    label = phys_label_span(avail_values)
-    service_page_anchor = serv_page_anch(avail_values, service_page_link)
+    status = get_phys_avail_status(avail_values)
+    label = phys_label_span(status)
+    service_page_anchor = serv_page_anch(status, service_page_link)
     dt = tag.span(service_page_anchor, class: "phys-avail-button")
 
     safe_join([label, dt])
   end
 
-  def phys_label_span(avail_values)
-    tag.span("#{'Not ' unless avail_values[:physical_available]}Available",
-      class: "btn rounded-0 mb-2 phys-avail-label avail-#{avail_values[:physical_available] ? 'success' : 'danger'}")
+  def phys_label_span(status)
+    avail_class = get_avail_class(status)
+    tag.span(status, class: "btn rounded-0 mb-2 phys-avail-label #{avail_class}")
   end
 
-  def serv_page_anch(avail_values, service_page_link)
-    tag.a("#{'LOCATE/' if avail_values[:physical_available]}REQUEST",
+  def serv_page_anch(status, service_page_link)
+    tag.a("#{'LOCATE/' unless status == 'Not Available'}REQUEST",
            href: service_page_link, target: '_blank', rel: 'noopener noreferrer',
            class: 'btn btn-md rounded-0 mb-2 btn-outline-primary avail-link-el')
   end
@@ -76,5 +77,26 @@ module SearchResultsHelper
   def processed_facet_ejournals(letter_state, letter)
     return letter_state['f'].merge('title_main_first_char_ssim': [letter]) if letter_state['f'].present?
     { 'title_main_first_char_ssim': [letter], 'marc_resource_ssim': ["Online"], 'format_ssim': ["Journal, Newspaper or Serial"] }
+  end
+
+  def get_phys_avail_status(avail_values)
+    if avail_values[:physical_check_holdings]
+      'Check Holdings'
+    elsif avail_values[:physical_available]
+      'Available'
+    else
+      'Not Available'
+    end
+  end
+
+  def get_avail_class(status)
+    case status
+    when "Check Holdings"
+      'avail-unknown'
+    when "Available"
+      'avail-success'
+    else
+      'avail-danger'
+    end
   end
 end
