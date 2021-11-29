@@ -15,16 +15,19 @@ class OaiProcessingService
     # handling of delete records
     deleted_records = document.xpath('/oai:OAI-PMH/oai:ListRecords/oai:record[oai:header/@status="deleted"]', OAI_URL)
     suppressed_records = document.xpath("//marc:record[substring(marc:leader, 6, 1)='d']", MARC_URL) # gets all records with `d` in the 6th (actual) position of leader string
-    delete_suppressed_count = deleted_records.count + suppressed_records.count
-    logger.info "Found #{delete_suppressed_count} delete records."
+    lost_stolen_records = pull_lost_stolen_records(document)
+    logger.info "Starting record count: #{document.xpath('//marc:record', MARC_URL).count}"
     deleted_ids = pull_deleted_ids(deleted_records, logger)
     suppressed_ids = pull_suppressed_ids(suppressed_records, logger)
-    record_count = pull_record_count(document, suppressed_records, logger)
-    pull_active_ids(document, suppressed_ids, logger)
+    lost_stolen_ids = pull_lost_stolen_ids(lost_stolen_records, suppressed_ids, logger)
+    delete_suppressed_count = (deleted_ids + suppressed_ids + lost_stolen_ids).size
+    logger.info "Found #{delete_suppressed_count} delete records."
 
     deleted_records.remove
     suppressed_records.remove
-    find_and_remove_del_supp_records(deleted_ids, suppressed_ids, logger) if delete_suppressed_count.positive?
+    lost_stolen_records.each(&:remove)
+    record_count = pull_record_count(document, logger)
+    find_and_remove_del_supp_records(deleted_ids, suppressed_ids + lost_stolen_ids, logger) if delete_suppressed_count.positive?
 
     # Index remaining necessary records
 
@@ -70,7 +73,8 @@ class OaiProcessingService
 
   def self.find_and_remove_del_supp_records(deleted_ids, suppressed_ids, logger)
     solr = RSolr.connect(url: ENV['SOLR_URL'], update_format: :xml, retry_503: 5, retry_after_limit: 5)
-    logger.info(solr.delete_by_id(deleted_ids + suppressed_ids).to_s)
+    solr.delete_by_id(deleted_ids + suppressed_ids)
+    logger.info(solr.commit.to_s)
   end
 
   def self.pull_deleted_ids(deleted_records, logger)
@@ -86,10 +90,10 @@ class OaiProcessingService
     ids
   end
 
-  def self.pull_active_ids(document, suppressed_ids, logger)
-    active_ids_xpath = '/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata/marc:record/marc:controlfield[@tag="001"]'
-    ids = document.xpath(active_ids_xpath, OAI_URL.dup.merge(MARC_URL)).map(&:content) - [*suppressed_ids]
-    logger.info "Active IDs: #{ids}"
+  def self.pull_lost_stolen_ids(lost_stolen_records, suppressed_ids, logger)
+    # collects ID from controlfield 001
+    ids = lost_stolen_records.map { |s| s.at_xpath("marc:controlfield[@tag='001']", MARC_URL).text } - suppressed_ids
+    logger.info("Lost/Stolen IDs: #{ids}")
     ids
   end
 
@@ -106,10 +110,12 @@ class OaiProcessingService
     ["Communication with the OAI Service failed.", err].each { |m| logger.fatal(m) }
   end
 
-  def self.pull_record_count(document, suppressed_records, logger)
-    record_ct = document.xpath('/oai:OAI-PMH/oai:ListRecords/oai:record', OAI_URL).count - suppressed_records.count
-    logger.info "#{record_ct} records retrieved"
-    record_ct
+  def self.pull_record_count(document, logger)
+    active_ids_xpath = '/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata/marc:record/marc:controlfield[@tag="001"]'
+    ids = document.xpath(active_ids_xpath, OAI_URL.dup.merge(MARC_URL)).map(&:content)
+    logger.info "#{ids.size} records retrieved"
+    logger.info "Active IDs: #{ids}"
+    ids.size
   end
 
   def self.process_active_records_from_xml(resumption_token, document, logger)
@@ -119,5 +125,15 @@ class OaiProcessingService
     logger.info "File written to tmp. Now indexing #{filename}"
     ingest_with_traject(filename, logger)
     File.delete(filename)
+  end
+
+  def self.pull_lost_stolen_records(document)
+    document.xpath('//marc:record', MARC_URL).select do |d|
+      hol852_count = d.xpath("marc:datafield[@tag='HOL852']", MARC_URL).size
+      holsp_count = d.xpath(
+        "marc:datafield[@tag='HOLSP']//marc:subfield[@code='a'][text()='true']", MARC_URL
+      ).size
+      hol852_count.positive? && hol852_count <= holsp_count
+    end
   end
 end
