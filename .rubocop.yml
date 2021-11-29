@@ -33,6 +33,7 @@ Metrics/ClassLength:
     Exclude:
         - 'app/models/hold_request.rb'
         - 'app/controllers/catalog_controller.rb'
+        - 'app/services/oai_processing_service.rb'
 
 Metrics/CyclomaticComplexity:
     Exclude:
