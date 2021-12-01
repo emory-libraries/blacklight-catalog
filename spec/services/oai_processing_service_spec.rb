@@ -95,7 +95,7 @@ RSpec.describe OaiProcessingService do
           'smackety',
           logger
         )
-        expect(solr_docs_map_of('id')).not_to include("990005651670302486") # making sure suppressed record ID is not present in SOLR
+        expect(solr_docs_map_of('id')).not_to include("990005651670302486") # making sure deactivated portfolio record ID is not present in SOLR
         expect(solr_docs_map_of('id')).not_to include("990000954720302486") # making sure ID under deleted status header is not present in SOLR
         expect(solr_docs_map_of('id')).not_to include("990002589250302486") # making sure second suppressed record ID is not present in SOLR
         expect(solr_docs_map_of('id')).not_to include("990028391040302486") # making sure lost/stolen record ID is not present in SOLR
