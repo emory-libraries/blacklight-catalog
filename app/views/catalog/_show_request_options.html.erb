@@ -23,35 +23,33 @@
         <% end %>
       </div>
     <% end %>
-    <%#
-    <div class="col-6 request-options">
-      <div class="btn-group">
-        <button class="btn btn-primary rounded-0">Request</button>
-        <button class="btn btn-primary rounded-0 dropdown-toggle dropdown-toggle-split" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="sr-only">Toggle Dropdown</span>
-        </button>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-    %>
-    <%# if document.hold_requestable?(current_or_guest_user) %>
-    <%#= link_to "Hold request", new_hold_request_path(hold_request: {mms_id: document.id, title: document['title_display_tesim']&.first}), class: "dropdown-item" %>
-    <%# end %>
-    <%# if document.one_step_doc_delivery?(physical_holdings, current_or_guest_user) %>
-    <%#= link_to "Request Article or Chapter", document.one_step_link, class: "dropdown-item" %>
-    <%# end %>
-    <%# if document.two_step_doc_delivery?(physical_holdings, current_or_guest_user) %>
-    <%#= link_to "Request Article or Chapter", "#", class: "dropdown-item", data: {toggle: "modal", target: "#two-step-illiad"} %>
-    <%# end %>
-    <%# if document.special_collections_requestable?(current_or_guest_user) %>
-    <%#= link_to "Request from Special Collections", document.special_collections_url, class: "dropdown-item" %>
-    <%# end %>
-    <%#
+    <% if Flipflop.enable_requesting_using_api? %>
+      <div class="col-6 request-options">
+        <div class="btn-group">
+          <button class="btn btn-primary rounded-0">Request</button>
+          <button class="btn btn-primary rounded-0 dropdown-toggle dropdown-toggle-split" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+            <% if document.hold_requestable?(current_or_guest_user) %>
+            <%= link_to "Hold request", new_hold_request_path(hold_request: {mms_id: document.id, title: document['title_display_tesim']&.first}), class: "dropdown-item" %>
+            <% end %>
+            <% if document.one_step_doc_delivery?(@physical_holdings, current_or_guest_user) %>
+            <%= link_to "Request Article or Chapter", document.one_step_link, class: "dropdown-item" %>
+            <% end %>
+            <% if document.two_step_doc_delivery?(@physical_holdings, current_or_guest_user) %>
+            <%= link_to "Request Article or Chapter", "#", class: "dropdown-item", data: {toggle: "modal", target: "#two-step-illiad"} %>
+            <% end %>
+            <% if document.special_collections_requestable?(current_or_guest_user) %>
+            <%= link_to "Request from Special Collections", document.special_collections_url, class: "dropdown-item" %>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
-    %>
+    <% end %>
   </div>
   <% if Flipflop.enable_requesting_using_api? %>
-    <% if document.physical_holdings&.any? %>
+    <% if @physical_holdings&.any? %>
       <div class="table-responsive">
         <table class="table">
           <thead>
@@ -61,7 +59,7 @@
             </tr>
           </thead>
           <tbody>
-            <% document.physical_holdings.each.with_index(1) do |holding, index| %>
+            <% @physical_holdings.each.with_index(1) do |holding, index| %>
               <tr id="physical-holding-<%= index.to_s %>" class="d-flex">
                 <td class="col-sm-4">
                   <%= holding[:library][:label] %>
@@ -113,8 +111,8 @@
           </tbody>
         </table>
       </div>
-      <% if document.two_step_doc_delivery?(document.physical_holdings, current_or_guest_user) %>
-        <%= render 'two_step_illiad_modal', document: document, physical_holdings: document.physical_holdings %>
+      <% if document.two_step_doc_delivery?(@physical_holdings, current_or_guest_user) %>
+        <%= render 'two_step_illiad_modal', document: document, physical_holdings: @physical_holdings %>
       <% end %>
     <% end %>
     <% if document.online_holdings&.any? %>
