@@ -48,6 +48,7 @@ Metrics/MethodLength:
         - 'app/services/oai_processing_single_service.rb'
         - 'lib/traject/extract_publication_date.rb'
         - 'app/controllers/sessions/social_login.rb'
+        - 'config/initializers/bookmarks_index_override.rb'
 
 Metrics/ModuleLength:
     Exclude:
