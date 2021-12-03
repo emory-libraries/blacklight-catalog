@@ -68,19 +68,21 @@ $(document).ready(function() {
   // do something…
   })
 
-  $.ajax({
-    type: "GET",
-    data: {
-      document_ids: $('#search_results_document_ids').val().split(',')
-    },
-    url: "/availability_indicators",
-    dataType: "json",
-    success: function(data) {
-      for (const [key, value] of Object.entries(data)) {
-        $(`#availability-indicator-${key}`).replaceWith(value);
+  if ($('#availability_indicators_document_ids').val() != null) {
+    $.ajax({
+      type: "GET",
+      data: {
+        document_ids: $('#availability_indicators_document_ids').val().split(',')
+      },
+      url: "/availability_indicators",
+      dataType: "json",
+      success: function(data) {
+        for (const [key, value] of Object.entries(data)) {
+          $(`#availability-indicator-${key}`).replaceWith(value);
+        }
       }
-    }
-  });
+    });
+  }
 
   /* end ready */
 });
