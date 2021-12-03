@@ -47,7 +47,6 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get '/alma_availability/:id', to: 'application#alma_availability'
   get '/export_multiple_ris/:ids', to: 'export_ris#export_multiple_ris'
 
   get "/contact", to: "static#contact"

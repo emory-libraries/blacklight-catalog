@@ -14,13 +14,6 @@ class ApplicationController < ActionController::Base
     guest_email_authentication_key(key)
   end
 
-  def alma_availability
-    document = SolrDocument.find(params[:id])
-    availability = AlmaAvailabilityService.new(params[:id])&.current_avail_table_data(document)
-
-    respond_to { |format| format.any { render json: availability } }
-  end
-
   def require_authenticated_ltds_admin_user
     head :forbidden unless authenticated_ltds_admin_user?
   end
