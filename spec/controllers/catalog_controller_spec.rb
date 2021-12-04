@@ -9,10 +9,7 @@ RSpec.describe CatalogController, type: :controller do
         .index_fields.keys
     end
     let(:expected_index_fields) do
-      [
-        'author_display_ssim', 'format_ssim', 'publication_main_display_ssim', 'edition_tsim',
-        'local_call_number_tesim'
-      ]
+      ['author_display_ssim', 'format_ssim', 'publication_main_display_ssim', 'edition_tsim']
     end
     let(:field_title) { controller.blacklight_config.index.title_field }
 
@@ -31,7 +28,7 @@ RSpec.describe CatalogController, type: :controller do
     end
     let(:expected_show_fields) do
       ['author_display_ssim', 'language_ssim', 'isbn_ssim', 'id', 'title_addl_tesim',
-       'title_varying_tesim', 'edition_tsim', 'local_call_number_tesim', 'material_type_display_tesim',
+       'title_varying_tesim', 'edition_tsim', 'material_type_display_tesim',
        'note_general_tsim', 'publication_main_display_ssim', 'format_ssim', 'title_abbr_tesim',
        'title_added_entry_tesim', 'title_series_ssim', 'title_translation_tesim', 'author_addl_display_tesim',
        'genre_ssim', 'subject_display_ssim', 'url_suppl_ssim', 'issn_ssim', 'oclc_ssim',

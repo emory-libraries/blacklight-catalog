@@ -58,7 +58,7 @@ module CatalogHelper
   end
 
   def availability_present?(doc_avail_values, document)
-    doc_avail_values[:physical_exists] &&
+    doc_avail_values[:physical_holdings].present? &&
       (doc_avail_values[:online_available] || document.url_fulltext.present?)
   end
 

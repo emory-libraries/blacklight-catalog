@@ -151,7 +151,7 @@ li.loading-avail-badge span {
   margin-right: 1em;
 }
 
-.btn.rounded-0.mb-2.phys-avail-label, .btn.rounded-0.mb-2.online-avail-label { 
+.btn.rounded-0.phys-avail-label, .btn.rounded-0.mb-2.online-avail-label { 
   cursor:    default;
   font-size: $results-button-label-font-size;
   padding:   $results-button-label-padding;
@@ -162,3 +162,13 @@ li.loading-avail-badge span {
 .avail-label { margin-top: $results-avail-label-maring-top; }
 
 .avail-label, .avail-dd { padding-top: map-get($spacers, 3);}
+
+.service-page-link { width: 100% }
+
+.show-all-avail-checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+  margin-top: 11px;
+}

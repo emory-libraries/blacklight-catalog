@@ -1,0 +1,30 @@
+<span id="avail-<%= document.id %>-toggle" class="collapse">
+  <div class="table-responsive-sm">
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table-primary">
+          <th scope="col" class="col-sm-6">Library Location</th>
+          <th scope="col" class="col-sm-3">Call Number</th>
+          <th scope="col" class="col-sm-3">Availability</th>
+        </tr>
+      </thead>
+      <% doc_avail_values[:physical_holdings].each do |ph| %>
+        <tr>
+          <td class="col-sm-6">
+            <%= ph[:lib_location].present? ? "#{ph[:library]}: #{ph[:lib_location]}" : ph[:library] %>
+          </td>
+          <td class="col-sm-3"><%= ph[:call_number] %></td>
+          <td class="col-sm-3"><%= phys_label_span(raw_status_to_label(ph[:status])) %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan='3'>
+          <span class="service-page-button">
+            <%= link_to('LOCATE/REQUEST THIS ITEM >>', service_page_link, 
+              target: "_blank", class: "btn btn-md rounded-0 mb-2 btn-primary service-page-link") %>
+          </span>
+        </td>
+      </tr>
+    </table>
+  </div>
+</span>
