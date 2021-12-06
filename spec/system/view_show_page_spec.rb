@@ -32,7 +32,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       let(:expected_labels) do
         [
           'Author/Creator:', 'Publication/Creation:', 'Type:', 'Edition:', 'Is Part Of:',
-          'Call Number:', 'Full Title:', 'Series Titles:', 'Related/Included Titles:',
+          'Full Title:', 'Series Titles:', 'Related/Included Titles:',
           'Variant Titles:', 'Abbreviated Titles:', 'Translated Titles:', 'Additional Author/Creators:',
           'Genre:', 'Subjects:', 'Language:', 'Physical Type/Description:', 'General Note:',
           'Related Resources Link:', 'Catalog ID (MMSID):', 'ISBN:', 'ISSN:', 'OCLC Number:',
@@ -50,7 +50,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       let(:expected_values) do
         [
           "George JenkinsG. Jenkins", 'A dummy publication', 'A sample edition',
-          'Some Bound With Text.', 'MST .3000', 'Book',
+          'Some Bound With Text.', 'Book',
           'More title info', 'The Jenkins Series', 'The Jenkins Story', 'Variant title',
           'Jenk. Story', 'Le Stori de Jenkins', 'Tim Jenkins', 'Genre example', 'Adventure--More Adventures.',
           'English', 'Short summary', '1 online resource (111 pages)', 'General note',
@@ -344,7 +344,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       end
     end
 
-    context 'displaying availability badges show page' do
+    context 'displaying availability on show page' do
       before do
         allow(Flipflop).to receive(:enable_requesting_using_api?).and_return(false)
         delete_all_documents_from_solr
@@ -353,14 +353,24 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       end
 
       it 'shows the right badges and links' do
-        find('.phys-avail-label').should have_content('Available')
+        find_all('span.phys-avail-label').first.should have_content('Available')
         find('.online-avail-label').should have_content('Online')
         expect(page).to have_link(
-          'LOCATE/REQUEST', class: 'btn btn-md rounded-0 mb-2 btn-outline-primary avail-link-el'
+          'LOCATE', class: 'btn btn-md rounded-0 btn-outline-primary avail-link-el'
         )
         expect(
           find('a.btn.btn-md.rounded-0.mb-2.btn-outline-primary.avail-link-el[data-target="#avail-modal-990005988630302486"]').present?
         ).to be_truthy
+      end
+
+      around do |example|
+        Capybara.ignore_hidden_elements = false
+        example.run
+        Capybara.ignore_hidden_elements = true
+      end
+
+      it 'contains the span holding the table' do
+        expect(page).to have_css('span#avail-990005988630302486-toggle', class: 'collapse')
       end
     end
   end

@@ -26,13 +26,13 @@ RSpec.feature 'View Search Results', type: :system, js: false do
     end
 
     it 'has the right metadata labels' do
-      ['Author/Creator:', 'Type:', 'Publication/Creation:', 'Edition:', 'Call Number:'].each do |label|
+      ['Author/Creator:', 'Type:', 'Publication/Creation:', 'Edition:'].each do |label|
         expect(page).to have_content(label)
       end
     end
 
     it 'has the right values' do
-      ['George Jenkins', 'Book', 'A dummy publication', 'A sample edition', 'MST .3000'].each do |value|
+      ['George Jenkins', 'Book', 'A dummy publication', 'A sample edition'].each do |value|
         expect(page).to have_content(value)
       end
     end
@@ -137,7 +137,9 @@ RSpec.feature 'View Search Results', type: :system, js: false do
       orig_key = ENV['ALMA_BIB_KEY']
       ENV['ALMA_API_URL'] = 'http://www.example.com'
       ENV['ALMA_BIB_KEY'] = "fakebibkey123"
+      Capybara.ignore_hidden_elements = false
       example.run
+      Capybara.ignore_hidden_elements = true
       ENV['ALMA_API_URL'] = api_url
       ENV['ALMA_BIB_KEY'] = orig_key
     end
@@ -146,13 +148,17 @@ RSpec.feature 'View Search Results', type: :system, js: false do
       expect(page).to have_selector(:id, 'availability-indicator-990005988630302486')
 
       within('#availability-indicator-990005988630302486') do
-        expect(page).to have_xpath('//span[1]', text: 'Available', class: 'btn rounded-0 mb-2 phys-avail-label avail-success')
-        expect(page).to have_xpath('//span[2]/a', text: 'LOCATE/REQUEST', class: 'btn btn-md rounded-0 mb-2 btn-outline-primary avail-link-el')
-        expect(page).to have_xpath('//span[3]', text: 'Online', class: 'btn rounded-0 mb-2 online-avail-label avail-default')
+        expect(page).to have_xpath('//span[1]', text: 'Online', class: 'btn rounded-0 mb-2 online-avail-label avail-default')
+        expect(page).to have_css('span', text: 'Available')
+        expect(page).to have_xpath('//span[4]/a', text: 'LOCATE', class: 'btn btn-md rounded-0 btn-outline-primary avail-link-el')
         expect(
           find('a.btn.btn-md.rounded-0.mb-2.btn-outline-primary.avail-link-el[data-target="#avail-modal-990005988630302486"]').present?
         ).to be_truthy
       end
+    end
+
+    it 'contains the span holding the table' do
+      expect(page).to have_css('span#avail-990005988630302486-toggle', class: 'collapse')
     end
   end
 

@@ -15,14 +15,8 @@ class AlmaAvailabilityService
 
     xml = Nokogiri::XML(response)
     ret_hsh = {}
-    xml.xpath("//bib").each do |record|
-      ret_hsh[record.xpath('mms_id').text] = {
-        physical_exists: record.xpath('record/datafield[@tag="AVA"]').present?,
-        physical_available: physical_any_with?('available', record),
-        physical_check_holdings: physical_any_with?('check_holdings', record),
-        online_available: online_any_available?(record)
-      }
-    end
+
+    process_availability(xml, ret_hsh)
     ret_hsh
   end
 
@@ -44,13 +38,31 @@ class AlmaAvailabilityService
     ENV.fetch('ALMA_BIB_KEY')
   end
 
-  def physical_any_with?(field_value, record)
-    phys_fields = record.xpath('record/datafield[@tag="AVA"]/subfield[@code="e"]')
-    phys_fields.present? ? phys_fields.any? { |f| f.text.casecmp(field_value).zero? } : false
-  end
-
   def online_any_available?(record)
     online_fields = record.xpath('record/datafield[@tag="AVE"]/subfield[@code="e"]')
     online_fields.present? ? online_fields.any? { |f| f.text.casecmp('available').zero? } : false
+  end
+
+  def process_availability(xml, ret_hsh)
+    xml.xpath("//bib").each do |record|
+      mms_id = record.xpath('mms_id').text
+      phys_holdings = record.xpath('record/datafield[@tag="AVA"]')
+      ret_hsh[mms_id] = {
+        online_available: online_any_available?(record),
+        physical_holdings: []
+      }
+      process_phys_holdings(phys_holdings, ret_hsh, mms_id)
+    end
+  end
+
+  def process_phys_holdings(phys_holdings, ret_hsh, mms_id)
+    phys_holdings.each do |ph|
+      ret_hsh[mms_id][:physical_holdings] << {
+        library: ph.xpath('subfield[@code="q"]').text&.strip,
+        lib_location: ph.xpath('subfield[@code="c"]').text&.strip,
+        call_number: ph.xpath('subfield[@code="d"]').text&.strip,
+        status: ph.xpath('subfield[@code="e"]').text&.strip
+      }
+    end
   end
 end

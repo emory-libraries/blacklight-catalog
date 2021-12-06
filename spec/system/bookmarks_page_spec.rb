@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe 'Bookmarks page', type: :system, js: true do
+RSpec.describe 'Bookmarks page', :clean, type: :system, js: true do
   before do
     delete_all_documents_from_solr
     build_solr_docs([TEST_ITEM])
