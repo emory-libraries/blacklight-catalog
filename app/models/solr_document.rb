@@ -41,4 +41,8 @@ class SolrDocument
   def more_options
     self['format_ssim']
   end
+
+  def bound_with?
+    self['bound_with_display_ssim'].present?
+  end
 end
