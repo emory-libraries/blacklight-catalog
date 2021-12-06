@@ -8,7 +8,8 @@ RSpec.describe MainMetadataPresenter do
       publication_main_display_ssim: ['A dummy publication'],
       format_ssim: ['Book'],
       edition_tsim: ['A sample edition'],
-      local_call_number_tesim: ['MST .3000'] }
+      local_call_number_tesim: ['MST .3000'],
+      bound_with_display_ssim: ["{\"mms_id\":\"990029355560302486\",\"text\":\"Some Bound With Text.\"}"] }
   end
   context 'with a solr document' do
     describe '#terms' do
