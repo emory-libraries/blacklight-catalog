@@ -24,35 +24,56 @@ RSpec.describe AlmaAvailabilityService, alma: true do
     it 'returns the correct response #1' do
       expect(service.availability_of_documents).to eq(
         { "990005988630302486" =>
-          { online_available: false, physical_available: true,
-            physical_check_holdings: false, physical_exists: true } }
+          { online_available: false, physical_holdings: [
+            { call_number: "PT2613 .M45 Z92 2006", lib_location: "",
+              library: "Library Service Center", status: "available" }
+          ] } }
       )
     end
 
     it 'returns the correct response #2' do
       expect(service2.availability_of_documents).to eq(
         { "990005059530302486" =>
-          { online_available: false, physical_available: true,
-            physical_check_holdings: false, physical_exists: true } }
+          { online_available: false, physical_holdings: [
+            { call_number: "PS3505 .R43 H4 1976 DANOWSKI", lib_location: "Locked Stacks",
+              library: "Stuart A. Rose Manuscript, Archives, and Rare Book Library",
+              status: "available" },
+            { call_number: "PS3505 .R43 H4 1976 EDELSTEIN", lib_location: "Locked Stacks",
+              library: "Stuart A. Rose Manuscript, Archives, and Rare Book Library", status: "available" }
+          ] } }
       )
     end
 
     it 'returns the correct response #3' do
       expect(service3.availability_of_documents).to eq(
         { "990005059530302486" =>
-          { online_available: false, physical_available: true,
-            physical_check_holdings: false, physical_exists: true },
+          { online_available: false, physical_holdings: [
+            { call_number: "PS3505 .R43 H4 1976 DANOWSKI", lib_location: "Locked Stacks",
+              library: "Stuart A. Rose Manuscript, Archives, and Rare Book Library",
+              status: "available" },
+            { call_number: "PS3505 .R43 H4 1976 EDELSTEIN", lib_location: "Locked Stacks",
+              library: "Stuart A. Rose Manuscript, Archives, and Rare Book Library",
+              status: "available" }
+          ] },
           "990005988630302486" =>
-          { online_available: false, physical_available: true,
-            physical_check_holdings: false, physical_exists: true } }
+          { online_available: false, physical_holdings: [
+            { call_number: "PT2613 .M45 Z92 2006", lib_location: "",
+              library: "Library Service Center", status: "available" }
+          ] } }
       )
     end
 
     it 'returns the correct response #4' do
       expect(service4.availability_of_documents).to eq(
         { "990027507910302486" =>
-          { online_available: false, physical_available: true,
-            physical_check_holdings: true, physical_exists: true } }
+          { online_available: false, physical_holdings: [
+            { call_number: "JA1 .R4", lib_location: "", library: "Library Service Center",
+              status: "available" },
+            { call_number: "JA1 .R4", lib_location: "Book Stacks", library: "Robert W. Woodruff Library",
+              status: "available" },
+            { call_number: "JA1 .R4", lib_location: "Current Periodicals", library: "Robert W. Woodruff Library",
+              status: "check_holdings" }
+          ] } }
       )
     end
   end

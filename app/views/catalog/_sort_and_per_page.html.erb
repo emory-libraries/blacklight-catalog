@@ -1,0 +1,15 @@
+<%# Overrides partial of same name from blacklight (7.4.1) %>
+<%#
+  Inserts a checkbox to collapse/expand all availability for page.
+%>
+<div id="sortAndPerPage" class="sort-pagination clearfix">
+  <%= render partial: "paginate_compact", object: @response if show_pagination? %>
+  <% if @document_ids.present? %>
+    <div class="show-all-avail-checkbox">
+        <label data-toggle="collapse" data-target="<%= safe_join(@document_ids.map { |id| "#avail-#{id}-toggle" }, ',') %>">
+            <input type="checkbox"/> Show Locations
+        </label>
+    </div>
+  <% end %>
+  <%= render_results_collection_tools wrapping_class: "search-widgets float-md-right" %>
+</div>
