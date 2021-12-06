@@ -62,6 +62,12 @@ module CatalogHelper
       (doc_avail_values[:online_available] || document.url_fulltext.present?)
   end
 
+  def display_bound_with(value)
+    parsed_items = values_of_field(value).map { |v| JSON.parse(v) }
+    return safe_join(parsed_items.map { |pi| link_to(pi['text'], "/catalog/#{pi['mms_id']}") }, tag('br')) if parsed_items.present?
+    ''
+  end
+
   private
 
   def values_of_field(value)

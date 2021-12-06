@@ -31,6 +31,7 @@ require 'traject/extraction_tools'
 require 'traject/extract_author_addl_display'
 require 'traject/extract_author_display'
 require 'traject/extract_author_vern'
+require 'traject/extract_bound_with_display'
 require 'traject/extract_collection'
 require 'traject/extract_emory_collection'
 require 'traject/extract_finding_aid_url'
@@ -60,6 +61,7 @@ extend ExtractionTools
 extend ExtractAuthorAddlDisplay
 extend ExtractAuthorDisplay
 extend ExtractAuthorVern
+extend ExtractBoundWithDisplay
 extend ExtractCollection
 extend ExtractEmoryCollection
 extend ExtractFindingAidUrl
@@ -250,6 +252,7 @@ to_field 'url_suppl_ssim', extract_url_suppl
 to_field 'library_ssim', extract_library, translation_map('libraryname_map')
 
 # Collection Fields
+to_field 'bound_with_display_ssim', extract_bound_with_display
 to_field 'collection_ssim', extract_collection
 to_field 'edition_tsim', extract_marc('250a:254a')
 to_field 'emory_collection_tesim', extract_emory_collection

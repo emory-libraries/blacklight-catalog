@@ -11,7 +11,7 @@ RSpec.describe CatalogController, type: :controller do
     let(:expected_index_fields) do
       [
         'author_display_ssim', 'format_ssim', 'publication_main_display_ssim', 'edition_tsim',
-        'local_call_number_tesim'
+        'bound_with_display_ssim', 'local_call_number_tesim'
       ]
     end
     let(:field_title) { controller.blacklight_config.index.title_field }
@@ -44,7 +44,7 @@ RSpec.describe CatalogController, type: :controller do
        'note_addl_form_tesim', 'note_arrangement_tesim', 'note_historical_tesim',
        'note_reproduction_tesim', 'note_location_originals_tesim', 'note_custodial_tesim',
        'note_copy_identification_tesim', 'note_binding_tesim', 'note_citation_tesim',
-       'note_related_collections_tesim']
+       'note_related_collections_tesim', 'bound_with_display_ssim']
     end
 
     it { expect(show_fields).to contain_exactly(*expected_show_fields) }

@@ -74,5 +74,6 @@ TEST_ITEM = {
   note_citation_tesim: ['Some notes on citations.'],
   note_related_collections_tesim: ['Notes on related collections.'],
   holdings_note_tesim: ['Hey, look! Holding notes, bustah!'],
-  local_call_number_tesim: ['MST .3000']
+  local_call_number_tesim: ['MST .3000'],
+  bound_with_display_ssim: ["{\"mms_id\":\"990029355560302486\",\"text\":\"Some Bound With Text.\"}"]
 }.freeze
