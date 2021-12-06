@@ -16,7 +16,8 @@
     <%= phys_label_span('Check Holdings') %>
     <%= tag.span(
           tag.a('LOCATE/REQUEST', href: service_page_link, target: '_blank',
-            class: "btn btn-md rounded-0 btn-outline-primary avail-link-el"),
+            class: "btn btn-md rounded-0 btn-outline-primary avail-link-el",
+            rel: 'noopener noreferrer'),
           class: "phys-avail-button bound-with-link"
         ) %>
   <% else %>
