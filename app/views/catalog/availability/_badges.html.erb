@@ -11,8 +11,19 @@
       </span>
     <% end %>
   <% end %>
-  <%= tag('br') if availability_present?(doc_avail_values, document) %>
-  <%= render_physical_avail_spans(doc_avail_values, document.id) %>
+  <% if doc_avail_values[:physical_holdings].empty? && document.bound_with? %>
+    <%= tag('br') if doc_avail_values[:online_available] || document.url_fulltext.present? %>
+    <%= phys_label_span('Check Holdings') %>
+    <%= tag.span(
+          tag.a('LOCATE/REQUEST', href: service_page_link, target: '_blank',
+            class: "btn btn-md rounded-0 btn-outline-primary avail-link-el",
+            rel: 'noopener noreferrer'),
+          class: "phys-avail-button bound-with-link"
+        ) %>
+  <% else %>
+    <%= tag('br') if availability_present?(doc_avail_values, document) %>
+    <%= render_physical_avail_spans(doc_avail_values, document.id) %>
+  <% end %>
 <% else %>
   <span class="btn rounded-0 mb-2 phys-avail-label avail-danger">Unknown</span>
 <% end %>
