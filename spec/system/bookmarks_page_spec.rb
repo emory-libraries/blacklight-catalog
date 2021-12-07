@@ -29,6 +29,7 @@ RSpec.describe 'Bookmarks page', :clean, type: :system, js: true do
       visit root_path
       click_on 'search'
       find('input#toggle-bookmark_123').set(true)
+      sleep 5
       visit bookmarks_path
 
       expect(page).to have_link('Export as RIS', href: '/export_multiple_ris/123')
