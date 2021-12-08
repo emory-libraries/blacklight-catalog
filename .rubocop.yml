@@ -57,6 +57,7 @@ Metrics/ModuleLength:
         - 'config/prepends/custom_citation_logic.rb'
         - 'app/models/concerns/statusable.rb'
         - 'app/helpers/catalog_helper.rb'
+        - 'app/services/oai_processing/oai_processing_toolset.rb'
 
 Metrics/PerceivedComplexity:
     Exclude:

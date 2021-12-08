@@ -6,7 +6,7 @@ module ExtractBoundWithDisplay
     lambda do |rec, acc|
       rec.fields('773').each do |f|
         temp_id = f['w']&.strip
-        next unless temp_id.first(2) == '99' && temp_id.last(4) == '2486'
+        next unless temp_id&.first(2) == '99' && temp_id&.last(4) == '2486'
         bound_with_text = f['t'] || FALLBACK_PHRASE
 
         acc << { mms_id: temp_id, text: bound_with_text }.to_json

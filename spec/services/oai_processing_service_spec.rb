@@ -32,7 +32,7 @@ RSpec.describe OaiProcessingService do
 
     it 'calls the Traject command to process the xml' do
       expect(Traject::Indexer::MarcIndexer).to respond_to(:new)
-      expect(solr_num_of_docs).to eq 4
+      expect(solr_num_of_docs).to eq 6
     end
 
     context 'reindexing' do
@@ -57,8 +57,8 @@ RSpec.describe OaiProcessingService do
               'smackety',
               logger)
           end.to change { solr_docs_count_of('material_type_display_tesim') }
-            .from(3).to(2)
-            .and change { solr_docs_count_of('lccn_ssim') }.from(2).to(1)
+            .from(5).to(4)
+            .and change { solr_docs_count_of('lccn_ssim') }.from(4).to(3)
         end
       end
 
@@ -88,6 +88,10 @@ RSpec.describe OaiProcessingService do
         expect(solr_docs_map_of('id')).to include("990002589250302486")
         # This record will later be lost/stolen.
         expect(solr_docs_map_of('id')).to include("990028391040302486")
+        # This record will later be temporarily located.
+        expect(solr_docs_map_of('id')).to include("9937275387802486")
+        # This record will later be temporarily located #2.
+        expect(solr_docs_map_of('id')).to include("9945275387802486")
         # we then run indexer with the oai that has deleted and suppressed records info (alma_deleted_and_suppressed_records.xml)
         described_class.process_oai_with_marc_indexer(
           'blah',
@@ -99,6 +103,8 @@ RSpec.describe OaiProcessingService do
         expect(solr_docs_map_of('id')).not_to include("990000954720302486") # making sure ID under deleted status header is not present in SOLR
         expect(solr_docs_map_of('id')).not_to include("990002589250302486") # making sure second suppressed record ID is not present in SOLR
         expect(solr_docs_map_of('id')).not_to include("990028391040302486") # making sure lost/stolen record ID is not present in SOLR
+        expect(solr_docs_map_of('id')).not_to include("9937275387802486") # making sure temporarily located record ID is not present in SOLR
+        expect(solr_docs_map_of('id')).not_to include("9945275387802486") # making sure temporarily located record #2 ID is not present in SOLR
         expect(solr_num_of_docs).to eq 0
       end
     end

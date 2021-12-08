@@ -3,6 +3,14 @@
 module OaiProcessingToolset
   MARC_URL = { 'marc' => "http://www.loc.gov/MARC21/slim" }.freeze
   OAI_URL = { 'oai' => 'http://www.openarchives.org/OAI/2.0/' }.freeze
+  ALL_LIB_LOCATIONS = ['WD', 'XM', 'XL', 'SP'].freeze
+  LIB_LOC_PAIRS = [['LAW', 'DISP'], ['MUSME', 'DUC1'], ['MUSME', 'DUC2'], ['THEO', '24HRES'],
+                   ['THEO', '3DRRES'], ['THEO', '3HRES'], ['THEO', 'EXHIBIT'],
+                   ['THEO', 'SPSTOR'], ['THEO', 'STORP'], ['UNIV', '24EQUIP'],
+                   ['UNIV', '3DEQUIP'], ['UNIV', '3HEQUIP'], ['UNIV', '3HLAP'],
+                   ['UNIV', '7DEQUIP'], ['UNIV', 'BRITTLE'], ['UNIV', 'FLIP'],
+                   ['UNIV', 'SDL'], ['UNIV', 'STUDIO'], ['UNIV', 'UMBR'],
+                   ['HLTH', 'LKEY']].freeze
 
   def ingest_with_traject(filename, logger)
     indexer = Traject::Indexer::MarcIndexer.new("solr_writer.commit_on_close": true, logger: logger)
@@ -31,20 +39,6 @@ module OaiProcessingToolset
   def pull_deleted_ids(deleted_records, logger)
     ids = deleted_records.map { |n| n.at('header/identifier').text.split(':').last }
     logger.info "Deleted IDs: #{ids}"
-    ids
-  end
-
-  def pull_suppressed_ids(suppressed_records, logger)
-    # collects ID from controlfield 001
-    ids = suppressed_records.map { |s| s.at_xpath("marc:controlfield[@tag='001']", MARC_URL).text }
-    logger.info("Suppressed IDs: #{ids}")
-    ids
-  end
-
-  def pull_lost_stolen_ids(lost_stolen_records, suppressed_ids, logger)
-    # collects ID from controlfield 001
-    ids = lost_stolen_records.map { |s| s.at_xpath("marc:controlfield[@tag='001']", MARC_URL).text } - suppressed_ids
-    logger.info("Lost/Stolen IDs: #{ids}")
     ids
   end
 
@@ -91,12 +85,6 @@ module OaiProcessingToolset
     end
   end
 
-  def pull_deactivated_portfolios_ids(deactivated_portfolios, suppressed_ids, logger)
-    ids = deactivated_portfolios.map { |dp| dp.at_xpath("marc:controlfield[@tag='001']", MARC_URL).text } - suppressed_ids
-    logger.info("Deactivated Portfolio IDs: #{ids}")
-    ids
-  end
-
   def get_998_count(document)
     document.xpath(
       "marc:datafield[@tag='998']//marc:subfield[@code='c'][text()='available']", MARC_URL
@@ -113,5 +101,24 @@ module OaiProcessingToolset
     document.xpath(
       "marc:datafield[@tag='998']//marc:subfield[@code='e'][text()='Not Available']", MARC_URL
     ).size
+  end
+
+  def pull_temp_location_records(document)
+    document.xpath('//marc:record', MARC_URL).select do |d|
+      nine_nine_sevens = d.xpath("marc:datafield[@tag='997']", MARC_URL)
+      temporaries = nine_nine_sevens.select do |i|
+        library = i.xpath("marc:subfield[@code='c']", MARC_URL).text
+        location = i.xpath("marc:subfield[@code='d']", MARC_URL).text
+
+        ALL_LIB_LOCATIONS.include?(location&.upcase) || LIB_LOC_PAIRS.include?([library&.upcase, location&.upcase])
+      end
+      temporaries.size.positive? && nine_nine_sevens.size == temporaries.size
+    end
+  end
+
+  def pull_ids_from_category_array(cat_array, cat_label, ids_to_remove, logger)
+    ids = cat_array.map { |e| e.at_xpath("marc:controlfield[@tag='001']", MARC_URL).text } - ids_to_remove
+    logger.info("#{cat_label} IDs: #{ids}")
+    ids
   end
 end
