@@ -19,22 +19,33 @@ class OaiProcessingService
     suppressed_records = document.xpath("//marc:record[substring(marc:leader, 6, 1)='d']", MARC_URL) # gets all records with `d` in the 6th (actual) position of leader string
     lost_stolen_records = pull_lost_stolen_records(document)
     deactivated_portfolios = pull_deactivated_portfolios(document)
+    temporaries = pull_temp_location_records(document)
     logger.info "Starting record count: #{document.xpath('//marc:record', MARC_URL).count}"
     deleted_ids = pull_deleted_ids(deleted_records, logger)
-    suppressed_ids = pull_suppressed_ids(suppressed_records, logger)
-    lost_stolen_ids = pull_lost_stolen_ids(lost_stolen_records, suppressed_ids, logger)
-    deact_port_ids = pull_deactivated_portfolios_ids(deactivated_portfolios, suppressed_ids + lost_stolen_ids, logger)
-    delete_suppressed_count = (deleted_ids + suppressed_ids + lost_stolen_ids + deact_port_ids).size
+    suppressed_ids = pull_ids_from_category_array(suppressed_records, 'Suppressed', [], logger)
+    lost_stolen_ids = pull_ids_from_category_array(
+      lost_stolen_records, 'Lost/Stolen', suppressed_ids, logger
+    )
+    deact_port_ids = pull_ids_from_category_array(
+      deactivated_portfolios, 'Deactivated Portfolio', suppressed_ids + lost_stolen_ids, logger
+    )
+    temp_location_ids = pull_ids_from_category_array(
+      temporaries, 'Temporarily Located', suppressed_ids + lost_stolen_ids + deact_port_ids, logger
+    )
+    delete_suppressed_count = (
+      deleted_ids + suppressed_ids + lost_stolen_ids + deact_port_ids + temp_location_ids
+    ).size
     logger.info "Found #{delete_suppressed_count} delete records."
 
     deleted_records.remove
     suppressed_records.remove
     lost_stolen_records.each(&:remove)
     deactivated_portfolios.each(&:remove)
+    temporaries.each(&:remove)
     record_count = pull_record_count(document, logger)
     if delete_suppressed_count.positive?
       find_and_remove_del_supp_records(
-        deleted_ids, suppressed_ids + lost_stolen_ids + deact_port_ids, logger
+        deleted_ids, suppressed_ids + lost_stolen_ids + deact_port_ids + temp_location_ids, logger
       )
     end
 
