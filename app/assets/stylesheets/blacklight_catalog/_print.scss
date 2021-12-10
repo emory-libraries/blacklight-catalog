@@ -24,4 +24,13 @@
     size: auto; 
     margin: 25mm 25mm 25mm 25mm;  
   }
+
+  .avail-label.col-md-3.bookmarks + .avail-dd.col-md-9 span.collapse {
+    display: inline;
+    > div > table {
+      > thead > tr > th.no-print, > tbody > tr > td.no-print, > tbody > tr.no-print { 
+        display: none;
+      }
+    }
+  }
 }
