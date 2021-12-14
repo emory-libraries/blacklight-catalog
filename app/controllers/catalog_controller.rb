@@ -82,6 +82,7 @@ class CatalogController < ApplicationController
     # When users venture away from the homepage, the full list of facets will
     # be available to them. Any field listed below will appear on the homepage facets.
     config.homepage_facet_fields = ['marc_resource_ssim', 'library_ssim', 'format_ssim', 'language_ssim']
+    config.suppressed_facet_fields = ['title_main_first_char_ssim', 'author_display_ssim']
     config.truncate_field_values = [
       'table_of_contents_tesim', 'summary_tesim', 'note_publication_tesim', 'note_publication_dates_tesim',
       'note_language_tesim', 'note_accessibility_tesim', 'note_production_tesim', 'material_type_display_tesim',
@@ -129,6 +130,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'subject_geo_ssim', label: 'Region', limit: 5, index_range: true
     config.add_facet_field 'subject_era_ssim', label: 'Era', limit: 5, index_range: [*(0..2), *('A'..'Z')]
     config.add_facet_field 'genre_ssim', label: 'Genre', limit: 5, index_range: true
+    config.add_facet_field 'author_display_ssim', label: 'Author', limit: 5
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request

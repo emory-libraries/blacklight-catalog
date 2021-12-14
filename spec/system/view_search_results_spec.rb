@@ -94,6 +94,16 @@ RSpec.feature 'View Search Results', type: :system, js: false do
          'Publication/Creation Date']
       )
     end
+
+    context 'when author facet link clicked' do
+      it 'lists the right limiter text' do
+        find('.blacklight-author_display_ssim.col-md-9 a', text: 'George Jenkins').click
+
+        expect(page).to have_css('span.filter-name', text: 'Author')
+        expect(page).not_to have_css('span.filter-name', text: 'Author Display Ssim')
+        expect(page).to have_css('span.filter-value[title="George Jenkins"]')
+      end
+    end
   end
 
   context 'A-Z facet navigation' do
