@@ -14,6 +14,7 @@ RSpec.describe OaiProcessingService do
         'blah',
         "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-01-28T19:16:10Z",
         'smackety',
+        false,
         logger
       )
     end
@@ -43,6 +44,7 @@ RSpec.describe OaiProcessingService do
             described_class.process_oai_with_marc_indexer('blah',
               "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-01-28T19:16:10Z",
               'smackety',
+              false,
               logger)
           end.to change { solr_docs_map_of('_version_') }.and not_change { solr_docs_map_of('id') }
         end
@@ -55,6 +57,7 @@ RSpec.describe OaiProcessingService do
             described_class.process_oai_with_marc_indexer('blah',
               "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-02-15T19:16:10Z",
               'smackety',
+              false,
               logger)
           end.to change { solr_docs_count_of('material_type_display_tesim') }
             .from(5).to(4)
@@ -69,6 +72,7 @@ RSpec.describe OaiProcessingService do
             described_class.process_oai_with_marc_indexer('blah',
               "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-02-23T19:16:10Z",
               'smackety',
+              false,
               logger)
           end.to change { solr_field_value_for('990000954720302486', 'lccn_ssim') }
             .from(nil).to(['sn 8675309'])
@@ -97,6 +101,7 @@ RSpec.describe OaiProcessingService do
           'blah',
           "?verb=ListRecords&set=blacklight4&metadataPrefix=marc21&until=2021-01-29T19:16:10Z",
           'smackety',
+          false,
           logger
         )
         expect(solr_docs_map_of('id')).not_to include("990005651670302486") # making sure deactivated portfolio record ID is not present in SOLR
@@ -106,6 +111,71 @@ RSpec.describe OaiProcessingService do
         expect(solr_docs_map_of('id')).not_to include("9937275387802486") # making sure temporarily located record ID is not present in SOLR
         expect(solr_docs_map_of('id')).not_to include("9945275387802486") # making sure temporarily located record #2 ID is not present in SOLR
         expect(solr_num_of_docs).to eq 0
+      end
+    end
+
+    context 'single record indexing' do
+      before do
+        delete_all_documents_from_solr
+        # The command below is processing one record
+        described_class.process_oai_with_marc_indexer(
+          'blah',
+          "?verb=GetRecord&identifier=oai:alma.blah:single_record&metadataPrefix=marc21",
+          'smackety',
+          true,
+          logger
+        )
+      end
+
+      context 'reindexing' do
+        context 'ensuring non-duplication' do
+          it 'produces the same unique records when running the indexer on the same material' do
+            expect do
+              # The command below is processing one record
+              described_class.process_oai_with_marc_indexer('blah',
+                "?verb=GetRecord&identifier=oai:alma.blah:single_record&metadataPrefix=marc21",
+                'smackety', true, logger)
+            end.to change { solr_docs_map_of('_version_') }.and not_change { solr_docs_map_of('id') }
+          end
+        end
+
+        context 'ensuring fields delete' do
+          it 'removes field when data needed to index is missing' do
+            expect do
+              # The command below is processing 990000954720302486
+              described_class.process_oai_with_marc_indexer('blah',
+                "?verb=GetRecord&identifier=oai:alma.blah:single_record_missing&metadataPrefix=marc21",
+                'smackety', true, logger)
+            end.to change { solr_docs_count_of('lccn_ssim') }.from(1).to(0)
+          end
+        end
+
+        context 'updating fields with different data' do
+          it 'updates 1 field when data changed and adds 1 to index when new data introduced' do
+            expect do
+              # The command below is processing 990000954720302486
+              described_class.process_oai_with_marc_indexer('blah',
+                "?verb=GetRecord&identifier=oai:alma.blah:single_record_updated&metadataPrefix=marc21",
+                'smackety', true, logger)
+            end.to change { solr_field_value_for('990000954720302486', 'material_type_display_tesim') }
+              .from(['34 pages ; 26 cm.']).to(['44 pages ; 26 cm.'])
+          end
+        end
+      end
+
+      context 'deleted and suppressed records', :clean do
+        it 'checks for presence of a record before running the deleted records OAI and then checks for absence' do
+          # first we make sure record with this ID exists after first run. This record will later be suppressed.
+          expect(solr_docs_map_of('id')).to include("990000954720302486")
+          # we then run indexer with the oai that has deleted and suppressed records info (alma_deleted_and_suppressed_records.xml)
+          described_class.process_oai_with_marc_indexer(
+            'blah',
+            "?verb=GetRecord&identifier=oai:alma.blah:single_record_deleted&metadataPrefix=marc21",
+            'smackety', true, logger
+          )
+          expect(solr_docs_map_of('id')).not_to include("990000954720302486") # making sure second suppressed record ID is not present in SOLR
+          expect(solr_num_of_docs).to eq 0
+        end
       end
     end
 

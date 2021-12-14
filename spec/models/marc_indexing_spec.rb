@@ -20,6 +20,7 @@ RSpec.describe 'Indexing fields with custom logic' do
       'blah',
       '?verb=ListRecords&set=blacklight_marc_resource&metadataPrefix=marc21&until=2021-01-28T19:16:10Z',
       'smackety',
+      false,
       logger
     )
   end
