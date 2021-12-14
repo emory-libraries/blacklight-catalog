@@ -11,11 +11,12 @@ class OaiProcessingService
   MARC_URL = OaiProcessingToolset.const_get(:MARC_URL).freeze
   OAI_URL = OaiProcessingToolset.const_get(:OAI_URL).freeze
 
-  def self.process_oai_with_marc_indexer(institution, qs, alma, logger = Logger.new(STDOUT))
+  def self.process_oai_with_marc_indexer(institution, qs, alma, single_record, logger = Logger.new(STDOUT))
     oai = call_oai_for_xml(alma, institution, qs, logger)
     document = Nokogiri::XML(oai.body)
+    xml_type = single_record ? 'GetRecord' : 'ListRecords'
     # handling of delete records
-    deleted_records = document.xpath('/oai:OAI-PMH/oai:ListRecords/oai:record[oai:header/@status="deleted"]', OAI_URL)
+    deleted_records = document.xpath("/oai:OAI-PMH/oai:#{xml_type}/oai:record[oai:header/@status='deleted']", OAI_URL)
     suppressed_records = document.xpath("//marc:record[substring(marc:leader, 6, 1)='d']", MARC_URL) # gets all records with `d` in the 6th (actual) position of leader string
     lost_stolen_records = pull_lost_stolen_records(document)
     deactivated_portfolios = pull_deactivated_portfolios(document)
@@ -42,7 +43,7 @@ class OaiProcessingService
     lost_stolen_records.each(&:remove)
     deactivated_portfolios.each(&:remove)
     temporaries.each(&:remove)
-    record_count = pull_record_count(document, logger)
+    record_count = pull_record_count(document, xml_type, logger)
     if delete_suppressed_count.positive?
       find_and_remove_del_supp_records(
         deleted_ids, suppressed_ids + lost_stolen_ids + deact_port_ids + temp_location_ids, logger
@@ -55,7 +56,7 @@ class OaiProcessingService
 
     if record_count.positive?
       begin
-        process_active_records_from_xml(resumption_token, document, logger)
+        process_active_records_from_xml(resumption_token, document, xml_type, logger)
       rescue
         return
       end
@@ -71,9 +72,9 @@ class OaiProcessingService
     logger.info(solr.commit.to_s)
   end
 
-  def self.process_active_records_from_xml(resumption_token, document, logger)
-    filename = Rails.root.join('tmp', "#{resumption_token || 'last'}.xml").to_s
-    File.open(filename, "w+") { |f| f.write(Nokogiri::XSLT(oai_to_marc).transform(document).to_s) }
+  def self.process_active_records_from_xml(resumption_token, document, xml_type, logger)
+    filename = Rails.root.join('tmp', "#{resumption_token.presence || 'last'}.xml").to_s
+    File.open(filename, "w+") { |f| f.write(Nokogiri::XSLT(oai_to_marc(xml_type)).transform(document).to_s) }
 
     logger.info "File written to tmp. Now indexing #{filename}"
     ingest_with_traject(filename, logger)

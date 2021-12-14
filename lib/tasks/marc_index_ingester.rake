@@ -19,11 +19,11 @@ task marc_index_ingest: [:environment] do
     # expect resumption token to be returned from process_oai method, else
     # it will be set to blank
     if single_record
-      resumption_token = OaiProcessingSingleService.process_oai_with_marc_indexer(ENV['INSTITUTION'], qs, ENV['ALMA'])
+      resumption_token = OaiProcessingService.process_oai_with_marc_indexer(ENV['INSTITUTION'], qs, ENV['ALMA'], true)
       qs = "?verb=GetRecord&resumptionToken=#{resumption_token}"
     else
       ingest_logger.info "Batch ##{counter}, query string: #{qs}"
-      resumption_token = OaiProcessingService.process_oai_with_marc_indexer(ENV['INSTITUTION'], qs, ENV['ALMA'], ingest_logger)
+      resumption_token = OaiProcessingService.process_oai_with_marc_indexer(ENV['INSTITUTION'], qs, ENV['ALMA'], false, ingest_logger)
       qs = "?verb=ListRecords&resumptionToken=#{resumption_token}"
       counter += 1
     end

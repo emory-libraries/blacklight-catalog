@@ -20,15 +20,15 @@ module OaiProcessingToolset
     logger.fatal e
   end
 
-  def oai_to_marc
-    %q(<?xml version='1.0'?>
+  def oai_to_marc(xml_type)
+    %(<?xml version='1.0'?>
          <xsl:stylesheet version="1.0"
          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
          xmlns:oai="http://www.openarchives.org/OAI/2.0/"
          xmlns:marc="http://www.loc.gov/MARC21/slim">
            <xsl:template match="/">
              <collection>
-             <xsl:for-each select="oai:OAI-PMH/oai:ListRecords/oai:record">
+             <xsl:for-each select="oai:OAI-PMH/oai:#{xml_type}/oai:record">
                <xsl:copy-of select="oai:metadata/marc:record"/>
              </xsl:for-each>
            </collection>
@@ -42,8 +42,8 @@ module OaiProcessingToolset
     ids
   end
 
-  def pull_record_count(document, logger)
-    active_ids_xpath = '/oai:OAI-PMH/oai:ListRecords/oai:record/oai:metadata/marc:record/marc:controlfield[@tag="001"]'
+  def pull_record_count(document, xml_type, logger)
+    active_ids_xpath = "/oai:OAI-PMH/oai:#{xml_type}/oai:record/oai:metadata/marc:record/marc:controlfield[@tag='001']"
     ids = document.xpath(active_ids_xpath, OAI_URL.dup.merge(MARC_URL)).map(&:content)
     logger.info "#{ids.size} records retrieved"
     logger.info "Active IDs: #{ids}"
