@@ -179,3 +179,14 @@ li.loading-avail-badge span {
 }
 
 .bound-with-link{ margin-left: -0.25rem;}
+
+.table-primary, tbody > tr { 
+  display: -webkit-box; 
+  display: -webkit-flex; 
+  display: -ms-flexbox; 
+  display: flex; 
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap; flex-wrap: wrap; 
+}
+
+tr.no-print > td { min-width: 100%; }
