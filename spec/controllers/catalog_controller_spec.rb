@@ -59,9 +59,10 @@ RSpec.describe CatalogController, type: :controller do
     let(:expected_facet_fields) do
       ["author_ssim", "format_ssim", "language_ssim", "marc_resource_ssim",
        "subject_era_ssim", "subject_geo_ssim", "subject_ssim", "library_ssim",
-       "collection_ssim", "genre_ssim", "pub_date_isim", "lc_1letter_ssim", "title_main_first_char_ssim"]
+       "collection_ssim", "genre_ssim", "pub_date_isim", "lc_1letter_ssim", "title_main_first_char_ssim", "author_display_ssim"]
     end
     let(:homepage_facet_fields) { controller.blacklight_config.homepage_facet_fields }
+    let(:suppressed_facet_fields) { controller.blacklight_config.suppressed_facet_fields }
 
     context 'homepage facet fields' do
       it do
@@ -69,6 +70,10 @@ RSpec.describe CatalogController, type: :controller do
           ['marc_resource_ssim', 'library_ssim', 'format_ssim', 'language_ssim']
         )
       end
+    end
+
+    context 'suppressed facet fields' do
+      it { expect(suppressed_facet_fields).to eq(['title_main_first_char_ssim', 'author_display_ssim']) }
     end
 
     it { expect(facet_fields).to contain_exactly(*expected_facet_fields) }
