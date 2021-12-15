@@ -73,7 +73,7 @@ en:
   contact: "Emory Library Search Points of Contact"
   help:
     title: "Help"
-    subheading: "Library Search is the new discovery platform developed for searching Emory Libraries catalog including books, e-books, videos, journals, and some electronic items within the catalog. Links to articles, databases, and other resources used for research are provided. </br></br>Help with using Library Search is available via our User Guide and help articles on our <a href='https://wiki.emory.edu/display/BDL/Library+Search+User+Guide' target='_blank' rel='noopener noreferrer'>Wiki Site</a>."
+    subheading: "Library Search is the new discovery platform developed for searching Emory Libraries catalog including books, e-books, videos, journals, and some electronic items within the catalog. Links to articles, databases, and other resources used for research are provided. Please refer to the help resources below or email <a href='mailto:librarysearch@emory.edu' target='_blank' rel='noopener noreferrer'>librarysearch@emory.edu</a> if further assistance is needed.<p><a href='https://guides.libraries.emory.edu/LibrarySearchUserGuide' target='_blank' rel='noopener noreferrer'>Library Search User Guide</a><br><a href='https://guides.libraries.emory.edu/LibrarySearchFAQs' target='_blank' rel='noopener noreferrer'>Library Search Frequently Asked Questions</a><br><a href='https://guides.libraries.emory.edu/LibrarySearch-from-discovere' target='_blank' rel='noopener noreferrer'>Moving from discoverE to Library Search FAQ's</a>"
   catalog:
     show:
       more_details_header: "More Details"
