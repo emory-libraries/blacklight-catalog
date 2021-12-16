@@ -1,4 +1,4 @@
-<% holdings_available = doc_avail_values.present? && (doc_avail_values[:online_available] || document.url_fulltext.present? || doc_avail_values[:physical_holdings].any?) %>
+<% holdings_available = doc_avail_values.present? && (doc_avail_values[:online_available] || document.url_fulltext.present? || doc_avail_values[:physical_holdings].any? || document['bound_with_display_ssim'].present?) %>
 
 <% if holdings_available %>
   <% if doc_avail_values[:online_available] || document.url_fulltext.present? %>
