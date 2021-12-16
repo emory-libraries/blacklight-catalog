@@ -28,3 +28,9 @@ SOLR_URL=
 # provide a comma-separated list of network IDs of LTDS users who can perform administrative tasks
 LTDS_ADMIN_NET_ID_LIST=
 GA_TRACKING_CODE=your_google_analytics_code
+
+# Honeybadger API key. You can find this key in the Honeybadger portal, under Blacklight Catalog > Settings. Only set this value for production environments.
+HONEYBADGER_API_KEY=
+
+# Honeybadger ENV label. Choose from the following values: "Catalog-Prod", "Catalog-Test", "Catalog-Arch". Only set this value for production environments.
+HONEYBADGER_ENV=

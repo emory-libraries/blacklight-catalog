@@ -56,6 +56,7 @@
 #   }
 
 set :stage, :TEST
+set :honeybadger_env, "Catalog-Test"
 
 set :ec2_region, %w[us-east-1]
 ec2_role %i[web app db],

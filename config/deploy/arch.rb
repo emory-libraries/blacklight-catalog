@@ -55,6 +55,7 @@
 #     # password: "please use keys"
 #   }
 set :stage, :ARCH
+set :honeybadger_env, "Catalog-Arch"
 
 set :ec2_region, %w[us-east-1]
 ec2_role %i[web app db],

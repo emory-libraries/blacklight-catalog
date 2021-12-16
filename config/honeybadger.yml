@@ -1,0 +1,6 @@
+---
+api_key: <%= ENV['HONEYBADGER_API_KEY'] %>
+env: <%= ENV['HONEYBADGER_ENV'] || Rails.env %>
+
+breadcrumbs:
+  enabled: <%= !Rails.env.test? %>
