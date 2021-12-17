@@ -1,8 +1,8 @@
 <%# Override of Blacklight v7.4.1 partial of same name; %>
- <% if !request.fullpath.include?('/advanced') %>
- <div class="col-12">
-   <h3 class="header-search">Search books, e-books, journals, videos and more</h2>
- </div>
+<% if !request.fullpath.include?('empty=true') && !request.fullpath.include?('/advanced') %>
+  <div class="col-12">
+    <h3 class="header-search">Search books, e-books, journals, videos and more</h2>
+  </div>
   <div class="navbar-search navbar navbar-light mb-12 p-0" role="navigation">
     <div class="<%= container_classes %>">
       <%= render_search_bar  %>
@@ -10,7 +10,19 @@
   </div>
   <div class="col-12">
     <p>For help in searching the Catalog, try our <a href="https://wiki.emory.edu/display/BDL/How-to+articles">Search Tips</a>.<br>
-      For additional assistance, please <a href="https://emory.libanswers.com/">Ask a Librarian</a>.<br>
-      Or <a href="/contact">send us comments or suggestions</a> that may help us improve the catalog.</p>
+    For additional assistance, please <a href="https://emory.libanswers.com/">Ask a Librarian</a>.<br>
+    Or <a href="/contact">send us comments or suggestions</a> that may help us improve the catalog.</p>
   </div>
+<% elsif request.fullpath.include?('empty=true') && !request.fullpath.include?('/advanced') %>
+  <div class="page-links"><span class="page-entries"> No entries found </span></div>
+  <h2>No results found for your search</h2>
+  <div id="documents" class="noresults">
+    <h3>Try modifying your search</h3>
+    <ul>
+      <li>Please also try your search in 
+        <a href="https://emory.primo.exlibrisgroup.com/discovery/search?vid=01GALI_EMORY:articles" target="_blank" rel="noopener noreferrer">Articles + </a>. Please 
+        <a href="https://emory.libanswers.com/" target="_blank" rel="noopener noreferrer">Ask A Librarian</a> if additional assistance is needed.</li>
+    </ul>
+  </div>
+  <%= render('catalog/other_resources/card', url: articles_plus_url, new_page: true, url_text: 'Articles+') %>
 <% end %>
