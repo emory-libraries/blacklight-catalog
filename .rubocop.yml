@@ -49,7 +49,6 @@ Metrics/MethodLength:
         - 'lib/traject/extract_publication_date.rb'
         - 'app/controllers/sessions/social_login.rb'
         - 'config/initializers/bookmarks_index_override.rb'
-        - 'config/initializers/catalog_index_override.rb'
 
 Metrics/ModuleLength:
     Exclude:
