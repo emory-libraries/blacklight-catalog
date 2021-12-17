@@ -1,0 +1,23 @@
+<%# Overrides partial of same name from blacklight (7.4.1) %>
+<%#
+  Changes text on L#10 and adds tool tip L#22.
+%>
+<h2><%= t 'blacklight.search.zero_results.title' %></h2>
+<div id="documents" class="noresults">
+  <h3><%= t 'blacklight.search.zero_results.modify_search' %></h3>
+  <ul>
+    <li>
+      Please also try your search in 
+      <a href="https://emory.primo.exlibrisgroup.com/discovery/search?vid=01GALI_EMORY:articles" target="_blank" rel="noopener noreferrer">Articles + </a>. Please 
+      <a href="https://emory.libanswers.com/" target="_blank" rel="noopener noreferrer">Ask A Librarian</a> if additional assistance is needed.
+    </li>
+
+    <%- if params[:q] and params[:search_field] and params[:search_field] != blacklight_config.default_search_field.try(:key) -%>
+      <li><%= t 'blacklight.search.zero_results.search_fields', :search_fields => search_field_label(params) %> -
+      <%= link_to t('blacklight.search.zero_results.search_everything', field: blacklight_config.default_search_field.label), url_for(search_state.params_for_search(search_field: blacklight_config.default_search_field.key)) %>
+      </li>
+    <%- end %>
+
+  </ul>
+  <%= render('catalog/other_resources/card', url: articles_plus_url, new_page: true, url_text: 'Articles+') %>
+</div>
