@@ -45,13 +45,11 @@ RSpec.feature 'eJournals Page', type: :system, js: false do
       fill_in 'title_precise', with: '123'
       click_button("Search")
       expect(page).not_to have_css("The Title of my Work")
-      expect(page).to have_selector('.constraint', count: 3)
     end
 
     it 'click on Letters' do
       click_link('A')
       expect(page).not_to have_css("The Title of my Work")
-      expect(page).to have_selector('.constraint', count: 3)
     end
   end
 end

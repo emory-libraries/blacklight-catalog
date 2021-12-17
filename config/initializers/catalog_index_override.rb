@@ -9,16 +9,20 @@ CatalogController.class_eval do
     @document_list = @response.documents
     @document_ids = @response.documents&.map(&:id) || []
 
-    respond_to do |format|
-      format.html { store_preferred_view }
-      format.rss  { render layout: false }
-      format.atom { render layout: false }
-      format.json do
-        @presenter = Blacklight::JsonPresenter.new(@response,
-                                                   blacklight_config)
+    if @document_list.empty?
+      redirect_to "/?empty=true&search_term=#{params[:q]}"
+    else
+      respond_to do |format|
+        format.html { store_preferred_view }
+        format.rss  { render layout: false }
+        format.atom { render layout: false }
+        format.json do
+          @presenter = Blacklight::JsonPresenter.new(@response,
+                                                     blacklight_config)
+        end
+        additional_response_formats(format)
+        document_export_formats(format)
       end
-      additional_response_formats(format)
-      document_export_formats(format)
     end
   end
 
