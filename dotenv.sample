@@ -34,3 +34,6 @@ HONEYBADGER_API_KEY=
 
 # Honeybadger ENV label. Choose from the following values: "Catalog-Prod", "Catalog-Test", "Catalog-Arch". Only set this value for production environments.
 HONEYBADGER_ENV=
+
+# Honeybadger blacklight:reindex check-in ID. You can find this ID in the Honeybadger portal, under Blacklight Catalog > Check-Ins
+HONEYBADGER_BLACKLIGHT_REINDEX_CHECK_IN_ID=
