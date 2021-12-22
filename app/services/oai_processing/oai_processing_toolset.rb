@@ -4,12 +4,11 @@ module OaiProcessingToolset
   MARC_URL = { 'marc' => "http://www.loc.gov/MARC21/slim" }.freeze
   OAI_URL = { 'oai' => 'http://www.openarchives.org/OAI/2.0/' }.freeze
   ALL_LIB_LOCATIONS = ['WD', 'XM', 'XL', 'SP'].freeze
-  LIB_LOC_PAIRS = [['LAW', 'DISP'], ['MUSME', 'DUC1'], ['MUSME', 'DUC2'], ['THEO', '24HRES'],
-                   ['THEO', '3DRRES'], ['THEO', '3HRES'], ['THEO', 'EXHIBIT'],
-                   ['THEO', 'SPSTOR'], ['THEO', 'STORP'], ['UNIV', '24EQUIP'],
-                   ['UNIV', '3DEQUIP'], ['UNIV', '3HEQUIP'], ['UNIV', '3HLAP'],
-                   ['UNIV', '7DEQUIP'], ['UNIV', 'BRITTLE'], ['UNIV', 'FLIP'],
-                   ['UNIV', 'SDL'], ['UNIV', 'STUDIO'], ['UNIV', 'UMBR'],
+  LIB_LOC_PAIRS = [['LAW', 'DISP'], ['MUSME', 'DUC1'], ['MUSME', 'DUC2'],
+                   ['THEO', 'EXHIBIT'], ['THEO', 'SPSTOR'], ['THEO', 'STORP'],
+                   ['UNIV', '24EQUIP'], ['UNIV', '3DEQUIP'], ['UNIV', '3HEQUIP'],
+                   ['UNIV', '3HLAP'], ['UNIV', '7DEQUIP'], ['UNIV', 'BRITTLE'],
+                   ['UNIV', 'FLIP'], ['UNIV', 'SDL'], ['UNIV', 'STUDIO'], ['UNIV', 'UMBR'],
                    ['HLTH', 'LKEY']].freeze
 
   def ingest_with_traject(filename, logger)
