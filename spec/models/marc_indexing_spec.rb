@@ -180,8 +180,7 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
     context "when 856 3 and z are present and ind2 is equal to 1" do
       it 'has value of 856 3 since it has higher precedence than z' do
-        expect(solr_doc['url_fulltext_ssm']).to eq(["{\"url\":\"http://purl.access.gpo.gov/GPO/LPS54510\",\"label\":\"Subfield code 3\"}",
-                                                    "{\"url\":\"http://catdir.loc.gov/catdir/toc/casalini15/3065159.pdf\",\"label\":\"Table of contents only\"}"])
+        expect(solr_doc['url_fulltext_ssm']).to eq(["{\"url\":\"http://purl.access.gpo.gov/GPO/LPS54510\",\"label\":\"Subfield code 3\"}"])
       end
     end
 
@@ -260,7 +259,10 @@ RSpec.describe 'Indexing fields with custom logic' do
     context "when 856 indicator2 == 2 and either y, 3, or z are present" do
       it 'has value of 856u and text = 3 since it has higher precedence than z' do
         expect(solr_doc['url_suppl_ssim']).to eq(
-          ["http://excerpts.contentreserve.com/FormatType-425/3450-1/791128-HarryPotterAndTheSorcerersStone.mp3 text: This is the right code"]
+          [
+            "http://excerpts.contentreserve.com/FormatType-425/3450-1/791128-HarryPotterAndTheSorcerersStone.mp3 text: This is the right code",
+            "http://catdir.loc.gov/catdir/toc/casalini15/3065159.pdf text: Table of contents only"
+          ]
         )
       end
 
