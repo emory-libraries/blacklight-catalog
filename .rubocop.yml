@@ -40,6 +40,8 @@ Metrics/CyclomaticComplexity:
         - 'app/models/marc_indexer.rb'
         - 'app/services/oai_processing_single_service.rb'
         - 'lib/traject/extract_publication_date.rb'
+        - 'lib/traject/extract_url_fulltext.rb'
+        - 'lib/traject/extract_url_suppl.rb'
 
 Metrics/MethodLength:
     Exclude:
@@ -47,6 +49,7 @@ Metrics/MethodLength:
         - 'app/services/oai_processing_service.rb'
         - 'app/services/oai_processing_single_service.rb'
         - 'lib/traject/extract_publication_date.rb'
+        - 'lib/traject/extract_url_fulltext.rb'
         - 'app/controllers/sessions/social_login.rb'
         - 'config/initializers/bookmarks_index_override.rb'
 
