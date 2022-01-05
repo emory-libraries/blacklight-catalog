@@ -19,7 +19,7 @@ module AvailabilityHelper
     tag.a('LOCATE',
             href: "#avail-#{mms_id}-toggle",
             data: { toggle: "collapse" },
-            class: "btn btn-md rounded-0 btn-outline-primary avail-link-el")
+            class: "btn btn-md rounded-0 btn-outline-primary avail-physical-link-el")
   end
 
   def get_phys_avail_status(avail_values)
@@ -72,6 +72,6 @@ module AvailabilityHelper
   end
 
   def online_modal_link(mms_id)
-    tag.a("CONNECT", href: "#", data: { toggle: 'modal', target: "#avail-modal-#{mms_id}" }, class: "btn btn-md rounded-0 mb-2 btn-outline-primary avail-link-el")
+    tag.a("CONNECT", href: "#", data: { toggle: 'modal', target: "#avail-modal-#{mms_id}" }, class: "btn btn-md rounded-0 mb-2 btn-outline-primary avail-online-link-el")
   end
 end

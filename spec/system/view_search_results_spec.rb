@@ -160,9 +160,9 @@ RSpec.feature 'View Search Results', type: :system, js: false do
       within('#availability-indicator-990005988630302486') do
         expect(page).to have_xpath('//span[1]', text: 'Online', class: 'btn rounded-0 mb-2 online-avail-label avail-default')
         expect(page).to have_css('span', text: 'Available')
-        expect(page).to have_xpath('//span[4]/a', text: 'LOCATE', class: 'btn btn-md rounded-0 btn-outline-primary avail-link-el')
+        expect(page).to have_xpath('//span[4]/a', text: 'LOCATE', class: 'btn btn-md rounded-0 btn-outline-primary avail-physical-link-el')
         expect(
-          find('a.btn.btn-md.rounded-0.mb-2.btn-outline-primary.avail-link-el[data-target="#avail-modal-990005988630302486"]').present?
+          find('a.btn.btn-md.rounded-0.mb-2.btn-outline-primary.avail-online-link-el[data-target="#avail-modal-990005988630302486"]').present?
         ).to be_truthy
       end
     end

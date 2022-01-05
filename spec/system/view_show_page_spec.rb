@@ -356,10 +356,10 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         find_all('span.phys-avail-label').first.should have_content('Available')
         find('.online-avail-label').should have_content('Online')
         expect(page).to have_link(
-          'LOCATE', class: 'btn btn-md rounded-0 btn-outline-primary avail-link-el'
+          'LOCATE', class: 'btn btn-md rounded-0 btn-outline-primary avail-physical-link-el'
         )
         expect(
-          find('a.btn.btn-md.rounded-0.mb-2.btn-outline-primary.avail-link-el[data-target="#avail-modal-990005988630302486"]').present?
+          find('a.btn.btn-md.rounded-0.mb-2.btn-outline-primary.avail-online-link-el[data-target="#avail-modal-990005988630302486"]').present?
         ).to be_truthy
       end
 

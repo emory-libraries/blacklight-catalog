@@ -9,7 +9,7 @@
     <% else %>
       <span class="online-avail-button">
         <%= link_to('CONNECT', service_page_link, 
-              target: "_blank", class: "btn btn-md rounded-0 mb-2 btn-outline-primary avail-link-el") %>
+              target: "_blank", class: "btn btn-md rounded-0 mb-2 btn-outline-primary avail-online-link-el") %>
       </span>
     <% end %>
   <% end %>
@@ -18,7 +18,7 @@
     <%= phys_label_span('Check Holdings') %>
     <%= tag.span(
           tag.a('LOCATE/REQUEST', href: service_page_link, target: '_blank',
-            class: "btn btn-md rounded-0 btn-outline-primary avail-link-el",
+            class: "btn btn-md rounded-0 btn-outline-primary avail-physical-link-el",
             rel: 'noopener noreferrer'),
           class: "phys-avail-button bound-with-link"
         ) %>
@@ -32,7 +32,7 @@
     <%= tag.a('CONTACT',
       href: "https://emory.libwizard.com/f/blacklight?refer_url=#{request.original_url}",
       target: '_blank',
-      class: "btn btn-md rounded-0 btn-outline-primary avail-link-el",
+      class: "btn btn-md rounded-0 btn-outline-primary avail-physical-link-el",
       rel: 'noopener noreferrer')
     %>
   </span>

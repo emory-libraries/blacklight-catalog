@@ -88,12 +88,25 @@ dt.index-field-name {
   background-color: $alt-yellow;
 }
 
-.avail-link-el, .phys-avail-label, .online-avail-label {
+.avail-physical-link-el, .avail-online-link-el, .phys-avail-label, .online-avail-label {
   min-width: $results-avail-badge-min-width;
 }
 
-.phys-avail-button, .online-avail-button {
-  a.avail-link-el {
+.phys-avail-button {
+  a.avail-physical-link-el {
+    font-size:   $results-avail-link-font-size;
+    font-weight: $font-weight-bold !important; 
+    padding:     $results-avail-link-padding;
+    &:hover, &:focus {
+      border-color:     $bright-blue;
+      background-color: $light-blue;
+      color:            $bright-blue;
+    }
+  }
+}
+
+.online-avail-button {
+  a.avail-online-link-el {
     font-size:   $results-avail-link-font-size;
     font-weight: $font-weight-bold !important; 
     padding:     $results-avail-link-padding;
