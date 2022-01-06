@@ -75,19 +75,16 @@ module OaiProcessingToolset
   def pull_deactivated_portfolios(document)
     document.xpath('//marc:record', MARC_URL).select do |d|
       nine_nine_eight_count = get_998_count(d)
-      eight_five_six_count = d.xpath("marc:datafield[@tag='856']", MARC_URL).size
+      eight_five_sixes = d.xpath("marc:datafield[@tag='856']", MARC_URL).present?
       physical = document_contain_physical?(d)
       deactivate_portfolios_count = get_deact_port_count(d)
 
-      !physical && deactivate_portfolios_count.positive? &&
-        nine_nine_eight_count + eight_five_six_count <= deactivate_portfolios_count
+      !physical && deactivate_portfolios_count.positive? && !eight_five_sixes && nine_nine_eight_count == deactivate_portfolios_count
     end
   end
 
   def get_998_count(document)
-    document.xpath(
-      "marc:datafield[@tag='998']//marc:subfield[@code='c'][text()='available']", MARC_URL
-    ).size
+    document.xpath("marc:datafield[@tag='998']", MARC_URL).size
   end
 
   def document_contain_physical?(document)
