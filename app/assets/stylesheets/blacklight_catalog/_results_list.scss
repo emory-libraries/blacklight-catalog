@@ -164,6 +164,17 @@ li.loading-avail-badge span {
   margin-right: 1em;
 }
 
+.availability-table {
+  .table-primary th {
+    border-color: #dee2e6;
+  }
+
+  td {
+    font-size: 0.875rem;
+    text-align: left;
+  }
+}
+
 .btn.rounded-0.phys-avail-label, .btn.rounded-0.mb-2.online-avail-label { 
   cursor:    default !important;
   font-size: $results-button-label-font-size;
