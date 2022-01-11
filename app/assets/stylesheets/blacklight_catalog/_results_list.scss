@@ -16,11 +16,20 @@ article.document {
     margin-left: map-get($spacers, 0);
 
     > dt {
-      // padding-left: $navbar-padding-y
       text-align: right;
+
+      @media (max-width:767px) {
+        text-align: left;
+        margin-bottom: 1px;
+      }
     }
+    
     dd {
       margin-bottom: 0;
+
+      @media (max-width:767px) {
+        margin-bottom: 3px;
+      }
     }
   }
 
@@ -167,11 +176,23 @@ li.loading-avail-badge span {
 .availability-table {
   .table-primary th {
     border-color: #dee2e6;
+
+    @media (max-width:575px) {
+      max-width: 33.33%;
+    }
   }
 
   td {
     font-size: 0.875rem;
     text-align: left;
+
+    @media (max-width:575px) {
+      max-width: 33.33%;
+
+      span.btn {
+        min-width: 5rem;
+      }
+    }
   }
 }
 
