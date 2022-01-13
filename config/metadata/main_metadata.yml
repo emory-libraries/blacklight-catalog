@@ -1,6 +1,6 @@
 author_display_ssim: 'Author'
 publication_main_display_ssim: 'Publication/Creation'
-format_ssim: 'Type'
+format_ssim: 'Resource Type'
 edition_tsim: 'Edition'
 bound_with_display_ssim: 'Is Part Of'
 local_call_number_tesim: 'Call Number'
