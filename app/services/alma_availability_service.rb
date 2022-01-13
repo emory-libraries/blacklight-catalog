@@ -14,6 +14,7 @@ class AlmaAvailabilityService
     return nil if response.blank?
 
     xml = Nokogiri::XML(response)
+    xml.remove_namespaces!
     ret_hsh = {}
 
     process_availability(xml, ret_hsh)
