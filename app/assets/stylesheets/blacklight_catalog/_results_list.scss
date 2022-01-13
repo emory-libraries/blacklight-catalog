@@ -28,7 +28,7 @@ article.document {
       margin-bottom: 0;
 
       @media (max-width:767px) {
-        margin-bottom: 3px;
+        margin-bottom: 6px;
       }
     }
   }
@@ -176,6 +176,7 @@ li.loading-avail-badge span {
 .availability-table {
   .table-primary th {
     border-color: #dee2e6;
+    font-size: 0.875rem;
 
     @media (max-width:575px) {
       max-width: 33.33%;
