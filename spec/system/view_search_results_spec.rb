@@ -26,7 +26,7 @@ RSpec.feature 'View Search Results', type: :system, js: false do
     end
 
     it 'has the right metadata labels' do
-      ['Author/Creator:', 'Type:', 'Publication/Creation:', 'Edition:'].each do |label|
+      ['Author/Creator:', 'Resource Type:', 'Publication/Creation:', 'Edition:'].each do |label|
         expect(page).to have_content(label)
       end
     end

@@ -143,7 +143,7 @@ class CatalogController < ApplicationController
     config.add_index_field('publication_main_display_ssim',
       label: 'Publication/Creation',
       helper_method: :multiple_values_new_line)
-    config.add_index_field 'format_ssim', label: 'Type'
+    config.add_index_field 'format_ssim', label: 'Resource Type'
     config.add_index_field 'edition_tsim', label: 'Edition', helper_method: :multiple_values_new_line
     config.add_index_field 'bound_with_display_ssim', label: 'Is Part Of', helper_method: :display_bound_with
 
@@ -154,7 +154,7 @@ class CatalogController < ApplicationController
     config.add_show_field('publication_main_display_ssim',
       label: 'Publication/Creation',
       helper_method: :multiple_values_new_line)
-    config.add_show_field 'format_ssim', label: 'Type', helper_method: :multiple_values_new_line
+    config.add_show_field 'format_ssim', label: 'Resource Type', helper_method: :multiple_values_new_line
     config.add_show_field 'edition_tsim', label: 'Edition', helper_method: :multiple_values_new_line
     config.add_show_field 'bound_with_display_ssim', label: 'Is Part Of', helper_method: :display_bound_with
     #   Where to find it section
