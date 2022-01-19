@@ -6,6 +6,8 @@ class OaiValidation::Rule
   include OaiProcessingToolset
   MARC_URL = OaiProcessingToolset.const_get(:MARC_URL).freeze
   OAI_URL = OaiProcessingToolset.const_get(:OAI_URL).freeze
+  ALL_LIB_LOCATIONS = OaiProcessingToolset.const_get(:ALL_LIB_LOCATIONS).freeze
+  LIB_LOC_PAIRS = OaiProcessingToolset.const_get(:LIB_LOC_PAIRS).freeze
 
   attr_reader :document, :xml_type, :logger
 

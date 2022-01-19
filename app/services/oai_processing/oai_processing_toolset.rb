@@ -35,10 +35,6 @@ module OaiProcessingToolset
          </xsl:stylesheet>)
   end
 
-  def pull_deleted_ids(deleted_records)
-    deleted_records.map { |n| n.at('header/identifier').text.split(':').last }
-  end
-
   def pull_record_count(document, xml_type, logger)
     active_ids_xpath = "/oai:OAI-PMH/oai:#{xml_type}/oai:record/oai:metadata/marc:record/marc:controlfield[@tag='001']"
     ids = document.xpath(active_ids_xpath, OAI_URL.dup.merge(MARC_URL)).map(&:content)
@@ -60,27 +56,6 @@ module OaiProcessingToolset
     ["Communication with the OAI Service failed.", err].each { |m| logger.fatal(m) }
   end
 
-  def pull_lost_stolen_records(document)
-    document.xpath('//marc:record', MARC_URL).select do |d|
-      hol852_count = d.xpath("marc:datafield[@tag='HOL852']", MARC_URL).size
-      holsp_count = d.xpath(
-        "marc:datafield[@tag='HOLSP']//marc:subfield[@code='a'][text()='true']", MARC_URL
-      ).size
-      hol852_count.positive? && hol852_count <= holsp_count
-    end
-  end
-
-  def pull_deactivated_portfolios(document)
-    document.xpath('//marc:record', MARC_URL).select do |d|
-      nine_nine_eight_count = get_998_count(d)
-      eight_five_sixes = d.xpath("marc:datafield[@tag='856']", MARC_URL).present?
-      physical = document_contain_physical?(d)
-      deactivate_portfolios_count = get_deact_port_count(d)
-
-      !physical && deactivate_portfolios_count.positive? && !eight_five_sixes && nine_nine_eight_count == deactivate_portfolios_count
-    end
-  end
-
   def get_998_count(document)
     document.xpath("marc:datafield[@tag='998']", MARC_URL).size
   end
@@ -95,22 +70,5 @@ module OaiProcessingToolset
     document.xpath(
       "marc:datafield[@tag='998']//marc:subfield[@code='e'][text()='Not Available']", MARC_URL
     ).size
-  end
-
-  def pull_temp_location_records(document)
-    document.xpath('//marc:record', MARC_URL).select do |d|
-      nine_nine_sevens = d.xpath("marc:datafield[@tag='997']", MARC_URL)
-      temporaries = nine_nine_sevens.select do |i|
-        library = i.xpath("marc:subfield[@code='c']", MARC_URL).text
-        location = i.xpath("marc:subfield[@code='d']", MARC_URL).text
-
-        ALL_LIB_LOCATIONS.include?(location&.upcase) || LIB_LOC_PAIRS.include?([library&.upcase, location&.upcase])
-      end
-      temporaries.size.positive? && nine_nine_sevens.size == temporaries.size
-    end
-  end
-
-  def pull_ids_from_category_array(cat_array)
-    cat_array.map { |e| e.at_xpath("marc:controlfield[@tag='001']", MARC_URL).text }
   end
 end

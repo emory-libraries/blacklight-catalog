@@ -11,12 +11,12 @@ class OaiValidation::DeletedRecordsRule < OaiValidation::Rule
 
   def record_ids
     deleted_records = document.xpath("/oai:OAI-PMH/oai:#{xml_type}/oai:record[oai:header/@status='deleted']", OAI_URL)
-    pull_deleted_ids(deleted_records)
+    deleted_records.map { |n| n.at('header/identifier').text.split(':').last }
   end
 
   def apply
     deleted_records = document.xpath("/oai:OAI-PMH/oai:#{xml_type}/oai:record[oai:header/@status='deleted']", OAI_URL)
-    deleted_ids = pull_deleted_ids(deleted_records)
+    deleted_ids = deleted_records.map { |n| n.at('header/identifier').text.split(':').last }
     deleted_records.remove
     deleted_ids
   end
