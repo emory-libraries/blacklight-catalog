@@ -24,8 +24,14 @@ class OaiValidation::Rule
     @xml_type = xml_type
   end
 
+  # Name of the validation rule
+  # @return [String] name of the rule
+  def name
+    raise "Method #name has not been implemented for this rule"
+  end
+
   # Description of the validation rule
-  # @return [Boolean] true if record is valid
+  # @return [String] description of the rule
   def description
     raise "Method #description has not been implemented for this rule"
   end

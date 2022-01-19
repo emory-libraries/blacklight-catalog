@@ -35,10 +35,8 @@ module OaiProcessingToolset
          </xsl:stylesheet>)
   end
 
-  def pull_deleted_ids(deleted_records, logger = nil)
-    ids = deleted_records.map { |n| n.at('header/identifier').text.split(':').last }
-    logger.info "Deleted IDs: #{ids}" if logger.present?
-    ids
+  def pull_deleted_ids(deleted_records)
+    deleted_records.map { |n| n.at('header/identifier').text.split(':').last }
   end
 
   def pull_record_count(document, xml_type, logger)
@@ -112,9 +110,7 @@ module OaiProcessingToolset
     end
   end
 
-  def pull_ids_from_category_array(cat_array, cat_label, ids_to_remove, logger = nil)
-    ids = cat_array.map { |e| e.at_xpath("marc:controlfield[@tag='001']", MARC_URL).text } - ids_to_remove
-    logger.info("#{cat_label} IDs: #{ids}") if logger.present?
-    ids
+  def pull_ids_from_category_array(cat_array)
+    cat_array.map { |e| e.at_xpath("marc:controlfield[@tag='001']", MARC_URL).text }
   end
 end
