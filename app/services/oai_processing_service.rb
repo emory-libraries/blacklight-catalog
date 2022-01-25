@@ -15,43 +15,24 @@ class OaiProcessingService
     oai = call_oai_for_xml(alma, institution, qs, logger)
     document = Nokogiri::XML(oai.body)
     xml_type = single_record ? 'GetRecord' : 'ListRecords'
-    # handling of delete records
-    deleted_records = document.xpath("/oai:OAI-PMH/oai:#{xml_type}/oai:record[oai:header/@status='deleted']", OAI_URL)
-    suppressed_records = document.xpath("//marc:record[substring(marc:leader, 6, 1)='d']", MARC_URL) # gets all records with `d` in the 6th (actual) position of leader string
-    lost_stolen_records = pull_lost_stolen_records(document)
-    deactivated_portfolios = pull_deactivated_portfolios(document)
-    temporaries = pull_temp_location_records(document)
-    logger.info "Starting record count: #{document.xpath('//marc:record', MARC_URL).count}"
-    deleted_ids = pull_deleted_ids(deleted_records, logger)
-    suppressed_ids = pull_ids_from_category_array(suppressed_records, 'Suppressed', [], logger)
-    lost_stolen_ids = pull_ids_from_category_array(
-      lost_stolen_records, 'Lost/Stolen', suppressed_ids, logger
-    )
-    deact_port_ids = pull_ids_from_category_array(
-      deactivated_portfolios, 'Deactivated Portfolio', suppressed_ids + lost_stolen_ids, logger
-    )
-    temp_location_ids = pull_ids_from_category_array(
-      temporaries, 'Temporarily Located', suppressed_ids + lost_stolen_ids + deact_port_ids, logger
-    )
-    delete_suppressed_count = (
-      deleted_ids + suppressed_ids + lost_stolen_ids + deact_port_ids + temp_location_ids
-    ).size
-    logger.info "Found #{delete_suppressed_count} delete records."
+    rules = OaiValidation::Rule.all_rules(document: document, xml_type: xml_type)
 
-    deleted_records.remove
-    suppressed_records.remove
-    lost_stolen_records.each(&:remove)
-    deactivated_portfolios.each(&:remove)
-    temporaries.each(&:remove)
-    record_count = pull_record_count(document, xml_type, logger)
-    if delete_suppressed_count.positive?
-      find_and_remove_del_supp_records(
-        deleted_ids, suppressed_ids + lost_stolen_ids + deact_port_ids + temp_location_ids, logger
-      )
+    # Apply all validation rules
+    logger.info "Starting record count: #{document.xpath('//marc:record', MARC_URL).count}"
+    invalid_record_ids = []
+    rules.each do |rule|
+      affected_record_ids = rule.apply
+      invalid_record_ids += affected_record_ids
+      logger.info "#{rule.name} IDs: #{affected_record_ids}"
     end
 
-    # Index remaining necessary records
+    # Remove invalid records from Solr
+    invalid_record_ids = invalid_record_ids.uniq
+    logger.info "Found #{invalid_record_ids.count} invalid records."
+    find_and_remove(invalid_record_ids, logger) if invalid_record_ids.any?
 
+    # Index valid records
+    record_count = pull_record_count(document, xml_type, logger)
     resumption_token = document.xpath('/oai:OAI-PMH/oai:ListRecords/oai:resumptionToken', OAI_URL).text
 
     if record_count.positive?
@@ -66,9 +47,9 @@ class OaiProcessingService
     resumption_token
   end
 
-  def self.find_and_remove_del_supp_records(deleted_ids, suppressed_ids, logger)
+  def self.find_and_remove(record_ids, logger)
     solr = RSolr.connect(url: ENV['SOLR_URL'], update_format: :xml, retry_503: 5, retry_after_limit: 5)
-    solr.delete_by_id(deleted_ids + suppressed_ids)
+    solr.delete_by_id(record_ids)
     logger.info(solr.commit.to_s)
   end
 

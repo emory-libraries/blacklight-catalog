@@ -23,7 +23,8 @@ RSpec.describe OaiValidationService, :clean do
       it 'raises an error' do
         stub_request(:get, "https://emory_alma_example.alma.exlibrisgroup.com/view/oai/emory/request?identifier=oai:alma.emory:990000954720302486&metadataPrefix=marc21&verb=GetRecord")
           .to_return(status: 200, body: File.read(fixture_path + '/single_record_deleted.xml'), headers: {})
-        expect { described_class.validate_record!(990_000_954_720_302_486, logger) }.to raise_error(OaiValidationServiceError, "Record #990000954720302486 is listed under deleted records.")
+        expected_error_message = "Record #990000954720302486 violates the following rule: Remove all records that were deleted."
+        expect { described_class.validate_record!(990_000_954_720_302_486, logger) }.to raise_error(OaiValidationServiceError, expected_error_message)
       end
     end
   end
