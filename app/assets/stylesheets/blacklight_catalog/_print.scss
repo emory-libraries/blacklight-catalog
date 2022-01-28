@@ -1,5 +1,5 @@
 @media print {
-  #appliedParams, .pagination-search-widgets, #where-to-find-section, #trunc-short-text, .moreless.less, .page-sidebar.col-lg-3, footer,
+  #appliedParams, .pagination-search-widgets, #sortAndPerPage, #where-to-find-section, #trunc-short-text, .first-main-char-nav, .breadcrumbs-container, .toggle-bookmark, .phys-avail-label, .phys-avail-button, .moreless.less, .page-sidebar.col-lg-3, footer,
     .additional-titles.additional-fields, .additional-authors-collapse, .footer-version, .availability-badge, .request-options { 
       display: none !important; 
   }
@@ -7,7 +7,7 @@
   #extended-terms { display: flex !important; }
   #extended-author-addl { display: inline !important; }
 
-  table, pre { page-break-inside:avoid }
+  article, table, pre { page-break-inside:avoid }
   dd { margin-bottom: 1rem; }
   dt { font-weight: bold !important; }
   a { 
@@ -25,7 +25,7 @@
     margin: 25mm 25mm 25mm 25mm;  
   }
 
-  .avail-label.col-md-3.bookmarks + .avail-dd.col-md-9 span.collapse {
+  .avail-label.col-md-3 + .avail-dd.col-md-9 span.collapse {
     display: inline;
     > div > table {
       > thead > tr > th.no-print, > tbody > tr > td.no-print, > tbody > tr.no-print { 
