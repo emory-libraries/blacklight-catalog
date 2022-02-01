@@ -175,7 +175,8 @@ li.loading-avail-badge span {
 
 .availability-table {
   .table-primary th {
-    border-color: #dee2e6;
+    border: 1px solid #dee2e6;
+    border-bottom-width: 2px;
     font-size: 0.875rem;
 
     @media (max-width:575px) {
@@ -186,6 +187,7 @@ li.loading-avail-badge span {
   td {
     font-size: 0.875rem;
     text-align: left;
+    border: 1px solid #dee2e6;
 
     @media (max-width:575px) {
       max-width: 33.33%;

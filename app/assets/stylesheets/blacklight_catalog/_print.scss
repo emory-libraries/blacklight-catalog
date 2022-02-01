@@ -29,7 +29,7 @@
     display: inline;
     > div > table {
       > thead > tr > th.no-print, > tbody > tr > td.no-print, > tbody > tr.no-print { 
-        display: none;
+        display: none !important;
       }
     }
   }
