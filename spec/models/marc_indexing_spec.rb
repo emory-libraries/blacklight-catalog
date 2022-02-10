@@ -94,12 +94,6 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
   end
 
-  describe 'title_details_display_tesim field' do
-    it 'maps 245abp' do
-      expect(solr_doc2['title_details_display_tesim']).to eq(["Physical Map Test"])
-    end
-  end
-
   describe 'publisher_details_dispaly_ssm field' do
     it 'maps 260, 264, and 008 fields' do
       expect(solr_doc2['publisher_details_display_ssim']).to eq(["[Central Intelligence Agency], [Washington, D.C.] : xx#"])

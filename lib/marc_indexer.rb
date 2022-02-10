@@ -170,26 +170,16 @@ to_field 'local_call_number_tesim', extract_call_number
 # Title Fields
 #    Primary Title
 to_field 'title_citation_ssi', extract_marc('245abnp'), trim_punctuation, first_only
-to_field 'title_display_partname_tesim', extract_marc('245p'), trim_punctuation
-to_field 'title_display_partnumber_tesim', extract_marc('245n'), trim_punctuation
-to_field 'title_display_tesim', extract_marc('245a', alternate_script: false), trim_punctuation
 to_field 'title_tesim', extract_marc('245a')
 to_field 'title_vern_display_tesim', extract_marc('245abfgknps', alternate_script: :only), trim_punctuation
-
-#    Subtitle
-to_field 'subtitle_display_tesim', extract_marc('245b', alternate_script: false), trim_punctuation
-to_field 'subtitle_t', extract_marc('245b')
-to_field 'subtitle_vern_display_tesim', extract_marc('245b', alternate_script: :only), trim_punctuation
 
 #    Additional Title Fields
 to_field 'title_abbr_tesim', extract_marc('210ab')
 to_field 'title_added_entry_tesim', extract_marc(title_added_entry_tesim_str)
 to_field 'title_addl_tesim', extract_marc("245#{ATOG}knps"), trim_punctuation
-to_field 'title_details_display_tesim', extract_title_details_display
 to_field 'title_enhanced_tesim', extract_marc("505#{ATOZ}")
 to_field 'title_former_ssim', extract_marc('247abcdefgnp:780abcdgikmnorstuwxyz')
 to_field 'title_former_tesim', extract_marc('247abcdefgnp')
-to_field 'title_graphic_tesim', extract_marc("880#{ATOZ}")
 to_field 'title_host_item_tesim', extract_marc("773#{ATOZ}:774#{ATOZ}")
 to_field 'title_key_tesim', extract_marc('222ab')
 to_field 'title_later_ssim', extract_marc('785abcdgikmnorstuxyz')
@@ -211,13 +201,11 @@ to_field 'author_display_ssim', extract_author_display
 # JSTOR isn't an author. Try to not use it as one
 to_field 'author_ssort', extract_emory_sortable_author
 to_field 'author_ssim', extract_marc("100abcdq:110abd:111acd:700abcdq:710abd:711acd"), trim_punctuation
-to_field 'author_ssm', extract_marc("100abcdq:110#{ATOZ}:111#{ATOZ}", alternate_script: false)
 to_field 'author_tesim', extract_marc("100abcegqu:110abcdegnu:111acdegjnqu")
 to_field 'author_vern_ssim', extract_author_vern
 to_field 'author_vern_tesim', extract_author_vern
 
 # Subject Fields
-to_field 'subject_addl_tsim', extract_marc("600vwxyz:610vwxyz:611vwxyz:630vwxyz:650vwxyz:651vwxyz:654vwxyz:655vwxyz")
 to_field 'subject_display_ssim', extract_subject_display(ATOZ, ATOG, VTOZ)
 to_field 'subject_era_ssim',  extract_marc("650y:651y:654y:655y"), trim_punctuation
 to_field 'subject_geo_ssim',  extract_marc("651a:650z"), trim_punctuation

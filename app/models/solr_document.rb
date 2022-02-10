@@ -14,7 +14,6 @@ class SolrDocument
 
   field_semantics.merge!(
     title: "title_tesim",
-    author: "author_ssm",
     language: "language_ssim",
     format: "format_tesim"
   )

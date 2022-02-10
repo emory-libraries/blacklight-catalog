@@ -1,7 +1,6 @@
 ## Fields included in solr schema: string
 
 1. `marc_display_tesi`: text
-1. `subtitle_t`: string
 1. `author_ssort`: sorted text
 1. `lc_callnum_display_ssi`: string
 1. `subject_era_facet_tesim`: text
