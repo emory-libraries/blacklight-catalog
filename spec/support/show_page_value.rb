@@ -6,7 +6,7 @@ SHOW_PAGE_VALUE = {
     "language_ssim": ["English"], "lc_callnum_display_ssi": "ANOTHER MAGICAL NUM .78F",
     "marc_resource_ssim": ["Electronic Resource"], "pub_date_isim": [2015], "subject_era_ssim": ["1990-"],
     "subject_geo_ssim": ["Texas"], "subject_ssim": ["Frontier and pioneer life", "Electronic books"],
-    "title_main_display_ssim": ["The Title of my Work"], "title_details_display_tesim": ["The Title of my Work"],
+    "title_main_display_ssim": ["The Title of my Work"],
     "title_addl_tesim": ["More title info"], "title_varying_tesim": ["Variant title"],
     "subject_tesim": ["A sample subject"], "edition_tsim": ["A sample edition"],
     "collection_ssim": ["American county histories"], "publication_main_display_ssim": ["A dummy publication"],

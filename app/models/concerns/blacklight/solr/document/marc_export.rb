@@ -447,15 +447,6 @@ module Blacklight::Solr::Document::MarcExport
     build_arr << pub_info
   end
 
-  def get_vol_ed_from_solr_mla(solr_doc)
-    vol1 = solr_doc['title_display_partnumber_tesim']&.first&.strip
-    vol2 = solr_doc['title_display_partname_tesim']&.first&.strip
-    edition = solr_doc['edition_tsim']&.first&.strip
-    joined_str = [vol1, vol2, edition].compact.join(', ')
-    return joined_str.to_s if joined_str.present?
-    joined_str
-  end
-
   def setup_pub_date(record)
     if record.find { |f| f.tag == '260' }.present?
       pub_date = record.find { |f| f.tag == '260' }

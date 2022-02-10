@@ -27,7 +27,7 @@
           </button>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
             <% if document.hold_requestable?(current_or_guest_user) %>
-            <%= link_to "Hold request", new_hold_request_path(hold_request: {mms_id: document.id, title: document['title_display_tesim']&.first}), class: "dropdown-item" %>
+            <%= link_to "Hold request", new_hold_request_path(hold_request: {mms_id: document.id, title: document['title_citation_ssi']}), class: "dropdown-item" %>
             <% end %>
             <% if document.one_step_doc_delivery?(@physical_holdings, current_or_guest_user) %>
             <%= link_to "Request Article or Chapter", document.one_step_link, class: "dropdown-item" %>
