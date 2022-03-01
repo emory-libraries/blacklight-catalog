@@ -26,11 +26,10 @@ class OaiValidation::DeactivatedPortfoliosRule < OaiValidation::Rule
   def pull_deactivated_portfolios
     document.xpath('//marc:record', MARC_URL).select do |d|
       nine_nine_eight_count = get_998_count(d)
-      eight_five_sixes = d.xpath("marc:datafield[@tag='856']", MARC_URL).present?
       physical = document_contain_physical?(d)
       deactivate_portfolios_count = get_deact_port_count(d)
 
-      !physical && deactivate_portfolios_count.positive? && !eight_five_sixes && nine_nine_eight_count == deactivate_portfolios_count
+      !physical && deactivate_portfolios_count.positive? && nine_nine_eight_count == deactivate_portfolios_count
     end
   end
 end
