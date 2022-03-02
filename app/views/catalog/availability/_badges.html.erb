@@ -27,9 +27,9 @@
     <%= render_physical_avail_spans(doc_avail_values, document.id) %>
   <% end %>
 <% else %>
-  <span class = "btn rounded-0 phys-avail-label avail-unknown">Contact Us</span>
+  <span class = "btn rounded-0 phys-avail-label avail-unknown">No Holdings</span>
   <span class = "phys-avail-button bound-with-link">
-    <%= tag.a('CONTACT',
+    <%= tag.a('CONTACT US',
       href: "https://emory.libwizard.com/f/blacklight?refer_url=#{request.original_url}",
       target: '_blank',
       class: "btn btn-md rounded-0 btn-outline-primary avail-physical-link-el",
