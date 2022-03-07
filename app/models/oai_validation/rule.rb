@@ -17,7 +17,8 @@ class OaiValidation::Rule
       OaiValidation::SuppressedRecordsRule.new(document: document, xml_type: xml_type),
       OaiValidation::LostStolenRecordsRule.new(document: document, xml_type: xml_type),
       OaiValidation::DeactivatedPortfoliosRule.new(document: document, xml_type: xml_type),
-      OaiValidation::TemporaryLocatedRecordsRule.new(document: document, xml_type: xml_type)
+      OaiValidation::TemporaryLocatedRecordsRule.new(document: document, xml_type: xml_type),
+      OaiValidation::NoHoldingRecordsRule.new(document: document, xml_type: xml_type)
     ]
   end
 

@@ -96,6 +96,8 @@ RSpec.describe OaiProcessingService do
         expect(solr_docs_map_of('id')).to include("9937275387802486")
         # This record will later be temporarily located #2.
         expect(solr_docs_map_of('id')).to include("9945275387802486")
+        # This record has neither 997 or 998 fields, meaning the indexer skips it.
+        expect(solr_docs_map_of('id')).not_to include("99452753878072486")
         # we then run indexer with the oai that has deleted and suppressed records info (alma_deleted_and_suppressed_records.xml)
         described_class.process_oai_with_marc_indexer(
           'blah',
@@ -110,6 +112,7 @@ RSpec.describe OaiProcessingService do
         expect(solr_docs_map_of('id')).not_to include("990028391040302486") # making sure lost/stolen record ID is not present in SOLR
         expect(solr_docs_map_of('id')).not_to include("9937275387802486") # making sure temporarily located record ID is not present in SOLR
         expect(solr_docs_map_of('id')).not_to include("9945275387802486") # making sure temporarily located record #2 ID is not present in SOLR
+        expect(solr_docs_map_of('id')).not_to include("99452753878072486") # making sure this record that has neither 997 or 998 fields will be skipped by the indexer.
         expect(solr_num_of_docs).to eq 0
       end
     end
