@@ -1,6 +1,5 @@
 <%# Override of Blacklight v7.4.1 partial of same name; inserts vernacular title helper before the dl L#4 %>
 <% doc_presenter = index_presenter(document) %>
-<% service_page_link = service_page_url(document.id) %>
 <%# default partial to display solr document fields in catalog index view -%>
 <%= vern_title_search_results_populator(document) %>
 <dl class="document-metadata dl-invert row">
