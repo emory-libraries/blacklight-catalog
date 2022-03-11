@@ -8,7 +8,7 @@
       <%= render 'shared/document_url_fulltext_modal', document: document %>
     <% else %>
       <span class="online-avail-button">
-        <%= link_to('CONNECT', service_page_link, 
+        <%= link_to('CONNECT', service_page_url(document.id, online: true), 
               target: "_blank", class: "btn btn-md rounded-0 mb-2 btn-outline-primary avail-online-link-el") %>
       </span>
     <% end %>

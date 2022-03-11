@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 module ExteriorLinksHelper
-  def service_page_url(doc_id)
-    "#{ENV['ALMA_BASE_URL']}/discovery/openurl?institution=#{ENV['INSTITUTION']}&vid=#{ENV['INSTITUTION']}:services&rft.mms_id=#{doc_id}"
+  def service_page_url(doc_id, online: false)
+    "#{ENV['ALMA_BASE_URL']}/discovery/openurl?institution=#{ENV['INSTITUTION']}&" \
+      "vid=#{ENV['INSTITUTION']}:services#{online ? '&u.ignore_date_coverage=true&force_direct=true' : ''}" \
+      "&rft.mms_id=#{doc_id}"
   end
 
   def databases_url
@@ -14,7 +16,8 @@ module ExteriorLinksHelper
 
   def articles_plus_url_builder(search_state)
     state_query = search_state.to_h['q']
-    "https://emory.primo.exlibrisgroup.com/discovery/search?vid=01GALI_EMORY:articles&query=any,contains,#{state_query}&lang=en"
+    "https://emory.primo.exlibrisgroup.com/discovery/search?vid=01GALI_EMORY:articles" \
+      "&query=any,contains,#{state_query}&lang=en"
   end
 
   def my_library_card_url
