@@ -63,12 +63,20 @@ module ExtractionTools
     [field['z'], field['3']].join(' ')
   end
 
+  def fields_yz3(field)
+    [field['y'], field['z'], field['3']].compact&.map(&:downcase)
+  end
+
   def accumulate_field_u(field, accumulator)
     accumulator << field['u'] unless field['u'].nil?
   end
 
   def notfulltext
     /abstract|description|sample text|table of contents|/i
+  end
+
+  def suppl_labels
+    ["table of contents", "table of contents only", "publisher description", "cover image", "contributor biographical information"]
   end
 
   def alpha_pat

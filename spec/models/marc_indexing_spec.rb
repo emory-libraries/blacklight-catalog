@@ -32,14 +32,28 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
   end
 
-  describe 'marc_resource_ssim field, when 598a equals "NEW"' do
-    it('is mapped with Recently Acquired') { expect(solr_doc['marc_resource_ssim']).to include('Recently Acquired') }
-  end
+  context 'marc_resource_ssim' do
+    describe 'when 598a equals "NEW"' do
+      it('is mapped with Recently Acquired') { expect(solr_doc['marc_resource_ssim']).to include('Recently Acquired') }
+    end
 
-  describe 'marc_resource_ssim field, when 598a does not exist' do
-    it 'is not mapped with Recently Acquired' do
-      [solr_doc2, solr_doc3, solr_doc4].each do |d|
-        expect(d['marc_resource_ssim']).not_to include('Recently Acquired')
+    describe 'when 598a does not exist' do
+      it 'is not mapped with Recently Acquired' do
+        [solr_doc2, solr_doc3, solr_doc4].each do |d|
+          expect(d['marc_resource_ssim']).not_to include('Recently Acquired')
+        end
+      end
+    end
+
+    describe 'when 856 has supplemental links only' do
+      it 'is not mapped with Online' do
+        expect(solr_doc5['marc_resource_ssim']).not_to include('Online')
+      end
+    end
+
+    describe 'when 856 has a fulltext link' do
+      it 'is mapped with Online' do
+        expect(solr_doc6['marc_resource_ssim']).to include('Online')
       end
     end
   end
