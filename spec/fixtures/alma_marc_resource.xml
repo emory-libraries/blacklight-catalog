@@ -916,10 +916,6 @@
             <subfield code="0">(uri) http://id.loc.gov/authorities/names/n86714535</subfield>
             <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n86714535</subfield>
           </datafield>
-          <datafield tag="856" ind1="4" ind2="1">
-            <subfield code="3">Table of contents only</subfield>
-            <subfield code="u">http://catdir.loc.gov/catdir/toc/casalini15/3065159.pdf</subfield>
-          </datafield>
           <datafield tag="910" ind1=" " ind2=" ">
             <subfield code="a">RDA ENRICHED</subfield>
           </datafield>
@@ -1216,10 +1212,6 @@
           </datafield>
           <datafield tag="752" ind1=" " ind2=" ">
             <subfield code="a">Yemen.</subfield>
-          </datafield>
-          <datafield tag="856" ind1="4" ind2="1">
-            <subfield code="3">full text, baby!</subfield>
-            <subfield code="u">http://catdir.loc.gov/catdir/toc/casalini15/3065159.pdf</subfield>
           </datafield>
           <datafield tag="910" ind1=" " ind2=" ">
             <subfield code="a">MARS</subfield>
