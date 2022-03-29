@@ -32,6 +32,14 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
   end
 
+  describe 'marc_resource_ssim field, when url_fulltext_ssm is populated' do
+    it 'is mapped with online' do
+      [solr_doc, solr_doc2, solr_doc3, solr_doc4].each do |sd|
+        expect(sd['marc_resource_ssim']).to include('Online')
+      end
+    end
+  end
+
   describe 'marc_resource_ssim field, when 598a equals "NEW"' do
     it('is mapped with Recently Acquired') { expect(solr_doc['marc_resource_ssim']).to include('Recently Acquired') }
   end
@@ -41,6 +49,24 @@ RSpec.describe 'Indexing fields with custom logic' do
       [solr_doc2, solr_doc3, solr_doc4].each do |d|
         expect(d['marc_resource_ssim']).not_to include('Recently Acquired')
       end
+    end
+  end
+
+  describe 'marc_resource_ssim field, when no 997 or 998 fields' do
+    context 'and 000/6 == e, f, g, k, o, or r and 008/29 == o or s' do
+      it('is mapped with Online') { expect(solr_doc5['marc_resource_ssim']).to include('Online') }
+    end
+
+    context 'and 000/6 == e, f, g, k, o, or r and 008/29 != o or s' do
+      it('is mapped with At the Library') { expect(solr_doc6['marc_resource_ssim']).to eq(['At the Library']) }
+    end
+
+    context 'and 000/6 != e, f, g, k, o, or r and 008/29 == o or s' do
+      it('is mapped with Online') { expect(solr_doc7['marc_resource_ssim']).to eq(['Online']) }
+    end
+
+    context 'and 000/6 != e, f, g, k, o, or r and 008/29 != o or s' do
+      it('is mapped with At the Library') { expect(solr_doc8['marc_resource_ssim']).to eq(['At the Library']) }
     end
   end
 

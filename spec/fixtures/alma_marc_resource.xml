@@ -167,10 +167,6 @@
           <datafield tag="966" ind1=" " ind2=" ">
             <subfield code="a">Hey, look! Holding notes, bustah!</subfield>
           </datafield>
-          <datafield tag="997" ind1=" " ind2=" ">
-            <subfield code="b">marc21</subfield>
-            <subfield code="a">false</subfield>
-          </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>
             <subfield code="a">false</subfield>
@@ -468,10 +464,6 @@
             <subfield code="a">C0</subfield>
             <subfield code="b">EMU</subfield>
           </datafield>
-          <datafield tag="997" ind1=" " ind2=" ">
-            <subfield code="b">marc21</subfield>
-            <subfield code="a">false</subfield>
-          </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>
             <subfield code="a">false</subfield>
@@ -620,10 +612,6 @@
           <datafield tag="994" ind1=" " ind2=" ">
             <subfield code="a">C0</subfield>
             <subfield code="b">EMU</subfield>
-          </datafield>
-          <datafield tag="997" ind1=" " ind2=" ">
-            <subfield code="b">marc21</subfield>
-            <subfield code="a">false</subfield>
           </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>
@@ -790,10 +778,6 @@
             <subfield code="a">C0</subfield>
             <subfield code="b">EMU</subfield>
           </datafield>
-          <datafield tag="997" ind1=" " ind2=" ">
-            <subfield code="b">marc21</subfield>
-            <subfield code="a">false</subfield>
-          </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>
             <subfield code="a">false</subfield>
@@ -933,10 +917,6 @@
             <subfield code="a">ELECTRONIC ACCESS</subfield>
             <subfield code="h">emugdonlin</subfield>
             <subfield code="w">ASIS</subfield>
-          </datafield>
-          <datafield tag="997" ind1=" " ind2=" ">
-            <subfield code="b">marc21</subfield>
-            <subfield code="a">false</subfield>
           </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>
@@ -1220,10 +1200,6 @@
             <subfield code="a">C0</subfield>
             <subfield code="b">EMU</subfield>
           </datafield>
-          <datafield tag="997" ind1=" " ind2=" ">
-            <subfield code="b">marc21</subfield>
-            <subfield code="a">false</subfield>
-          </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>
             <subfield code="a">false</subfield>
@@ -1368,10 +1344,6 @@
           <datafield tag="994" ind1=" " ind2=" ">
             <subfield code="a">C0</subfield>
             <subfield code="b">EMU</subfield>
-          </datafield>
-          <datafield tag="997" ind1=" " ind2=" ">
-            <subfield code="b">marc21</subfield>
-            <subfield code="a">false</subfield>
           </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>
@@ -1532,10 +1504,6 @@
           <datafield tag="994" ind1=" " ind2=" ">
             <subfield code="a">C0</subfield>
             <subfield code="b">EMU</subfield>
-          </datafield>
-          <datafield tag="997" ind1=" " ind2=" ">
-            <subfield code="b">marc21</subfield>
-            <subfield code="a">false</subfield>
           </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>
