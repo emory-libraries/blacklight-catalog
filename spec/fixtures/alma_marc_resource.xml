@@ -167,10 +167,6 @@
           <datafield tag="966" ind1=" " ind2=" ">
             <subfield code="a">Hey, look! Holding notes, bustah!</subfield>
           </datafield>
-          <datafield tag="997" ind1=" " ind2=" ">
-            <subfield code="b">marc21</subfield>
-            <subfield code="a">false</subfield>
-          </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>
             <subfield code="a">false</subfield>
@@ -468,10 +464,6 @@
             <subfield code="a">C0</subfield>
             <subfield code="b">EMU</subfield>
           </datafield>
-          <datafield tag="997" ind1=" " ind2=" ">
-            <subfield code="b">marc21</subfield>
-            <subfield code="a">false</subfield>
-          </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>
             <subfield code="a">false</subfield>
@@ -620,10 +612,6 @@
           <datafield tag="994" ind1=" " ind2=" ">
             <subfield code="a">C0</subfield>
             <subfield code="b">EMU</subfield>
-          </datafield>
-          <datafield tag="997" ind1=" " ind2=" ">
-            <subfield code="b">marc21</subfield>
-            <subfield code="a">false</subfield>
           </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>
@@ -790,10 +778,6 @@
             <subfield code="a">C0</subfield>
             <subfield code="b">EMU</subfield>
           </datafield>
-          <datafield tag="997" ind1=" " ind2=" ">
-            <subfield code="b">marc21</subfield>
-            <subfield code="a">false</subfield>
-          </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>
             <subfield code="a">false</subfield>
@@ -916,10 +900,6 @@
             <subfield code="0">(uri) http://id.loc.gov/authorities/names/n86714535</subfield>
             <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n86714535</subfield>
           </datafield>
-          <datafield tag="856" ind1="4" ind2="1">
-            <subfield code="3">Table of contents only</subfield>
-            <subfield code="u">http://catdir.loc.gov/catdir/toc/casalini15/3065159.pdf</subfield>
-          </datafield>
           <datafield tag="910" ind1=" " ind2=" ">
             <subfield code="a">RDA ENRICHED</subfield>
           </datafield>
@@ -937,10 +917,6 @@
             <subfield code="a">ELECTRONIC ACCESS</subfield>
             <subfield code="h">emugdonlin</subfield>
             <subfield code="w">ASIS</subfield>
-          </datafield>
-          <datafield tag="997" ind1=" " ind2=" ">
-            <subfield code="b">marc21</subfield>
-            <subfield code="a">false</subfield>
           </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>
@@ -1217,20 +1193,12 @@
           <datafield tag="752" ind1=" " ind2=" ">
             <subfield code="a">Yemen.</subfield>
           </datafield>
-          <datafield tag="856" ind1="4" ind2="1">
-            <subfield code="3">full text, baby!</subfield>
-            <subfield code="u">http://catdir.loc.gov/catdir/toc/casalini15/3065159.pdf</subfield>
-          </datafield>
           <datafield tag="910" ind1=" " ind2=" ">
             <subfield code="a">MARS</subfield>
           </datafield>
           <datafield tag="994" ind1=" " ind2=" ">
             <subfield code="a">C0</subfield>
             <subfield code="b">EMU</subfield>
-          </datafield>
-          <datafield tag="997" ind1=" " ind2=" ">
-            <subfield code="b">marc21</subfield>
-            <subfield code="a">false</subfield>
           </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>
@@ -1376,10 +1344,6 @@
           <datafield tag="994" ind1=" " ind2=" ">
             <subfield code="a">C0</subfield>
             <subfield code="b">EMU</subfield>
-          </datafield>
-          <datafield tag="997" ind1=" " ind2=" ">
-            <subfield code="b">marc21</subfield>
-            <subfield code="a">false</subfield>
           </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>
@@ -1540,10 +1504,6 @@
           <datafield tag="994" ind1=" " ind2=" ">
             <subfield code="a">C0</subfield>
             <subfield code="b">EMU</subfield>
-          </datafield>
-          <datafield tag="997" ind1=" " ind2=" ">
-            <subfield code="b">marc21</subfield>
-            <subfield code="a">false</subfield>
           </datafield>
           <datafield tag="999" ind1=" " ind2=" ">
             <subfield code="b">marc21</subfield>

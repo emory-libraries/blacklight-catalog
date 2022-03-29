@@ -81,7 +81,7 @@ module ExtractMarcResource
 
   def proof_of_856(record)
     record.fields('856').any? do |f|
-      (f.indicator2 == '0' || f.indicator2 == '1') && (suppl_labels & fields_yz3(f)).empty?
+      f.indicator2 == '0' || f.indicator2 == '1' || f.indicator2 != '2' && !notfulltext.match?(fields_z3(f))
     end
   end
 end
