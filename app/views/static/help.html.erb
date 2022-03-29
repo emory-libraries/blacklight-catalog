@@ -3,9 +3,44 @@
 
 <%= render 'shared/breadcrumbs', crumb_hashes: [{ curr_page: true, abbr: abbr, link: '/help', title: title }]
 %>
-<div class="row static-heading-row about">
+<div class="row static-heading-row help">
   <%= render 'static/static_heading', 
               title: title, 
               subheading: t('help.subheading').html_safe
   %>
+</div>
+
+<div class="row static-body help">
+  <div class="col-lg-8 help-blurbs">
+  <%= render 'static/static_content_blurbs', 
+              blurb_header_klass: " contacts-blurb-header-header",
+              blurb_header: 'Search Tips & FAQs',
+              blurb_body_klass: " contacts-blurb",
+              blurb: safe_join([
+                tag.p(link_to('Library Search User Guide', 'https://guides.libraries.emory.edu/LibrarySearchUserGuide', class: 'static-blurb-link'), class: 'static-blurb-body contacts-blurb'),
+                tag.p(link_to('Library Search Frequently Asked Questions', 'https://guides.libraries.emory.edu/LibrarySearchFAQs', class: 'static-blurb-link'), class: 'static-blurb-body contacts-blurb'),
+                tag.p(link_to("Moving from discoverE to Library Search FAQ's", 'https://guides.libraries.emory.edu/LibrarySearch-from-discovere', class: 'static-blurb-link'), class: 'static-blurb-body contacts-blurb')
+              ], '')
+  %>
+
+  <%= render 'static/contact/assistance' %>
+
+  <%= render 'static/static_content_blurbs', 
+              blurb_header_klass: " contacts-blurb-header",
+              blurb_header: 'Report a Problem',
+              blurb_body_klass: " contacts-blurb",
+              blurb: safe_join([
+                tag.p(render_link_to_libwizard_in_toolbar(
+                  text: t('blacklight.tools.report_problem'), 
+                  form_name: 'blacklight', 
+                  url: request.original_url), class: 'static-blurb-body contacts-blurb'),
+                tag.p(render_link_to_libwizard_in_toolbar(
+                  text: 'Harmful Language in the Catalog', 
+                  form_name: 'harmful_language_catalog', 
+                  url: request.original_url), class: 'static-blurb-body contacts-blurb')
+              ], '')
+  %>
+  </div>
+
+  <%= render 'static/contact/explore_card' %>
 </div>
