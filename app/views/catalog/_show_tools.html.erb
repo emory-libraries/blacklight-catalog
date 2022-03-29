@@ -1,0 +1,37 @@
+<%# Overrides partial of same name from blacklight (7.4.1) %>
+<%# Breaks up the tool options into separate card groups. %>
+<% tools_specific_keys = [:bookmark, :citation, :export_as_ris, :print, :direct_link, :librarian_view] %>
+
+<% if show_doc_actions? %>
+  <div class="card show-tools">
+    <div class="card-header">
+      <h2 class="mb-0 h6"><%= t('blacklight.tools.title') %></h2>
+    </div>
+
+    <ul class="list-group list-group-flush">
+      <%= render_show_doc_actions @document do |config, inner| %>
+        <% if tools_specific_keys.include?(config.key) %>
+          <li class="list-group-item <%= config.key %>">
+            <%= inner %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="card show-tools">
+    <div class="card-header">
+      <h2 class="mb-0 h6"><%= t('blacklight_catalog.sidebar.help.title') %></h2>
+    </div>
+
+    <ul class="list-group list-group-flush">
+      <%= render_show_doc_actions @document do |config, inner| %>
+        <% if !tools_specific_keys.include?(config.key) %>
+          <li class="list-group-item <%= config.key %>">
+            <%= inner %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

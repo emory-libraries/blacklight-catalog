@@ -85,10 +85,14 @@ en:
       find_it_header: "Where to find it"
       url_fulltext_field: "Full Text Access"
       find_more_info: "Find more information about "
-      more_options: "More Options"
+      more_options: "More Search Options"
   blacklight_advanced_search:
     form:
       search_btn: "Search"
       sort_label: "Sort by"
       start_over: "Clear Form"
       title: "Advanced Search"
+  blacklight_catalog:
+    sidebar:
+      help:
+        title: "Help"

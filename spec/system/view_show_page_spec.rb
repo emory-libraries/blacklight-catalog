@@ -155,7 +155,9 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
 
     context 'Tools Menu Sidebar' do
       let(:expected_tools_links_text) do
-        ["Bookmark Item", "Cite", "Print", "Direct Link", "Help", "Feedback", "Staff View"]
+        ["Bookmark Item", "Cite", "Export as RIS", "Print", "Direct Link", "Staff View",
+         "Search Tips", "Ask a Librarian", "Report a Problem", "Harmful Language",
+         "Find more information about Books"]
       end
 
       it 'shows the correct links' do
@@ -211,10 +213,10 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         end
       end
 
-      context 'Feedback' do
+      context 'Report a Problem' do
         it 'links to the right LibWizard form' do
-          element = find('li.list-group-item.feedback a.nav-link')
-          expect(element.text).to eq('Feedback')
+          element = find('li.list-group-item.report_problem a.nav-link')
+          expect(element.text).to eq('Report a Problem')
           expect(element['href']).to include(
             'https://emory.libwizard.com/f/blacklight?refer_url=http', '/catalog/123'
           )
@@ -321,11 +323,11 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       end
     end
 
-    context 'More Options card' do
+    context 'More Search Options card' do
       it 'shows the section when format_ssim populated' do
         visit solr_document_path(id)
 
-        expect(page.body).to have_css('h2', text: 'More Options')
+        expect(page.body).to have_css('h2', text: 'More Search Options')
         expect(page).to have_link('Find more information about Books')
       end
 
