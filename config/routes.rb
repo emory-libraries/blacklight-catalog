@@ -49,7 +49,6 @@ Rails.application.routes.draw do
 
   get '/export_multiple_ris/:ids', to: 'export_ris#export_multiple_ris'
 
-  get "/contact", to: "static#contact"
   get "/about", to: "static#about"
   get "/help", to: "static#help"
   match '/404', to: 'errors#not_found', via: :all

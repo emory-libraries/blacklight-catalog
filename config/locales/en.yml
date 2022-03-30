@@ -72,8 +72,8 @@ en:
       title: 'eJournals A-Z'
   contact: "Emory Library Search Points of Contact"
   help:
-    title: "Help"
-    subheading: "Library Search is the new discovery platform developed for searching Emory Libraries catalog including books, e-books, videos, journals, and some electronic items within the catalog. Links to articles, databases, and other resources used for research are provided. Please refer to the help resources below or email <a href='mailto:librarysearch@emory.edu' target='_blank' rel='noopener noreferrer'>librarysearch@emory.edu</a> if further assistance is needed.<p><a href='https://guides.libraries.emory.edu/LibrarySearchUserGuide' target='_blank' rel='noopener noreferrer'>Library Search User Guide</a><br><a href='https://guides.libraries.emory.edu/LibrarySearchFAQs' target='_blank' rel='noopener noreferrer'>Library Search Frequently Asked Questions</a><br><a href='https://guides.libraries.emory.edu/LibrarySearch-from-discovere' target='_blank' rel='noopener noreferrer'>Moving from discoverE to Library Search FAQ's</a>"
+    title: "Emory Library Search: Help & Contacts"
+    subheading: "Contact points for technical assistance and additional information about our Emory Libraries Catalog and Search"
   catalog:
     show:
       more_details_header: "More Details"
