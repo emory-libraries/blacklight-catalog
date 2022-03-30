@@ -124,7 +124,10 @@ RSpec.describe CatalogController, type: :controller do
 
   describe 'tool menu items' do
     let(:tool_menu_items) { controller.blacklight_config.view_config(:show).document_actions.keys }
-    let(:expected_tool_menu_items) { [:bookmark, :citation, :direct_link, :export_as_ris, :feedback, :help, :librarian_view, :print] }
+    let(:expected_tool_menu_items) do
+      [:ask_librarian, :bookmark, :citation, :direct_link, :export_as_ris, :harmful_language,
+       :librarian_view, :print, :report_problem, :search_tips]
+    end
 
     it { expect(tool_menu_items).to contain_exactly(*expected_tool_menu_items) }
   end

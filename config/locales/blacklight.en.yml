@@ -49,9 +49,11 @@ en:
     tools:
       citation_warning: 'These citations are automatically generated and may not always be correct. Remember to check your citations for accuracy before including them in your work.'
       direct_link: 'Direct Link'
-      feedback: 'Feedback'
-      help: 'Help'
+      report_problem: 'Report a Problem'
+      search_tips: 'Search Tips'
       librarian_view: 'Staff View'
       print: 'Print'
       direct_link_url_text: 'Direct Link URL'
       export_as_ris: 'Export as RIS'
+      ask_librarian: 'Ask a Librarian'
+      harmful_language: 'Harmful Language'

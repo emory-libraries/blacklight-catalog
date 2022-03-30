@@ -66,8 +66,10 @@ class CatalogController < ApplicationController
     config.add_show_tools_partial(:export_as_ris, partial: 'export_as_ris')
     config.add_show_tools_partial(:print, partial: 'print')
     config.add_show_tools_partial(:direct_link, partial: 'direct_link')
-    config.add_show_tools_partial(:help, partial: 'help')
-    config.add_show_tools_partial(:feedback, partial: 'feedback')
+    config.add_show_tools_partial(:search_tips, partial: 'search_tips')
+    config.add_show_tools_partial(:ask_librarian, partial: 'ask_librarian')
+    config.add_show_tools_partial(:report_problem, partial: 'report_problem')
+    config.add_show_tools_partial(:harmful_language, partial: 'harmful_language')
     config.add_show_tools_partial(:librarian_view, label: 'Staff View', if: :render_librarian_view_control?, define_method: false)
 
     config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
