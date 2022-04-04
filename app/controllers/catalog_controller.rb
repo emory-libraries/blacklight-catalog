@@ -269,7 +269,7 @@ class CatalogController < ApplicationController
 
     keyword_fields = [
       'title_precise_tesim^100', 'author_tesim^50', 'author_addl_display_tesim^50',
-      'subject_tesim^10', 'text_tesi', 'id', 'local_call_number_tesim', 'other_standard_ids_tesim', 'isbn_t', 'issn_t'
+      'subject_tesim^10', 'text_tesi', 'id', 'local_call_number_tesim', 'other_standard_ids_tesim', 'isbn_t', 'issn_t', 'lc_callnum_t'
     ]
     author_fields = [
       'author_tesim', 'author_vern_tesim', 'author_ssort', 'author_addl_display_tesim',
@@ -418,7 +418,7 @@ class CatalogController < ApplicationController
     config.add_search_field('call_number_advanced', label: 'Local Call Number') do |field|
       field.include_in_simple_select = false
       field.solr_parameters = {
-        qf: 'local_call_number_tesim',
+        qf: ['local_call_number_tesim', 'lc_callnum_t'].join(' '),
         pf: ''
       }
     end

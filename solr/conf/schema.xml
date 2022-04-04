@@ -16,6 +16,7 @@
     <field name="lng" type="tdouble" stored="true" indexed="true" multiValued="false"/>
     <field name="isbn_t" type="isbn" indexed="true" stored="true" multiValued="true"/>
     <field name="issn_t" type="issn" indexed="true" stored="true" multiValued="true"/>
+    <field name="lc_callnum_t" type="lc_callnum" indexed="true" stored="true" multiValued="true"/>
     <!-- NOTE:  not all possible Solr field types are represented in the dynamic fields -->
 
     <!-- text (_t...) -->
@@ -228,6 +229,7 @@
   <copyField source="title_tsim" dest="title_spell"/>
   <copyField source="isbn_ssim" dest="isbn_t"/>
   <copyField source="issn_ssim" dest="issn_t"/>
+  <copyField source="lc_callnum_ssim" dest="lc_callnum_t"/>
 
   <types>
     <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
@@ -389,8 +391,8 @@
 
     <fieldType name="isbn" class="solr.TextField">
       <analyzer type="index">
-        <tokenizer class="solr.KeywordTokenizerFactory"/>
         <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^0-9;,]" replacement=""/>
+        <tokenizer class="solr.KeywordTokenizerFactory"/>
       </analyzer>
       <analyzer type="query">
         <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^0-9;,]" replacement=""/>
@@ -401,13 +403,24 @@
 
      <fieldType name="issn" class="solr.TextField">
       <analyzer type="index">
-        <tokenizer class="solr.KeywordTokenizerFactory"/>
         <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^0-9;,]" replacement=""/>
+        <tokenizer class="solr.KeywordTokenizerFactory"/>
       </analyzer>
       <analyzer type="query">
         <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^0-9;,]" replacement=""/>
         <tokenizer class="solr.PatternTokenizerFactory" pattern="[;,]\s*"/>
         <filter class="solr.LengthFilterFactory" min="8" max="8"/>
+      </analyzer>
+    </fieldType>
+
+    <fieldType name="lc_callnum" class="solr.TextField">
+      <analyzer type="index">
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^a-zA-Z\d\.]" replacement=""/>
+        <tokenizer class="solr.KeywordTokenizerFactory"/>
+      </analyzer>
+      <analyzer type="query">
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^a-zA-Z\d\.]" replacement=""/>
+        <tokenizer class="solr.KeywordTokenizerFactory"/>
       </analyzer>
     </fieldType>
 
