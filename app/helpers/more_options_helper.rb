@@ -3,18 +3,21 @@
 module MoreOptionsHelper
   formats = ::ExtractionTools::MARC_RESOURCE_FORMATS
   MATERIAL_TYPE_PAGE_LINKS = {
-    formats[:music] => { 'Music and Scores': 'music-scores.html' },
-    formats[:map] => { 'General Materials': 'index.html' },
+    formats[:music] => { 'Music and Scores': 'music-media/materials/music-and-scores' },
+    formats[:map] => { 'Maps': 'woodruff/materials/maps' },
     formats[:visual] => [
-      { 'Films and Videos': 'film-videos/index.html' }, { 'Images': 'images.html' }
+      { 'Films and Videos': 'materials/films-and-videos' }, { 'Images': 'materials/images' }
     ],
-    formats[:sound] => { 'Music and Scores': 'music-scores.html' },
-    formats[:file] => { 'General Materials': 'index.html' },
-    formats[:archival] => { 'Archives and Special Collections': 'archives-special-collections.html' },
+    formats[:sound] => { 'Music and Scores': 'music-media/materials/music-and-scores' },
+    formats[:file] => { 'General Materials': 'materials' },
+    formats[:archival] => { 'Archives and Special Collections': 'materials/archives-and-special-collections' },
     formats[:journal] => [
-      { 'Journals and Newspapers': 'journals-newspapers.html' }, { 'Articles': 'articles.html' }
+      { 'Journals and Newspapers': 'node/1576' }, { 'Articles': 'materials/articles' }
     ],
-    formats[:book] => { 'Books': 'books.html' }
+    formats[:book] => [
+      { 'Books': 'materials/books' }, { 'Audiobooks': 'materials/audiobooks' },
+      { 'Theses and Dissertations': 'materials/electronic-theses-and-dissertations' }
+    ]
   }.with_indifferent_access.freeze
 
   def render_more_options_links(document)
@@ -22,7 +25,7 @@ module MoreOptionsHelper
     links = link_el_hashes.map do |h|
       tag.li(
         tag.a(t('catalog.show.find_more_info') + h.keys[0],
-          href: "https://libraries.emory.edu/materials/#{h.values[0]}",
+          href: "https://libraries.emory.edu/#{h.values[0]}",
           target: '_blank',
           rel: 'noopener noreferrer',
           class: 'nav-link'),
