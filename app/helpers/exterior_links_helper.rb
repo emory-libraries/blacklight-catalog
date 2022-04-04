@@ -2,7 +2,7 @@
 module ExteriorLinksHelper
   def service_page_url(doc_id, online: false)
     "#{ENV['ALMA_BASE_URL']}/discovery/openurl?institution=#{ENV['INSTITUTION']}&" \
-      "vid=#{ENV['INSTITUTION']}:services#{online ? '&u.ignore_date_coverage=true&force_direct=true' : ''}" \
+      "vid=#{ENV['INSTITUTION']}:services#{online ? '&u.ignore_date_coverage=true' : ''}" \
       "&rft.mms_id=#{doc_id}"
   end
 

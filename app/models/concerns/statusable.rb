@@ -227,6 +227,6 @@ module Statusable
   end
 
   def ave_query
-    "?institution=#{alma_institution}&vid=#{alma_institution}:blacklight&u.ignore_date_coverage=true&force_direct=true&portfolio_pid="
+    "?institution=#{alma_institution}&vid=#{alma_institution}:blacklight&u.ignore_date_coverage=true&portfolio_pid="
   end
 end
