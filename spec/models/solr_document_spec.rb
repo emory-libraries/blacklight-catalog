@@ -198,7 +198,7 @@ RSpec.describe SolrDocument do
         label: "Online resource from A-R Editions"
       }, {
         label: "Online resource from A-R Editions",
-        url: "http://www.example.com/hello/discovery/openurl?institution=SOME_INSTITUTION&vid=SOME_INSTITUTION:blacklight&u.ignore_date_coverage=true&force_direct=true&portfolio_pid=53450970510002486"
+        url: "http://www.example.com/hello/discovery/openurl?institution=SOME_INSTITUTION&vid=SOME_INSTITUTION:blacklight&u.ignore_date_coverage=true&portfolio_pid=53450970510002486"
       }]
     end
 
@@ -220,7 +220,7 @@ RSpec.describe SolrDocument do
         label: "Online resource from Elsevier"
       }, {
         label: "Online resource from Elsevier",
-        url: "http://www.example.com/hello/discovery/openurl?institution=SOME_INSTITUTION&vid=SOME_INSTITUTION:blacklight&u.ignore_date_coverage=true&force_direct=true&portfolio_pid=53445539330002486"
+        url: "http://www.example.com/hello/discovery/openurl?institution=SOME_INSTITUTION&vid=SOME_INSTITUTION:blacklight&u.ignore_date_coverage=true&portfolio_pid=53445539330002486"
       }]
     end
 
