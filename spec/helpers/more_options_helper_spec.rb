@@ -17,33 +17,44 @@ RSpec.describe MoreOptionsHelper, type: :helper do
   let(:formats) { ::ExtractionTools::MARC_RESOURCE_FORMATS }
   let(:links_hash) do
     {
-      formats[:music] => { "Music and Scores" => "music-scores.html" },
-      formats[:map] => { "General Materials" => "index.html" },
+      formats[:music] => { 'Music and Scores' => 'music-media/materials/music-and-scores' },
+      formats[:map] => { 'Maps' => 'woodruff/materials/maps' },
       formats[:visual] => [
-        { "Films and Videos" => "film-videos/index.html" },
-        { "Images" => "images.html" }
+        { 'Films and Videos' => 'materials/films-and-videos' }, { 'Images' => 'materials/images' }
       ],
-      formats[:sound] => { "Music and Scores" => "music-scores.html" },
-      formats[:file] => { "General Materials" => "index.html" },
-      formats[:archival] => { "Archives and Special Collections" => "archives-special-collections.html" },
+      formats[:sound] => { 'Music and Scores' => 'music-media/materials/music-and-scores' },
+      formats[:file] => { 'General Materials' => 'materials' },
+      formats[:archival] => { 'Archives and Special Collections' => 'materials/archives-and-special-collections' },
       formats[:journal] => [
-        { "Journals and Newspapers" => "journals-newspapers.html" },
-        { "Articles" => "articles.html" }
+        { 'Journals and Newspapers' => 'node/1576' }, { 'Articles' => 'materials/articles' }
       ],
-      formats[:book] => { "Books" => "books.html" }
+      formats[:book] => [
+        { 'Books' => 'materials/books' }, { 'Audiobooks' => 'materials/audiobooks' },
+        { 'Theses and Dissertations' => 'materials/electronic-theses-and-dissertations' }
+      ]
     }
   end
   let(:solr_doc) { SolrDocument.find(TEST_ITEM[:id]) }
   let(:solr_doc2) { SolrDocument.find('456') }
   let(:expected_single_valued_string) do
-    "<li class=\"list-group-item more-options\"><a href=\"https://libraries.emory.edu/materials/books.html\" " \
-      "target=\"_blank\" rel=\"noopener noreferrer\" class=\"nav-link\">Find more information about Books</a></li>"
+    "<li class=\"list-group-item more-options\"><a href=\"https://libraries.emory.edu/materials/books\" " \
+      "target=\"_blank\" rel=\"noopener noreferrer\" class=\"nav-link\">Find more information about Books" \
+      "</a></li><li class=\"list-group-item more-options\"><a href=\"https://libraries.emory.edu/materials/audiobooks\" " \
+      "target=\"_blank\" rel=\"noopener noreferrer\" class=\"nav-link\">Find more information about Audiobooks</a>" \
+      "</li><li class=\"list-group-item more-options\"><a href=\"https://libraries.emory.edu/materials/" \
+      "electronic-theses-and-dissertations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"nav-link\">" \
+      "Find more information about Theses and Dissertations</a></li>"
   end
   let(:expected_multivalued_string) do
-    "<li class=\"list-group-item more-options\"><a href=\"https://libraries.emory.edu/materials/music-scores.html\" " \
-      "target=\"_blank\" rel=\"noopener noreferrer\" class=\"nav-link\">Find more information about Music and Scores</a>" \
-      "</li><li class=\"list-group-item more-options\"><a href=\"https://libraries.emory.edu/materials/books.html\" " \
-      "target=\"_blank\" rel=\"noopener noreferrer\" class=\"nav-link\">Find more information about Books</a></li>"
+    "<li class=\"list-group-item more-options\"><a href=\"https://libraries.emory.edu/music-media/materials/" \
+      "music-and-scores\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"nav-link\">" \
+      "Find more information about Music and Scores</a></li><li class=\"list-group-item more-options\">" \
+      "<a href=\"https://libraries.emory.edu/materials/books\" target=\"_blank\" rel=\"noopener noreferrer\" " \
+      "class=\"nav-link\">Find more information about Books</a></li><li class=\"list-group-item more-options\">" \
+      "<a href=\"https://libraries.emory.edu/materials/audiobooks\" target=\"_blank\" rel=\"noopener noreferrer\" " \
+      "class=\"nav-link\">Find more information about Audiobooks</a></li><li class=\"list-group-item more-options\">" \
+      "<a href=\"https://libraries.emory.edu/materials/electronic-theses-and-dissertations\" target=\"_blank\" " \
+      "rel=\"noopener noreferrer\" class=\"nav-link\">Find more information about Theses and Dissertations</a></li>"
   end
 
   it 'holds a global hash variable used for mapping' do
