@@ -156,7 +156,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     context 'Tools Menu Sidebar' do
       let(:expected_tools_links_text) do
         ["Bookmark Item", "Cite", "Export as RIS", "Print", "Direct Link", "Staff View",
-         "Search Tips", "Ask a Librarian", "Report a Problem", "Harmful Language",
+         "Search Tips", "Ask a Librarian", "Report a Problem", "Report Harmful Language",
          "Find more information about Books"]
       end
 
