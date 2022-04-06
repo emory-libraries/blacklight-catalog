@@ -41,14 +41,14 @@
           <%= render 'shared/user_util_links' %>
         </div>
       </div>
-      <% if request.fullpath == "/" %>
+      <% if @homepage %>
         <%= render 'catalog/hero_image' %>
       <% end %>
     </div>
   </div>
 </nav>
 
-<% if !request.fullpath.include?('/advanced') && request.fullpath != "/" && !request.fullpath.include?('/ejournals') %>
+<% if !request.fullpath.include?('/advanced') && !@homepage && !request.fullpath.include?('/ejournals') %>
   <div class="navbar-search navbar navbar-light bg-light mb-3" role="navigation">
     <div class="<%= container_classes %>">
       <%= render_search_bar  %>

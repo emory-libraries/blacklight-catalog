@@ -1,7 +1,7 @@
 <% state = first_char_search_state(search_state) %>
 <% active_letter = first_char_active_letter(state) %>
 
-<% if request.url.include?('?') && !request.url.include?('/advance') && !request.url.include?('/bookmarks') %>
+<% if request.url.include?('?') && !request.url.include?('/advance') && !request.url.include?('/bookmarks') && !@homepage %>
   <nav class="alpha-filter first-main-char-nav">
     <ol class="first-main-char-ol">
       <li class="page-item first-main-char-descriptor"><%= t('blacklight.search.first_char.label') %></li>

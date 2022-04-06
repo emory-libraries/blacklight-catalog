@@ -41,12 +41,12 @@
 
     <%= render partial: 'shared/flash_msg', layout: 'shared/flash_messages' %>
 
-    <div class="row <%= "content-row" if request.fullpath == "/" %>">
+    <div class="row <%= "content-row" if @homepage %>">
 
       <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
 
-    <% if request.fullpath == "/" %>
+    <% if @homepage %>
     <%= render partial: 'catalog/other_resources/cards' %>
     <%= render partial: 'catalog/other_resources/accordions' %>
     <% end %>
