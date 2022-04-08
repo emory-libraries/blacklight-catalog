@@ -375,6 +375,26 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         expect(page).to have_css('span#avail-990005988630302486-toggle', class: 'collapse')
       end
     end
+
+    context 'viewing xml version of document' do
+      let(:expected_values_arr) do
+        [['//title', 'The Title of my Work'], ['//author', 'George Jenkins'], ['//edition', 'A sample edition'],
+         ['//publisher', ''], ['//publication_date', '2015'], ['//isbn', 'SOME MAGICAL NUM .66G'],
+         ['//issn', 'SOME OTHER MAGICAL NUMBER .12Q'], ['//holdings//holding//barcodes', '010001233671'],
+         ['//holdings//holding//volumes_issues', ''], ['//holdings//holding//call_number', 'PT2613 .M45 Z92 2006'],
+         ['//holdings//holding//copy_number', '1'], ['//holdings//holding//library', 'Robert W. Woodruff Library'],
+         ['//holdings//holding//location', 'Book Stacks']]
+      end
+
+      it 'displays correct tag/values' do
+        visit "/catalog/#{id}.xml"
+        xml = Nokogiri::XML(page.body)
+
+        expected_values_arr.each do |arr|
+          expect(xml.xpath(arr[0]).text).to eq(arr[1])
+        end
+      end
+    end
   end
 
   context 'A special collections item' do

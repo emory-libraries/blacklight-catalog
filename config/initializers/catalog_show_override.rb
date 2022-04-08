@@ -12,6 +12,7 @@ CatalogController.class_eval do
     respond_to do |format|
       format.html { @search_context = setup_next_and_previous_documents }
       format.json
+      format.xml
       additional_export_formats(@document, format)
     end
   end
