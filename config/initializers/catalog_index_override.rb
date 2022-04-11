@@ -8,6 +8,7 @@ CatalogController.class_eval do
     @response = homepage? ? fetch_cached_search_results : fetch_live_search_results
     @document_list = @response.documents
     @document_ids = @response.documents&.map(&:id) || []
+    @homepage = homepage?
 
     respond_to do |format|
       format.html { store_preferred_view }
@@ -42,7 +43,7 @@ CatalogController.class_eval do
   end
 
   def homepage?
-    query_params = params.keys - ['action', 'controller']
+    query_params = params.keys - ['_ga', 'action', 'controller']
     query_params.empty?
   end
 end
