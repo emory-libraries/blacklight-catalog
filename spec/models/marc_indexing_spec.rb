@@ -403,4 +403,11 @@ RSpec.describe 'Indexing fields with custom logic' do
     it('maps the 966a fields') { expect(solr_doc['holdings_note_tesim']).to eq(['Hey, look! Holding notes, bustah!']) }
     it('returns nil when no 966a fields') { expect(solr_doc2['holdings_note_tesim']).to be_nil }
   end
+
+  describe 'issn_ssim field' do
+    it 'returns two separate values when 022 a and y populated' do
+      expect(solr_doc10['issn_ssim']).to match_array ['123456', '7891011']
+      expect(solr_doc10['issn_ssim']).not_to match_array ['123456 7891011']
+    end
+  end
 end
