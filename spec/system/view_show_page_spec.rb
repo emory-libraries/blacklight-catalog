@@ -379,11 +379,15 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     context 'viewing xml version of document' do
       let(:expected_values_arr) do
         [['//title', 'The Title of my Work'], ['//author', 'George Jenkins'], ['//edition', 'A sample edition'],
+         ['//is_physical_holding', 'false'], ['//is_electronic_holding', 'false'],
          ['//publisher', ''], ['//publication_date', '2015'], ['//isbn', 'SOME MAGICAL NUM .66G'],
-         ['//issn', 'SOME OTHER MAGICAL NUMBER .12Q'], ['//holdings//holding//barcodes', '010001233671'],
-         ['//holdings//holding//volumes_issues', ''], ['//holdings//holding//call_number', 'PT2613 .M45 Z92 2006'],
-         ['//holdings//holding//copy_number', '1'], ['//holdings//holding//library', 'Robert W. Woodruff Library'],
-         ['//holdings//holding//location', 'Book Stacks']]
+         ['//issn', 'SOME OTHER MAGICAL NUMBER .12Q'], ['//supplemental_links//supplemental_link//link', 'http://www.example.com'],
+         ['//supplemental_links//supplemental_link//label', 'http://www.example.com'],
+         ['//physical_holdings//physical_holding//copy_number', '1'], ['//physical_holdings//physical_holding//call_number', 'PT2613 .M45 Z92 2006'],
+         ['//physical_holdings//physical_holding//library', 'Robert W. Woodruff Library'],
+         ['//physical_holdings//physical_holding//location', 'Book Stacks'], ['//physical_holdings//physical_holding//items//item//barcode', '010001233671'],
+         ['//physical_holdings//physical_holding//items/item//volume_or_issue', ''],
+         ['//physical_holdings//physical_holding//items/item//status', 'Item in place']]
       end
 
       it 'displays correct tag/values' do
