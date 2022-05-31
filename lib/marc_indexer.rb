@@ -161,7 +161,7 @@ to_field 'material_type_display_tesim', extract_marc('300abcef'), trim_punctuati
 
 # Various Identification Fields
 to_field "isbn_ssim", extract_isbn
-to_field 'issn_ssim', extract_marc('022ay:800x:810x:811x:830x')
+to_field 'issn_ssim', extract_marc('022a:022y:800x:810x:811x:830x')
 to_field 'lccn_ssim', extract_marc('010a')
 to_field 'oclc_ssim', oclcnum('019a:035a')
 to_field 'other_standard_ids_tesim', extract_other_standard_ids

@@ -1689,6 +1689,10 @@
           <datafield tag="010" ind1=" " ind2=" ">
             <subfield code="a">93030188</subfield>
           </datafield>
+          <datafield tag="022" ind1=" " ind2=" ">
+            <subfield code="a">123456</subfield>
+            <subfield code="y">7891011</subfield>
+          </datafield>
           <datafield tag="035" ind1=" " ind2=" ">
             <subfield code="a">(Aleph)002391657EMU01</subfield>
           </datafield>
