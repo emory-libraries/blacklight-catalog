@@ -391,11 +391,11 @@
 
     <fieldType name="isbn" class="solr.TextField">
       <analyzer type="index">
-        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^0-9;,]" replacement=""/>
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^0-9Xx;,]" replacement=""/>
         <tokenizer class="solr.KeywordTokenizerFactory"/>
       </analyzer>
       <analyzer type="query">
-        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^0-9;,]" replacement=""/>
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^0-9Xx;,]" replacement=""/>
         <tokenizer class="solr.PatternTokenizerFactory" pattern="[;,]\s*"/>
         <filter class="solr.LengthFilterFactory" min="10" max="13"/>
       </analyzer>
@@ -403,11 +403,11 @@
 
      <fieldType name="issn" class="solr.TextField">
       <analyzer type="index">
-        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^0-9;,]" replacement=""/>
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^0-9Xx;,]" replacement=""/>
         <tokenizer class="solr.KeywordTokenizerFactory"/>
       </analyzer>
       <analyzer type="query">
-        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^0-9;,]" replacement=""/>
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^0-9Xx;,]" replacement=""/>
         <tokenizer class="solr.PatternTokenizerFactory" pattern="[;,]\s*"/>
         <filter class="solr.LengthFilterFactory" min="8" max="8"/>
       </analyzer>
