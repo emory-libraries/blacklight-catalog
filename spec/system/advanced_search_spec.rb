@@ -4,9 +4,9 @@ require 'rails_helper'
 RSpec.feature 'Advanced Search Page', type: :system, js: false do
   before do
     delete_all_documents_from_solr
-    build_solr_docs(TEST_ITEM)
+    build_solr_docs(test_hash)
     collection_auth = Qa::LocalAuthority.create(name: 'collections')
-    col = TEST_ITEM[:collection_ssim]
+    col = test_hash[:collection_ssim]
     Qa::LocalAuthorityEntry.create(local_authority: collection_auth, label: col, uri: col)
     visit '/advanced'
   end
@@ -18,6 +18,7 @@ RSpec.feature 'Advanced Search Page', type: :system, js: false do
     ENV['ALMA_BIB_KEY'] = orig_key
   end
 
+  let(:test_hash) { TEST_ITEM }
   let(:search_fields) { CatalogController.new.blacklight_config.search_fields.reject { |_k, v| v.include_in_advanced_search == false }.keys }
   let(:pulled_search_fields) { find_all('div.form-group.advanced-search-field label').map { |e| e['for'] } }
   let(:select_facet_fields) { CatalogController.new.blacklight_config.advanced_search[:form_solr_parameters]["facet.field"] }
@@ -53,38 +54,23 @@ RSpec.feature 'Advanced Search Page', type: :system, js: false do
 
   context 'performing simple searches' do
     it 'finds the one object with a keyword search of item id' do
-      fill_in 'identifier_advanced', with: '123'
-      search_button.click
-
-      expect(page).to have_css(document_title_heading)
+      test_for_result('identifier_advanced', '123')
     end
 
     it 'finds the one object with a author search of additional first name' do
-      fill_in 'author_advanced', with: 'George'
-      search_button.click
-
-      expect(page).to have_css(document_title_heading)
+      test_for_result('author_advanced', 'George')
     end
 
     it 'finds the one object with a title search of variant title' do
-      fill_in 'title_advanced', with: 'Variant'
-      search_button.click
-
-      expect(page).to have_css(document_title_heading)
+      test_for_result('title_advanced', 'Variant')
     end
 
     it 'finds the one object with a subject search of the solr value' do
-      fill_in 'subject_advanced', with: 'sample'
-      search_button.click
-
-      expect(page).to have_css(document_title_heading)
+      test_for_result('subject_advanced', 'sample')
     end
 
     it 'finds the one object with a main title (wildcard) search of the solr value' do
-      fill_in 'title_wildcard_advanced', with: 'T*'
-      search_button.click
-
-      expect(page).to have_css(document_title_heading)
+      test_for_result('title_wildcard_advanced', 'T*')
     end
   end
 
@@ -93,5 +79,27 @@ RSpec.feature 'Advanced Search Page', type: :system, js: false do
     find('#search').click
     click_link 'Advanced Search'
     expect(page).to have_content 'Find items that match'
+  end
+
+  context 'issn_t search pattern' do
+    let(:test_value) { '0048-671X' }
+    let(:test_hash) { TEST_ITEM.merge(issn_ssim: test_value) }
+
+    describe('when issn equals 0048-671X') do
+      it('returns the result') { test_for_result('identifier_advanced', test_value) }
+    end
+
+    describe 'when issn equals 0048671X' do
+      let(:test_value) { '0048671X' }
+
+      it('returns the result') { test_for_result('identifier_advanced', test_value) }
+    end
+  end
+
+  def test_for_result(input_name, test_text)
+    fill_in input_name, with: test_text
+    search_button.click
+
+    expect(page).to have_css(document_title_heading)
   end
 end
