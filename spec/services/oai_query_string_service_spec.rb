@@ -49,6 +49,17 @@ RSpec.describe OaiQueryStringService, :clean do
       check_other_methods_called
       expect(qs).to eq("?verb=ListRecords&resumptionToken=Hello!")
     end
+
+    it 'returns the right string when resumption token present but single_record true' do
+      PropertyBag.set('marc_ingest_resumption_token', 'Hello!')
+      qs = described_class.process_query_string(oai_set, full_index, to_time, true, logger)
+
+      check_other_methods_called
+      expect(qs).not_to eq("?verb=ListRecords&resumptionToken=Hello!")
+      expect(qs).to eq(
+        "?verb=GetRecord&identifier=oai:alma.#{institution}:#{oai_set}&metadataPrefix=marc21"
+      )
+    end
   end
 
   context '#process_from_time' do
