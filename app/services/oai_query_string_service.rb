@@ -24,7 +24,7 @@ class OaiQueryStringService
 
   def self.process_string(saved_resumption_token, oai_set, from_time, to_time, single_record)
     # resume from last harvested
-    return "?verb=ListRecords&resumptionToken=#{saved_resumption_token}" if saved_resumption_token.present?
+    return "?verb=ListRecords&resumptionToken=#{saved_resumption_token}" if saved_resumption_token.present? && !single_record
     # start a single record harvest
     return "?verb=GetRecord&identifier=oai:alma.#{ENV['INSTITUTION']}:#{oai_set}&metadataPrefix=marc21" if single_record
     # start a fresh set harvest
