@@ -383,7 +383,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
          ['//publisher', ''], ['//publication_date', '2015'], ['//isbn', 'SOME MAGICAL NUM .66G'],
          ['//issn', 'SOME OTHER MAGICAL NUMBER .12Q'], ['//supplemental_links//supplemental_link//link', 'http://www.example.com'],
          ['//supplemental_links//supplemental_link//label', 'http://www.example.com'],
-         ['//physical_holdings//physical_holding//copy_number', '1'], ['//physical_holdings//physical_holding//call_number', 'PT2613 .M45 Z92 2006'],
+         ['//physical_holdings//physical_holding//call_number', 'PT2613 .M45 Z92 2006'],
          ['//physical_holdings//physical_holding//library', 'Robert W. Woodruff Library'],
          ['//physical_holdings//physical_holding//location', 'Book Stacks'], ['//physical_holdings//physical_holding//items//item//barcode', '010001233671'],
          ['//physical_holdings//physical_holding//items/item//volume_or_issue', ''],

@@ -83,7 +83,7 @@ module Statusable
   end
 
   def items_by_holding_record(holding_id, user = nil)
-    items_record(user).xpath("//holding_id[text()='#{holding_id}']/parent::holding_data/following-sibling::item_data")
+    items_record(user).xpath("//holding_id[text()='#{holding_id}']/parent::holding_data")
   end
 
   def record_response
@@ -178,21 +178,24 @@ module Statusable
   def items_by_holding_values(holding_id, user = nil)
     items_by_holding_record(holding_id, user).map do |node|
       {
-        pid: node.xpath("pid")&.inner_text,
-        barcode: node.xpath("barcode")&.inner_text,
-        type: node.xpath("physical_material_type").attr("desc")&.value,
-        type_code: node.xpath("physical_material_type")&.text,
+        pid: node.xpath("following-sibling::item_data/pid")&.inner_text,
+        barcode: node.xpath("following-sibling::item_data/barcode")&.inner_text,
+        type: node.xpath("following-sibling::item_data/physical_material_type").attr("desc")&.value,
+        type_code: node.xpath("following-sibling::item_data/physical_material_type")&.text,
         policy: item_policy(node, user),
-        description: node.xpath("description")&.inner_text,
-        status: node.xpath('base_status').attr("desc")&.value
+        description: node.xpath("following-sibling::item_data/description")&.inner_text,
+        status: node.xpath('following-sibling::item_data/base_status').attr("desc")&.value,
+        temporarily_located: node.xpath('in_temp_location')&.inner_text,
+        temp_library: node.xpath('temp_library').attr('desc')&.value,
+        temp_location: node.xpath('temp_location').attr('desc')&.value
       }
     end
   end
 
   def item_policy(node, _user)
-    policy_desc = node.xpath('policy').attr("desc")&.value
-    policy_id = node.xpath('policy')&.inner_text
-    due_date_policy = node.xpath('due_date_policy')&.inner_text
+    policy_desc = node.xpath('following-sibling::item_data/policy').attr("desc")&.value
+    policy_id = node.xpath('following-sibling::item_data/policy')&.inner_text
+    due_date_policy = node.xpath('following-sibling::item_data/due_date_policy')&.inner_text
     { policy_desc: policy_desc, policy_id: policy_id, due_date_policy: due_date_policy }
   end
 
