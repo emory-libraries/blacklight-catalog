@@ -3,7 +3,6 @@
 if ph[:items].size.positive?
   xml.physical_holding do
     xml.call_number ph[:call_number]
-    xml.copy_number ph[:availability][:copies]
     xml.items do
       ph[:items]&.each do |i|
         xml.item do
