@@ -174,17 +174,27 @@ RSpec.describe SolrDocument do
 
       it "can get the due_date_policy based on the user" do
         expect(solr_doc.items_query(user)).to eq "/holdings/ALL/items?limit=100&offset=0&expand=due_date_policy&user_id=janeq&order_by=chron_i&apikey="
-        expect(solr_doc.physical_holdings(user).first[:items].last).to eq({ barcode: "010002752069", type: "Bound Issue", pid: "23236301160002486",
-                                                                            policy: { policy_desc: "30 Day Loan Storage", policy_id: "17", due_date_policy: "28 Days Loan" },
-                                                                            description: "v.75(2013)", status: "Item in place", type_code: "ISSBD" })
+        expect(solr_doc.physical_holdings(user).first[:items].last).to eq(
+          {
+            barcode: "010002752069", type: "Bound Issue", pid: "23236301160002486",
+            policy: { policy_desc: "30 Day Loan Storage", policy_id: "17", due_date_policy: "28 Days Loan" },
+            description: "v.75(2013)", status: "Item in place", type_code: "ISSBD",
+            temp_library: nil, temp_location: nil, temporarily_located: "false"
+          }
+        )
         expect(solr_doc.hold_requestable?).to eq true
       end
 
       it "can get the due_date_policy for a guest user" do
         expect(solr_doc.items_query).to eq "/holdings/ALL/items?limit=100&offset=0&expand=due_date_policy&user_id=GUEST&order_by=chron_i&apikey="
-        expect(solr_doc.physical_holdings.first[:items].last).to eq({ barcode: "010002752069", type: "Bound Issue", pid: "23236301160002486",
-                                                                      policy: { policy_desc: "30 Day Loan Storage", policy_id: "17", due_date_policy: "Loanable" },
-                                                                      description: "v.75(2013)", status: "Item in place", type_code: "ISSBD" })
+        expect(solr_doc.physical_holdings.first[:items].last).to eq(
+          {
+            barcode: "010002752069", type: "Bound Issue", pid: "23236301160002486",
+            policy: { policy_desc: "30 Day Loan Storage", policy_id: "17", due_date_policy: "Loanable" },
+            description: "v.75(2013)", status: "Item in place", type_code: "ISSBD",
+            temp_library: nil, temp_location: nil, temporarily_located: "false"
+          }
+        )
         expect(solr_doc.hold_requestable?).to eq true
       end
     end
