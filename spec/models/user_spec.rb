@@ -105,4 +105,12 @@ RSpec.describe User do
       end
     end
   end
+
+  describe '#role' do
+    let(:user) { described_class.create(uid: "test") }
+
+    it 'defaults to guest' do
+      expect(user.guest?).to be true
+    end
+  end
 end
