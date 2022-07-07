@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
 
+  enum role: { guest: 0, admin: 1 }
+
   class NilShibbolethUserError < RuntimeError
     attr_accessor :auth
 
