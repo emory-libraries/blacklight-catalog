@@ -1,5 +1,6 @@
 en:
   blacklight:
+    admin: 'Admin'
     application_name: 'Library Search - Emory Libraries'
     availability:
       access_online: 'Access online:'

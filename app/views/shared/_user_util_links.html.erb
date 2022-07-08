@@ -2,10 +2,13 @@
 <ul class="navbar-nav">
   <% if has_user_authentication_provider? %>
     <% if current_user %>
+      <% if current_user&.admin? %>
+        <%= link_to t('blacklight.admin'), admin_path, class: 'nav-link' %>
+      <% end %>
       <li class="nav-item">
         <% if current_user.display_name %>
           <%= link_to "#{t('blacklight.header_links.logout')} #{current_user.display_name} ", destroy_user_session_path, class: 'nav-link last' %>
-        <% else %>
+      <% else %>
           <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path, class: 'nav-link last' %>
         <% end %>
       </li>

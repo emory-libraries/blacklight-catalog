@@ -56,4 +56,5 @@ Rails.application.routes.draw do
   match '/422', to: 'errors#unprocessable', via: :all
   get '/collections/search', to: 'collections#search'
   get '/ejournals', to: 'static#ejournals'
+  get '/admin', to: 'admin#index'
 end
