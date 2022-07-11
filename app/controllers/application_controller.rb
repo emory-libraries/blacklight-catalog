@@ -10,13 +10,7 @@ class ApplicationController < ActionController::Base
     guest_email_authentication_key(key)
   end
 
-  def require_authenticated_ltds_admin_user
-    head :forbidden unless authenticated_ltds_admin_user?
-  end
-
-  private
-
-  def authenticated_ltds_admin_user?
-    user_signed_in? && current_user.ltds_admin_user?
+  def require_flipflop_access_privileges
+    head :forbidden unless can? :manage, :flipflop
   end
 end
