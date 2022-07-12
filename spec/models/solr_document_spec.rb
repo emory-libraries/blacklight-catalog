@@ -179,7 +179,7 @@ RSpec.describe SolrDocument do
             barcode: "010002752069", type: "Bound Issue", pid: "23236301160002486",
             policy: { policy_desc: "30 Day Loan Storage", policy_id: "17", due_date_policy: "28 Days Loan" },
             description: "v.75(2013)", status: "Item in place", type_code: "ISSBD",
-            temp_library: nil, temp_location: nil, temporarily_located: "false"
+            temp_library: "", temp_location: "", temporarily_located: "false"
           }
         )
         expect(solr_doc.hold_requestable?).to eq true
@@ -192,7 +192,7 @@ RSpec.describe SolrDocument do
             barcode: "010002752069", type: "Bound Issue", pid: "23236301160002486",
             policy: { policy_desc: "30 Day Loan Storage", policy_id: "17", due_date_policy: "Loanable" },
             description: "v.75(2013)", status: "Item in place", type_code: "ISSBD",
-            temp_library: nil, temp_location: nil, temporarily_located: "false"
+            temp_library: "", temp_location: "", temporarily_located: "false"
           }
         )
         expect(solr_doc.hold_requestable?).to eq true

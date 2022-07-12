@@ -7,6 +7,7 @@ xml.document do
   xml.is_physical_holding @document['marc_resource_ssim']&.include?('At the Library')
   xml.is_electronic_holding @document['marc_resource_ssim']&.include?('Online')
   xml.edition @document['edition_tsim']&.first
+  xml.physical_description @document['material_type_display_tesim']&.first
   xml.publisher @document['published_tesim']&.first
   xml.publication_date @document['pub_date_isim']&.first
   xml.isbn @document['isbn_ssim']&.first
