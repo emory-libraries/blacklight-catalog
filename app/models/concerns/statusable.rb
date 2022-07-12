@@ -186,8 +186,8 @@ module Statusable
         description: node.xpath("following-sibling::item_data/description")&.inner_text,
         status: node.xpath('following-sibling::item_data/base_status').attr("desc")&.value,
         temporarily_located: node.xpath('in_temp_location')&.inner_text,
-        temp_library: node.xpath('temp_library').attr('desc')&.value,
-        temp_location: node.xpath('temp_location').attr('desc')&.value
+        temp_library: node.xpath('temp_library')&.inner_text,
+        temp_location: node.xpath('temp_location')&.inner_text
       }
     end
   end
