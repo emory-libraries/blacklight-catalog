@@ -55,7 +55,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-its'
   gem 'rspec-mocks'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'solr_wrapper', '>= 0.3'
   gem 'webdrivers', '~> 3.0'
