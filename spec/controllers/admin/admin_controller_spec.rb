@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe AdminController, type: :controller do
+RSpec.describe Admin::AdminController, type: :controller do
   describe '#index' do
     context 'when a user is logged in' do
       before do
