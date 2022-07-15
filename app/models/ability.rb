@@ -6,7 +6,9 @@ class Ability
   def initialize(user)
     return unless user&.admin?
 
-    can :index, :admin
+    can :manage, :admin
     can :manage, :flipflop
+    can :read, ContentBlock
+    can :update, ContentBlock
   end
 end

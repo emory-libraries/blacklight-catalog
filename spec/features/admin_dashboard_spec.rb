@@ -12,7 +12,7 @@ RSpec.describe 'Admin Dashboard', type: :feature do
       let(:user) { User.create(uid: 'test', role: :admin) }
 
       it 'loads admin dashboard' do
-        visit admin_path
+        visit admin_root_path
         expect(status_code).to eq(200)
         expect(page).to have_content('Admin Dashboard')
       end
@@ -22,7 +22,7 @@ RSpec.describe 'Admin Dashboard', type: :feature do
       let(:user) { User.create(uid: 'test', role: :guest) }
 
       it 'does not load the admin dashboard' do
-        visit admin_path
+        visit admin_root_path
         expect(status_code).to eq(500)
         expect(page).not_to have_content('Admin Dashboard')
       end
@@ -31,7 +31,7 @@ RSpec.describe 'Admin Dashboard', type: :feature do
 
   context 'when no user is logged in' do
     it 'does not load the admin dashboard' do
-      visit admin_path
+      visit admin_root_path
       expect(status_code).to eq(500)
       expect(page).not_to have_content('Admin Dashboard')
     end

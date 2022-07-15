@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :content_blocks
+
+    root to: "admin#index"
+  end
+
   mount Flipflop::Engine => "/features"
   mount Qa::Engine => '/qa'
 
@@ -56,5 +62,4 @@ Rails.application.routes.draw do
   match '/422', to: 'errors#unprocessable', via: :all
   get '/collections/search', to: 'collections#search'
   get '/ejournals', to: 'static#ejournals'
-  get '/admin', to: 'admin#index'
 end
