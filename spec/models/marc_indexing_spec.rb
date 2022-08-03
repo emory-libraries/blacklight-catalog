@@ -45,12 +45,6 @@ RSpec.describe 'Indexing fields with custom logic' do
       end
     end
 
-    describe 'when 856 has supplemental links only' do
-      it 'is not mapped with Online' do
-        expect(solr_doc5['marc_resource_ssim']).not_to include('Online')
-      end
-    end
-
     describe 'when 856 has a fulltext link' do
       it 'is mapped with Online' do
         expect(solr_doc6['marc_resource_ssim']).to include('Online')
@@ -61,10 +55,6 @@ RSpec.describe 'Indexing fields with custom logic' do
   describe 'marc_resource_ssim field, when no 997 or 998 fields' do
     context 'and 000/6 == e, f, g, k, o, or r and 008/29 == o or s' do
       it('is mapped with Online') { expect(solr_doc5['marc_resource_ssim']).to include('Online') }
-    end
-
-    context 'and 000/6 == e, f, g, k, o, or r and 008/29 != o or s' do
-      it('is mapped with At the Library') { expect(solr_doc6['marc_resource_ssim']).to eq(['At the Library']) }
     end
 
     context 'and 000/6 != e, f, g, k, o, or r and 008/29 == o or s' do
