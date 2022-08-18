@@ -2,14 +2,10 @@
 require 'traject/extraction_tools'
 extend ExtractionTools
 
-module ExtractSubjectDisplay
-  def extract_subject_display
-    atoz = ('a'..'z').to_a.join('')
-    atog = ('a'..'g').to_a.join('')
-    vtoz = ('v'..'z').to_a.join('')
-
+module ExtractSubjectEra
+  def extract_subject_era
     lambda do |record, accumulator|
-      tags = ["600#{atoz}", "610#{atoz}", "611#{atoz}", "630#{atoz}", "650#{atog}#{vtoz}", "651aeg#{vtoz}"]
+      tags = ['650y', '651y', '654y', '655y']
 
       tags.each do |tag|
         record.fields(tag.to_i.to_s).find_all do |field|
@@ -23,7 +19,7 @@ module ExtractSubjectDisplay
   end
 
   def valid?(field)
-    ((['0', '2'].include? field.indicator2) || valid_source?(field)) && !(field.subfields.any? { |sf| sf.code == '2' && sf.value == "fast" })
+    (['0', '2'].include? field.indicator2) || valid_source?(field)
   end
 
   def valid_source?(field)
@@ -39,12 +35,10 @@ module ExtractSubjectDisplay
     field.subfields.each do |subfield|
       next unless valid_subfield_codes.include? subfield.code
 
-      value = 'vxyz'.include? subfield.code ? "--#{subfield.value}" : subfield.value
-
       if subfield_values[subfield.code].present?
-        subfield_values[subfield.code] << value
+        subfield_values[subfield.code] << subfield.value
       else
-        subfield_values[subfield.code] = [value]
+        subfield_values[subfield.code] = [subfield.value]
       end
     end
     field_value = []

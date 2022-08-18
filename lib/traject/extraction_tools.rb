@@ -162,7 +162,10 @@ module ExtractionTools
   def subject_tesim_str(atoz)
     %W[
       600#{atoz}:610#{atoz}:611#{atoz}:630#{atoz}:650#{atoz}
-      651#{atoz}:653#{atoz}:654#{atoz}:655#{atoz}
+      651#{atoz}:653#{atoz}:654#{atoz}:655#{atoz}:656#{atoz}
+      657#{atoz}:658#{atoz}:662#{atoz}:688#{atoz}:690#{atoz}
+      691#{atoz}:692#{atoz}:693#{atoz}:694#{atoz}:695#{atoz}
+      696#{atoz}:697#{atoz}:698#{atoz}:699#{atoz}
     ].join(':').freeze
   end
 
