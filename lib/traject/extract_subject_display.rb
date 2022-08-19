@@ -14,7 +14,7 @@ module ExtractSubjectDisplay
       tags.each do |tag|
         record.fields(tag.to_i.to_s).find_all do |field|
           next unless valid?(field)
-          value = marc21.trim_punctuation(accumulate_values(tag, field))
+          value = marc21.trim_punctuation(subject_display_value(tag, field))
           accumulator << value unless accumulator.include?(value)
         end
       end
@@ -33,13 +33,13 @@ module ExtractSubjectDisplay
     end
   end
 
-  def accumulate_values(tag, field)
+  def subject_display_value(tag, field)
     valid_subfield_codes = tag.delete(tag.to_i.to_s)
     subfield_values = {}
     field.subfields.each do |subfield|
       next unless valid_subfield_codes.include? subfield.code
 
-      value = 'vxyz'.include? subfield.code ? "--#{subfield.value}" : subfield.value
+      value = 'vxyz'.include?(subfield.code) ? "--#{subfield.value}" : subfield.value
 
       if subfield_values[subfield.code].present?
         subfield_values[subfield.code] << value
@@ -49,6 +49,6 @@ module ExtractSubjectDisplay
     end
     field_value = []
     valid_subfield_codes.split('').each { |key| field_value.concat subfield_values[key].to_a }
-    field_value.join(' ')
+    field_value.join('')
   end
 end
