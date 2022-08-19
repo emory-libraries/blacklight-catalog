@@ -1852,5 +1852,57 @@
         </record>
       </metadata>
     </record>
+    <record>
+      <header>
+        <identifier>oai:alma.01GALI_EMORY:010101010101010101</identifier>
+        <datestamp>2022-08-19T19:47:03Z</datestamp>
+        <setSpec>print_books</setSpec>
+        <setSpec>blacklight</setSpec>
+      </header>
+      <metadata>
+        <record xmlns="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+          <leader>01974cem a2200433 a 4500</leader>
+          <controlfield tag="005">20210129142546.0</controlfield>
+          <controlfield tag="006">m    f   c f      </controlfield>
+          <controlfield tag="007">aj#canzn</controlfield>
+          <controlfield tag="008">981211s1998    caubc  cc a  fs 0   eng d</controlfield>
+          <controlfield tag="001">010101010101010101</controlfield>
+          <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">Test subject I</subfield>
+            <subfield code="z">United States I</subfield>
+            <subfield code="y">20th Century</subfield>
+          </datafield>
+          <datafield tag="650" ind1=" " ind2="4">
+            <subfield code="a">Test subject II</subfield>
+            <subfield code="z">United States II</subfield>
+            <subfield code="y">20th Century Test I</subfield>
+          </datafield>
+          <datafield tag="650" ind1=" " ind2="7">
+            <subfield code="a">Test subject III</subfield>
+            <subfield code="z">United States III</subfield>
+            <subfield code="y">20th Century Test II</subfield>
+          </datafield>
+          <datafield tag="650" ind1=" " ind2="7">
+            <subfield code="a">Test subject IV</subfield>
+            <subfield code="z">United States IV</subfield>
+            <subfield code="y">20th Century Test III</subfield>
+            <subfield code="2">rbpub</subfield>
+          </datafield>
+          <datafield tag="655" ind1=" " ind2="0">
+            <subfield code="a">Test Genre I</subfield>
+          </datafield>
+          <datafield tag="655" ind1=" " ind2="4">
+            <subfield code="a">Test Genre II</subfield>
+          </datafield>
+          <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">Test Genre III</subfield>
+          </datafield>
+          <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">Test Genre IV</subfield>
+            <subfield code="2">rbpub</subfield>
+          </datafield>
+        </record>
+      </metadata>
+    </record>
   </ListRecords>
 </OAI-PMH>

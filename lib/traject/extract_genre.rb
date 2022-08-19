@@ -11,7 +11,7 @@ module ExtractGenre
         record.fields(tag.to_i.to_s).find_all do |field|
           next unless valid?(field)
           value = marc21.trim_punctuation(genre_value(tag, field))
-          accumulator << value unless accumulator.include?(value)
+          accumulator << value unless value.nil? || accumulator.include?(value)
         end
       end
       accumulator
@@ -31,18 +31,12 @@ module ExtractGenre
 
   def genre_value(tag, field)
     valid_subfield_codes = tag.delete(tag.to_i.to_s)
-    subfield_values = {}
+    field_values = []
     field.subfields.each do |subfield|
       next unless valid_subfield_codes.include? subfield.code
 
-      if subfield_values[subfield.code].present?
-        subfield_values[subfield.code] << subfield.value
-      else
-        subfield_values[subfield.code] = [subfield.value]
-      end
+      field_values.append(subfield.value)
     end
-    field_value = []
-    valid_subfield_codes.split('').each { |key| field_value.concat subfield_values[key].to_a }
-    field_value.join(' ')
+    field_values.empty? ? nil : field_values.join('')
   end
 end
