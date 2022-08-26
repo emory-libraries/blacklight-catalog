@@ -48,6 +48,10 @@ require 'traject/extract_publication_date'
 require 'traject/extract_published'
 require 'traject/extract_publisher_details_display'
 require 'traject/extract_subject_display'
+require 'traject/extract_subject'
+require 'traject/extract_subject_geo'
+require 'traject/extract_subject_era'
+require 'traject/extract_genre'
 require 'traject/extract_title_details_display'
 require 'traject/extract_title_main_first_char'
 require 'traject/extract_title_precise'
@@ -78,6 +82,10 @@ extend ExtractPublicationDate
 extend ExtractPublished
 extend ExtractPublisherDetailsDisplay
 extend ExtractSubjectDisplay
+extend ExtractSubjectEra
+extend ExtractSubjectGeo
+extend ExtractGenre
+extend ExtractSubject
 extend ExtractTitleDetailsDisplay
 extend ExtractTitleMainFirstChar
 extend ExtractTitlePrecise
@@ -206,14 +214,14 @@ to_field 'author_vern_ssim', extract_author_vern
 to_field 'author_vern_tesim', extract_author_vern
 
 # Subject Fields
-to_field 'subject_display_ssim', extract_subject_display(ATOZ, ATOG, VTOZ)
-to_field 'subject_era_ssim',  extract_marc("650y:651y:654y:655y"), trim_punctuation
-to_field 'subject_geo_ssim',  extract_marc("651a:650z"), trim_punctuation
-to_field 'subject_ssim', extract_marc("600abcdq:610ab:611adc:630aa:650aa:653aa:654a"), trim_punctuation
+to_field 'subject_display_ssim', extract_subject_display
+to_field 'subject_era_ssim',  extract_subject_era
+to_field 'subject_geo_ssim',  extract_subject_geo
+to_field 'subject_ssim', extract_subject, trim_punctuation
 to_field 'subject_tesim', extract_marc(subject_tesim_str(ATOZ))
 
 # Genre Fields
-to_field 'genre_ssim', extract_marc("655a"), trim_punctuation
+to_field 'genre_ssim', extract_genre
 
 # Publication Fields
 to_field 'note_publication_dates_tesim', extract_marc('362a')

@@ -13,6 +13,7 @@ RSpec.describe 'Indexing fields with custom logic' do
   let(:solr_doc8) { SolrDocument.find('9937264718102485') }
   let(:solr_doc9) { SolrDocument.find('990016148150302486') }
   let(:solr_doc10) { SolrDocument.find('990023916570302486') }
+  let(:solr_doc11) { SolrDocument.find('010101010101010101') }
   before do
     delete_all_documents_from_solr
     # The command below is processing fixures/alma_marc_resource.xml
@@ -154,6 +155,93 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
 
     it('keeps the rest') { expect(solr_doc2['subject_display_ssim']).to match_array(included_elements) }
+  end
+
+  describe 'subject_era_ssim field' do
+    let(:excluded_elements) do
+      [
+        "20th Century Test I", "20th Century Test II"
+      ]
+    end
+    let(:included_elements) do
+      [
+        "20th Century", "20th Century Test III"
+      ]
+    end
+
+    it 'removes invalid datafields' do
+      expect(solr_doc11['subject_era_ssim']).not_to include(excluded_elements)
+    end
+
+    it 'keeps valid datafields' do
+      expect(solr_doc11['subject_era_ssim']).to match_array(included_elements)
+    end
+  end
+
+  describe 'subject_ssim field' do
+    let(:excluded_elements) do
+      [
+        "Test subject II", "Test subject III"
+      ]
+    end
+
+    let(:included_elements) do
+      [
+        "Test subject I", "Test subject IV"
+      ]
+    end
+
+    it 'removes invalid datafields' do
+      expect(solr_doc11['subject_ssim']).not_to include(excluded_elements)
+    end
+
+    it 'keeps valid datafields' do
+      expect(solr_doc11['subject_ssim']).to match_array(included_elements)
+    end
+  end
+
+  describe 'subject_geo_ssim field' do
+    let(:excluded_elements) do
+      [
+        "United States II", "United States III"
+      ]
+    end
+
+    let(:included_elements) do
+      [
+        "United States I", "United States IV"
+      ]
+    end
+
+    it 'removes invalid datafields' do
+      expect(solr_doc11['subject_geo_ssim']).not_to include(excluded_elements)
+    end
+
+    it 'keeps valid datafields' do
+      expect(solr_doc11['subject_geo_ssim']).to match_array(included_elements)
+    end
+  end
+
+  describe 'genre_ssim field' do
+    let(:excluded_elements) do
+      [
+        "Test Genre II", "Test Genre III"
+      ]
+    end
+
+    let(:included_elements) do
+      [
+        "Test Genre I", "Test Genre IV"
+      ]
+    end
+
+    it 'removes invalid datafields' do
+      expect(solr_doc11['genre_ssim']).not_to include(excluded_elements)
+    end
+
+    it 'keeps valid datafields' do
+      expect(solr_doc11['genre_ssim']).to match_array(included_elements)
+    end
   end
 
   describe 'url_fulltext_ssm field' do

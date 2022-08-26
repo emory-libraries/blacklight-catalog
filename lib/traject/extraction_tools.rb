@@ -159,10 +159,29 @@ module ExtractionTools
     build_arr
   end
 
+  # Extract value of field using a given tag
+  # @param [String] tag to extract e.g. '600abcdq'
+  # @param [MARC::DataField] field to extract value from
+  # @param [String] separator to use when merging the values into one, defaults to empty space
+  # @return [String] value that matches the input tag
+  def extract_value(tag, field, separator = '')
+    valid_subfield_codes = tag.delete(tag.to_i.to_s)
+    field_values = []
+    field.subfields.each do |subfield|
+      next unless valid_subfield_codes.include? subfield.code
+
+      field_values.append(subfield.value)
+    end
+    field_values.empty? ? nil : field_values.join(separator)
+  end
+
   def subject_tesim_str(atoz)
     %W[
       600#{atoz}:610#{atoz}:611#{atoz}:630#{atoz}:650#{atoz}
-      651#{atoz}:653#{atoz}:654#{atoz}:655#{atoz}
+      651#{atoz}:653#{atoz}:654#{atoz}:655#{atoz}:656#{atoz}
+      657#{atoz}:658#{atoz}:662#{atoz}:688#{atoz}:690#{atoz}
+      691#{atoz}:692#{atoz}:693#{atoz}:694#{atoz}:695#{atoz}
+      696#{atoz}:697#{atoz}:698#{atoz}:699#{atoz}
     ].join(':').freeze
   end
 
