@@ -13,7 +13,7 @@ module ExtractSubjectDisplay
 
       tags.each do |tag|
         record.fields(tag.to_i.to_s).find_all do |field|
-          next unless valid?(field)
+          next unless valid_subject_display_field?(field)
           value = marc21.trim_punctuation(subject_display_value(tag, field))
           accumulator << value unless value.nil? || accumulator.include?(value)
         end
@@ -22,11 +22,11 @@ module ExtractSubjectDisplay
     end
   end
 
-  def valid?(field)
-    ((['0', '2'].include? field.indicator2) || valid_source?(field)) && !(field.subfields.any? { |sf| sf.code == '2' && sf.value == "fast" })
+  def valid_subject_display_field?(field)
+    ((['0', '2'].include? field.indicator2) || valid_subject_display_source?(field)) && !(field.subfields.any? { |sf| sf.code == '2' && sf.value == "fast" })
   end
 
-  def valid_source?(field)
+  def valid_subject_display_source?(field)
     valid_sources = ['lcgft', 'homoit', 'aat', 'rbbin', 'rbgenr', 'rbpap', 'rbpri', 'rbprov', 'rbpub']
     field.indicator2 == '7' && field.subfields.any? do |subfield|
       subfield.code == '2' && valid_sources.include?(subfield.value)
