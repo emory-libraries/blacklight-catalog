@@ -5,7 +5,7 @@
 
 ## Blacklight Discovery
 
-* Ruby version 2.6.7
+* Ruby version 2.7.4
 
 * Rails version 5.1.7
 
