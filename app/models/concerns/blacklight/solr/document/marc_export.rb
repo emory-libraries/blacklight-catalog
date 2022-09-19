@@ -42,7 +42,11 @@ module Blacklight::Solr::Document::MarcExport
 
   def export_as_chicago_citation_txt
     generator = CitationFormatter.new(self)
-    generator.citation_for('chicago-fullnote-bibliography')
+    begin
+      generator.citation_for('chicago-fullnote-bibliography')
+    rescue
+      chicago_citation(to_marc)
+    end
   end
 
   # Exports as an OpenURL KEV (key-encoded value) query string.
