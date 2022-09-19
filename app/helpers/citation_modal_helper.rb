@@ -13,13 +13,18 @@ module CitationModalHelper
     apa_cit_arr = documents.inject([]) do |arr, doc|
       arr << tag.p(doc.send(:export_as_apa_citation_txt).html_safe, class: 'citation-text')
     end
+    chicago_cit_arr = documents.inject([]) do |arr, doc|
+      arr << tag.p(doc.send(:export_as_chicago_citation_txt).html_safe, class: 'citation-text')
+    end
 
     safe_join(
       [
         tag.h2(t('blacklight.citation.mla'), class: 'citation-header'),
         mla_cit_arr,
         tag.h2(t('blacklight.citation.apa'), class: 'citation-header'),
-        apa_cit_arr
+        apa_cit_arr,
+        tag.h2(t('blacklight.citation.chicago'), class: 'citation-header'),
+        chicago_cit_arr
       ].flatten, ''
     )
   end
@@ -30,12 +35,14 @@ module CitationModalHelper
         tag.h2(t('blacklight.citation.mla'), class: 'citation-header'),
         tag.p(documents.first.send(:export_as_mla_citation_txt).html_safe, class: 'citation-text'),
         tag.h2(t('blacklight.citation.apa'), class: 'citation-header'),
-        tag.p(documents.first.send(:export_as_apa_citation_txt).html_safe, class: 'citation-text')
+        tag.p(documents.first.send(:export_as_apa_citation_txt).html_safe, class: 'citation-text'),
+        tag.h2(t('blacklight.citation.chicago'), class: 'citation-header'),
+        tag.p(documents.first.send(:export_as_chicago_citation_txt).html_safe, class: 'citation-text')
       ].flatten, ''
     )
   end
 
   def cit_method_respond_test(documents)
-    documents.all? { |d| d.respond_to?(:export_as_mla_citation_txt) && d.respond_to?(:export_as_apa_citation_txt) }
+    documents.all? { |d| d.respond_to?(:export_as_mla_citation_txt) && d.respond_to?(:export_as_apa_citation_txt) && d.respond_to?(:export_as_chicago_citation_txt) }
   end
 end

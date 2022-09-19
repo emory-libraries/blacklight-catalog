@@ -17,6 +17,7 @@ en:
     citation:
       mla: 'MLA (8th Edition)'
       apa: 'APA (7th Edition)'
+      chicago: 'Chicago (17th Edition)'
     footer:
       links:
         about_library_search: 'About Library Search'

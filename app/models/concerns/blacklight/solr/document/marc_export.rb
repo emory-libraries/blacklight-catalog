@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'openurl'
+require './lib/citation_formatter'
 
 # Overwrites the apa_citation and mla_citation methods from module of same name
 #   v7.0.0, as well as adds new methods to assist the new logic.
@@ -40,7 +41,12 @@ module Blacklight::Solr::Document::MarcExport
   end
 
   def export_as_chicago_citation_txt
-    chicago_citation(to_marc)
+    generator = CitationFormatter.new(self)
+    begin
+      generator.citation_for('chicago-fullnote-bibliography')
+    rescue
+      chicago_citation(to_marc)
+    end
   end
 
   # Exports as an OpenURL KEV (key-encoded value) query string.
