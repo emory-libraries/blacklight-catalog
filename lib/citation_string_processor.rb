@@ -2,10 +2,6 @@
 
 module CitationStringProcessor
   # Chicago Citation
-  def chicago_default_citation
-    ""
-  end
-
   def chicago_author(obj)
     clean_end_punctuation(obj[:author_tesim]&.join(', '))
   end
