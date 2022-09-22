@@ -110,7 +110,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
 
     context 'displaying barcode' do
       it 'has the barcode in additional identifiers' do
-        expect(find('h1[itemprop="name"]+h2.vernacular_title_1').text).to eq('Title of my Work')
+        expect(page).to have_content('Barcode:')
       end
     end
 
