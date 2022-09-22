@@ -44,7 +44,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
           'Date/Time and Place of an Event:', 'Additional Physical Form:', 'Organization and Arrangement:',
           'Biographical/Historical Note:', 'Reproduction Note:', 'Location of Originals:',
           'Ownership and Custodial History:', 'Binding Note:', 'Copy and Version Identification:',
-          'Citation/Reference Note:', 'Related Collections:'
+          'Citation/Reference Note:', 'Related Collections:', 'Barcode:'
         ]
       end
       let(:expected_values) do
@@ -64,7 +64,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
           'Filmed in Georgia, baby!', 'Also available in print.', 'Concerto in B minor.',
           'A historical note.', 'A note about this reproduction.', 'A note left by the janitor.',
           'University of Tuscaloosie', 'Notes on binding.', 'Notes on versions.', 'Notes on related collections.',
-          'Some notes on citations.'
+          'Some notes on citations.', '010003511601'
         ]
       end
 
@@ -105,6 +105,12 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
         expect(page).to have_link(
           'G. Jenkins', href: '/?f%5Bauthor_vern_ssim%5D%5B%5D=G.+Jenkins'
         )
+      end
+    end
+
+    context 'displaying barcode' do
+      it 'has the barcode in additional identifiers' do
+        expect(find('h1[itemprop="name"]+h2.vernacular_title_1').text).to eq('Title of my Work')
       end
     end
 
