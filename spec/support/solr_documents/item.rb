@@ -4,6 +4,7 @@ TEST_ITEM = {
   author_display_ssim: ['George Jenkins'],
   author_ssim: ['George Jenkins', 'Someone Else'],
   author_tesim: ['George Jenkins', 'Someone Else'],
+  barcode_ssim: ['010003511601'],
   format_ssim: ['Book'],
   isbn_ssim: ['SOME MAGICAL NUM .66G'],
   language_tesim: ['English'],

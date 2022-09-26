@@ -252,7 +252,7 @@ class CatalogController < ApplicationController
       label: 'Other Identifiers',
       helper_method: :multiple_values_new_line)
     config.add_show_field 'publisher_number_tesim', label: 'Publisher Number', helper_method: :multiple_values_new_line
-
+    config.add_show_field 'barcode_ssim', label: 'Barcode', helper_method: :multiple_values_new_line
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
     #
@@ -268,7 +268,7 @@ class CatalogController < ApplicationController
     # or can be specified manually to be different.
 
     keyword_fields = [
-      'title_precise_tesim^100', 'author_tesim^50', 'author_addl_display_tesim^50',
+      'title_precise_tesim^100', 'author_tesim^50', 'author_addl_display_tesim^50', 'barcode_ssim',
       'subject_tesim^10', 'text_tesi', 'id', 'local_call_number_tesim', 'other_standard_ids_tesim', 'isbn_t', 'issn_t', 'lc_callnum_t'
     ]
     author_fields = [
@@ -293,7 +293,7 @@ class CatalogController < ApplicationController
     ]
     identifier_advanced_fields = [
       'isbn_ssim', 'issn_ssim', 'isbn_t', 'issn_t', 'oclc_ssim', 'other_standard_ids_tesim', 'lccn_ssim', 'id',
-      'publisher_number_tesim'
+      'publisher_number_tesim', 'barcode_ssim'
     ]
 
     # This one uses all the defaults set by the solr request handler. Which
