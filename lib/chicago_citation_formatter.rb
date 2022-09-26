@@ -23,7 +23,7 @@ class ChicagoCitationFormatter
                          "author": chicago_author(obj),
                          "issued": obj[:pub_date_isim].first,
                          "publisher": chicago_publisher(obj),
-                         "publisher-place": obj[:publisher_location_ssim].first,
+                         "publisher-place": obj[:publisher_location_ssim]&.first,
                          "title": obj[:title_citation_ssi],
                          "type": obj[:format_ssim]&.first&.downcase,
                          "DOI": chicago_doi(obj)
