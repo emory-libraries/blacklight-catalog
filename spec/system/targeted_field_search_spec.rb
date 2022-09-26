@@ -74,7 +74,8 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       'Target in text_tesi',
       'Target in id',
       'Target in local_call_number_tesim',
-      'Target in other_standard_ids_tesim'
+      'Target in other_standard_ids_tesim',
+      'Target in barcode_ssim'
     )
   end
 
