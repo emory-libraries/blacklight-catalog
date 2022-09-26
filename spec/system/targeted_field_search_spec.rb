@@ -10,7 +10,7 @@ RSpec.describe 'Search the catalog', type: :system, js: false do
       'title_host_item_tesim', 'title_key_tesim', 'title_series_tesim', 'title_translation_tesim',
       'title_varying_tesim', 'text_tesi', 'local_call_number_tesim', 'title_later_tesim',
       'note_production_tesim', 'note_participant_tesim', 'other_standard_ids_tesim',
-      'title_precise_tesim'
+      'title_precise_tesim', 'barcode_ssim'
     ]
   end
 

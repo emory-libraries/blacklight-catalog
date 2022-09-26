@@ -65,7 +65,6 @@ extend ExtractionTools
 extend ExtractAuthorAddlDisplay
 extend ExtractAuthorDisplay
 extend ExtractAuthorVern
-extend ExtractBarcode
 extend ExtractBoundWithDisplay
 extend ExtractCollection
 extend ExtractEmoryCollection
@@ -175,7 +174,7 @@ to_field 'lccn_ssim', extract_marc('010a')
 to_field 'oclc_ssim', oclcnum('019a:035a')
 to_field 'other_standard_ids_tesim', extract_other_standard_ids
 to_field 'local_call_number_tesim', extract_call_number
-to_field 'barcode_ssim', extract_barcode
+to_field 'barcode_ssim', extract_marc("997a"), trim_punctuation
 
 # Title Fields
 #    Primary Title
