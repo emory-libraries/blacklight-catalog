@@ -3,7 +3,8 @@
 module CitationStringProcessor
   # Chicago Citation
   def chicago_author(obj)
-    clean_end_punctuation(obj[:author_tesim]&.join(', '))
+    author = obj.to_marc['100'] ? obj.to_marc['100']['a'] : nil
+    author.present? ? clean_end_punctuation(author) : nil
   end
 
   def chicago_publisher(obj)
@@ -11,12 +12,13 @@ module CitationStringProcessor
     return nil if publisher.blank?
 
     publisher = publisher.gsub(/\[|\]/, '')
-    clean_end_punctuation(publisher) if publisher.present?
+    publisher.present? ? clean_end_punctuation(publisher) : nil
   end
 
   def chicago_doi(obj)
-    doi = obj['other_standard_ids_tesim']&.first&.strip
-    clean_end_punctuation(doi) if doi.present?
+    standard_ids = obj['other_standard_ids_tesim']
+    doi = standard_ids&.find { |v| v.match?(/doi:/) }
+    doi.present? ? clean_end_punctuation(doi).partition('doi: ').last : nil
   end
 
   # Helper Methods

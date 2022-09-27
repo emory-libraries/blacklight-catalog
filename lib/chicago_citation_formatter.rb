@@ -3,7 +3,7 @@ require 'citeproc'
 require 'csl/styles'
 require './lib/citation_string_processor'
 
-class CitationFormatter
+class ChicagoCitationFormatter
   include CitationStringProcessor
   attr_accessor :obj, :default_citations
 
@@ -11,8 +11,8 @@ class CitationFormatter
     @obj = obj
   end
 
-  def citation_for(style)
-    CiteProc::Processor.new(style: style, format: 'html').import(item).render(:bibliography, id: :item).first
+  def cite!
+    CiteProc::Processor.new(style: 'chicago-fullnote-bibliography', format: 'html').import(item).render(:bibliography, id: :item).first
   end
 
   private
@@ -23,7 +23,7 @@ class CitationFormatter
                          "author": chicago_author(obj),
                          "issued": obj[:pub_date_isim].first,
                          "publisher": chicago_publisher(obj),
-                         "publisher-place": obj[:publisher_location_ssim]&.join(', '),
+                         "publisher-place": obj[:publisher_location_ssim]&.first,
                          "title": obj[:title_citation_ssi],
                          "type": obj[:format_ssim]&.first&.downcase,
                          "DOI": chicago_doi(obj)
