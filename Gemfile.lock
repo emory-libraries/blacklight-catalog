@@ -286,7 +286,7 @@ GEM
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
     netrc (0.11.0)
-    nio4r (2.5.4)
+    nio4r (2.5.8)
     nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
@@ -312,7 +312,8 @@ GEM
       byebug (~> 11.0)
       pry (~> 0.13.0)
     public_suffix (5.0.0)
-    puma (3.12.6)
+    puma (6.0.0)
+      nio4r (~> 2.0)
     qa (5.6.0)
       activerecord-import
       deprecation
@@ -589,7 +590,7 @@ DEPENDENCIES
   openurl
   pry
   pry-byebug
-  puma (~> 3.7)
+  puma (~> 6.0)
   qa
   rack-mini-profiler
   rails (~> 5.1.7)

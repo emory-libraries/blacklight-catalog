@@ -34,7 +34,7 @@ gem 'nokogiri'
 gem "omniauth", ">= 2.0.0"
 gem 'omniauth-shibboleth', '~> 1.3'
 gem 'openurl'
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 6.0'
 gem 'qa'
 gem 'rails', '~> 5.1.7'
 gem 'rest-client'
