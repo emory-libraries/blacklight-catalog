@@ -312,7 +312,8 @@ GEM
       byebug (~> 11.0)
       pry (~> 0.13.0)
     public_suffix (5.0.0)
-    puma (3.12.6)
+    puma (6.0.0)
+      nio4r (~> 2.0)
     qa (5.6.0)
       activerecord-import
       deprecation
@@ -589,7 +590,7 @@ DEPENDENCIES
   openurl
   pry
   pry-byebug
-  puma (~> 3.7)
+  puma
   qa
   rack-mini-profiler
   rails (~> 5.1.7)
