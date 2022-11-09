@@ -31,6 +31,7 @@ gem 'jquery-rails'
 gem 'jwt'
 gem 'mysql2', '~> 0.5'
 gem 'nokogiri'
+gem "omniauth", ">= 2.0.0"
 gem 'omniauth-shibboleth', '~> 1.3'
 gem 'openurl'
 gem 'puma', '~> 3.7'
