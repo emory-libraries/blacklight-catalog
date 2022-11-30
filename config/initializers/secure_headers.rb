@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 csp_policy = {
   default_src: SecureHeaders::OPT_OUT,
-  frame_ancestors: %w['self' https://*.emory.edu https://na03.alma.exlibrisgroup.com],
+  frame_ancestors: ["'self'", "https://*.emory.edu", "https://#{ENV['ALMA']}.alma.exlibrisgroup.com"],
   script_src: SecureHeaders::OPT_OUT
 }
 
