@@ -10,6 +10,17 @@ module Statusable
     raw_physical_availability.map { |availability| physical_holding_hash(availability, user) }
   end
 
+  def physical_holdings_for_xml(user = nil)
+    return nil unless raw_physical_availability
+    @process_for_xml = true
+    ava_holding_ids = raw_physical_availability.map { |a| a.at_xpath('subfield[@code="8"]')&.inner_text }.compact
+    items_record_ids = items_record.xpath('//holding_id').map(&:inner_text)
+    @temp_loc_ids = ava_holding_ids - items_record_ids | items_record_ids - ava_holding_ids
+    @temp_id_index = 0
+
+    raw_physical_availability.map { |availability| physical_holding_hash(availability, user) }
+  end
+
   def online_holdings
     return [] if raw_online_availability.blank?
     raw_online_availability.map do |online_availability|
@@ -83,7 +94,11 @@ module Statusable
   end
 
   def items_by_holding_record(holding_id, user = nil)
-    items_record(user).xpath("//holding_id[text()='#{holding_id}']/parent::holding_data")
+    return items_record(user).xpath("//holding_id[text()='#{holding_id}']/parent::holding_data") unless @process_for_xml
+    parsed_id = holding_id.presence || @temp_loc_ids[@temp_id_index]
+    @temp_id_index += 1 if holding_id.blank?
+
+    items_record(user).xpath("//holding_id[text()='#{parsed_id}']/parent::holding_data")
   end
 
   def record_response

@@ -18,7 +18,7 @@ xml.document do
     end
   end
   xml.physical_holdings do
-    @document.physical_holdings&.each do |ph|
+    @document.physical_holdings_for_xml&.each do |ph|
       xml << render(partial: 'physical_holding', locals: { ph: ph })
     end
   end

@@ -377,6 +377,8 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     end
 
     context 'viewing xml version of document' do
+      let(:first_phys_holding_item) { "//physical_holdings//physical_holding//call_number[text()='PT2613 .M45 Z92 2006']/following-sibling::items//item" }
+      let(:second_phys_holding_item) { "//physical_holdings//physical_holding//call_number[text()='973.933 B1682D']/following-sibling::items//item" }
       let(:expected_values_arr) do
         [['//title', 'The Title of my Work'], ['//author', 'George Jenkins'], ['//edition', 'A sample edition'],
          ['//is_physical_holding', 'false'], ['//is_electronic_holding', 'false'],
@@ -384,11 +386,11 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
          ['//publication_date', '2015'], ['//isbn', 'SOME MAGICAL NUM .66G'], ['//issn', 'SOME OTHER MAGICAL NUMBER .12Q'],
          ['//supplemental_links//supplemental_link//link', 'http://www.example.com'],
          ['//supplemental_links//supplemental_link//label', 'http://www.example.com'],
-         ['//physical_holdings//physical_holding//call_number', 'PT2613 .M45 Z92 2006'],
-         ['//physical_holdings//physical_holding//library', 'UNIV'],
-         ['//physical_holdings//physical_holding//location', 'STACK'], ['//physical_holdings//physical_holding//items//item//barcode', '010001233671'],
-         ['//physical_holdings//physical_holding//items/item//volume_or_issue', ''],
-         ['//physical_holdings//physical_holding//items/item//status', 'Item in place']]
+         ["#{first_phys_holding_item}//library", 'UNIV'], ["#{first_phys_holding_item}//location", 'STACK'],
+         ["#{first_phys_holding_item}//barcode", '010001233671'], ["#{first_phys_holding_item}//volume_or_issue", ''],
+         ["#{first_phys_holding_item}//status", 'Item in place'], ["#{second_phys_holding_item}//library", 'OXFD'],
+         ["#{second_phys_holding_item}//location", 'NEWNYT'], ["#{second_phys_holding_item}//barcode", '050000104980'],
+         ["#{second_phys_holding_item}//volume_or_issue", ''], ["#{second_phys_holding_item}//status", 'Item in place']]
       end
 
       it 'displays correct tag/values' do
