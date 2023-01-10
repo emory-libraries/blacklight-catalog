@@ -36,7 +36,7 @@ gem 'omniauth-shibboleth', '~> 1.3'
 gem 'openurl'
 gem 'puma', '~> 6.0'
 gem 'qa'
-gem 'rails', '~> 5.1.7'
+gem 'rails', '~> 5.2.0'
 gem 'rest-client'
 gem 'rsolr', '>= 1.0'
 gem 'sass-rails', '~> 5.0'
@@ -50,7 +50,7 @@ gem 'whenever', require: false
 group :development, :test do
   gem 'bixby'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'capybara', '>= 2.15'
+  gem 'capybara', '~> 3.0'
   gem 'coveralls', require: false
   gem 'factory_bot_rails', '~> 4.11.1'
   gem 'ffaker'
@@ -59,7 +59,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-its'
   gem 'rspec-mocks'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 5.0'
   gem 'selenium-webdriver'
   gem 'solr_wrapper', '>= 0.3'
   gem 'webdrivers', '~> 3.0'
