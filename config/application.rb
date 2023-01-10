@@ -22,5 +22,9 @@ module BlacklightCatalog
 
     config.exceptions_app = routes
     config.autoload_paths += %W[#{config.root}/app/loggers lib/traject]
+
+    # refer to https://github.com/projectblacklight/blacklight/issues/2768
+    # refer to https://github.com/projectblacklight/blacklight/pull/2770/files
+    config.active_record.yaml_column_permitted_classes = [ActiveSupport::HashWithIndifferentAccess, Symbol]
   end
 end
