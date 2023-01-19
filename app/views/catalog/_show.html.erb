@@ -1,7 +1,7 @@
 <% # [Blacklight-overwrite v7.4.1] Overwrites the way fields get displayed on item show page %>
 <%= render 'catalog/show_tools/metadata_block', document: document, presenter: MainMetadataPresenter, title: '' %>
 <% # New partial for request options %>
-<%= render 'show_request_options', document: document %>
+<div id="show-request-options-container"></div>
 <%= tag.h2 t('catalog.show.more_details_header'), class: "section-title more-details-header" %>
 <%= render 'catalog/show_tools/metadata_block_collapsible', 
     document: document, 
@@ -25,5 +25,17 @@
   gtag('event', '<%= document['format_ssim']&.first %>', {
     'event_category': 'format_view',
     'event_label': '<%= document['title_main_display_ssim'].first %>'
+  });
+
+  $.ajax({
+    type: "GET",
+    data: {
+      document_id: "<%= document.id %>"
+    },
+    url: "/availability_indicator",
+    cache: false,
+    success: function(html){
+      $("#show-request-options-container").append(html);
+    }
   });
 </script>
