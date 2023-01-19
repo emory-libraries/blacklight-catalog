@@ -14,6 +14,12 @@ class AvailabilityIndicatorsController < ApplicationController
     render json: availability_indicators
   end
 
+  def single
+    _deprecated_response, @document = search_service.fetch(params['document_id'])
+    @documents_availability = AlmaAvailabilityService.new([params['document_id']]).availability_of_documents
+    render partial: 'catalog/show_request_options', layout: false
+  end
+
   private
 
   def document_ids
