@@ -10,14 +10,38 @@ class OaiValidation::DeletedRecordsRule < OaiValidation::Rule
   end
 
   def record_ids
-    deleted_records = document.xpath("/oai:OAI-PMH/oai:#{xml_type}/oai:record[oai:header/@status='deleted']", OAI_URL)
-    deleted_records.map { |n| n.at('header/identifier').text.split(':').last }
+    validated_deleted_records
   end
 
   def apply
-    deleted_records = document.xpath("/oai:OAI-PMH/oai:#{xml_type}/oai:record[oai:header/@status='deleted']", OAI_URL)
-    deleted_ids = deleted_records.map { |n| n.at('header/identifier').text.split(':').last }
-    deleted_records.remove
-    deleted_ids
+    validated_deleted_records(apply: true)
+  end
+
+  private
+
+  def validated_deleted_records(apply: false)
+    ret_arr = []
+    raw_deleted_records = document.xpath("/oai:OAI-PMH/oai:#{xml_type}/oai:record[oai:header/@status='deleted']", OAI_URL)
+
+    raw_deleted_records.each { |rdr| deleted_record_validating(ret_arr, rdr, apply) }
+    ret_arr
+  end
+
+  def deleted_record_validating(ret_arr, raw_deleted_record, apply)
+    deleted_id = raw_deleted_record.at('header/identifier').text.split(':').last
+
+    if xml_type == 'GetRecord'
+      ret_arr << deleted_id
+      raw_deleted_record.remove if apply
+    else
+      qs = "?verb=GetRecord&identifier=oai:alma.#{ENV['INSTITUTION']}:#{deleted_id}&metadataPrefix=marc21"
+      get_record_xml = call_oai_for_xml(ENV['ALMA'], ENV['INSTITUTION'], qs, Logger.new(STDOUT))
+      parsed_document = Nokogiri::XML(get_record_xml.body)
+      get_record_status = parsed_document.at('header/@status').value
+      if get_record_status == 'deleted'
+        ret_arr << deleted_id
+        raw_deleted_record.remove if apply
+      end
+    end
   end
 end
