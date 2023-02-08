@@ -37,8 +37,8 @@ class OaiValidation::DeletedRecordsRule < OaiValidation::Rule
       qs = "?verb=GetRecord&identifier=oai:alma.#{ENV['INSTITUTION']}:#{deleted_id}&metadataPrefix=marc21"
       get_record_xml = call_oai_for_xml(ENV['ALMA'], ENV['INSTITUTION'], qs, Logger.new(STDOUT))
       parsed_document = Nokogiri::XML(get_record_xml.body)
-      get_record_status = parsed_document.at('header/@status').value
-      if get_record_status == 'deleted'
+      get_record_status = parsed_document.at('header/@status')
+      if get_record_status&.value == 'deleted'
         ret_arr << deleted_id
         raw_deleted_record.remove if apply
       end
