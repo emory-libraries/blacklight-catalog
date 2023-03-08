@@ -12,7 +12,7 @@ module ExtractUrlFulltext
           next unless base_url
 
           url = parse_url(base_url)
-          exclude_links_to = ["table of contents", "table of contents only", "publisher description", "cover image", "contributor biographical information"]
+          exclude_links_to = ["table of contents", "table of contents only", "publisher description", "cover image", "contributor biographical information", "sample text"]
           label = [f['y'], f['3'], f['z']].compact.first
           next if label.present? && exclude_links_to.include?(label.downcase)
 

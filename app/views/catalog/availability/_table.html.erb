@@ -1,4 +1,4 @@
-<% if doc_avail_values[:physical_holdings].present? %>
+<% if doc_avail_values.present? && doc_avail_values[:physical_holdings].present? %>
   <span id="avail-<%= document.id %>-toggle" class="collapse">
     <div class="table-responsive-sm">
       <table class="table availability-table">

@@ -12,7 +12,7 @@ module ExtractUrlSuppl
         pulled_text = [uf['y'], uf['3'], uf['z']].compact.first
 
         if ['0', '1'].include?(uf.indicator2)
-          include_links_to = ["table of contents", "table of contents only", "publisher description", "cover image", "contributor biographical information"]
+          include_links_to = ["table of contents", "table of contents only", "publisher description", "cover image", "contributor biographical information", "sample text"]
           next if pulled_text.nil? || include_links_to.exclude?(pulled_text.downcase)
         end
 
