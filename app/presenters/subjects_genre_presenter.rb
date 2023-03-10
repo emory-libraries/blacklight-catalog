@@ -1,23 +1,9 @@
 # frozen_string_literal: true
 
-class SubjectsGenrePresenter
-  attr_reader :fields, :config
+class SubjectsGenrePresenter < FieldPresenter
+  CONFIG_PATH = Rails.root.join('config', 'metadata', 'subjects_genre.yml')
 
   def initialize(fields:)
-    @config = YAML.safe_load(File.open(Rails.root.join('config', 'metadata', 'subjects_genre.yml'))).symbolize_keys
-    @fields = fields
-  end
-
-  def terms
-    filter(fields: @fields, keys: @config.keys)
-  end
-
-  private
-
-  def filter(fields:, keys:)
-    fields.select do |field_name, _, _|
-      name = field_name.to_sym
-      keys.include? name
-    end
+    super(path: CONFIG_PATH, fields: fields)
   end
 end
