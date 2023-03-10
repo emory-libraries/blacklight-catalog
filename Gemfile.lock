@@ -92,12 +92,16 @@ GEM
       rubocop-performance
       rubocop-rails
       rubocop-rspec
-    blacklight (7.4.2)
+    blacklight (7.33.1)
       deprecation
       globalid
+      hashdiff
+      i18n (>= 1.7.0)
       jbuilder (~> 2.7)
       kaminari (>= 0.15)
-      rails (>= 5.1, < 7)
+      ostruct (>= 0.3.2)
+      rails (>= 5.1, < 7.1)
+      view_component (~> 2.66)
     blacklight-marc (7.0.0)
       blacklight (~> 7.0)
       library_stdnums
@@ -157,7 +161,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     colorize (0.8.1)
-    concurrent-ruby (1.2.0)
+    concurrent-ruby (1.2.2)
     coveralls (0.8.23)
       json (>= 1.8, < 3)
       simplecov (~> 0.16.1)
@@ -270,7 +274,7 @@ GEM
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    mail (2.8.0)
+    mail (2.8.1)
       mini_mime (>= 0.1.1)
       net-imap
       net-pop
@@ -288,7 +292,7 @@ GEM
     mime-types-data (3.2020.0512)
     mini_mime (1.1.2)
     mini_portile2 (2.8.1)
-    minitest (5.17.0)
+    minitest (5.18.0)
     momentjs-rails (2.29.1.1)
       railties (>= 3.1)
     multipart-post (2.1.1)
@@ -308,7 +312,7 @@ GEM
     net-ssh (6.1.0)
     netrc (0.11.0)
     nio4r (2.5.8)
-    nokogiri (1.14.0)
+    nokogiri (1.14.2)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     omniauth (1.9.2)
@@ -320,6 +324,7 @@ GEM
       marc
       scrub_rb (~> 1.0)
     orm_adapter (0.5.0)
+    ostruct (0.5.5)
     parallel (1.19.2)
     parser (2.7.2.0)
       ast (~> 2.4.1)
@@ -331,6 +336,9 @@ GEM
     pry-byebug (3.9.0)
       byebug (~> 11.0)
       pry (~> 0.13.0)
+    pry-remote (0.1.8)
+      pry (~> 0.9)
+      slop (~> 3.0)
     public_suffix (5.0.1)
     puma (6.0.0)
       nio4r (~> 2.0)
@@ -344,7 +352,7 @@ GEM
       rails (>= 5.0, < 6.2)
       rdf
     racc (1.6.2)
-    rack (2.2.6.2)
+    rack (2.2.6.3)
     rack-mini-profiler (2.3.3)
       rack (>= 1.2.0)
     rack-test (2.0.2)
@@ -515,7 +523,7 @@ GEM
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    timeout (0.3.1)
+    timeout (0.3.2)
     tins (1.26.0)
       sync
     traject (3.4.0)
@@ -541,6 +549,10 @@ GEM
       unf_ext
     unf_ext (0.0.7.7)
     unicode-display_width (1.7.0)
+    view_component (2.82.0)
+      activesupport (>= 5.2.0, < 8.0)
+      concurrent-ruby (~> 1.0)
+      method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (3.7.0)
@@ -573,7 +585,7 @@ PLATFORMS
 DEPENDENCIES
   administrate
   bixby
-  blacklight (~> 7.4.2)
+  blacklight (~> 7.33)
   blacklight-marc (>= 7.0.0.rc1)
   blacklight_advanced_search
   blacklight_range_limit
@@ -610,6 +622,7 @@ DEPENDENCIES
   openurl
   pry
   pry-byebug
+  pry-remote
   puma (~> 6.0)
   qa
   rack-mini-profiler
