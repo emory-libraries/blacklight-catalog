@@ -1,12 +1,12 @@
-<% doc_presenter = show_presenter(document) %>
-<% section_presenter = presenter.new(document: doc_presenter.fields_to_render) %>
+<% doc_presenter = document_presenter(document) %>
+<% section_presenter = presenter.new(fields: doc_presenter.fields_to_render) %>
 <% fields = section_presenter.terms; collapsible_fields = section_presenter.terms_in_collapsible %>
 
-<% if fields.length > 0 || collapsible_fields.length > 0 %>
+<% if fields.count > 0 || collapsible_fields.count > 0 %>
   <h4 class="blacklight-title"><%= title %></h4>
   <dl class="row dl-invert document-metadata">
-    <% if fields.length > 0 %>
-      <% fields.each do |field_name, field| %>
+    <% if fields.count > 0 %>
+      <% fields.each do |field_name, field, _| %>
         <%= render('catalog/show_tools/metadata_line', 
               field_name: field_name, 
               document: document, 
@@ -15,9 +15,9 @@
       <% end %>
     <% end %>
   </dl>
-  <% if collapsible_fields.length > 0 %>
+  <% if collapsible_fields.count > 0 %>
     <dl id="extended-terms" class='collapse row dl-invert collapsible-document-metadata'>
-      <% collapsible_fields.each do |field_name, field| %>
+      <% collapsible_fields.each do |field_name, field, _| %>
         <%= render('catalog/show_tools/metadata_line', 
               field_name: field_name, 
               document: document, 

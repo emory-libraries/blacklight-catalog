@@ -1,15 +1,23 @@
 # frozen_string_literal: true
 
 class AddlIdsPresenter
-  attr_reader :document, :config
+  attr_reader :fields, :config
 
-  def initialize(document:)
-    @document = document
-    @config = YAML.safe_load(File.open(Rails.root.join('config', 'metadata', 'addl_ids.yml')))
+  def initialize(fields:)
+    @config = YAML.safe_load(File.open(Rails.root.join('config', 'metadata', 'addl_ids.yml'))).symbolize_keys
+    @fields = fields
   end
 
   def terms
-    @config = @config.symbolize_keys
-    @document.slice(*@config.keys)
+    filter(fields: @fields, keys: @config.keys)
+  end
+
+  private
+
+  def filter(fields:, keys:)
+    fields.select do |field_name, _, _|
+      name = field_name.to_sym
+      keys.include? name
+    end
   end
 end

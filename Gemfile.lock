@@ -92,12 +92,16 @@ GEM
       rubocop-performance
       rubocop-rails
       rubocop-rspec
-    blacklight (7.4.2)
+    blacklight (7.33.1)
       deprecation
       globalid
+      hashdiff
+      i18n (>= 1.7.0)
       jbuilder (~> 2.7)
       kaminari (>= 0.15)
-      rails (>= 5.1, < 7)
+      ostruct (>= 0.3.2)
+      rails (>= 5.1, < 7.1)
+      view_component (~> 2.66)
     blacklight-marc (7.0.0)
       blacklight (~> 7.0)
       library_stdnums
@@ -319,6 +323,7 @@ GEM
       marc
       scrub_rb (~> 1.0)
     orm_adapter (0.5.0)
+    ostruct (0.5.5)
     parallel (1.19.2)
     parser (2.7.2.0)
       ast (~> 2.4.1)
@@ -330,6 +335,9 @@ GEM
     pry-byebug (3.9.0)
       byebug (~> 11.0)
       pry (~> 0.13.0)
+    pry-remote (0.1.8)
+      pry (~> 0.9)
+      slop (~> 3.0)
     public_suffix (5.0.1)
     puma (6.0.0)
       nio4r (~> 2.0)
@@ -542,6 +550,10 @@ GEM
       unf_ext
     unf_ext (0.0.7.7)
     unicode-display_width (1.7.0)
+    view_component (2.82.0)
+      activesupport (>= 5.2.0, < 8.0)
+      concurrent-ruby (~> 1.0)
+      method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (3.7.0)
@@ -575,7 +587,7 @@ PLATFORMS
 DEPENDENCIES
   administrate
   bixby
-  blacklight (~> 7.4.2)
+  blacklight (~> 7.33)
   blacklight-marc (>= 7.0.0.rc1)
   blacklight_advanced_search
   blacklight_range_limit
@@ -612,6 +624,7 @@ DEPENDENCIES
   openurl
   pry
   pry-byebug
+  pry-remote
   puma (~> 6.0)
   qa
   rack-mini-profiler
