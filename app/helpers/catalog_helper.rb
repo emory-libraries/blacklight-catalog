@@ -29,22 +29,20 @@ module CatalogHelper
 
   def multilined_links_to_facet(value)
     field = value[:field]
-    ret_vals = value[:values].uniq.map { |v| link_to v, "/?f%5B#{field}%5D%5B%5D=" + CGI.escape(v) } if value[:values].present?
+    values = Array.wrap(value[:value])
+    ret_vals = values.uniq.map { |v| link_to v, "/?f%5B#{field}%5D%5B%5D=" + CGI.escape(v) } if values.present?
     return safe_join(ret_vals, tag('br')) if ret_vals.present?
     ''
   end
 
   def author_additional_format(value)
     ret_str = nil
-    if value[:values].size <= 5
-      ret_str = multilined_links_to_facet_author_addl(value[:values])
+    values = Array.wrap(value[:value])
+    if values.size <= 5
+      ret_str = multilined_links_to_facet_author_addl(values)
     else
-      build_arr = [multilined_links_to_facet_author_addl(value[:values].first(5))]
-      build_arr.push(
-        author_additional_collapse_span(
-          multilined_links_to_facet_author_addl(value[:values][5..(value[:values].size - 1)])
-        )
-      )
+      build_arr = [multilined_links_to_facet_author_addl(values.first(5))]
+      build_arr.push(author_additional_collapse_span(multilined_links_to_facet_author_addl(values[5..(values.size - 1)])))
       build_arr.push(author_additional_collapse_link)
       ret_str = safe_join(build_arr, tag('br'))
     end

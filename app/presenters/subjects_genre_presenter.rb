@@ -1,15 +1,9 @@
 # frozen_string_literal: true
 
-class SubjectsGenrePresenter
-  attr_reader :document, :config
+class SubjectsGenrePresenter < FieldPresenter
+  CONFIG_PATH = Rails.root.join('config', 'metadata', 'subjects_genre.yml')
 
-  def initialize(document:)
-    @document = document
-    @config = YAML.safe_load(File.open(Rails.root.join('config', 'metadata', 'subjects_genre.yml')))
-  end
-
-  def terms
-    @config = @config.symbolize_keys
-    @document.slice(*@config.keys)
+  def initialize(fields:)
+    super(path: CONFIG_PATH, fields: fields)
   end
 end

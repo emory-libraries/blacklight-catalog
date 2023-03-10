@@ -10,7 +10,7 @@ end
 ruby '~> 2.7.4'
 
 gem 'administrate'
-gem 'blacklight', '~> 7.4.2'
+gem 'blacklight', '~> 7.33'
 gem 'blacklight-marc', '>= 7.0.0.rc1'
 gem 'blacklight_advanced_search'
 gem 'blacklight_range_limit'
@@ -56,6 +56,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'pry' unless ENV['CI']
   gem 'pry-byebug' unless ENV['CI']
+  gem 'pry-remote' unless ENV['CI']
   gem 'rails-controller-testing'
   gem 'rspec-its'
   gem 'rspec-mocks'
