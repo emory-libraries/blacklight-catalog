@@ -1,5 +1,6 @@
-<% # [Blacklight-overwrite v7.4.1] Overwrites the way fields get displayed on item show page %>
-<%= render 'catalog/show_tools/metadata_block', document: document, presenter: MainMetadataPresenter, title: '' %>
+<% # [Blacklight-overwrite v7.33] Overwrites the way fields get displayed on item show page %>
+<%= render(MainMetadataComponent.new(fields: document_presenter(document).field_presenters, show: true)) %>
+
 <% # New partial for request options %>
 <div id="show-request-options-container"></div>
 <%= tag.h2 t('catalog.show.more_details_header'), class: "section-title more-details-header" %>
