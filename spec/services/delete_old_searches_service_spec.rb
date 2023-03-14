@@ -4,8 +4,8 @@ require 'rails_helper'
 RSpec.describe DeleteOldSearchesService, :clean do
   around do |example|
     Search.destroy_all
-    Search.create(id: 123, query_params: 'abc', user: nil)
-    expect(Search.find(123).query_params).to eq 'abc'
+    Search.create(id: 123, query_params: { q: "abc" }, user: nil)
+    expect(Search.find(123).query_params).to eq({ "q" => "abc" })
     example.run
     Search.destroy_all
   end
