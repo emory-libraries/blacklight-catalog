@@ -48,17 +48,17 @@ RSpec.describe CatalogHelper, type: :helper do
   context '#author_additional_format' do
     let(:value) do
       dupe = SHOW_PAGE_VALUE.dup
-      dupe[:values] = ["Tim Jenkins"]
+      dupe[:value] = ["Tim Jenkins"]
       dupe
     end
     let(:value_with_relator) do
       dupe = SHOW_PAGE_VALUE.dup
-      dupe[:values] = ["Tim Jenkins relator: editor."]
+      dupe[:value] = ["Tim Jenkins relator: editor."]
       dupe
     end
     let(:value_with_6_auth_addl) do
       dupe = SHOW_PAGE_VALUE.dup
-      dupe[:values] = [
+      dupe[:value] = [
         "Tim Jenkins relator: editor.",
         "Sally Jenkins",
         "Betsy Jenkins",
