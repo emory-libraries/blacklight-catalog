@@ -11,6 +11,11 @@ class DocumentMetadataComponent < Blacklight::DocumentMetadataComponent
     super(fields: @fields, show: @show)
   end
 
+  # @param field Blacklight::FieldPresenter
+  def field_component(field)
+    field&.component || MetadataFieldComponent
+  end
+
   private
 
   # @param fields [Enumerable<Blacklight::FieldPresenter>]
@@ -19,8 +24,7 @@ class DocumentMetadataComponent < Blacklight::DocumentMetadataComponent
     return fields if included.blank?
 
     fields.select do |field|
-      name = field.field_config.field
-      included.include? name
+      included.include? field.key
     end
   end
 end
