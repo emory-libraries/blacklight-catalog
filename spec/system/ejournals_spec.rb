@@ -26,13 +26,13 @@ RSpec.feature 'eJournals Page', type: :system, js: false do
     end
 
     it 'has visible fields' do
-      expect(page).to have_field('title_precise')
+      expect(page).to have_field('q')
     end
 
     it 'has hidden fields' do
       page.has_field? "marc_resource", type: :hidden, with: "Online"
       page.has_field? "format_ssim", type: :hidden, with: "Journal, Newspaper or Serial"
-      page.has_field? "search_field", type: :hidden, with: "advanced"
+      page.has_field? "search_field", type: :hidden, with: "title_precise"
     end
 
     it 'has links for all letters' do
@@ -42,7 +42,7 @@ RSpec.feature 'eJournals Page', type: :system, js: false do
 
   context 'performing simple searches' do
     it 'fill in a search' do
-      fill_in 'title_precise', with: '123'
+      fill_in 'q', with: '123'
       click_button("Search")
       expect(page).not_to have_css("The Title of my Work")
       expect(page).to have_selector('.constraint', count: 3)
