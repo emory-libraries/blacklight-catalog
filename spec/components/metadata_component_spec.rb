@@ -2,8 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DocumentMetadataComponent, type: :component do
-  let(:path) { Rails.root.join('config', 'metadata', 'main_metadata.yml') }
+RSpec.describe MetadataComponent, type: :component do
   let(:view_context) { controller.view_context }
 
   let(:data) do
@@ -25,18 +24,30 @@ RSpec.describe DocumentMetadataComponent, type: :component do
       Blacklight::FieldPresenter.new(view_context, document, field_config)
     end
   end
-
-  let(:component) { described_class.new(fields: fields, path: path) }
   let(:rendered) { render_inline(component).to_s }
 
-  it 'renders all fields included in YAML file' do
-    keys = YAML.safe_load(File.open(MainMetadataComponent::CONFIG_PATH)).symbolize_keys.keys
-    keys.each do |key|
-      expect(rendered).to include data[key].first
+  context 'when a YAML config file is provided' do
+    let(:component) { described_class.new(config: 'main_metadata.yml', fields: fields) }
+
+    it 'renders all fields included in YAML file' do
+      keys = YAML.safe_load(File.open(Rails.root.join('config', 'metadata', 'main_metadata.yml')))
+      keys.each do |key, _|
+        expect(rendered).to include data[key.to_sym].first
+      end
+    end
+
+    it 'does not render fields not included in YAML file' do
+      expect(rendered).not_to include 'SOME MAGICAL NUM .66G'
     end
   end
 
-  it 'does not render fields not included in YAML file' do
-    expect(rendered).not_to include 'SOME MAGICAL NUM .66G'
+  context 'when no YAML config file is provided' do
+    let(:component) { described_class.new(fields: fields) }
+
+    it 'renders all fields in the document' do
+      data.each do |_, v|
+        expect(rendered).to include v.first
+      end
+    end
   end
 end
