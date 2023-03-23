@@ -29,11 +29,26 @@
   show: true
 )) %>
 
-<%= render('catalog/show_tools/metadata_block', 
-      document: document, presenter: SubjectsGenrePresenter, title: t('catalog.show.subjects_genre')) %>
-<%= render('catalog/show_tools/metadata_block', 
-      document: document, presenter: DescriptionSummaryPresenter, title: t('catalog.show.description_summary')) %>
-<%= render 'catalog/show_tools/metadata_block', document: document, presenter: AddlIdsPresenter, title: t('catalog.show.addl_ids') %>
+<%= render(MetadataComponent.new(
+  config: 'subjects_genre.yml',
+  fields: document_presenter(document).field_presenters,
+  title: t('catalog.show.subjects_genre'),
+  show: true
+)) %>
+
+<%= render(MetadataComponent.new(
+  config: 'description_summary.yml',
+  fields: document_presenter(document).field_presenters,
+  title: t('catalog.show.description_summary'),
+  show: true
+)) %>
+
+<%= render(MetadataComponent.new(
+  config: 'addl_ids.yml',
+  fields: document_presenter(document).field_presenters,
+  title: t('catalog.show.addl_ids'),
+  show: true
+)) %>
 
 <script type="text/javascript">
   gtag('event', '<%= document['library_ssim']&.first %>', {
