@@ -1,3 +1,7 @@
+<% if @title.present? %>
+  <h4 class="blacklight-title"><%= @title %></h4>
+<% end %>
+
 <dl class="document-metadata dl-invert row">
   <% fields.each do |field| -%>
     <%= field %>
