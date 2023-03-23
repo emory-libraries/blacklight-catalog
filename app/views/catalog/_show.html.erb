@@ -22,8 +22,13 @@
   show: true,
   collapse_link_class: 'additional-titles')) %>
 
-<%= render('catalog/show_tools/metadata_block', 
-      document: document, presenter: RelatedNamesPresenter, title: t('catalog.show.related_names')) %>
+<%= render(MetadataComponent.new(
+  config: 'related_names.yml',
+  fields: document_presenter(document).field_presenters,
+  title: t('catalog.show.related_names'),
+  show: true
+)) %>
+
 <%= render('catalog/show_tools/metadata_block', 
       document: document, presenter: SubjectsGenrePresenter, title: t('catalog.show.subjects_genre')) %>
 <%= render('catalog/show_tools/metadata_block', 
