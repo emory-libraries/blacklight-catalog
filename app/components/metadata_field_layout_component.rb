@@ -9,6 +9,6 @@ class MetadataFieldLayoutComponent < Blacklight::MetadataFieldLayoutComponent
   end
 
   def before_render
-    @value_class = value_class + " truncate" if helpers.blacklight_config.truncate_field_values.include? @field.key
+    @value_class += " truncate" if helpers.blacklight_config.truncate_field_values.include? @field.key
   end
 end
