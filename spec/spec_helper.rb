@@ -157,9 +157,5 @@ RSpec.configure do |config|
       .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail&mms_id=990027507910302486&view=full")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_10.xml'), headers: {})
-    stub_request(:get, "https://.alma.exlibrisgroup.com/view/oai//request?identifier=oai:alma.:990000954720302486&metadataPrefix=marc21&verb=GetRecord")
-      .to_return(status: 200, body: File.read(fixture_path + '/single_record_deleted.xml'), headers: {})
-    stub_request(:get, "https://na03.alma.exlibrisgroup.com/view/oai/01GALI_EMORY/request?identifier=oai:alma.01GALI_EMORY:990000954720302486&metadataPrefix=marc21&verb=GetRecord")
-      .to_return(status: 200, body: File.read(fixture_path + '/single_record_deleted.xml'), headers: {})
   end
 end
