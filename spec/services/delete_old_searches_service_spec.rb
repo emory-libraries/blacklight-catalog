@@ -11,7 +11,7 @@ RSpec.describe DeleteOldSearchesService, :clean do
   end
 
   it 'deletes all searches without user which are a day old or more' do
-    Search.update(id: 123, created_at: Time.current - 1.day)
+    Search.update(id: 123, created_at: Time.zone.today - 1 - 1.minute)
     described_class.destroy_searches
     expect(Search.find_by_id(123)).to eq nil
   end
