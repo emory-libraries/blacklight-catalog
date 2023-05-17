@@ -13,15 +13,15 @@ RSpec.describe DeleteOldGuestsService, :clean do
     Bookmark.destroy_all
   end
 
-  it 'deletes guest user created 30 mins ago along with their bookmarks' do
-    User.update(id: 123, created_at: Time.current - 31.minutes)
+  it 'deletes guest user created one day ago or more along with their bookmarks' do
+    User.update(id: 123, created_at: Time.current - 1.day)
     described_class.destroy_users
     expect(User.find_by_id(123).nil?).to eq true
     expect(Bookmark.find_by_id(123).nil?).to eq true
   end
 
-  it 'does not delete guest user created 30 mins ago' do
-    User.update(id: 123, created_at: Time.current - 29.minutes)
+  it 'does not delete guest user created less than a day ago' do
+    User.update(id: 123, created_at: Time.current - 30.minutes)
     described_class.destroy_users
     expect(User.find_by_id(123).nil?).to eq false
     expect(Bookmark.find_by_id(123).nil?).to eq false
