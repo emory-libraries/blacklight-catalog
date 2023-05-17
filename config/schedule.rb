@@ -24,7 +24,7 @@
 set :output, "log/cron_log.log"
 env :PATH, ENV['PATH']
 
-every 30.minutes do
+every 1.day, at: '4am' do
   rake "delete_old_guests_and_associations"
 end
 
