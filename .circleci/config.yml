@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
     samvera: samvera/circleci-orb@0.3.1
+    browsers-tools: circleci/browser-tools@1.4.1
 jobs:
     build:
         parameters:
@@ -15,10 +16,10 @@ jobs:
                 default: '8985'
             redis_version:
                 type: string
-                default: '4'
+                default: '7.0'
             mysql_version:
                 type: string
-                default: '5.7.22'
+                default: '8.0'
         environment:
             BUNDLE_PATH: vendor/bundle
             BUNDLE_JOBS: 4
@@ -32,17 +33,23 @@ jobs:
             DATABASE_USERNAME: root
             DATABASE_AUTH: true
         docker:
-            - image: circleci/ruby:<< parameters.ruby_version >>-node-browsers-legacy
+            - image: cimg/ruby:<< parameters.ruby_version >>-browsers
               environment:
                 - DATABASE_AUTH=true
             - image: solr:7-alpine
               command: bin/solr -cloud -noprompt -f -p <<parameters.solr_port>>
-            - image: circleci/redis:<<parameters.redis_version>>
-            - image: circleci/mysql:<<parameters.mysql_version>>
+            - image: cimg/redis:<<parameters.redis_version>>
+            - image: cimg/mysql:<<parameters.mysql_version>>
         working_directory: ~/project
         parallelism: 4
         steps:
+            - browsers-tools/install-browser-tools
+
             - checkout
+
+            - run:
+                name: Install development packages
+                command: sudo apt-get install -y libsqlite3-dev
 
             - samvera/bundle:
                 ruby_version: << parameters.ruby_version >>
@@ -50,20 +57,7 @@ jobs:
 
             - samvera/rubocop
 
-            - run:
-                name: Get yarn version
-                command: echo $(yarn --version) >> "YARN_VERSION"
-
-            - restore_cache:
-                keys:
-                    - v1-yarn-{{ checksum "yarn.lock" }}-{{ checksum "YARN_VERSION" }}
-
             - run: yarn
-
-            - save_cache:
-                key: v1-yarn-{{ checksum "yarn.lock" }}-{{ checksum "YARN_VERSION" }}
-                paths:
-                    - ~/project/node_modules
 
             - samvera/install_solr_core:
                 core_name: blacklight-test
@@ -96,7 +90,7 @@ jobs:
 
     coverage:
         docker:
-            - image: circleci/ruby:2.7.4
+            - image: cimg/ruby:2.7.4
         working_directory: ~/project
         parallelism: 1
         steps:
