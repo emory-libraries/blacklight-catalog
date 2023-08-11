@@ -8,14 +8,27 @@ module ExtractSubjectDisplay
     atog = ('a'..'g').to_a.join('')
     vtoz = ('v'..'z').to_a.join('')
 
+    lf = LanguageFilter.new
+    language_filter_log_path = Rails.root.join('tmp', 'language_filter.log')
+    logger = Logger.new(language_filter_log_path)
+
     lambda do |record, accumulator|
+      record_id = record.find { |f| f.tag == '001' }&.value
       tags = ["600#{atoz}", "610#{atoz}", "611#{atoz}", "630#{atoz}", "650#{atog}#{vtoz}", "651aeg#{vtoz}"]
 
       tags.each do |tag|
         record.fields(tag.to_i.to_s).find_all do |field|
           next unless valid_subject_display_field?(field)
           value = marc21.trim_punctuation(subject_display_value(tag, field))
-          accumulator << value unless value.nil? || accumulator.include?(value)
+          unless value.nil? || accumulator.include?(value)
+            if lf.valid?(value)
+              accumulator << value
+            else
+              replacement = lf.filter(value)
+              accumulator << replacement
+              logger.info "Language filter change for record: ###{record_id}##, field: `subject_display_ssim`; Replace \"#{value}\" with \"#{replacement}\""
+            end
+          end
         end
       end
       accumulator
