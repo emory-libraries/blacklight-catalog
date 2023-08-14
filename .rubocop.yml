@@ -20,6 +20,7 @@ Metrics/AbcSize:
         - 'app/services/oai_processing_service.rb'
         - 'app/services/oai_processing_single_service.rb'
         - 'lib/chicago_citation_formatter.rb'
+        - 'lib/traject/extract_subject_display.rb'
         - 'app/helpers/citation_modal_helper.rb'
 
 Metrics/BlockLength:
@@ -53,6 +54,8 @@ Metrics/MethodLength:
         - 'app/helpers/citation_modal_helper.rb'
         - 'lib/traject/extract_publication_date.rb'
         - 'lib/traject/extract_url_fulltext.rb'
+        - 'lib/traject/extract_subject_display.rb'
+        - 'lib/traject/extract_subject.rb'
         - 'lib/chicago_citation_formatter.rb'
         - 'app/controllers/sessions/social_login.rb'
         - 'config/initializers/bookmarks_index_override.rb'

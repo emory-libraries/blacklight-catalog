@@ -6,6 +6,13 @@ task marc_index_ingest: [:environment] do
   full_index = ENV['full_index'].present?
   to_time = Time.new.utc.strftime("%Y-%m-%dT%H:%M:%SZ")
   single_record = ENV.key?('oai_single_id') ? true : false
+
+  # Language filter logging
+  language_filter_log_path = Rails.root.join('tmp', 'language_filter.log')
+  File.open(language_filter_log_path, 'w') do |file|
+    file.truncate(0)
+  end
+
   ingest_logger = Logger.new("marc_ingest_#{Time.new.utc.strftime('%Y%m%dT%H%M')}.log") unless single_record
 
   abort 'The ENV variable oai_set_name or oai_single_id has not been set.' if oai_set.blank?

@@ -218,8 +218,8 @@ to_field 'author_vern_tesim', extract_author_vern
 to_field 'subject_display_ssim', extract_subject_display
 to_field 'subject_era_ssim',  extract_subject_era
 to_field 'subject_geo_ssim',  extract_subject_geo
-to_field 'subject_ssim', extract_subject, trim_punctuation
-to_field 'subject_tesim', extract_marc(subject_tesim_str(ATOZ))
+to_field 'subject_ssim', extract_subject_ssim, trim_punctuation
+to_field 'subject_tesim', extract_subject_tesim
 
 # Genre Fields
 to_field 'genre_ssim', extract_genre

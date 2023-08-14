@@ -1853,6 +1853,7 @@
       </metadata>
     </record>
     <record>
+      <!-- This is not a real record. This record is only used for testing purposes. -->
       <header>
         <identifier>oai:alma.01GALI_EMORY:010101010101010101</identifier>
         <datestamp>2022-08-19T19:47:03Z</datestamp>
@@ -1900,6 +1901,22 @@
           <datafield tag="655" ind1=" " ind2="7">
             <subfield code="a">Test Genre IV</subfield>
             <subfield code="2">rbpub</subfield>
+          </datafield>
+        </record>
+      </metadata>
+    </record>
+    <record>
+      <!-- This is not a real record. This record is only used for testing purposes. -->
+      <header>
+        <identifier>oai:alma.01GALI_EMORY:020202020202020202</identifier>
+        <datestamp>2021-01-29T19:47:03Z</datestamp>
+        <setSpec>blacklight4</setSpec>
+      </header>
+      <metadata>
+        <record xmlns="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd" >
+          <controlfield tag="001">020202020202020202</controlfield>
+          <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">Gender identity disorder.</subfield>
           </datafield>
         </record>
       </metadata>

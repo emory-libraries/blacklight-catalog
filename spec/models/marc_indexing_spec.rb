@@ -134,29 +134,6 @@ RSpec.describe 'Indexing fields with custom logic' do
     it('maps nothing when neither field available') { expect(solr_doc3['collection_ssim']).to be_nil }
   end
 
-  describe 'subject_display_ssim field' do
-    let(:excluded_elements) do
-      [
-        "Economic history.", "Ethnic groups.", "Ethnology.", "Population.", "Population density.",
-        "Rain and rainfall.", "Religion.", "Tribes.", "Yemen (Republic)"
-      ]
-    end
-    let(:included_elements) do
-      [
-        "Population density--Yemen (Republic)--Maps", "Ethnic groups--Yemen (Republic)--Maps",
-        "Tribes--Yemen (Republic)--Maps", "Ethnology--Yemen (Republic)--Maps", "Rain and rainfall--Yemen (Republic)--Maps",
-        "Land use--Yemen (Republic)--Maps", "Yemen (Republic)--Maps", "Yemen (Republic)--Population--Maps",
-        "Yemen (Republic)--Economic conditions--Maps", "Yemen (Republic)--Religion--Maps"
-      ]
-    end
-
-    it 'removes datafields with indicator_2 = 4 or subfields with code = 2 and value - fast' do
-      expect(solr_doc2['subject_display_ssim']).not_to include(excluded_elements)
-    end
-
-    it('keeps the rest') { expect(solr_doc2['subject_display_ssim']).to match_array(included_elements) }
-  end
-
   describe 'subject_era_ssim field' do
     let(:excluded_elements) do
       [
@@ -175,28 +152,6 @@ RSpec.describe 'Indexing fields with custom logic' do
 
     it 'keeps valid datafields' do
       expect(solr_doc11['subject_era_ssim']).to match_array(included_elements)
-    end
-  end
-
-  describe 'subject_ssim field' do
-    let(:excluded_elements) do
-      [
-        "Test subject II", "Test subject III"
-      ]
-    end
-
-    let(:included_elements) do
-      [
-        "Test subject I", "Test subject IV"
-      ]
-    end
-
-    it 'removes invalid datafields' do
-      expect(solr_doc11['subject_ssim']).not_to include(excluded_elements)
-    end
-
-    it 'keeps valid datafields' do
-      expect(solr_doc11['subject_ssim']).to match_array(included_elements)
     end
   end
 
