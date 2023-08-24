@@ -5,7 +5,7 @@ module SearchResultsHelper
       tag.p(t, class: "vern-title-search-results-#{i}")
     end
 
-    return safe_join(vern_titles, tag('br')) if vern_titles.present?
+    return safe_join(vern_titles, tag.br) if vern_titles.present?
     ''
   end
 
