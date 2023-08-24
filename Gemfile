@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '~> 2.7.4'
+ruby '~> 3.2.2'
 
 gem 'administrate'
 gem 'blacklight', '~> 7.33'
@@ -36,7 +36,7 @@ gem 'omniauth-shibboleth', '~> 1.3'
 gem 'openurl'
 gem 'puma', '~> 6.3'
 gem 'qa'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 6.1.7'
 gem 'rest-client'
 gem 'rsolr', '>= 1.0'
 gem 'sass-rails', '~> 5.0'
@@ -53,6 +53,7 @@ group :development, :test do
   gem 'capybara', '~> 3.0'
   gem 'coveralls', require: false
   gem 'factory_bot_rails', '~> 4.11.1'
+  gem 'faraday', '~> 1.10.3'
   gem 'ffaker'
   gem 'pry' unless ENV['CI']
   gem 'pry-byebug' unless ENV['CI']
@@ -78,7 +79,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'stackprof'
   gem 'web-console', '>= 3.3.0'
-  gem 'xray-rails'
 end
 
 group :test do
