@@ -47,7 +47,7 @@ module ExtractionTools
                 elsif field['z'].present?
                   field['z']
                 end
-    accumulator << { url: url, label: link_text }.to_json unless url.nil?
+    accumulator << { url:, label: link_text }.to_json unless url.nil?
   end
 
   def parse_url(base_url)

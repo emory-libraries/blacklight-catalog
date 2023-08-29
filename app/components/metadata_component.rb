@@ -8,8 +8,8 @@ class MetadataComponent < Blacklight::DocumentMetadataComponent
   def initialize(config: nil, fields: [], title: '', show: false)
     @title = title
     keys = config.present? ? YAML.safe_load(File.open(Rails.root.join('config', 'metadata', config))) : []
-    fields = filter(fields: fields, keys: keys)
-    super(fields: fields, show: show)
+    fields = filter(fields:, keys:)
+    super(fields:, show:)
   end
 
   # @param field Blacklight::FieldPresenter

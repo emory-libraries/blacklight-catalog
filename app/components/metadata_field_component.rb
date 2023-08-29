@@ -6,6 +6,6 @@ class MetadataFieldComponent < Blacklight::MetadataFieldComponent
   # @param show [Boolean]
   def initialize(field:, layout: nil, show: false)
     layout ||= MetadataFieldLayoutComponent
-    super(field: field, layout: layout, show: show)
+    super(field:, layout:, show:)
   end
 end

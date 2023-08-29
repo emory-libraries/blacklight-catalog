@@ -20,7 +20,7 @@ RSpec.describe SearchResultsHelper, type: :helper do
         }
       }
 
-      result = helper.ejournals_search_params(state: state, letter: letter)
+      result = helper.ejournals_search_params(state:, letter:)
       expect(result).to eq(expected_params)
     end
 
@@ -39,7 +39,7 @@ RSpec.describe SearchResultsHelper, type: :helper do
         }
       }
 
-      result = helper.ejournals_search_params(state: state)
+      result = helper.ejournals_search_params(state:)
       expect(result).to eq(expected_params)
     end
   end
@@ -56,7 +56,7 @@ RSpec.describe SearchResultsHelper, type: :helper do
         }
       }
 
-      result = helper.title_starts_with_search_params(state: state, letter: letter)
+      result = helper.title_starts_with_search_params(state:, letter:)
       expect(result).to eq(expected_params)
     end
 
@@ -67,7 +67,7 @@ RSpec.describe SearchResultsHelper, type: :helper do
         f: { language_ssim: ["English"] }
       }
 
-      result = helper.title_starts_with_search_params(state: state)
+      result = helper.title_starts_with_search_params(state:)
       expect(result).to eq(expected_params)
     end
   end

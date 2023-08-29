@@ -38,7 +38,7 @@ module ExtractMarcResource
   end
 
   def electronic_present(record)
-    proof_of_998(record) || proof_of_856(record)
+    proof998(record) || proof856(record)
   end
 
   def leader_formats(record)
@@ -75,11 +75,13 @@ module ExtractMarcResource
     )
   end
 
-  def proof_of_998(record)
+  private
+
+  def proof998(record)
     record.fields('998').any? { |f| f.subfields.any? { |sf| sf.code == 'c' && sf.value.casecmp("available").zero? } }
   end
 
-  def proof_of_856(record)
+  def proof856(record)
     record.fields('856').any? do |f|
       (f.indicator2 == '0' || f.indicator2 == '1') && (suppl_labels & fields_yz3(f)).empty?
     end

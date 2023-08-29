@@ -16,7 +16,7 @@ module ExtractUrlFulltext
           label = [f['y'], f['3'], f['z']].compact.first
           next if label.present? && exclude_links_to.include?(label.downcase)
 
-          acc << { url: url, label: label }.to_json if url.present?
+          acc << { url:, label: }.to_json if url.present?
         when '2'
           # do nothing
         else

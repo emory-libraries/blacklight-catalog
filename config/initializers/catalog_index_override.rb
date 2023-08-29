@@ -33,7 +33,7 @@ CatalogController.class_eval do
     solr_cache_entry = SolrCacheEntry.find_by(key: 'catalog/index/homepage_search_results')
     if solr_cache_entry&.unexpired?
       data = JSON.parse(solr_cache_entry.value)
-      Blacklight::Solr::Response.new(data, data["responseHeader"]["params"], blacklight_config: blacklight_config)
+      Blacklight::Solr::Response.new(data, data["responseHeader"]["params"], blacklight_config:)
     else
       solr_cache_entry&.delete
       data = search_service.search_results.first

@@ -27,7 +27,7 @@ RSpec.describe MetadataComponent, type: :component do
   let(:rendered) { render_inline(component).to_s }
 
   context 'when a YAML config file is provided' do
-    let(:component) { described_class.new(config: 'main_metadata.yml', fields: fields) }
+    let(:component) { described_class.new(config: 'main_metadata.yml', fields:) }
 
     it 'renders all fields included in YAML file' do
       keys = YAML.safe_load(File.open(Rails.root.join('config', 'metadata', 'main_metadata.yml')))
@@ -42,7 +42,7 @@ RSpec.describe MetadataComponent, type: :component do
   end
 
   context 'when no YAML config file is provided' do
-    let(:component) { described_class.new(fields: fields) }
+    let(:component) { described_class.new(fields:) }
 
     it 'renders all fields in the document' do
       data.each do |_, v|

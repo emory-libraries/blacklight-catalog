@@ -520,7 +520,7 @@ module Blacklight::Solr::Document::MarcExport
         end
       end
     end
-    { primary_authors: primary_authors, translators: translators, editors: editors, compilers: compilers }
+    { primary_authors:, translators:, editors:, compilers: }
   end
 
   def name_reverse(name)

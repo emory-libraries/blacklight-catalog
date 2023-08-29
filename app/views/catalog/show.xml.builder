@@ -14,12 +14,12 @@ xml.document do
   xml.issn @document['issn_ssim']&.first
   xml.supplemental_links do
     @document['url_suppl_ssim']&.each do |supp|
-      xml << render(partial: 'supplemental_link', locals: { supp: supp })
+      xml << render(partial: 'supplemental_link', locals: { supp: })
     end
   end
   xml.physical_holdings do
     @document.physical_holdings_for_xml&.each do |ph|
-      xml << render(partial: 'physical_holding', locals: { ph: ph })
+      xml << render(partial: 'physical_holding', locals: { ph: })
     end
   end
 end

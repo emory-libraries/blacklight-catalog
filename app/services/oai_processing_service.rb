@@ -15,7 +15,7 @@ class OaiProcessingService
     oai = call_oai_for_xml(alma, institution, qs, logger)
     document = Nokogiri::XML(oai.body)
     xml_type = single_record ? 'GetRecord' : 'ListRecords'
-    rules = OaiValidation::Rule.all_rules(document: document, xml_type: xml_type)
+    rules = OaiValidation::Rule.all_rules(document:, xml_type:)
 
     # Apply all validation rules
     logger.info "Starting record count: #{document.xpath('//marc:record', MARC_URL).count}"

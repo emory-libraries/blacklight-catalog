@@ -5,7 +5,7 @@ class MetadataFieldLayoutComponent < Blacklight::MetadataFieldLayoutComponent
   # @param label_class [String]
   # @param value_class [String]
   def initialize(field:, label_class: 'col-md-4', value_class: 'col-md-8')
-    super(field: field, label_class: label_class, value_class: value_class)
+    super(field:, label_class:, value_class:)
   end
 
   def before_render

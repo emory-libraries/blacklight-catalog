@@ -29,7 +29,7 @@ class OaiValidationService
     oai = call_oai_for_xml(ENV['ALMA'], ENV['INSTITUTION'], qs, logger)
     xml_type = 'GetRecord'
     document = Nokogiri::XML(oai.body)
-    rules = OaiValidation::Rule.all_rules(document: document, xml_type: xml_type)
+    rules = OaiValidation::Rule.all_rules(document:, xml_type:)
     rules.each do |rule|
       raise OaiValidationServiceError, "Record ##{record_id} violates the following rule: #{rule.description}" if rule.record_ids.any?
     end
