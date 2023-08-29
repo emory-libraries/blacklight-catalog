@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class SolrDocument
   include Blacklight::Solr::Document
+  include Blacklight::Marc::DocumentExtension
   include Statusable
 
   alias_attribute(:mms_id, :id)

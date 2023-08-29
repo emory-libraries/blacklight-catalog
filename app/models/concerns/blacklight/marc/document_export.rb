@@ -3,9 +3,10 @@
 require 'openurl'
 require './lib/chicago_citation_formatter'
 
+# blacklight-marc v7.2.0 overwrite
 # Overwrites the apa_citation and mla_citation methods from module of same name
-#   v7.0.0, as well as adds new methods to assist the new logic.
-module Blacklight::Solr::Document::MarcExport
+# as well as adds new methods to assist the new logic.
+module Blacklight::Marc::DocumentExport
   def self.register_export_formats(document)
     document.will_export_as(:xml)
     document.will_export_as(:marc, "application/marc")
@@ -208,15 +209,13 @@ module Blacklight::Solr::Document::MarcExport
                        []
                      end
 
-      if marc_obj[first_value[0].to_s]
-        marc_obj.find_all { |f| first_value[0].to_s == f.tag }.each do |field|
-          if field[first_value[1]].to_s || field[second_value[1]].to_s
-            text += key.delete('_').to_s
-            text += " #{field[first_value[1]]}" if field[first_value[1]].to_s
-            text += " #{field[second_value[1]]}" if field[second_value[1]].to_s
-            text += "\n"
-          end
-        end
+      next unless marc_obj[first_value[0].to_s]
+      marc_obj.find_all { |f| first_value[0].to_s == f.tag }.each do |field|
+        next unless field[first_value[1]].to_s || field[second_value[1]].to_s
+        text += key.delete('_').to_s
+        text += " #{field[first_value[1]]}" if field[first_value[1]].to_s
+        text += " #{field[second_value[1]]}" if field[second_value[1]].to_s
+        text += "\n"
       end
     end
     text
@@ -505,19 +504,18 @@ module Blacklight::Solr::Document::MarcExport
       primary_authors << field["a"] if field["a"]
     end
     record.find_all { |f| f.tag == "700" }.each do |field|
-      if field["a"]
-        relators = []
-        relators << clean_end_punctuation(field["e"]) if field["e"]
-        relators << clean_end_punctuation(field["4"]) if field["4"]
-        if relators.include?(translator_code)
-          translators << field["a"]
-        elsif relators.include?(editor_code)
-          editors << field["a"]
-        elsif relators.include?(compiler_code)
-          compilers << field["a"]
-        else
-          primary_authors << field["a"]
-        end
+      next unless field["a"]
+      relators = []
+      relators << clean_end_punctuation(field["e"]) if field["e"]
+      relators << clean_end_punctuation(field["4"]) if field["4"]
+      if relators.include?(translator_code)
+        translators << field["a"]
+      elsif relators.include?(editor_code)
+        editors << field["a"]
+      elsif relators.include?(compiler_code)
+        compilers << field["a"]
+      else
+        primary_authors << field["a"]
       end
     end
     { primary_authors:, translators:, editors:, compilers: }

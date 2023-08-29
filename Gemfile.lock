@@ -88,7 +88,7 @@ GEM
     autoprefixer-rails (10.4.13.0)
       execjs (~> 2)
     aws-eventstream (1.2.0)
-    aws-partitions (1.811.0)
+    aws-partitions (1.813.0)
     aws-sdk-core (3.181.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.651.0)
@@ -117,8 +117,8 @@ GEM
       ostruct (>= 0.3.2)
       rails (>= 5.1, < 7.1)
       view_component (~> 2.66)
-    blacklight-marc (8.1.0)
-      blacklight (>= 7.11, < 9)
+    blacklight-marc (7.2.0)
+      blacklight (~> 7.0)
       library_stdnums
       marc (>= 0.4.3, < 2.0)
       marc-fastxmlwriter
@@ -541,9 +541,8 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.6.4)
-      mini_portile2 (~> 2.8.0)
-    sshkit (1.21.2)
+    sqlite3 (1.6.4-x86_64-darwin)
+    sshkit (1.21.5)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     stackprof (0.2.25)
@@ -591,7 +590,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webmock (3.18.1)
+    webmock (3.19.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -613,7 +612,7 @@ DEPENDENCIES
   administrate
   bixby
   blacklight (~> 7.33)
-  blacklight-marc (>= 7.0.0.rc1)
+  blacklight-marc (~> 7.2)
   blacklight_advanced_search
   blacklight_range_limit
   bootstrap (~> 4.0)
