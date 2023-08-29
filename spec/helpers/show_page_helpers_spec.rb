@@ -27,7 +27,7 @@ RSpec.describe ShowPageHelper, type: :helper do
 
     it 'converts a multivalued vernacular title field into a multiple h2s separated by a breakline' do
       expect(helper.vernacular_title_populator(solr_doc2)).to eq(
-        "<h2 class=\"vernacular_title_1\">Title of my Work</h2><br /><h2 class=\"vernacular_title_2\">My Work</h2>"
+        "<h2 class=\"vernacular_title_1\">Title of my Work</h2><br><h2 class=\"vernacular_title_2\">My Work</h2>"
       )
     end
   end
