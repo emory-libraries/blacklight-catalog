@@ -9,7 +9,7 @@ end
 
 ruby '~> 3.2.2'
 
-gem 'administrate'
+gem 'administrate', '~> 0.17.0'
 gem 'blacklight', '~> 7.33'
 gem 'blacklight_advanced_search'
 gem 'blacklight-marc', '~> 7.2'
