@@ -129,9 +129,8 @@ GEM
     blacklight_advanced_search (7.0.0)
       blacklight (~> 7.0)
       parslet
-    blacklight_range_limit (8.3.0)
-      blacklight (>= 7.25.2, < 9)
-      deprecation
+    blacklight_range_limit (7.9.1)
+      blacklight (~> 7.0)
     bootstrap (4.6.2)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.16.1, < 2)
@@ -620,7 +619,7 @@ DEPENDENCIES
   blacklight (~> 7.33)
   blacklight-marc (~> 7.2)
   blacklight_advanced_search
-  blacklight_range_limit
+  blacklight_range_limit (~> 7.8)
   bootstrap (~> 4.0)
   bootstrap-select-rails (>= 1.13)
   byebug
