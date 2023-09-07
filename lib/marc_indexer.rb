@@ -47,10 +47,7 @@ require 'traject/extract_publication_main_display.rb'
 require 'traject/extract_publication_date'
 require 'traject/extract_published'
 require 'traject/extract_publisher_details_display'
-require 'traject/extract_subject_display'
 require 'traject/extract_subject'
-require 'traject/extract_subject_geo'
-require 'traject/extract_subject_era'
 require 'traject/extract_genre'
 require 'traject/extract_title_details_display'
 require 'traject/extract_title_main_first_char'
@@ -81,9 +78,6 @@ extend ExtractPublicationMainDisplay
 extend ExtractPublicationDate
 extend ExtractPublished
 extend ExtractPublisherDetailsDisplay
-extend ExtractSubjectDisplay
-extend ExtractSubjectEra
-extend ExtractSubjectGeo
 extend ExtractGenre
 extend ExtractSubject
 extend ExtractTitleDetailsDisplay
