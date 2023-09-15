@@ -57,7 +57,6 @@ group :development, :test do
   gem 'ffaker'
   gem 'pry' unless ENV['CI']
   gem 'pry-byebug' unless ENV['CI']
-  gem 'pry-remote' unless ENV['CI']
   gem 'rails-controller-testing'
   gem 'rspec-its'
   gem 'rspec-mocks'
