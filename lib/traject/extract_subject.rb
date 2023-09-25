@@ -1,4 +1,12 @@
 # frozen_string_literal: true
+
+# Fields:
+# - 'subject_tesim'
+# - 'subject_ssim'
+# - 'subject_geo_ssim'
+# - 'subject_era_ssim'
+# - 'subject_display_ssim'
+
 require 'traject/extraction_tools'
 extend ExtractionTools
 

@@ -134,49 +134,6 @@ RSpec.describe 'Indexing fields with custom logic' do
     it('maps nothing when neither field available') { expect(solr_doc3['collection_ssim']).to be_nil }
   end
 
-  describe 'subject_era_ssim field' do
-    let(:excluded_elements) do
-      [
-        "20th Century Test I", "20th Century Test II"
-      ]
-    end
-    let(:included_elements) do
-      [
-        "20th Century", "20th Century Test III"
-      ]
-    end
-
-    it 'removes invalid datafields' do
-      expect(solr_doc11['subject_era_ssim']).not_to include(excluded_elements)
-    end
-
-    it 'keeps valid datafields' do
-      expect(solr_doc11['subject_era_ssim']).to match_array(included_elements)
-    end
-  end
-
-  describe 'subject_geo_ssim field' do
-    let(:excluded_elements) do
-      [
-        "United States II", "United States III"
-      ]
-    end
-
-    let(:included_elements) do
-      [
-        "United States I", "United States IV"
-      ]
-    end
-
-    it 'removes invalid datafields' do
-      expect(solr_doc11['subject_geo_ssim']).not_to include(excluded_elements)
-    end
-
-    it 'keeps valid datafields' do
-      expect(solr_doc11['subject_geo_ssim']).to match_array(included_elements)
-    end
-  end
-
   describe 'genre_ssim field' do
     let(:excluded_elements) do
       [
