@@ -1,4 +1,8 @@
 # frozen_string_literal: true
+
+# Fields:
+# - 'genre_ssim'
+
 require 'traject/extraction_tools'
 extend ExtractionTools
 
