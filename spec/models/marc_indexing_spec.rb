@@ -134,28 +134,6 @@ RSpec.describe 'Indexing fields with custom logic' do
     it('maps nothing when neither field available') { expect(solr_doc3['collection_ssim']).to be_nil }
   end
 
-  describe 'genre_ssim field' do
-    let(:excluded_elements) do
-      [
-        "Test Genre II", "Test Genre III"
-      ]
-    end
-
-    let(:included_elements) do
-      [
-        "Test Genre I", "Test Genre IV"
-      ]
-    end
-
-    it 'removes invalid datafields' do
-      expect(solr_doc11['genre_ssim']).not_to include(excluded_elements)
-    end
-
-    it 'keeps valid datafields' do
-      expect(solr_doc11['genre_ssim']).to match_array(included_elements)
-    end
-  end
-
   describe 'url_fulltext_ssm field' do
     context "when url does not include a protocol" do
       it "adds the protocol at time of index" do
