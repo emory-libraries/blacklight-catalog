@@ -1902,6 +1902,11 @@
             <subfield code="a">Test Genre IV</subfield>
             <subfield code="2">rbpub</subfield>
           </datafield>
+          <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">Test Local Subject Heading</subfield>
+            <subfield code="2">local</subfield>
+            <subfield code="5">GEU</subfield>
+          </datafield>
         </record>
       </metadata>
     </record>
