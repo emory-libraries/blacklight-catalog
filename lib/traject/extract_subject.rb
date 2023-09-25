@@ -148,7 +148,7 @@ module ExtractSubject
   end
 
   def valid_subject_source?(field)
-    valid_sources = ['lcgft', 'homoit', 'aat', 'rbbin', 'rbgenr', 'rbpap', 'rbpri', 'rbprov', 'rbpub']
+    valid_sources = ['lcgft', 'homoit', 'aat', 'rbbin', 'rbgenr', 'rbpap', 'rbpri', 'rbprov', 'rbpub', 'rbmscv']
     return false unless field.indicator2 == '7'
     source = field.subfields.find { |sf| sf.code == '2' }
     return false if source.blank?
