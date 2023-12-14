@@ -9,6 +9,7 @@ AllCops:
         - 'tmp/**/*'
         - 'vendor/**/*'
         - 'node_modules/**/*'
+        - 'lib/solr/*'
 
 Layout/LineLength:
     Exclude:
