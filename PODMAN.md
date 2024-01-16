@@ -2,20 +2,11 @@
 
 The following instructions will help you setup [Podman](https://github.com/containers/podman) and create containers for Solr and MySQL on your machine:
 
-1. Install `podman` and `podman-compose`
+1. Install `podman` using these [instructions](https://podman.io/docs/installation).
 
-```bash
-# update brew
-brew update
+2. Install `podman-compose` using these [instructions](https://github.com/containers/podman-compose#installation).
 
-# install podman
-brew install podman
-
-# install podman-compose
-brew install podman-compose
-```
-
-2. Initialize and start podman machine
+3. Initialize and start podman machine
 
 ```bash
 # initialize podman machine
@@ -25,7 +16,7 @@ podman machine init
 podman machine start
 ```
 
-3. Create and start containers
+4. Create and start containers
 
 ```bash
 # create and start containers in detached mode. This may take a few minutes.

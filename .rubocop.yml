@@ -13,6 +13,7 @@ AllCops:
         - 'app/models/concerns/special_collections_requestable.rb'
         - 'app/models/concerns/blacklight/marc/document_export.rb'
         - 'app/models/concerns/statusable.rb'
+        - 'lib/solr/*'
 
 Layout/LineLength:
     Exclude:
@@ -24,7 +25,7 @@ Metrics/AbcSize:
         - 'app/services/oai_processing_service.rb'
         - 'app/services/oai_processing_single_service.rb'
         - 'lib/chicago_citation_formatter.rb'
-        - 'lib/traject/extract_subject_display.rb'
+        - 'lib/traject/extract_subject.rb'
         - 'app/helpers/citation_modal_helper.rb'
 
 Metrics/BlockLength:
@@ -69,6 +70,7 @@ Metrics/ModuleLength:
     Exclude:
         - 'app/models/concerns/blacklight/solr/document/marc_export.rb'
         - 'lib/traject/extraction_tools.rb'
+        - 'lib/traject/extract_subject.rb'
         - 'config/prepends/custom_citation_logic.rb'
         - 'app/models/concerns/statusable.rb'
         - 'app/helpers/catalog_helper.rb'

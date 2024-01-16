@@ -1,4 +1,8 @@
 # frozen_string_literal: true
+
+# Fields:
+# - 'genre_ssim'
+
 require 'traject/extraction_tools'
 extend ExtractionTools
 
@@ -23,9 +27,15 @@ module ExtractGenre
   end
 
   def valid_genre_source?(field)
-    valid_sources = ['lcgft', 'homoit', 'aat', 'rbbin', 'rbgenr', 'rbpap', 'rbpri', 'rbprov', 'rbpub']
-    field.indicator2 == '7' && field.subfields.any? do |subfield|
-      subfield.code == '2' && valid_sources.include?(subfield.value)
+    valid_sources = ['lcgft', 'homoit', 'aat', 'rbbin', 'rbgenr', 'rbpap', 'rbpri', 'rbprov', 'rbpub', 'rbmscv']
+    return false unless field.indicator2 == '7'
+    source = field.subfields.find { |sf| sf.code == '2' }
+    return false if source.blank?
+
+    if valid_sources.include?(source.value)
+      true
+    else
+      source.value == 'local' && field.subfields.find { |sf| sf.code == '5' and sf.value == 'GEU' }.present?
     end
   end
 end
