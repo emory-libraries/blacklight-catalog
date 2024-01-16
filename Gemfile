@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '~> 3.2.2'
+ruby '~> 3.1.4'
 
 gem 'administrate', '~> 0.17.0'
 gem 'blacklight', '~> 7.33'

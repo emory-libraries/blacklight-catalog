@@ -609,6 +609,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-22
+  x86_64-darwin-23
 
 DEPENDENCIES
   administrate (~> 0.17.0)
@@ -678,7 +679,7 @@ DEPENDENCIES
   whenever
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.1.4p223
 
 BUNDLED WITH
    2.4.19
