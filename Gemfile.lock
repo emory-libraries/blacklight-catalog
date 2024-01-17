@@ -352,6 +352,8 @@ GEM
     nio4r (2.7.0)
     nokogiri (1.16.0-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.16.0-x86_64-linux)
+      racc (~> 1.4)
     omniauth (1.9.2)
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
@@ -544,6 +546,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.6.4-x86_64-darwin)
+    sqlite3 (1.6.4-x86_64-linux)
     sshkit (1.21.5)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
@@ -610,6 +613,7 @@ GEM
 PLATFORMS
   x86_64-darwin-22
   x86_64-darwin-23
+  x86_64-linux
 
 DEPENDENCIES
   administrate (~> 0.17.0)
