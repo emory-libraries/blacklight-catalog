@@ -1,5 +1,20 @@
 # frozen_string_literal: true
 
+namespace :deploy do
+  desc 'Ask user for CAB approval before deployment if stage is PROD'
+  task :confirm_cab_approval do
+    if fetch(:stage) == :PROD
+      ask(:cab_acknowledged, 'Have you submitted and received CAB approval? (Yes/No): ')
+      unless /^y(es)?$/i.match?(fetch(:cab_acknowledged))
+        puts 'Please submit a CAB request and get it approved before proceeding with deployment.'
+        exit
+      end
+    end
+  end
+end
+
+before 'deploy:starting', 'deploy:confirm_cab_approval'
+
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.14.1"
 

@@ -90,6 +90,14 @@ Lint/PercentStringArray:
     Exclude:
         - 'config/initializers/secure_headers.rb'
 
+Rails/Exit:
+    Exclude:
+        - 'config/deploy.rb'
+
+Rails/Output:
+    Exclude:
+        - 'config/deploy.rb'
+
 Rails/OutputSafety:
     Exclude:
         - 'app/helpers/citation_modal_helper.rb'
