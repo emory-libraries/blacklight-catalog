@@ -3,18 +3,19 @@
     container: null,
     titleElement: null,
 
-    init: function(el) {
+    init: function (el) {
       this.container = $(el);
-      this.titleElement = this.container.find('.alternate-catalog-title');
+      this.titleElement = this.container.find(".alternate-catalog-title");
 
       // Insert between the 3rd and 4th document
       this.injectAlternateCatalogInotResults();
-
     },
 
-    injectAlternateCatalogInotResults: function() {
-      var $documents = $('#documents');
-      var afterThird = $documents.find('.document-position-2').after(this.container);
+    injectAlternateCatalogInotResults: function () {
+      var $documents = $("#documents");
+      var afterThird = $documents
+        .find(".document-position-3")
+        .after(this.container);
       var _this = this;
 
       // If there is no third document, just append to the end of #documents
@@ -25,12 +26,12 @@
   };
 
   global.AlternateCatalog = AlternateCatalog;
-}(this));
+})(this);
 
 Blacklight.onLoad(function () {
-  'use strict';
+  "use strict";
 
-  if($('#data-alternate-catalog').length > 0){
-    AlternateCatalog.init($('#data-alternate-catalog'));
-  };
+  if ($("#data-alternate-catalog").length > 0) {
+    AlternateCatalog.init($("#data-alternate-catalog"));
+  }
 });
