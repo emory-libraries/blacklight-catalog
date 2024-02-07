@@ -26,5 +26,7 @@ module BlacklightCatalog
     # refer to https://github.com/projectblacklight/blacklight/issues/2768
     # refer to https://github.com/projectblacklight/blacklight/pull/2770/files
     config.active_record.yaml_column_permitted_classes = [ActiveSupport::HashWithIndifferentAccess, Symbol]
+
+    Rack::MiniProfiler.config.authorization_mode = :allow_authorized
   end
 end
