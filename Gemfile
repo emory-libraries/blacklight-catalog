@@ -37,7 +37,6 @@ gem 'omniauth-shibboleth', '~> 1.3'
 gem 'openurl'
 gem 'puma', '~> 6.3'
 gem 'qa'
-gem 'rack-mini-profiler'
 gem 'rails', '~> 6.1.7'
 gem 'rest-client'
 gem 'rsolr', '>= 1.0'
@@ -45,7 +44,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'secure_headers'
 gem 'simple_form' # For database authentication page from Devise
 gem 'sqlite3'
-gem 'stackprof'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 gem 'uglifier', '>= 1.3.0'
 gem 'whenever', require: false
@@ -75,8 +73,10 @@ group :development do
   gem 'capistrano-rails', '~> 1.6', require: false
   gem 'capistrano-yarn'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'rack-mini-profiler'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'stackprof'
   gem 'web-console', '>= 3.3.0'
 end
 

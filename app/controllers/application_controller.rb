@@ -6,10 +6,6 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  before_action do
-    Rack::MiniProfiler.authorize_request
-  end
-
   def guest_uid_authentication_key(key)
     guest_email_authentication_key(key)
   end
