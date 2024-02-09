@@ -9,6 +9,7 @@ end
 
 ruby '~> 3.1.4'
 
+gem "actionpack-page_caching"
 gem 'administrate', '~> 0.17.0'
 gem 'blacklight', '~> 7.33'
 gem 'blacklight_advanced_search'
