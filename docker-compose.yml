@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+  mysql-dev:
+    image: mysql:8.0-debian
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: emory-ltds
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: blacklight-catalog-dev
+    volumes:
+      - mysql-dev:/var/lib/mysql
+  
+  mysql-test:
+    image: mysql:8.0-debian
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: emory-ltds
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: blacklight-catalog-test
+    volumes:
+      - mysql-test:/var/lib/mysql
+
+  solr-dev:
+    image: solr:8.11.2-slim
+    volumes:
+      - $PWD/solr/conf:/opt/solr/conf
+      - solr-dev:/var/solr
+    ports:
+      - "8983:8983"
+    command:
+      - solr-precreate
+      - blacklight-core
+      - /opt/solr/conf
+  
+  solr-test:
+    image: solr:8.11.2-slim
+    volumes:
+      - $PWD/solr/conf:/opt/solr/conf
+      - solr-test:/var/solr
+    ports:
+      - "8985:8983"
+    command:
+      - solr-precreate
+      - blacklight-test
+      - /opt/solr/conf
+volumes:
+  mysql-dev:
+  mysql-test:
+  solr-dev:
+  solr-test:
