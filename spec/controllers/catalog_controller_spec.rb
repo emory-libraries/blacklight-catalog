@@ -59,7 +59,9 @@ RSpec.describe CatalogController, type: :controller do
     let(:expected_facet_fields) do
       ["author_ssim", "format_ssim", "language_ssim", "marc_resource_ssim",
        "subject_era_ssim", "subject_geo_ssim", "subject_ssim", "library_ssim",
-       "collection_ssim", "genre_ssim", "pub_date_isim", "lc_1letter_ssim", "title_main_first_char_ssim", "author_display_ssim"]
+       "collection_ssim", "genre_ssim", "pub_date_isim", "lc_1letter_ssim",
+       "title_main_first_char_ssim", "author_display_ssim", "author_addl_ssim",
+       "author_vern_ssim", "subject_display_ssim", "title_uniform_ssim"]
     end
     let(:homepage_facet_fields) { controller.blacklight_config.homepage_facet_fields }
     let(:suppressed_facet_fields) { controller.blacklight_config.suppressed_facet_fields }
