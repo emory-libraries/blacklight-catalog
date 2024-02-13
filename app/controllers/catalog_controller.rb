@@ -134,6 +134,11 @@ class CatalogController < ApplicationController
     config.add_facet_field 'genre_ssim', label: 'Genre', limit: 5, index_range: true
     config.add_facet_field 'author_display_ssim', label: 'Author', limit: 5
 
+    config.add_facet_field 'author_addl_ssim', show: false
+    config.add_facet_field 'author_vern_ssim', show: false
+    config.add_facet_field 'subject_display_ssim', show: false
+    config.add_facet_field 'title_uniform_ssim', show: false
+
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
     # handler defaults, or have no facets.
