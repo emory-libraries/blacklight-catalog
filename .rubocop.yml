@@ -2,13 +2,17 @@ inherit_gem:
   bixby: bixby_default.yml
 
 AllCops:
-    TargetRubyVersion: 2.7
+    TargetRubyVersion: 3.2
     Exclude:
         - 'bin/**/*'
         - 'db/**/*'
         - 'tmp/**/*'
         - 'vendor/**/*'
         - 'node_modules/**/*'
+        - 'app/models/concerns/document_delivery_requestable.rb'
+        - 'app/models/concerns/special_collections_requestable.rb'
+        - 'app/models/concerns/blacklight/marc/document_export.rb'
+        - 'app/models/concerns/statusable.rb'
         - 'lib/solr/*'
 
 Layout/LineLength:

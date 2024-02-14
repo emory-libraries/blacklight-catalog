@@ -5,48 +5,60 @@ module SearchResultsHelper
       tag.p(t, class: "vern-title-search-results-#{i}")
     end
 
-    return safe_join(vern_titles, tag('br')) if vern_titles.present?
+    return safe_join(vern_titles, tag.br) if vern_titles.present?
     ''
   end
 
-  def first_char_search_state(search_state)
-    search_state.to_h.merge('sort': 'title_ssort asc, pub_date_isim desc')
+  # Generates search parameters for eJournals.
+  #
+  # @param state [Hash] The current search state parameters.
+  # @param letter [String, nil] The optional letter to filter by.
+  # @return [Hash] The generated search parameters.
+  def ejournals_search_params(state:, letter: nil)
+    params = state.merge({
+                           controller: "catalog",
+                           action: "index",
+                           search_field: "advanced",
+                           commit: "Search",
+                           utf8: "✓",
+                           sort: "title_ssort asc, pub_date_isim desc"
+                         })
+
+    params[:f] = {
+      marc_resource_ssim: ["Online"],
+      format_ssim: ["Journal, Newspaper or Serial"]
+    }
+
+    params[:f] = params[:f].merge({ title_main_first_char_ssim: [letter] }) if letter.present?
+    params
   end
 
-  def first_char_search_state_ejournals(search_state)
-    search_state.to_h['controller'] = 'catalog'
-    search_state.to_h['action'] = 'index'
-    search_state.to_h.merge('search_field': 'advanced', 'commit': 'Search', 'utf8': '✓', 'sort': 'title_ssort asc, pub_date_isim desc')
+  # Generates search parameters for filtering titles that start with a letter.
+  #
+  # @param state [Hash] The current search state parameters.
+  # @param letter [String, nil] The optional letter to filter by.
+  # @return [Hash] The generated search parameters.
+  def title_starts_with_search_params(state:, letter: nil)
+    params = state.merge({ sort: "title_ssort asc, pub_date_isim desc" })
+
+    if params[:f].present?
+      if letter.present?
+        params[:f] = params[:f].merge({ title_main_first_char_ssim: [letter] })
+      else
+        params[:f].delete(:title_main_first_char_ssim)
+      end
+    elsif letter.present?
+      params[:f] = { title_main_first_char_ssim: [letter] }
+    end
+
+    params
   end
 
-  def first_char_active_letter(state)
-    state['f']['title_main_first_char_ssim']&.first if state['f']
-  end
-
-  def first_char_letter_hash(state, letter)
-    letter_state = state.dup
-    letter_state['f'] = processed_facet(letter_state, letter)
-    letter_state
-  end
-
-  def first_char_letter_hash_ejournals(state, letter)
-    letter_state = state.dup
-    letter_state['f'] = processed_facet_ejournals(letter_state, letter)
-    letter_state
-  end
-
-  def first_char_cleared_hash(state)
-    state['f']&.delete('title_main_first_char_ssim')
-    state
-  end
-
-  def processed_facet(letter_state, letter)
-    return letter_state['f'].merge('title_main_first_char_ssim': [letter]) if letter_state['f'].present?
-    { 'title_main_first_char_ssim': [letter] }
-  end
-
-  def processed_facet_ejournals(letter_state, letter)
-    return letter_state['f'].merge('title_main_first_char_ssim': [letter]) if letter_state['f'].present?
-    { 'title_main_first_char_ssim': [letter], 'marc_resource_ssim': ["Online"], 'format_ssim': ["Journal, Newspaper or Serial"] }
+  # Retrieves the first active letter filter from the search state parameters.
+  #
+  # @param state [Hash] The current state parameters.
+  # @return [String, nil] The first active letter, if available.
+  def active_letter(state)
+    state[:f][:title_main_first_char_ssim]&.first if state[:f]
   end
 end

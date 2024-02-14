@@ -23,7 +23,7 @@ div#sortAndPerPage {
       min-width: $results-drop-menu-min-w;
     }
   }
-  > .page-links {
+  > .pagination {
     padding: 0 $pagination-padding-left-right;
     max-width: fit-content;
     align-items: center;

@@ -8,7 +8,7 @@ RSpec.describe ErrorsController, type: :request do
     expect(response.status).to eq 500
     expect(response.body).not_to be_empty
     expect(response.content_length).to be > 0
-    expect(response.content_type).to eq "text/html"
+    expect(response.content_type).to eq "text/html; charset=utf-8"
     expect(response).to render_template(:unhandled_exception)
   end
   it "loads the page when 422 error detected" do
@@ -17,7 +17,7 @@ RSpec.describe ErrorsController, type: :request do
     expect(response.status).to eq 422
     expect(response.body).not_to be_empty
     expect(response.content_length).to be > 0
-    expect(response.content_type).to eq "text/html"
+    expect(response.content_type).to eq "text/html; charset=utf-8"
     expect(response).to render_template(:unprocessable)
   end
 
@@ -26,7 +26,7 @@ RSpec.describe ErrorsController, type: :request do
     expect(response.status).to eq 404
     expect(response.body).not_to be_empty
     expect(response.content_length).to be > 0
-    expect(response.content_type).to eq "text/html"
+    expect(response.content_type).to eq "text/html; charset=utf-8"
     expect(response).to render_template(:not_found)
   end
 end

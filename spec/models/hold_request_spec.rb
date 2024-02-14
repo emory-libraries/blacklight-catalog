@@ -99,24 +99,24 @@ RSpec.describe HoldRequest do
   end
 
   it "can persist a holding request to Alma" do
-    hr = described_class.new(mms_id: "9936550118202486", user: user)
+    hr = described_class.new(mms_id: "9936550118202486", user:)
     hr.save
     expect(hr.id).to eq "36181952270002486"
   end
 
   it "can find an existing holding request in Alma" do
-    hr = described_class.find(id: "36181952270002486", user: user)
+    hr = described_class.find(id: "36181952270002486", user:)
     expect(hr.mms_id).to eq "9936550118202486"
   end
 
   it "build the correct for a title request" do
-    hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", user: user)
+    hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", user:)
     expected_url = "http://www.example.com/almaws/v1/users/janeq/requests?user_id_type=all_unique&mms_id=9936550118202486&allow_same_request=false&apikey=fakeuserkey456"
     expect(hr.title_request_url).to eq expected_url
   end
 
   it "builds correct url for a title request with item pid" do
-    hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", holding_item_id: "23187557230002486", user: user)
+    hr = described_class.new(mms_id: "9936550118202486", holding_id: "22332597410002486", holding_item_id: "23187557230002486", user:)
     expected_url = "http://www.example.com/almaws/v1/users/janeq/requests?user_id_type=all_unique&mms_id=9936550118202486&item_pid=23187557230002486&allow_same_request=false&apikey=fakeuserkey456"
     expect(hr.title_request_url).to eq expected_url
   end
@@ -124,7 +124,7 @@ RSpec.describe HoldRequest do
   it "gives a list of allowed libraries for pickup for an Oxford user with an Oxford book" do
     stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?user_id_type=all_unique&view=full&expand=none&apikey=fakeuserkey456")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record_oxford.xml'), headers: {})
-    hr = described_class.new(mms_id: "9936550118202486", user: user)
+    hr = described_class.new(mms_id: "9936550118202486", user:)
     expect(hr.physical_holdings).to be
     expect(hr.holding_libraries).to be_an_instance_of Array
     expect(user.oxford_user?).to eq true
@@ -133,7 +133,7 @@ RSpec.describe HoldRequest do
   it "gives a list of allowed libraries for pickup for a non-Oxford user" do
     stub_request(:get, "http://www.example.com/almaws/v1/users/janeq?user_id_type=all_unique&view=full&expand=none&apikey=fakeuserkey456")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_users/full_user_record.xml'), headers: {})
-    hr = described_class.new(mms_id: "9936550118202486", user: user)
+    hr = described_class.new(mms_id: "9936550118202486", user:)
     expect(user.oxford_user?).to eq false
     expect(hr.pickup_library_options).to eq(described_class.pickup_libraries)
     expect(hr.holding_library).to eq({ label: "Robert W. Woodruff Library", value: "UNIV" })
@@ -148,7 +148,7 @@ RSpec.describe HoldRequest do
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/9936984306602486/holdings/ALL/items?apikey=fakebibkey123&expand=due_date_policy&limit=100&offset=0&order_by=chron_i&user_id=janeq")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_item_records/9936984306602486.xml'), headers: {})
     # user = User.create(uid: "janeq")
-    hr = described_class.new(mms_id: "9936984306602486", user: user)
+    hr = described_class.new(mms_id: "9936984306602486", user:)
     expect(user.oxford_user?).to eq false
     expect(hr.holding_to_request).to eq(hr.physical_holdings.first)
     expect(hr.pickup_library_options).to eq([{ label: "Marian K. Heilbrun Music Media", value: "MUSME" }])

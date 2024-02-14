@@ -1,0 +1,15 @@
+<dl id="extended-terms" class='collapse row dl-invert collapsible-document-metadata'>
+  <% fields.each do |field| -%>
+    <%= field %>
+  <% end -%>
+</dl>
+<div class="row">
+<div class="col-md-4"></div>
+<%= link_to '',
+      '#extended-terms',
+      class: "#{(@collapse_link_class + " ") if @collapse_link_class.present? }additional-fields collapsed",
+      data: { toggle: 'collapse' },
+      role: "button",
+      'aria-expanded'=> "false",
+      'aria-controls'=> "extended-terms" %>
+</div>

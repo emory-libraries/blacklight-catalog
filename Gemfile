@@ -7,13 +7,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '~> 2.7.4'
+ruby '~> 3.1.4'
 
-gem 'administrate'
-gem 'blacklight', '~> 7.4.2'
-gem 'blacklight-marc', '>= 7.0.0.rc1'
+gem "actionpack-page_caching"
+gem 'administrate', '~> 0.17.0'
+gem 'blacklight', '~> 7.33'
 gem 'blacklight_advanced_search'
-gem 'blacklight_range_limit'
+gem 'blacklight-marc', '~> 7.2'
+gem 'blacklight_range_limit', '~> 7.8'
 gem 'bootstrap', '~> 4.0'
 gem 'bootstrap-select-rails', '>= 1.13'
 gem 'cancancan'
@@ -36,7 +37,7 @@ gem 'omniauth-shibboleth', '~> 1.3'
 gem 'openurl'
 gem 'puma', '~> 6.3'
 gem 'qa'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 6.1.7'
 gem 'rest-client'
 gem 'rsolr', '>= 1.0'
 gem 'sass-rails', '~> 5.0'
@@ -53,6 +54,7 @@ group :development, :test do
   gem 'capybara', '~> 3.0'
   gem 'coveralls', require: false
   gem 'factory_bot_rails', '~> 4.11.1'
+  gem 'faraday', '~> 1.10.3'
   gem 'ffaker'
   gem 'pry' unless ENV['CI']
   gem 'pry-byebug' unless ENV['CI']
@@ -62,7 +64,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0'
   gem 'selenium-webdriver'
   gem 'solr_wrapper', '>= 0.3'
-  gem 'webdrivers', '~> 5.0'
 end
 
 group :development do
@@ -77,7 +78,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'stackprof'
   gem 'web-console', '>= 3.3.0'
-  gem 'xray-rails'
 end
 
 group :test do

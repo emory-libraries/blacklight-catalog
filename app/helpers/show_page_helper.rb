@@ -5,7 +5,7 @@ module ShowPageHelper
       tag.h2(t, class: "vernacular_title_#{i}")
     end
 
-    return safe_join(vern_titles, tag('br')) if vern_titles.present?
+    return safe_join(vern_titles, tag.br) if vern_titles.present?
     ''
   end
 

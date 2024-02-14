@@ -12,7 +12,7 @@ module OaiProcessingToolset
                    ['HLTH', 'LKEY']].freeze
 
   def ingest_with_traject(filename, logger)
-    indexer = Traject::Indexer::MarcIndexer.new("solr_writer.commit_on_close": true, logger: logger)
+    indexer = Traject::Indexer::MarcIndexer.new("solr_writer.commit_on_close": true, logger:)
     indexer.load_config_file(Rails.root.join('lib', 'marc_indexer.rb').to_s)
     indexer.process(filename)
   rescue => e

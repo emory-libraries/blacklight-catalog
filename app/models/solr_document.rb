@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class SolrDocument
   include Blacklight::Solr::Document
+  include Blacklight::Marc::DocumentExtension
   include Statusable
 
   alias_attribute(:mms_id, :id)
@@ -8,7 +9,7 @@ class SolrDocument
   # The following shows how to setup this blacklight document to display marc documents
   extension_parameters[:marc_source_field] = :marc_display_tesi
   extension_parameters[:marc_format_type] = :marcxml
-  use_extension(Blacklight::Solr::Document::Marc) do |document|
+  use_extension(Blacklight::Marc::DocumentExtension) do |document|
     document.key?(SolrDocument.extension_parameters[:marc_source_field])
   end
 

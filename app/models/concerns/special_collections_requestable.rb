@@ -19,9 +19,6 @@ module SpecialCollectionsRequestable
     URI::HTTPS.build(host: "aeon.library.emory.edu", path: "/aeon/aeon.dll", query: URI.encode_www_form(openurl_hash(user))).to_s
   end
 
-  # TODO: Fix rubocop complaints
-  # rubocop:disable Metrics/MethodLength
-  # rubocop:disable Metrics/AbcSize
   def openurl_hash(user = nil)
     {
       "Action": 10,
@@ -46,8 +43,6 @@ module SpecialCollectionsRequestable
       "SITE": special_locations_site(holding_to_request(user)[:library][:value], holding_to_request(user)[:location][:value])
     }
   end
-  # rubocop:enable Metrics/MethodLength Metrics/AbcSize
-  # rubocop:enable Metrics/AbcSize
 
   def special_locations_site(library_code, location_code)
     case library_code

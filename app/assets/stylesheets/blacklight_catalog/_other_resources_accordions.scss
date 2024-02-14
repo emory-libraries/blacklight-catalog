@@ -118,7 +118,7 @@ color: #091C44;
 .panel-title {
   //   border-bottom: $results-border-radius;
 
-  button {
+  .panel-toggler {
     &::after {
       content: "❯";
       float: right;

@@ -99,7 +99,7 @@ Traject::Macros::Marc21Semantics::OCLCPAT = /
   (?:(?:\(OCoLC\)) |
      (?:\(OCoLC\))?(?:(?:ocm)|(?:ocn)|(?:on)|(?:OCLC))
      )(\d+)
-     /x.freeze
+     /x
 
 settings do
   # type may be 'binary', 'xml', or 'json'

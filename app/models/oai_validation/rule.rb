@@ -13,11 +13,11 @@ class OaiValidation::Rule
 
   def self.all_rules(document:, xml_type:)
     [
-      OaiValidation::DeletedRecordsRule.new(document: document, xml_type: xml_type),
-      OaiValidation::SuppressedRecordsRule.new(document: document, xml_type: xml_type),
-      OaiValidation::LostStolenRecordsRule.new(document: document, xml_type: xml_type),
-      OaiValidation::DeactivatedPortfoliosRule.new(document: document, xml_type: xml_type),
-      OaiValidation::TemporaryLocatedRecordsRule.new(document: document, xml_type: xml_type)
+      OaiValidation::DeletedRecordsRule.new(document:, xml_type:),
+      OaiValidation::SuppressedRecordsRule.new(document:, xml_type:),
+      OaiValidation::LostStolenRecordsRule.new(document:, xml_type:),
+      OaiValidation::DeactivatedPortfoliosRule.new(document:, xml_type:),
+      OaiValidation::TemporaryLocatedRecordsRule.new(document:, xml_type:)
     ]
   end
 

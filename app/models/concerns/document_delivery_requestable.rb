@@ -28,9 +28,6 @@ module DocumentDeliveryRequestable
     URI::HTTPS.build(host: "illiad.library.emory.edu", path: "/illiad/illiad.dll", query: URI.encode_www_form(doc_del_openurl_hash(holding, item))).to_s
   end
 
-  # TODO: Fix rubocop complaints
-  # rubocop:disable Metrics/MethodLength
-  # rubocop:disable Metrics/AbcSize
   def doc_del_openurl_hash(holding, item)
     {
       "Action": 10,
@@ -55,8 +52,6 @@ module DocumentDeliveryRequestable
       "SITE": special_locations_site(holding[:library][:value], holding[:location][:value])
     }
   end
-  # rubocop:enable Metrics/MethodLength Metrics/AbcSize
-  # rubocop:enable Metrics/AbcSize
 
   def document_delivery_rules
     DOCUMENT_DELIVERY_RULES

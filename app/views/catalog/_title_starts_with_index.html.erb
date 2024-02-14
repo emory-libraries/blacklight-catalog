@@ -1,5 +1,5 @@
-<% state = first_char_search_state(search_state) %>
-<% active_letter = first_char_active_letter(state) %>
+<% state = search_state.to_h %>
+<% active_letter = active_letter(state) %>
 
 <% if request.url.include?('?') && !request.url.include?('/advance') && !request.url.include?('/bookmarks') && !@homepage %>
   <nav class="alpha-filter first-main-char-nav">
@@ -7,11 +7,11 @@
       <li class="page-item first-main-char-descriptor"><%= t('blacklight.search.first_char.label') %></li>
       <% ("A".."Z").each do |letter| %>
         <li class="page-item <%= 'active' if active_letter == letter %>">
-          <%= link_to(letter, first_char_letter_hash(state, letter), class: 'page-link') %>
+          <%= link_to(letter, title_starts_with_search_params(state: state, letter: letter), class: 'page-link') %>
         </li>
       <% end %>
       <li class="page-item <%= 'active' if active_letter.blank? %>">
-        <%= link_to t('blacklight.search.facets.all'), first_char_cleared_hash(state), class: 'page-link' %>
+        <%= link_to t('blacklight.search.facets.all'), title_starts_with_search_params(state: state), class: 'page-link' %>
       </li>
     </ol>
   </nav>

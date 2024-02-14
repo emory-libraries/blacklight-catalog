@@ -5,16 +5,16 @@ module CatalogHelper
 
   def generic_solr_value_to_url(value)
     url_arr = build_arr_links_text_split(values_of_field(value))
-    return safe_join(url_arr, tag('br')) if url_arr.present?
+    return safe_join(url_arr, tag.br) if url_arr.present?
     ''
   end
 
   def multiple_values_new_line(value)
-    safe_join(values_of_field(value), tag('br'))
+    safe_join(values_of_field(value), tag.br)
   end
 
   def multiple_sorted_values_new_line(value)
-    safe_join(values_of_field(value)&.map(&:strip)&.uniq&.sort, tag('br'))
+    safe_join(values_of_field(value)&.map(&:strip)&.uniq&.sort, tag.br)
   end
 
   def combine_author_vern(value)
@@ -23,37 +23,35 @@ module CatalogHelper
         multilined_links_to_facet_flexible(
           value[:document]['author_vern_ssim'], 'author_vern_ssim'
         ))&.compact&.uniq
-    return safe_join(combined_values, tag('br')) if combined_values.present?
+    return safe_join(combined_values, tag.br) if combined_values.present?
     ''
   end
 
   def multilined_links_to_facet(value)
     field = value[:field]
-    ret_vals = value[:values].uniq.map { |v| link_to v, "/?f%5B#{field}%5D%5B%5D=" + CGI.escape(v) } if value[:values].present?
-    return safe_join(ret_vals, tag('br')) if ret_vals.present?
+    values = Array.wrap(value[:value])
+    ret_vals = values.uniq.map { |v| link_to v, "/?f%5B#{field}%5D%5B%5D=" + CGI.escape(v) } if values.present?
+    return safe_join(ret_vals, tag.br) if ret_vals.present?
     ''
   end
 
   def author_additional_format(value)
     ret_str = nil
-    if value[:values].size <= 5
-      ret_str = multilined_links_to_facet_author_addl(value[:values])
+    values = Array.wrap(value[:value])
+    if values.size <= 5
+      ret_str = multilined_links_to_facet_author_addl(values)
     else
-      build_arr = [multilined_links_to_facet_author_addl(value[:values].first(5))]
-      build_arr.push(
-        author_additional_collapse_span(
-          multilined_links_to_facet_author_addl(value[:values][5..(value[:values].size - 1)])
-        )
-      )
+      build_arr = [multilined_links_to_facet_author_addl(values.first(5))]
+      build_arr.push(author_additional_collapse_span(multilined_links_to_facet_author_addl(values[5..(values.size - 1)])))
       build_arr.push(author_additional_collapse_link)
-      ret_str = safe_join(build_arr, tag('br'))
+      ret_str = safe_join(build_arr, tag.br)
     end
     ret_str
   end
 
   def multilined_links_to_title_search(value)
     links = build_title_search_links(values_of_field(value), value[:document]['format_ssim'].map { |v| CGI.escape(v) })
-    return safe_join(links, tag('br')) if links.present?
+    return safe_join(links, tag.br) if links.present?
     ''
   end
 
@@ -64,7 +62,7 @@ module CatalogHelper
 
   def display_bound_with(value)
     parsed_items = values_of_field(value).map { |v| JSON.parse(v) }
-    return safe_join(parsed_items.map { |pi| link_to(pi['text'], "/catalog/#{pi['mms_id']}") }, tag('br')) if parsed_items.present?
+    return safe_join(parsed_items.map { |pi| link_to(pi['text'], "/catalog/#{pi['mms_id']}") }, tag.br) if parsed_items.present?
     ''
   end
 
@@ -111,7 +109,7 @@ module CatalogHelper
       ret_line += ", #{relator}" if relator.present?
       ret_line
     end
-    return safe_join(ret_vals, tag('br')) if ret_vals.present?
+    return safe_join(ret_vals, tag.br) if ret_vals.present?
     ''
   end
 

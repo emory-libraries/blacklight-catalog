@@ -1,16 +1,15 @@
 version: 2.1
 orbs:
     samvera: samvera/circleci-orb@0.3.1
-    browsers-tools: circleci/browser-tools@1.4.3
 jobs:
     build:
         parameters:
             ruby_version:
                 type: string
-                default: '2.7.4'
+                default: '3.1.4'
             bundler_version:
                 type: string
-                default: '2.1.4'
+                default: '2.4.19'
             solr_port:
                 type: string
                 default: '8985'
@@ -43,9 +42,6 @@ jobs:
         working_directory: ~/project
         parallelism: 4
         steps:
-            - browsers-tools/install-browser-tools:
-                chrome-version: 116.0.5845.96
-
             - checkout
 
             - samvera/bundle:
@@ -82,12 +78,12 @@ jobs:
                 root: coverage
                 paths: codeclimate.*.json
 
-            - deploy:
+            - run:
                 command: curl -k https://coveralls.io/webhook?repo_token=${COVERALLS_REPO_TOKEN} -d "payload[build_num]=${CIRCLE_BUILD_NUM}&payload[status]=done"
 
     coverage:
         docker:
-            - image: cimg/ruby:2.7.4
+            - image: cimg/ruby:3.1.4
         working_directory: ~/project
         parallelism: 1
         steps:
@@ -111,8 +107,8 @@ workflows:
     ci:
         jobs:
             - build:
-                name: ruby2.7.4
+                name: ruby3.1.4
             - coverage:
                 name: codeclimate
                 requires:
-                    - ruby2.7.4
+                    - ruby3.1.4

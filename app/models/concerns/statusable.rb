@@ -211,7 +211,7 @@ module Statusable
     policy_desc = node.xpath('following-sibling::item_data/policy').attr("desc")&.value
     policy_id = node.xpath('following-sibling::item_data/policy')&.inner_text
     due_date_policy = node.xpath('following-sibling::item_data/due_date_policy')&.inner_text
-    { policy_desc: policy_desc, policy_id: policy_id, due_date_policy: due_date_policy }
+    { policy_desc:, policy_id:, due_date_policy: }
   end
 
   def physical_holding_hash(availability, user = nil)

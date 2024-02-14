@@ -177,16 +177,21 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
       end
 
       context 'citations' do
+        let(:item) { TEST_ITEM.merge(id: '9937264718402486', marc_display_tesi: File.read(fixture_path + '/alma_single_marc_display_tesi.xml')) }
         let(:expected_warning_text) do
           'These citations are automatically generated and may not always be correct. ' \
             'Remember to check your citations for accuracy before including them in your work.'
         end
 
+        before do
+          delete_all_documents_from_solr
+          build_solr_docs(item)
+        end
+
         it 'has the right text' do
-          # For some reason, the 3 styles load locally, but not here.
-          # I looked in blacklight gem's spec for a way to work around this, but
-          # all they tested for was the Cite modal title as well.
-          execute_script("document.querySelector('#citationLink').click()")
+          visit solr_document_path(item[:id])
+          click_on 'Cite'
+
           within '#blacklight-modal' do
             expect(page).to have_css('h5', text: 'Cite')
           end
