@@ -18,7 +18,7 @@ RSpec.describe 'front page', type: :system do
     end
 
     it 'has expected text' do
-      expect(page).to have_css('h3.header-search', text: 'Search books, e-books, journals, videos and more')
+      expect(page).to have_css('h3.header-search', text: 'Search books, e-books, journal and newspaper titles, videos and more')
     end
 
     it('does not have the Title Starts With nav') { expect(page).not_to have_css('.first-main-char-ol') }
