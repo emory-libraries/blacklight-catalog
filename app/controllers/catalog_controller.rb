@@ -122,7 +122,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'title_main_first_char_ssim', label: 'Title Starts With', limit: 5
     config.add_facet_field 'marc_resource_ssim', label: 'Access', limit: 5
     config.add_facet_field 'library_ssim', label: 'Library', limit: 25
-    config.add_facet_field 'format_ssim', label: 'Resource Type', limit: 25
+    config.add_facet_field 'format_ssim', label: 'Format', limit: 25
     config.add_facet_field 'language_ssim', label: 'Language', limit: 5, index_range: true
     config.add_facet_field 'pub_date_isim', label: 'Publication/Creation Date', range: true
     config.add_facet_field 'author_ssim', label: 'Author/Creator', limit: 5, index_range: true
@@ -150,7 +150,7 @@ class CatalogController < ApplicationController
     config.add_index_field('publication_main_display_ssim',
       label: 'Publication/Creation',
       helper_method: :multiple_values_new_line)
-    config.add_index_field 'format_ssim', label: 'Resource Type'
+    config.add_index_field 'format_ssim', label: 'Format'
     config.add_index_field 'edition_tsim', label: 'Edition', helper_method: :multiple_values_new_line
     config.add_index_field 'bound_with_display_ssim', label: 'Is Part Of', helper_method: :display_bound_with
 
@@ -161,7 +161,7 @@ class CatalogController < ApplicationController
     config.add_show_field('publication_main_display_ssim',
       label: 'Publication/Creation',
       helper_method: :multiple_values_new_line)
-    config.add_show_field 'format_ssim', label: 'Resource Type', helper_method: :multiple_values_new_line
+    config.add_show_field 'format_ssim', label: 'Format', helper_method: :multiple_values_new_line
     config.add_show_field 'edition_tsim', label: 'Edition', helper_method: :multiple_values_new_line
     config.add_show_field 'bound_with_display_ssim', label: 'Is Part Of', helper_method: :display_bound_with
     #   Where to find it section

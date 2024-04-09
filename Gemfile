@@ -78,6 +78,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'stackprof'
   gem 'web-console', '>= 3.3.0'
+  # Add inspection tool for frontend
+  gem "xray-rails", git: "https://github.com/brentd/xray-rails", branch: "bugs/ruby-3.0.0"
 end
 
 group :test do
