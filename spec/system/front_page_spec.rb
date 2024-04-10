@@ -32,7 +32,7 @@ RSpec.describe 'front page', type: :system do
       end
 
       it 'has the right headers' do
-        expect(facet_headers).to match_array(['Resource Type', 'Language', 'Library', 'Access'])
+        expect(facet_headers).to match_array(['Format', 'Language', 'Library', 'Access'])
       end
     end
 
