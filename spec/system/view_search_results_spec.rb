@@ -26,7 +26,7 @@ RSpec.feature 'View Search Results', type: :system, js: false do
     end
 
     it 'has the right metadata labels' do
-      ['Author/Creator:', 'Resource Type:', 'Publication/Creation:', 'Edition:'].each do |label|
+      ['Author/Creator:', 'Format:', 'Publication/Creation:', 'Edition:'].each do |label|
         expect(page).to have_content(label)
       end
     end
@@ -90,7 +90,7 @@ RSpec.feature 'View Search Results', type: :system, js: false do
     it 'has the right headers' do
       expect(facet_headers).to match_array(
         ['Access', 'Author/Creator', 'Collection', 'Era', 'Language', 'Region',
-         'Resource Type', 'Subject', 'Genre', 'LC Classification', 'Library',
+         'Format', 'Subject', 'Genre', 'LC Classification', 'Library',
          'Publication/Creation Date']
       )
     end

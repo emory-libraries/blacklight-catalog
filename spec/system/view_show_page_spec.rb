@@ -31,7 +31,7 @@ RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
     context 'displaying metadata' do
       let(:expected_labels) do
         [
-          'Author/Creator:', 'Publication/Creation:', 'Resource Type:', 'Edition:', 'Is Part Of:',
+          'Author/Creator:', 'Publication/Creation:', 'Format:', 'Edition:', 'Is Part Of:',
           'Full Title:', 'Series Titles:', 'Related/Included Titles:',
           'Variant Titles:', 'Abbreviated Titles:', 'Translated Titles:', 'Additional Author/Creators:',
           'Genre:', 'Subjects:', 'Language:', 'Physical Type/Description:', 'General Note:',

@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/brentd/xray-rails
+  revision: f121814718c9907b20058dc9357b80a53afab821
+  branch: bugs/ruby-3.0.0
+  specs:
+    xray-rails (0.3.2)
+      rails (>= 3.1.0)
+
+GIT
   remote: https://github.com/curationexperts/cap-ec2.git
   revision: 0c8e355aa8984eb5969704921b9dcc3a35bd410b
   specs:
@@ -336,7 +344,7 @@ GEM
     momentjs-rails (2.29.4.1)
       railties (>= 3.1)
     multipart-post (2.3.0)
-    mysql2 (0.5.5)
+    mysql2 (0.5.6)
     namae (1.1.1)
     net-imap (0.3.7)
       date
@@ -352,6 +360,8 @@ GEM
     net-ssh (7.2.0)
     netrc (0.11.0)
     nio4r (2.7.0)
+    nokogiri (1.16.0-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.16.0-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.0-x86_64-linux)
@@ -547,6 +557,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.6.4-arm64-darwin)
     sqlite3 (1.6.4-x86_64-darwin)
     sqlite3 (1.6.4-x86_64-linux)
     sshkit (1.21.5)
@@ -613,6 +624,7 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
+  arm64-darwin-23
   x86_64-darwin-22
   x86_64-darwin-23
   x86_64-linux
@@ -684,6 +696,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webmock
   whenever
+  xray-rails!
 
 RUBY VERSION
    ruby 3.1.4p223
