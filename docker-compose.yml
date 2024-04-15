@@ -1,6 +1,19 @@
 version: '3'
 
 services:
+  app:
+    build: .
+    depends_on:
+      - mysql-dev
+      - mysql-test
+      - solr-dev
+      - solr-test
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - bundle:/app/bundle
+  
   mysql-dev:
     image: mysql:8.0-debian
     restart: always
@@ -51,6 +64,7 @@ services:
       - blacklight-test
       - /opt/solr/conf
 volumes:
+  bundle:
   mysql-dev:
   mysql-test:
   solr-dev:
