@@ -42,12 +42,5 @@ task marc_index_ingest: [:environment] do
   ingest_logger&.info("Storing 'to' time")
   PropertyBag.set('marc_ingest_time', to_time) unless single_record
 
-  # expire static page caches
-  static_pages = ['advanced.html']
-  static_pages.each do |page|
-    path = Rails.public_path.join(page)
-    File.delete(path) if File.exist?(path)
-  end
-
   ingest_logger&.info("Ingesting Complete!")
 end

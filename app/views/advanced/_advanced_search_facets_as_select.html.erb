@@ -21,7 +21,7 @@
                         data: { 'live-search': 'true', placeholder: "Type or select #{facet_field_label(display_facet.name).downcase.pluralize}", 'size': '6' }) do %>
           <% display_facet.items.each do |facet_item| %>
             <%= content_tag :option, value: facet_item.value, selected: facet_value_checked?(display_facet.name, facet_item.value) do %>
-              <%= facet_display_value(display_facet.name, facet_item.label) %>
+              <%= facet_item.label %>
             <% end %>
           <% end %>
         <% end %>

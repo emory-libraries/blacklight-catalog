@@ -4,8 +4,6 @@
 # collection facet
 
 BlacklightAdvancedSearch::AdvancedController.class_eval do
-  caches_page :index
-
   def index
     @response = get_advanced_search_facets unless request.method == :post
     collection_auth = Qa::LocalAuthority.find_by(name: 'collections')
