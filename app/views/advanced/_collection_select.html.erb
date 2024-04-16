@@ -13,7 +13,7 @@
                       data: { 'live-search': 'true', placeholder: "Type or select #{facet_field_label("collection_ssim").downcase.pluralize}", 'size': '6' }) do %>
         <% @collection_ssim_facet&.each do |facet_item| %>
           <%= content_tag :option, value: facet_item, style: "white-space: normal;", selected: facet_value_checked?("collection_ssim", facet_item) do %>
-            <%= facet_display_value("collection_ssim", facet_item) %>
+            <%= facet_item %>
           <% end %>
         <% end %>
       <% end %>
