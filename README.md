@@ -11,7 +11,9 @@
 
 * Blacklight 7.4.1
 
-## Running locally
+### Local Development
+
+#### Running locally
 
 1. Clone the git repo: `git clone git@github.com:emory-libraries/blacklight-catalog.git`
 1. `cd ./blacklight-catalog`
@@ -40,12 +42,12 @@ You must create a user via the rails console:
   u.save
 ```
 
-## Running Rspec tests locally
+#### Running Rspec tests locally
 
 1. A separate instance of Solr must be up and running before tests can be run. To do so, run the following command inside your cloned folder: `solr_wrapper --config config/solr_wrapper_test.yml`
 1. In a new tab/window within the same folder, run `bundle exec rspec`. All tests should be passing
 
-### Creating Solr test objects
+#### Creating Solr test objects
 1. Save the output of the following to a Ruby file in `spec/support/solr_documents`
 ```
 bundle exec rails c
@@ -56,6 +58,15 @@ document.deep_symbolize_keys!
 ```
 1. Remove `:score` and `:_version_` lines (will not re-save to solr if these are included)
 1. Assign to a global variable and add `.freeze` to the end of the hash
+
+#### Using Docker (Experimental)
+
+1. Clone the git repo: `git clone git@github.com:emory-libraries/blacklight-catalog.git`
+2. Install Docker using these [instructions](https://docs.docker.com/engine/install/)
+3. `cd` into the `blacklight-catalog` repository
+4. Set env variables from `dotenv-sample` in a new file `.env.development`. Reach out to a colleague for guidance setting this file since some credentials require additional approvals.
+5. Run `docker compose up`
+6. Access the application through `http://localhost:3000`
 
 ## Troubleshooting
 - Error `RSolr::Error::Http - 404 Not Found` occurs while running tests.
