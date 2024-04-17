@@ -32,3 +32,6 @@ public/
 # Ignore JMeter logs.
 *jmeter.log
 .ruby-version
+
+# Ignore docker-compose.yml; use docker-compose-sample.yml to share configuration changes
+/docker-compose.yml

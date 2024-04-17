@@ -61,12 +61,13 @@ document.deep_symbolize_keys!
 
 #### Using Docker (Experimental)
 
-1. Clone the git repo: `git clone git@github.com:emory-libraries/blacklight-catalog.git`
-2. Install Docker using these [instructions](https://docs.docker.com/engine/install/)
+1. Install Docker using these [instructions](https://docs.docker.com/engine/install/)
+2. Clone the git repository
 3. `cd` into the `blacklight-catalog` repository
-4. Set env variables from `dotenv-sample` in a new file `.env.development`. Reach out to a colleague for guidance setting this file since some credentials require additional approvals.
-5. Run `docker compose up`
-6. Access the application through `http://localhost:3000`
+4. Copy `docker-compose-sample.yml` into `docker-compose.yml` and set credentials
+5. Set env variables from `dotenv-sample` in a new file `.env.development`. Reach out to a colleague for guidance setting this file since some credentials require additional approvals. Ensure credentials in `.env.development` match credentials in `docker-compose.yml`.
+6. Run `docker compose up`
+7. Access the application through `http://localhost:3000`
 
 ### Troubleshooting
 - Error `RSolr::Error::Http - 404 Not Found` occurs while running tests.
