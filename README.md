@@ -68,18 +68,18 @@ document.deep_symbolize_keys!
 5. Run `docker compose up`
 6. Access the application through `http://localhost:3000`
 
-## Troubleshooting
+### Troubleshooting
 - Error `RSolr::Error::Http - 404 Not Found` occurs while running tests.
     - Solution: The test Solr instance isn't running. You'll know that that Solr is up once you see this complete line: `Starting Solr 7.7.1 on port 8985 ... http://127.0.0.1:8985/solr/`
 
-## Run jmeter page load times test
+### Run jmeter page load times test
 1. Install and run [Apache Jmeter](https://jmeter.apache.org/) in GUI mode.
 1. Open `jmeter/blacklight_catalog.jmx` from the file menu.
 1. Hit the green forward arrow to start the tests running.
 1. View the immediate results in "View Results Tree" (green with a checkmark for successes, red with an x for failures).
 1. If the test suite is ran more than once, results will build in "Aggregate Graph".
 
-## Profiling and Flamegraphs
+### Profiling and Flamegraphs
 
 In development mode, this app uses gems `rack-mini-profiler` and `stackprof` for profiling and generating flamegraphs. To generate a flamegraph, add `?pp=flamegraph` to any page you visit locally, e.g. `http://localhost:3000/?pp=flamegraph` will generate a flamegraph for the home page.
 
