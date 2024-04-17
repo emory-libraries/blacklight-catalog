@@ -20,9 +20,9 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: # set root password here
       MYSQL_USER: emory-ltds
-      MYSQL_PASSWORD: password
+      MYSQL_PASSWORD: # set same password as DATABASE_PASSWORD in .env.development
       MYSQL_DATABASE: blacklight-catalog-dev
     volumes:
       - mysql-dev:/var/lib/mysql
@@ -33,9 +33,9 @@ services:
     ports:
       - "3307:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: # set root password here
       MYSQL_USER: emory-ltds
-      MYSQL_PASSWORD: password
+      MYSQL_PASSWORD: # set same password as DATABASE_PASSWORD in .env.test
       MYSQL_DATABASE: blacklight-catalog-test
     volumes:
       - mysql-test:/var/lib/mysql
