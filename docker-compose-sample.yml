@@ -15,6 +15,7 @@ services:
       - bundle:/app/bundle
   
   mysql-dev:
+    platform: linux/x86_64
     image: mysql:8.0-debian
     restart: always
     ports:
@@ -28,6 +29,7 @@ services:
       - mysql-dev:/var/lib/mysql
   
   mysql-test:
+    platform: linux/x86_64
     image: mysql:8.0-debian
     restart: always
     ports:
@@ -41,6 +43,7 @@ services:
       - mysql-test:/var/lib/mysql
 
   solr-dev:
+    platform: linux/x86_64
     image: solr:8.11.2-slim
     volumes:
       - $PWD/solr/conf:/opt/solr/conf
@@ -53,6 +56,7 @@ services:
       - /opt/solr/conf
   
   solr-test:
+    platform: linux/x86_64
     image: solr:8.11.2-slim
     volumes:
       - $PWD/solr/conf:/opt/solr/conf
