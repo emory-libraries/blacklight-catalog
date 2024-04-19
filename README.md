@@ -11,7 +11,9 @@
 
 * Blacklight 7.4.1
 
-## Running locally
+### Local Development
+
+#### Running locally
 
 1. Clone the git repo: `git clone git@github.com:emory-libraries/blacklight-catalog.git`
 1. `cd ./blacklight-catalog`
@@ -40,12 +42,12 @@ You must create a user via the rails console:
   u.save
 ```
 
-## Running Rspec tests locally
+#### Running Rspec tests locally
 
 1. A separate instance of Solr must be up and running before tests can be run. To do so, run the following command inside your cloned folder: `solr_wrapper --config config/solr_wrapper_test.yml`
 1. In a new tab/window within the same folder, run `bundle exec rspec`. All tests should be passing
 
-### Creating Solr test objects
+#### Creating Solr test objects
 1. Save the output of the following to a Ruby file in `spec/support/solr_documents`
 ```
 bundle exec rails c
@@ -57,18 +59,28 @@ document.deep_symbolize_keys!
 1. Remove `:score` and `:_version_` lines (will not re-save to solr if these are included)
 1. Assign to a global variable and add `.freeze` to the end of the hash
 
-## Troubleshooting
+#### Using Docker (Experimental)
+
+1. Install Docker using these [instructions](https://docs.docker.com/engine/install/)
+2. Clone the git repository
+3. `cd` into the `blacklight-catalog` repository
+4. Copy `docker-compose-sample.yml` into `docker-compose.yml` and set credentials
+5. Set env variables from `dotenv-sample` in a new file `.env.development`. Reach out to a colleague for guidance setting this file since some credentials require additional approvals. Ensure credentials in `.env.development` match credentials in `docker-compose.yml`.
+6. Run `docker compose up`
+7. Access the application through `http://localhost:3000`
+
+### Troubleshooting
 - Error `RSolr::Error::Http - 404 Not Found` occurs while running tests.
     - Solution: The test Solr instance isn't running. You'll know that that Solr is up once you see this complete line: `Starting Solr 7.7.1 on port 8985 ... http://127.0.0.1:8985/solr/`
 
-## Run jmeter page load times test
+### Run jmeter page load times test
 1. Install and run [Apache Jmeter](https://jmeter.apache.org/) in GUI mode.
 1. Open `jmeter/blacklight_catalog.jmx` from the file menu.
 1. Hit the green forward arrow to start the tests running.
 1. View the immediate results in "View Results Tree" (green with a checkmark for successes, red with an x for failures).
 1. If the test suite is ran more than once, results will build in "Aggregate Graph".
 
-## Profiling and Flamegraphs
+### Profiling and Flamegraphs
 
 In development mode, this app uses gems `rack-mini-profiler` and `stackprof` for profiling and generating flamegraphs. To generate a flamegraph, add `?pp=flamegraph` to any page you visit locally, e.g. `http://localhost:3000/?pp=flamegraph` will generate a flamegraph for the home page.
 
