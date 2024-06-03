@@ -13,17 +13,33 @@
       <%= label %>
     </button>
   </h3>
-  <div id="<%= @facet_field.html_id %>" aria-labelledby="<%= @facet_field.html_id %>-header" class="panel-collapse facet-content collapse <%= "show" if not @facet_field.collapsed?%>">
-    <div class="card-body">
-      <%= body %>
-
-      <% if @facet_field.modal_path %>
-        <div class="more_facets">
-          <%= link_to t("more_#{@facet_field.key}_html", scope: 'blacklight.search.facets', default: :more_html, field_name: @facet_field.label),
-            @facet_field.modal_path,
-            data: { blacklight_modal: 'trigger' } %>
-        </div>
-      <% end %>
+  <% if @facet_field.html_id == 'facet-marc_resource_ssim' %>
+    <div id="<%= @facet_field.html_id %>" aria-labelledby="<%= @facet_field.html_id %>-header" class="panel-collapse facet-content collapse show" >
+      <div class="card-body">
+        <%= body %>
+      
+        <% if @facet_field.modal_path %>
+          <div class="more_facets">
+            <%= link_to t("more_#{@facet_field.key}_html", scope: 'blacklight.search.facets', default: :more_html, field_name: @facet_field.label),
+              @facet_field.modal_path,
+              data: { blacklight_modal: 'trigger' } %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% else %>
+    <div id="<%= @facet_field.html_id %>" aria-labelledby="<%= @facet_field.html_id %>-header" class="panel-collapse facet-content collapse <%= "show" unless @facet_field.collapsed?%>" >
+      <div class="card-body">
+        <%= body %>
+      
+        <% if @facet_field.modal_path %>
+          <div class="more_facets">
+            <%= link_to t("more_#{@facet_field.key}_html", scope: 'blacklight.search.facets', default: :more_html, field_name: @facet_field.label),
+              @facet_field.modal_path,
+              data: { blacklight_modal: 'trigger' } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>
