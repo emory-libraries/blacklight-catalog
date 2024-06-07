@@ -1,6 +1,6 @@
 <% # Override of BlacklLight 7.4.1 -%>
 <div class="card facet-limit blacklight-<%= @facet_field.key %> <%= 'facet-limit-active' if @facet_field.active? %>">
-<% if @facet_field.html_id == 'facet-marc_resource_ssim' %>
+<% if @facet_field.html_id == 'facet-marc_resource_ssim' && Flipflop.open_access_facet_by_default? %>
   <h3 class="card-header p-0 facet-field-heading" id="<%= @facet_field.html_id %>-header">
     <button
       type="button"

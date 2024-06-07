@@ -14,4 +14,8 @@ Flipflop.configure do
   feature :enable_requesting_using_api,
     default: false,
     description: "Enable requesting using the ALMA API"
+
+  feature :open_access_facet_by_default,
+          default: false,
+          description: "Open Access facet by default on the homepage"
 end
