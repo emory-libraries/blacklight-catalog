@@ -3,17 +3,20 @@ require 'rails_helper'
 
 RSpec.describe "View a item's show page", type: :system, js: true, alma: true do
   around do |example|
+    orig_alma = ENV['ALMA']
     orig_user_key = ENV['ALMA_USER_KEY']
     orig_url = ENV['ALMA_API_URL']
     orig_key = ENV['ALMA_BIB_KEY']
     orig_sand_url = ENV["ALMA_BASE_URL"]
     orig_inst = ENV["INSTITUTION"]
+    ENV['ALMA'] = 'emory-alma'
     ENV['ALMA_USER_KEY'] = "fakeuserkey456"
     ENV["ALMA_BASE_URL"] = "http://example2.com"
     ENV['ALMA_API_URL'] = 'http://www.example.com'
     ENV['ALMA_BIB_KEY'] = "fakebibkey123"
-    ENV["INSTITUTION"] = "SOME_INSTITUTION"
+    ENV["INSTITUTION"] = 'EMORY'
     example.run
+    ENV['ALMA'] = orig_alma
     ENV["ALMA_BASE_URL"] = orig_sand_url
     ENV['ALMA_API_URL'] = orig_url
     ENV['ALMA_BIB_KEY'] = orig_key

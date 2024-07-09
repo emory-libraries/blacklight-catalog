@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><searchRetrieveResponse xmlns="http://www.loc.gov/zing/srw/">
+  <version>1.2</version>
+  <numberOfRecords>1</numberOfRecords>
+  <records>
+    <record>
+      <recordSchema>marcxml</recordSchema>
+      <recordPacking>xml</recordPacking>
+      <recordData>
+        <record xmlns="http://www.loc.gov/MARC21/slim">
+          <controlfield tag="001">990027507910302486</controlfield>
+          <datafield ind1=" " ind2=" " tag="AVA">
+            <subfield code="0">990027507910302486</subfield>
+            <subfield code="8">22319997630002486</subfield>
+            <subfield code="b">LSC</subfield>
+            <subfield code="d">JA1 .R4</subfield>
+            <subfield code="e">available</subfield>
+            <subfield code="f">7</subfield>
+            <subfield code="g">0</subfield>
+            <subfield code="v">from:69 2007 until:75 2013</subfield>
+            <subfield code="j">USTORJ</subfield>
+            <subfield code="k">0</subfield>
+            <subfield code="p">1</subfield>
+            <subfield code="q">Library Service Center</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="AVA">
+            <subfield code="0">990027507910302486</subfield>
+            <subfield code="8">22311186980002486</subfield>
+            <subfield code="b">UNIV</subfield>
+            <subfield code="c">Book Stacks</subfield>
+            <subfield code="d">JA1 .R4</subfield>
+            <subfield code="e">available</subfield>
+            <subfield code="f">3</subfield>
+            <subfield code="g">0</subfield>
+            <subfield code="v">from:76 2014 until:78 2016</subfield>
+            <subfield code="j">STACK</subfield>
+            <subfield code="k">0</subfield>
+            <subfield code="p">2</subfield>
+            <subfield code="q">Robert W. Woodruff Library</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="AVA">
+            <subfield code="0">990027507910302486</subfield>
+            <subfield code="8">22236301230002486</subfield>
+            <subfield code="b">UNIV</subfield>
+            <subfield code="c">Current Periodicals</subfield>
+            <subfield code="d">JA1 .R4</subfield>
+            <subfield code="e">check_holdings</subfield>
+            <subfield code="j">CPER</subfield>
+            <subfield code="k">0</subfield>
+            <subfield code="p">3</subfield>
+            <subfield code="q">Robert W. Woodruff Library</subfield>
+          </datafield>
+        </record>
+      </recordData>
+      <recordIdentifier>990027507910302486</recordIdentifier>
+      <recordPosition>1</recordPosition>
+    </record>
+  </records>
+</searchRetrieveResponse>

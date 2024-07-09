@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><searchRetrieveResponse xmlns="http://www.loc.gov/zing/srw/">
+  <version>1.2</version>
+  <numberOfRecords>2</numberOfRecords>
+  <records>
+    <record>
+      <recordSchema>marcxml</recordSchema>
+      <recordPacking>xml</recordPacking>
+      <recordData>
+        <record xmlns="http://www.loc.gov/MARC21/slim">
+          <controlfield tag="001">990005059530302486</controlfield>
+          <datafield ind1=" " ind2=" " tag="AVA">
+            <subfield code="0">990005059530302486</subfield>
+            <subfield code="8">22172707720002486</subfield>
+            <subfield code="b">MARBL</subfield>
+            <subfield code="c">Locked Stacks</subfield>
+            <subfield code="d">PS3505 .R43 H4 1976 DANOWSKI</subfield>
+            <subfield code="e">available</subfield>
+            <subfield code="f">2</subfield>
+            <subfield code="g">0</subfield>
+            <subfield code="j">STACK</subfield>
+            <subfield code="k">0</subfield>
+            <subfield code="p">1</subfield>
+            <subfield code="q">Stuart A. Rose Manuscript, Archives, and Rare Book Library</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="AVA">
+            <subfield code="0">990005059530302486</subfield>
+            <subfield code="8">22172707740002486</subfield>
+            <subfield code="b">MARBL</subfield>
+            <subfield code="c">Locked Stacks</subfield>
+            <subfield code="d">PS3505 .R43 H4 1976 EDELSTEIN</subfield>
+            <subfield code="e">available</subfield>
+            <subfield code="f">1</subfield>
+            <subfield code="g">0</subfield>
+            <subfield code="j">STACK</subfield>
+            <subfield code="k">0</subfield>
+            <subfield code="p">2</subfield>
+            <subfield code="q">Stuart A. Rose Manuscript, Archives, and Rare Book Library</subfield>
+          </datafield>
+        </record>
+      </recordData>
+      <recordIdentifier>990005059530302486</recordIdentifier>
+      <recordPosition>1</recordPosition>
+    </record>
+    <record>
+      <recordSchema>marcxml</recordSchema>
+      <recordPacking>xml</recordPacking>
+      <recordData>
+        <record xmlns="http://www.loc.gov/MARC21/slim">
+          <controlfield tag="001">990005988630302486</controlfield>
+          <datafield ind1=" " ind2=" " tag="AVA">
+            <subfield code="0">990005988630302486</subfield>
+            <subfield code="8">22171079010002486</subfield>
+            <subfield code="b">UNIV</subfield>
+            <subfield code="c">Book Stacks</subfield>
+            <subfield code="d">PT2613 .M45 Z92 2006</subfield>
+            <subfield code="e">available</subfield>
+            <subfield code="f">1</subfield>
+            <subfield code="g">0</subfield>
+            <subfield code="j">STACK</subfield>
+            <subfield code="k">0</subfield>
+            <subfield code="p">1</subfield>
+            <subfield code="q">Robert W. Woodruff Library</subfield>
+          </datafield>
+        </record>
+      </recordData>
+      <recordIdentifier>990005988630302486</recordIdentifier>
+      <recordPosition>2</recordPosition>
+    </record>
+  </records>
+  <extraResponseData xmlns:xb="http://www.exlibris.com/repository/search/xmlbeans/">
+    <xb:exact>true</xb:exact>
+    <xb:responseDate>2024-07-09T12:49:02-0400</xb:responseDate>
+  </extraResponseData>
+</searchRetrieveResponse>
