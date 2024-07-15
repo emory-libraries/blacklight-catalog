@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><searchRetrieveResponse xmlns="http://www.loc.gov/zing/srw/">
+  <version>1.2</version>
+  <numberOfRecords>1</numberOfRecords>
+  <records>
+    <record>
+      <recordSchema>marcxml</recordSchema>
+      <recordPacking>xml</recordPacking>
+      <recordData>
+        <record xmlns="http://www.loc.gov/MARC21/slim">
+          <controlfield tag="001">9937864299502486</controlfield>
+          <datafield ind1=" " ind2=" " tag="AVE">
+            <subfield code="8">53522740020002486</subfield>
+            <subfield code="e">Available</subfield>
+            <subfield code="l">UNIV</subfield>
+            <subfield code="0">9937864299502486</subfield>
+          </datafield>
+        </record>
+      </recordData>
+      <recordIdentifier>9937864299502486</recordIdentifier>
+      <recordPosition>1</recordPosition>
+    </record>
+  </records>
+</searchRetrieveResponse>

@@ -143,13 +143,19 @@ RSpec.feature 'View Search Results', type: :system, js: false do
     end
 
     around do |example|
+      orig_alma = ENV["ALMA"]
+      orig_inst = ENV["INSTITUTION"]
       api_url = ENV['ALMA_API_URL']
       orig_key = ENV['ALMA_BIB_KEY']
+      ENV["ALMA"] = 'emory-alma'
+      ENV["INSTITUTION"] = 'EMORY'
       ENV['ALMA_API_URL'] = 'http://www.example.com'
       ENV['ALMA_BIB_KEY'] = "fakebibkey123"
       Capybara.ignore_hidden_elements = false
       example.run
       Capybara.ignore_hidden_elements = true
+      ENV["ALMA"] = orig_alma
+      ENV["INSTITUTION"] = orig_inst
       ENV['ALMA_API_URL'] = api_url
       ENV['ALMA_BIB_KEY'] = orig_key
     end

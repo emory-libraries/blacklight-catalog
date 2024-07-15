@@ -57,6 +57,16 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   config.before do
+    stub_request(:get, "https://emory-alma.alma.exlibrisgroup.com/view/sru/EMORY?maximumRecords=1&operation=searchRetrieve&query=mms_id=990005988630302486&recordSchema=marcxml&version=1.2")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_sru_availability/sru_physical_holding.xml'), headers: {})
+    stub_request(:get, "https://emory-alma.alma.exlibrisgroup.com/view/sru/EMORY?maximumRecords=1&operation=searchRetrieve&query=mms_id=990005059530302486&recordSchema=marcxml&version=1.2")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_sru_availability/sru_multi_physical_holdings.xml'), headers: {})
+    stub_request(:get, "https://emory-alma.alma.exlibrisgroup.com/view/sru/EMORY?maximumRecords=2&operation=searchRetrieve&query=mms_id=990005988630302486%20or%20mms_id=990005059530302486&recordSchema=marcxml&version=1.2")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_sru_availability/sru_multi_records.xml'), headers: {})
+    stub_request(:get, "https://emory-alma.alma.exlibrisgroup.com/view/sru/EMORY?maximumRecords=1&operation=searchRetrieve&query=mms_id=990027507910302486&recordSchema=marcxml&version=1.2")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_sru_availability/sru_multi_physical_holding_types.xml'), headers: {})
+    stub_request(:get, "https://emory-alma.alma.exlibrisgroup.com/view/sru/EMORY?maximumRecords=1&operation=searchRetrieve&query=mms_id=9937864299502486&recordSchema=marcxml&version=1.2")
+      .to_return(status: 200, body: File.read(fixture_path + '/alma_sru_availability/sru_online_holding.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/990027507910302486?apikey=fakebibkey123&expand=p_avail,e_avail,d_avail,requests&view=full")
       .to_return(status: 200, body: File.read(fixture_path + '/alma_availability_test_file_10.xml'), headers: {})
     stub_request(:get, "http://www.example.com/almaws/v1/bibs/9937242404302486?view=full&expand=p_avail,e_avail,d_avail,requests&apikey=fakebibkey123")

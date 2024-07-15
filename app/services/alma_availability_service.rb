@@ -3,6 +3,11 @@ require 'rest-client'
 require 'nokogiri'
 
 class AlmaAvailabilityService
+  NAMESPACES = {
+    "srw" => "http://www.loc.gov/zing/srw/",
+    "marc" => "http://www.loc.gov/MARC21/slim"
+  }.freeze
+
   def initialize(mms_ids)
     @mms_ids = mms_ids
   end
@@ -14,7 +19,6 @@ class AlmaAvailabilityService
     return nil if response.blank?
 
     xml = Nokogiri::XML(response)
-    xml.remove_namespaces!
     ret_hsh = {}
 
     process_availability(xml, ret_hsh)
@@ -22,7 +26,7 @@ class AlmaAvailabilityService
   end
 
   def query_availability
-    RestClient.get "#{api_url}/almaws/v1/bibs?mms_id=#{@mms_ids.join('%2C')}#{query_inst}#{api_key}"
+    RestClient.get "https://#{ENV['ALMA']}.alma.exlibrisgroup.com/view/sru/#{ENV['INSTITUTION']}?version=1.2&operation=searchRetrieve&recordSchema=marcxml&query=mms_id=#{@mms_ids.join('%20or%20mms_id=')}&maximumRecords=#{@mms_ids.count}"
   rescue
     nil
   end
@@ -40,14 +44,14 @@ class AlmaAvailabilityService
   end
 
   def online_any_available?(record)
-    online_fields = record.xpath('record/datafield[@tag="AVE"]/subfield[@code="e"]')
-    online_fields.present? ? online_fields.any? { |f| f.text.casecmp('available').zero? } : false
+    online_fields = record.xpath('.//marc:datafield[@tag="AVE"]', NAMESPACES)
+    online_fields.present? ? online_fields.any? { |f| f.xpath('.//marc:subfield[@code="e"]', NAMESPACES).text.casecmp('available').zero? } : false
   end
 
   def process_availability(xml, ret_hsh)
-    xml.xpath("//bib").each do |record|
-      mms_id = record.xpath('mms_id').text
-      phys_holdings = record.xpath('record/datafield[@tag="AVA"]')
+    xml.xpath('//srw:record', NAMESPACES).each do |record|
+      mms_id = record.xpath('.//marc:controlfield[@tag="001"]', NAMESPACES).text
+      phys_holdings = record.xpath('.//marc:datafield[@tag="AVA"]', NAMESPACES)
       ret_hsh[mms_id] = {
         online_available: online_any_available?(record),
         physical_holdings: []
@@ -59,10 +63,10 @@ class AlmaAvailabilityService
   def process_phys_holdings(phys_holdings, ret_hsh, mms_id)
     phys_holdings.each do |ph|
       ret_hsh[mms_id][:physical_holdings] << {
-        library: ph.xpath('subfield[@code="q"]').text&.strip,
-        lib_location: ph.xpath('subfield[@code="c"]').text&.strip,
-        call_number: ph.xpath('subfield[@code="d"]').text&.strip,
-        status: ph.xpath('subfield[@code="e"]').text&.strip
+        library: ph.xpath('.//marc:subfield[@code="q"]', NAMESPACES).text.strip,
+        lib_location: ph.xpath('.//marc:subfield[@code="c"]', NAMESPACES).text.strip,
+        call_number: ph.xpath('.//marc:subfield[@code="d"]', NAMESPACES).text.strip,
+        status: ph.xpath('.//marc:subfield[@code="e"]', NAMESPACES).text.strip
       }
     end
   end
