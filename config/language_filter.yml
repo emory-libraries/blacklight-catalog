@@ -1,5 +1,6 @@
 "Gender identity disorder":
   replacement: "Gender dysphoria"
+  rationale: "https://docs.google.com/spreadsheets/d/1uqiP5PPKXJt35uFLrG5ytsLbz2kgWXBjG__hyD12KlY/edit?gid=0#gid=0"
 "Gender identity disorders":
   replacement: "Gender dysphoria"
 "Gender identity disorders in children":
@@ -8,3 +9,5 @@
   replacement: "Gender dysphoria in adolescence"
 "Indians of North America":
   replacement: "Indigenous peoples of North America"
+"Indians of South America":
+  replacement: "Indigenous peoples of South America"
