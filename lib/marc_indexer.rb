@@ -28,6 +28,7 @@ extend Blacklight::Marc::Indexer::Formats
 require 'traject/extraction_tools'
 
 # Custom Method Requires
+require 'traject/extract_3a_fields'
 require 'traject/extract_author_addl_display'
 require 'traject/extract_author_display'
 require 'traject/extract_author_vern'
