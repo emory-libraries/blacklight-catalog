@@ -74,6 +74,7 @@ extend ExtractEmorySortableAuthor
 extend ExtractEmorySortableTitle
 extend ExtractLibrary
 extend ExtractMarcResource
+extend Extract3aFields
 extend ExtractPublicationMainDisplay
 extend ExtractPublicationDate
 extend ExtractPublished
@@ -131,20 +132,25 @@ to_field 'note_addl_form_tesim', extract_marc('530a3')
 to_field 'note_arrangement_tesim', extract_marc('351ab')
 to_field 'note_binding_tesim', extract_marc('563abcde3')
 to_field 'note_citation_tesim', extract_marc('510abcx3')
+to_field 'note_general_tsim', extract_3a_fields('500')
+to_field 'note_bound_with_tesim', extract_3a_fields('501')
+to_field 'note_preferred_citation_tesim', extract_3a_fields('524')
+to_field 'note_custodial_tesim', extract_3a_fields('561')
+to_field 'note_awards_tesim', extract_3a_fields('586')
+to_field 'note_local_tesim', extract_3a_fields('590')
+to_field 'note_acquisition_tesim', extract_541_subfields_with_colon
 to_field 'note_copy_identification_tesim', extract_marc('562abc')
-to_field 'note_custodial_tesim', extract_marc('561a')
-to_field 'note_general_tsim', extract_marc('500a')
 to_field 'note_historical_tesim', extract_marc('545a')
-to_field 'note_local_tesim', extract_marc('590a')
 to_field 'note_location_originals_tesim', extract_marc('535a3')
 to_field 'note_participant_tesim', extract_marc('511a')
 to_field 'note_production_tesim', extract_marc('508a')
+to_field 'note_bibliography_tesim', extract_marc('504a')
 to_field 'note_publication_tesim', extract_marc('581a3')
 to_field 'note_related_collections_tesim', extract_marc('544n')
 to_field 'note_reproduction_tesim', extract_marc('533a3')
 to_field 'note_technical_tesim', extract_marc('538a')
 to_field 'note_time_place_event_tesim', extract_marc('518adop')
-to_field 'note_use_tesim', extract_marc('540a3')
+to_field 'note_use_tesim', extract_540_subfields
 to_field 'summary_tesim', extract_marc('520a')
 to_field 'table_of_contents_tesim', extract_marc('505agrt')
 to_field "text_tesi", extract_all_marc_values(from: '010', to: '899') do |_r, acc|

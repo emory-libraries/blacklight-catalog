@@ -193,6 +193,7 @@ class CatalogController < ApplicationController
     config.add_show_field('table_of_contents_tesim',
       label: 'Table of Contents',
       helper_method: :multiple_values_new_line)
+    config.add_show_field 'note_bibliography_tesim', label: 'Bibliography', helper_method: :multiple_values_new_line
     config.add_show_field 'summary_tesim', label: 'Summary', helper_method: :multiple_values_new_line
     config.add_show_field 'note_publication_tesim', label: 'Publication Note', helper_method: :multiple_values_new_line
     config.add_show_field('note_publication_dates_tesim',
@@ -211,9 +212,14 @@ class CatalogController < ApplicationController
     config.add_show_field('note_access_restriction_tesim',
       label: 'Restrictions on Access',
       helper_method: :multiple_values_new_line)
+    config.add_show_field 'note_acquisition_tesim', label: 'Source of Acquisition', helper_method: :multiple_values_new_line
     config.add_show_field 'note_use_tesim', label: 'Use and Reproduction'
+    config.add_show_field 'note_preferred_citation_tesim', label: 'Preferred Citation', helper_method: :multiple_values_new_line
     config.add_show_field 'note_general_tsim', label: 'General Note', helper_method: :multiple_values_new_line
+    config.add_show_field 'note_awards_tesim', label: 'Awards', helper_method: :multiple_values_new_line
     config.add_show_field 'note_local_tesim', label: 'Local Note', helper_method: :multiple_values_new_line
+    config.add_show_field 'note_bound_with_tesim', label: 'Bound With', helper_method: :multiple_values_new_line
+
     config.add_show_field('note_participant_tesim',
       label: 'Participant/Performer Note',
       helper_method: :multiple_values_new_line)
