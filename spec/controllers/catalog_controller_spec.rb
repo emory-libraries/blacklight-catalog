@@ -44,7 +44,8 @@ RSpec.describe CatalogController, type: :controller do
        'note_addl_form_tesim', 'note_arrangement_tesim', 'note_historical_tesim',
        'note_reproduction_tesim', 'note_location_originals_tesim', 'note_custodial_tesim',
        'note_copy_identification_tesim', 'note_binding_tesim', 'note_citation_tesim',
-       'note_related_collections_tesim', 'bound_with_display_ssim', 'barcode_ssim']
+       'note_related_collections_tesim', 'bound_with_display_ssim', 'barcode_ssim',
+       'note_acquisition_tesim', 'note_awards_tesim', 'note_bibliography_tesim', 'note_bound_with_tesim', 'note_preferred_citation_tesim']
     end
 
     it { expect(show_fields).to contain_exactly(*expected_show_fields) }
