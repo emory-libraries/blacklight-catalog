@@ -20,7 +20,7 @@ module ExtractAuthorAddlDisplay
 
   def build_ret_strings(record, field_num, text_fields, relator_field, ret_values)
     record.fields(field_num).each do |f|
-      build_str = gather_subfield_3(f)
+      build_str = gather_subfield_three(f)
       build_str += gather_author_string(f, text_fields)
       relator_string = gather_relator_string(f, relator_field)
       build_str += " relator: #{relator_string}" if relator_string.present?
