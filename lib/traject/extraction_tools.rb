@@ -179,6 +179,11 @@ module ExtractionTools
     %W[
       440anpv:490av
       830#{atog}kv
+    ].join(':').freeze
+  end
+
+  def title_series_8xx_str(atog)
+    %W[
       800#{atog}jklmnopqrstv
       810#{atog}klmnoprstv
       811acdefgjklnopqstv

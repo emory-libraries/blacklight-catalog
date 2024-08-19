@@ -198,7 +198,9 @@ to_field 'title_main_display_ssim', extract_marc('245abfgknps', alternate_script
 to_field 'title_main_first_char_ssim', extract_title_main_first_char
 to_field 'title_precise_tesim', extract_title_precise
 to_field 'title_series_ssim', extract_marc(title_series_str(ATOG))
+to_field 'title_series_ssim', extract_8xx_with_subfield3(ATOG)
 to_field 'title_series_tesim', extract_marc(title_series_str(ATOG))
+to_field 'title_series_tesim', extract_8xx_with_subfield3(ATOG)
 to_field 'title_ssort', extract_emory_sortable_title
 to_field 'title_translation_tesim', extract_marc("242#{ATOZ}")
 to_field 'title_uniform_ssim', extract_marc("130adfklmnoprs:240#{ATOG}knps")
