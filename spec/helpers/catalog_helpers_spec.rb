@@ -56,15 +56,25 @@ RSpec.describe CatalogHelper, type: :helper do
       dupe[:value] = ["Tim Jenkins relator: editor."]
       dupe
     end
+    let(:value_with_prefix) do
+      dupe = SHOW_PAGE_VALUE.dup
+      dupe[:value] = ["Prefix: Tim Jenkins"]
+      dupe
+    end
+    let(:value_with_prefix_relator) do
+      dupe = SHOW_PAGE_VALUE.dup
+      dupe[:value] = ["Prefix: Tim Jenkins relator: editor."]
+      dupe
+    end
     let(:value_with_6_auth_addl) do
       dupe = SHOW_PAGE_VALUE.dup
       dupe[:value] = [
-        "Tim Jenkins relator: editor.",
-        "Sally Jenkins",
+        "Prefix: Tim Jenkins relator: editor.",
+        "Prefix: Sally Jenkins",
         "Betsy Jenkins",
         "Sal Weitzman relator: ghost writer.",
         "Mike Birbiglia",
-        "Tim Conway relator: moral support."
+        "Tim Conway"
       ]
       dupe
     end
@@ -77,19 +87,31 @@ RSpec.describe CatalogHelper, type: :helper do
 
     it 'converts a single valued additional author with relator into a facet search hyperlink, leaving relator out of the link' do
       expect(helper.author_additional_format(value_with_relator)).to eq(
-        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Jenkins\">Tim Jenkins</a>, editor."
+        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Jenkins\">Tim Jenkins</a><span>, editor.</span>"
+      )
+    end
+
+    it 'converts a single valued additional author with prefix and relator into a facet search hyperlink, leaving relator and prefix out of the link' do
+      expect(helper.author_additional_format(value_with_prefix_relator)).to eq(
+        "<span>Prefix: </span><a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Jenkins\">Tim Jenkins</a><span>, editor.</span>"
+      )
+    end
+
+    it 'converts a single valued additional author with prefix into a facet search hyperlink, leaving prefix out of the link' do
+      expect(helper.author_additional_format(value_with_prefix)).to eq(
+        "<span>Prefix: </span><a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Jenkins\">Tim Jenkins</a>"
       )
     end
 
     it 'converts a values array with more than 5 items into a new-lined list with a collapsible after 5' do # rubocop:disable RSpec/ExampleLength
       expect(helper.author_additional_format(value_with_6_auth_addl)).to eq(
-        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Jenkins\">Tim Jenkins</a>, editor.<br>" \
-        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Sally+Jenkins\">Sally Jenkins</a><br>" \
+        "<span>Prefix: </span><a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Jenkins\">Tim Jenkins</a><span>, editor.</span><br>" \
+        "<span>Prefix: </span><a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Sally+Jenkins\">Sally Jenkins</a><br>" \
         "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Betsy+Jenkins\">Betsy Jenkins</a><br>" \
-        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Sal+Weitzman\">Sal Weitzman</a>, ghost writer.<br>" \
+        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Sal+Weitzman\">Sal Weitzman</a><span>, ghost writer.</span><br>" \
         "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Mike+Birbiglia\">Mike Birbiglia</a><br>" \
         "<span id=\"extended-author-addl\" class=\"collapse collapsible-addl-authors\">" \
-        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Conway\">Tim Conway</a>, moral support.</span><br>" \
+        "<a href=\"/?f%5Bauthor_addl_ssim%5D%5B%5D=Tim+Conway\">Tim Conway</a></span><br>" \
         "<a class=\"btn btn-link additional-authors-collapse collapsed\" data-toggle=\"collapse\"" \
         " role=\"button\" aria-expanded=\"false\" aria-controls=\"extended-author-addl\" href=\"#extended-author-addl\"></a>"
       )
