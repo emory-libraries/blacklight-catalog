@@ -29,11 +29,8 @@ module ExtractAuthorAddlDisplay
   end
 
   def gather_subfield_three(field)
-    subfield_three = field['3']
-    return '' unless subfield_three
-
-    subfield_three = subfield_three.end_with?(':') ? subfield_three : "#{subfield_three}:"
-    "#{subfield_three} "
+    subfield3 = field['3']
+    subfield3 ? subfield3.chomp(':') + ':' : ''
   end
 
   def gather_relator_string(field, relator_field)

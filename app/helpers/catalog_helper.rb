@@ -100,17 +100,8 @@ module CatalogHelper
   end
 
   def multilined_links_to_facet_author_addl(values)
-    ret_vals = values.map do |v|
-      line_pieces = v.split(' relator: ')
-      quer_disp = line_pieces[0]
-      relator = line_pieces.size == 2 ? line_pieces[1] : nil
-
-      ret_line = link_to(quer_disp, ("/?f%5Bauthor_addl_ssim%5D%5B%5D=" + CGI.escape(quer_disp))).to_s
-      ret_line += ", #{relator}" if relator.present?
-      ret_line
-    end
-    return safe_join(ret_vals, tag.br) if ret_vals.present?
-    ''
+    ret_vals = values.map { |v| process_value(v) }
+    ret_vals.present? ? safe_join(ret_vals, tag.br) : ''
   end
 
   def multilined_links_to_facet_flexible(values, field_name)
@@ -130,4 +121,45 @@ module CatalogHelper
       link_to v, query
     end
   end
+end
+
+private
+
+def process_value(value)
+  line_pieces = split_value(value)
+  rest_of_line, relator = process_line_pieces(line_pieces)
+  quer_disp, prefix = process_rest_of_line(rest_of_line)
+
+  build_line(quer_disp, prefix, relator)
+end
+
+def split_value(value)
+  value.split(' relator: ')
+end
+
+def process_line_pieces(line_pieces)
+  rest_of_line = line_pieces[0].split(':')
+  relator = line_pieces.size == 2 ? content_tag(:span, ", " + line_pieces[1].strip) : nil
+  [rest_of_line, relator]
+end
+
+def process_rest_of_line(rest_of_line)
+  if rest_of_line.size == 2
+    quer_disp = rest_of_line[1].strip
+    prefix = content_tag(:span, rest_of_line[0].strip + ": ")
+  else
+    quer_disp = rest_of_line[0].strip
+    prefix = nil
+  end
+  [quer_disp, prefix]
+end
+
+def build_line(quer_disp, prefix, relator)
+  ret_line = prefix ? prefix + content_tag(:a, quer_disp, href: query_href(quer_disp)) : content_tag(:a, quer_disp, href: query_href(quer_disp))
+  ret_line += relator if relator.present?
+  ret_line
+end
+
+def query_href(quer_disp)
+  "/?f%5Bauthor_addl_ssim%5D%5B%5D=#{CGI.escape(quer_disp)}"
 end
