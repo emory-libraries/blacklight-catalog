@@ -213,7 +213,7 @@ class CatalogController < ApplicationController
       label: 'Restrictions on Access',
       helper_method: :multiple_values_new_line)
     config.add_show_field 'note_acquisition_tesim', label: 'Source of Acquisition', helper_method: :multiple_values_new_line
-    config.add_show_field 'note_use_tesim', label: 'Use and Reproduction'
+    config.add_show_field 'note_use_tesim', label: 'Use and Reproduction', helper_method: :links_to_facet_hide
     config.add_show_field 'note_preferred_citation_tesim', label: 'Preferred Citation', helper_method: :multiple_values_new_line
     config.add_show_field 'note_general_tsim', label: 'General Note', helper_method: :multiple_values_new_line
     config.add_show_field 'note_awards_tesim', label: 'Awards', helper_method: :multiple_values_new_line

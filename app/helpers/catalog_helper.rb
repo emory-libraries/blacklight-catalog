@@ -27,6 +27,17 @@ module CatalogHelper
     ''
   end
 
+  def links_to_facet_hide(value)
+    values = Array.wrap(value[:value]).compact.map(&:strip)
+    if values.size < 3
+      return values.present? ? safe_join(values.reject(&:blank?), ' ') : ''
+    end
+
+    description, link_text, url = values
+    hyperlink = link_to(link_text, url)
+    safe_join([description, hyperlink].reject(&:blank?), ' ')
+  end
+
   def multilined_links_to_facet(value)
     field = value[:field]
     values = Array.wrap(value[:value])

@@ -23,8 +23,8 @@ module Extract3aFields
         a_subfield = field['a']
 
         note = extractor_subfield3(field)
-        note += note.empty? ? a_subfield.to_s : " #{a_subfield}" if a_subfield
         note += note.empty? ? c_subfield.to_s : " #{c_subfield}" if c_subfield
+        note += note.empty? ? a_subfield.to_s : " #{a_subfield}" if a_subfield
 
         accumulator << note.strip unless note.strip.empty?
       end
