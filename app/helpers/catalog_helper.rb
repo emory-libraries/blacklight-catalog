@@ -28,14 +28,16 @@ module CatalogHelper
   end
 
   def links_to_facet_hide(value)
-    values = Array.wrap(value[:value]).compact.map(&:strip)
-    if values.size < 3
-      return values.present? ? safe_join(values.reject(&:blank?), ' ') : ''
+    values = Array.wrap(value[:value]).first&.strip
+    url_regex = %r{https?://[^\s]+}
+    url = values&.match(url_regex)&.to_s
+    if url
+      description = values.sub(url, '').strip
+      hyperlink = link_to(url, url)
+      safe_join([description, hyperlink].reject(&:blank?), ' ')
+    else
+      values.presence || ''
     end
-
-    description, link_text, url = values
-    hyperlink = link_to(link_text, url)
-    safe_join([description, hyperlink].reject(&:blank?), ' ')
   end
 
   def multilined_links_to_facet(value)
