@@ -10,6 +10,7 @@ class LanguageFilter
   def initialize(filter_file_path = Rails.root.join('config', 'language_filter.yml'))
     @filter_data = YAML.load_file(filter_file_path)
     @terms = @filter_data.keys.sort { |a, b| b.length <=> a.length }
+    @term_regexes = @terms.map { |term| [Regexp.new(Regexp.escape(term), Regexp::IGNORECASE), @filter_data[term]['replacement']] }.to_h
   end
 
   # Checks if the input is valid, i.e., doesn't need replacement.
@@ -19,11 +20,7 @@ class LanguageFilter
   def valid?(input)
     return true if input.blank?
 
-    @terms.each do |term|
-      return false if input.include?(term)
-    end
-
-    true
+    @term_regexes.keys.none? { |regex| input.match?(regex) }
   end
 
   # Gets the filtered version of the input text.
@@ -35,8 +32,8 @@ class LanguageFilter
 
     output = input.dup
 
-    @terms.each do |term|
-      output.gsub!(term, @filter_data[term]['replacement']) if output.include?(term)
+    @term_regexes.each do |regex, replacement|
+      output.gsub!(regex, replacement)
     end
 
     output
