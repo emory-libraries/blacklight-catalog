@@ -22,19 +22,21 @@ RSpec.describe LanguageFilter do
 
     it 'returns true when input is valid' do
       input = "Georgia"
-
       expect(filter.valid?(input)).to eq(true)
     end
 
     it 'returns false when input is invalid' do
       input = "Gender identity disorder"
+      expect(filter.valid?(input)).to eq(false)
+    end
 
+    it 'returns false when input is invalid with different case' do
+      input = "gEnDeR iDeNtItY dIsOrDeR"
       expect(filter.valid?(input)).to eq(false)
     end
 
     it 'returns true when input is nil' do
       input = nil
-
       expect(filter.valid?(input)).to eq(true)
     end
   end
@@ -59,7 +61,12 @@ RSpec.describe LanguageFilter do
     it 'prioritizes terms with higher length during replacement' do
       input = 'Gender identity disorders'
       expected = 'Gender dysphoria'
+      expect(filter.filter(input)).to eq(expected)
+    end
 
+    it 'replaces harmful text with corresponding replacements regardless of case' do
+      input = 'gEnDeR iDeNtItY dIsOrDeR'
+      expected = 'Gender dysphoria'
       expect(filter.filter(input)).to eq(expected)
     end
 
@@ -67,6 +74,12 @@ RSpec.describe LanguageFilter do
       input = 'Gender identity disorders--United States'
       expected = 'Gender dysphoria--United States'
 
+      expect(filter.filter(input)).to eq(expected)
+    end
+
+    it 'replaces harmful terms when multiple terms are combined regardless of case' do
+      input = 'GeNdEr IdEnTiTy DiSoRdErS--United States'
+      expected = 'Gender dysphoria--United States'
       expect(filter.filter(input)).to eq(expected)
     end
 
