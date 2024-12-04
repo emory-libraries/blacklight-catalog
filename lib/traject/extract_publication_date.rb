@@ -6,7 +6,7 @@ module ExtractPublicationDate
       if rec['008']
         date_type = rec['008'].value[0o6]
         start_year = rec['008'].value[0o7, 4]
-        end_year = rec['008'].value[11, 4] == '9999' ? Date.current.year.to_s : rec['008'].value[11, 4]
+        end_year = rec['008'].value[11, 4].to_i >= 2900 ? (Date.current.year + 100).to_s : rec['008'].value[11, 4]
         if range_processing?(date_type, start_year, end_year)
           possible_range_processing(start_year, end_year, rec, acc)
         elsif include_zeroes?(start_year, end_year) && not_include_alpha_characters?(start_year, end_year)
