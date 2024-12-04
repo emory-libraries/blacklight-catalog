@@ -283,10 +283,9 @@ RSpec.describe 'Indexing fields with custom logic' do
     end
 
     context 'when it is journal with end year 9999' do
-      it 'has end date as current year plus 100' do
+      it 'has end date as current year' do
         # 750727c20109999nyuqr p 0 a0eng c - 008 value with start year 2010 and end year 9999
-        current_year = Time.now.getlocal.year
-        expect(solr_doc4['pub_date_isim']).to eq((2010..(current_year + 100)).to_a)
+        expect(solr_doc4['pub_date_isim']).to eq((2010..Time.now.getlocal.year).to_a)
       end
     end
 
