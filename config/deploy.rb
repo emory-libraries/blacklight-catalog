@@ -16,7 +16,12 @@ end
 before 'deploy:starting', 'deploy:confirm_cab_approval'
 
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.14.1"
+lock "~> 3.19.2"
+
+# Load environment variables
+require 'dotenv'
+
+Dotenv.load('.env.development')
 
 set :application, "blacklight-catalog"
 set :repo_url, "git@github.com:emory-libraries/blacklight-catalog.git"
@@ -27,16 +32,6 @@ set :branch, ENV['TAG'] || ENV['BRANCH'] || 'main'
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/opt/blacklight-catalog"
-
-# Default value for :format is :airbrussh.
-# set :format, :airbrussh
-
-# You can configure the Airbrussh format using :format_options.
-# These are the defaults.
-# set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
-
-# Default value for :pty is false
-# set :pty, true
 
 # Default value for :linked_files is []
 append :linked_files, ".env.production", "config/secrets.yml"
@@ -72,8 +67,12 @@ SSHKit.config.command_map[:rake] = 'bundle exec rake'
 # end
 
 set :passenger_restart_with_touch, true
-set :ec2_profile, ENV['AWS_PROFILE'] || ENV['AWS_DEFAULT_PROFILE']
-set :ec2_region, %w[us-east-1]
-set :ec2_contact_point, :private_ip
-set :ec2_project_tag, 'EmoryApplicationName'
-set :ec2_stages_tag, 'EmoryEnvironment'
+
+# Restart apache
+namespace :deploy do
+  after :log_revision, :restart_apache do
+    on roles(:web) do
+      execute :sudo, :systemctl, :restart, :httpd
+    end
+  end
+end
