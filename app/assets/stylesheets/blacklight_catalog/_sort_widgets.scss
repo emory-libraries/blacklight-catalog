@@ -21,6 +21,10 @@ div#sortAndPerPage {
 
     > #per_page-dropdown > .dropdown-menu {
       min-width: $results-drop-menu-min-w;
+      // v hiding the 100 option bc it doesn't play well with SRU query, per librarysearch-enhance/51
+      :last-child {
+        display: none;
+      }
     }
   }
   > .pagination {
