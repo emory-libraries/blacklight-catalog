@@ -38,7 +38,6 @@ install_plugin Capistrano::SCM::Git
 # require "capistrano/chruby"
 require "capistrano/rails"
 require "capistrano/passenger"
-require "cap-ec2/capistrano"
 require 'capistrano/yarn'
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined

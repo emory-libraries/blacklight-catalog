@@ -20,6 +20,7 @@ gem 'bootstrap-select-rails', '>= 1.13'
 gem 'cancancan'
 gem 'citeproc-ruby'
 gem 'coffee-rails', '~> 4.2'
+gem 'concurrent-ruby', '1.3.4'
 gem 'csl-styles'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
@@ -67,11 +68,13 @@ group :development, :test do
 end
 
 group :development do
-  gem 'cap-ec2-emory', github: 'curationexperts/cap-ec2'
-  gem 'capistrano', '= 3.14.1', require: false
+  gem 'bcrypt_pbkdf'
+  gem 'capistrano', require: false
   gem 'capistrano-passenger', require: false
   gem 'capistrano-rails', '~> 1.6', require: false
   gem 'capistrano-yarn'
+  gem 'ec2_ipv4_retriever', git: 'https://github.com/emory-libraries/ec2_ipv4_retriever', branch: 'main'
+  gem 'ed25519'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rack-mini-profiler'
   gem 'spring'

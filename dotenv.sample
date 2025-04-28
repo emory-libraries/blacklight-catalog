@@ -37,3 +37,8 @@ HONEYBADGER_ENV=
 
 # Honeybadger blacklight:reindex check-in ID. You can find this ID in the Honeybadger portal, under Blacklight Catalog > Check-Ins
 HONEYBADGER_BLACKLIGHT_REINDEX_CHECK_IN_ID=
+
+# IPs needed for deployment
+ARCH_SERVER_IP=
+TEST_SERVER_IP=
+PROD_SERVER_IP=
