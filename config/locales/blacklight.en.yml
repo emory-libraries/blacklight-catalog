@@ -46,6 +46,8 @@ en:
         title: 'Staff View'
       page_title:
         title: 'Search Results - %{application_name}'
+      errors:
+        request_error: 'There was a problem with the search service. Please try again later or contact support.'
       show:
         title: 'Item Detail - %{application_name}'
     tools:
