@@ -46,6 +46,8 @@ en:
         title: 'Staff View'
       page_title:
         title: 'Search Results - %{application_name}'
+      errors:
+        request_error: 'There has been a technical error. Please report if the problem persists.'
       show:
         title: 'Item Detail - %{application_name}'
     tools:
