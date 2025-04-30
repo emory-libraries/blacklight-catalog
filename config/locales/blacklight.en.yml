@@ -47,7 +47,7 @@ en:
       page_title:
         title: 'Search Results - %{application_name}'
       errors:
-        request_error: 'There was a problem with the search service. Please try again later or contact support.'
+        request_error: 'There has been a technical error. Please report if the problem persists.'
       show:
         title: 'Item Detail - %{application_name}'
     tools:
