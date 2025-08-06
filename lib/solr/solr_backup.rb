@@ -15,6 +15,21 @@ class String
   end
 end
 
+def notify_slack(location, collection_name)
+  size = `du -s #{location}`
+  if size.empty? || size&.split("\t")&.first&.to_i < 300000
+    channel = 'dlp-backups-failed-jobs'
+    text = "#{collection_name} on solr prod had a problem backing up, please investigate"
+  else
+    channel = 'dlp-backups'
+    text = "#{collection_name} on solr prod backed up successfully"
+  end 
+  webhook_url = 'https://hooks.slack.com/services/' + ENV['SLACK_HOOK']
+  payload = { :channel => channel, :text => text }.to_json
+  cmd = "curl -X POST --data-urlencode 'payload=#{payload}' #{webhook_url}"
+
+  system(cmd)    
+end
 
 def prepare_uri(endpoint)
   uri           = URI.parse(endpoint)
@@ -91,8 +106,11 @@ def perform_backup
     item        = ARGV[0]
     request_id  = "#{item}_backup_#{right_now}"
     url         = "http://localhost:8983/solr/admin/collections?action=BACKUP&collection=#{item}&location=/mnt/#{short_hostname}_efs/solr/backup/&name=#{item}_backup_#{right_now}&async=#{request_id}"
+    location    = "/mnt/#{short_hostname}_efs/solr/backup/#{item}_backup_#{right_now}"
+
     prepare_uri(url)
     get_backup_status(request_id)
+    notify_slack(location, item) if short_hostname == 'prod'
   end
 end
 
