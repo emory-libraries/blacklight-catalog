@@ -16,7 +16,7 @@ class String
 end
 
 def notify_slack(location, collection_name)
-  size = "du -s #{location}"
+  size = `du -s #{location}`
   if size.empty? || size&.split("\t")&.first&.to_i < 300000
     channel = 'dlp-backups-failed-jobs'
     text = "#{collection_name} on solr prod had a problem backing up, please investigate"
